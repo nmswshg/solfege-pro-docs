@@ -1,0 +1,1717 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ソルフェージュPRO 練習ガイド</title>
+    <meta name="description" content="ギタリスト・ベーシスト・ドラマー・ピアニスト・ボーカリスト向けの効果的な音楽トレーニング方法。課題別に最適な練習メニューを解説。">
+
+    <!-- OGP -->
+    <meta property="og:title" content="ソルフェージュPRO 練習ガイド">
+    <meta property="og:description" content="あなたの音楽的課題を解決する、科学的アプローチの練習ガイド">
+    <meta property="og:type" content="website">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            /* Studio Theme Colors */
+            --primary: #D4AF37;
+            --secondary: #8B7355;
+            --accent: #C9B896;
+            --background: #1A1A1E;
+            --surface: #2A2A30;
+            --surface-light: #3A3A42;
+            --text-primary: #F5F5F0;
+            --text-secondary: #9A9A9A;
+            --success: #4ADE80;
+            --warning: #FBBF24;
+            --error: #F87171;
+
+            /* Spacing */
+            --space-xs: 4px;
+            --space-sm: 8px;
+            --space-md: 16px;
+            --space-lg: 24px;
+            --space-xl: 32px;
+            --space-2xl: 48px;
+            --space-3xl: 64px;
+
+            /* Border Radius */
+            --radius-sm: 4px;
+            --radius-md: 8px;
+            --radius-lg: 12px;
+            --radius-xl: 16px;
+
+            /* Navigation Height */
+            --nav-height: 56px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: var(--nav-height);
+        }
+
+        body {
+            font-family: 'Noto Sans JP', -apple-system, BlinkMacSystemFont, sans-serif;
+            background-color: var(--background);
+            color: var(--text-primary);
+            line-height: 1.8;
+            font-size: 16px;
+        }
+
+        /* Fixed Navigation */
+        .nav {
+            background: rgba(42, 42, 48, 0.95);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            padding: var(--space-md) var(--space-lg);
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            border-bottom: 1px solid var(--surface-light);
+            height: var(--nav-height);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .nav__container {
+            display: flex;
+            align-items: center;
+            gap: var(--space-xl);
+            max-width: 1200px;
+            width: 100%;
+        }
+
+        .nav__logo {
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--primary);
+            letter-spacing: 1px;
+            white-space: nowrap;
+        }
+
+        .nav__list {
+            display: flex;
+            gap: var(--space-sm);
+            justify-content: center;
+            list-style: none;
+            flex-wrap: wrap;
+            flex: 1;
+        }
+
+        .nav__link {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 13px;
+            padding: var(--space-xs) var(--space-md);
+            border-radius: var(--radius-md);
+            transition: all 0.2s ease;
+            white-space: nowrap;
+        }
+
+        .nav__link:hover,
+        .nav__link.active {
+            color: var(--primary);
+            background: var(--surface-light);
+        }
+
+        /* Header - Now below nav */
+        .header {
+            background: linear-gradient(180deg, var(--surface) 0%, var(--background) 100%);
+            padding: var(--space-3xl) var(--space-lg);
+            padding-top: calc(var(--nav-height) + var(--space-3xl));
+            text-align: center;
+            border-bottom: 1px solid var(--surface-light);
+        }
+
+        .header__title {
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: var(--space-md);
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .header__subtitle {
+            color: var(--text-secondary);
+            font-size: 16px;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Main Content */
+        .main {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: var(--space-2xl) var(--space-lg);
+        }
+
+        /* Section */
+        .section {
+            margin-bottom: var(--space-3xl);
+            scroll-margin-top: calc(var(--nav-height) + var(--space-lg));
+        }
+
+        .section__header {
+            display: flex;
+            align-items: center;
+            gap: var(--space-md);
+            margin-bottom: var(--space-xl);
+            padding-bottom: var(--space-md);
+            border-bottom: 2px solid var(--primary);
+        }
+
+        .section__icon {
+            font-size: 32px;
+        }
+
+        .section__title {
+            font-size: 24px;
+            font-weight: 700;
+        }
+
+        /* Question Card */
+        .question-card {
+            background: var(--surface);
+            border-radius: var(--radius-xl);
+            padding: var(--space-xl);
+            margin-bottom: var(--space-xl);
+            border: 1px solid var(--surface-light);
+            scroll-margin-top: calc(var(--nav-height) + var(--space-lg));
+        }
+
+        .question-card__header {
+            display: flex;
+            align-items: flex-start;
+            gap: var(--space-md);
+            margin-bottom: var(--space-lg);
+        }
+
+        .question-card__q {
+            background: var(--primary);
+            color: var(--background);
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+
+        .question-card__title {
+            font-size: 20px;
+            font-weight: 700;
+            line-height: 1.4;
+        }
+
+        .question-card__content {
+            padding-left: calc(32px + var(--space-md));
+        }
+
+        /* Content Block */
+        .content-block {
+            margin-bottom: var(--space-xl);
+        }
+
+        .content-block__title {
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: var(--space-md);
+            display: flex;
+            align-items: center;
+            gap: var(--space-sm);
+        }
+
+        .content-block__title::before {
+            content: "";
+            width: 4px;
+            height: 16px;
+            background: var(--primary);
+            border-radius: 2px;
+        }
+
+        .content-block p {
+            margin-bottom: var(--space-md);
+            color: var(--text-primary);
+        }
+
+        .content-block p:last-child {
+            margin-bottom: 0;
+        }
+
+        /* Highlight Text */
+        .highlight {
+            color: var(--primary);
+            font-weight: 500;
+        }
+
+        /* Lists */
+        .content-list {
+            list-style: none;
+            margin-bottom: var(--space-md);
+        }
+
+        .content-list li {
+            padding-left: var(--space-lg);
+            position: relative;
+            margin-bottom: var(--space-sm);
+        }
+
+        .content-list li::before {
+            content: "•";
+            color: var(--primary);
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+        }
+
+        .content-list--numbered {
+            counter-reset: item;
+        }
+
+        .content-list--numbered li::before {
+            content: counter(item) ".";
+            counter-increment: item;
+        }
+
+        /* Level Cards */
+        .level-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: var(--space-md);
+            margin-bottom: var(--space-md);
+        }
+
+        .level-card {
+            background: var(--surface-light);
+            border-radius: var(--radius-lg);
+            padding: var(--space-lg);
+            border-left: 4px solid var(--primary);
+        }
+
+        .level-card--beginner { border-left-color: var(--success); }
+        .level-card--intermediate { border-left-color: var(--warning); }
+        .level-card--advanced { border-left-color: var(--error); }
+
+        .level-card__title {
+            font-size: 14px;
+            font-weight: 700;
+            margin-bottom: var(--space-sm);
+        }
+
+        .level-card--beginner .level-card__title { color: var(--success); }
+        .level-card--intermediate .level-card__title { color: var(--warning); }
+        .level-card--advanced .level-card__title { color: var(--error); }
+
+        .level-card__content {
+            font-size: 14px;
+            color: var(--text-secondary);
+        }
+
+        /* Training Table */
+        .training-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: var(--space-md);
+            font-size: 14px;
+        }
+
+        .training-table th,
+        .training-table td {
+            padding: var(--space-md);
+            text-align: left;
+            border-bottom: 1px solid var(--surface-light);
+        }
+
+        .training-table th {
+            background: var(--surface-light);
+            color: var(--text-secondary);
+            font-weight: 500;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Tips Box */
+        .tips-box {
+            background: rgba(212, 175, 55, 0.1);
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            border-radius: var(--radius-lg);
+            padding: var(--space-lg);
+            margin-bottom: var(--space-md);
+        }
+
+        .tips-box__title {
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: var(--space-sm);
+        }
+
+        .tips-box__content {
+            font-size: 14px;
+        }
+
+        /* Warning Box */
+        .warning-box {
+            background: rgba(248, 113, 113, 0.1);
+            border: 1px solid rgba(248, 113, 113, 0.3);
+            border-radius: var(--radius-lg);
+            padding: var(--space-lg);
+            margin-bottom: var(--space-md);
+        }
+
+        .warning-box__title {
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--error);
+            margin-bottom: var(--space-sm);
+        }
+
+        .warning-box__content {
+            font-size: 14px;
+        }
+
+        /* Next Step */
+        .next-step {
+            background: linear-gradient(135deg, var(--surface) 0%, var(--surface-light) 100%);
+            border-radius: var(--radius-lg);
+            padding: var(--space-lg);
+            display: flex;
+            align-items: center;
+            gap: var(--space-md);
+            text-decoration: none;
+            color: var(--text-primary);
+            transition: transform 0.2s ease;
+        }
+
+        .next-step:hover {
+            transform: translateX(8px);
+        }
+
+        .next-step__label {
+            font-size: 12px;
+            color: var(--text-secondary);
+        }
+
+        .next-step__title {
+            font-size: 16px;
+            font-weight: 500;
+        }
+
+        .next-step__arrow {
+            margin-left: auto;
+            color: var(--primary);
+            font-size: 20px;
+        }
+
+        /* CTA Section */
+        .cta {
+            background: linear-gradient(135deg, var(--surface) 0%, var(--background) 100%);
+            border: 1px solid var(--primary);
+            border-radius: var(--radius-xl);
+            padding: var(--space-2xl);
+            text-align: center;
+            margin-top: var(--space-3xl);
+        }
+
+        .cta__title {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: var(--space-md);
+        }
+
+        .cta__text {
+            color: var(--text-secondary);
+            margin-bottom: var(--space-lg);
+        }
+
+        .cta__button {
+            display: inline-block;
+            background: var(--primary);
+            color: var(--background);
+            padding: var(--space-md) var(--space-xl);
+            border-radius: var(--radius-lg);
+            text-decoration: none;
+            font-weight: 700;
+            transition: all 0.2s ease;
+        }
+
+        .cta__button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 20px rgba(212, 175, 55, 0.4);
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--surface);
+            padding: var(--space-xl) var(--space-lg);
+            text-align: center;
+            border-top: 1px solid var(--surface-light);
+        }
+
+        .footer__text {
+            color: var(--text-secondary);
+            font-size: 14px;
+        }
+
+        .footer__link {
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav {
+                height: auto;
+                padding: var(--space-sm) var(--space-md);
+            }
+
+            .nav__container {
+                flex-direction: column;
+                gap: var(--space-sm);
+            }
+
+            .nav__logo {
+                display: none;
+            }
+
+            .nav__list {
+                gap: var(--space-xs);
+            }
+
+            .nav__link {
+                font-size: 11px;
+                padding: var(--space-xs) var(--space-sm);
+            }
+
+            .header {
+                padding-top: calc(80px + var(--space-2xl));
+            }
+
+            .header__title {
+                font-size: 24px;
+            }
+
+            .question-card__content {
+                padding-left: 0;
+            }
+
+            .level-cards {
+                grid-template-columns: 1fr;
+            }
+
+            .training-table {
+                font-size: 12px;
+            }
+
+            .training-table th,
+            .training-table td {
+                padding: var(--space-sm);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Fixed Navigation -->
+    <nav class="nav">
+        <div class="nav__container">
+            <span class="nav__logo">SOLFEGE PRO</span>
+            <ul class="nav__list">
+                <li><a href="#guitar" class="nav__link active">🎸 ギター・ベース</a></li>
+                <li><a href="#drums" class="nav__link">🥁 ドラム</a></li>
+                <li><a href="#piano" class="nav__link">🎹 ピアノ</a></li>
+                <li><a href="#vocal" class="nav__link">🎤 ボーカル</a></li>
+                <li><a href="#wind" class="nav__link">🎺 管弦楽器</a></li>
+                <li><a href="#features" class="nav__link">📱 機能解説</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Header -->
+    <header class="header">
+        <h1 class="header__title">練習ガイド</h1>
+        <p class="header__subtitle">
+            あなたの音楽的課題を解決するための、制作者が設計した練習メニューと使い方
+        </p>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main">
+
+        <!-- ============================================ -->
+        <!-- ギター・ベース セクション -->
+        <!-- ============================================ -->
+        <section id="guitar" class="section">
+            <div class="section__header">
+                <span class="section__icon">🎸</span>
+                <h2 class="section__title">ギター・ベース</h2>
+            </div>
+
+            <!-- Q1: セッションで頭が真っ白 -->
+            <article class="question-card" id="guitar-q1">
+                <div class="question-card__header">
+                    <span class="question-card__q">Q</span>
+                    <h3 class="question-card__title">セッションで次のコードが来ると頭が真っ白になる</h3>
+                </div>
+                <div class="question-card__content">
+                    <div class="content-block">
+                        <h4 class="content-block__title">なぜこの練習が必要か</h4>
+                        <p>セッションで止まる原因は「考える時間がない」ことではない。<span class="highlight">「考えなければ弾けない」ことが問題。</span></p>
+                        <p>コード進行を聴いて「次はG7だ」と分かっても、そこから「G7のコードトーンは…G, B, D, F…5弦の10フレットがGで…」と考えている時間はない。</p>
+                        <p>プロが涼しい顔で弾いているのは、才能ではない。「考えなくても指が動く」状態を作っているから。その状態を作るのが、<span class="highlight">指板トレーニング</span>。</p>
+                    </div>
+                    <div class="content-block">
+                        <h4 class="content-block__title">この練習が解決する課題</h4>
+                        <ul class="content-list">
+                            <li>コードが変わった瞬間に指が止まる</li>
+                            <li>安全なルート音やペンタトニックに逃げてしまう</li>
+                            <li>ハイポジションになると何を弾いていいか分からない</li>
+                            <li>耳では聴こえているのに、弾く音が見つからない</li>
+                        </ul>
+                    </div>
+                    <div class="content-block">
+                        <h4 class="content-block__title">どのような状態になれば卒業か</h4>
+                        <div class="level-cards">
+                            <div class="level-card level-card--beginner">
+                                <h5 class="level-card__title">初心者の卒業基準</h5>
+                                <div class="level-card__content">
+                                    <p>正答率 <strong>70%</strong> 以上</p>
+                                    <p>応答時間 <strong>3秒</strong> 以内</p>
+                                    <p>範囲：1〜4弦、0〜5フレット</p>
+                                </div>
+                            </div>
+                            <div class="level-card level-card--intermediate">
+                                <h5 class="level-card__title">中級者の卒業基準</h5>
+                                <div class="level-card__content">
+                                    <p>正答率 <strong>85%</strong> 以上</p>
+                                    <p>応答時間 <strong>2秒</strong> 以内</p>
+                                    <p>範囲：全弦、0〜12フレット</p>
+                                </div>
+                            </div>
+                            <div class="level-card level-card--advanced">
+                                <h5 class="level-card__title">上級者の卒業基準</h5>
+                                <div class="level-card__content">
+                                    <p>正答率 <strong>95%</strong> 以上</p>
+                                    <p>応答時間 <strong>1秒</strong> 以内</p>
+                                    <p>範囲：全域ランダム</p>
+                                </div>
+                            </div>
+                        </div>
+                        <p>「考える」感覚がなくなり「見える」感覚になったとき、卒業。</p>
+                    </div>
+                    <div class="content-block">
+                        <h4 class="content-block__title">卒業後にできるようになること</h4>
+                        <ul class="content-list">
+                            <li>コードが変わっても指が自然に動く</li>
+                            <li>「次何弾こう」ではなく「どう弾こう」を考えられる</li>
+                            <li>初見の曲でも、コード進行さえ分かれば対応できる</li>
+                            <li>セッションが怖くなくなる</li>
+                        </ul>
+                    </div>
+                    <div class="content-block">
+                        <h4 class="content-block__title">プロはここから何を考え、行っているか</h4>
+                        <p>プロは「音名」をさらに抽象化している。「Dm7 → G7 → Cmaj7」という進行で、アマチュアは音名を追いかける。プロは「IIm7 → V7 → Imaj7」という<span class="highlight">機能</span>で捉えている。だからキーが変わっても同じ感覚で弾ける。</p>
+                        <p>さらに上のレベルでは、コードトーンに加えて「この場所で使えるテンション」を把握している。これらは全て「音名が見えている」ことが前提。<span class="highlight">だから、まず指板。ここが全ての土台になる。</span></p>
+                    </div>
+                    <div class="content-block">
+                        <h4 class="content-block__title">推奨する練習方法</h4>
+                        <p><strong>使用機能：Fretboard Training</strong></p>
+                        <table class="training-table">
+                            <thead><tr><th>フェーズ</th><th>期間</th><th>設定</th><th>目標</th></tr></thead>
+                            <tbody>
+                                <tr><td>導入期</td><td>1-2週目</td><td>1-4弦、0-5フレット</td><td>正答率70%、応答3秒</td></tr>
+                                <tr><td>拡張期</td><td>3-4週目</td><td>全弦、0-12フレット</td><td>正答率80%、応答2秒</td></tr>
+                                <tr><td>定着期</td><td>5-6週目</td><td>全弦、ランダム</td><td>正答率90%、応答1.5秒</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Q2: 耳コピに時間がかかる -->
+            <article class="question-card" id="guitar-q2">
+                <div class="question-card__header">
+                    <span class="question-card__q">Q</span>
+                    <h3 class="question-card__title">耳コピに時間がかかりすぎる</h3>
+                </div>
+                <div class="question-card__content">
+                    <div class="content-block">
+                        <h4 class="content-block__title">なぜこの練習が必要か</h4>
+                        <p>耳コピが遅い人は「音を探している」。耳コピが速い人は「音が聴こえた瞬間に場所が分かる」。この差は才能ではない。<span class="highlight">音程（インターバル）の認識訓練をしたかどうか</span>の差。</p>
+                        <p>例えば「ド→ミ」という音が聴こえたとき、訓練していない人は「えーと、ドから…レ、ミ、2個上だから…」と数える。訓練した人は「長3度」と瞬時に分かる。</p>
+                    </div>
+                    <div class="content-block">
+                        <h4 class="content-block__title">この練習が解決する課題</h4>
+                        <ul class="content-list">
+                            <li>メロディを聴いても、どの音か分からない</li>
+                            <li>1音ずつ探りながら弾いている</li>
+                            <li>聴こえた音を再現するのに何度も聴き直す</li>
+                            <li>コード感は分かるが、単音が取れない</li>
+                        </ul>
+                    </div>
+                    <div class="content-block">
+                        <h4 class="content-block__title">どのような状態になれば卒業か</h4>
+                        <div class="level-cards">
+                            <div class="level-card level-card--beginner">
+                                <h5 class="level-card__title">初心者の卒業基準</h5>
+                                <div class="level-card__content">
+                                    <p>完全5度・完全4度・長3度・短3度</p>
+                                    <p>正答率 <strong>80%</strong> 以上</p>
+                                </div>
+                            </div>
+                            <div class="level-card level-card--intermediate">
+                                <h5 class="level-card__title">中級者の卒業基準</h5>
+                                <div class="level-card__content">
+                                    <p>全12音程</p>
+                                    <p>正答率 <strong>85%</strong> 以上</p>
+                                </div>
+                            </div>
+                            <div class="level-card level-card--advanced">
+                                <h5 class="level-card__title">上級者の卒業基準</h5>
+                                <div class="level-card__content">
+                                    <p>全12音程 + 下降音程</p>
+                                    <p>正答率 <strong>95%</strong> 以上</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="content-block">
+                        <h4 class="content-block__title">卒業後にできるようになること</h4>
+                        <ul class="content-list">
+                            <li>メロディを聴いた瞬間に音程関係が分かる</li>
+                            <li>1回聴けば大体の音が取れる</li>
+                            <li>鼻歌で思いついたメロディをすぐに弾ける</li>
+                            <li>他の楽器の音も相対的に聴き取れるようになる</li>
+                        </ul>
+                    </div>
+                    <div class="content-block">
+                        <h4 class="content-block__title">プロはここから何を考え、行っているか</h4>
+                        <p>プロは音程を「単体」ではなく「文脈」で聴いている。同じ「短3度」でも、マイナーキーのルートから3rdへの動き、ドミナント7thの3rdから5thへの動き、ブルーノートとしての響き。これらを「違う音」として認識している。</p>
+                    </div>
+                    <div class="content-block">
+                        <h4 class="content-block__title">推奨する練習方法</h4>
+                        <p><strong>使用機能：Interval Training</strong></p>
+                        <table class="training-table">
+                            <thead><tr><th>フェーズ</th><th>期間</th><th>対象音程</th><th>目標</th></tr></thead>
+                            <tbody>
+                                <tr><td>基礎期</td><td>1週目</td><td>完全8度、完全5度</td><td>正答率90%</td></tr>
+                                <tr><td>導入期</td><td>2-3週目</td><td>+ 完全4度、長3度、短3度</td><td>正答率85%</td></tr>
+                                <tr><td>拡張期</td><td>4-5週目</td><td>+ 長2度、短2度、長6度、短6度</td><td>正答率80%</td></tr>
+                                <tr><td>完成期</td><td>6-8週目</td><td>全12音程（増4度/減5度含む）</td><td>正答率85%</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Q3: コード進行が聴き取れない -->
+            <article class="question-card" id="guitar-q3">
+                <div class="question-card__header">
+                    <span class="question-card__q">Q</span>
+                    <h3 class="question-card__title">コード進行が聴き取れない</h3>
+                </div>
+                <div class="question-card__content">
+                    <div class="content-block">
+                        <h4 class="content-block__title">なぜこの練習が必要か</h4>
+                        <p>コード進行を聴き取れない人の多くは「コードを1つずつ聴こうとしている」。全ての音を把握しようとして、情報量に溺れる。</p>
+                        <p>プロは違う。<span class="highlight">「ベース音」と「トップノート」を同時に聴いている。</span></p>
+                        <p><strong>ベース音</strong>でルートを特定し、<strong>トップノート</strong>でコードの色彩を判断する。この2点が分かれば、間の音は「推測」できる。</p>
+                    </div>
+                    <div class="content-block">
+                        <h4 class="content-block__title">この練習が解決する課題</h4>
+                        <ul class="content-list">
+                            <li>曲を聴いても何のコードか分からない</li>
+                            <li>メジャーとマイナーの区別がつかない</li>
+                            <li>セブンスコードが聴き分けられない</li>
+                            <li>ベース音は分かるが、コードタイプが分からない</li>
+                        </ul>
+                    </div>
+                    <div class="content-block">
+                        <h4 class="content-block__title">卒業後にできるようになること</h4>
+                        <ul class="content-list">
+                            <li>曲を聴きながらコード進行をメモできる</li>
+                            <li>「このコード、何か違う」という違和感を言語化できる</li>
+                            <li>代理コードや転調に気づけるようになる</li>
+                            <li>作曲時に「こういう響きが欲しい」を形にできる</li>
+                        </ul>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Q4: アドリブで同じフレーズばかり -->
+            <article class="question-card" id="guitar-q4">
+                <div class="question-card__header">
+                    <span class="question-card__q">Q</span>
+                    <h3 class="question-card__title">アドリブで同じフレーズばかり弾いてしまう</h3>
+                </div>
+                <div class="question-card__content">
+                    <div class="content-block">
+                        <h4 class="content-block__title">なぜこの練習が必要か</h4>
+                        <p>同じフレーズばかり弾いてしまう原因は、<span class="highlight">「安全な場所」から出られない</span>こと。指が覚えているポジション、手癖になっているフレーズ。そこから出ようとすると「次の音が分からない」恐怖がある。</p>
+                        <p>この問題を解決するには、<span class="highlight">指板全域を「安全な場所」にする</span>必要がある。</p>
+                    </div>
+                    <div class="content-block">
+                        <h4 class="content-block__title">この練習が解決する課題</h4>
+                        <ul class="content-list">
+                            <li>気づくと同じポジションで弾いている</li>
+                            <li>ペンタトニック一発から抜け出せない</li>
+                            <li>フレーズの引き出しが少ないと感じる</li>
+                            <li>理論は知っているが、実践で使えない</li>
+                        </ul>
+                    </div>
+                    <div class="content-block">
+                        <h4 class="content-block__title">プロはここから何を考え、行っているか</h4>
+                        <p>プロのアドリブは「フレーズの連続」ではなく「ストーリー」。起承転結がある。緊張と解決がある。高低差を使ったダイナミクスがある。これができるのは、<span class="highlight">「どこでも弾ける」という自由があるから</span>。</p>
+                    </div>
+                    <div class="tips-box">
+                        <p class="tips-box__title">💡 効果的な練習法</p>
+                        <div class="tips-box__content">
+                            <p>「今日は7フレット以上だけで弾く」「今日は1-2弦だけで弾く」など、あえて制限を設けて練習する。制限があると、普段使わないエリアを強制的に探索することになる。</p>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Q5: スケールは覚えたが使えない -->
+            <article class="question-card" id="guitar-q5">
+                <div class="question-card__header">
+                    <span class="question-card__q">Q</span>
+                    <h3 class="question-card__title">スケールは覚えたが実践で使えない</h3>
+                </div>
+                <div class="question-card__content">
+                    <div class="content-block">
+                        <h4 class="content-block__title">なぜこの練習が必要か</h4>
+                        <p>スケールを「形」で覚えている人に多い問題。ポジションを上下に動くことはできるが、「なぜこの音を使うのか」が分かっていない。</p>
+                        <p>スケールは「使える音の一覧」ではない。<span class="highlight">「その瞬間のコードに対して、どの音がどう響くか」を理解するためのもの</span>。</p>
+                    </div>
+                    <div class="content-block">
+                        <h4 class="content-block__title">この練習が解決する課題</h4>
+                        <ul class="content-list">
+                            <li>スケールを弾くと「練習感」が出る</li>
+                            <li>どの音から弾き始めればいいか分からない</li>
+                            <li>コードが変わるとスケールも変えないといけないと思っている</li>
+                            <li>スケール外の音が使えない</li>
+                        </ul>
+                    </div>
+                    <div class="content-block">
+                        <h4 class="content-block__title">卒業後にできるようになること</h4>
+                        <ul class="content-list">
+                            <li>コードトーンを軸にしたフレーズが作れる</li>
+                            <li>テンションを意図的に使える</li>
+                            <li>「スケールを弾く」から「音楽を奏でる」に変わる</li>
+                        </ul>
+                    </div>
+                    <div class="content-block">
+                        <h4 class="content-block__title">プロはここから何を考え、行っているか</h4>
+                        <p>プロは「スケール」ではなく「コードトーン + アプローチノート」で考えている。コードトーン（1, 3, 5, 7）が「安定音」、それ以外は「装飾音」。装飾音からどう安定音に解決するかが、フレーズの「意味」を作る。</p>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Q6: 譜面が読めない/読むのが遅い -->
+            <article class="question-card" id="guitar-q6">
+                <div class="question-card__header">
+                    <span class="question-card__q">Q</span>
+                    <h3 class="question-card__title">譜面が読めない・読むのが遅い</h3>
+                </div>
+                <div class="question-card__content">
+                    <div class="content-block">
+                        <h4 class="content-block__title">なぜこの練習が必要か</h4>
+                        <p>ギタリストの多くはTAB譜に慣れているため、五線譜を避けがち。しかし<span class="highlight">五線譜が読めると、他の楽器とのコミュニケーションが劇的に変わる</span>。</p>
+                        <p>「そこのDmのところ」と言われて、すぐ譜面で確認できる。バンドスコアがなくても、メロディ譜だけでセッションできる。</p>
+                    </div>
+                    <div class="content-block">
+                        <h4 class="content-block__title">この練習が解決する課題</h4>
+                        <ul class="content-list">
+                            <li>TAB譜がないと曲が覚えられない</li>
+                            <li>譜面を見ながら弾くと演奏が止まる</li>
+                            <li>他の楽器の譜面が読めない</li>
+                            <li>リズムの読み方が分からない</li>
+                        </ul>
+                    </div>
+                    <div class="content-block">
+                        <h4 class="content-block__title">推奨する練習方法</h4>
+                        <p><strong>使用機能：Sight Reading Training</strong></p>
+                        <table class="training-table">
+                            <thead><tr><th>フェーズ</th><th>期間</th><th>内容</th><th>目標</th></tr></thead>
+                            <tbody>
+                                <tr><td>音名認識</td><td>1-2週目</td><td>ト音記号、線上の音</td><td>正答率85%</td></tr>
+                                <tr><td>範囲拡張</td><td>3-4週目</td><td>加線含む全音域</td><td>正答率80%</td></tr>
+                                <tr><td>ヘ音記号</td><td>5-6週目</td><td>ベース用譜表</td><td>正答率75%</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Q7: リズムが不安定 -->
+            <article class="question-card" id="guitar-q7">
+                <div class="question-card__header">
+                    <span class="question-card__q">Q</span>
+                    <h3 class="question-card__title">バッキングのリズムが不安定と言われる</h3>
+                </div>
+                <div class="question-card__content">
+                    <div class="content-block">
+                        <h4 class="content-block__title">なぜこの練習が必要か</h4>
+                        <p>ギターのバッキングは「ストロークの一定性」と「コードチェンジ時の安定性」が鍵。多くのギタリストは、コードチェンジ時にリズムが乱れる。</p>
+                        <p>原因は<span class="highlight">「左手に意識を取られて、右手が止まる」</span>こと。右手のリズムは常に一定。左手は「間に合わなくても右手は止めない」という意識が必要。</p>
+                    </div>
+                    <div class="content-block">
+                        <h4 class="content-block__title">この練習が解決する課題</h4>
+                        <ul class="content-list">
+                            <li>コードチェンジで一瞬止まる</li>
+                            <li>ストロークが速くなったり遅くなったりする</li>
+                            <li>ドラムと合わないと言われる</li>
+                            <li>16分のカッティングが安定しない</li>
+                        </ul>
+                    </div>
+                    <div class="content-block">
+                        <h4 class="content-block__title">推奨する練習方法</h4>
+                        <p><strong>使用機能：Rhythm Training（タップモード）</strong></p>
+                        <p>ギターを持たずに、まずは「右手のストローク」だけをリズムトレーニングで測定。BPM80から始めて、±30ms以内を目指す。</p>
+                    </div>
+                </div>
+            </article>
+
+        </section>
+
+        <!-- ============================================ -->
+        <!-- ドラム セクション -->
+        <!-- ============================================ -->
+        <section id="drums" class="section">
+            <div class="section__header">
+                <span class="section__icon">🥁</span>
+                <h2 class="section__title">ドラム・パーカッション</h2>
+            </div>
+
+            <!-- Q1: リズムのズレ -->
+            <article class="question-card" id="drums-q1">
+                <div class="question-card__header">
+                    <span class="question-card__q">Q</span>
+                    <h3 class="question-card__title">自分が走っているのかモタっているのか分からない</h3>
+                </div>
+                <div class="question-card__content">
+                    <div class="content-block">
+                        <h4 class="content-block__title">なぜこの練習が必要か</h4>
+                        <p>リズムの問題は「自覚」から始まる。「なんとなく走ってる気がする」「たぶん後ろかも」。この「なんとなく」「たぶん」が問題。<span class="highlight">数値で見たことがないから、自分の癖が分からない。</span></p>
+                        <p>このアプリは、あなたのリズムを±10ms単位で測定する。「たぶん」を「確実に+23ms前乗り」という数値に変える。</p>
+                    </div>
+                    <div class="content-block">
+                        <h4 class="content-block__title">どのような状態になれば卒業か</h4>
+                        <div class="level-cards">
+                            <div class="level-card level-card--beginner">
+                                <h5 class="level-card__title">初心者の目標</h5>
+                                <div class="level-card__content">
+                                    <p>平均誤差 <strong>±50ms</strong> 以内</p>
+                                    <p>自分の傾向を言語化できる</p>
+                                </div>
+                            </div>
+                            <div class="level-card level-card--intermediate">
+                                <h5 class="level-card__title">中級者の目標</h5>
+                                <div class="level-card__content">
+                                    <p>平均誤差 <strong>±30ms</strong> 以内</p>
+                                    <p>意識的に傾向を修正できる</p>
+                                </div>
+                            </div>
+                            <div class="level-card level-card--advanced">
+                                <h5 class="level-card__title">上級者・プロの目標</h5>
+                                <div class="level-card__content">
+                                    <p>平均誤差 <strong>±15ms</strong> 以内</p>
+                                    <p>意図的に前後を操作できる</p>
+                                </div>
+                            </div>
+                        </div>
+                        <p><strong>なぜ±15msが基準なのか：</strong>人間の聴覚は約20-30ms以内のズレを「同時」と認識する。±15msはその閾値内に収まり、聴く人に「ズレ」を感じさせない精度。</p>
+                    </div>
+                    <div class="content-block">
+                        <h4 class="content-block__title">プロはここから何を考え、行っているか</h4>
+                        <p>プロドラマーは「ジャストに叩く」のが目標ではない。<span class="highlight">「狙った場所に叩く」のが目標。</span>ファンクでは少し後ろに溜めてグルーヴを出す。パンクでは前に突っ込んで勢いを出す。これを「意図的に」やっている。</p>
+                    </div>
+                    <div class="warning-box">
+                        <p class="warning-box__title">⚠️ 正確な測定のために</p>
+                        <div class="warning-box__content">
+                            <p><strong>Bluetoothイヤホンは使わない。</strong>Bluetooth接続は100ms以上の遅延が発生することがある。有線イヤホンか、内蔵スピーカーで測定すること。</p>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Q2: クリックが機械的 -->
+            <article class="question-card" id="drums-q2">
+                <div class="question-card__header">
+                    <span class="question-card__q">Q</span>
+                    <h3 class="question-card__title">クリックに合わせると機械的になる</h3>
+                </div>
+                <div class="question-card__content">
+                    <div class="content-block">
+                        <h4 class="content-block__title">なぜこの練習が必要か</h4>
+                        <p>「クリックに合わせると機械的になる」という悩みの本質は、<span class="highlight">クリックを「追いかけている」</span>こと。クリック音を聴いてから叩くのでは遅い。クリックと「一緒に」叩く必要がある。</p>
+                        <p>これは「予測」の能力。次のビートがいつ来るか、体が先に分かっている状態。</p>
+                    </div>
+                    <div class="content-block">
+                        <h4 class="content-block__title">この練習が解決する課題</h4>
+                        <ul class="content-list">
+                            <li>クリックに合わせると緊張する</li>
+                            <li>リズムが硬くなる、グルーヴが出ない</li>
+                            <li>クリック音に「反応」している感覚がある</li>
+                            <li>クリックなしだと楽に叩けるのに</li>
+                        </ul>
+                    </div>
+                    <div class="content-block">
+                        <h4 class="content-block__title">プロはここから何を考え、行っているか</h4>
+                        <p>プロにとってクリックは「縛り」ではなく「土台」。クリックという安定した土台の上で、自由に表現する。<span class="highlight">クリックを「敵」ではなく「味方」にする</span>。</p>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Q3: フィルで拍を見失う -->
+            <article class="question-card" id="drums-q3">
+                <div class="question-card__header">
+                    <span class="question-card__q">Q</span>
+                    <h3 class="question-card__title">フィルインを入れると拍を見失う</h3>
+                </div>
+                <div class="question-card__content">
+                    <div class="content-block">
+                        <h4 class="content-block__title">なぜこの練習が必要か</h4>
+                        <p>フィルインで拍を見失う原因は、<span class="highlight">「フィルインに意識が行きすぎて、内部クロックが止まる」</span>こと。基本パターンを叩いているときは体がテンポを刻んでいるが、フィルに入った瞬間、それが途切れる。</p>
+                    </div>
+                    <div class="content-block">
+                        <h4 class="content-block__title">この練習が解決する課題</h4>
+                        <ul class="content-list">
+                            <li>フィル後の1拍目がズレる</li>
+                            <li>複雑なフィルだと迷子になる</li>
+                            <li>フィルの長さが安定しない</li>
+                            <li>バンドメンバーと合わなくなる</li>
+                        </ul>
+                    </div>
+                    <div class="content-block">
+                        <h4 class="content-block__title">推奨する練習方法</h4>
+                        <p><strong>使用機能：Rhythm Training</strong></p>
+                        <p>まずシンプルな4分音符でリズムトレーニング。その精度が±20ms以内になったら、フィルの練習へ。フィルは「追加」ではなく「置き換え」。基本のグリッドは常に存在している。</p>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Q4: 他の楽器と合わない -->
+            <article class="question-card" id="drums-q4">
+                <div class="question-card__header">
+                    <span class="question-card__q">Q</span>
+                    <h3 class="question-card__title">バンドで他の楽器と合わない</h3>
+                </div>
+                <div class="question-card__content">
+                    <div class="content-block">
+                        <h4 class="content-block__title">なぜこの練習が必要か</h4>
+                        <p>ドラマーは「自分のリズムを刻む」だけではなく、<span class="highlight">「バンド全体のリズムを聴きながら調整する」</span>必要がある。特にベースとの連携が重要。</p>
+                        <p>問題は「聴く耳」が育っていないこと。自分の音に集中しすぎて、他の楽器が聴こえていない。</p>
+                    </div>
+                    <div class="content-block">
+                        <h4 class="content-block__title">この練習が解決する課題</h4>
+                        <ul class="content-list">
+                            <li>ベースとキックが合わない</li>
+                            <li>ギターのリフとズレる</li>
+                            <li>ボーカルが「歌いにくい」と言う</li>
+                            <li>録音を聴くと自分だけ浮いている</li>
+                        </ul>
+                    </div>
+                    <div class="content-block">
+                        <h4 class="content-block__title">プロはここから何を考え、行っているか</h4>
+                        <p>プロは「聴きながら叩く」。自分の音50%、他の楽器50%くらいの意識配分。特にベースのルート音を常に意識している。キックとベースが合えば、バンド全体が安定する。</p>
+                    </div>
+                    <div class="tips-box">
+                        <p class="tips-box__title">💡 アプリでできること</p>
+                        <div class="tips-box__content">
+                            <p>Interval Trainingでベース音を聴き取る練習をする。「ベースが何の音を弾いているか」が分かると、合わせ方が変わる。</p>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Q5: テンポキープ -->
+            <article class="question-card" id="drums-q5">
+                <div class="question-card__header">
+                    <span class="question-card__q">Q</span>
+                    <h3 class="question-card__title">曲の途中でテンポが変わってしまう</h3>
+                </div>
+                <div class="question-card__content">
+                    <div class="content-block">
+                        <h4 class="content-block__title">なぜこの練習が必要か</h4>
+                        <p>テンポが変わる典型的なパターン：サビで速くなる、静かなパートで遅くなる、難しいフレーズで遅くなる。これらは全て<span class="highlight">「感情や難易度にテンポが引っ張られている」</span>状態。</p>
+                    </div>
+                    <div class="content-block">
+                        <h4 class="content-block__title">この練習が解決する課題</h4>
+                        <ul class="content-list">
+                            <li>サビで興奮してテンポが上がる</li>
+                            <li>静かなパートで不安になり遅くなる</li>
+                            <li>複雑なフィルで遅くなる</li>
+                            <li>曲の最後が始まりより速い/遅い</li>
+                        </ul>
+                    </div>
+                    <div class="content-block">
+                        <h4 class="content-block__title">推奨する練習方法</h4>
+                        <p><strong>使用機能：Rhythm Training</strong></p>
+                        <p>まず3分間、同じBPMでリズムを刻み続ける。Rhythm Trainingで前半と後半の精度を比較。差があるなら、それが「テンポドリフト」。</p>
+                    </div>
+                </div>
+            </article>
+
+        </section>
+
+        <!-- ============================================ -->
+        <!-- ピアノ・キーボード セクション -->
+        <!-- ============================================ -->
+        <section id="piano" class="section">
+            <div class="section__header">
+                <span class="section__icon">🎹</span>
+                <h2 class="section__title">ピアノ・キーボード</h2>
+            </div>
+
+            <!-- Q1: 初見演奏ができない -->
+            <article class="question-card" id="piano-q1">
+                <div class="question-card__header">
+                    <span class="question-card__q">Q</span>
+                    <h3 class="question-card__title">初見演奏ができない・遅い</h3>
+                </div>
+                <div class="question-card__content">
+                    <div class="content-block">
+                        <h4 class="content-block__title">なぜこの練習が必要か</h4>
+                        <p>初見演奏が遅い原因は、<span class="highlight">「音符を1つずつ読んでいる」</span>こと。「ド…レ…ミ…」と逐次処理しているから遅い。</p>
+                        <p>初見が速い人は「パターン認識」をしている。「ドミソ」を見て「Cメジャーの分散和音」と認識し、指が自動的に動く。</p>
+                    </div>
+                    <div class="content-block">
+                        <h4 class="content-block__title">この練習が解決する課題</h4>
+                        <ul class="content-list">
+                            <li>譜面を見ながら弾くと止まる</li>
+                            <li>暗譜しないと弾けない</li>
+                            <li>伴奏を頼まれても断ってしまう</li>
+                            <li>リズムの読み方が苦手</li>
+                        </ul>
+                    </div>
+                    <div class="content-block">
+                        <h4 class="content-block__title">どのような状態になれば卒業か</h4>
+                        <div class="level-cards">
+                            <div class="level-card level-card--beginner">
+                                <h5 class="level-card__title">初心者の卒業基準</h5>
+                                <div class="level-card__content">
+                                    <p>ト音記号・ヘ音記号の全音を即答</p>
+                                    <p>正答率 <strong>85%</strong> 以上</p>
+                                </div>
+                            </div>
+                            <div class="level-card level-card--intermediate">
+                                <h5 class="level-card__title">中級者の卒業基準</h5>
+                                <div class="level-card__content">
+                                    <p>加線含む全音域</p>
+                                    <p>正答率 <strong>90%</strong> 以上、応答1秒</p>
+                                </div>
+                            </div>
+                            <div class="level-card level-card--advanced">
+                                <h5 class="level-card__title">上級者の卒業基準</h5>
+                                <div class="level-card__content">
+                                    <p>調号含む全キー</p>
+                                    <p>初見で8割の精度</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="content-block">
+                        <h4 class="content-block__title">推奨する練習方法</h4>
+                        <p><strong>使用機能：Sight Reading Training</strong></p>
+                        <table class="training-table">
+                            <thead><tr><th>フェーズ</th><th>期間</th><th>内容</th><th>目標</th></tr></thead>
+                            <tbody>
+                                <tr><td>音名認識</td><td>1-2週目</td><td>線上・間の音を即答</td><td>正答率90%</td></tr>
+                                <tr><td>加線</td><td>3-4週目</td><td>上下の加線3本まで</td><td>正答率85%</td></tr>
+                                <tr><td>調号</td><td>5-6週目</td><td>♯♭の付いた音</td><td>正答率80%</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Q2: コードを聴き取れない -->
+            <article class="question-card" id="piano-q2">
+                <div class="question-card__header">
+                    <span class="question-card__q">Q</span>
+                    <h3 class="question-card__title">コードを聴いても種類が分からない</h3>
+                </div>
+                <div class="question-card__content">
+                    <div class="content-block">
+                        <h4 class="content-block__title">なぜこの練習が必要か</h4>
+                        <p>ピアニストはコードを「弾く」ことには慣れているが、<span class="highlight">「聴いて判別する」訓練をしていない</span>ことが多い。楽譜があれば弾けるが、耳コピや即興になると困る。</p>
+                    </div>
+                    <div class="content-block">
+                        <h4 class="content-block__title">この練習が解決する課題</h4>
+                        <ul class="content-list">
+                            <li>メジャーとマイナーは分かるが、7thが分からない</li>
+                            <li>dim、aug、sus4が聴き分けられない</li>
+                            <li>転回形になると分からなくなる</li>
+                            <li>コード譜だけの曲に対応できない</li>
+                        </ul>
+                    </div>
+                    <div class="content-block">
+                        <h4 class="content-block__title">推奨する練習方法</h4>
+                        <p><strong>使用機能：Chord Recognition</strong></p>
+                        <table class="training-table">
+                            <thead><tr><th>フェーズ</th><th>期間</th><th>対象コード</th><th>目標</th></tr></thead>
+                            <tbody>
+                                <tr><td>3和音</td><td>1-2週目</td><td>Major, minor</td><td>正答率90%</td></tr>
+                                <tr><td>特殊3和音</td><td>3-4週目</td><td>+ dim, aug, sus4</td><td>正答率85%</td></tr>
+                                <tr><td>4和音</td><td>5-8週目</td><td>maj7, m7, 7, m7b5</td><td>正答率80%</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Q3: 伴奏がワンパターン -->
+            <article class="question-card" id="piano-q3">
+                <div class="question-card__header">
+                    <span class="question-card__q">Q</span>
+                    <h3 class="question-card__title">伴奏パターンがワンパターンになる</h3>
+                </div>
+                <div class="question-card__content">
+                    <div class="content-block">
+                        <h4 class="content-block__title">なぜこの練習が必要か</h4>
+                        <p>伴奏がワンパターンになる原因は、<span class="highlight">「コードの押さえ方」と「リズムパターン」の引き出しが少ない</span>こと。</p>
+                        <p>同じCmaj7でも、ルートポジション、第一転回形、ルートレス、オープンボイシング…押さえ方だけで無数のバリエーションがある。</p>
+                    </div>
+                    <div class="content-block">
+                        <h4 class="content-block__title">この練習が解決する課題</h4>
+                        <ul class="content-list">
+                            <li>いつも同じ押さえ方になる</li>
+                            <li>バラードもロックも同じ伴奏になる</li>
+                            <li>ボイシングのバリエーションがない</li>
+                            <li>リズムパターンが単調</li>
+                        </ul>
+                    </div>
+                    <div class="content-block">
+                        <h4 class="content-block__title">プロはここから何を考え、行っているか</h4>
+                        <p>プロは「コードの機能」と「その場の雰囲気」で押さえ方を選んでいる。前のコードからの「声部の流れ」を意識し、スムーズな進行を作る。これを「ボイスリーディング」と呼ぶ。</p>
+                    </div>
+                    <div class="tips-box">
+                        <p class="tips-box__title">💡 アプリでできること</p>
+                        <div class="tips-box__content">
+                            <p>Chord Recognitionで「同じコードの違うボイシング」を聴き分ける練習。Progression Trainingで「コードの流れ」を聴く耳を養う。</p>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Q4: 両手が独立しない -->
+            <article class="question-card" id="piano-q4">
+                <div class="question-card__header">
+                    <span class="question-card__q">Q</span>
+                    <h3 class="question-card__title">両手が独立して動かない</h3>
+                </div>
+                <div class="question-card__content">
+                    <div class="content-block">
+                        <h4 class="content-block__title">なぜこの練習が必要か</h4>
+                        <p>両手の独立は、ピアノ特有の課題。<span class="highlight">「右手がメロディ、左手がリズム」という異なるタスクを同時にこなす</span>必要がある。</p>
+                        <p>問題は「どちらかに意識が行くと、もう片方が止まる」こと。これは「自動化」の問題。片手を無意識で動かせるレベルまで落とし込む必要がある。</p>
+                    </div>
+                    <div class="content-block">
+                        <h4 class="content-block__title">この練習が解決する課題</h4>
+                        <ul class="content-list">
+                            <li>右手に集中すると左手が止まる</li>
+                            <li>ポリリズムができない</li>
+                            <li>シンコペーションが苦手</li>
+                            <li>アドリブしながらコンピングできない</li>
+                        </ul>
+                    </div>
+                    <div class="content-block">
+                        <h4 class="content-block__title">推奨する練習方法</h4>
+                        <p><strong>使用機能：Rhythm Training</strong></p>
+                        <p>まず片手（左手）のリズムをRhythm Trainingで安定させる。±20ms以内で安定したら、その上に右手のメロディを乗せる。左手は「無意識で動く」状態を目指す。</p>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Q5: 転調で迷子になる -->
+            <article class="question-card" id="piano-q5">
+                <div class="question-card__header">
+                    <span class="question-card__q">Q</span>
+                    <h3 class="question-card__title">転調されると対応できない</h3>
+                </div>
+                <div class="question-card__content">
+                    <div class="content-block">
+                        <h4 class="content-block__title">なぜこの練習が必要か</h4>
+                        <p>転調で迷う原因は、<span class="highlight">「キーごとに別の曲として覚えている」</span>こと。Cメジャーでは弾けるが、Ebになると最初から覚え直し。</p>
+                        <p>解決策は「相対的に聴く」こと。コードを「C, Am, F, G」ではなく「I, VIm, IV, V」として認識する。そうすれば、キーが変わっても同じ「形」として捉えられる。</p>
+                    </div>
+                    <div class="content-block">
+                        <h4 class="content-block__title">この練習が解決する課題</h4>
+                        <ul class="content-list">
+                            <li>キーが変わると弾けなくなる</li>
+                            <li>移調を頼まれると困る</li>
+                            <li>♯や♭が多いキーが苦手</li>
+                            <li>曲中の転調についていけない</li>
+                        </ul>
+                    </div>
+                    <div class="content-block">
+                        <h4 class="content-block__title">推奨する練習方法</h4>
+                        <p><strong>使用機能：Progression Training</strong></p>
+                        <p>コード進行を「ディグリー（度数）」で認識する練習。Progression Trainingで様々なキーの進行を聴き、「これはII-V-I」と認識できるようにする。</p>
+                    </div>
+                </div>
+            </article>
+
+        </section>
+
+        <!-- ============================================ -->
+        <!-- ボーカル セクション -->
+        <!-- ============================================ -->
+        <section id="vocal" class="section">
+            <div class="section__header">
+                <span class="section__icon">🎤</span>
+                <h2 class="section__title">ボーカル</h2>
+            </div>
+
+            <!-- Q1: 音程が合っているか分からない -->
+            <article class="question-card" id="vocal-q1">
+                <div class="question-card__header">
+                    <span class="question-card__q">Q</span>
+                    <h3 class="question-card__title">音程が合っているか自分で判断できない</h3>
+                </div>
+                <div class="question-card__content">
+                    <div class="content-block">
+                        <h4 class="content-block__title">なぜこの練習が必要か</h4>
+                        <p>ボーカリストの多くは「自分の声を客観的に聴けない」という問題を抱えている。歌っているときと録音を聴いたときで、印象が違う。</p>
+                        <p>原因は<span class="highlight">「内耳で聴いている音」と「外から聴こえる音」が違う</span>こと。音程のズレに気づく「耳」を育てる必要がある。</p>
+                    </div>
+                    <div class="content-block">
+                        <h4 class="content-block__title">この練習が解決する課題</h4>
+                        <ul class="content-list">
+                            <li>録音を聴くと思っていたより音程がズレている</li>
+                            <li>ピッチ補正なしでは使えないと言われる</li>
+                            <li>高音になると音程が不安定になる</li>
+                            <li>音程が合っているか不安で自信が持てない</li>
+                        </ul>
+                    </div>
+                    <div class="content-block">
+                        <h4 class="content-block__title">推奨する練習方法</h4>
+                        <p><strong>使用機能：Interval Training</strong></p>
+                        <p>まず「聴いて判別する」能力を鍛える。自分で歌う前に、音程を聴き分ける耳を作る。特に2度と3度の違いを正確に聴けるようになると、音程の精度が上がる。</p>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Q2: ハモリが取れない -->
+            <article class="question-card" id="vocal-q2">
+                <div class="question-card__header">
+                    <span class="question-card__q">Q</span>
+                    <h3 class="question-card__title">ハモリパートが取れない</h3>
+                </div>
+                <div class="question-card__content">
+                    <div class="content-block">
+                        <h4 class="content-block__title">なぜこの練習が必要か</h4>
+                        <p>ハモリが取れない原因は、<span class="highlight">「メインメロディに引っ張られる」</span>こと。メインを聴きながら3度上を歌おうとすると、いつの間にかユニゾンになっている。</p>
+                        <p>必要なのは「音程の幅を体で覚える」こと。「3度上」がどのくらいの幅か、感覚として身についていれば、引っ張られなくなる。</p>
+                    </div>
+                    <div class="content-block">
+                        <h4 class="content-block__title">この練習が解決する課題</h4>
+                        <ul class="content-list">
+                            <li>ハモリを歌おうとするとメインと同じになる</li>
+                            <li>3度ハモリと言われても幅が分からない</li>
+                            <li>コーラスパートが覚えられない</li>
+                            <li>アカペラでハモれない</li>
+                        </ul>
+                    </div>
+                    <div class="content-block">
+                        <h4 class="content-block__title">推奨する練習方法</h4>
+                        <p><strong>使用機能：Interval Training</strong></p>
+                        <p>特に長3度・短3度を重点的に。「長3度」を聴いたら、その幅を声で再現する。これを繰り返すと、「3度上を歌って」と言われたときに、体が反応するようになる。</p>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Q3: リズムが後ろにズレる -->
+            <article class="question-card" id="vocal-q3">
+                <div class="question-card__header">
+                    <span class="question-card__q">Q</span>
+                    <h3 class="question-card__title">リズムが後ろにズレると言われる</h3>
+                </div>
+                <div class="question-card__content">
+                    <div class="content-block">
+                        <h4 class="content-block__title">なぜこの練習が必要か</h4>
+                        <p>ボーカルのリズムが後ろにズレる原因は、<span class="highlight">「歌詞を発音してから音程を合わせている」</span>こと。子音を発音し、母音で音程を合わせる。この「発音→音程」の順序で遅れが生じる。</p>
+                        <p>解決策は「子音を拍の前に出す」意識。母音がジャストに来るように、子音を前に出す。</p>
+                    </div>
+                    <div class="content-block">
+                        <h4 class="content-block__title">この練習が解決する課題</h4>
+                        <ul class="content-list">
+                            <li>「遅れてる」とよく言われる</li>
+                            <li>オケに乗れていない感じがする</li>
+                            <li>早口の曲についていけない</li>
+                            <li>シンコペーションが苦手</li>
+                        </ul>
+                    </div>
+                    <div class="content-block">
+                        <h4 class="content-block__title">推奨する練習方法</h4>
+                        <p><strong>使用機能：Rhythm Training</strong></p>
+                        <p>まず「ラララ」など歌詞なしでリズムを測定。±30ms以内で安定させてから、歌詞を乗せる。歌詞を乗せたときにズレが大きくなるなら、発音の問題。</p>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Q4: キーが合わない -->
+            <article class="question-card" id="vocal-q4">
+                <div class="question-card__header">
+                    <span class="question-card__q">Q</span>
+                    <h3 class="question-card__title">原曲キーで歌えない・キーの選び方が分からない</h3>
+                </div>
+                <div class="question-card__content">
+                    <div class="content-block">
+                        <h4 class="content-block__title">なぜこの練習が必要か</h4>
+                        <p>キー選びで迷う原因は、<span class="highlight">「自分の声域を正確に把握していない」</span>こと。また、キーを変えたときに「メロディの相対関係」を維持できないと、新しいキーで迷子になる。</p>
+                    </div>
+                    <div class="content-block">
+                        <h4 class="content-block__title">この練習が解決する課題</h4>
+                        <ul class="content-list">
+                            <li>カラオケでキーを変えると歌えなくなる</li>
+                            <li>バンドで「キー下げて」と言えない</li>
+                            <li>自分の適正キーが分からない</li>
+                            <li>転調する曲が苦手</li>
+                        </ul>
+                    </div>
+                    <div class="content-block">
+                        <h4 class="content-block__title">プロはここから何を考え、行っているか</h4>
+                        <p>プロは「絶対的な音高」ではなく「相対的な音程関係」で歌っている。だからキーが変わっても、メロディの「形」は同じ。この「相対音感」を鍛えると、キー変更に強くなる。</p>
+                    </div>
+                    <div class="content-block">
+                        <h4 class="content-block__title">推奨する練習方法</h4>
+                        <p><strong>使用機能：Interval Training</strong></p>
+                        <p>相対音感を鍛える。「この2音は長3度」と分かれば、キーが変わっても同じ幅で歌える。</p>
+                    </div>
+                </div>
+            </article>
+
+        </section>
+
+        <!-- ============================================ -->
+        <!-- 管弦楽器 セクション -->
+        <!-- ============================================ -->
+        <section id="wind" class="section">
+            <div class="section__header">
+                <span class="section__icon">🎺</span>
+                <h2 class="section__title">管楽器・弦楽器</h2>
+            </div>
+
+            <!-- Q1: 譜読みが遅い -->
+            <article class="question-card" id="wind-q1">
+                <div class="question-card__header">
+                    <span class="question-card__q">Q</span>
+                    <h3 class="question-card__title">譜読みが遅い・初見で吹けない</h3>
+                </div>
+                <div class="question-card__content">
+                    <div class="content-block">
+                        <h4 class="content-block__title">なぜこの練習が必要か</h4>
+                        <p>吹奏楽やオーケストラでは、<span class="highlight">「初見でそれなりに吹ける」ことが求められる</span>。新曲の合奏で一人だけ止まると、全体の練習が進まない。</p>
+                        <p>譜読みが遅い原因は、音符を1つずつ読んでいること。速い人は「パターン」で認識している。</p>
+                    </div>
+                    <div class="content-block">
+                        <h4 class="content-block__title">この練習が解決する課題</h4>
+                        <ul class="content-list">
+                            <li>新しい曲を覚えるのに時間がかかる</li>
+                            <li>合奏についていけない</li>
+                            <li>加線が多いと読めなくなる</li>
+                            <li>臨時記号が出ると混乱する</li>
+                        </ul>
+                    </div>
+                    <div class="content-block">
+                        <h4 class="content-block__title">推奨する練習方法</h4>
+                        <p><strong>使用機能：Sight Reading Training</strong></p>
+                        <p>自分の楽器の音域に対応した譜表で練習。管楽器はト音記号が多いが、トロンボーンやチューバはヘ音記号も必要。両方を練習しておくと、スコアリーディングも速くなる。</p>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Q2: アンサンブルでズレる -->
+            <article class="question-card" id="wind-q2">
+                <div class="question-card__header">
+                    <span class="question-card__q">Q</span>
+                    <h3 class="question-card__title">アンサンブルで自分だけズレる</h3>
+                </div>
+                <div class="question-card__content">
+                    <div class="content-block">
+                        <h4 class="content-block__title">なぜこの練習が必要か</h4>
+                        <p>アンサンブルでズレる原因は、<span class="highlight">「自分の音に集中しすぎて、周りが聴こえていない」</span>こと。特に管楽器は「息を吸う→吹く」のタイミングで遅れやすい。</p>
+                    </div>
+                    <div class="content-block">
+                        <h4 class="content-block__title">この練習が解決する課題</h4>
+                        <ul class="content-list">
+                            <li>入りのタイミングがズレる</li>
+                            <li>ブレス後に遅れる</li>
+                            <li>ユニゾンが揃わない</li>
+                            <li>指揮者と合わない</li>
+                        </ul>
+                    </div>
+                    <div class="content-block">
+                        <h4 class="content-block__title">推奨する練習方法</h4>
+                        <p><strong>使用機能：Rhythm Training</strong></p>
+                        <p>まず自分のリズム精度を測定。特に「ブレス後の1音目」がズレていないか確認。管楽器奏者は「ブレスは拍の前」を意識すると改善することが多い。</p>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Q3: 音程が合わない -->
+            <article class="question-card" id="wind-q3">
+                <div class="question-card__header">
+                    <span class="question-card__q">Q</span>
+                    <h3 class="question-card__title">他の楽器と音程が合わない</h3>
+                </div>
+                <div class="question-card__content">
+                    <div class="content-block">
+                        <h4 class="content-block__title">なぜこの練習が必要か</h4>
+                        <p>管楽器・弦楽器は「音程を自分で作る」楽器。ピアノやギターと違い、<span class="highlight">「同じ指使いでも音程が変わる」</span>。だから「正しい音程を聴く耳」が必要。</p>
+                    </div>
+                    <div class="content-block">
+                        <h4 class="content-block__title">この練習が解決する課題</h4>
+                        <ul class="content-list">
+                            <li>ロングトーンで音程が下がる</li>
+                            <li>ハーモニーが濁ると言われる</li>
+                            <li>チューニングが合っているのに合奏では合わない</li>
+                            <li>純正律と平均律の違いが分からない</li>
+                        </ul>
+                    </div>
+                    <div class="content-block">
+                        <h4 class="content-block__title">推奨する練習方法</h4>
+                        <p><strong>使用機能：Interval Training</strong></p>
+                        <p>「完全5度」「長3度」「短3度」を正確に聴き分ける練習。特に「長3度」は純正律と平均律で14セントほど違う。この違いが聴こえるようになると、ハーモニーの質が変わる。</p>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Q4: 移調楽器の読み替え -->
+            <article class="question-card" id="wind-q4">
+                <div class="question-card__header">
+                    <span class="question-card__q">Q</span>
+                    <h3 class="question-card__title">移調楽器の読み替えが苦手</h3>
+                </div>
+                <div class="question-card__content">
+                    <div class="content-block">
+                        <h4 class="content-block__title">なぜこの練習が必要か</h4>
+                        <p>B♭クラリネット、F管ホルン、E♭アルトサックス…移調楽器は「楽譜の音」と「実音」が違う。<span class="highlight">「Cと書いてあるけど、実際はB♭」</span>という変換が必要。</p>
+                        <p>スコアリーディングや他の楽器と合わせるとき、この変換が瞬時にできないと困る。</p>
+                    </div>
+                    <div class="content-block">
+                        <h4 class="content-block__title">この練習が解決する課題</h4>
+                        <ul class="content-list">
+                            <li>実音で言われると混乱する</li>
+                            <li>コンサートピッチで話ができない</li>
+                            <li>他の楽器の楽譜が読めない</li>
+                            <li>持ち替え楽器の読み替えが遅い</li>
+                        </ul>
+                    </div>
+                    <div class="content-block">
+                        <h4 class="content-block__title">推奨する練習方法</h4>
+                        <p><strong>使用機能：Sight Reading Training + Interval Training</strong></p>
+                        <p>Sight Readingで「記譜音→実音」の変換を練習。Interval Trainingで「2度下」「5度上」などの音程感覚を身につけると、変換が速くなる。</p>
+                    </div>
+                </div>
+            </article>
+
+        </section>
+
+        <!-- ============================================ -->
+        <!-- 機能解説セクション -->
+        <!-- ============================================ -->
+        <section id="features" class="section">
+            <div class="section__header">
+                <span class="section__icon">📱</span>
+                <h2 class="section__title">アプリ機能解説</h2>
+            </div>
+
+            <article class="question-card">
+                <div class="question-card__header">
+                    <span class="question-card__q">1</span>
+                    <h3 class="question-card__title">Fretboard Training（指板トレーニング）</h3>
+                </div>
+                <div class="question-card__content">
+                    <div class="content-block">
+                        <h4 class="content-block__title">この機能を作った理由</h4>
+                        <p>ギターを20年弾いてきて、ずっと「指板が見えていない」という課題があった。TAB譜に頼り、ポジションで覚え、理論書を読んでも実践で使えない。</p>
+                        <p>原因は単純で、<span class="highlight">「音名を見てすぐに押さえる」訓練をしていなかった</span>から。この訓練を効率的にできるツールがなかったので、作った。</p>
+                    </div>
+                    <div class="content-block">
+                        <h4 class="content-block__title">設計思想</h4>
+                        <ul class="content-list">
+                            <li><strong>ランダム出題</strong>：パターン暗記を防ぎ、本当の理解を促す</li>
+                            <li><strong>応答時間の測定</strong>：「分かる」と「即座に分かる」は別物</li>
+                            <li><strong>段階的な範囲設定</strong>：認知負荷を調整して効率的に学習</li>
+                        </ul>
+                    </div>
+                </div>
+            </article>
+
+            <article class="question-card">
+                <div class="question-card__header">
+                    <span class="question-card__q">2</span>
+                    <h3 class="question-card__title">Interval Training（音程トレーニング）</h3>
+                </div>
+                <div class="question-card__content">
+                    <div class="content-block">
+                        <h4 class="content-block__title">この機能を作った理由</h4>
+                        <p>耳コピが遅いのは「音程の判別に時間がかかる」から。音程認識は訓練で向上することが研究で実証されている。その訓練を日常的にできるようにした。</p>
+                    </div>
+                    <div class="content-block">
+                        <h4 class="content-block__title">設計思想</h4>
+                        <ul class="content-list">
+                            <li><strong>協和度順の学習</strong>：オクターブ→完全5度→完全4度→3度系の順で、聴き分けやすい音程から</li>
+                            <li><strong>上行・下行の両方</strong>：実際の音楽は両方向に動く</li>
+                            <li><strong>弱点の可視化</strong>：苦手な音程を特定して集中練習</li>
+                        </ul>
+                    </div>
+                </div>
+            </article>
+
+            <article class="question-card">
+                <div class="question-card__header">
+                    <span class="question-card__q">3</span>
+                    <h3 class="question-card__title">Rhythm Training（リズムトレーニング）</h3>
+                </div>
+                <div class="question-card__content">
+                    <div class="content-block">
+                        <h4 class="content-block__title">この機能を作った理由</h4>
+                        <p>20年バンドをやってきて、自分のリズムを「数値」で見たことがなかった。「たぶん走ってる」「たぶん後ろ気味」。この「たぶん」をなくしたかった。</p>
+                    </div>
+                    <div class="content-block">
+                        <h4 class="content-block__title">設計思想</h4>
+                        <ul class="content-list">
+                            <li><strong>±10ms精度の測定</strong>：プロレベルの精度で評価</li>
+                            <li><strong>クラップ/タップ両対応</strong>：画面タップだけでなく、マイクでクラップを検出</li>
+                            <li><strong>傾向の可視化</strong>：前乗り/後乗りの傾向をグラフで表示</li>
+                            <li><strong>Bluetooth遅延対策</strong>：有線推奨、キャリブレーション機能搭載</li>
+                        </ul>
+                    </div>
+                    <div class="content-block">
+                        <h4 class="content-block__title">タップモードとクラップモードの違い</h4>
+                        <p><strong>タップモード</strong>：画面をタップ。手軽だが「指先の反射神経」を測定している側面もある。</p>
+                        <p><strong>クラップモード</strong>：マイクで手拍子を検出。体全体を使ったリズム感を測定できる。実際の演奏に近い。</p>
+                        <p><span class="highlight">本当のリズム感を鍛えたいならクラップモードを推奨。</span></p>
+                    </div>
+                </div>
+            </article>
+
+            <article class="question-card">
+                <div class="question-card__header">
+                    <span class="question-card__q">4</span>
+                    <h3 class="question-card__title">Chord Recognition（コード認識）</h3>
+                </div>
+                <div class="question-card__content">
+                    <div class="content-block">
+                        <h4 class="content-block__title">この機能を作った理由</h4>
+                        <p>コード進行の耳コピで、「なんとなくメジャーっぽい」で止まっていた。7thの種類、テンションの有無を正確に判別する耳がなかった。</p>
+                    </div>
+                    <div class="content-block">
+                        <h4 class="content-block__title">設計思想</h4>
+                        <ul class="content-list">
+                            <li><strong>段階的な難易度</strong>：3和音→4和音→テンション含む</li>
+                            <li><strong>実用的なコード種類</strong>：実際の曲で出てくるコードを優先</li>
+                            <li><strong>転回形対応</strong>：ルートポジションだけでなく転回形も</li>
+                        </ul>
+                    </div>
+                </div>
+            </article>
+
+            <article class="question-card">
+                <div class="question-card__header">
+                    <span class="question-card__q">5</span>
+                    <h3 class="question-card__title">Sight Reading（読譜トレーニング）</h3>
+                </div>
+                <div class="question-card__content">
+                    <div class="content-block">
+                        <h4 class="content-block__title">この機能を作った理由</h4>
+                        <p>五線譜を読む速度を上げたかった。「ド…レ…ミ…」と1音ずつ読むのではなく、パッと見て分かる状態を作りたかった。</p>
+                    </div>
+                    <div class="content-block">
+                        <h4 class="content-block__title">設計思想</h4>
+                        <ul class="content-list">
+                            <li><strong>ト音記号/ヘ音記号</strong>：両方に対応</li>
+                            <li><strong>加線対応</strong>：上下3本まで</li>
+                            <li><strong>調号対応</strong>：♯♭付きの音も練習可能</li>
+                        </ul>
+                    </div>
+                </div>
+            </article>
+
+        </section>
+
+        <!-- CTA -->
+        <section class="cta">
+            <h2 class="cta__title">あなたの音楽的課題を数値化する</h2>
+            <p class="cta__text">
+                1週間無料で全機能を試せます。<br>
+                「たぶん」を「確実に」に変える第一歩を。
+            </p>
+            <a href="https://apps.apple.com/jp/app/id6756626617" class="cta__button">
+                App Storeでダウンロード
+            </a>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p class="footer__text">
+            © 2025 Solfege PRO |
+            <a href="https://twitter.com/solfegepro_app" class="footer__link">@solfegepro_app</a>
+        </p>
+    </footer>
+
+    <script>
+        // Smooth scroll for navigation
+        document.querySelectorAll('.nav__link').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+
+                // Update active state
+                document.querySelectorAll('.nav__link').forEach(l => l.classList.remove('active'));
+                this.classList.add('active');
+            });
+        });
+
+        // Update nav active state on scroll
+        const sections = document.querySelectorAll('.section');
+        const navLinks = document.querySelectorAll('.nav__link');
+
+        window.addEventListener('scroll', () => {
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                if (scrollY >= sectionTop - 100) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === '#' + current) {
+                    link.classList.add('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
