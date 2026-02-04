@@ -700,27 +700,172 @@ body {
 }
 
 /* =============================================
-   18. Responsive - Tablet (768px and below)
+   18. Hamburger Button (Hidden on Desktop)
+   ============================================= */
+.hamburger-btn {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 32px;
+    height: 32px;
+    padding: 4px;
+    background: var(--surface-light);
+    border: 1px solid var(--surface-light);
+    border-radius: var(--radius-md);
+    cursor: pointer;
+    transition: all 0.2s ease;
+    gap: 4px;
+}
+
+.hamburger-btn:hover {
+    border-color: var(--primary);
+}
+
+.hamburger-btn__line {
+    width: 18px;
+    height: 2px;
+    background: var(--text-secondary);
+    border-radius: 1px;
+    transition: all 0.3s ease;
+}
+
+.hamburger-btn:hover .hamburger-btn__line {
+    background: var(--primary);
+}
+
+/* Hamburger animation when open */
+.hamburger-btn.active .hamburger-btn__line:nth-child(1) {
+    transform: rotate(45deg) translate(4px, 4px);
+}
+
+.hamburger-btn.active .hamburger-btn__line:nth-child(2) {
+    opacity: 0;
+}
+
+.hamburger-btn.active .hamburger-btn__line:nth-child(3) {
+    transform: rotate(-45deg) translate(4px, -4px);
+}
+
+/* =============================================
+   19. Side Drawer (Hidden on Desktop)
+   ============================================= */
+.drawer-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1999;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.drawer-overlay.active {
+    display: block;
+    opacity: 1;
+}
+
+.drawer {
+    position: fixed;
+    top: 0;
+    right: -280px;
+    width: 280px;
+    height: 100vh;
+    background: var(--surface);
+    z-index: 2000;
+    transition: right 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    box-shadow: -4px 0 20px rgba(0, 0, 0, 0.3);
+}
+
+.drawer.active {
+    right: 0;
+}
+
+.drawer__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--space-lg);
+    border-bottom: 1px solid var(--surface-light);
+}
+
+.drawer__title {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--primary);
+}
+
+.drawer__close {
+    width: 32px;
+    height: 32px;
+    background: var(--surface-light);
+    border: none;
+    border-radius: var(--radius-md);
+    color: var(--text-secondary);
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.drawer__close:hover {
+    background: var(--primary);
+    color: var(--background);
+}
+
+.drawer__list {
+    list-style: none;
+    padding: var(--space-md);
+    flex: 1;
+    overflow-y: auto;
+}
+
+.drawer__link {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    padding: var(--space-md) var(--space-lg);
+    color: var(--text-primary);
+    text-decoration: none;
+    font-size: 16px;
+    border-radius: var(--radius-md);
+    transition: all 0.2s ease;
+    margin-bottom: var(--space-xs);
+}
+
+.drawer__link:hover,
+.drawer__link.active {
+    background: var(--surface-light);
+    color: var(--primary);
+}
+
+/* =============================================
+   20. Responsive - Tablet (768px and below)
    ============================================= */
 @media (max-width: 768px) {
     .nav {
-        height: auto;
+        height: var(--nav-height);
         padding: var(--space-sm) var(--space-md);
     }
 
     .nav__container {
-        flex-wrap: wrap;
+        flex-wrap: nowrap;
         justify-content: space-between;
         gap: var(--space-sm);
     }
 
     .nav__logo {
         order: 1;
+        flex: 1;
     }
 
-    /* FIXED: Hide logo text on mobile but respect language toggle */
+    /* Logo text always visible on mobile */
     .nav__logo-text {
-        display: none;
+        font-size: 12px;
     }
 
     .nav__logo-icon {
@@ -730,32 +875,22 @@ body {
 
     .nav__settings {
         order: 2;
+        display: flex;
+        gap: var(--space-sm);
     }
 
+    /* Hide desktop nav list on mobile */
     .nav__list {
-        order: 3;
-        width: 100%;
-        justify-content: flex-start;
-        gap: var(--space-xs);
-        overflow-x: auto;
-        -webkit-overflow-scrolling: touch;
-        scrollbar-width: none;
-        padding-bottom: var(--space-xs);
-    }
-
-    .nav__list::-webkit-scrollbar {
         display: none;
     }
 
-    .nav__link {
-        font-size: 12px;
-        padding: var(--space-xs) var(--space-sm);
-        white-space: nowrap;
-        flex-shrink: 0;
+    /* Show hamburger button on mobile */
+    .hamburger-btn {
+        display: flex;
     }
 
     .header {
-        padding-top: calc(100px + var(--space-xl));
+        padding-top: calc(var(--nav-height) + var(--space-xl));
         padding-left: var(--space-md);
         padding-right: var(--space-md);
     }
