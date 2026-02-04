@@ -642,6 +642,7 @@
         }
 
         /* Responsive */
+        /* Tablet (768px and below) */
         @media (max-width: 768px) {
             .nav {
                 height: auto;
@@ -675,21 +676,59 @@
             .nav__list {
                 order: 3;
                 width: 100%;
-                justify-content: center;
+                justify-content: flex-start;
                 gap: var(--space-xs);
+                overflow-x: auto;
+                -webkit-overflow-scrolling: touch;
+                scrollbar-width: none;
+                padding-bottom: var(--space-xs);
+            }
+
+            .nav__list::-webkit-scrollbar {
+                display: none;
             }
 
             .nav__link {
-                font-size: 11px;
+                font-size: 12px;
                 padding: var(--space-xs) var(--space-sm);
+                white-space: nowrap;
+                flex-shrink: 0;
             }
 
             .header {
-                padding-top: calc(100px + var(--space-2xl));
+                padding-top: calc(100px + var(--space-xl));
+                padding-left: var(--space-md);
+                padding-right: var(--space-md);
             }
 
             .header__title {
                 font-size: 24px;
+            }
+
+            .header__subtitle {
+                font-size: 14px;
+            }
+
+            .main {
+                padding: var(--space-lg) var(--space-md);
+            }
+
+            .section__header {
+                flex-wrap: wrap;
+                gap: var(--space-sm);
+            }
+
+            .section__title {
+                font-size: 20px;
+            }
+
+            .section__header-actions {
+                width: 100%;
+                justify-content: flex-end;
+            }
+
+            .question-card {
+                margin-bottom: var(--space-md);
             }
 
             .question-card__content {
@@ -708,25 +747,200 @@
                 font-size: 15px;
             }
 
+            .question-card__q {
+                width: 28px;
+                height: 28px;
+                font-size: 14px;
+            }
+
+            .content-block__title {
+                font-size: 14px;
+            }
+
+            .section-toc {
+                padding: var(--space-md);
+            }
+
             .section-toc__list {
                 flex-direction: column;
+                gap: var(--space-xs);
             }
 
             .section-toc__item {
                 text-align: center;
+                padding: var(--space-sm) var(--space-md);
             }
 
             .level-cards {
                 grid-template-columns: 1fr;
+                gap: var(--space-sm);
+            }
+
+            .level-card {
+                padding: var(--space-md);
+            }
+
+            .curriculum-box {
+                padding: var(--space-md);
+            }
+
+            .curriculum-week {
+                padding: var(--space-sm);
+            }
+
+            .tips-box,
+            .warning-box,
+            .science-box {
+                padding: var(--space-md);
+            }
+
+            /* Table horizontal scroll */
+            .table-wrapper {
+                overflow-x: auto;
+                -webkit-overflow-scrolling: touch;
+                margin: 0 calc(-1 * var(--space-md));
+                padding: 0 var(--space-md);
             }
 
             .training-table {
                 font-size: 12px;
+                min-width: 400px;
             }
 
             .training-table th,
             .training-table td {
                 padding: var(--space-sm);
+            }
+
+            .cta {
+                padding: var(--space-xl);
+                margin: var(--space-xl) 0;
+            }
+
+            .cta__title {
+                font-size: 20px;
+            }
+
+            .cta__button {
+                padding: var(--space-md) var(--space-lg);
+                font-size: 14px;
+                display: block;
+                text-align: center;
+            }
+        }
+
+        /* Mobile (480px and below) */
+        @media (max-width: 480px) {
+            :root {
+                --space-lg: 20px;
+                --space-xl: 24px;
+                --space-2xl: 32px;
+                --space-3xl: 48px;
+            }
+
+            .nav__link {
+                font-size: 11px;
+                padding: 4px 8px;
+            }
+
+            .header {
+                padding-top: calc(95px + var(--space-lg));
+            }
+
+            .header__title {
+                font-size: 20px;
+            }
+
+            .header__subtitle {
+                font-size: 13px;
+            }
+
+            .section__icon {
+                font-size: 24px;
+            }
+
+            .section__title {
+                font-size: 18px;
+            }
+
+            .question-card__title {
+                font-size: 14px;
+                line-height: 1.3;
+            }
+
+            .question-card__q {
+                width: 24px;
+                height: 24px;
+                font-size: 12px;
+            }
+
+            .question-card__toggle {
+                width: 20px;
+                height: 20px;
+                font-size: 12px;
+            }
+
+            .content-block {
+                margin-bottom: var(--space-lg);
+            }
+
+            .content-block__title {
+                font-size: 13px;
+            }
+
+            .content-block p,
+            .content-list li {
+                font-size: 14px;
+                line-height: 1.7;
+            }
+
+            .level-card__title {
+                font-size: 13px;
+            }
+
+            .level-card__content {
+                font-size: 13px;
+            }
+
+            .curriculum-week__header {
+                font-size: 13px;
+            }
+
+            .curriculum-week__content {
+                font-size: 12px;
+            }
+
+            .science-box__title,
+            .tips-box__title,
+            .warning-box__title {
+                font-size: 13px;
+            }
+
+            .science-box__content,
+            .tips-box__content,
+            .warning-box__content {
+                font-size: 13px;
+            }
+
+            .section-toc__title {
+                font-size: 12px;
+            }
+
+            .section-toc__item {
+                font-size: 12px;
+            }
+
+            .expand-all-btn {
+                font-size: 11px;
+                padding: var(--space-xs) var(--space-sm);
+            }
+
+            .footer {
+                padding: var(--space-lg) var(--space-md);
+            }
+
+            .footer__text {
+                font-size: 12px;
             }
         }
 
@@ -1012,14 +1226,14 @@
                     <div class="content-block">
                         <h4 class="content-block__title"><span lang="ja">推奨する練習方法</span><span lang="en">Recommended Practice Method</span></h4>
                         <p><strong><span lang="ja">使用機能：Fretboard Training</span><span lang="en">Feature: Fretboard Training</span></strong></p>
-                        <table class="training-table">
+                        <div class="table-wrapper"><table class="training-table">
                             <thead><tr><th><span lang="ja">フェーズ</span><span lang="en">Phase</span></th><th><span lang="ja">期間</span><span lang="en">Period</span></th><th><span lang="ja">設定</span><span lang="en">Settings</span></th><th><span lang="ja">目標</span><span lang="en">Goal</span></th></tr></thead>
                             <tbody>
                                 <tr><td><span lang="ja">導入期</span><span lang="en">Introduction</span></td><td><span lang="ja">1-2週目</span><span lang="en">Weeks 1-2</span></td><td><span lang="ja">1-4弦、0-5フレット</span><span lang="en">Strings 1-4, Frets 0-5</span></td><td><span lang="ja">正答率70%、応答3秒</span><span lang="en">70% accuracy, 3 sec</span></td></tr>
                                 <tr><td><span lang="ja">拡張期</span><span lang="en">Expansion</span></td><td><span lang="ja">3-4週目</span><span lang="en">Weeks 3-4</span></td><td><span lang="ja">全弦、0-12フレット</span><span lang="en">All strings, Frets 0-12</span></td><td><span lang="ja">正答率80%、応答2秒</span><span lang="en">80% accuracy, 2 sec</span></td></tr>
                                 <tr><td><span lang="ja">定着期</span><span lang="en">Consolidation</span></td><td><span lang="ja">5-6週目</span><span lang="en">Weeks 5-6</span></td><td><span lang="ja">全弦、ランダム</span><span lang="en">All strings, random</span></td><td><span lang="ja">正答率90%、応答1.5秒</span><span lang="en">90% accuracy, 1.5 sec</span></td></tr>
                             </tbody>
-                        </table>
+                        </table></div>
                         <div class="tips-box">
                             <div class="tips-box__title"><span lang="ja">💡 効果を最大化するコツ</span><span lang="en">💡 Tips to Maximize Effectiveness</span></div>
                             <div class="tips-box__content">
@@ -1235,7 +1449,7 @@
                     <div class="content-block">
                         <h4 class="content-block__title"><span lang="ja">推奨する練習方法</span><span lang="en">Recommended Practice Method</span></h4>
                         <p><strong><span lang="ja">使用機能：Interval Training</span><span lang="en">Feature: Interval Training</span></strong></p>
-                        <table class="training-table">
+                        <div class="table-wrapper"><table class="training-table">
                             <thead><tr><th><span lang="ja">フェーズ</span><span lang="en">Phase</span></th><th><span lang="ja">期間</span><span lang="en">Period</span></th><th><span lang="ja">対象音程</span><span lang="en">Target Intervals</span></th><th><span lang="ja">目標</span><span lang="en">Goal</span></th></tr></thead>
                             <tbody>
                                 <tr><td><span lang="ja">基礎期</span><span lang="en">Foundation</span></td><td><span lang="ja">1-2週目</span><span lang="en">Weeks 1-2</span></td><td><span lang="ja">完全8度 → 完全5度</span><span lang="en">P8 → P5</span></td><td><span lang="ja">正答率90%</span><span lang="en">90% accuracy</span></td></tr>
@@ -1243,7 +1457,7 @@
                                 <tr><td><span lang="ja">拡張期</span><span lang="en">Expansion</span></td><td><span lang="ja">5-6週目</span><span lang="en">Weeks 5-6</span></td><td><span lang="ja">+ 完全4度、長2度、短2度</span><span lang="en">+ P4, M2, m2</span></td><td><span lang="ja">正答率80%</span><span lang="en">80% accuracy</span></td></tr>
                                 <tr><td><span lang="ja">完成期</span><span lang="en">Completion</span></td><td><span lang="ja">7-8週目</span><span lang="en">Weeks 7-8</span></td><td><span lang="ja">+ 6度系、7度系、増4度/減5度</span><span lang="en">+ 6ths, 7ths, A4/d5</span></td><td><span lang="ja">正答率80%</span><span lang="en">80% accuracy</span></td></tr>
                             </tbody>
-                        </table>
+                        </table></div>
                     </div>
                 </div>
             </article>
@@ -1454,7 +1668,7 @@
                     <div class="content-block">
                         <h4 class="content-block__title"><span lang="ja">推奨する練習方法</span><span lang="en">Recommended Practice Method</span></h4>
                         <p><strong><span lang="ja">使用機能：Chord Recognition</span><span lang="en">Feature: Chord Recognition</span></strong></p>
-                        <table class="training-table">
+                        <div class="table-wrapper"><table class="training-table">
                             <thead><tr><th><span lang="ja">フェーズ</span><span lang="en">Phase</span></th><th><span lang="ja">期間</span><span lang="en">Period</span></th><th><span lang="ja">対象コード</span><span lang="en">Target Chords</span></th><th><span lang="ja">目標</span><span lang="en">Goal</span></th></tr></thead>
                             <tbody>
                                 <tr><td><span lang="ja">3和音期</span><span lang="en">Triads</span></td><td><span lang="ja">1-2週目</span><span lang="en">Weeks 1-2</span></td><td>Major / minor / dim / aug</td><td><span lang="ja">正答率85%</span><span lang="en">85% accuracy</span></td></tr>
@@ -1462,7 +1676,7 @@
                                 <tr><td><span lang="ja">4和音拡張</span><span lang="en">7th Expansion</span></td><td><span lang="ja">5-6週目</span><span lang="en">Weeks 5-6</span></td><td>+ m7 / m7(♭5)</td><td><span lang="ja">正答率75%</span><span lang="en">75% accuracy</span></td></tr>
                                 <tr><td><span lang="ja">応用期</span><span lang="en">Advanced</span></td><td><span lang="ja">7-8週目</span><span lang="en">Weeks 7-8</span></td><td>+ dim7 / sus4 / add9</td><td><span lang="ja">正答率75%</span><span lang="en">75% accuracy</span></td></tr>
                             </tbody>
-                        </table>
+                        </table></div>
                         <div class="tips-box">
                             <div class="tips-box__title"><span lang="ja">💡 コードの「性格」を覚える</span><span lang="en">💡 Remember Chord "Personalities"</span></div>
                             <div class="tips-box__content">
@@ -1681,7 +1895,7 @@
                     <div class="content-block">
                         <h4 class="content-block__title"><span lang="ja">推奨する練習方法</span><span lang="en">Recommended Practice Method</span></h4>
                         <p><strong><span lang="ja">使用機能：Rhythm Training</span><span lang="en">Feature: Rhythm Training</span></strong></p>
-                        <table class="training-table">
+                        <div class="table-wrapper"><table class="training-table">
                             <thead><tr><th><span lang="ja">フェーズ</span><span lang="en">Phase</span></th><th><span lang="ja">期間</span><span lang="en">Duration</span></th><th><span lang="ja">設定</span><span lang="en">Settings</span></th><th><span lang="ja">目標</span><span lang="en">Goal</span></th></tr></thead>
                             <tbody>
                                 <tr><td><span lang="ja">導入期</span><span lang="en">Introduction</span></td><td><span lang="ja">1週目</span><span lang="en">Week 1</span></td><td><span lang="ja">BPM 90、4分音符、タップ</span><span lang="en">BPM 90, quarter notes, tap</span></td><td><span lang="ja">自分の傾向を把握</span><span lang="en">Understand your tendencies</span></td></tr>
@@ -1689,7 +1903,7 @@
                                 <tr><td><span lang="ja">拡張期</span><span lang="en">Expansion</span></td><td><span lang="ja">3週目</span><span lang="en">Week 3</span></td><td><span lang="ja">BPM 60-120、8分含む</span><span lang="en">BPM 60-120, incl. eighths</span></td><td><span lang="ja">平均誤差±30ms</span><span lang="en">Average ±30ms</span></td></tr>
                                 <tr><td><span lang="ja">実践期</span><span lang="en">Application</span></td><td><span lang="ja">4週目</span><span lang="en">Week 4</span></td><td><span lang="ja">クラップモード</span><span lang="en">Clap mode</span></td><td><span lang="ja">平均誤差±25ms</span><span lang="en">Average ±25ms</span></td></tr>
                             </tbody>
-                        </table>
+                        </table></div>
                     </div>
                 </div>
             </article>
