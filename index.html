@@ -186,21 +186,78 @@
             font-weight: 700;
         }
 
-        /* Question Card */
+        /* Section TOC */
+        .section-toc {
+            background: var(--surface);
+            border-radius: var(--radius-lg);
+            padding: var(--space-lg);
+            margin-bottom: var(--space-xl);
+            border: 1px solid var(--surface-light);
+        }
+
+        .section-toc__title {
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--text-secondary);
+            margin-bottom: var(--space-md);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .section-toc__list {
+            list-style: none;
+            display: flex;
+            flex-wrap: wrap;
+            gap: var(--space-sm);
+        }
+
+        .section-toc__item {
+            background: var(--surface-light);
+            border-radius: var(--radius-md);
+            padding: var(--space-xs) var(--space-md);
+            font-size: 13px;
+            color: var(--text-primary);
+            cursor: pointer;
+            transition: all 0.2s ease;
+            border: 1px solid transparent;
+        }
+
+        .section-toc__item:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+        }
+
+        /* Question Card - Accordion */
         .question-card {
             background: var(--surface);
             border-radius: var(--radius-xl);
-            padding: var(--space-xl);
-            margin-bottom: var(--space-xl);
+            margin-bottom: var(--space-md);
             border: 1px solid var(--surface-light);
             scroll-margin-top: calc(var(--nav-height) + var(--space-lg));
+            overflow: hidden;
+            transition: border-color 0.2s ease;
+        }
+
+        .question-card:hover {
+            border-color: var(--primary);
+        }
+
+        .question-card.expanded {
+            border-color: var(--primary);
         }
 
         .question-card__header {
             display: flex;
-            align-items: flex-start;
+            align-items: center;
             gap: var(--space-md);
-            margin-bottom: var(--space-lg);
+            padding: var(--space-lg) var(--space-xl);
+            cursor: pointer;
+            user-select: none;
+            transition: background 0.2s ease;
+        }
+
+        .question-card__header:hover {
+            background: var(--surface-light);
         }
 
         .question-card__q {
@@ -217,13 +274,38 @@
         }
 
         .question-card__title {
-            font-size: 20px;
+            font-size: 18px;
             font-weight: 700;
             line-height: 1.4;
+            flex: 1;
+        }
+
+        .question-card__toggle {
+            width: 24px;
+            height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-secondary);
+            transition: transform 0.3s ease;
+            flex-shrink: 0;
+        }
+
+        .question-card.expanded .question-card__toggle {
+            transform: rotate(180deg);
         }
 
         .question-card__content {
-            padding-left: calc(32px + var(--space-md));
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease-out, padding 0.3s ease;
+            padding: 0 var(--space-xl);
+        }
+
+        .question-card.expanded .question-card__content {
+            max-height: 5000px;
+            padding: 0 var(--space-xl) var(--space-xl) var(--space-xl);
+            padding-left: calc(32px + var(--space-md) + var(--space-xl));
         }
 
         /* Content Block */
@@ -549,6 +631,26 @@
                 padding-left: 0;
             }
 
+            .question-card.expanded .question-card__content {
+                padding-left: var(--space-xl);
+            }
+
+            .question-card__header {
+                padding: var(--space-md);
+            }
+
+            .question-card__title {
+                font-size: 15px;
+            }
+
+            .section-toc__list {
+                flex-direction: column;
+            }
+
+            .section-toc__item {
+                text-align: center;
+            }
+
             .level-cards {
                 grid-template-columns: 1fr;
             }
@@ -561,6 +663,31 @@
             .training-table td {
                 padding: var(--space-sm);
             }
+        }
+
+        /* Expand All Button */
+        .expand-all-btn {
+            background: var(--surface-light);
+            border: 1px solid var(--primary);
+            color: var(--primary);
+            padding: var(--space-sm) var(--space-md);
+            border-radius: var(--radius-md);
+            font-size: 13px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            margin-left: auto;
+        }
+
+        .expand-all-btn:hover {
+            background: var(--primary);
+            color: var(--background);
+        }
+
+        .section__header-actions {
+            display: flex;
+            align-items: center;
+            gap: var(--space-md);
+            margin-left: auto;
         }
     </style>
 </head>
@@ -598,7 +725,21 @@
             <div class="section__header">
                 <span class="section__icon">🎸</span>
                 <h2 class="section__title">ギター・ベース</h2>
+                <div class="section__header-actions">
+                    <button class="expand-all-btn">すべて開く</button>
+                </div>
             </div>
+
+            <!-- Section TOC -->
+            <nav class="section-toc">
+                <div class="section-toc__title">目次</div>
+                <ul class="section-toc__list">
+                    <li class="section-toc__item" data-target="guitar-q1">セッションで頭が真っ白</li>
+                    <li class="section-toc__item" data-target="guitar-q2">耳コピに時間がかかる</li>
+                    <li class="section-toc__item" data-target="guitar-q3">同じフレーズばかり</li>
+                    <li class="section-toc__item" data-target="guitar-q4">コード進行が聴き取れない</li>
+                </ul>
+            </nav>
 
             <!-- Q1: セッションで頭が真っ白 -->
             <article class="question-card" id="guitar-q1">
@@ -1184,7 +1325,20 @@
             <div class="section__header">
                 <span class="section__icon">🥁</span>
                 <h2 class="section__title">ドラム</h2>
+                <div class="section__header-actions">
+                    <button class="expand-all-btn">すべて開く</button>
+                </div>
             </div>
+
+            <!-- Section TOC -->
+            <nav class="section-toc">
+                <div class="section-toc__title">目次</div>
+                <ul class="section-toc__list">
+                    <li class="section-toc__item" data-target="drums-q1">リズムが安定しない</li>
+                    <li class="section-toc__item" data-target="drums-q2">フィル後にズレる</li>
+                    <li class="section-toc__item" data-target="drums-q3">遅いテンポが苦手</li>
+                </ul>
+            </nav>
 
             <!-- Q1: リズムが安定しない -->
             <article class="question-card" id="drums-q1">
@@ -1448,7 +1602,20 @@
             <div class="section__header">
                 <span class="section__icon">🎹</span>
                 <h2 class="section__title">ピアノ・キーボード</h2>
+                <div class="section__header-actions">
+                    <button class="expand-all-btn">すべて開く</button>
+                </div>
             </div>
+
+            <!-- Section TOC -->
+            <nav class="section-toc">
+                <div class="section-toc__title">目次</div>
+                <ul class="section-toc__list">
+                    <li class="section-toc__item" data-target="piano-q1">譜面がないと弾けない</li>
+                    <li class="section-toc__item" data-target="piano-q2">コード譜で困る</li>
+                    <li class="section-toc__item" data-target="piano-q3">同じボイシング</li>
+                </ul>
+            </nav>
 
             <!-- Q1: 譜面がないと弾けない -->
             <article class="question-card" id="piano-q1">
@@ -1620,7 +1787,20 @@
             <div class="section__header">
                 <span class="section__icon">🎤</span>
                 <h2 class="section__title">ボーカル</h2>
+                <div class="section__header-actions">
+                    <button class="expand-all-btn">すべて開く</button>
+                </div>
             </div>
+
+            <!-- Section TOC -->
+            <nav class="section-toc">
+                <div class="section-toc__title">目次</div>
+                <ul class="section-toc__list">
+                    <li class="section-toc__item" data-target="vocal-q1">音程が不安定</li>
+                    <li class="section-toc__item" data-target="vocal-q2">キー変更で歌えない</li>
+                    <li class="section-toc__item" data-target="vocal-q3">ハモリが覚えられない</li>
+                </ul>
+            </nav>
 
             <!-- Q1: 音程が不安定 -->
             <article class="question-card" id="vocal-q1">
@@ -1787,7 +1967,19 @@
             <div class="section__header">
                 <span class="section__icon">🎺</span>
                 <h2 class="section__title">管楽器・弦楽器</h2>
+                <div class="section__header-actions">
+                    <button class="expand-all-btn">すべて開く</button>
+                </div>
             </div>
+
+            <!-- Section TOC -->
+            <nav class="section-toc">
+                <div class="section-toc__title">目次</div>
+                <ul class="section-toc__list">
+                    <li class="section-toc__item" data-target="wind-q1">ピッチが合わない</li>
+                    <li class="section-toc__item" data-target="wind-q2">初見で止まる</li>
+                </ul>
+            </nav>
 
             <!-- Q1: チューニングが合わない -->
             <article class="question-card" id="wind-q1">
@@ -1890,7 +2082,22 @@
             <div class="section__header">
                 <span class="section__icon">📱</span>
                 <h2 class="section__title">アプリ機能解説</h2>
+                <div class="section__header-actions">
+                    <button class="expand-all-btn">すべて開く</button>
+                </div>
             </div>
+
+            <!-- Section TOC -->
+            <nav class="section-toc">
+                <div class="section-toc__title">目次</div>
+                <ul class="section-toc__list">
+                    <li class="section-toc__item" data-target="features-fretboard">指板トレーニング</li>
+                    <li class="section-toc__item" data-target="features-interval">音程トレーニング</li>
+                    <li class="section-toc__item" data-target="features-chord">コード認識</li>
+                    <li class="section-toc__item" data-target="features-rhythm">リズムトレーニング</li>
+                    <li class="section-toc__item" data-target="features-sightreading">譜読みトレーニング</li>
+                </ul>
+            </nav>
 
             <!-- Fretboard Training -->
             <article class="question-card" id="features-fretboard">
@@ -2042,6 +2249,58 @@
 
             window.addEventListener('scroll', updateActiveNav);
             updateActiveNav();
+
+            // Accordion functionality
+            const questionCards = document.querySelectorAll('.question-card');
+
+            questionCards.forEach(card => {
+                const header = card.querySelector('.question-card__header');
+
+                // Add toggle icon if not present
+                if (!header.querySelector('.question-card__toggle')) {
+                    const toggle = document.createElement('span');
+                    toggle.className = 'question-card__toggle';
+                    toggle.innerHTML = '▼';
+                    header.appendChild(toggle);
+                }
+
+                header.addEventListener('click', () => {
+                    card.classList.toggle('expanded');
+                });
+            });
+
+            // Expand/Collapse All functionality
+            const expandAllBtns = document.querySelectorAll('.expand-all-btn');
+            expandAllBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const section = btn.closest('.section');
+                    const cards = section.querySelectorAll('.question-card');
+                    const allExpanded = Array.from(cards).every(card => card.classList.contains('expanded'));
+
+                    cards.forEach(card => {
+                        if (allExpanded) {
+                            card.classList.remove('expanded');
+                        } else {
+                            card.classList.add('expanded');
+                        }
+                    });
+
+                    btn.textContent = allExpanded ? 'すべて開く' : 'すべて閉じる';
+                });
+            });
+
+            // Section TOC click handler
+            const tocItems = document.querySelectorAll('.section-toc__item');
+            tocItems.forEach(item => {
+                item.addEventListener('click', () => {
+                    const targetId = item.dataset.target;
+                    const targetCard = document.getElementById(targetId);
+                    if (targetCard) {
+                        targetCard.classList.add('expanded');
+                        targetCard.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }
+                });
+            });
         });
     </script>
 </body>
