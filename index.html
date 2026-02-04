@@ -18,7 +18,7 @@
 
     <style>
         :root {
-            /* Studio Theme Colors */
+            /* Studio Theme Colors - Dark Mode (default) */
             --primary: #D4AF37;
             --secondary: #8B7355;
             --accent: #C9B896;
@@ -49,6 +49,22 @@
 
             /* Navigation Height */
             --nav-height: 56px;
+        }
+
+        /* Light Mode */
+        [data-theme="light"] {
+            --primary: #B8960F;
+            --secondary: #6B5A45;
+            --accent: #A89870;
+            --background: #F8F6F3;
+            --surface: #FFFFFF;
+            --surface-light: #EEEAE5;
+            --text-primary: #1A1A1E;
+            --text-secondary: #6A6A6A;
+            --success: #22C55E;
+            --warning: #D97706;
+            --error: #DC2626;
+            --info: #2563EB;
         }
 
         * {
@@ -97,11 +113,52 @@
         }
 
         .nav__logo {
+            display: flex;
+            align-items: center;
+            gap: var(--space-sm);
             font-size: 14px;
             font-weight: 700;
             color: var(--primary);
             letter-spacing: 1px;
             white-space: nowrap;
+            text-decoration: none;
+        }
+
+        .nav__logo-icon {
+            width: 32px;
+            height: 32px;
+            border-radius: 8px;
+        }
+
+        .nav__settings {
+            display: flex;
+            gap: var(--space-sm);
+            align-items: center;
+        }
+
+        .settings-btn {
+            background: var(--surface-light);
+            border: 1px solid var(--surface-light);
+            color: var(--text-secondary);
+            padding: var(--space-xs) var(--space-sm);
+            border-radius: var(--radius-md);
+            font-size: 12px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .settings-btn:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+        }
+
+        .settings-btn.active {
+            background: var(--primary);
+            color: var(--background);
+            border-color: var(--primary);
         }
 
         .nav__list {
@@ -601,15 +658,33 @@
             }
 
             .nav__container {
-                flex-direction: column;
+                flex-wrap: wrap;
+                justify-content: space-between;
                 gap: var(--space-sm);
             }
 
             .nav__logo {
+                display: flex;
+                order: 1;
+            }
+
+            .nav__logo span {
                 display: none;
             }
 
+            .nav__logo-icon {
+                width: 28px;
+                height: 28px;
+            }
+
+            .nav__settings {
+                order: 2;
+            }
+
             .nav__list {
+                order: 3;
+                width: 100%;
+                justify-content: center;
                 gap: var(--space-xs);
             }
 
@@ -619,7 +694,7 @@
             }
 
             .header {
-                padding-top: calc(80px + var(--space-2xl));
+                padding-top: calc(100px + var(--space-2xl));
             }
 
             .header__title {
@@ -694,22 +769,33 @@
     <!-- Fixed Navigation -->
     <nav class="nav">
         <div class="nav__container">
-            <span class="nav__logo">SOLFEGE PRO</span>
+            <a href="#" class="nav__logo">
+                <img src="AppIcon.png" alt="Solfege PRO" class="nav__logo-icon">
+                <span data-i18n="app_name">ソルフェージュPRO</span>
+            </a>
             <ul class="nav__list">
-                <li><a href="#guitar" class="nav__link active">🎸 ギター・ベース</a></li>
-                <li><a href="#drums" class="nav__link">🥁 ドラム</a></li>
-                <li><a href="#piano" class="nav__link">🎹 ピアノ</a></li>
-                <li><a href="#vocal" class="nav__link">🎤 ボーカル</a></li>
-                <li><a href="#wind" class="nav__link">🎺 管弦楽器</a></li>
-                <li><a href="#features" class="nav__link">📱 機能解説</a></li>
+                <li><a href="#guitar" class="nav__link active">🎸 <span data-i18n="nav_guitar">ギター・ベース</span></a></li>
+                <li><a href="#drums" class="nav__link">🥁 <span data-i18n="nav_drums">ドラム</span></a></li>
+                <li><a href="#piano" class="nav__link">🎹 <span data-i18n="nav_piano">ピアノ</span></a></li>
+                <li><a href="#vocal" class="nav__link">🎤 <span data-i18n="nav_vocal">ボーカル</span></a></li>
+                <li><a href="#wind" class="nav__link">🎺 <span data-i18n="nav_wind">管弦楽器</span></a></li>
+                <li><a href="#features" class="nav__link">📱 <span data-i18n="nav_features">機能解説</span></a></li>
             </ul>
+            <div class="nav__settings">
+                <button class="settings-btn" id="theme-toggle" title="Toggle theme">
+                    <span id="theme-icon">🌙</span>
+                </button>
+                <button class="settings-btn" id="lang-toggle" title="Toggle language">
+                    <span id="lang-text">EN</span>
+                </button>
+            </div>
         </div>
     </nav>
 
     <!-- Header -->
     <header class="header">
-        <h1 class="header__title">練習ガイド</h1>
-        <p class="header__subtitle">
+        <h1 class="header__title" data-i18n="header_title">練習ガイド</h1>
+        <p class="header__subtitle" data-i18n="header_subtitle">
             あなたの音楽的課題を解決するための、制作者が設計した練習メニューと使い方
         </p>
     </header>
@@ -2449,6 +2535,99 @@
                         targetCard.scrollIntoView({ behavior: 'smooth', block: 'start' });
                     }
                 });
+            });
+
+            // Theme toggle
+            const themeToggle = document.getElementById('theme-toggle');
+            const themeIcon = document.getElementById('theme-icon');
+            const savedTheme = localStorage.getItem('theme') || 'dark';
+
+            if (savedTheme === 'light') {
+                document.documentElement.setAttribute('data-theme', 'light');
+                themeIcon.textContent = '☀️';
+            }
+
+            themeToggle.addEventListener('click', () => {
+                const currentTheme = document.documentElement.getAttribute('data-theme');
+                if (currentTheme === 'light') {
+                    document.documentElement.removeAttribute('data-theme');
+                    themeIcon.textContent = '🌙';
+                    localStorage.setItem('theme', 'dark');
+                } else {
+                    document.documentElement.setAttribute('data-theme', 'light');
+                    themeIcon.textContent = '☀️';
+                    localStorage.setItem('theme', 'light');
+                }
+            });
+
+            // Language toggle
+            const translations = {
+                en: {
+                    app_name: 'Solfege PRO',
+                    nav_guitar: 'Guitar/Bass',
+                    nav_drums: 'Drums',
+                    nav_piano: 'Piano',
+                    nav_vocal: 'Vocal',
+                    nav_wind: 'Wind/Strings',
+                    nav_features: 'Features',
+                    header_title: 'Practice Guide',
+                    header_subtitle: 'Practice menus designed by the creator to solve your musical challenges',
+                    section_toc_title: 'Contents',
+                    expand_all: 'Expand All',
+                    collapse_all: 'Collapse All'
+                },
+                ja: {
+                    app_name: 'ソルフェージュPRO',
+                    nav_guitar: 'ギター・ベース',
+                    nav_drums: 'ドラム',
+                    nav_piano: 'ピアノ',
+                    nav_vocal: 'ボーカル',
+                    nav_wind: '管弦楽器',
+                    nav_features: '機能解説',
+                    header_title: '練習ガイド',
+                    header_subtitle: 'あなたの音楽的課題を解決するための、制作者が設計した練習メニューと使い方',
+                    section_toc_title: '目次',
+                    expand_all: 'すべて開く',
+                    collapse_all: 'すべて閉じる'
+                }
+            };
+
+            const langToggle = document.getElementById('lang-toggle');
+            const langText = document.getElementById('lang-text');
+            let currentLang = localStorage.getItem('lang') || 'ja';
+
+            function applyLanguage(lang) {
+                const t = translations[lang];
+                document.querySelectorAll('[data-i18n]').forEach(el => {
+                    const key = el.getAttribute('data-i18n');
+                    if (t[key]) {
+                        el.textContent = t[key];
+                    }
+                });
+                // Update section TOC titles
+                document.querySelectorAll('.section-toc__title').forEach(el => {
+                    el.textContent = t.section_toc_title;
+                });
+                // Update expand all buttons
+                document.querySelectorAll('.expand-all-btn').forEach(btn => {
+                    const section = btn.closest('.section');
+                    const cards = section.querySelectorAll('.question-card');
+                    const allExpanded = Array.from(cards).every(card => card.classList.contains('expanded'));
+                    btn.textContent = allExpanded ? t.collapse_all : t.expand_all;
+                });
+                langText.textContent = lang === 'ja' ? 'EN' : 'JA';
+                localStorage.setItem('lang', lang);
+                currentLang = lang;
+            }
+
+            // Apply saved language on load
+            if (currentLang === 'en') {
+                applyLanguage('en');
+            }
+
+            langToggle.addEventListener('click', () => {
+                const newLang = currentLang === 'ja' ? 'en' : 'ja';
+                applyLanguage(newLang);
             });
         });
     </script>
