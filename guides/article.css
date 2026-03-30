@@ -1,0 +1,616 @@
+/* =============================================
+   Article Page Styles
+   Extends ../style.css variables & base styles
+   ============================================= */
+
+/* =============================================
+   1. Article Navigation (simplified)
+   ============================================= */
+.article-nav {
+    background: rgba(42, 42, 48, 0.95);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    padding: var(--space-md) var(--space-lg);
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    border-bottom: 1px solid var(--surface-light);
+    height: var(--nav-height);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.article-nav__container {
+    display: flex;
+    align-items: center;
+    gap: var(--space-lg);
+    max-width: 760px;
+    width: 100%;
+}
+
+.article-nav__back {
+    color: var(--text-secondary);
+    text-decoration: none;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    gap: var(--space-xs);
+    transition: color 0.2s ease;
+    white-space: nowrap;
+}
+
+.article-nav__back:hover {
+    color: var(--primary);
+}
+
+.article-nav__logo {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    text-decoration: none;
+    margin-left: auto;
+}
+
+.article-nav__logo-icon {
+    width: 28px;
+    height: 28px;
+    border-radius: 6px;
+}
+
+.article-nav__logo-text {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--primary);
+    letter-spacing: 0.5px;
+}
+
+/* =============================================
+   2. Article Header
+   ============================================= */
+.article-header {
+    padding: var(--space-3xl) var(--space-lg);
+    padding-top: calc(var(--nav-height) + var(--space-3xl));
+    max-width: 760px;
+    margin: 0 auto;
+}
+
+.article-header__meta {
+    font-size: 13px;
+    color: var(--text-secondary);
+    margin-bottom: var(--space-md);
+    display: flex;
+    align-items: center;
+    gap: var(--space-md);
+}
+
+.article-header__tag {
+    background: rgba(212, 175, 55, 0.15);
+    color: var(--primary);
+    padding: 2px 10px;
+    border-radius: var(--radius-sm);
+    font-size: 12px;
+    font-weight: 500;
+}
+
+.article-header__title {
+    font-size: 28px;
+    font-weight: 700;
+    line-height: 1.4;
+    color: var(--text-primary);
+    margin-bottom: var(--space-lg);
+}
+
+.article-header__lead {
+    font-size: 16px;
+    color: var(--text-secondary);
+    line-height: 1.8;
+}
+
+/* =============================================
+   3. Article Body
+   ============================================= */
+.article-body {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 0 var(--space-lg) var(--space-3xl);
+}
+
+.article-body h2 {
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-top: var(--space-3xl);
+    margin-bottom: var(--space-lg);
+    padding-bottom: var(--space-md);
+    border-bottom: 2px solid var(--primary);
+    scroll-margin-top: calc(var(--nav-height) + var(--space-lg));
+}
+
+.article-body h3 {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-top: var(--space-xl);
+    margin-bottom: var(--space-md);
+    padding-left: var(--space-md);
+    border-left: 3px solid var(--primary);
+}
+
+.article-body h4 {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--accent);
+    margin-top: var(--space-lg);
+    margin-bottom: var(--space-sm);
+}
+
+.article-body p {
+    margin-bottom: var(--space-lg);
+    line-height: 1.9;
+    color: var(--text-primary);
+}
+
+.article-body strong {
+    color: var(--primary);
+    font-weight: 600;
+}
+
+.article-body ul,
+.article-body ol {
+    margin-bottom: var(--space-lg);
+    padding-left: 0;
+    list-style: none;
+}
+
+.article-body li {
+    padding-left: var(--space-lg);
+    position: relative;
+    margin-bottom: var(--space-sm);
+    line-height: 1.8;
+}
+
+.article-body ul > li::before {
+    content: "";
+    position: absolute;
+    left: 6px;
+    top: 11px;
+    width: 6px;
+    height: 6px;
+    background: var(--primary);
+    border-radius: 50%;
+}
+
+.article-body ol {
+    counter-reset: article-ol;
+}
+
+.article-body ol > li::before {
+    counter-increment: article-ol;
+    content: counter(article-ol);
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 22px;
+    height: 22px;
+    background: var(--primary);
+    color: var(--background);
+    border-radius: 50%;
+    font-size: 12px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.article-body ol > li {
+    padding-left: calc(var(--space-xl) + 4px);
+}
+
+/* =============================================
+   4. Info Boxes (article context)
+   ============================================= */
+.article-note {
+    background: rgba(212, 175, 55, 0.08);
+    border: 1px solid rgba(212, 175, 55, 0.25);
+    border-radius: var(--radius-lg);
+    padding: var(--space-lg);
+    margin-bottom: var(--space-lg);
+}
+
+.article-note__title {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--primary);
+    margin-bottom: var(--space-sm);
+}
+
+.article-note p {
+    margin-bottom: var(--space-sm);
+    font-size: 14px;
+}
+
+.article-note p:last-child {
+    margin-bottom: 0;
+}
+
+/* Honest box - for limitations */
+.article-honest {
+    background: rgba(154, 154, 154, 0.08);
+    border: 1px solid rgba(154, 154, 154, 0.2);
+    border-radius: var(--radius-lg);
+    padding: var(--space-lg);
+    margin-bottom: var(--space-lg);
+}
+
+.article-honest__title {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--text-secondary);
+    margin-bottom: var(--space-sm);
+}
+
+.article-honest p {
+    margin-bottom: var(--space-sm);
+    font-size: 14px;
+    color: var(--text-secondary);
+}
+
+.article-honest p:last-child {
+    margin-bottom: 0;
+}
+
+/* =============================================
+   5. Cycle Diagram
+   ============================================= */
+.cycle-diagram {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: var(--space-sm);
+    margin: var(--space-xl) 0;
+    padding: var(--space-xl);
+    background: var(--surface);
+    border-radius: var(--radius-xl);
+    border: 1px solid var(--surface-light);
+}
+
+.cycle-step {
+    background: var(--surface-light);
+    border-radius: var(--radius-lg);
+    padding: var(--space-md) var(--space-lg);
+    text-align: center;
+    min-width: 100px;
+}
+
+.cycle-step__label {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--primary);
+    margin-bottom: 2px;
+}
+
+.cycle-step__desc {
+    font-size: 12px;
+    color: var(--text-secondary);
+}
+
+.cycle-arrow {
+    display: flex;
+    align-items: center;
+    color: var(--text-secondary);
+    font-size: 18px;
+}
+
+/* =============================================
+   6. Click Density Table
+   ============================================= */
+.density-list {
+    margin-bottom: var(--space-lg);
+}
+
+.density-item {
+    display: flex;
+    gap: var(--space-md);
+    padding: var(--space-md);
+    background: var(--surface);
+    border-radius: var(--radius-md);
+    margin-bottom: var(--space-sm);
+    border: 1px solid var(--surface-light);
+}
+
+.density-item__name {
+    font-weight: 700;
+    color: var(--primary);
+    min-width: 140px;
+    font-size: 14px;
+}
+
+.density-item__desc {
+    font-size: 14px;
+    color: var(--text-secondary);
+}
+
+/* =============================================
+   7. Mid-Article CTA (subtle)
+   ============================================= */
+.article-cta-subtle {
+    background: var(--surface);
+    border: 1px solid var(--surface-light);
+    border-radius: var(--radius-xl);
+    padding: var(--space-xl);
+    margin: var(--space-xl) 0;
+    text-align: center;
+}
+
+.article-cta-subtle__text {
+    font-size: 14px;
+    color: var(--text-secondary);
+    margin-bottom: var(--space-md);
+}
+
+.article-cta-subtle__button {
+    display: inline-block;
+    background: transparent;
+    color: var(--primary);
+    padding: var(--space-sm) var(--space-xl);
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--primary);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 14px;
+    transition: all 0.2s ease;
+}
+
+.article-cta-subtle__button:hover {
+    background: var(--primary);
+    color: var(--background);
+}
+
+/* =============================================
+   8. Final CTA (prominent)
+   ============================================= */
+.article-cta {
+    background: linear-gradient(135deg, var(--surface) 0%, var(--background) 100%);
+    border: 1px solid var(--primary);
+    border-radius: var(--radius-xl);
+    padding: var(--space-2xl);
+    text-align: center;
+    max-width: 760px;
+    margin: 0 auto var(--space-3xl);
+}
+
+.article-cta__title {
+    font-size: 22px;
+    font-weight: 700;
+    margin-bottom: var(--space-md);
+    color: var(--text-primary);
+}
+
+.article-cta__text {
+    color: var(--text-secondary);
+    margin-bottom: var(--space-lg);
+    font-size: 15px;
+    line-height: 1.8;
+}
+
+.article-cta__button {
+    display: inline-block;
+    background: var(--primary);
+    color: var(--background);
+    padding: var(--space-md) var(--space-xl);
+    border-radius: var(--radius-lg);
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 15px;
+    transition: all 0.2s ease;
+}
+
+.article-cta__button:hover {
+    transform: scale(1.03);
+    box-shadow: 0 4px 20px rgba(212, 175, 55, 0.3);
+}
+
+/* =============================================
+   9. Related Content
+   ============================================= */
+.article-related {
+    max-width: 760px;
+    margin: 0 auto var(--space-2xl);
+    padding: 0 var(--space-lg);
+}
+
+.article-related__title {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: var(--space-md);
+}
+
+.article-related__link {
+    display: block;
+    background: var(--surface);
+    border: 1px solid var(--surface-light);
+    border-radius: var(--radius-lg);
+    padding: var(--space-lg);
+    text-decoration: none;
+    transition: border-color 0.2s ease;
+}
+
+.article-related__link:hover {
+    border-color: var(--primary);
+}
+
+.article-related__link-title {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: var(--space-xs);
+}
+
+.article-related__link-desc {
+    font-size: 13px;
+    color: var(--text-secondary);
+}
+
+/* =============================================
+   10. Article End Note
+   ============================================= */
+.article-endnote {
+    max-width: 760px;
+    margin: 0 auto var(--space-xl);
+    padding: 0 var(--space-lg);
+}
+
+.article-endnote__text {
+    font-size: 13px;
+    line-height: 1.7;
+    color: var(--text-secondary);
+    border-top: 1px solid var(--surface-light);
+    padding-top: var(--space-lg);
+}
+
+/* =============================================
+   11. Article Footer
+   ============================================= */
+.article-footer {
+    background: var(--surface);
+    padding: var(--space-xl) var(--space-lg);
+    text-align: center;
+    border-top: 1px solid var(--surface-light);
+}
+
+.article-footer__text {
+    color: var(--text-secondary);
+    font-size: 14px;
+}
+
+.article-footer__link {
+    color: var(--primary);
+    text-decoration: none;
+}
+
+.article-footer__link:hover {
+    text-decoration: underline;
+}
+
+/* =============================================
+   11. Responsive
+   ============================================= */
+@media (max-width: 768px) {
+    .article-nav {
+        padding: var(--space-sm) var(--space-md);
+    }
+
+    .article-nav__container {
+        gap: var(--space-sm);
+    }
+
+    .article-nav__back {
+        font-size: 13px;
+    }
+
+    .article-nav__logo-text {
+        font-size: 12px;
+    }
+
+    .article-header {
+        padding: var(--space-xl) var(--space-md);
+        padding-top: calc(var(--nav-height) + var(--space-xl));
+    }
+
+    .article-header__title {
+        font-size: 22px;
+    }
+
+    .article-header__lead {
+        font-size: 15px;
+    }
+
+    .article-body {
+        padding: 0 var(--space-md) var(--space-2xl);
+    }
+
+    .article-body h2 {
+        font-size: 19px;
+        margin-top: var(--space-2xl);
+    }
+
+    .article-body h3 {
+        font-size: 16px;
+    }
+
+    .article-body p,
+    .article-body li {
+        font-size: 15px;
+    }
+
+    .cycle-diagram {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .cycle-arrow {
+        transform: rotate(90deg);
+    }
+
+    .cycle-step {
+        width: 100%;
+        max-width: 240px;
+    }
+
+    .density-item {
+        flex-direction: column;
+        gap: var(--space-xs);
+    }
+
+    .density-item__name {
+        min-width: auto;
+    }
+
+    .article-cta {
+        margin: 0 var(--space-md) var(--space-2xl);
+        padding: var(--space-xl);
+    }
+
+    .article-cta__title {
+        font-size: 19px;
+    }
+
+    .article-cta__button {
+        display: block;
+        text-align: center;
+    }
+
+    .article-related {
+        padding: 0 var(--space-md);
+    }
+
+    .article-endnote {
+        padding: 0 var(--space-md);
+    }
+}
+
+@media (max-width: 480px) {
+    .article-header__title {
+        font-size: 19px;
+    }
+
+    .article-body h2 {
+        font-size: 17px;
+    }
+
+    .article-body h3 {
+        font-size: 15px;
+    }
+
+    .article-body p,
+    .article-body li {
+        font-size: 14px;
+        line-height: 1.8;
+    }
+}
