@@ -300,6 +300,20 @@
             justify-content: center;
         }
 
+        /* Mermaid bilingual: override display:contents to block for proper SVG layout */
+        .mermaid-container .mermaid-lang {
+            display: block;
+        }
+        .mermaid-container .mermaid-lang[lang="en"] {
+            display: none;
+        }
+        [data-lang="en"] .mermaid-container .mermaid-lang[lang="en"] {
+            display: block;
+        }
+        [data-lang="en"] .mermaid-container .mermaid-lang[lang="ja"] {
+            display: none;
+        }
+
         /* Comparison Table Visual */
         .comparison-visual {
             display: grid;
@@ -584,7 +598,35 @@
 
         <div class="mermaid-container">
             <div class="mermaid-container__title"><span lang="ja">診断 → 練習設定の選択フロー</span><span lang="en">Diagnosis → Practice Setting Selection</span></div>
-            <pre class="mermaid">
+
+            <!-- Japanese flowchart -->
+            <div class="mermaid-lang" lang="ja">
+                <pre class="mermaid">
+flowchart TD
+    A[セッション完了] --> B{診断結果は？}
+    B -->|後乗り傾向| C[BPM -10 に下げる\n全ビートで練習]
+    B -->|前乗り傾向| D[BPM そのまま\nクリック密度を下げる]
+    B -->|ばらつき| E[BPM -20 に下げる\n難易度を1段下げる\n全ビートで練習]
+    B -->|安定| F[BPM +10 に上げる\n難易度を1段上げる\nクリック密度を下げる]
+    C --> G[おすすめ設定で\n再挑戦]
+    D --> G
+    E --> G
+    F --> G
+    G --> A
+
+    style A fill:#2A2A30,stroke:#D4AF37,color:#F5F5F0
+    style B fill:#3A3A42,stroke:#D4AF37,color:#F5F5F0
+    style C fill:#2A2A30,stroke:#F87171,color:#F5F5F0
+    style D fill:#2A2A30,stroke:#60A5FA,color:#F5F5F0
+    style E fill:#2A2A30,stroke:#FBBF24,color:#F5F5F0
+    style F fill:#2A2A30,stroke:#4ADE80,color:#F5F5F0
+    style G fill:#2A2A30,stroke:#D4AF37,color:#F5F5F0
+                </pre>
+            </div>
+
+            <!-- English flowchart -->
+            <div class="mermaid-lang" lang="en">
+                <pre class="mermaid">
 flowchart TD
     A[Session Complete] --> B{Diagnosis?}
     B -->|Late tendency| C[Lower BPM -10\nAll Beats]
@@ -604,7 +646,8 @@ flowchart TD
     style E fill:#2A2A30,stroke:#FBBF24,color:#F5F5F0
     style F fill:#2A2A30,stroke:#4ADE80,color:#F5F5F0
     style G fill:#2A2A30,stroke:#D4AF37,color:#F5F5F0
-            </pre>
+                </pre>
+            </div>
         </div>
 
         <!-- 5. Good vs Bad Practice Comparison -->
