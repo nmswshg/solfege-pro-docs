@@ -7,8 +7,8 @@ document.addEventListener('DOMContentLoaded', function() {
     /* =============================================
        1. Scroll Spy - Navigation Active State
        ============================================= */
-    const subNavLinks = document.querySelectorAll('.sub-nav__link');
-    const drawerLinks = document.querySelectorAll('.drawer__link[href^="#"]');
+    const navLinks = document.querySelectorAll('.nav__link');
+    const drawerLinks = document.querySelectorAll('.drawer__link');
     const sections = document.querySelectorAll('.section');
 
     function updateActiveNav() {
@@ -16,20 +16,20 @@ document.addEventListener('DOMContentLoaded', function() {
         sections.forEach(section => {
             const sectionTop = section.offsetTop;
             const sectionHeight = section.clientHeight;
-            if (window.scrollY >= sectionTop - 120) {
+            if (window.scrollY >= sectionTop - 100) {
                 current = section.getAttribute('id');
             }
         });
 
-        // Update sub-nav links
-        subNavLinks.forEach(link => {
+        // Update desktop nav links
+        navLinks.forEach(link => {
             link.classList.remove('active');
             if (link.getAttribute('href') === '#' + current) {
                 link.classList.add('active');
             }
         });
 
-        // Update drawer section links
+        // Update drawer links
         drawerLinks.forEach(link => {
             link.classList.remove('active');
             if (link.getAttribute('href') === '#' + current) {

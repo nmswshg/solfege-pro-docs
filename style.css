@@ -37,8 +37,6 @@
 
     /* Navigation Height */
     --nav-height: 56px;
-    --sub-nav-height: 44px;
-    --total-nav-height: calc(var(--nav-height) + var(--sub-nav-height));
 }
 
 /* =============================================
@@ -63,7 +61,7 @@
 
 html {
     scroll-behavior: smooth;
-    scroll-padding-top: var(--total-nav-height);
+    scroll-padding-top: var(--nav-height);
 }
 
 body {
@@ -155,8 +153,6 @@ body {
     border-color: var(--primary);
 }
 
-/* Legacy: .nav__list/.nav__link replaced by .sub-nav__list/.sub-nav__link.
-   Kept for backwards compatibility — remove when confirmed unused. */
 .nav__list {
     display: flex;
     gap: var(--space-sm);
@@ -182,101 +178,13 @@ body {
     background: var(--surface-light);
 }
 
-/* Global page links in main nav */
-.nav__page-list {
-    display: flex;
-    gap: var(--space-xs);
-    list-style: none;
-    flex: 1;
-    justify-content: center;
-}
-
-.nav__page-link {
-    color: var(--text-secondary);
-    text-decoration: none;
-    font-size: 14px;
-    font-weight: 500;
-    padding: var(--space-xs) var(--space-md);
-    border-radius: var(--radius-md);
-    transition: all 0.2s ease;
-    white-space: nowrap;
-}
-
-.nav__page-link:hover {
-    color: var(--primary);
-}
-
-.nav__page-link.active {
-    color: var(--primary);
-    font-weight: 700;
-}
-
-/* =============================================
-   4b. Sub Navigation (page-specific sections)
-   ============================================= */
-.sub-nav {
-    background: rgba(26, 26, 30, 0.95);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    position: fixed;
-    top: var(--nav-height);
-    left: 0;
-    right: 0;
-    z-index: 999;
-    border-bottom: 1px solid var(--surface-light);
-    height: var(--sub-nav-height);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-    scrollbar-width: none;
-}
-
-.sub-nav::-webkit-scrollbar {
-    display: none;
-}
-
-.sub-nav__container {
-    display: flex;
-    align-items: center;
-    gap: var(--space-sm);
-    max-width: 1200px;
-    width: 100%;
-    padding: 0 var(--space-lg);
-}
-
-.sub-nav__list {
-    display: flex;
-    gap: var(--space-xs);
-    list-style: none;
-    flex: 1;
-    justify-content: center;
-}
-
-.sub-nav__link {
-    color: var(--text-secondary);
-    text-decoration: none;
-    font-size: 13px;
-    padding: var(--space-xs) var(--space-md);
-    border-radius: var(--radius-md);
-    transition: all 0.2s ease;
-    white-space: nowrap;
-}
-
-.sub-nav__link:hover,
-.sub-nav__link.active {
-    color: var(--primary);
-    background: var(--surface-light);
-}
-
 /* =============================================
    5. Header
    ============================================= */
 .header {
     background: linear-gradient(180deg, var(--surface) 0%, var(--background) 100%);
     padding: var(--space-3xl) var(--space-lg);
-    padding-top: calc(var(--total-nav-height) + var(--space-3xl));
+    padding-top: calc(var(--nav-height) + var(--space-3xl));
     text-align: center;
     border-bottom: 1px solid var(--surface-light);
 }
@@ -312,7 +220,7 @@ body {
    ============================================= */
 .section {
     margin-bottom: var(--space-3xl);
-    scroll-margin-top: calc(var(--total-nav-height) + var(--space-lg));
+    scroll-margin-top: calc(var(--nav-height) + var(--space-lg));
 }
 
 .section__header {
@@ -391,7 +299,7 @@ body {
     border-radius: var(--radius-xl);
     margin-bottom: var(--space-md);
     border: 1px solid var(--surface-light);
-    scroll-margin-top: calc(var(--total-nav-height) + var(--space-lg));
+    scroll-margin-top: calc(var(--nav-height) + var(--space-lg));
     overflow: hidden;
     transition: border-color 0.2s ease;
 }
@@ -935,21 +843,6 @@ body {
     color: var(--primary);
 }
 
-.drawer__section-title {
-    font-size: 11px;
-    font-weight: 700;
-    color: var(--text-secondary);
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    padding: var(--space-md) var(--space-lg) var(--space-xs);
-}
-
-.drawer__divider {
-    height: 1px;
-    background: var(--surface-light);
-    margin: var(--space-sm) var(--space-lg);
-}
-
 /* =============================================
    20. Responsive - Tablet (768px and below)
    ============================================= */
@@ -986,19 +879,9 @@ body {
         gap: var(--space-sm);
     }
 
-    /* Hide old section nav list on mobile (replaced by sub-nav) */
+    /* Hide desktop nav list on mobile */
     .nav__list {
         display: none;
-    }
-
-    /* Page links stay visible on mobile (only 2 items, always fits) */
-    .nav__page-list {
-        gap: var(--space-xs);
-    }
-
-    .nav__page-link {
-        font-size: 12px;
-        padding: var(--space-xs) var(--space-sm);
     }
 
     /* Show hamburger button on mobile */
@@ -1006,26 +889,8 @@ body {
         display: flex;
     }
 
-    /* Sub-nav on mobile: left-aligned, horizontally scrollable */
-    .sub-nav {
-        justify-content: flex-start;
-    }
-
-    .sub-nav__container {
-        padding: 0 var(--space-md);
-    }
-
-    .sub-nav__list {
-        justify-content: flex-start;
-    }
-
-    .sub-nav__link {
-        font-size: 12px;
-        padding: var(--space-sm) var(--space-sm); /* min 8px vertical for better tap target */
-    }
-
     .header {
-        padding-top: calc(var(--total-nav-height) + var(--space-xl));
+        padding-top: calc(var(--nav-height) + var(--space-xl));
         padding-left: var(--space-md);
         padding-right: var(--space-md);
     }
@@ -1168,7 +1033,7 @@ body {
     }
 
     .header {
-        padding-top: calc(var(--total-nav-height) + var(--space-lg));
+        padding-top: calc(95px + var(--space-lg));
     }
 
     .header__title {

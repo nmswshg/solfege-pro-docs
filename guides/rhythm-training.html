@@ -35,39 +35,17 @@
     <link rel="stylesheet" href="article.css">
 </head>
 <body>
-    <!-- Global Navigation -->
-    <nav class="nav">
-        <div class="nav__container">
-            <a href="../" class="nav__logo">
-                <img src="../AppIcon.png" alt="Solfege PRO" class="nav__logo-icon">
-                <span class="nav__logo-text">
-                    <span lang="ja">ソルフェージュPRO</span>
-                    <span lang="en">Solfege PRO</span>
-                </span>
+    <!-- Navigation -->
+    <nav class="article-nav">
+        <div class="article-nav__container">
+            <a href="../" class="article-nav__back">&larr; <span lang="ja">練習ガイド</span><span lang="en">Practice Guide</span></a>
+            <a href="../" class="article-nav__logo">
+                <img src="../AppIcon.png" alt="Solfege PRO" class="article-nav__logo-icon">
+                <span class="article-nav__logo-text"><span lang="ja">ソルフェージュPRO</span><span lang="en">Solfege PRO</span></span>
             </a>
-            <ul class="nav__page-list">
-                <li><a href="../" class="nav__page-link"><span lang="ja">練習ガイド</span><span lang="en">Practice Guide</span></a></li>
-                <li><a href="./" class="nav__page-link active"><span lang="ja">リズム感ガイド</span><span lang="en">Rhythm Guide</span></a></li>
-            </ul>
-            <div class="nav__settings">
-                <button class="settings-btn" id="lang-toggle" title="Toggle language">
-                    <span id="lang-text">EN</span>
-                </button>
-            </div>
-        </div>
-    </nav>
-
-    <!-- Page Sub Navigation -->
-    <nav class="sub-nav">
-        <div class="sub-nav__container">
-            <ul class="sub-nav__list">
-                <li><a href="#breakdown" class="sub-nav__link"><span lang="ja">分解</span><span lang="en">Breakdown</span></a></li>
-                <li><a href="#common-problems" class="sub-nav__link"><span lang="ja">悩み</span><span lang="en">Problems</span></a></li>
-                <li><a href="#effective-practice" class="sub-nav__link"><span lang="ja">練習法</span><span lang="en">Practice</span></a></li>
-                <li><a href="#what-app-can-do" class="sub-nav__link"><span lang="ja">できること</span><span lang="en">Features</span></a></li>
-                <li><a href="#limitations" class="sub-nav__link"><span lang="ja">限界</span><span lang="en">Limits</span></a></li>
-                <li><a href="#how-to-use" class="sub-nav__link"><span lang="ja">使い方</span><span lang="en">Usage</span></a></li>
-            </ul>
+            <button class="settings-btn" id="lang-toggle" title="Toggle language">
+                <span id="lang-text">EN</span>
+            </button>
         </div>
     </nav>
 
@@ -384,10 +362,9 @@
         </p>
     </footer>
 
-    <!-- Language Toggle + Sub-nav Scroll Spy -->
+    <!-- Language Toggle Script -->
     <script>
     (function() {
-        // Language toggle
         var langToggle = document.getElementById('lang-toggle');
         var langText = document.getElementById('lang-text');
         var currentLang = localStorage.getItem('lang') || 'ja';
@@ -407,30 +384,6 @@
         langToggle.addEventListener('click', function() {
             applyLanguage(currentLang === 'ja' ? 'en' : 'ja');
         });
-
-        // Sub-nav scroll spy
-        var subNavLinks = document.querySelectorAll('.sub-nav__link');
-        var sectionIds = [];
-        subNavLinks.forEach(function(link) {
-            var id = link.getAttribute('href').replace('#', '');
-            if (id) sectionIds.push(id);
-        });
-
-        function updateSubNav() {
-            var current = '';
-            sectionIds.forEach(function(id) {
-                var el = document.getElementById(id);
-                if (el && window.scrollY >= el.offsetTop - 120) {
-                    current = id;
-                }
-            });
-            subNavLinks.forEach(function(link) {
-                link.classList.toggle('active', link.getAttribute('href') === '#' + current);
-            });
-        }
-
-        window.addEventListener('scroll', updateSubNav);
-        updateSubNav();
     })();
     </script>
 
