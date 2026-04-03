@@ -300,18 +300,17 @@
             justify-content: center;
         }
 
-        /* Mermaid bilingual: override display:contents to block for proper SVG layout */
-        .mermaid-container .mermaid-lang {
-            display: block;
+        /*
+         * Mermaid bilingual:
+         * Both diagrams must be visible during initial render (display:none
+         * prevents Mermaid from computing SVG layout). After render, JS
+         * adds .mermaid-hidden to the inactive language.
+         */
+        .mermaid-lang {
+            display: block !important; /* override [lang="en"]{display:none} during render */
         }
-        .mermaid-container .mermaid-lang[lang="en"] {
-            display: none;
-        }
-        [data-lang="en"] .mermaid-container .mermaid-lang[lang="en"] {
-            display: block;
-        }
-        [data-lang="en"] .mermaid-container .mermaid-lang[lang="ja"] {
-            display: none;
+        .mermaid-lang.mermaid-hidden {
+            display: none !important;
         }
 
         /* Comparison Table Visual */
@@ -690,17 +689,35 @@ flowchart TD
         var langText = document.getElementById('lang-text');
         var currentLang = localStorage.getItem('lang') || 'ja';
 
+        function applyMermaidLang(lang) {
+            document.querySelectorAll('.mermaid-lang').forEach(function(el) {
+                if (el.getAttribute('lang') === lang) {
+                    el.classList.remove('mermaid-hidden');
+                } else {
+                    el.classList.add('mermaid-hidden');
+                }
+            });
+        }
+
         function applyLanguage(lang) {
             document.documentElement.setAttribute('data-lang', lang);
             langText.textContent = lang === 'ja' ? 'EN' : 'JA';
             localStorage.setItem('lang', lang);
             currentLang = lang;
+            applyMermaidLang(lang);
         }
 
-        applyLanguage(currentLang);
+        // Apply text language immediately (Mermaid diagrams stay visible until rendered)
+        document.documentElement.setAttribute('data-lang', currentLang);
+        langText.textContent = currentLang === 'ja' ? 'EN' : 'JA';
+
+        // After Mermaid finishes rendering, hide the inactive diagram
+        // Use a short delay to ensure Mermaid has completed SVG generation
+        setTimeout(function() { applyMermaidLang(currentLang); }, 500);
 
         langToggle.addEventListener('click', function() {
-            applyLanguage(currentLang === 'ja' ? 'en' : 'ja');
+            var newLang = currentLang === 'ja' ? 'en' : 'ja';
+            applyLanguage(newLang);
         });
     })();
     </script>
