@@ -33,6 +33,25 @@
     <!-- Stylesheets -->
     <link rel="stylesheet" href="../style.css">
     <link rel="stylesheet" href="article.css">
+
+    <!-- Mermaid.js for flowcharts -->
+    <script type="module">
+        import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+        mermaid.initialize({
+            startOnLoad: true,
+            theme: 'dark',
+            themeVariables: {
+                primaryColor: '#2A2A30',
+                primaryTextColor: '#F5F5F0',
+                primaryBorderColor: '#D4AF37',
+                lineColor: '#D4AF37',
+                secondaryColor: '#3A3A42',
+                tertiaryColor: '#1A1A1E',
+                fontFamily: 'Noto Sans JP, sans-serif',
+                fontSize: '14px'
+            }
+        });
+    </script>
 </head>
 <body>
     <!-- Navigation -->
@@ -164,6 +183,69 @@
             <span lang="en">You're fine with just a metronome, but timing falls apart in actual playing or ensemble settings. This likely means that fingering, reading, or awareness of other parts is consuming the mental bandwidth you need to maintain timing. Solidifying your timing accuracy under low-load conditions builds the foundation for maintaining precision during performance.</span>
         </p>
 
+        <!-- Visual: Beat Timeline -->
+        <div class="beat-timeline">
+            <div class="diagram-title"><span lang="ja">打点パターンの比較</span><span lang="en">Hit Pattern Comparison</span></div>
+            <div class="beat-timeline__row">
+                <div class="beat-timeline__label"><span lang="ja">安定</span><span lang="en">Stable</span></div>
+                <div class="beat-timeline__track">
+                    <div class="beat-mark beat-mark--click" style="left:12.5%"></div>
+                    <div class="beat-mark beat-mark--click" style="left:37.5%"></div>
+                    <div class="beat-mark beat-mark--click" style="left:62.5%"></div>
+                    <div class="beat-mark beat-mark--click" style="left:87.5%"></div>
+                    <div class="beat-mark beat-mark--hit beat-mark--perfect" style="left:13%"></div>
+                    <div class="beat-mark beat-mark--hit beat-mark--perfect" style="left:37%"></div>
+                    <div class="beat-mark beat-mark--hit beat-mark--perfect" style="left:63%"></div>
+                    <div class="beat-mark beat-mark--hit beat-mark--perfect" style="left:87%"></div>
+                </div>
+            </div>
+            <div class="beat-timeline__row">
+                <div class="beat-timeline__label"><span lang="ja">前乗り</span><span lang="en">Rushing</span></div>
+                <div class="beat-timeline__track">
+                    <div class="beat-mark beat-mark--click" style="left:12.5%"></div>
+                    <div class="beat-mark beat-mark--click" style="left:37.5%"></div>
+                    <div class="beat-mark beat-mark--click" style="left:62.5%"></div>
+                    <div class="beat-mark beat-mark--click" style="left:87.5%"></div>
+                    <div class="beat-mark beat-mark--hit beat-mark--early" style="left:10%"></div>
+                    <div class="beat-mark beat-mark--hit beat-mark--early" style="left:34.5%"></div>
+                    <div class="beat-mark beat-mark--hit beat-mark--early" style="left:59.5%"></div>
+                    <div class="beat-mark beat-mark--hit beat-mark--early" style="left:84%"></div>
+                </div>
+            </div>
+            <div class="beat-timeline__row">
+                <div class="beat-timeline__label"><span lang="ja">後乗り</span><span lang="en">Dragging</span></div>
+                <div class="beat-timeline__track">
+                    <div class="beat-mark beat-mark--click" style="left:12.5%"></div>
+                    <div class="beat-mark beat-mark--click" style="left:37.5%"></div>
+                    <div class="beat-mark beat-mark--click" style="left:62.5%"></div>
+                    <div class="beat-mark beat-mark--click" style="left:87.5%"></div>
+                    <div class="beat-mark beat-mark--hit beat-mark--late" style="left:16%"></div>
+                    <div class="beat-mark beat-mark--hit beat-mark--late" style="left:41%"></div>
+                    <div class="beat-mark beat-mark--hit beat-mark--late" style="left:66%"></div>
+                    <div class="beat-mark beat-mark--hit beat-mark--late" style="left:91%"></div>
+                </div>
+            </div>
+            <div class="beat-timeline__row">
+                <div class="beat-timeline__label"><span lang="ja">ばらつき</span><span lang="en">Inconsistent</span></div>
+                <div class="beat-timeline__track">
+                    <div class="beat-mark beat-mark--click" style="left:12.5%"></div>
+                    <div class="beat-mark beat-mark--click" style="left:37.5%"></div>
+                    <div class="beat-mark beat-mark--click" style="left:62.5%"></div>
+                    <div class="beat-mark beat-mark--click" style="left:87.5%"></div>
+                    <div class="beat-mark beat-mark--hit beat-mark--early" style="left:9%"></div>
+                    <div class="beat-mark beat-mark--hit beat-mark--late" style="left:41%"></div>
+                    <div class="beat-mark beat-mark--hit beat-mark--perfect" style="left:62%"></div>
+                    <div class="beat-mark beat-mark--hit beat-mark--late" style="left:92%"></div>
+                </div>
+            </div>
+            <div class="beat-timeline__legend">
+                <div class="legend-item"><div class="legend-line" style="background:var(--primary)"></div> <span lang="ja">拍</span><span lang="en">Beat</span></div>
+                <div class="legend-item"><div class="legend-dot" style="background:#4ADE80"></div> <span lang="ja">正確</span><span lang="en">On time</span></div>
+                <div class="legend-item"><div class="legend-dot" style="background:#60A5FA"></div> <span lang="ja">早い</span><span lang="en">Early</span></div>
+                <div class="legend-item"><div class="legend-dot" style="background:#F87171"></div> <span lang="ja">遅い</span><span lang="en">Late</span></div>
+            </div>
+        </div>
+
         <!-- Section 4 -->
         <h2 id="effective-practice"><span lang="ja">望ましい練習 — タイミング精度と安定性を鍛える</span><span lang="en">Effective Practice — Training Timing Accuracy and Stability</span></h2>
 
@@ -198,6 +280,56 @@
             </div>
         </div>
 
+        <!-- Visual: Click Density Grid -->
+        <div class="density-visual">
+            <div class="diagram-title"><span lang="ja">1小節のクリックパターン</span><span lang="en">Click Pattern per Bar</span></div>
+            <div class="density-row">
+                <div class="density-row__label">All Beats</div>
+                <div class="density-row__beats">
+                    <div class="beat-cell beat-cell--on">1</div>
+                    <div class="beat-cell beat-cell--on">2</div>
+                    <div class="beat-cell beat-cell--on">3</div>
+                    <div class="beat-cell beat-cell--on">4</div>
+                </div>
+                <div class="density-row__difficulty"><span lang="ja">易</span><span lang="en">Easy</span></div>
+            </div>
+            <div class="density-row">
+                <div class="density-row__label">2 & 4</div>
+                <div class="density-row__beats">
+                    <div class="beat-cell beat-cell--off">1</div>
+                    <div class="beat-cell beat-cell--on">2</div>
+                    <div class="beat-cell beat-cell--off">3</div>
+                    <div class="beat-cell beat-cell--on">4</div>
+                </div>
+                <div class="density-row__difficulty"></div>
+            </div>
+            <div class="density-row">
+                <div class="density-row__label">Downbeat</div>
+                <div class="density-row__beats">
+                    <div class="beat-cell beat-cell--on">1</div>
+                    <div class="beat-cell beat-cell--off">2</div>
+                    <div class="beat-cell beat-cell--off">3</div>
+                    <div class="beat-cell beat-cell--off">4</div>
+                </div>
+                <div class="density-row__difficulty"></div>
+            </div>
+            <div class="density-row">
+                <div class="density-row__label"><span lang="ja">2小節ごと</span><span lang="en">Every 2 bars</span></div>
+                <div class="density-row__beats">
+                    <div class="beat-cell beat-cell--on">1</div>
+                    <div class="beat-cell beat-cell--off">2</div>
+                    <div class="beat-cell beat-cell--off">3</div>
+                    <div class="beat-cell beat-cell--off">4</div>
+                    <div class="beat-cell beat-cell--bar">|</div>
+                    <div class="beat-cell beat-cell--off">1</div>
+                    <div class="beat-cell beat-cell--off">2</div>
+                    <div class="beat-cell beat-cell--off">3</div>
+                    <div class="beat-cell beat-cell--off">4</div>
+                </div>
+                <div class="density-row__difficulty"><span lang="ja">難</span><span lang="en">Hard</span></div>
+            </div>
+        </div>
+
         <h3 id="stability-first"><span lang="ja">安定性を先に作る</span><span lang="en">Build Stability First</span></h3>
         <p>
             <span lang="ja">前乗り・後乗りの傾向を直す前に、まず「一定のタイミングで打てる」状態を作ることが重要です。ばらつきが大きい状態では、傾向の矯正は効果が薄くなります。低テンポ・低難易度・全ビートで、安定した土台を作りましょう。</span>
@@ -217,6 +349,29 @@
             <span lang="ja">打点をミリ秒単位で記録し、自分のタイミングが拍に対してどの位置にあるかを数値で表示します。「なんとなくズレてる気がする」を、「平均して何ms遅れている（または早い）」に変換します。なお、計測値にはデバイスの入力遅延やオーディオ出力方式（スピーカー/有線/Bluetooth）の影響が含まれるため、アプリ内でデバイスに応じた補正を行っています。</span>
             <span lang="en">Records your hits in milliseconds and shows where your timing sits relative to the beat. It converts a vague "I feel a bit off" into "I'm averaging Xms late (or early)." Note: measurements are affected by device input latency and audio output method (speaker/wired/Bluetooth), so the app applies device-specific compensation.</span>
         </p>
+
+        <!-- Visual: Deviation Gauge -->
+        <div class="deviation-gauge">
+            <div class="diagram-title"><span lang="ja">タイミング精度のスケール</span><span lang="en">Timing Accuracy Scale</span></div>
+            <div class="gauge-track">
+                <div class="gauge-zone gauge-zone--beginner" style="left:0;width:20%;border-radius:6px 0 0 6px;"></div>
+                <div class="gauge-zone gauge-zone--mid" style="left:20%;width:15%;"></div>
+                <div class="gauge-zone gauge-zone--pro" style="left:35%;width:30%;"></div>
+                <div class="gauge-zone gauge-zone--mid" style="left:65%;width:15%;"></div>
+                <div class="gauge-zone gauge-zone--beginner" style="left:80%;width:20%;border-radius:0 6px 6px 0;"></div>
+                <div class="gauge-center"></div>
+                <div class="gauge-marker gauge-marker--you" style="left:62%" title="+18ms"></div>
+            </div>
+            <div class="gauge-labels">
+                <span>-50ms (<span lang="ja">前乗り</span><span lang="en">early</span>)</span>
+                <span>0ms (<span lang="ja">ジャスト</span><span lang="en">on beat</span>)</span>
+                <span>+50ms (<span lang="ja">後乗り</span><span lang="en">late</span>)</span>
+            </div>
+            <p style="font-size:12px;color:var(--text-secondary);margin-top:var(--space-md);text-align:center;">
+                <span style="display:inline-block;width:10px;height:10px;background:rgba(96,165,250,0.3);border:2px solid #60A5FA;border-radius:3px;vertical-align:middle;"></span>
+                = <span lang="ja">あなたの位置（例: +18ms 後乗り傾向）</span><span lang="en">Your position (example: +18ms late tendency)</span>
+            </p>
+        </div>
 
         <h3><span lang="ja">前乗り / 後乗り傾向の把握</span><span lang="en">Identify Rushing / Dragging Tendency</span></h3>
         <p>
@@ -320,6 +475,73 @@
             <span lang="en">This isn't something that stays inside the app. The real value is taking the awareness of your timing habits into your daily practice. That's the path to improvement.</span>
         </p>
 
+        <!-- Visual: Diagnosis Flowchart -->
+        <div class="mermaid-container">
+            <div class="diagram-title"><span lang="ja">診断 → 練習設定の選択フロー</span><span lang="en">Diagnosis → Practice Setting Selection</span></div>
+            <div class="mermaid-lang" lang="ja">
+                <pre class="mermaid">
+flowchart TD
+    A[セッション完了] --> B{診断結果は？}
+    B -->|後乗り傾向| C[BPM -10 に下げる\n全ビートで練習]
+    B -->|前乗り傾向| D[BPM そのまま\nクリック密度を下げる]
+    B -->|ばらつき| E[BPM -20 に下げる\n難易度を1段下げる\n全ビートで練習]
+    B -->|安定| F[BPM +10 に上げる\n難易度を1段上げる\nクリック密度を下げる]
+    C --> G[おすすめ設定で\n再挑戦]
+    D --> G
+    E --> G
+    F --> G
+    G --> A
+
+    style A fill:#2A2A30,stroke:#D4AF37,color:#F5F5F0
+    style B fill:#3A3A42,stroke:#D4AF37,color:#F5F5F0
+    style C fill:#2A2A30,stroke:#F87171,color:#F5F5F0
+    style D fill:#2A2A30,stroke:#60A5FA,color:#F5F5F0
+    style E fill:#2A2A30,stroke:#FBBF24,color:#F5F5F0
+    style F fill:#2A2A30,stroke:#4ADE80,color:#F5F5F0
+    style G fill:#2A2A30,stroke:#D4AF37,color:#F5F5F0
+                </pre>
+            </div>
+            <div class="mermaid-lang" lang="en">
+                <pre class="mermaid">
+flowchart TD
+    A[Session Complete] --> B{Diagnosis?}
+    B -->|Late tendency| C[Lower BPM -10\nAll Beats]
+    B -->|Early tendency| D[Same BPM\nReduce click density]
+    B -->|Inconsistent| E[Lower BPM -20\nEasier difficulty\nAll Beats]
+    B -->|Stable| F[Raise BPM +10\nHarder difficulty\nSparser clicks]
+    C --> G[Retry with\nrecommended settings]
+    D --> G
+    E --> G
+    F --> G
+    G --> A
+
+    style A fill:#2A2A30,stroke:#D4AF37,color:#F5F5F0
+    style B fill:#3A3A42,stroke:#D4AF37,color:#F5F5F0
+    style C fill:#2A2A30,stroke:#F87171,color:#F5F5F0
+    style D fill:#2A2A30,stroke:#60A5FA,color:#F5F5F0
+    style E fill:#2A2A30,stroke:#FBBF24,color:#F5F5F0
+    style F fill:#2A2A30,stroke:#4ADE80,color:#F5F5F0
+    style G fill:#2A2A30,stroke:#D4AF37,color:#F5F5F0
+                </pre>
+            </div>
+        </div>
+
+        <!-- Visual: Good vs Bad Comparison -->
+        <div class="comparison-visual">
+            <div class="comparison-card comparison-card--bad">
+                <div class="comparison-card__header"><span lang="ja">効果が出にくい</span><span lang="en">Less Effective</span></div>
+                <div class="comparison-card__body">
+                    <p><span lang="ja">毎回同じBPM・同じ密度で繰り返す。結果画面を見ずに閉じる。「何となく合ってる気がする」で終わる。</span><span lang="en">Repeating the same BPM and density every time. Closing the result screen without reading it. Ending with "I think it's roughly right."</span></p>
+                </div>
+            </div>
+            <div class="comparison-card comparison-card--good">
+                <div class="comparison-card__header"><span lang="ja">効果が出やすい</span><span lang="en">More Effective</span></div>
+                <div class="comparison-card__body">
+                    <p><span lang="ja">診断を読む → 処方設定で再挑戦 → 数値の変化を確認 → 密度やテンポを段階的に変えていく。</span><span lang="en">Read the diagnosis → Retry with prescribed settings → Check how numbers change → Gradually adjust density and tempo.</span></p>
+                </div>
+            </div>
+        </div>
+
         <div class="article-note">
             <div class="article-note__title"><span lang="ja">使い方のコツ</span><span lang="en">Usage Tip</span></div>
             <p><span lang="ja">最初は全ビート・低テンポから始めて、安定性を確認しましょう。安定した土台ができたら、クリック密度を下げたり、テンポを上げたりして負荷を増やしていくのが効果的です。</span><span lang="en">Start with all beats at a low tempo to check your stability. Once you have a solid foundation, increase the challenge by reducing click density or raising the tempo.</span></p>
@@ -362,12 +584,22 @@
         </p>
     </footer>
 
-    <!-- Language Toggle Script -->
+    <!-- Language Toggle + Mermaid Toggle Script -->
     <script>
     (function() {
         var langToggle = document.getElementById('lang-toggle');
         var langText = document.getElementById('lang-text');
         var currentLang = localStorage.getItem('lang') || 'ja';
+
+        function applyMermaidLang(lang) {
+            document.querySelectorAll('.mermaid-lang').forEach(function(el) {
+                if (el.getAttribute('lang') === lang) {
+                    el.classList.remove('mermaid-hidden');
+                } else {
+                    el.classList.add('mermaid-hidden');
+                }
+            });
+        }
 
         function applyLanguage(lang) {
             document.documentElement.setAttribute('data-lang', lang);
@@ -377,9 +609,15 @@
                 : 'What Is Rhythmic Feel? — Breaking Down Rushing, Dragging, Inconsistency, and Pocket | Solfege PRO';
             localStorage.setItem('lang', lang);
             currentLang = lang;
+            applyMermaidLang(lang);
         }
 
-        applyLanguage(currentLang);
+        // Apply text language immediately; Mermaid diagrams need render time
+        document.documentElement.setAttribute('data-lang', currentLang);
+        langText.textContent = currentLang === 'ja' ? 'EN' : 'JA';
+
+        // After Mermaid renders, hide the inactive diagram
+        setTimeout(function() { applyMermaidLang(currentLang); }, 500);
 
         langToggle.addEventListener('click', function() {
             applyLanguage(currentLang === 'ja' ? 'en' : 'ja');
