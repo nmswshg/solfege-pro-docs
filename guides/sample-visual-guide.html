@@ -354,7 +354,7 @@
         /* Sample badge */
         .sample-badge {
             position: fixed;
-            top: calc(var(--nav-height) + 8px);
+            top: calc(var(--total-nav-height) + 8px);
             right: 12px;
             background: #F87171;
             color: #fff;
@@ -386,17 +386,35 @@
 <body>
     <div class="sample-badge">SAMPLE</div>
 
-    <!-- Navigation -->
-    <nav class="article-nav">
-        <div class="article-nav__container">
-            <a href="rhythm-training.html" class="article-nav__back"><span lang="ja">&larr; リズム感ガイド</span><span lang="en">&larr; Rhythm Guide</span></a>
-            <a href="../" class="article-nav__logo">
-                <img src="../AppIcon.png" alt="Solfege PRO" class="article-nav__logo-icon">
-                <span class="article-nav__logo-text"><span lang="ja">ソルフェージュPRO</span><span lang="en">Solfege PRO</span></span>
+    <!-- Global Navigation -->
+    <nav class="nav">
+        <div class="nav__container">
+            <a href="../" class="nav__logo">
+                <img src="../AppIcon.png" alt="Solfege PRO" class="nav__logo-icon">
+                <span class="nav__logo-text">
+                    <span lang="ja">ソルフェージュPRO</span>
+                    <span lang="en">Solfege PRO</span>
+                </span>
             </a>
-            <button class="settings-btn" id="lang-toggle" title="Toggle language">
-                <span id="lang-text">EN</span>
-            </button>
+            <ul class="nav__page-list">
+                <li><a href="../" class="nav__page-link"><span lang="ja">練習ガイド</span><span lang="en">Practice Guide</span></a></li>
+                <li><a href="rhythm-training.html" class="nav__page-link"><span lang="ja">リズム感ガイド</span><span lang="en">Rhythm Guide</span></a></li>
+            </ul>
+            <div class="nav__settings">
+                <button class="settings-btn" id="lang-toggle" title="Toggle language">
+                    <span id="lang-text">EN</span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Sub Navigation -->
+    <nav class="sub-nav">
+        <div class="sub-nav__container">
+            <ul class="sub-nav__list">
+                <li><a href="rhythm-training.html" class="sub-nav__link" style="opacity: 0.5;">&larr;</a></li>
+                <li><span class="sub-nav__link" style="color: var(--primary); font-weight: 700;"><span lang="ja">図解サンプル</span><span lang="en">Visual Sample</span></span></li>
+            </ul>
         </div>
     </nav>
 
