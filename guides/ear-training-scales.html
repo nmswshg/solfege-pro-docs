@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>スケールを聴き分ける力とは何か — 音階とモードを理解する | ソルフェージュPRO</title>
+    <meta name="description" content="スケール認識は、音の並びからスケールの種類を聴き分ける力です。Major/Minorの基本からチャーチモード、ペンタトニックまで、段階的な練習法を解説します。">
+
+    <!-- Canonical -->
+    <link rel="canonical" href="https://nmswshg.github.io/solfege-pro-docs/guides/ear-training-scales.html">
+
+    <!-- OGP -->
+    <meta property="og:title" content="スケールを聴き分ける力とは何か — 音階とモードを理解する">
+    <meta property="og:description" content="Dorian? Mixolydian? スケールの違いは特性音にある。モードの聴き分けを段階的に身につける方法を解説します。">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://nmswshg.github.io/solfege-pro-docs/guides/ear-training-scales.html">
+    <meta property="og:site_name" content="ソルフェージュPRO">
+    <meta property="og:image" content="https://nmswshg.github.io/solfege-pro-docs/AppIcon.png">
+    <meta property="og:locale" content="ja_JP">
+    <meta property="article:published_time" content="2026-03-31">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="スケールを聴き分ける力とは何か — 音階とモードを理解する">
+    <meta name="twitter:description" content="Dorian? Mixolydian? スケールの違いは特性音にある。モードの聴き分けを段階的に身につける方法を解説します。">
+    <meta name="twitter:image" content="https://nmswshg.github.io/solfege-pro-docs/AppIcon.png">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="../style.css?v=2">
+    <link rel="stylesheet" href="article.css?v=2">
+
+    <style>
+        /* Mode Comparison Grid */
+        .mode-grid {
+            background: var(--surface);
+            border-radius: var(--radius-xl);
+            padding: var(--space-xl);
+            margin: var(--space-xl) 0;
+            border: 1px solid var(--surface-light);
+            overflow-x: auto;
+        }
+        .mode-grid__row {
+            display: flex;
+            align-items: center;
+            margin-bottom: var(--space-sm);
+            gap: var(--space-sm);
+        }
+        .mode-grid__name {
+            min-width: 120px;
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--text-primary);
+            flex-shrink: 0;
+        }
+        .mode-grid__degrees {
+            display: flex;
+            gap: 3px;
+            flex: 1;
+        }
+        .mode-grid__degree {
+            width: 36px;
+            height: 32px;
+            border-radius: var(--radius-sm);
+            font-size: 12px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .degree--normal { background: var(--surface-light); color: var(--text-secondary); }
+        .degree--flat { background: rgba(96, 165, 250, 0.25); color: #60A5FA; }
+        .degree--sharp { background: rgba(251, 191, 36, 0.25); color: #FBBF24; }
+        .degree--characteristic { background: rgba(248, 113, 113, 0.3); color: #F87171; border: 1px solid rgba(248, 113, 113, 0.5); }
+        .mode-grid__char {
+            min-width: 100px;
+            font-size: 12px;
+            color: var(--text-secondary);
+            flex-shrink: 0;
+        }
+        .mode-grid__section-title {
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: var(--space-md);
+            margin-top: var(--space-lg);
+        }
+        .mode-grid__section-title:first-of-type {
+            margin-top: 0;
+        }
+        .mode-grid__legend {
+            display: flex;
+            gap: var(--space-lg);
+            margin-top: var(--space-md);
+            font-size: 12px;
+            color: var(--text-secondary);
+        }
+        .mode-grid__legend-item {
+            display: flex;
+            align-items: center;
+            gap: var(--space-xs);
+        }
+        .mode-grid__legend-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: var(--radius-sm);
+            flex-shrink: 0;
+        }
+
+        @media (max-width: 768px) {
+            .mode-grid { padding: var(--space-md); }
+            .mode-grid__row { flex-direction: column; align-items: flex-start; gap: var(--space-xs); }
+            .mode-grid__name { min-width: auto; }
+            .mode-grid__degree { width: 32px; height: 28px; font-size: 11px; }
+            .mode-grid__char { min-width: auto; }
+            .mode-grid__legend { flex-wrap: wrap; gap: var(--space-sm); }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="article-nav">
+        <div class="article-nav__container">
+            <a href="../" class="article-nav__back">&larr; <span lang="ja">練習ガイド</span><span lang="en">Practice Guide</span></a>
+            <a href="../" class="article-nav__logo">
+                <img src="../AppIcon.png" alt="Solfege PRO" class="article-nav__logo-icon">
+                <span class="article-nav__logo-text"><span lang="ja">ソルフェージュPRO</span><span lang="en">Solfege PRO</span></span>
+            </a>
+            <button class="settings-btn" id="lang-toggle" title="Toggle language">
+                <span id="lang-text">EN</span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Article Header -->
+    <header class="article-header">
+        <div class="article-header__meta">
+            <span class="article-header__tag">Scale Recognition</span>
+            <span><span lang="ja">読了: 約8分</span><span lang="en">8 min read</span></span>
+        </div>
+        <h1 class="article-header__title">
+            <span lang="ja">スケールを聴き分ける力とは何か<br>音階とモードを理解する</span>
+            <span lang="en">What Is Scale Recognition?<br>Understanding Scales and Modes</span>
+        </h1>
+        <p class="article-header__lead">
+            <span lang="ja">スケールの違いは「特性音」にある。各モードを定義づける音を知り、聴き分けの精度を段階的に上げていく方法を解説します。</span>
+            <span lang="en">The difference between scales lies in their "characteristic notes." Learn the tones that define each mode and build your recognition accuracy step by step.</span>
+        </p>
+    </header>
+
+    <!-- Article Body -->
+    <main class="article-body">
+
+        <!-- Section 1 -->
+        <h2 id="what-is-scale-recognition"><span lang="ja">スケールを聴き分けるとは</span><span lang="en">What Is Scale Recognition?</span></h2>
+
+        <p>
+            <span lang="ja">スケール認識とは、順に鳴る一連の音を聴いて、そのスケール（音階）の種類を特定する力です。メジャースケールの「明るく安定した響き」、ナチュラルマイナーの「暗く物悲しい響き」、ドリアンの「暗いのにどこか明るい響き」。それぞれの色彩の違いを聴き分ける。</span>
+            <span lang="en">Scale recognition is the ability to hear a sequence of notes and identify the scale type. The "bright, stable sound" of Major, the "dark, melancholic sound" of Natural Minor, the "dark yet somehow bright" quality of Dorian. It's hearing the distinct color of each.</span>
+        </p>
+
+        <p>
+            <span lang="ja">この力は、即興演奏と作曲の両方に直結します。ソロを弾くとき、コードに対してどのスケールが合うかを耳で判断できれば、理論的な知識と耳が一致した状態で演奏できます。作曲においても、メロディの色彩をコントロールするためにスケールの響きを理解しておくことは不可欠です。</span>
+            <span lang="en">This skill directly connects to both improvisation and composition. When playing a solo, if your ear can judge which scale fits a chord, you play with theoretical knowledge and aural perception aligned. In composition too, understanding scale colors is essential for controlling melodic character.</span>
+        </p>
+
+        <!-- Section 2 -->
+        <h2 id="scale-types"><span lang="ja">スケールの種類</span><span lang="en">Scale Types</span></h2>
+
+        <p>
+            <span lang="ja">スケールは「ルートからどの音程パターンで音を並べるか」で種類が決まります。以下は主要なスケールと、メジャースケールとの違いを示す特性音です。</span>
+            <span lang="en">A scale's type is defined by the interval pattern from the root. Below are the major scale types and the characteristic notes that distinguish each from the Major scale.</span>
+        </p>
+
+        <!-- Mode Comparison Visual -->
+        <div class="mode-grid">
+            <div class="diagram-title"><span lang="ja">モード比較 — メジャースケールとの違い</span><span lang="en">Mode Comparison — Differences from Major</span></div>
+
+            <div class="mode-grid__section-title"><span lang="ja">基本スケール</span><span lang="en">Basic Scales</span></div>
+
+            <div class="mode-grid__row">
+                <div class="mode-grid__name">Major (Ionian)</div>
+                <div class="mode-grid__degrees">
+                    <div class="mode-grid__degree degree--normal">1</div>
+                    <div class="mode-grid__degree degree--normal">2</div>
+                    <div class="mode-grid__degree degree--normal">3</div>
+                    <div class="mode-grid__degree degree--normal">4</div>
+                    <div class="mode-grid__degree degree--normal">5</div>
+                    <div class="mode-grid__degree degree--normal">6</div>
+                    <div class="mode-grid__degree degree--normal">7</div>
+                </div>
+                <div class="mode-grid__char"><span lang="ja">基準</span><span lang="en">Reference</span></div>
+            </div>
+            <div class="mode-grid__row">
+                <div class="mode-grid__name">Natural Minor</div>
+                <div class="mode-grid__degrees">
+                    <div class="mode-grid__degree degree--normal">1</div>
+                    <div class="mode-grid__degree degree--normal">2</div>
+                    <div class="mode-grid__degree degree--characteristic">b3</div>
+                    <div class="mode-grid__degree degree--normal">4</div>
+                    <div class="mode-grid__degree degree--normal">5</div>
+                    <div class="mode-grid__degree degree--characteristic">b6</div>
+                    <div class="mode-grid__degree degree--characteristic">b7</div>
+                </div>
+                <div class="mode-grid__char">b3 b6 b7</div>
+            </div>
+            <div class="mode-grid__row">
+                <div class="mode-grid__name">Harmonic Minor</div>
+                <div class="mode-grid__degrees">
+                    <div class="mode-grid__degree degree--normal">1</div>
+                    <div class="mode-grid__degree degree--normal">2</div>
+                    <div class="mode-grid__degree degree--characteristic">b3</div>
+                    <div class="mode-grid__degree degree--normal">4</div>
+                    <div class="mode-grid__degree degree--normal">5</div>
+                    <div class="mode-grid__degree degree--characteristic">b6</div>
+                    <div class="mode-grid__degree degree--normal">7</div>
+                </div>
+                <div class="mode-grid__char">b3 b6</div>
+            </div>
+            <div class="mode-grid__row">
+                <div class="mode-grid__name">Melodic Minor</div>
+                <div class="mode-grid__degrees">
+                    <div class="mode-grid__degree degree--normal">1</div>
+                    <div class="mode-grid__degree degree--normal">2</div>
+                    <div class="mode-grid__degree degree--characteristic">b3</div>
+                    <div class="mode-grid__degree degree--normal">4</div>
+                    <div class="mode-grid__degree degree--normal">5</div>
+                    <div class="mode-grid__degree degree--normal">6</div>
+                    <div class="mode-grid__degree degree--normal">7</div>
+                </div>
+                <div class="mode-grid__char">b3</div>
+            </div>
+
+            <div class="mode-grid__section-title"><span lang="ja">チャーチモード（教会旋法）</span><span lang="en">Church Modes</span></div>
+
+            <div class="mode-grid__row">
+                <div class="mode-grid__name">Dorian</div>
+                <div class="mode-grid__degrees">
+                    <div class="mode-grid__degree degree--normal">1</div>
+                    <div class="mode-grid__degree degree--normal">2</div>
+                    <div class="mode-grid__degree degree--flat">b3</div>
+                    <div class="mode-grid__degree degree--normal">4</div>
+                    <div class="mode-grid__degree degree--normal">5</div>
+                    <div class="mode-grid__degree degree--characteristic">6</div>
+                    <div class="mode-grid__degree degree--flat">b7</div>
+                </div>
+                <div class="mode-grid__char"><span lang="ja">b3 b7 + 6</span></div>
+            </div>
+            <div class="mode-grid__row">
+                <div class="mode-grid__name">Phrygian</div>
+                <div class="mode-grid__degrees">
+                    <div class="mode-grid__degree degree--normal">1</div>
+                    <div class="mode-grid__degree degree--characteristic">b2</div>
+                    <div class="mode-grid__degree degree--flat">b3</div>
+                    <div class="mode-grid__degree degree--normal">4</div>
+                    <div class="mode-grid__degree degree--normal">5</div>
+                    <div class="mode-grid__degree degree--flat">b6</div>
+                    <div class="mode-grid__degree degree--flat">b7</div>
+                </div>
+                <div class="mode-grid__char"><span lang="ja">b2 が特徴</span><span lang="en">b2 is key</span></div>
+            </div>
+            <div class="mode-grid__row">
+                <div class="mode-grid__name">Lydian</div>
+                <div class="mode-grid__degrees">
+                    <div class="mode-grid__degree degree--normal">1</div>
+                    <div class="mode-grid__degree degree--normal">2</div>
+                    <div class="mode-grid__degree degree--normal">3</div>
+                    <div class="mode-grid__degree degree--characteristic">#4</div>
+                    <div class="mode-grid__degree degree--normal">5</div>
+                    <div class="mode-grid__degree degree--normal">6</div>
+                    <div class="mode-grid__degree degree--normal">7</div>
+                </div>
+                <div class="mode-grid__char"><span lang="ja">#4 が特徴</span><span lang="en">#4 is key</span></div>
+            </div>
+            <div class="mode-grid__row">
+                <div class="mode-grid__name">Mixolydian</div>
+                <div class="mode-grid__degrees">
+                    <div class="mode-grid__degree degree--normal">1</div>
+                    <div class="mode-grid__degree degree--normal">2</div>
+                    <div class="mode-grid__degree degree--normal">3</div>
+                    <div class="mode-grid__degree degree--normal">4</div>
+                    <div class="mode-grid__degree degree--normal">5</div>
+                    <div class="mode-grid__degree degree--normal">6</div>
+                    <div class="mode-grid__degree degree--characteristic">b7</div>
+                </div>
+                <div class="mode-grid__char"><span lang="ja">b7 が特徴</span><span lang="en">b7 is key</span></div>
+            </div>
+            <div class="mode-grid__row">
+                <div class="mode-grid__name">Aeolian</div>
+                <div class="mode-grid__degrees">
+                    <div class="mode-grid__degree degree--normal">1</div>
+                    <div class="mode-grid__degree degree--normal">2</div>
+                    <div class="mode-grid__degree degree--flat">b3</div>
+                    <div class="mode-grid__degree degree--normal">4</div>
+                    <div class="mode-grid__degree degree--normal">5</div>
+                    <div class="mode-grid__degree degree--flat">b6</div>
+                    <div class="mode-grid__degree degree--flat">b7</div>
+                </div>
+                <div class="mode-grid__char">= Nat. Minor</div>
+            </div>
+            <div class="mode-grid__row">
+                <div class="mode-grid__name">Locrian</div>
+                <div class="mode-grid__degrees">
+                    <div class="mode-grid__degree degree--normal">1</div>
+                    <div class="mode-grid__degree degree--characteristic">b2</div>
+                    <div class="mode-grid__degree degree--flat">b3</div>
+                    <div class="mode-grid__degree degree--normal">4</div>
+                    <div class="mode-grid__degree degree--characteristic">b5</div>
+                    <div class="mode-grid__degree degree--flat">b6</div>
+                    <div class="mode-grid__degree degree--flat">b7</div>
+                </div>
+                <div class="mode-grid__char"><span lang="ja">b2 b5 が特徴</span><span lang="en">b2 b5 are key</span></div>
+            </div>
+
+            <div class="mode-grid__section-title"><span lang="ja">ペンタトニック / ブルース</span><span lang="en">Pentatonic / Blues</span></div>
+
+            <div class="mode-grid__row">
+                <div class="mode-grid__name">Major Penta</div>
+                <div class="mode-grid__degrees">
+                    <div class="mode-grid__degree degree--normal">1</div>
+                    <div class="mode-grid__degree degree--normal">2</div>
+                    <div class="mode-grid__degree degree--normal">3</div>
+                    <div class="mode-grid__degree degree--normal">5</div>
+                    <div class="mode-grid__degree degree--normal">6</div>
+                </div>
+                <div class="mode-grid__char"><span lang="ja">4, 7 なし</span><span lang="en">No 4, 7</span></div>
+            </div>
+            <div class="mode-grid__row">
+                <div class="mode-grid__name">Minor Penta</div>
+                <div class="mode-grid__degrees">
+                    <div class="mode-grid__degree degree--normal">1</div>
+                    <div class="mode-grid__degree degree--flat">b3</div>
+                    <div class="mode-grid__degree degree--normal">4</div>
+                    <div class="mode-grid__degree degree--normal">5</div>
+                    <div class="mode-grid__degree degree--flat">b7</div>
+                </div>
+                <div class="mode-grid__char"><span lang="ja">2, 6 なし</span><span lang="en">No 2, 6</span></div>
+            </div>
+            <div class="mode-grid__row">
+                <div class="mode-grid__name">Blues</div>
+                <div class="mode-grid__degrees">
+                    <div class="mode-grid__degree degree--normal">1</div>
+                    <div class="mode-grid__degree degree--flat">b3</div>
+                    <div class="mode-grid__degree degree--normal">4</div>
+                    <div class="mode-grid__degree degree--characteristic">b5</div>
+                    <div class="mode-grid__degree degree--normal">5</div>
+                    <div class="mode-grid__degree degree--flat">b7</div>
+                </div>
+                <div class="mode-grid__char"><span lang="ja">b5 (blue note)</span><span lang="en">b5 (blue note)</span></div>
+            </div>
+
+            <div class="mode-grid__legend">
+                <div class="mode-grid__legend-item">
+                    <div class="mode-grid__legend-dot" style="background:var(--surface-light)"></div>
+                    <span><span lang="ja">メジャーと同じ</span><span lang="en">Same as Major</span></span>
+                </div>
+                <div class="mode-grid__legend-item">
+                    <div class="mode-grid__legend-dot" style="background:rgba(96,165,250,0.25);border:1px solid rgba(96,165,250,0.4)"></div>
+                    <span><span lang="ja">フラット</span><span lang="en">Flat</span></span>
+                </div>
+                <div class="mode-grid__legend-item">
+                    <div class="mode-grid__legend-dot" style="background:rgba(248,113,113,0.3);border:1px solid rgba(248,113,113,0.5)"></div>
+                    <span><span lang="ja">特性音</span><span lang="en">Characteristic</span></span>
+                </div>
+            </div>
+        </div>
+
+        <div class="article-note">
+            <div class="article-note__title"><span lang="ja">ポイント</span><span lang="en">Key Point</span></div>
+            <p><span lang="ja">モードの聴き分けで最も重要なのは「特性音」です。DorianとAeolianの違いは6度だけ（6 vs b6）。MajorとMixolydianの違いは7度だけ（7 vs b7）。特性音を意識して聴くことが、モード認識の核になります。</span><span lang="en">The most important factor in mode recognition is the "characteristic note." Dorian vs Aeolian differs only in the 6th (6 vs b6). Major vs Mixolydian differs only in the 7th (7 vs b7). Consciously listening for characteristic notes is the core of mode recognition.</span></p>
+        </div>
+
+        <!-- Section 3 -->
+        <h2 id="common-walls"><span lang="ja">よくある壁</span><span lang="en">Common Walls</span></h2>
+
+        <h3 id="major-mixolydian"><span lang="ja">MajorとMixolydianの混同</span><span lang="en">Major vs Mixolydian Confusion</span></h3>
+        <p>
+            <span lang="ja">この2つのスケールは、7度が異なるだけです。Majorは7（導音）を持ち、Mixolydianはb7を持つ。違いは1音だけなのに、スケール全体を聴くと区別が難しい。7度の音が鳴る瞬間に集中して聴くことが判別のコツです。</span>
+            <span lang="en">These two scales differ only in the 7th degree. Major has a natural 7 (leading tone), Mixolydian has b7. The difference is just one note, yet distinguishing them across the full scale is hard. Focus on the moment the 7th degree sounds — that's the key.</span>
+        </p>
+
+        <h3 id="dorian-aeolian"><span lang="ja">DorianとAeolianの混同</span><span lang="en">Dorian vs Aeolian Confusion</span></h3>
+        <p>
+            <span lang="ja">両方とも「マイナー系」のモードで、b3とb7を共有しています。違いは6度だけ。Dorianはナチュラル6を持ち、これがDorianに独特の「暗いのにどこか明るい」色彩を与えます。Aeolianはb6を持ち、より純粋に暗い響きになります。</span>
+            <span lang="en">Both are "minor-type" modes sharing b3 and b7. The only difference is the 6th. Dorian has a natural 6, giving it the distinctive "dark yet somehow bright" color. Aeolian has b6, producing a more purely dark sound.</span>
+        </p>
+
+        <h3 id="mode-names"><span lang="ja">モード名が混乱する</span><span lang="en">Mode Names Are Confusing</span></h3>
+        <p>
+            <span lang="ja">Ionian、Dorian、Phrygian ... ギリシャ由来の名前は、慣れるまで混乱します。名前を覚えることと、響きを聴き分けることは別のスキルです。まずは響きの違いを体感することに集中し、名前は後からついてくる、くらいの気持ちで構いません。</span>
+            <span lang="en">Ionian, Dorian, Phrygian ... Greek-derived names are confusing until you get used to them. Memorizing names and recognizing sounds are separate skills. Focus on experiencing the sonic differences first — the names will follow naturally.</span>
+        </p>
+
+        <h3 id="pentatonic-similar"><span lang="ja">ペンタトニックが似て聴こえる</span><span lang="en">Pentatonic Scales Sound Too Similar</span></h3>
+        <p>
+            <span lang="ja">メジャーペンタトニックとマイナーペンタトニックは音数が少ない（5音）分、違いが小さく感じられることがあります。3度の音（3 vs b3）が鍵になりますが、5音しかないため響きの情報量自体が少なく、7音スケールよりも判別が難しいと感じる人もいます。</span>
+            <span lang="en">Major and Minor Pentatonic have fewer notes (5), which can make differences feel smaller. The 3rd (3 vs b3) is the key, but with only 5 notes there's less tonal information, making some people find them harder to distinguish than 7-note scales.</span>
+        </p>
+
+        <!-- Section 4 -->
+        <h2 id="effective-practice"><span lang="ja">効果的な練習法</span><span lang="en">Effective Practice Methods</span></h2>
+
+        <h3 id="start-major-minor"><span lang="ja">MajorとNatural Minorから始める</span><span lang="en">Start with Major vs Natural Minor</span></h3>
+        <p>
+            <span lang="ja">コード認識と同様に、まず最も基本的な2択から始めるのが効果的です。MajorとNatural Minorの違いを安定して聴き分けられるようになることが、すべてのモード認識の土台になります。</span>
+            <span lang="en">Just like chord recognition, starting with the most basic binary choice is effective. Being able to reliably distinguish Major from Natural Minor becomes the foundation for all mode recognition.</span>
+        </p>
+
+        <h3 id="characteristic-intervals"><span lang="ja">特性音程を覚える</span><span lang="en">Learn Characteristic Intervals</span></h3>
+        <p>
+            <span lang="ja">各モードには、そのモードを定義づける「特性音」があります。Lydianなら#4、Phrygianならb2、Dorianならナチュラル6。スケール全体を聴くのではなく、特性音が鳴る瞬間に意識を集中させる。この聴き方ができると、モードの判別速度が大幅に上がります。</span>
+            <span lang="en">Each mode has a "characteristic note" that defines it. Lydian has #4, Phrygian has b2, Dorian has natural 6. Instead of listening to the whole scale, focus your attention on the moment the characteristic note sounds. This listening approach dramatically speeds up mode identification.</span>
+        </p>
+
+        <h3 id="ascending-then-both"><span lang="ja">上行形から始め、両方向で練習する</span><span lang="en">Practice Ascending First, Then Both Directions</span></h3>
+        <p>
+            <span lang="ja">スケールの印象は上行形と下行形で異なることがあります。まず上行形で特性音を聴き取る練習をし、安定してきたら下行形やランダム方向での出題に挑戦しましょう。</span>
+            <span lang="en">A scale's impression can differ between ascending and descending. Start with ascending to practice hearing characteristic notes, then challenge yourself with descending and random-direction playback once stable.</span>
+        </p>
+
+        <h3 id="hear-the-color"><span lang="ja">各モードの「色」を聴く</span><span lang="en">Listen for Each Mode's "Color"</span></h3>
+        <p>
+            <span lang="ja">理論的な分析だけでなく、各モードの全体的な「色彩」「雰囲気」を感じ取ることも重要です。Lydianの「浮遊感」、Phrygianの「スパニッシュ感」、Dorianの「都会的な暗さ」。こうした印象を言語化しておくと、直感的な判別が早くなります。</span>
+            <span lang="en">Beyond theoretical analysis, sensing each mode's overall "color" or "atmosphere" is important. The "floating" quality of Lydian, the "Spanish" feel of Phrygian, the "urban darkness" of Dorian. Verbalizing these impressions speeds up intuitive recognition.</span>
+        </p>
+
+        <!-- Section 5 -->
+        <h2 id="what-app-can-do"><span lang="ja">ソルフェージュPROでできること</span><span lang="en">What Solfege PRO Can Do</span></h2>
+
+        <p>
+            <span lang="ja">ソルフェージュPROの Scale Recognition は、スケールの響きを段階的に聴き分ける力を鍛えるトレーニングツールです。</span>
+            <span lang="en">Solfege PRO's Scale Recognition is a training tool for building your ability to distinguish scale qualities step by step.</span>
+        </p>
+
+        <h3><span lang="ja">15種類以上のスケールタイプ</span><span lang="en">15+ Scale Types</span></h3>
+        <p>
+            <span lang="ja">Major、3種のMinor（Natural/Harmonic/Melodic）、7つのチャーチモード、ペンタトニック、ブルーススケールなど、15種類以上をカバーしています。難易度に応じて出題範囲を調整できます。</span>
+            <span lang="en">Covers 15+ types including Major, three Minors (Natural/Harmonic/Melodic), seven Church Modes, Pentatonic, and Blues. The question pool adjusts based on your difficulty setting.</span>
+        </p>
+
+        <h3><span lang="ja">5段階の難易度</span><span lang="en">5 Difficulty Levels</span></h3>
+        <p>
+            <span lang="ja">Beginner（Major/Minor）から始まり、Intermediate（マイナー系3種）、Modes（チャーチモード）、Pentatonic、Advanced（全スケール混合）と段階的に進みます。現在の力に合った難易度から始められます。</span>
+            <span lang="en">Starting from Beginner (Major/Minor), progressing through Intermediate (three Minor types), Modes (Church Modes), Pentatonic, to Advanced (all scales mixed). Start at the level matching your current ability.</span>
+        </p>
+
+        <h3><span lang="ja">上行 / 下行 / 両方向再生</span><span lang="en">Ascending / Descending / Both Playback</span></h3>
+        <p>
+            <span lang="ja">スケールの再生方向を選べます。上行のみ、下行のみ、または両方向のランダム出題。方向による印象の違いを理解するトレーニングができます。</span>
+            <span lang="en">Choose the playback direction. Ascending only, descending only, or random both-direction questions. Train to understand how direction affects perception.</span>
+        </p>
+
+        <h3><span lang="ja">3段階の再生速度</span><span lang="en">3 Speed Settings</span></h3>
+        <p>
+            <span lang="ja">遅い・普通・速いの3段階で再生速度を調整できます。遅い速度で各音を分析し、速い速度で全体の色彩を掴む練習ができます。</span>
+            <span lang="en">Adjust playback speed across three levels: slow, normal, and fast. Analyze individual notes at slow speed, and grasp overall color at fast speed.</span>
+        </p>
+
+        <h3><span lang="ja">苦手克服モード</span><span lang="en">Weak Point Focus</span></h3>
+        <p>
+            <span lang="ja">正答率の低いスケールタイプを自動的に多く出題します。DorianとAeolianをよく間違えるなら、その2つの出題頻度が上がります。</span>
+            <span lang="en">Automatically increases the frequency of scale types you struggle with. If you often confuse Dorian and Aeolian, those two will appear more frequently.</span>
+        </p>
+
+        <div class="cycle-diagram">
+            <div class="cycle-step">
+                <div class="cycle-step__label"><span lang="ja">聴く</span><span lang="en">Listen</span></div>
+                <div class="cycle-step__desc"><span lang="ja">スケール再生</span><span lang="en">Hear a scale</span></div>
+            </div>
+            <div class="cycle-arrow">&rarr;</div>
+            <div class="cycle-step">
+                <div class="cycle-step__label"><span lang="ja">判断</span><span lang="en">Judge</span></div>
+                <div class="cycle-step__desc"><span lang="ja">特性音を聴き取る</span><span lang="en">Hear the character</span></div>
+            </div>
+            <div class="cycle-arrow">&rarr;</div>
+            <div class="cycle-step">
+                <div class="cycle-step__label"><span lang="ja">答える</span><span lang="en">Answer</span></div>
+                <div class="cycle-step__desc"><span lang="ja">スケール名を選択</span><span lang="en">Choose scale type</span></div>
+            </div>
+            <div class="cycle-arrow">&rarr;</div>
+            <div class="cycle-step">
+                <div class="cycle-step__label"><span lang="ja">確認</span><span lang="en">Confirm</span></div>
+                <div class="cycle-step__desc"><span lang="ja">正解の響きを再確認</span><span lang="en">Re-hear the answer</span></div>
+            </div>
+        </div>
+
+        <!-- Section 6 -->
+        <h2 id="limitations"><span lang="ja">ソルフェージュPROだけでは直接扱いきれないこと</span><span lang="en">What Solfege PRO Does Not Directly Cover</span></h2>
+
+        <p>
+            <span lang="ja">正直に書きます。</span>
+            <span lang="en">Let's be honest.</span>
+        </p>
+
+        <div class="article-honest">
+            <div class="article-honest__title"><span lang="ja">アプリでカバーできない領域</span><span lang="en">Areas Beyond the App's Scope</span></div>
+            <p>
+                <strong><span lang="ja">即興演奏での応用</span><span lang="en">Improvisation context</span></strong><span lang="ja"> — スケールの種類を聴き取ることと、そのスケールを使って即興演奏することは別のスキルです。アプリはスケールの認識力を鍛えますが、演奏への応用は楽器での練習が必要です。</span><span lang="en"> — Recognizing a scale type and improvising with it are separate skills. The app trains recognition, but applying it to performance requires practice on your instrument.</span>
+            </p>
+            <p>
+                <strong><span lang="ja">カスタムスケールの作成</span><span lang="en">Custom scale creation</span></strong><span lang="ja"> — プリセットされたスケールのみで、ユーザー独自のスケールを追加する機能はありません。</span><span lang="en"> — Only preset scales are available. There is no feature to add custom user-defined scales.</span>
+            </p>
+            <p>
+                <strong><span lang="ja">ルート非依存の相対音感</span><span lang="en">Root-independent relative pitch</span></strong><span lang="ja"> — スケールは常にルートから再生されます。曲の途中から聴いてスケールを判断するような、高度な相対音感トレーニングには対応していません。</span><span lang="en"> — Scales are always played from the root. The app does not support advanced relative pitch training where you identify a scale from the middle of a passage.</span>
+            </p>
+            <p>
+                <strong><span lang="ja">シンメトリックスケールのバリエーション</span><span lang="en">Symmetric scale variations</span></strong><span lang="ja"> — ホールトーン、コンビネーション・オブ・ディミニッシュなど、シンメトリックスケールの詳細なバリエーションは限定的です。</span><span lang="en"> — Detailed variations of symmetric scales like Whole Tone and Combination of Diminished are limited.</span>
+            </p>
+            <p>
+                <strong><span lang="ja">改善の保証</span><span lang="en">Guaranteed improvement</span></strong><span lang="ja"> — 練習の方向性は提供しますが、使えば必ず上達するとは言えません。スケール認識の向上には、このアプリ以外にも実際の曲を聴く習慣が重要です。</span><span lang="en"> — The app provides practice direction, but cannot guarantee improvement. Building scale recognition also requires the habit of listening to real music beyond this app.</span>
+            </p>
+        </div>
+
+        <p>
+            <span lang="ja">ソルフェージュPROが直接支援できるのは、スケールの響きを聴き分ける基礎力の段階的な構築です。その力を即興や作曲に活かすには、楽器での実践と実際の曲の分析が不可欠です。</span>
+            <span lang="en">What Solfege PRO directly supports is the step-by-step building of your fundamental ability to distinguish scale qualities. Applying that ability to improvisation and composition requires instrumental practice and real music analysis.</span>
+        </p>
+
+        <!-- Mid-article CTA -->
+        <div class="article-cta-subtle">
+            <p class="article-cta-subtle__text"><span lang="ja">無料セッションで、自分のスケール認識力を確認できます</span><span lang="en">Check your scale recognition with free sessions</span></p>
+            <a href="https://apps.apple.com/app/id6756626617" class="article-cta-subtle__button"><span lang="ja">App Storeで見る</span><span lang="en">View on App Store</span></a>
+        </div>
+
+        <!-- Section 7 -->
+        <h2 id="how-to-use"><span lang="ja">おすすめの使い方</span><span lang="en">Recommended Usage</span></h2>
+
+        <p>
+            <span lang="ja">ソルフェージュPROの Scale Recognition は、以下の順序で進めることを想定しています。</span>
+            <span lang="en">Solfege PRO's Scale Recognition is designed to be used in the following progression.</span>
+        </p>
+
+        <ol>
+            <li><strong><span lang="ja">Beginner: MajorとMinor</span><span lang="en">Beginner: Major and Minor</span></strong><span lang="ja"> — 最も基本的な2択を、上行形で安定して聴き分けられるようにする</span><span lang="en"> — Master the most basic binary choice in ascending form</span></li>
+            <li><strong><span lang="ja">Intermediate: マイナー系3種</span><span lang="en">Intermediate: Three Minor Types</span></strong><span lang="ja"> — Natural/Harmonic/Melodic Minorの違いを把握する。Harmonic Minorのb6→7の独特な響きに注目</span><span lang="en"> — Understand the differences among Natural/Harmonic/Melodic Minor. Note the distinctive b6 to 7 movement in Harmonic Minor</span></li>
+            <li><strong><span lang="ja">Modes: チャーチモード</span><span lang="en">Modes: Church Modes</span></strong><span lang="ja"> — 各モードの特性音を意識して聴く練習。まずLydian（#4）とPhrygian（b2）から始めると、特徴が掴みやすい</span><span lang="en"> — Practice hearing each mode's characteristic note. Start with Lydian (#4) and Phrygian (b2) — their characters are the easiest to grasp</span></li>
+            <li><strong><span lang="ja">Pentatonic: ペンタトニック系</span><span lang="en">Pentatonic: Pentatonic scales</span></strong><span lang="ja"> — 5音スケールの微妙な違いに挑戦。3度の違いに集中する</span><span lang="en"> — Challenge the subtle differences in 5-note scales. Focus on the 3rd</span></li>
+            <li><strong><span lang="ja">Advanced: 全スケール混合</span><span lang="en">Advanced: All scales mixed</span></strong><span lang="ja"> — すべてのスケールタイプが混在する状態で、安定した正答率を目指す</span><span lang="en"> — Aim for stable accuracy with all scale types mixed together</span></li>
+        </ol>
+
+        <div class="article-note">
+            <div class="article-note__title"><span lang="ja">使い方のコツ</span><span lang="en">Usage Tip</span></div>
+            <p><span lang="ja">モードの聴き分けに詰まったら、2つのモードだけを比較して聴く練習が効果的です。例えば「今日はDorianとAeolianだけ」と決めて、6度の音の違いに集中する。差分を1つずつ潰していくことが、モード認識の最短ルートです。</span><span lang="en">If you're stuck on mode recognition, comparing just two modes is effective. For example, decide "today is only Dorian and Aeolian" and focus on the difference in the 6th degree. Eliminating confusion one pair at a time is the fastest route to mode mastery.</span></p>
+        </div>
+
+    </main>
+
+    <!-- Final CTA -->
+    <section class="article-cta">
+        <h2 class="article-cta__title"><span lang="ja">まず、自分のスケール認識力を確認しよう</span><span lang="en">Start by Checking Your Scale Recognition</span></h2>
+        <p class="article-cta__text">
+            <span lang="ja">スケールの違いを「なんとなく」で聴いていませんか。<br>特性音を知り、各モードの色彩を体感すること。それが、スケール認識が動き始める瞬間です。<br>ソルフェージュPROの Scale Recognition で、まず自分の現在地を確認してみてください。</span>
+            <span lang="en">Are you listening to scales with just a vague sense of difference?<br>Learn the characteristic notes and experience each mode's color. That's when scale recognition truly begins.<br>Check where you stand with Solfege PRO's Scale Recognition.</span>
+        </p>
+        <a href="https://apps.apple.com/app/id6756626617" class="article-cta__button"><span lang="ja">App Storeでダウンロード</span><span lang="en">Download on App Store</span></a>
+    </section>
+
+    <!-- Related Content -->
+    <div class="article-related">
+        <div class="article-related__title"><span lang="ja">関連コンテンツ</span><span lang="en">Related Content</span></div>
+        <a href="../" class="article-related__link">
+            <div class="article-related__link-title"><span lang="ja">ソルフェージュPRO 練習ガイド</span><span lang="en">Solfege PRO Practice Guide</span></div>
+            <div class="article-related__link-desc"><span lang="ja">ギター・ベース・ドラム・ピアノ・ボーカル向けの課題別練習メニュー</span><span lang="en">Challenge-based practice menus for guitar, bass, drums, piano, and vocals</span></div>
+        </a>
+    </div>
+
+    <!-- Article Note -->
+    <aside class="article-endnote">
+        <p class="article-endnote__text">
+            <span lang="ja">この記事は、バークリー音楽院のイヤートレーニングカリキュラムおよび一般的な音楽理論の知見をもとに整理しています。スケールやモードの響きの感じ方には個人差やジャンルによる違いがあり、ここで紹介した分類がすべてのケースに当てはまるわけではありません。アプリ内のトレーニングはスケール認識力の向上を支援するものであり、即興演奏や作曲能力の向上を保証するものではありません。</span>
+            <span lang="en">This article is organized based on the Berklee College of Music ear training curriculum and general music theory knowledge. The perception of scales and modes varies by individual and genre, and the categories presented here may not apply to every case. The in-app training supports scale recognition improvement and does not guarantee improvement in improvisation or composition ability.</span>
+        </p>
+    </aside>
+
+    <!-- Footer -->
+    <footer class="article-footer">
+        <p class="article-footer__text">
+            &copy; 2025 <span lang="ja">ソルフェージュPRO</span><span lang="en">Solfege PRO</span> &mdash;
+            <a href="https://apps.apple.com/app/id6756626617" class="article-footer__link">App Store</a>
+        </p>
+    </footer>
+
+    <!-- Language Toggle Script -->
+    <script>
+    (function() {
+        var langToggle = document.getElementById('lang-toggle');
+        var langText = document.getElementById('lang-text');
+        var currentLang = localStorage.getItem('lang') || 'ja';
+
+        function applyLanguage(lang) {
+            document.documentElement.setAttribute('data-lang', lang);
+            langText.textContent = lang === 'ja' ? 'EN' : 'JA';
+            document.title = lang === 'ja'
+                ? 'スケールを聴き分ける力とは何か — 音階とモードを理解する | ソルフェージュPRO'
+                : 'What Is Scale Recognition? — Understanding Scales and Modes | Solfege PRO';
+            localStorage.setItem('lang', lang);
+            currentLang = lang;
+        }
+
+        document.documentElement.setAttribute('data-lang', currentLang);
+        langText.textContent = currentLang === 'ja' ? 'EN' : 'JA';
+
+        langToggle.addEventListener('click', function() {
+            applyLanguage(currentLang === 'ja' ? 'en' : 'ja');
+        });
+    })();
+    </script>
+
+</body>
+</html>

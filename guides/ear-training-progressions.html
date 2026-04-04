@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>コード進行を聴き取る力とは何か — 和声の流れを理解する | ソルフェージュPRO</title>
+    <meta name="description" content="コード進行の認識は、和声の流れを耳で追う力です。トニック・サブドミナント・ドミナントの機能和声から、ローマ数字表記まで、段階的な練習法を解説します。">
+
+    <!-- Canonical -->
+    <link rel="canonical" href="https://nmswshg.github.io/solfege-pro-docs/guides/ear-training-progressions.html">
+
+    <!-- OGP -->
+    <meta property="og:title" content="コード進行を聴き取る力とは何か — 和声の流れを理解する">
+    <meta property="og:description" content="I-V-vi-IV? ii-V-I? コード進行の流れを耳で追えるようになる、機能和声に基づく段階的トレーニング。">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://nmswshg.github.io/solfege-pro-docs/guides/ear-training-progressions.html">
+    <meta property="og:site_name" content="ソルフェージュPRO">
+    <meta property="og:image" content="https://nmswshg.github.io/solfege-pro-docs/AppIcon.png">
+    <meta property="og:locale" content="ja_JP">
+    <meta property="article:published_time" content="2026-03-31">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="コード進行を聴き取る力とは何か — 和声の流れを理解する">
+    <meta name="twitter:description" content="I-V-vi-IV? ii-V-I? コード進行の流れを耳で追えるようになる、機能和声に基づく段階的トレーニング。">
+    <meta name="twitter:image" content="https://nmswshg.github.io/solfege-pro-docs/AppIcon.png">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="../style.css?v=2">
+    <link rel="stylesheet" href="article.css?v=2">
+
+    <style>
+        /* Harmonic Function Cycle */
+        .function-cycle {
+            background: var(--surface);
+            border-radius: var(--radius-xl);
+            padding: var(--space-xl);
+            margin: var(--space-xl) 0;
+            border: 1px solid var(--surface-light);
+        }
+        .function-cycle__diagram {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: var(--space-md);
+            margin-bottom: var(--space-xl);
+            flex-wrap: wrap;
+        }
+        .function-cycle__node {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid;
+            text-align: center;
+        }
+        .function-cycle__node--t {
+            border-color: #4ADE80;
+            background: rgba(74, 222, 128, 0.1);
+        }
+        .function-cycle__node--sd {
+            border-color: #FBBF24;
+            background: rgba(251, 191, 36, 0.1);
+        }
+        .function-cycle__node--d {
+            border-color: #F87171;
+            background: rgba(248, 113, 113, 0.1);
+        }
+        .function-cycle__node-label {
+            font-size: 18px;
+            font-weight: 700;
+        }
+        .function-cycle__node--t .function-cycle__node-label { color: #4ADE80; }
+        .function-cycle__node--sd .function-cycle__node-label { color: #FBBF24; }
+        .function-cycle__node--d .function-cycle__node-label { color: #F87171; }
+        .function-cycle__node-desc {
+            font-size: 11px;
+            color: var(--text-secondary);
+            margin-top: 2px;
+        }
+        .function-cycle__arrow {
+            font-size: 24px;
+            color: var(--text-secondary);
+        }
+        .function-cycle__arrow--return {
+            font-size: 18px;
+            color: var(--text-secondary);
+            text-align: center;
+            margin-top: var(--space-sm);
+        }
+
+        /* Function Table */
+        .function-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: var(--space-lg);
+        }
+        .function-table th,
+        .function-table td {
+            padding: var(--space-sm) var(--space-md);
+            text-align: left;
+            font-size: 14px;
+            border-bottom: 1px solid var(--surface-light);
+        }
+        .function-table th {
+            color: var(--text-secondary);
+            font-weight: 700;
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .function-table td {
+            color: var(--text-primary);
+        }
+        .function-table__tag {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: var(--radius-sm);
+            font-size: 12px;
+            font-weight: 600;
+        }
+        .function-table__tag--t { background: rgba(74, 222, 128, 0.15); color: #4ADE80; }
+        .function-table__tag--sd { background: rgba(251, 191, 36, 0.15); color: #FBBF24; }
+        .function-table__tag--d { background: rgba(248, 113, 113, 0.15); color: #F87171; }
+
+        @media (max-width: 768px) {
+            .function-cycle { padding: var(--space-md); }
+            .function-cycle__node { width: 80px; height: 80px; }
+            .function-cycle__node-label { font-size: 16px; }
+            .function-cycle__node-desc { font-size: 10px; }
+            .function-table th, .function-table td { padding: var(--space-xs) var(--space-sm); font-size: 13px; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="article-nav">
+        <div class="article-nav__container">
+            <a href="../" class="article-nav__back">&larr; <span lang="ja">練習ガイド</span><span lang="en">Practice Guide</span></a>
+            <a href="../" class="article-nav__logo">
+                <img src="../AppIcon.png" alt="Solfege PRO" class="article-nav__logo-icon">
+                <span class="article-nav__logo-text"><span lang="ja">ソルフェージュPRO</span><span lang="en">Solfege PRO</span></span>
+            </a>
+            <button class="settings-btn" id="lang-toggle" title="Toggle language">
+                <span id="lang-text">EN</span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Article Header -->
+    <header class="article-header">
+        <div class="article-header__meta">
+            <span class="article-header__tag">Progression Training</span>
+            <span><span lang="ja">読了: 約8分</span><span lang="en">8 min read</span></span>
+        </div>
+        <h1 class="article-header__title">
+            <span lang="ja">コード進行を聴き取る力とは何か<br>和声の流れを理解する</span>
+            <span lang="en">What Is Progression Training?<br>Understanding Harmonic Movement</span>
+        </h1>
+        <p class="article-header__lead">
+            <span lang="ja">コードを1つずつ聴き分けることと、進行の「流れ」を聴き取ることは別のスキルです。和声の動きを耳で追う力を、機能和声の考え方から段階的に鍛える方法を解説します。</span>
+            <span lang="en">Identifying individual chords and hearing the "flow" of a progression are different skills. Learn how to train your ear to follow harmonic movement, starting from the functional harmony framework.</span>
+        </p>
+    </header>
+
+    <!-- Article Body -->
+    <main class="article-body">
+
+        <!-- Section 1 -->
+        <h2 id="what-is-progression-training"><span lang="ja">コード進行を聴き取るとは</span><span lang="en">What Is Progression Training?</span></h2>
+
+        <p>
+            <span lang="ja">コード進行の認識とは、連続して鳴るコードの流れを耳で追い、それぞれのコードがキーの中でどんな役割（機能）を果たしているかを理解する力です。</span>
+            <span lang="en">Progression recognition is the ability to follow a sequence of chords by ear and understand the role (function) each chord plays within a key.</span>
+        </p>
+
+        <p>
+            <span lang="ja">単体のコードを聴き分けるコード認識とは異なり、進行トレーニングでは「コード同士の関係性」が焦点になります。あるコードの後に別のコードが来ると、なぜ「解決した」と感じるのか。なぜ「次に行きたくなる」と感じるのか。その感覚の正体が、和声の機能です。</span>
+            <span lang="en">Unlike chord recognition which focuses on individual chords, progression training centers on the "relationships between chords." Why does a certain chord after another feel like "resolution"? Why does it feel like it "wants to go somewhere"? The answer lies in harmonic function.</span>
+        </p>
+
+        <p>
+            <span lang="ja">この力は、作曲、編曲、耳コピ、ジャズのセッション、バンドアレンジなど、音楽のほぼすべての領域で活きるスキルです。</span>
+            <span lang="en">This is a skill that applies to virtually every area of music: songwriting, arrangement, transcription, jazz sessions, and band arrangements.</span>
+        </p>
+
+        <!-- Section 2 -->
+        <h2 id="harmonic-basics"><span lang="ja">和声の基礎を理解する</span><span lang="en">Understanding Harmonic Basics</span></h2>
+
+        <p>
+            <span lang="ja">西洋音楽の和声は、大きく3つの機能に分類されます。バークリー音楽院の機能和声理論（Functional Harmony）に基づくこの枠組みは、コード進行を理解する上での基本的な地図になります。</span>
+            <span lang="en">Western harmony is broadly classified into three functions. This framework, based on Berklee's Functional Harmony theory, serves as a fundamental map for understanding chord progressions.</span>
+        </p>
+
+        <!-- Harmonic Function Cycle Visual -->
+        <div class="function-cycle">
+            <div class="diagram-title"><span lang="ja">和声機能のサイクル</span><span lang="en">Harmonic Function Cycle</span></div>
+
+            <div class="function-cycle__diagram">
+                <div class="function-cycle__node function-cycle__node--t">
+                    <div class="function-cycle__node-label">T</div>
+                    <div class="function-cycle__node-desc">Tonic</div>
+                </div>
+                <div class="function-cycle__arrow">&rarr;</div>
+                <div class="function-cycle__node function-cycle__node--sd">
+                    <div class="function-cycle__node-label">SD</div>
+                    <div class="function-cycle__node-desc">Subdominant</div>
+                </div>
+                <div class="function-cycle__arrow">&rarr;</div>
+                <div class="function-cycle__node function-cycle__node--d">
+                    <div class="function-cycle__node-label">D</div>
+                    <div class="function-cycle__node-desc">Dominant</div>
+                </div>
+                <div class="function-cycle__arrow">&rarr;</div>
+                <div class="function-cycle__node function-cycle__node--t">
+                    <div class="function-cycle__node-label">T</div>
+                    <div class="function-cycle__node-desc">Tonic</div>
+                </div>
+            </div>
+
+            <table class="function-table">
+                <thead>
+                    <tr>
+                        <th><span lang="ja">機能</span><span lang="en">Function</span></th>
+                        <th><span lang="ja">役割</span><span lang="en">Role</span></th>
+                        <th><span lang="ja">該当コード</span><span lang="en">Chords</span></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><span class="function-table__tag function-table__tag--t">T (Tonic)</span></td>
+                        <td><span lang="ja">安定・解決・「家」</span><span lang="en">Stability, resolution, "home"</span></td>
+                        <td>I, vi, iii</td>
+                    </tr>
+                    <tr>
+                        <td><span class="function-table__tag function-table__tag--sd">SD (Subdominant)</span></td>
+                        <td><span lang="ja">動き出し・展開</span><span lang="en">Departure, development</span></td>
+                        <td>IV, ii</td>
+                    </tr>
+                    <tr>
+                        <td><span class="function-table__tag function-table__tag--d">D (Dominant)</span></td>
+                        <td><span lang="ja">緊張・解決への欲求</span><span lang="en">Tension, desire to resolve</span></td>
+                        <td>V, vii&deg;</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <p>
+            <span lang="ja">T → SD → D → T というサイクルが、コード進行の最も基本的な流れです。ポップスの I-IV-V-I も、ジャズの ii-V-I も、この機能の流れに沿っています。まず「どの機能に属するコードか」を聴き取ることが、進行認識の第一歩です。</span>
+            <span lang="en">The T, SD, D, T cycle is the most fundamental flow of chord progressions. Pop's I-IV-V-I and jazz's ii-V-I both follow this functional flow. Hearing "which function a chord belongs to" is the first step in progression recognition.</span>
+        </p>
+
+        <div class="article-note">
+            <div class="article-note__title"><span lang="ja">ポイント</span><span lang="en">Key Point</span></div>
+            <p><span lang="ja">コード進行の聴き取りでは、個々のコードの種類（MajorかMinorか）よりも先に、その機能（安定なのか、緊張なのか、動き出しなのか）を感じ取ることが重要です。機能がわかれば、具体的なコードの特定はその後にできます。</span><span lang="en">In progression listening, it's more important to sense the function (stable, tense, or departing) before identifying the specific chord type (Major or Minor). Once you know the function, identifying the specific chord follows naturally.</span></p>
+        </div>
+
+        <!-- Section 3 -->
+        <h2 id="common-walls"><span lang="ja">よくある壁</span><span lang="en">Common Walls</span></h2>
+
+        <h3 id="iv-vs-v"><span lang="ja">IVとVの混同</span><span lang="en">IV vs V Confusion</span></h3>
+        <p>
+            <span lang="ja">IV（サブドミナント）とV（ドミナント）は、どちらも「Iから離れた場所」にあるコードですが、響きの方向性が異なります。IVは「広がり」や「展開」の感覚、Vは「引っ張り」や「解決したい」という緊張感を持ちます。この違いを感じ取るには、I-IV-I と I-V-I を繰り返し比較して聴くことが効果的です。</span>
+            <span lang="en">IV (Subdominant) and V (Dominant) are both "away from I," but their directional quality differs. IV has a sense of "opening" or "development," while V has "pull" and a "desire to resolve." To feel this difference, repeatedly compare I-IV-I and I-V-I.</span>
+        </p>
+
+        <h3 id="minor-function"><span lang="ja">マイナーコードの機能が掴みにくい</span><span lang="en">Minor Chords Are Hard to Place Functionally</span></h3>
+        <p>
+            <span lang="ja">viはトニック機能、iiはサブドミナント機能、iiiはトニック機能。しかし、マイナーコードは「暗い」という印象が先に来るため、機能を聴き分けることが難しく感じられます。ダイアトニックコードの機能を理論的に理解した上で、繰り返し聴くことが重要です。</span>
+            <span lang="en">vi has tonic function, ii has subdominant function, iii has tonic function. But the "dark" impression of minor chords comes first, making functional recognition harder. It's important to understand diatonic chord functions theoretically and then practice listening repeatedly.</span>
+        </p>
+
+        <h3 id="longer-progressions"><span lang="ja">長い進行でキー感覚を見失う</span><span lang="en">Longer Progressions Lose the Key Center</span></h3>
+        <p>
+            <span lang="ja">2コードの進行なら追えるのに、4コードになると途中でキーの感覚がぼやける。特に、vi や iii のようなトニック代理コードが入ると、「今どこにいるのか」がわからなくなることがあります。トニックプレビュー（最初にIを聴く）を活用することで、キーの基準点を明確にできます。</span>
+            <span lang="en">You can follow 2-chord progressions, but at 4 chords the key center blurs. Especially when tonic substitutes like vi or iii appear, you may lose track of "where you are." Using tonic preview (hearing I first) establishes a clear reference point.</span>
+        </p>
+
+        <h3 id="function-vs-chord"><span lang="ja">機能と具体的なコードの識別</span><span lang="en">Identifying Function vs Specific Chord</span></h3>
+        <p>
+            <span lang="ja">「これはドミナント機能だ」とわかっても、それがVなのかvii°なのかを特定するのは別の難しさがあります。まずは機能レベルでの認識を安定させ、その後に具体的なコードの特定に進むのが効果的な順序です。</span>
+            <span lang="en">"This is dominant function" is one thing — identifying whether it's V or vii&deg; is another challenge. Stabilize function-level recognition first, then move to specific chord identification. That's the effective order.</span>
+        </p>
+
+        <!-- Section 4 -->
+        <h2 id="effective-practice"><span lang="ja">効果的な練習法</span><span lang="en">Effective Practice Methods</span></h2>
+
+        <h3 id="start-two-chords"><span lang="ja">2コード進行から始める</span><span lang="en">Start with 2-Chord Progressions</span></h3>
+        <p>
+            <span lang="ja">I-V、I-IV のような最小単位の進行から始めましょう。2つのコードの関係だけに集中できるため、機能の違いを体感しやすくなります。いきなり4コード進行に挑戦すると、情報量に圧倒される可能性があります。</span>
+            <span lang="en">Start with minimal progressions like I-V and I-IV. Focusing on just two chords makes it easier to feel functional differences. Jumping to 4-chord progressions risks information overload.</span>
+        </p>
+
+        <h3 id="tonic-preview"><span lang="ja">トニックプレビューを活用する</span><span lang="en">Use Tonic Preview</span></h3>
+        <p>
+            <span lang="ja">出題前にI（トニック）を聴くことで、キーの基準点を耳に設定します。「ここがホームだ」という感覚を持った状態で進行を聴くと、各コードの機能が感じ取りやすくなります。慣れてきたらトニックプレビューをOFFにして、キー感覚を自分で探る練習に進みましょう。</span>
+            <span lang="en">Hearing I (tonic) before the question establishes the key reference point in your ear. Listening to the progression with a clear sense of "home" makes each chord's function easier to perceive. As you improve, turn tonic preview OFF and practice finding the key yourself.</span>
+        </p>
+
+        <h3 id="function-first"><span lang="ja">機能から入り、ローマ数字へ</span><span lang="en">Learn Function First, Then Roman Numerals</span></h3>
+        <p>
+            <span lang="ja">最初は「T-SD-D-T」のように機能レベルで答える練習をしましょう。安定・展開・緊張・解決の流れを感じ取れるようになったら、「I-IV-V-I」のようにローマ数字で具体的なコードを特定する練習に進みます。この順序で進めると、理論と耳の両方が噛み合います。</span>
+            <span lang="en">Start by answering at the function level: "T-SD-D-T." Once you can feel the flow of stability, development, tension, and resolution, advance to identifying specific chords with Roman numerals: "I-IV-V-I." This order aligns both theory and ear.</span>
+        </p>
+
+        <h3 id="common-patterns"><span lang="ja">よく出るパターンを覚える</span><span lang="en">Learn Common Patterns</span></h3>
+        <p>
+            <span lang="ja">多くの曲はいくつかの定番パターンで成り立っています。I-V-vi-IV（ポップス定番）、ii-V-I（ジャズ定番）、I-IV-I-V（フォーク・ロック定番）。これらのパターンを「音」として覚えると、初めて聴く曲でも「あ、これはii-V-Iだ」と瞬時に判断できるようになります。</span>
+            <span lang="en">Many songs are built on a few standard patterns. I-V-vi-IV (pop standard), ii-V-I (jazz standard), I-IV-I-V (folk/rock standard). Memorizing these patterns "by sound" lets you instantly recognize "that's a ii-V-I" even in songs you've never heard.</span>
+        </p>
+
+        <!-- Section 5 -->
+        <h2 id="what-app-can-do"><span lang="ja">ソルフェージュPROでできること</span><span lang="en">What Solfege PRO Can Do</span></h2>
+
+        <p>
+            <span lang="ja">ソルフェージュPROの Progression Training は、コード進行の流れを聴き取る力を段階的に鍛えるトレーニングツールです。</span>
+            <span lang="en">Solfege PRO's Progression Training is a tool for building your ability to hear chord progressions step by step.</span>
+        </p>
+
+        <h3><span lang="ja">15種類以上のコード進行パターン</span><span lang="en">15+ Progression Patterns</span></h3>
+        <p>
+            <span lang="ja">ポップスやジャズの定番パターンを中心に、15種類以上のコード進行をカバーしています。I-V-vi-IV、ii-V-I、I-IV-V-Iなど、実際の曲で頻出するパターンを練習できます。</span>
+            <span lang="en">Covers 15+ progression patterns centered on pop and jazz standards. Practice patterns that frequently appear in real songs: I-V-vi-IV, ii-V-I, I-IV-V-I, and more.</span>
+        </p>
+
+        <h3><span lang="ja">3つの回答形式</span><span lang="en">3 Answer Formats</span></h3>
+        <p>
+            <span lang="ja">Function（T/SD/D）、Roman Numeral（I/IV/V/vi等）、Chord Symbol（C/F/G/Am等）の3つの回答形式を選べます。機能レベルの理解から始めて、具体的なコード表記へと段階的にステップアップできます。</span>
+            <span lang="en">Choose from three answer formats: Function (T/SD/D), Roman Numeral (I/IV/V/vi, etc.), and Chord Symbol (C/F/G/Am, etc.). Start with functional understanding and step up to specific chord notation.</span>
+        </p>
+
+        <h3><span lang="ja">2〜4コードの進行長</span><span lang="en">2 to 4 Chord Lengths</span></h3>
+        <p>
+            <span lang="ja">出題されるコード進行の長さを2コードから4コードまで選択できます。短い進行で基礎を固め、徐々に長い進行に挑戦できます。</span>
+            <span lang="en">Choose progression lengths from 2 to 4 chords. Build foundations with short progressions and gradually challenge longer ones.</span>
+        </p>
+
+        <h3><span lang="ja">トニックプレビュー</span><span lang="en">Tonic Preview</span></h3>
+        <p>
+            <span lang="ja">出題前にトニック（I）を再生し、キーの基準点を提示する機能です。ONにすればキー感覚が明確になり、OFFにすれば自分でキーを探る練習ができます。</span>
+            <span lang="en">Plays the tonic (I) before the question to establish the key reference. ON makes the key clear; OFF challenges you to find the key yourself.</span>
+        </p>
+
+        <h3><span lang="ja">Pop / Jazz カテゴリ</span><span lang="en">Pop / Jazz Categories</span></h3>
+        <p>
+            <span lang="ja">自分が練習したいジャンルのパターンに集中できます。ポップスの定番パターン（I-V-vi-IV等）やジャズのii-V-I系パターンなど、カテゴリ別に出題を絞れます。</span>
+            <span lang="en">Focus on patterns from the genre you want to practice. Pop standards (I-V-vi-IV, etc.) and jazz ii-V-I patterns — filter questions by category.</span>
+        </p>
+
+        <h3><span lang="ja">パターン別統計</span><span lang="en">Pattern-specific Statistics</span></h3>
+        <p>
+            <span lang="ja">各パターンごとの正答率を記録します。どの進行パターンが得意で、どれが苦手かが一目でわかります。</span>
+            <span lang="en">Records accuracy for each pattern. See at a glance which progressions you're strong at and which need work.</span>
+        </p>
+
+        <div class="cycle-diagram">
+            <div class="cycle-step">
+                <div class="cycle-step__label"><span lang="ja">キー設定</span><span lang="en">Set Key</span></div>
+                <div class="cycle-step__desc"><span lang="ja">トニックプレビュー</span><span lang="en">Tonic preview</span></div>
+            </div>
+            <div class="cycle-arrow">&rarr;</div>
+            <div class="cycle-step">
+                <div class="cycle-step__label"><span lang="ja">聴く</span><span lang="en">Listen</span></div>
+                <div class="cycle-step__desc"><span lang="ja">進行を再生</span><span lang="en">Hear progression</span></div>
+            </div>
+            <div class="cycle-arrow">&rarr;</div>
+            <div class="cycle-step">
+                <div class="cycle-step__label"><span lang="ja">答える</span><span lang="en">Answer</span></div>
+                <div class="cycle-step__desc"><span lang="ja">機能 / 数字 / コード名</span><span lang="en">Function / Numeral / Symbol</span></div>
+            </div>
+            <div class="cycle-arrow">&rarr;</div>
+            <div class="cycle-step">
+                <div class="cycle-step__label"><span lang="ja">確認</span><span lang="en">Confirm</span></div>
+                <div class="cycle-step__desc"><span lang="ja">正解と比較</span><span lang="en">Compare with answer</span></div>
+            </div>
+        </div>
+
+        <!-- Section 6 -->
+        <h2 id="limitations"><span lang="ja">ソルフェージュPROだけでは直接扱いきれないこと</span><span lang="en">What Solfege PRO Does Not Directly Cover</span></h2>
+
+        <p>
+            <span lang="ja">正直に書きます。</span>
+            <span lang="en">Let's be honest.</span>
+        </p>
+
+        <div class="article-honest">
+            <div class="article-honest__title"><span lang="ja">アプリでカバーできない領域</span><span lang="en">Areas Beyond the App's Scope</span></div>
+            <p>
+                <strong><span lang="ja">セカンダリードミナント</span><span lang="en">Secondary dominants</span></strong><span lang="ja"> — V/V、V/ii などのセカンダリードミナントは現在のトレーニングの範囲外です。ダイアトニックコードの機能認識が中心です。</span><span lang="en"> — Secondary dominants like V/V and V/ii are outside the current training scope. The focus is on diatonic chord function recognition.</span>
+            </p>
+            <p>
+                <strong><span lang="ja">転調の検出</span><span lang="en">Modulation detection</span></strong><span lang="ja"> — 曲の途中でキーが変わるケースを検出するトレーニングには対応していません。各進行は1つのキー内で出題されます。</span><span lang="en"> — Training to detect key changes mid-song is not supported. Each progression is presented within a single key.</span>
+            </p>
+            <p>
+                <strong><span lang="ja">マイナーキーの進行（部分的）</span><span lang="en">Minor key progressions (partial)</span></strong><span lang="ja"> — メジャーキーの進行が中心です。マイナーキーの進行は一部カバーしていますが、包括的ではありません。</span><span lang="en"> — Major key progressions are the focus. Minor key progressions are partially covered but not comprehensive.</span>
+            </p>
+            <p>
+                <strong><span lang="ja">カスタム進行の作成</span><span lang="en">Custom progression creation</span></strong><span lang="ja"> — プリセットされたパターンのみで、ユーザーが独自の進行を作成する機能はありません。</span><span lang="en"> — Only preset patterns are available. There is no feature for users to create custom progressions.</span>
+            </p>
+            <p>
+                <strong><span lang="ja">進行上のアドリブ演奏</span><span lang="en">Improvisation over changes</span></strong><span lang="ja"> — コード進行を聴き取ることと、その進行の上で即興演奏することは別のスキルです。アプリは認識の訓練であり、演奏の訓練ではありません。</span><span lang="en"> — Hearing a progression and improvising over it are different skills. The app trains recognition, not performance.</span>
+            </p>
+        </div>
+
+        <p>
+            <span lang="ja">ソルフェージュPROが直接支援できるのは、ダイアトニックなコード進行の機能認識と、パターン認識力の構築です。セカンダリードミナントや転調を含む高度な和声分析は、理論書の学習や実際の曲の分析と併用することで効果が高まります。</span>
+            <span lang="en">What Solfege PRO directly supports is diatonic progression function recognition and pattern recognition building. Advanced harmonic analysis including secondary dominants and modulation is more effective when combined with theory study and real music analysis.</span>
+        </p>
+
+        <!-- Mid-article CTA -->
+        <div class="article-cta-subtle">
+            <p class="article-cta-subtle__text"><span lang="ja">無料セッションで、自分のコード進行認識力を確認できます</span><span lang="en">Check your progression recognition with free sessions</span></p>
+            <a href="https://apps.apple.com/app/id6756626617" class="article-cta-subtle__button"><span lang="ja">App Storeで見る</span><span lang="en">View on App Store</span></a>
+        </div>
+
+        <!-- Section 7 -->
+        <h2 id="how-to-use"><span lang="ja">おすすめの使い方</span><span lang="en">Recommended Usage</span></h2>
+
+        <p>
+            <span lang="ja">ソルフェージュPROの Progression Training は、以下の順序で進めることを想定しています。</span>
+            <span lang="en">Solfege PRO's Progression Training is designed to be used in the following progression.</span>
+        </p>
+
+        <ol>
+            <li><strong><span lang="ja">Function モードで2コードから始める</span><span lang="en">Start with Function mode, 2 chords</span></strong><span lang="ja"> — トニックプレビューをONにし、T/SD/D の機能レベルで答える練習をする。I-V（T-D）、I-IV（T-SD）の違いを体感することが最初のゴール</span><span lang="en"> — Turn tonic preview ON, practice answering at the T/SD/D function level. Feeling the difference between I-V (T-D) and I-IV (T-SD) is the first goal</span></li>
+            <li><strong><span lang="ja">ローマ数字モードへ移行</span><span lang="en">Move to Roman Numeral mode</span></strong><span lang="ja"> — 機能が安定して聴き取れるようになったら、具体的なコード（I/IV/V/vi/ii）を特定する練習へ進む</span><span lang="en"> — Once function recognition is stable, advance to identifying specific chords (I/IV/V/vi/ii)</span></li>
+            <li><strong><span lang="ja">3〜4コードに拡張する</span><span lang="en">Expand to 3-4 chords</span></strong><span lang="ja"> — 2コードで安定したら、徐々にコード数を増やしていく。I-V-vi-IV のような定番4コード進行に挑戦</span><span lang="en"> — Once stable with 2 chords, gradually increase. Challenge standard 4-chord progressions like I-V-vi-IV</span></li>
+            <li><strong><span lang="ja">トニックプレビューをOFFにする</span><span lang="en">Turn tonic preview OFF</span></strong><span lang="ja"> — 自分の耳でキーを探す練習。これができると、実際の曲の耳コピに直結する</span><span lang="en"> — Practice finding the key yourself. This directly connects to transcribing real songs</span></li>
+            <li><strong><span lang="ja">実際の曲で確認する</span><span lang="en">Verify with real music</span></strong><span lang="ja"> — 好きな曲を聴いて「この進行はI-V-vi-IVだ」と判断できるか試す。それが最終的なゴール</span><span lang="en"> — Listen to your favorite songs and try to identify progressions. That's the ultimate goal</span></li>
+        </ol>
+
+        <div class="comparison-visual">
+            <div class="comparison-card comparison-card--bad">
+                <div class="comparison-card__header"><span lang="ja">効果が出にくい</span><span lang="en">Less Effective</span></div>
+                <div class="comparison-card__body">
+                    <p><span lang="ja">いきなりローマ数字で4コード進行に挑戦。トニックプレビューなし。毎回違うパターンに振り回される。</span><span lang="en">Jumping into Roman Numeral mode with 4-chord progressions. No tonic preview. Getting overwhelmed by different patterns each time.</span></p>
+                </div>
+            </div>
+            <div class="comparison-card comparison-card--good">
+                <div class="comparison-card__header"><span lang="ja">効果が出やすい</span><span lang="en">More Effective</span></div>
+                <div class="comparison-card__body">
+                    <p><span lang="ja">Functionモード・2コード・トニックプレビューONから開始。機能の違いを体感してから、段階的にコード数と回答形式を上げていく。</span><span lang="en">Start with Function mode, 2 chords, tonic preview ON. Feel the functional differences first, then gradually increase chord count and answer format.</span></p>
+                </div>
+            </div>
+        </div>
+
+        <div class="article-note">
+            <div class="article-note__title"><span lang="ja">使い方のコツ</span><span lang="en">Usage Tip</span></div>
+            <p><span lang="ja">コード進行の練習は、コード認識（個別のコードの聴き分け）と並行して行うのが効果的です。個別のコードの種類がわかる耳があると、進行の中での各コードの役割も掴みやすくなります。</span><span lang="en">Practicing progressions alongside chord recognition (individual chord identification) is effective. An ear that can identify individual chord types finds it easier to grasp each chord's role within a progression.</span></p>
+        </div>
+
+    </main>
+
+    <!-- Final CTA -->
+    <section class="article-cta">
+        <h2 class="article-cta__title"><span lang="ja">まず、自分のコード進行認識力を確認しよう</span><span lang="en">Start by Checking Your Progression Recognition</span></h2>
+        <p class="article-cta__text">
+            <span lang="ja">コード進行の聴き取りは、和声の「流れ」を感じ取る力です。<br>個別のコードではなく、コード同士の関係性を聴く。それが、音楽の構造を耳で理解する第一歩です。<br>ソルフェージュPROの Progression Training で、まず2コードの進行から始めてみてください。</span>
+            <span lang="en">Progression recognition is the ability to feel the "flow" of harmony.<br>Listen not to individual chords, but to their relationships. That's the first step to understanding musical structure by ear.<br>Start with 2-chord progressions in Solfege PRO's Progression Training.</span>
+        </p>
+        <a href="https://apps.apple.com/app/id6756626617" class="article-cta__button"><span lang="ja">App Storeでダウンロード</span><span lang="en">Download on App Store</span></a>
+    </section>
+
+    <!-- Related Content -->
+    <div class="article-related">
+        <div class="article-related__title"><span lang="ja">関連コンテンツ</span><span lang="en">Related Content</span></div>
+        <a href="../" class="article-related__link">
+            <div class="article-related__link-title"><span lang="ja">ソルフェージュPRO 練習ガイド</span><span lang="en">Solfege PRO Practice Guide</span></div>
+            <div class="article-related__link-desc"><span lang="ja">ギター・ベース・ドラム・ピアノ・ボーカル向けの課題別練習メニュー</span><span lang="en">Challenge-based practice menus for guitar, bass, drums, piano, and vocals</span></div>
+        </a>
+    </div>
+
+    <!-- Article Note -->
+    <aside class="article-endnote">
+        <p class="article-endnote__text">
+            <span lang="ja">この記事は、バークリー音楽院の機能和声理論および一般的な和声学の知見をもとに整理しています。和声の分類や機能の感じ方にはジャンルや音楽的文脈による違いがあり、ここで紹介した枠組みがすべてのケースに当てはまるわけではありません。アプリ内のトレーニングはダイアトニックなコード進行の認識力向上を支援するものであり、和声分析の全領域をカバーするものではありません。</span>
+            <span lang="en">This article is organized based on Berklee's Functional Harmony theory and general harmonic knowledge. Harmonic classification and functional perception vary by genre and musical context, and the framework presented here may not apply to every case. The in-app training supports diatonic chord progression recognition improvement and does not cover the full scope of harmonic analysis.</span>
+        </p>
+    </aside>
+
+    <!-- Footer -->
+    <footer class="article-footer">
+        <p class="article-footer__text">
+            &copy; 2025 <span lang="ja">ソルフェージュPRO</span><span lang="en">Solfege PRO</span> &mdash;
+            <a href="https://apps.apple.com/app/id6756626617" class="article-footer__link">App Store</a>
+        </p>
+    </footer>
+
+    <!-- Language Toggle Script -->
+    <script>
+    (function() {
+        var langToggle = document.getElementById('lang-toggle');
+        var langText = document.getElementById('lang-text');
+        var currentLang = localStorage.getItem('lang') || 'ja';
+
+        function applyLanguage(lang) {
+            document.documentElement.setAttribute('data-lang', lang);
+            langText.textContent = lang === 'ja' ? 'EN' : 'JA';
+            document.title = lang === 'ja'
+                ? 'コード進行を聴き取る力とは何か — 和声の流れを理解する | ソルフェージュPRO'
+                : 'What Is Progression Training? — Understanding Harmonic Movement | Solfege PRO';
+            localStorage.setItem('lang', lang);
+            currentLang = lang;
+        }
+
+        document.documentElement.setAttribute('data-lang', currentLang);
+        langText.textContent = currentLang === 'ja' ? 'EN' : 'JA';
+
+        langToggle.addEventListener('click', function() {
+            applyLanguage(currentLang === 'ja' ? 'en' : 'ja');
+        });
+    })();
+    </script>
+
+</body>
+</html>

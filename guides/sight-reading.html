@@ -1,0 +1,728 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>譜読みとは何か — 五線譜を素早く読むための基礎と練習法 | ソルフェージュPRO</title>
+    <meta name="description" content="譜読みは1つの才能ではなく、複数のスキルに分解できます。音部記号・臨時記号・調号・加線の読み方を整理し、五線譜をスムーズに読むための練習法を紹介します。">
+
+    <!-- Canonical -->
+    <link rel="canonical" href="https://nmswshg.github.io/solfege-pro-docs/guides/sight-reading.html">
+
+    <!-- OGP -->
+    <meta property="og:title" content="譜読みとは何か — 五線譜を素早く読むための基礎と練習法">
+    <meta property="og:description" content="「譜読みが苦手」は分解できる。音部記号・臨時記号・加線の壁を知って、練習を変えよう。">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://nmswshg.github.io/solfege-pro-docs/guides/sight-reading.html">
+    <meta property="og:site_name" content="ソルフェージュPRO">
+    <meta property="og:image" content="https://nmswshg.github.io/solfege-pro-docs/AppIcon.png">
+    <meta property="og:locale" content="ja_JP">
+    <meta property="article:published_time" content="2026-03-31">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="譜読みとは何か — 五線譜を素早く読むための基礎と練習法">
+    <meta name="twitter:description" content="「譜読みが苦手」は分解できる。音部記号・臨時記号・加線の壁を知って、練習を変えよう。">
+    <meta name="twitter:image" content="https://nmswshg.github.io/solfege-pro-docs/AppIcon.png">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="../style.css?v=2">
+    <link rel="stylesheet" href="article.css?v=2">
+
+    <!-- Staff diagram styles -->
+    <style>
+        /* Staff Diagram */
+        .staff-diagram {
+            background: var(--surface);
+            border: 1px solid var(--surface-light);
+            border-radius: 12px;
+            padding: var(--space-xl) var(--space-lg);
+            margin: var(--space-xl) 0;
+            overflow-x: auto;
+        }
+        .staff-diagram__title {
+            font-size: 13px;
+            color: var(--text-secondary);
+            text-align: center;
+            margin-bottom: var(--space-lg);
+            font-weight: 500;
+        }
+        .staff-container {
+            position: relative;
+            width: 100%;
+            max-width: 500px;
+            margin: 0 auto;
+            height: 160px;
+        }
+        .staff-line {
+            position: absolute;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: var(--text-secondary);
+            opacity: 0.4;
+        }
+        .staff-line:nth-child(1) { top: 20px; }
+        .staff-line:nth-child(2) { top: 40px; }
+        .staff-line:nth-child(3) { top: 60px; }
+        .staff-line:nth-child(4) { top: 80px; }
+        .staff-line:nth-child(5) { top: 100px; }
+        .staff-label {
+            position: absolute;
+            font-size: 10px;
+            color: var(--primary);
+            font-weight: 500;
+            white-space: nowrap;
+        }
+        .staff-note {
+            position: absolute;
+            width: 14px;
+            height: 10px;
+            background: var(--primary);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+        }
+        .staff-note-label {
+            position: absolute;
+            font-size: 11px;
+            color: var(--text-primary);
+            font-weight: 500;
+            transform: translateX(-50%);
+            white-space: nowrap;
+        }
+        .staff-clef {
+            position: absolute;
+            left: 8px;
+            font-size: 48px;
+            color: var(--text-secondary);
+            opacity: 0.7;
+            line-height: 1;
+        }
+        .staff-clef--treble { top: 18px; }
+        .staff-clef--bass { top: 10px; }
+        .staff-brace {
+            position: absolute;
+            left: 0;
+            top: 20px;
+            height: 80px;
+            width: 3px;
+            background: var(--text-secondary);
+            opacity: 0.4;
+            border-radius: 2px;
+        }
+        .ledger-line {
+            position: absolute;
+            width: 24px;
+            height: 1px;
+            background: var(--text-secondary);
+            opacity: 0.5;
+            transform: translateX(-50%);
+        }
+
+        /* Landmark Notes Diagram */
+        .landmark-diagram {
+            background: var(--surface);
+            border: 1px solid var(--surface-light);
+            border-radius: 12px;
+            padding: var(--space-xl) var(--space-lg);
+            margin: var(--space-xl) 0;
+        }
+        .landmark-diagram__title {
+            font-size: 13px;
+            color: var(--text-secondary);
+            text-align: center;
+            margin-bottom: var(--space-lg);
+            font-weight: 500;
+        }
+        .landmark-container {
+            position: relative;
+            width: 100%;
+            max-width: 500px;
+            margin: 0 auto;
+            height: 240px;
+        }
+        .landmark-note {
+            position: absolute;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+        }
+        .landmark-note__dot {
+            width: 16px;
+            height: 12px;
+            background: var(--primary);
+            border-radius: 50%;
+        }
+        .landmark-note__name {
+            font-size: 12px;
+            font-weight: 700;
+            color: var(--primary);
+        }
+        .landmark-note__desc {
+            font-size: 10px;
+            color: var(--text-secondary);
+            white-space: nowrap;
+        }
+
+        /* Skill Component List */
+        .skill-list {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--space-md);
+            margin: var(--space-lg) 0;
+        }
+        @media (max-width: 520px) {
+            .skill-list { grid-template-columns: 1fr; }
+        }
+        .skill-item {
+            background: var(--surface);
+            border: 1px solid var(--surface-light);
+            border-radius: 10px;
+            padding: var(--space-md) var(--space-lg);
+        }
+        .skill-item__name {
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 4px;
+        }
+        .skill-item__desc {
+            font-size: 12px;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        /* Difficulty Steps */
+        .difficulty-steps {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-sm);
+            margin: var(--space-lg) 0;
+        }
+        .difficulty-step {
+            display: flex;
+            align-items: center;
+            gap: var(--space-md);
+            background: var(--surface);
+            border: 1px solid var(--surface-light);
+            border-radius: 10px;
+            padding: var(--space-md) var(--space-lg);
+        }
+        .difficulty-step__number {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            background: var(--primary);
+            color: var(--background);
+            font-size: 13px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+        .difficulty-step__text {
+            font-size: 13px;
+            color: var(--text-primary);
+            line-height: 1.5;
+        }
+
+        /* Wall Item */
+        .wall-list {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-md);
+            margin: var(--space-lg) 0;
+        }
+        .wall-item {
+            background: var(--surface);
+            border-left: 3px solid var(--primary);
+            border-radius: 0 10px 10px 0;
+            padding: var(--space-md) var(--space-lg);
+        }
+        .wall-item__title {
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 4px;
+        }
+        .wall-item__desc {
+            font-size: 13px;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="article-nav">
+        <div class="article-nav__container">
+            <a href="../" class="article-nav__back">&larr; <span lang="ja">練習ガイド</span><span lang="en">Practice Guide</span></a>
+            <a href="../" class="article-nav__logo">
+                <img src="../AppIcon.png" alt="Solfege PRO" class="article-nav__logo-icon">
+                <span class="article-nav__logo-text"><span lang="ja">ソルフェージュPRO</span><span lang="en">Solfege PRO</span></span>
+            </a>
+            <button class="settings-btn" id="lang-toggle" title="Toggle language">
+                <span id="lang-text">EN</span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Article Header -->
+    <header class="article-header">
+        <div class="article-header__meta">
+            <span class="article-header__tag">Sight Reading</span>
+            <span><span lang="ja">読了: 約10分</span><span lang="en">10 min read</span></span>
+        </div>
+        <h1 class="article-header__title">
+            <span lang="ja">譜読みとは何か<br>五線譜を素早く読むための<br>基礎と練習法</span>
+            <span lang="en">What Is Sight Reading?<br>Foundations and Practice for<br>Reading Music Notation</span>
+        </h1>
+        <p class="article-header__lead">
+            <span lang="ja">「譜読みが苦手」で止まらない。五線譜のどこでつまずいているかを知ることが、読譜力を伸ばす第一歩です。</span>
+            <span lang="en">Don't stop at "I'm bad at reading music." Knowing exactly where you stumble on the staff is the first step to improving your notation literacy.</span>
+        </p>
+    </header>
+
+    <!-- Article Body -->
+    <main class="article-body">
+
+        <!-- Section 1 -->
+        <h2 id="what-is-sight-reading"><span lang="ja">"譜読み"とは何か</span><span lang="en">What Is "Sight Reading"?</span></h2>
+
+        <p>
+            <span lang="ja">譜読み（Sight Reading）とは、五線譜に書かれた音符を見て、その音名をすばやく正確に読み取るスキルです。楽器を演奏する人にとって、楽譜を読むことは音楽の「文字を読む」ことに等しい基礎能力です。</span>
+            <span lang="en">Sight reading is the skill of looking at notes written on a musical staff and quickly, accurately identifying their pitch names. For anyone who plays an instrument, reading sheet music is the fundamental literacy of music — equivalent to reading words in a language.</span>
+        </p>
+
+        <p>
+            <span lang="ja">しかし、「譜読みができない」「楽譜を見ると頭が真っ白になる」という人は少なくありません。ピアノやギターを何年も弾いていても、五線譜を前にすると一音ずつ数えてしまう人もいます。</span>
+            <span lang="en">Yet many musicians say "I can't read music" or "my mind goes blank when I see a score." Even people who have played piano or guitar for years may find themselves counting each note one by one on the staff.</span>
+        </p>
+
+        <p>
+            <span lang="ja">譜読みは、耳の良さやリズム感とは別のスキルです。視覚的なパターン認識に近く、正しい練習をすれば着実に速くなります。そして、この「正しい練習」のためには、まず譜読みがどんな要素で構成されているかを理解する必要があります。</span>
+            <span lang="en">Sight reading is a distinct skill from ear training or rhythmic feel. It's closer to visual pattern recognition, and with the right practice, steady improvement is achievable. To practice effectively, you first need to understand what components make up the skill of reading notation.</span>
+        </p>
+
+        <!-- Section 2 -->
+        <h2 id="breakdown"><span lang="ja">譜読みを分解する</span><span lang="en">Breaking Down Sight Reading</span></h2>
+
+        <p>
+            <span lang="ja">「楽譜が読めない」と一口に言っても、つまずいているポイントは人によって異なります。譜読みは、以下のような複数のスキルの組み合わせです。</span>
+            <span lang="en">"I can't read music" can mean very different things depending on the person. Sight reading is a combination of several distinct sub-skills.</span>
+        </p>
+
+        <div class="skill-list">
+            <div class="skill-item">
+                <div class="skill-item__name"><span lang="ja">線と間の識別</span><span lang="en">Line vs. Space</span></div>
+                <div class="skill-item__desc"><span lang="ja">音符が五線の「線上」にあるか「間」にあるかを瞬時に判別する。全ての読譜の出発点。</span><span lang="en">Instantly distinguishing whether a note sits on a line or in a space. The starting point of all notation reading.</span></div>
+            </div>
+            <div class="skill-item">
+                <div class="skill-item__name"><span lang="ja">音部記号の認識</span><span lang="en">Clef Recognition</span></div>
+                <div class="skill-item__desc"><span lang="ja">ト音記号とヘ音記号では、同じ位置でも音名が変わる。記号の切り替えに対応できるか。</span><span lang="en">The same staff position means different notes in treble vs. bass clef. Can you switch between them fluently?</span></div>
+            </div>
+            <div class="skill-item">
+                <div class="skill-item__name"><span lang="ja">臨時記号</span><span lang="en">Accidentals</span></div>
+                <div class="skill-item__desc"><span lang="ja">シャープ（♯）、フラット（♭）、ナチュラル（♮）を正しく読み取る。見落としやすいポイント。</span><span lang="en">Correctly reading sharps (♯), flats (♭), and naturals (♮). A frequent source of misreading.</span></div>
+            </div>
+            <div class="skill-item">
+                <div class="skill-item__name"><span lang="ja">調号の把握</span><span lang="en">Key Signatures</span></div>
+                <div class="skill-item__desc"><span lang="ja">調号で指定されたシャープ・フラットを曲全体に適用する。曲のキーを意識した読譜。</span><span lang="en">Applying the sharps or flats specified by the key signature throughout the piece. Reading with key awareness.</span></div>
+            </div>
+            <div class="skill-item">
+                <div class="skill-item__name"><span lang="ja">加線の読み取り</span><span lang="en">Ledger Lines</span></div>
+                <div class="skill-item__desc"><span lang="ja">五線の上下にはみ出した音符。高い音域・低い音域で頻出し、読譜速度が一気に落ちやすい。</span><span lang="en">Notes that extend above or below the five-line staff. Common in high and low registers, and a major speed bottleneck.</span></div>
+            </div>
+            <div class="skill-item">
+                <div class="skill-item__name"><span lang="ja">位置パターンの記憶</span><span lang="en">Position Patterns</span></div>
+                <div class="skill-item__desc"><span lang="ja">「第2線 = G（ト音記号）」のように、位置と音名の対応を暗記ではなく反射で出せるか。</span><span lang="en">Can you reflexively know "2nd line = G (treble clef)" without consciously counting? Pattern recognition over memorization.</span></div>
+            </div>
+        </div>
+
+        <!-- Staff Diagram -->
+        <div class="staff-diagram">
+            <div class="staff-diagram__title"><span lang="ja">ト音記号の五線 — 線と間の音名</span><span lang="en">Treble Clef Staff — Note Names on Lines and Spaces</span></div>
+            <div class="staff-container">
+                <!-- Brace -->
+                <div class="staff-brace"></div>
+                <!-- Clef symbol -->
+                <div class="staff-clef staff-clef--treble">&#119070;</div>
+                <!-- Five staff lines -->
+                <div class="staff-line" style="top:20px"></div>
+                <div class="staff-line" style="top:40px"></div>
+                <div class="staff-line" style="top:60px"></div>
+                <div class="staff-line" style="top:80px"></div>
+                <div class="staff-line" style="top:100px"></div>
+
+                <!-- Line notes (E, G, B, D, F) -->
+                <div class="staff-note" style="left:25%;top:100px"></div>
+                <div class="staff-note-label" style="left:25%;top:118px">E4</div>
+
+                <div class="staff-note" style="left:35%;top:80px"></div>
+                <div class="staff-note-label" style="left:35%;top:118px">G4</div>
+
+                <div class="staff-note" style="left:45%;top:60px"></div>
+                <div class="staff-note-label" style="left:45%;top:118px">B4</div>
+
+                <div class="staff-note" style="left:55%;top:40px"></div>
+                <div class="staff-note-label" style="left:55%;top:118px">D5</div>
+
+                <div class="staff-note" style="left:65%;top:20px"></div>
+                <div class="staff-note-label" style="left:65%;top:118px">F5</div>
+
+                <!-- Labels -->
+                <div class="staff-label" style="right:-40px;top:14px"><span lang="ja">第5線</span><span lang="en">5th line</span></div>
+                <div class="staff-label" style="right:-40px;top:94px"><span lang="ja">第1線</span><span lang="en">1st line</span></div>
+
+                <!-- Space note labels below -->
+                <div style="position:absolute;bottom:10px;left:0;right:0;text-align:center;font-size:11px;color:var(--text-secondary);">
+                    <span lang="ja">線上の音: E - G - B - D - F（下から順）</span>
+                    <span lang="en">Notes on lines: E - G - B - D - F (bottom to top)</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 3 -->
+        <h2 id="common-walls"><span lang="ja">よくある壁</span><span lang="en">Common Walls</span></h2>
+
+        <p>
+            <span lang="ja">譜読みの練習を始めると、多くの人が同じポイントでつまずきます。自分がどの壁にぶつかっているかを知ることが、効率的な練習への近道です。</span>
+            <span lang="en">When you start practicing sight reading, most people stumble at the same points. Knowing which wall you're hitting is the shortcut to efficient practice.</span>
+        </p>
+
+        <div class="wall-list">
+            <div class="wall-item">
+                <div class="wall-item__title"><span lang="ja">ヘ音記号の混乱</span><span lang="en">Bass Clef Confusion</span></div>
+                <div class="wall-item__desc"><span lang="ja">ト音記号で覚えた位置感覚が邪魔をする。ヘ音記号では第2線がBなのに、ト音記号のGで読んでしまう。2つの記号を切り替える「頭のスイッチ」が必要です。ピアノやキーボードの両手弾きで特に顕著。</span><span lang="en">Your treble clef muscle memory interferes. In bass clef, the 2nd line is B, but your brain reads it as G from treble clef. You need a mental "switch" between the two systems. Especially noticeable in two-handed piano playing.</span></div>
+            </div>
+            <div class="wall-item">
+                <div class="wall-item__title"><span lang="ja">臨時記号の見落とし</span><span lang="en">Accidental Misreading</span></div>
+                <div class="wall-item__desc"><span lang="ja">♯や♭が付いている音を、幹音（ナチュラル）のまま読んでしまう。特にフラット系の調（B♭、E♭など）で頻発。楽譜を「なんとなく」で読んでいると、臨時記号は真っ先に見落とされます。</span><span lang="en">Reading sharps or flats as natural notes. Especially common in flat keys (B♭, E♭, etc.). When you read music on autopilot, accidentals are the first thing to get missed.</span></div>
+            </div>
+            <div class="wall-item">
+                <div class="wall-item__title"><span lang="ja">加線でフリーズ</span><span lang="en">Ledger Line Hesitation</span></div>
+                <div class="wall-item__desc"><span lang="ja">五線の外に出た音符を見ると、急にスピードが落ちる。1本ずつ数え直してしまう。特にト音記号の上（A5以上）やヘ音記号の下（C2以下）でよく起こります。</span><span lang="en">Speed drops dramatically when notes go beyond the five lines. You start counting one ledger line at a time. Especially common above the treble staff (A5+) or below the bass staff (C2 and lower).</span></div>
+            </div>
+            <div class="wall-item">
+                <div class="wall-item__title"><span lang="ja">調号の忘却</span><span lang="en">Key Signature Forgetting</span></div>
+                <div class="wall-item__desc"><span lang="ja">曲の冒頭で調号を確認しても、演奏中に忘れてしまう。特に♯や♭が3つ以上の調で頻発。「F♯を弾くべきところでFを弾いてしまう」のは調号忘れの典型です。</span><span lang="en">You check the key signature at the start but forget it mid-performance. Especially common in keys with 3+ sharps or flats. Playing F when you should play F♯ is a classic key signature lapse.</span></div>
+            </div>
+        </div>
+
+        <div class="article-note">
+            <div class="article-note__title"><span lang="ja">ポイント</span><span lang="en">Key Point</span></div>
+            <p><span lang="ja">これらの壁は「才能の問題」ではなく「慣れの問題」です。どの壁にぶつかっているかを把握して、そこに集中的に取り組むことで、読譜スピードは確実に上がります。</span><span lang="en">These walls are not about talent — they're about familiarity. Identify which wall you're hitting, focus your practice there, and your reading speed will reliably improve.</span></p>
+        </div>
+
+        <!-- Section 4 -->
+        <h2 id="effective-practice"><span lang="ja">効果的な練習法</span><span lang="en">Effective Practice Methods</span></h2>
+
+        <p>
+            <span lang="ja">譜読みの上達には、いくつかの原則があります。闇雲に楽譜を読むのではなく、段階を踏んで負荷をコントロールすることが重要です。</span>
+            <span lang="en">Improving at sight reading follows certain principles. Rather than randomly reading through scores, it's important to control the difficulty in stages.</span>
+        </p>
+
+        <h3 id="one-clef"><span lang="ja">まず1つの音部記号から</span><span lang="en">Start with One Clef</span></h3>
+        <p>
+            <span lang="ja">ト音記号とヘ音記号を同時に練習すると、頭の中で混乱が起きやすくなります。まずはト音記号だけに集中して、線と間の位置を反射的に読めるようにしましょう。ト音記号が安定してきたら、ヘ音記号を別の練習として追加します。</span>
+            <span lang="en">Practicing treble and bass clef simultaneously can cause mental interference. Start by focusing on treble clef only, building reflexive recognition of line and space positions. Once treble clef is stable, add bass clef as a separate practice track.</span>
+        </p>
+
+        <h3 id="landmark-notes"><span lang="ja">ランドマークノートを覚える</span><span lang="en">Learn Landmark Notes First</span></h3>
+        <p>
+            <span lang="ja">五線の全ての音を一度に覚えようとするのは非効率です。まず「ランドマークノート」— 基準となる数個の音を確実に覚え、そこからの距離で他の音を判断する方法が効果的です。</span>
+            <span lang="en">Trying to memorize every note on the staff at once is inefficient. Instead, start with "landmark notes" — a few reference points you know with certainty — and determine other notes by their distance from these landmarks.</span>
+        </p>
+
+        <!-- Landmark Notes Visual -->
+        <div class="landmark-diagram">
+            <div class="landmark-diagram__title"><span lang="ja">ランドマークノート — まずこの3つを覚える</span><span lang="en">Landmark Notes — Start with These Three</span></div>
+            <div class="landmark-container">
+                <!-- Treble Staff -->
+                <div style="position:absolute;top:0;left:0;right:0;height:110px;">
+                    <div style="position:absolute;left:10%;top:8px;font-size:11px;color:var(--text-secondary);font-weight:500;"><span lang="ja">ト音記号</span><span lang="en">Treble Clef</span></div>
+                    <div class="staff-line" style="top:20px"></div>
+                    <div class="staff-line" style="top:32px"></div>
+                    <div class="staff-line" style="top:44px"></div>
+                    <div class="staff-line" style="top:56px"></div>
+                    <div class="staff-line" style="top:68px"></div>
+                    <!-- G on 2nd line -->
+                    <div class="staff-note" style="left:50%;top:56px"></div>
+                    <div style="position:absolute;left:50%;top:78px;transform:translateX(-50%);text-align:center;">
+                        <div style="font-size:13px;font-weight:700;color:var(--primary);">G4</div>
+                        <div style="font-size:10px;color:var(--text-secondary);"><span lang="ja">第2線</span><span lang="en">2nd line</span></div>
+                    </div>
+                    <!-- Middle C (ledger line below) -->
+                    <div class="ledger-line" style="left:30%;top:80px"></div>
+                    <div class="staff-note" style="left:30%;top:80px"></div>
+                    <div style="position:absolute;left:30%;top:92px;transform:translateX(-50%);text-align:center;">
+                        <div style="font-size:13px;font-weight:700;color:var(--primary);">C4</div>
+                        <div style="font-size:10px;color:var(--text-secondary);"><span lang="ja">中央ド（加線）</span><span lang="en">Middle C (ledger)</span></div>
+                    </div>
+                </div>
+                <!-- Bass Staff -->
+                <div style="position:absolute;top:130px;left:0;right:0;height:110px;">
+                    <div style="position:absolute;left:10%;top:8px;font-size:11px;color:var(--text-secondary);font-weight:500;"><span lang="ja">ヘ音記号</span><span lang="en">Bass Clef</span></div>
+                    <div class="staff-line" style="top:20px"></div>
+                    <div class="staff-line" style="top:32px"></div>
+                    <div class="staff-line" style="top:44px"></div>
+                    <div class="staff-line" style="top:56px"></div>
+                    <div class="staff-line" style="top:68px"></div>
+                    <!-- F on 4th line -->
+                    <div class="staff-note" style="left:50%;top:32px"></div>
+                    <div style="position:absolute;left:50%;top:78px;transform:translateX(-50%);text-align:center;">
+                        <div style="font-size:13px;font-weight:700;color:var(--primary);">F3</div>
+                        <div style="font-size:10px;color:var(--text-secondary);"><span lang="ja">第4線</span><span lang="en">4th line</span></div>
+                    </div>
+                    <!-- Middle C (ledger line above) -->
+                    <div class="ledger-line" style="left:70%;top:8px"></div>
+                    <div class="staff-note" style="left:70%;top:8px"></div>
+                    <div style="position:absolute;left:70%;top:78px;transform:translateX(-50%);text-align:center;">
+                        <div style="font-size:13px;font-weight:700;color:var(--primary);">C4</div>
+                        <div style="font-size:10px;color:var(--text-secondary);"><span lang="ja">中央ド（加線）</span><span lang="en">Middle C (ledger)</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <h3 id="no-accidentals-first"><span lang="ja">最初は臨時記号なしで</span><span lang="en">Practice Without Accidentals First</span></h3>
+        <p>
+            <span lang="ja">臨時記号（♯、♭）を含む音は、幹音（C, D, E, F, G, A, B）が安定してから取り組みましょう。幹音が反射的に読めない段階で臨時記号を加えると、混乱が倍増します。Cメジャー（ハ長調）で7つの幹音を確実にしてから、他の調に進むのが効率的です。</span>
+            <span lang="en">Notes with accidentals (♯, ♭) should come after you're solid on natural notes (C, D, E, F, G, A, B). Adding accidentals before you can reflexively read naturals doubles the confusion. Get solid in C major with 7 natural notes first, then progress to other keys.</span>
+        </p>
+
+        <h3 id="add-key-signatures"><span lang="ja">調号を段階的に追加する</span><span lang="en">Gradually Add Key Signatures</span></h3>
+        <p>
+            <span lang="ja">Cメジャーの次は、♯1つ（Gメジャー）や♭1つ（Fメジャー）から始めます。一度に複数の♯♭を追加するのではなく、1つずつ増やして新しいパターンを定着させていきましょう。各調で「どの音が変化するか」を意識して読むことが重要です。</span>
+            <span lang="en">After C major, start with one sharp (G major) or one flat (F major). Don't add multiple sharps/flats at once — increase one at a time and let each new pattern settle. In each key, consciously notice which notes are altered.</span>
+        </p>
+
+        <div class="difficulty-steps">
+            <div class="difficulty-step">
+                <div class="difficulty-step__number">1</div>
+                <div class="difficulty-step__text"><span lang="ja">ト音記号・Cメジャー・幹音のみ — まず位置と音名の対応を反射にする</span><span lang="en">Treble clef, C major, naturals only — build reflexive position-to-name mapping</span></div>
+            </div>
+            <div class="difficulty-step">
+                <div class="difficulty-step__number">2</div>
+                <div class="difficulty-step__text"><span lang="ja">♯/♭を1つずつ追加（G, F, D, B♭…）— 調号への対応力をつける</span><span lang="en">Add one sharp/flat at a time (G, F, D, B♭...) — build key signature awareness</span></div>
+            </div>
+            <div class="difficulty-step">
+                <div class="difficulty-step__number">3</div>
+                <div class="difficulty-step__text"><span lang="ja">ヘ音記号を追加 — 別の記号系として練習を始める</span><span lang="en">Add bass clef — start practicing it as a separate system</span></div>
+            </div>
+            <div class="difficulty-step">
+                <div class="difficulty-step__number">4</div>
+                <div class="difficulty-step__text"><span lang="ja">加線を含む音域に拡張 — 五線の外を恐れなくなる</span><span lang="en">Extend to ledger line ranges — become comfortable beyond the five lines</span></div>
+            </div>
+            <div class="difficulty-step">
+                <div class="difficulty-step__number">5</div>
+                <div class="difficulty-step__text"><span lang="ja">全音モード（臨時記号あり）— 任意の♯♭に即座に対応する</span><span lang="en">All-note mode (with accidentals) — respond instantly to any sharp or flat</span></div>
+            </div>
+        </div>
+
+        <!-- Section 5 -->
+        <h2 id="what-app-can-do"><span lang="ja">ソルフェージュPROでできること</span><span lang="en">What Solfege PRO Can Do</span></h2>
+
+        <p>
+            <span lang="ja">ソルフェージュPROの Sight Reading は、五線譜上に表示された音符の音名を答えるトレーニングです。上で紹介した「段階的に負荷を上げる」練習を、アプリ内の設定で柔軟にコントロールできます。</span>
+            <span lang="en">Solfege PRO's Sight Reading presents a note on the staff and asks you to name it. The "gradually increase difficulty" approach described above can be flexibly controlled through the app's settings.</span>
+        </p>
+
+        <h3><span lang="ja">全12キー対応</span><span lang="en">All 12 Keys</span></h3>
+        <p>
+            <span lang="ja">CメジャーからB♭メジャーまで、全12キーを正しい♯♭表記で練習できます。各調でどの音が変化するかを実際に目と手で確認しながら覚えられます。</span>
+            <span lang="en">Practice in all 12 keys from C major to B♭ major, with correct sharp/flat notation. Learn which notes change in each key through actual visual and interactive practice.</span>
+        </p>
+
+        <h3><span lang="ja">ト音記号・ヘ音記号の切り替え</span><span lang="en">Treble and Bass Clef Support</span></h3>
+        <p>
+            <span lang="ja">練習する音部記号を選択できます。まずト音記号だけで練習し、慣れたらヘ音記号を追加する — という段階的なアプローチが可能です。</span>
+            <span lang="en">Choose which clef to practice. Start with treble clef only, then add bass clef when ready — supporting the staged approach.</span>
+        </p>
+
+        <h3><span lang="ja">臨時記号モードの切り替え</span><span lang="en">Accidental Mode Toggle</span></h3>
+        <p>
+            <span lang="ja">「スケールトーンのみ（調号内の音だけ）」と「全音（臨時記号あり）」を切り替えられます。最初はスケールトーンのみで幹音を固め、安定したら全音モードで臨時記号に対応する力をつけましょう。</span>
+            <span lang="en">Toggle between "scale tones only" (notes within the key signature) and "all notes" (with accidentals). Start with scale tones to solidify natural notes, then switch to all-note mode to build accidental reading skills.</span>
+        </p>
+
+        <h3><span lang="ja">加線のON/OFF</span><span lang="en">Ledger Line Toggle</span></h3>
+        <p>
+            <span lang="ja">加線を含む音域の出題を切り替えられます。五線内の音が安定するまでは加線をOFFにして、基本音域に集中できます。</span>
+            <span lang="en">Toggle ledger line notes on or off. Keep them off until you're solid within the five-line staff, letting you focus on the core range.</span>
+        </p>
+
+        <h3><span lang="ja">苦手克服モード</span><span lang="en">Weak Point Focus Mode</span></h3>
+        <p>
+            <span lang="ja">間違えた音を自動的に多く出題するモードです。自分では気づきにくい弱点を集中的に潰すことができます。「いつもD5とB4を間違える」「ヘ音記号のFとAを混同する」— そうした癖を効率的に矯正します。</span>
+            <span lang="en">A mode that automatically increases the frequency of notes you've gotten wrong. Target weak spots you might not notice on your own. "I always confuse D5 and B4" or "I mix up F and A in bass clef" — this mode efficiently corrects such habits.</span>
+        </p>
+
+        <h3><span lang="ja">キー別練習</span><span lang="en">Key-Specific Practice</span></h3>
+        <p>
+            <span lang="ja">特定のキーに絞って練習できます。苦手な調（例えば♭が多いキー）を集中的にトレーニングすることで、全調に対応できる読譜力を段階的に身につけられます。</span>
+            <span lang="en">Focus on a specific key. Intensively train the keys you find difficult (e.g., flat-heavy keys) to gradually build reading ability across all keys.</span>
+        </p>
+
+        <h3><span lang="ja">エラー分析</span><span lang="en">Error Analysis</span></h3>
+        <p>
+            <span lang="ja">間違いのパターンを分析します。「位置の混同（隣の線/間と間違える）」「オクターブミス（正しい音名だが、オクターブが違う）」「臨時記号の見落とし」など、自分のミスの傾向を把握できます。</span>
+            <span lang="en">Analyzes your error patterns: "position confusion" (reading an adjacent line/space), "octave mistakes" (correct note name but wrong octave), "accidental misreading" (missing a sharp or flat). Understanding your error tendencies guides where to focus.</span>
+        </p>
+
+        <!-- Mid-article CTA -->
+        <div class="article-cta-subtle">
+            <p class="article-cta-subtle__text"><span lang="ja">無料で始めて、自分の読譜力を確認しよう</span><span lang="en">Start free and check your notation reading ability</span></p>
+            <a href="https://apps.apple.com/app/id6756626617" class="article-cta-subtle__button"><span lang="ja">App Storeで見る</span><span lang="en">View on App Store</span></a>
+        </div>
+
+        <!-- Section 6 -->
+        <h2 id="limitations"><span lang="ja">ソルフェージュPROだけでは直接扱いきれないこと</span><span lang="en">What Solfege PRO Does Not Directly Cover</span></h2>
+
+        <p>
+            <span lang="ja">正直に書きます。</span>
+            <span lang="en">Let's be honest.</span>
+        </p>
+
+        <div class="article-honest">
+            <div class="article-honest__title"><span lang="ja">アプリでカバーできない領域</span><span lang="en">Areas Beyond the App's Scope</span></div>
+            <p>
+                <strong><span lang="ja">リズムの読み取り（音価）</span><span lang="en">Rhythm reading (note durations)</span></strong><span lang="ja"> — 現在の Sight Reading は音名の識別に特化しています。全音符・四分音符・八分音符などの音価（長さ）の読み取りは扱っていません。リズム譜の読み取りは別のスキルであり、将来の機能拡張として検討中です。</span><span lang="en"> — The current Sight Reading focuses on pitch name identification. It does not cover reading note values (whole notes, quarter notes, eighth notes, etc.). Rhythm notation reading is a separate skill, under consideration for future development.</span>
+            </p>
+            <p>
+                <strong><span lang="ja">和音の読み取り（複数音の同時読み）</span><span lang="en">Chord reading (multiple simultaneous notes)</span></strong><span lang="ja"> — 出題は1音ずつです。和音を見て瞬時に構成音を読み取る練習は、実際の楽譜で行う必要があります。</span><span lang="en"> — Notes are presented one at a time. Reading chord voicings at a glance requires practice with actual sheet music.</span>
+            </p>
+            <p>
+                <strong><span lang="ja">アルト記号・テノール記号</span><span lang="en">Alto and tenor clef</span></strong><span lang="ja"> — 対応しているのはト音記号とヘ音記号のみです。ビオラ奏者やチェロ奏者が必要とするハ音記号系はサポートしていません。</span><span lang="en"> — Only treble and bass clefs are supported. The C clefs needed by viola and cello players are not available.</span>
+            </p>
+            <p>
+                <strong><span lang="ja">短調の調号</span><span lang="en">Minor key signatures</span></strong><span lang="ja"> — 練習は長調の調号に基づいています。短調固有の音使い（和声的短音階、旋律的短音階の臨時記号パターンなど）を直接練習する機能はありません。</span><span lang="en"> — Practice is based on major key signatures. There is no dedicated feature for practicing minor key-specific patterns (harmonic minor, melodic minor accidental patterns, etc.).</span>
+            </p>
+            <p>
+                <strong><span lang="ja">ソルフェージュ名（ド・レ・ミ）での回答</span><span lang="en">Solfege naming (Do-Re-Mi)</span></strong><span lang="ja"> — 回答はアルファベット音名（C, D, E…）です。固定ド・移動ドでのソルフェージュ読みには対応していません。</span><span lang="en"> — Answers use letter names (C, D, E...). Fixed-do or moveable-do solfege syllables are not supported.</span>
+            </p>
+            <p>
+                <strong><span lang="ja">テンポ付きリアルタイム初見</span><span lang="en">Real-time sight reading under tempo pressure</span></strong><span lang="ja"> — 出題はテンポなしの1音ずつです。実際の初見演奏のように、流れてくる楽譜をリアルタイムで読む練習はできません。アプリで鍛えた音名識別の反射速度を、実際の楽譜演奏に応用する形での活用を想定しています。</span><span lang="en"> — Notes are presented one at a time without tempo. You cannot practice reading a flowing score in real time as in actual sight reading performance. The app is designed to build pitch name recognition reflexes that you then apply to real score reading.</span>
+            </p>
+        </div>
+
+        <p>
+            <span lang="ja">ソルフェージュPROの Sight Reading が直接支援できるのは、五線譜上の音名識別の速度と正確性の向上です。「楽譜を見て音名がわかる」という土台を固めるツールであり、実際の演奏における初見力を完成させるものではありません。</span>
+            <span lang="en">What Solfege PRO's Sight Reading directly supports is improving the speed and accuracy of pitch name identification on the staff. It's a tool for solidifying the foundation of "seeing a note and knowing its name" — not for completing real-world sight reading performance ability.</span>
+        </p>
+
+        <!-- Section 7 -->
+        <h2 id="how-to-use"><span lang="ja">おすすめの使い方</span><span lang="en">Recommended Usage</span></h2>
+
+        <p>
+            <span lang="ja">ソルフェージュPROの Sight Reading は、以下の順序で段階的に使うことを想定して設計されています。</span>
+            <span lang="en">Solfege PRO's Sight Reading is designed to be used in the following progressive order.</span>
+        </p>
+
+        <ol>
+            <li><strong><span lang="ja">ト音記号 + Cメジャー + 幹音のみ</span><span lang="en">Treble clef + C major + naturals only</span></strong><span lang="ja"> — 線と間の位置を反射で読めるようにする。ここが全ての土台。</span><span lang="en"> — Build reflexive line/space reading. This is the foundation for everything.</span></li>
+            <li><strong><span lang="ja">キーを1つずつ追加</span><span lang="en">Add keys one at a time</span></strong><span lang="ja"> — Gメジャー（♯1つ）、Fメジャー（♭1つ）から。各調で変化する音を意識しながら。</span><span lang="en"> — Start with G major (1 sharp), F major (1 flat). Notice which notes change in each key.</span></li>
+            <li><strong><span lang="ja">ヘ音記号を追加</span><span lang="en">Add bass clef</span></strong><span lang="ja"> — 最初はCメジャーで。ト音記号とは「別の系」として練習する。</span><span lang="en"> — Start in C major. Practice it as a separate system from treble clef.</span></li>
+            <li><strong><span lang="ja">加線をONに</span><span lang="en">Turn on ledger lines</span></strong><span lang="ja"> — 五線の外の音域を恐れなくなるまで繰り返す。</span><span lang="en"> — Repeat until you're comfortable with notes beyond the staff.</span></li>
+            <li><strong><span lang="ja">苦手克服モードを活用</span><span lang="en">Use weak point focus mode</span></strong><span lang="ja"> — 自分のミスパターンを確認し、弱点を集中的に潰す。</span><span lang="en"> — Review your error patterns and target your weak spots.</span></li>
+            <li><strong><span lang="ja">実際の楽譜に戻る</span><span lang="en">Return to real sheet music</span></strong><span lang="ja"> — アプリで鍛えた反射速度を、実際の演奏に持ち帰る。</span><span lang="en"> — Take the reflexes built in the app back to actual performance.</span></li>
+        </ol>
+
+        <div class="article-note">
+            <div class="article-note__title"><span lang="ja">使い方のコツ</span><span lang="en">Usage Tip</span></div>
+            <p><span lang="ja">1回のセッションは短くてOKです。毎日5分、同じ設定で繰り返すだけで、音名の反射速度は着実に上がります。「考えて答える」から「見た瞬間にわかる」への変化は、反復の中で自然に起こります。</span><span lang="en">Sessions can be short. Just 5 minutes a day at the same settings, and your note recognition speed will steadily improve. The shift from "thinking to answer" to "knowing instantly" happens naturally through repetition.</span></p>
+        </div>
+
+        <!-- Visual: Good vs Bad Comparison -->
+        <div class="comparison-visual">
+            <div class="comparison-card comparison-card--bad">
+                <div class="comparison-card__header"><span lang="ja">効果が出にくい</span><span lang="en">Less Effective</span></div>
+                <div class="comparison-card__body">
+                    <p><span lang="ja">全キー・全記号・加線あり・臨時記号ありで最初から練習する。難しすぎて嫌になる。結果画面を見ずに閉じる。</span><span lang="en">Starting with all keys, both clefs, ledger lines, and accidentals from the beginning. Too hard, gets frustrating. Closing the result screen without reviewing.</span></p>
+                </div>
+            </div>
+            <div class="comparison-card comparison-card--good">
+                <div class="comparison-card__header"><span lang="ja">効果が出やすい</span><span lang="en">More Effective</span></div>
+                <div class="comparison-card__body">
+                    <p><span lang="ja">Cメジャー・ト音記号から始める → 正答率が安定したらキーを1つ追加 → エラー分析で弱点を確認 → 苦手克服モードで集中練習 → 段階的に難易度を上げる。</span><span lang="en">Start with C major, treble clef → Add one key when accuracy is stable → Check error analysis for weak spots → Use weak point focus mode → Gradually increase difficulty.</span></p>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Final CTA -->
+    <section class="article-cta">
+        <h2 class="article-cta__title"><span lang="ja">まず、自分の譜読み力を確認しよう</span><span lang="en">Start by Checking Your Sight Reading Ability</span></h2>
+        <p class="article-cta__text">
+            <span lang="ja">譜読みは、漠然と「できる」「できない」で片付けるものではありません。<br>どの音部記号で、どの音域で、どの調で迷うのか。分解して弱点を知ること。<br>それが、楽譜がスムーズに読めるようになる第一歩です。<br>ソルフェージュPROの Sight Reading で、まず自分の読譜力を測ってみてください。</span>
+            <span lang="en">Sight reading isn't something you simply "can" or "can't" do.<br>Which clef, which range, which key trips you up? Break it down and find your weak spots.<br>That's the first step to reading music fluently.<br>Try checking your reading ability with Solfege PRO's Sight Reading.</span>
+        </p>
+        <a href="https://apps.apple.com/app/id6756626617" class="article-cta__button"><span lang="ja">App Storeでダウンロード</span><span lang="en">Download on App Store</span></a>
+    </section>
+
+    <!-- Related Content -->
+    <div class="article-related">
+        <div class="article-related__title"><span lang="ja">関連コンテンツ</span><span lang="en">Related Content</span></div>
+        <a href="rhythm-training.html" class="article-related__link">
+            <div class="article-related__link-title"><span lang="ja">リズム感とは何か — 前乗り・後乗り・ばらつき・ポケットを分解して理解する</span><span lang="en">What Is Rhythmic Feel? — Breaking Down Rushing, Dragging, Inconsistency, and Pocket</span></div>
+            <div class="article-related__link-desc"><span lang="ja">リズム感を構成する5つの要素と、タイミング精度を改善するための練習法</span><span lang="en">Five elements of rhythmic feel and practice methods to improve timing accuracy</span></div>
+        </a>
+        <a href="../" class="article-related__link">
+            <div class="article-related__link-title"><span lang="ja">ソルフェージュPRO 練習ガイド</span><span lang="en">Solfege PRO Practice Guide</span></div>
+            <div class="article-related__link-desc"><span lang="ja">ギター・ベース・ドラム・ピアノ・ボーカル向けの課題別練習メニュー</span><span lang="en">Challenge-based practice menus for guitar, bass, drums, piano, and vocals</span></div>
+        </a>
+    </div>
+
+    <!-- Article Note -->
+    <aside class="article-endnote">
+        <p class="article-endnote__text">
+            <span lang="ja">この記事は、音楽教育で広く使われる読譜の基礎概念と、ソルフェージュPROの機能設計をもとに整理しています。譜読みの学習方法には様々なアプローチがあり、ここで紹介した方法が全ての学習者に最適とは限りません。アプリ内の Sight Reading は音名識別の速度と正確性の向上を支援するものであり、実際の演奏における総合的な初見力の完成を保証するものではありません。</span>
+            <span lang="en">This article is organized based on widely used foundational concepts in music notation education and the feature design of Solfege PRO. There are many approaches to learning sight reading, and the methods presented here may not be optimal for every learner. The in-app Sight Reading supports improving the speed and accuracy of pitch name identification, and does not guarantee completion of comprehensive sight reading ability in real performance.</span>
+        </p>
+    </aside>
+
+    <!-- Footer -->
+    <footer class="article-footer">
+        <p class="article-footer__text">
+            &copy; 2025 <span lang="ja">ソルフェージュPRO</span><span lang="en">Solfege PRO</span> &mdash;
+            <a href="https://apps.apple.com/app/id6756626617" class="article-footer__link">App Store</a>
+        </p>
+    </footer>
+
+    <!-- Language Toggle Script -->
+    <script>
+    (function() {
+        var langToggle = document.getElementById('lang-toggle');
+        var langText = document.getElementById('lang-text');
+        var currentLang = localStorage.getItem('lang') || 'ja';
+
+        function applyLanguage(lang) {
+            document.documentElement.setAttribute('data-lang', lang);
+            langText.textContent = lang === 'ja' ? 'EN' : 'JA';
+            document.title = lang === 'ja'
+                ? '譜読みとは何か — 五線譜を素早く読むための基礎と練習法 | ソルフェージュPRO'
+                : 'What Is Sight Reading? — Foundations and Practice for Reading Music Notation | Solfege PRO';
+            localStorage.setItem('lang', lang);
+            currentLang = lang;
+        }
+
+        // Apply language immediately
+        document.documentElement.setAttribute('data-lang', currentLang);
+        langText.textContent = currentLang === 'ja' ? 'EN' : 'JA';
+
+        langToggle.addEventListener('click', function() {
+            applyLanguage(currentLang === 'ja' ? 'en' : 'ja');
+        });
+    })();
+    </script>
+
+</body>
+</html>

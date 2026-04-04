@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>コードを聴き分ける力とは何か — 和音の響きを理解する | ソルフェージュPRO</title>
+    <meta name="description" content="コード認識は、同時に鳴る音の響きからコードの種類を聴き分ける力です。Major/Minorの基本から7thコード、テンションまで、段階的な練習法を解説します。">
+
+    <!-- Canonical -->
+    <link rel="canonical" href="https://nmswshg.github.io/solfege-pro-docs/guides/ear-training-chords.html">
+
+    <!-- OGP -->
+    <meta property="og:title" content="コードを聴き分ける力とは何か — 和音の響きを理解する">
+    <meta property="og:description" content="Major? Minor? 7th? コードの響きを聴き分ける力は、音程の理解から段階的に鍛えられます。">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://nmswshg.github.io/solfege-pro-docs/guides/ear-training-chords.html">
+    <meta property="og:site_name" content="ソルフェージュPRO">
+    <meta property="og:image" content="https://nmswshg.github.io/solfege-pro-docs/AppIcon.png">
+    <meta property="og:locale" content="ja_JP">
+    <meta property="article:published_time" content="2026-03-31">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="コードを聴き分ける力とは何か — 和音の響きを理解する">
+    <meta name="twitter:description" content="Major? Minor? 7th? コードの響きを聴き分ける力は、音程の理解から段階的に鍛えられます。">
+    <meta name="twitter:image" content="https://nmswshg.github.io/solfege-pro-docs/AppIcon.png">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="../style.css?v=2">
+    <link rel="stylesheet" href="article.css?v=2">
+
+    <style>
+        /* Chord Type Grid */
+        .chord-grid {
+            background: var(--surface);
+            border-radius: var(--radius-xl);
+            padding: var(--space-xl);
+            margin: var(--space-xl) 0;
+            border: 1px solid var(--surface-light);
+            overflow-x: auto;
+        }
+        .chord-grid__section-title {
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: var(--space-md);
+            margin-top: var(--space-lg);
+        }
+        .chord-grid__section-title:first-of-type {
+            margin-top: 0;
+        }
+        .chord-grid__row {
+            display: flex;
+            align-items: center;
+            margin-bottom: var(--space-sm);
+            gap: var(--space-sm);
+        }
+        .chord-grid__name {
+            min-width: 100px;
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--text-primary);
+            flex-shrink: 0;
+        }
+        .chord-grid__intervals {
+            display: flex;
+            gap: 3px;
+            flex: 1;
+        }
+        .chord-grid__interval {
+            padding: 4px 10px;
+            border-radius: var(--radius-sm);
+            font-size: 12px;
+            font-weight: 600;
+            text-align: center;
+            min-width: 44px;
+        }
+        .interval--root { background: var(--primary); color: var(--background); }
+        .interval--major { background: rgba(74, 222, 128, 0.25); color: #4ADE80; }
+        .interval--minor { background: rgba(96, 165, 250, 0.25); color: #60A5FA; }
+        .interval--perfect { background: rgba(251, 191, 36, 0.25); color: #FBBF24; }
+        .interval--dim { background: rgba(248, 113, 113, 0.25); color: #F87171; }
+        .interval--aug { background: rgba(192, 132, 252, 0.25); color: #C084FC; }
+
+        @media (max-width: 768px) {
+            .chord-grid { padding: var(--space-md); }
+            .chord-grid__row { flex-direction: column; align-items: flex-start; gap: var(--space-xs); }
+            .chord-grid__name { min-width: auto; }
+            .chord-grid__interval { min-width: 36px; padding: 3px 8px; font-size: 11px; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="article-nav">
+        <div class="article-nav__container">
+            <a href="../" class="article-nav__back">&larr; <span lang="ja">練習ガイド</span><span lang="en">Practice Guide</span></a>
+            <a href="../" class="article-nav__logo">
+                <img src="../AppIcon.png" alt="Solfege PRO" class="article-nav__logo-icon">
+                <span class="article-nav__logo-text"><span lang="ja">ソルフェージュPRO</span><span lang="en">Solfege PRO</span></span>
+            </a>
+            <button class="settings-btn" id="lang-toggle" title="Toggle language">
+                <span id="lang-text">EN</span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Article Header -->
+    <header class="article-header">
+        <div class="article-header__meta">
+            <span class="article-header__tag">Chord Recognition</span>
+            <span><span lang="ja">読了: 約8分</span><span lang="en">8 min read</span></span>
+        </div>
+        <h1 class="article-header__title">
+            <span lang="ja">コードを聴き分ける力とは何か<br>和音の響きを理解する</span>
+            <span lang="en">What Is Chord Recognition?<br>Understanding Harmonic Sounds</span>
+        </h1>
+        <p class="article-header__lead">
+            <span lang="ja">コードの響きを「なんとなく明るい・暗い」で終わらせない。構成音の違いを知り、聴き分けの精度を段階的に上げていく方法を解説します。</span>
+            <span lang="en">Don't stop at "it sounds kinda bright or dark." Learn the differences in chord tones and build your recognition accuracy step by step.</span>
+        </p>
+    </header>
+
+    <!-- Article Body -->
+    <main class="article-body">
+
+        <!-- Section 1 -->
+        <h2 id="what-is-chord-recognition"><span lang="ja">コードを聴き分けるとは</span><span lang="en">What Is Chord Recognition?</span></h2>
+
+        <p>
+            <span lang="ja">コード認識とは、同時に鳴る複数の音を聴いて、そのコードの種類（クオリティ）を特定する力です。ギターやピアノで「ジャーン」と鳴ったとき、それがMajorなのかMinorなのか、7thが含まれているのか。耳だけで判断できる力。</span>
+            <span lang="en">Chord recognition is the ability to hear a group of simultaneous notes and identify the chord quality. When a guitar or piano strikes a chord, can you tell whether it's Major or Minor? Does it contain a 7th? It's the skill of making that judgment by ear alone.</span>
+        </p>
+
+        <p>
+            <span lang="ja">これは作曲、編曲、耳コピ、セッションなど、あらゆる音楽活動の土台になる力です。楽譜がなくても、聴こえた和音を理解できる。その力があれば、音楽の聴き方そのものが変わります。</span>
+            <span lang="en">This is a foundational skill for composition, arrangement, transcription, and jam sessions. If you can understand the chords you hear without sheet music, the way you listen to music itself changes.</span>
+        </p>
+
+        <p>
+            <span lang="ja">ただし、コード認識は一朝一夕で身につくものではありません。音程（インターバル）の聴き取りが土台にあり、その上にコードの響きの理解が積み上がっていきます。</span>
+            <span lang="en">That said, chord recognition doesn't develop overnight. Interval recognition forms the foundation, and chord quality understanding is built on top of it.</span>
+        </p>
+
+        <!-- Section 2 -->
+        <h2 id="chord-types"><span lang="ja">コードの種類を理解する</span><span lang="en">Understanding Chord Types</span></h2>
+
+        <p>
+            <span lang="ja">コードは、ルート（根音）の上にどの音程を積み重ねるかで種類が決まります。まずは3和音（トライアド）から始めて、4和音（7thコード）、さらにテンション（拡張コード）へと進むのが自然な学習順序です。</span>
+            <span lang="en">A chord's quality is determined by which intervals are stacked above the root. The natural learning progression starts with triads, moves to 7th chords, and then extends to tensions.</span>
+        </p>
+
+        <!-- Chord Type Grid Visual -->
+        <div class="chord-grid">
+            <div class="diagram-title"><span lang="ja">コードタイプと構成音程</span><span lang="en">Chord Types and Their Intervals</span></div>
+
+            <div class="chord-grid__section-title"><span lang="ja">トライアド（3和音）</span><span lang="en">Triads</span></div>
+
+            <div class="chord-grid__row">
+                <div class="chord-grid__name">Major</div>
+                <div class="chord-grid__intervals">
+                    <div class="chord-grid__interval interval--root">R</div>
+                    <div class="chord-grid__interval interval--major">M3</div>
+                    <div class="chord-grid__interval interval--perfect">P5</div>
+                </div>
+            </div>
+            <div class="chord-grid__row">
+                <div class="chord-grid__name">Minor</div>
+                <div class="chord-grid__intervals">
+                    <div class="chord-grid__interval interval--root">R</div>
+                    <div class="chord-grid__interval interval--minor">m3</div>
+                    <div class="chord-grid__interval interval--perfect">P5</div>
+                </div>
+            </div>
+            <div class="chord-grid__row">
+                <div class="chord-grid__name">Diminished</div>
+                <div class="chord-grid__intervals">
+                    <div class="chord-grid__interval interval--root">R</div>
+                    <div class="chord-grid__interval interval--minor">m3</div>
+                    <div class="chord-grid__interval interval--dim">dim5</div>
+                </div>
+            </div>
+            <div class="chord-grid__row">
+                <div class="chord-grid__name">Augmented</div>
+                <div class="chord-grid__intervals">
+                    <div class="chord-grid__interval interval--root">R</div>
+                    <div class="chord-grid__interval interval--major">M3</div>
+                    <div class="chord-grid__interval interval--aug">aug5</div>
+                </div>
+            </div>
+
+            <div class="chord-grid__section-title"><span lang="ja">7thコード（4和音）</span><span lang="en">7th Chords</span></div>
+
+            <div class="chord-grid__row">
+                <div class="chord-grid__name">Maj7</div>
+                <div class="chord-grid__intervals">
+                    <div class="chord-grid__interval interval--root">R</div>
+                    <div class="chord-grid__interval interval--major">M3</div>
+                    <div class="chord-grid__interval interval--perfect">P5</div>
+                    <div class="chord-grid__interval interval--major">M7</div>
+                </div>
+            </div>
+            <div class="chord-grid__row">
+                <div class="chord-grid__name">m7</div>
+                <div class="chord-grid__intervals">
+                    <div class="chord-grid__interval interval--root">R</div>
+                    <div class="chord-grid__interval interval--minor">m3</div>
+                    <div class="chord-grid__interval interval--perfect">P5</div>
+                    <div class="chord-grid__interval interval--minor">m7</div>
+                </div>
+            </div>
+            <div class="chord-grid__row">
+                <div class="chord-grid__name">7 (dom)</div>
+                <div class="chord-grid__intervals">
+                    <div class="chord-grid__interval interval--root">R</div>
+                    <div class="chord-grid__interval interval--major">M3</div>
+                    <div class="chord-grid__interval interval--perfect">P5</div>
+                    <div class="chord-grid__interval interval--minor">m7</div>
+                </div>
+            </div>
+            <div class="chord-grid__row">
+                <div class="chord-grid__name">m7(b5)</div>
+                <div class="chord-grid__intervals">
+                    <div class="chord-grid__interval interval--root">R</div>
+                    <div class="chord-grid__interval interval--minor">m3</div>
+                    <div class="chord-grid__interval interval--dim">dim5</div>
+                    <div class="chord-grid__interval interval--minor">m7</div>
+                </div>
+            </div>
+            <div class="chord-grid__row">
+                <div class="chord-grid__name">dim7</div>
+                <div class="chord-grid__intervals">
+                    <div class="chord-grid__interval interval--root">R</div>
+                    <div class="chord-grid__interval interval--minor">m3</div>
+                    <div class="chord-grid__interval interval--dim">dim5</div>
+                    <div class="chord-grid__interval interval--dim">dim7</div>
+                </div>
+            </div>
+
+            <div class="chord-grid__section-title"><span lang="ja">テンションコード（拡張）</span><span lang="en">Extended Chords</span></div>
+
+            <div class="chord-grid__row">
+                <div class="chord-grid__name">9th</div>
+                <div class="chord-grid__intervals">
+                    <div class="chord-grid__interval interval--root">R</div>
+                    <div class="chord-grid__interval interval--major">M3</div>
+                    <div class="chord-grid__interval interval--perfect">P5</div>
+                    <div class="chord-grid__interval interval--minor">m7</div>
+                    <div class="chord-grid__interval interval--major">M9</div>
+                </div>
+            </div>
+            <div class="chord-grid__row">
+                <div class="chord-grid__name">11th</div>
+                <div class="chord-grid__intervals">
+                    <div class="chord-grid__interval interval--root">R</div>
+                    <div class="chord-grid__interval interval--major">M3</div>
+                    <div class="chord-grid__interval interval--perfect">P5</div>
+                    <div class="chord-grid__interval interval--minor">m7</div>
+                    <div class="chord-grid__interval interval--perfect">P11</div>
+                </div>
+            </div>
+            <div class="chord-grid__row">
+                <div class="chord-grid__name">13th</div>
+                <div class="chord-grid__intervals">
+                    <div class="chord-grid__interval interval--root">R</div>
+                    <div class="chord-grid__interval interval--major">M3</div>
+                    <div class="chord-grid__interval interval--perfect">P5</div>
+                    <div class="chord-grid__interval interval--minor">m7</div>
+                    <div class="chord-grid__interval interval--major">M13</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="article-note">
+            <div class="article-note__title"><span lang="ja">ポイント</span><span lang="en">Key Point</span></div>
+            <p><span lang="ja">MajorとMinorの違いは、3度の音程がM3（長3度）かm3（短3度）かだけです。この「3度の響き」を聴き分けることが、コード認識の最も基本的な出発点になります。</span><span lang="en">The only difference between Major and Minor is whether the 3rd is M3 (major 3rd) or m3 (minor 3rd). Hearing this "quality of the 3rd" is the most fundamental starting point for chord recognition.</span></p>
+        </div>
+
+        <!-- Section 3 -->
+        <h2 id="common-walls"><span lang="ja">よくある壁</span><span lang="en">Common Walls</span></h2>
+
+        <h3 id="major-minor"><span lang="ja">MajorとMinorの混同</span><span lang="en">Major vs Minor Confusion</span></h3>
+        <p>
+            <span lang="ja">最も基本的でありながら、最も多くの人がつまずくポイントです。「明るい＝Major、暗い＝Minor」という説明は方向としては合っていますが、実際にコードを聴くと、テンポや音域、楽器の音色によって「明暗」の印象が変わります。大事なのは「3度の音程の響き」を直接聴き取る力を鍛えることです。</span>
+            <span lang="en">This is the most basic yet the most common stumbling block. The explanation "bright = Major, dark = Minor" points in the right direction, but in practice, the impression of brightness or darkness changes with tempo, register, and timbre. What matters is training your ability to directly hear the quality of the 3rd interval.</span>
+        </p>
+
+        <h3 id="seventh-confusion"><span lang="ja">7thコードの種類が似て聴こえる</span><span lang="en">7th Chord Types Sound Similar</span></h3>
+        <p>
+            <span lang="ja">Maj7、m7、7（ドミナント7th）。7th音が加わるとコードの響きは豊かになりますが、それぞれの違いは微妙です。Maj7の「透明感」、m7の「柔らかさ」、ドミナント7thの「緊張感」。これらの違いは、トライアドを十分に聴き分けられるようになってから取り組むのが効果的です。</span>
+            <span lang="en">Maj7, m7, dominant 7th. The 7th enriches the sound, but the differences between them are subtle. The "transparency" of Maj7, the "softness" of m7, the "tension" of dominant 7th. It's most effective to tackle these after you can reliably distinguish triads.</span>
+        </p>
+
+        <h3 id="inversions"><span lang="ja">転回形で印象が変わる</span><span lang="en">Inversions Change the Character</span></h3>
+        <p>
+            <span lang="ja">同じCメジャーでも、ルートポジション（C-E-G）と第1転回形（E-G-C）では響きの印象が変わります。特にベース音が変わると、コード全体の重心が移動するため、慣れないうちは同じコードに聴こえないことがあります。</span>
+            <span lang="en">Even the same C Major sounds different in root position (C-E-G) versus first inversion (E-G-C). When the bass note changes, the entire harmonic center of gravity shifts, so the same chord may not sound the same until you're accustomed to inversions.</span>
+        </p>
+
+        <h3 id="block-vs-arpeggiated"><span lang="ja">ブロック再生とアルペジオ再生の差</span><span lang="en">Block vs Arpeggiated Recognition</span></h3>
+        <p>
+            <span lang="ja">全音を同時に鳴らすブロック再生と、一音ずつ順に鳴らすアルペジオ再生では、認識の難易度が異なります。アルペジオでは各音を個別に追えるため分析しやすいですが、ブロックでは和音全体の「塊の響き」を一瞬で判断する必要があります。実際の演奏では両方の聴き方が必要です。</span>
+            <span lang="en">Block playback (all notes simultaneously) and arpeggiated playback (notes one at a time) have different difficulty levels. Arpeggio lets you track each note individually, making analysis easier. But block chords require you to judge the "mass of sound" instantly. Real music requires both listening modes.</span>
+        </p>
+
+        <!-- Section 4 -->
+        <h2 id="effective-practice"><span lang="ja">効果的な練習法</span><span lang="en">Effective Practice Methods</span></h2>
+
+        <h3 id="start-major-minor"><span lang="ja">MajorとMinorだけから始める</span><span lang="en">Start with Major and Minor Only</span></h3>
+        <p>
+            <span lang="ja">いきなり多くのコードタイプに挑戦するのは非効率です。まずMajorとMinorの2択を、どの音域・どのテンポでも安定して90%以上正解できるようになること。この土台がないと、7thコードに進んでも混乱するだけです。</span>
+            <span lang="en">Jumping into many chord types at once is inefficient. First, reach 90%+ accuracy on the Major vs Minor binary choice, in any register and at any tempo. Without this foundation, advancing to 7th chords will only add confusion.</span>
+        </p>
+
+        <h3 id="hear-the-third"><span lang="ja">3度の音を意識して聴く</span><span lang="en">Learn to Hear the 3rd</span></h3>
+        <p>
+            <span lang="ja">コードの「明暗」を決定づけるのは3度の音程です。コードを聴いたとき、ルートと3度の関係に意識を集中させる。アルペジオモードで聴いて、2番目に鳴る音（3度）の位置を確認する。この「3度を聴く耳」が、コード認識の核になります。</span>
+            <span lang="en">The 3rd determines the "brightness" of a chord. When hearing a chord, focus on the relationship between root and 3rd. Use arpeggiated mode and confirm the position of the second note (the 3rd). This "ear for the 3rd" is the core of chord recognition.</span>
+        </p>
+
+        <h3 id="add-seventh"><span lang="ja">7thコードは段階的に追加する</span><span lang="en">Add 7th Chords Gradually</span></h3>
+        <p>
+            <span lang="ja">トライアドが安定してきたら、まずMaj7を追加。次にm7、そしてドミナント7th。一度に全部を解禁するのではなく、1種類ずつ追加して、その違いが安定して聴き分けられるようになってから次に進みましょう。</span>
+            <span lang="en">Once triads are stable, add Maj7 first. Then m7, then dominant 7th. Don't unlock everything at once. Add one type at a time, and only move to the next when you can reliably distinguish it.</span>
+        </p>
+
+        <h3 id="arpeggiated-then-block"><span lang="ja">アルペジオで分析、ブロックで速度を上げる</span><span lang="en">Arpeggio for Analysis, Block for Speed</span></h3>
+        <p>
+            <span lang="ja">新しいコードタイプを学ぶときは、まずアルペジオ再生で構成音を1つずつ確認する。響きの特徴をつかめたら、ブロック再生に切り替えて瞬時の判断力を鍛える。この2段階のアプローチが効果的です。</span>
+            <span lang="en">When learning a new chord type, start with arpeggiated playback to confirm each note. Once you grasp the sound's character, switch to block playback and train instant recognition. This two-stage approach is effective.</span>
+        </p>
+
+        <!-- Section 5 -->
+        <h2 id="what-app-can-do"><span lang="ja">ソルフェージュPROでできること</span><span lang="en">What Solfege PRO Can Do</span></h2>
+
+        <p>
+            <span lang="ja">ソルフェージュPROの Chord Recognition は、コードの響きを段階的に聴き分ける力を鍛えるトレーニングツールです。</span>
+            <span lang="en">Solfege PRO's Chord Recognition is a training tool for building your ability to distinguish chord qualities step by step.</span>
+        </p>
+
+        <h3><span lang="ja">20種類以上のコードタイプ</span><span lang="en">Over 20 Chord Types</span></h3>
+        <p>
+            <span lang="ja">基本トライアド（Major, Minor, Dim, Aug）から7thコード、テンションコードまで、20種類以上のコードタイプをカバーしています。すべてを一度に有効にする必要はなく、自分のレベルに合わせて選択できます。</span>
+            <span lang="en">Covers 30+ chord types from basic triads (Major, Minor, Dim, Aug) to 7th chords and tensions. You don't need to enable all of them at once — select based on your current level.</span>
+        </p>
+
+        <h3><span lang="ja">5段階の難易度設定</span><span lang="en">5 Difficulty Levels</span></h3>
+        <p>
+            <span lang="ja">バークリー音楽院のイヤートレーニングカリキュラムを参考に、5段階の難易度を設定しています。Basic Triads → Extended Triads → 7th Chords → Advanced 7ths → Tensionsと、段階的に進むことで無理なくコードの語彙を広げられます。</span>
+            <span lang="en">Based on the Berklee College of Music ear training curriculum, five difficulty levels guide your progression. Basic Triads, Extended Triads, 7th Chords, Advanced 7ths, Tensions — advancing step by step lets you expand your chord vocabulary without overwhelm.</span>
+        </p>
+
+        <h3><span lang="ja">ブロック / アルペジオ再生</span><span lang="en">Block / Arpeggiated Playback</span></h3>
+        <p>
+            <span lang="ja">同じコードをブロック（同時再生）とアルペジオ（分散再生）の両方で聴けます。分析モードとしてアルペジオを使い、実践モードとしてブロックを使う、という切り替えが可能です。</span>
+            <span lang="en">Hear the same chord in both block (simultaneous) and arpeggiated (spread) playback. Use arpeggio as an analysis mode and block as a practical mode.</span>
+        </p>
+
+        <h3><span lang="ja">比較再生</span><span lang="en">Comparative Playback</span></h3>
+        <p>
+            <span lang="ja">間違えたとき、自分の回答のコードと正解のコードを続けて再生できます。「どこが違ったのか」を音で確認することで、響きの違いの理解が深まります。</span>
+            <span lang="en">When you make a mistake, you can hear your answer and the correct chord played back-to-back. Hearing "what was different" in sound deepens your understanding of tonal distinctions.</span>
+        </p>
+
+        <h3><span lang="ja">苦手克服モード</span><span lang="en">Weak Point Focus</span></h3>
+        <p>
+            <span lang="ja">正答率の低いコードタイプを自動的に多く出題します。得意なコードに時間を使いすぎず、弱点に集中できます。</span>
+            <span lang="en">Automatically increases the frequency of chord types you struggle with. Focus your time on weaknesses instead of spending it on what you already know.</span>
+        </p>
+
+        <div class="cycle-diagram">
+            <div class="cycle-step">
+                <div class="cycle-step__label"><span lang="ja">聴く</span><span lang="en">Listen</span></div>
+                <div class="cycle-step__desc"><span lang="ja">コード再生</span><span lang="en">Hear a chord</span></div>
+            </div>
+            <div class="cycle-arrow">&rarr;</div>
+            <div class="cycle-step">
+                <div class="cycle-step__label"><span lang="ja">答える</span><span lang="en">Answer</span></div>
+                <div class="cycle-step__desc"><span lang="ja">コードタイプ選択</span><span lang="en">Choose chord type</span></div>
+            </div>
+            <div class="cycle-arrow">&rarr;</div>
+            <div class="cycle-step">
+                <div class="cycle-step__label"><span lang="ja">比較</span><span lang="en">Compare</span></div>
+                <div class="cycle-step__desc"><span lang="ja">正解と比較再生</span><span lang="en">Hear the difference</span></div>
+            </div>
+            <div class="cycle-arrow">&rarr;</div>
+            <div class="cycle-step">
+                <div class="cycle-step__label"><span lang="ja">記録</span><span lang="en">Track</span></div>
+                <div class="cycle-step__desc"><span lang="ja">正答率・苦手分析</span><span lang="en">Accuracy & weak points</span></div>
+            </div>
+        </div>
+
+        <!-- Section 6 -->
+        <h2 id="limitations"><span lang="ja">ソルフェージュPROだけでは直接扱いきれないこと</span><span lang="en">What Solfege PRO Does Not Directly Cover</span></h2>
+
+        <p>
+            <span lang="ja">正直に書きます。</span>
+            <span lang="en">Let's be honest.</span>
+        </p>
+
+        <div class="article-honest">
+            <div class="article-honest__title"><span lang="ja">アプリでカバーできない領域</span><span lang="en">Areas Beyond the App's Scope</span></div>
+            <p>
+                <strong><span lang="ja">コードシンボル入力</span><span lang="en">Chord symbol input</span></strong><span lang="ja"> — 回答は選択式（Multiple Choice）のみです。コードネームを自分でタイプする形式には対応していません。</span><span lang="en"> — Answers are multiple choice only. Typing chord names yourself is not supported.</span>
+            </p>
+            <p>
+                <strong><span lang="ja">実楽器の音色</span><span lang="en">Real instrument sounds</span></strong><span lang="ja"> — 音源はピアノ音源を使用しています。ギターやオルガンなど、実楽器の音色でのトレーニングはできません。</span><span lang="en"> — The app uses piano tones. Training with guitar, organ, or other real instrument timbres is not available.</span>
+            </p>
+            <p>
+                <strong><span lang="ja">転回形の特定トレーニング</span><span lang="en">Inversion-specific training</span></strong><span lang="ja"> — 転回形を含む設定や転回形の判定問題に基本的に対応していますが、転回形に特化した段階的カリキュラムはありません。コードクオリティの判定がメインの設計です。</span><span lang="en"> — Basic inversion settings and inversion identification questions are supported, but there is no dedicated step-by-step curriculum focused solely on inversions. The primary design focuses on chord quality identification.</span>
+            </p>
+            <p>
+                <strong><span lang="ja">分数コード（スラッシュコード）</span><span lang="en">Slash chords</span></strong><span lang="ja"> — C/Eのような分数コード表記への対応はありません。</span><span lang="en"> — Slash chord notation like C/E is not supported.</span>
+            </p>
+            <p>
+                <strong><span lang="ja">和声的な文脈</span><span lang="en">Harmonic context</span></strong><span lang="ja"> — コードは単体で出題されます。「コード進行の中でこのコードがどう機能するか」は、Chord Recognition単体では扱いません（Progression Trainingが別途あります）。</span><span lang="en"> — Chords are presented in isolation. "How this chord functions within a progression" is not covered by Chord Recognition alone (Progression Training is available separately).</span>
+            </p>
+        </div>
+
+        <p>
+            <span lang="ja">ソルフェージュPROが直接支援できるのは、コードの響き（クオリティ）を聴き分ける力の段階的な構築です。和声的な文脈の中でコードを理解する力は、Progression Trainingや実際の曲の耳コピなど、別の練習で補完する必要があります。</span>
+            <span lang="en">What Solfege PRO directly supports is the step-by-step building of your ability to distinguish chord qualities. Understanding chords in harmonic context requires complementary practice through Progression Training or transcribing real music.</span>
+        </p>
+
+        <!-- Mid-article CTA -->
+        <div class="article-cta-subtle">
+            <p class="article-cta-subtle__text"><span lang="ja">無料セッションで、自分のコード認識力を確認できます</span><span lang="en">Check your chord recognition with free sessions</span></p>
+            <a href="https://apps.apple.com/app/id6756626617" class="article-cta-subtle__button"><span lang="ja">App Storeで見る</span><span lang="en">View on App Store</span></a>
+        </div>
+
+        <!-- Section 7 -->
+        <h2 id="how-to-use"><span lang="ja">おすすめの使い方</span><span lang="en">Recommended Usage</span></h2>
+
+        <p>
+            <span lang="ja">ソルフェージュPROの Chord Recognition は、以下の順序で進めることを想定しています。</span>
+            <span lang="en">Solfege PRO's Chord Recognition is designed to be used in the following progression.</span>
+        </p>
+
+        <ol>
+            <li><strong><span lang="ja">Basic Triads から始める</span><span lang="en">Start with Basic Triads</span></strong><span lang="ja"> — Major と Minor の2択で、安定して80%以上の正答率を目指す</span><span lang="en"> — Aim for a stable 80%+ accuracy on the Major vs Minor binary choice</span></li>
+            <li><strong><span lang="ja">アルペジオで構造を理解する</span><span lang="en">Use arpeggio to understand structure</span></strong><span lang="ja"> — 新しいコードタイプに挑戦するときは、まずアルペジオ再生で各音を確認する</span><span lang="en"> — When tackling a new chord type, start with arpeggiated playback to confirm each tone</span></li>
+            <li><strong><span lang="ja">80%を超えたら次の難易度へ</span><span lang="en">Advance when you pass 80%</span></strong><span lang="ja"> — 現在の難易度で80%以上を安定して出せるようになったら、次の段階に進む</span><span lang="en"> — When you consistently hit 80%+ at the current level, move to the next stage</span></li>
+            <li><strong><span lang="ja">苦手克服モードを活用する</span><span lang="en">Use weak point focus mode</span></strong><span lang="ja"> — 特定のコードタイプの正答率が低いまま止まっている場合に有効</span><span lang="en"> — Effective when your accuracy for specific chord types stalls</span></li>
+            <li><strong><span lang="ja">実際の曲で確認する</span><span lang="en">Verify with real music</span></strong><span lang="ja"> — アプリで鍛えた耳を、好きな曲の耳コピで試す。それが最終的なゴールです</span><span lang="en"> — Test the ear you've trained by transcribing your favorite songs. That's the ultimate goal</span></li>
+        </ol>
+
+        <div class="article-note">
+            <div class="article-note__title"><span lang="ja">使い方のコツ</span><span lang="en">Usage Tip</span></div>
+            <p><span lang="ja">コード認識の練習は、音程（インターバル）トレーニングと並行して行うのが効果的です。インターバルの聴き分けがコード認識の基礎になるため、両方を交互に行うことで理解が深まります。</span><span lang="en">Practicing chord recognition alongside interval training is effective. Since interval recognition forms the foundation for chord recognition, alternating between both deepens your understanding.</span></p>
+        </div>
+
+    </main>
+
+    <!-- Final CTA -->
+    <section class="article-cta">
+        <h2 class="article-cta__title"><span lang="ja">まず、自分のコード認識力を確認しよう</span><span lang="en">Start by Checking Your Chord Recognition</span></h2>
+        <p class="article-cta__text">
+            <span lang="ja">コードの聴き分けは、「明るい・暗い」の感覚だけでは頭打ちになります。<br>構成音の違いを理解し、段階的に語彙を広げていくこと。<br>ソルフェージュPROの Chord Recognition で、まず自分の現在地を確認してみてください。</span>
+            <span lang="en">Chord recognition hits a ceiling if you rely only on "bright vs dark" impressions.<br>Understand the differences in chord tones and gradually expand your vocabulary.<br>Check where you stand with Solfege PRO's Chord Recognition.</span>
+        </p>
+        <a href="https://apps.apple.com/app/id6756626617" class="article-cta__button"><span lang="ja">App Storeでダウンロード</span><span lang="en">Download on App Store</span></a>
+    </section>
+
+    <!-- Related Content -->
+    <div class="article-related">
+        <div class="article-related__title"><span lang="ja">関連コンテンツ</span><span lang="en">Related Content</span></div>
+        <a href="../" class="article-related__link">
+            <div class="article-related__link-title"><span lang="ja">ソルフェージュPRO 練習ガイド</span><span lang="en">Solfege PRO Practice Guide</span></div>
+            <div class="article-related__link-desc"><span lang="ja">ギター・ベース・ドラム・ピアノ・ボーカル向けの課題別練習メニュー</span><span lang="en">Challenge-based practice menus for guitar, bass, drums, piano, and vocals</span></div>
+        </a>
+    </div>
+
+    <!-- Article Note -->
+    <aside class="article-endnote">
+        <p class="article-endnote__text">
+            <span lang="ja">この記事は、バークリー音楽院のイヤートレーニングカリキュラムおよび一般的な音楽理論の知見をもとに整理しています。コードの響きの感じ方には個人差や音楽的背景による違いがあり、ここで紹介した分類がすべてのケースに当てはまるわけではありません。アプリ内のトレーニングはコードクオリティの認識力向上を支援するものであり、和声の総合的な理解を保証するものではありません。</span>
+            <span lang="en">This article is organized based on the Berklee College of Music ear training curriculum and general music theory knowledge. The perception of chord quality varies by individual and musical background, and the categories presented here may not apply to every case. The in-app training supports chord quality recognition improvement and does not guarantee comprehensive harmonic understanding.</span>
+        </p>
+    </aside>
+
+    <!-- Footer -->
+    <footer class="article-footer">
+        <p class="article-footer__text">
+            &copy; 2025 <span lang="ja">ソルフェージュPRO</span><span lang="en">Solfege PRO</span> &mdash;
+            <a href="https://apps.apple.com/app/id6756626617" class="article-footer__link">App Store</a>
+        </p>
+    </footer>
+
+    <!-- Language Toggle Script -->
+    <script>
+    (function() {
+        var langToggle = document.getElementById('lang-toggle');
+        var langText = document.getElementById('lang-text');
+        var currentLang = localStorage.getItem('lang') || 'ja';
+
+        function applyLanguage(lang) {
+            document.documentElement.setAttribute('data-lang', lang);
+            langText.textContent = lang === 'ja' ? 'EN' : 'JA';
+            document.title = lang === 'ja'
+                ? 'コードを聴き分ける力とは何か — 和音の響きを理解する | ソルフェージュPRO'
+                : 'What Is Chord Recognition? — Understanding Harmonic Sounds | Solfege PRO';
+            localStorage.setItem('lang', lang);
+            currentLang = lang;
+        }
+
+        document.documentElement.setAttribute('data-lang', currentLang);
+        langText.textContent = currentLang === 'ja' ? 'EN' : 'JA';
+
+        langToggle.addEventListener('click', function() {
+            applyLanguage(currentLang === 'ja' ? 'en' : 'ja');
+        });
+    })();
+    </script>
+
+</body>
+</html>

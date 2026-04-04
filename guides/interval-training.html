@@ -1,0 +1,832 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>音程の聴き分けとは何か — インターバルを理解して耳を鍛える | ソルフェージュPRO</title>
+    <meta name="description" content="音程の聴き分け（インターバル認識）は絶対音感ではなく相対音感のトレーニングです。13種類の音程の分類、難易度別の練習ステップ、よくある壁とその乗り越え方を解説します。">
+
+    <!-- Canonical -->
+    <link rel="canonical" href="https://nmswshg.github.io/solfege-pro-docs/guides/interval-training.html">
+
+    <!-- OGP -->
+    <meta property="og:title" content="音程の聴き分けとは何か — インターバルを理解して耳を鍛える">
+    <meta property="og:description" content="音程の聴き分けは絶対音感ではなく相対音感。13種類の音程を理解し、段階的に耳を鍛える方法を解説します。">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://nmswshg.github.io/solfege-pro-docs/guides/interval-training.html">
+    <meta property="og:site_name" content="ソルフェージュPRO">
+    <meta property="og:image" content="https://nmswshg.github.io/solfege-pro-docs/AppIcon.png">
+    <meta property="og:locale" content="ja_JP">
+    <meta property="article:published_time" content="2026-03-31">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="音程の聴き分けとは何か — インターバルを理解して耳を鍛える">
+    <meta name="twitter:description" content="音程の聴き分けは絶対音感ではなく相対音感。13種類の音程を理解し、段階的に耳を鍛える方法を解説します。">
+    <meta name="twitter:image" content="https://nmswshg.github.io/solfege-pro-docs/AppIcon.png">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="../style.css?v=2">
+    <link rel="stylesheet" href="article.css?v=2">
+
+    <!-- Page-specific styles for interval diagrams -->
+    <style>
+        /* Semitone Chart */
+        .semitone-chart {
+            background: var(--surface);
+            border-radius: var(--radius-xl);
+            padding: var(--space-xl);
+            margin: var(--space-xl) 0;
+            border: 1px solid var(--surface-light);
+            overflow-x: auto;
+        }
+
+        .semitone-track {
+            display: flex;
+            gap: 3px;
+            margin-top: var(--space-md);
+            min-width: 600px;
+        }
+
+        .semitone-block {
+            flex: 1;
+            min-width: 44px;
+            background: var(--surface-light);
+            border-radius: var(--radius-sm);
+            padding: var(--space-sm) 2px;
+            text-align: center;
+            transition: transform 0.2s ease;
+            position: relative;
+        }
+
+        .semitone-block:hover {
+            transform: translateY(-2px);
+        }
+
+        .semitone-block__name {
+            font-size: 12px;
+            font-weight: 700;
+            color: var(--primary);
+            display: block;
+        }
+
+        .semitone-block__count {
+            font-size: 10px;
+            color: var(--text-secondary);
+            display: block;
+            margin-top: 2px;
+        }
+
+        .semitone-block--perfect {
+            background: rgba(74, 222, 128, 0.15);
+            border: 1px solid rgba(74, 222, 128, 0.3);
+        }
+
+        .semitone-block--major {
+            background: rgba(96, 165, 250, 0.15);
+            border: 1px solid rgba(96, 165, 250, 0.3);
+        }
+
+        .semitone-block--minor {
+            background: rgba(251, 191, 36, 0.15);
+            border: 1px solid rgba(251, 191, 36, 0.3);
+        }
+
+        .semitone-block--tritone {
+            background: rgba(248, 113, 113, 0.15);
+            border: 1px solid rgba(248, 113, 113, 0.3);
+        }
+
+        .semitone-legend {
+            display: flex;
+            gap: var(--space-lg);
+            margin-top: var(--space-md);
+            font-size: 12px;
+            color: var(--text-secondary);
+            flex-wrap: wrap;
+        }
+
+        .semitone-legend__item {
+            display: flex;
+            align-items: center;
+            gap: var(--space-xs);
+        }
+
+        .semitone-legend__dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 3px;
+            flex-shrink: 0;
+        }
+
+        /* Difficulty Grid */
+        .difficulty-grid {
+            background: var(--surface);
+            border-radius: var(--radius-xl);
+            padding: var(--space-xl);
+            margin: var(--space-xl) 0;
+            border: 1px solid var(--surface-light);
+            overflow-x: auto;
+        }
+
+        .difficulty-row {
+            display: flex;
+            align-items: center;
+            margin-bottom: var(--space-md);
+            gap: var(--space-md);
+        }
+
+        .difficulty-row:last-child {
+            margin-bottom: 0;
+        }
+
+        .difficulty-row__label {
+            min-width: 120px;
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--primary);
+            flex-shrink: 0;
+        }
+
+        .difficulty-row__cells {
+            display: flex;
+            gap: 2px;
+            flex: 1;
+            min-width: 500px;
+        }
+
+        .interval-cell {
+            width: 42px;
+            height: 32px;
+            border-radius: var(--radius-sm);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 10px;
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+
+        .interval-cell--on {
+            background: var(--primary);
+            color: var(--background);
+        }
+
+        .interval-cell--off {
+            background: var(--surface-light);
+            color: var(--text-secondary);
+            opacity: 0.4;
+        }
+
+        .difficulty-row__count {
+            font-size: 12px;
+            color: var(--text-secondary);
+            min-width: 50px;
+            text-align: right;
+            flex-shrink: 0;
+        }
+
+        /* Playback Mode Visual */
+        .playback-modes {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--space-md);
+            margin: var(--space-xl) 0;
+        }
+
+        .playback-mode-card {
+            background: var(--surface);
+            border: 1px solid var(--surface-light);
+            border-radius: var(--radius-lg);
+            padding: var(--space-lg);
+            text-align: center;
+        }
+
+        .playback-mode-card__icon {
+            font-size: 24px;
+            margin-bottom: var(--space-sm);
+            display: block;
+        }
+
+        .playback-mode-card__name {
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: var(--space-xs);
+        }
+
+        .playback-mode-card__desc {
+            font-size: 12px;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        /* Wall items (common struggles) */
+        .wall-list {
+            margin-bottom: var(--space-lg);
+        }
+
+        .wall-item {
+            display: flex;
+            gap: var(--space-md);
+            padding: var(--space-md);
+            background: var(--surface);
+            border-radius: var(--radius-md);
+            margin-bottom: var(--space-sm);
+            border: 1px solid var(--surface-light);
+        }
+
+        .wall-item__label {
+            font-weight: 700;
+            color: var(--primary);
+            min-width: 160px;
+            font-size: 14px;
+            flex-shrink: 0;
+        }
+
+        .wall-item__desc {
+            font-size: 14px;
+            color: var(--text-secondary);
+            line-height: 1.7;
+        }
+
+        @media (max-width: 768px) {
+            .semitone-track {
+                min-width: 100%;
+                flex-wrap: wrap;
+            }
+
+            .semitone-block {
+                min-width: 60px;
+                flex: 0 0 calc(25% - 3px);
+            }
+
+            .difficulty-row {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: var(--space-xs);
+            }
+
+            .difficulty-row__label {
+                min-width: auto;
+            }
+
+            .difficulty-row__cells {
+                min-width: 100%;
+                flex-wrap: wrap;
+            }
+
+            .interval-cell {
+                flex: 1;
+                min-width: 36px;
+                width: auto;
+            }
+
+            .difficulty-row__count {
+                min-width: auto;
+            }
+
+            .playback-modes {
+                grid-template-columns: 1fr;
+            }
+
+            .wall-item {
+                flex-direction: column;
+                gap: var(--space-xs);
+            }
+
+            .wall-item__label {
+                min-width: auto;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="article-nav">
+        <div class="article-nav__container">
+            <a href="../" class="article-nav__back">&larr; <span lang="ja">練習ガイド</span><span lang="en">Practice Guide</span></a>
+            <a href="../" class="article-nav__logo">
+                <img src="../AppIcon.png" alt="Solfege PRO" class="article-nav__logo-icon">
+                <span class="article-nav__logo-text"><span lang="ja">ソルフェージュPRO</span><span lang="en">Solfege PRO</span></span>
+            </a>
+            <button class="settings-btn" id="lang-toggle" title="Toggle language">
+                <span id="lang-text">EN</span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Article Header -->
+    <header class="article-header">
+        <div class="article-header__meta">
+            <span class="article-header__tag">Interval Training</span>
+            <span><span lang="ja">読了: 約10分</span><span lang="en">10 min read</span></span>
+        </div>
+        <h1 class="article-header__title">
+            <span lang="ja">音程の聴き分けとは何か<br>インターバルを理解して<br>耳を鍛える</span>
+            <span lang="en">What Is Interval Recognition?<br>Understanding Intervals<br>to Train Your Ear</span>
+        </h1>
+        <p class="article-header__lead">
+            <span lang="ja">音程の聴き分けは「絶対音感」ではありません。2つの音の距離を聴き取る「相対音感」のトレーニングです。誰でも、段階的に鍛えることができます。</span>
+            <span lang="en">Interval recognition is not about perfect pitch. It's about training your relative pitch -- hearing the distance between two notes. Anyone can develop this skill, step by step.</span>
+        </p>
+    </header>
+
+    <!-- Article Body -->
+    <main class="article-body">
+
+        <!-- Section 1 -->
+        <h2 id="what-is-interval-recognition"><span lang="ja">"音程を聴き分ける"とは</span><span lang="en">What "Interval Recognition" Means</span></h2>
+
+        <p>
+            <span lang="ja">楽器を練習していると、「耳コピ」や「音感」という言葉に出会います。「あの人は耳がいい」「音感がある」 -- でもそれは具体的にどういう能力なのでしょうか。</span>
+            <span lang="en">When you practice an instrument, you encounter terms like "playing by ear" and "ear training." "They have a good ear" or "great pitch sense" -- but what does that actually mean?</span>
+        </p>
+
+        <p>
+            <span lang="ja">音程の聴き分け（インターバル認識）とは、<strong>2つの音がどれくらい離れているかを聴き取る力</strong>です。「ドとソ」が鳴ったときに、その距離が「完全5度」だと判断できること。これが音程の聴き分けです。</span>
+            <span lang="en">Interval recognition is <strong>the ability to hear how far apart two notes are</strong>. When you hear C and G, recognizing that the distance is a "perfect fifth" -- that's interval recognition.</span>
+        </p>
+
+        <p>
+            <span lang="ja">重要なのは、これは<strong>絶対音感とは別の能力</strong>だということです。絶対音感は「この音はラだ」と音名を当てる力です。一方、インターバル認識は「この2つの音は〇度離れている」と距離を判断する<strong>相対音感</strong>の領域です。</span>
+            <span lang="en">Crucially, this is <strong>a different skill from perfect pitch</strong>. Perfect pitch is the ability to identify a note by name -- "that's an A." Interval recognition, on the other hand, is about judging the distance: "these two notes are a ____ apart." This is the domain of <strong>relative pitch</strong>.</span>
+        </p>
+
+        <p>
+            <span lang="ja">相対音感は、練習によって鍛えることができます。幼少期に始めなければ身につかない絶対音感とは異なり、何歳からでも改善できる能力です。そして、耳コピ、アンサンブル、作曲、即興演奏 -- 音楽のあらゆる場面で役立ちます。</span>
+            <span lang="en">Relative pitch can be trained through practice. Unlike perfect pitch, which is difficult to develop after early childhood, relative pitch can be improved at any age. And it's useful everywhere in music -- playing by ear, ensemble playing, composing, and improvising.</span>
+        </p>
+
+        <div class="article-note">
+            <div class="article-note__title"><span lang="ja">ポイント</span><span lang="en">Key Point</span></div>
+            <p><span lang="ja">インターバル認識のトレーニングで鍛えられるのは「相対音感」です。絶対音感のトレーニングではありません。「音名を当てる」のではなく、「2音間の距離を聴き取る」力を養います。</span><span lang="en">Interval recognition training develops your relative pitch, not perfect pitch. The goal is not to name individual notes, but to hear the distance between two notes.</span></p>
+        </div>
+
+        <!-- Section 2 -->
+        <h2 id="interval-classification"><span lang="ja">音程の分類 -- P1からP8まで</span><span lang="en">Classifying Intervals -- From P1 to P8</span></h2>
+
+        <p>
+            <span lang="ja">1オクターブの中には、半音刻みで<strong>13種類</strong>の音程があります。それぞれに名前がついており、「完全系」「長短系」「トライトーン」の3つのグループに分けられます。</span>
+            <span lang="en">Within one octave, there are <strong>13 intervals</strong>, counted by semitones. Each has a name, and they fall into three groups: "perfect," "major/minor," and "tritone."</span>
+        </p>
+
+        <!-- Semitone Chart -->
+        <div class="semitone-chart">
+            <div class="diagram-title"><span lang="ja">半音数で見る13の音程</span><span lang="en">13 Intervals by Semitone Count</span></div>
+            <div class="semitone-track">
+                <div class="semitone-block semitone-block--perfect">
+                    <span class="semitone-block__name">P1</span>
+                    <span class="semitone-block__count">0</span>
+                </div>
+                <div class="semitone-block semitone-block--minor">
+                    <span class="semitone-block__name">m2</span>
+                    <span class="semitone-block__count">1</span>
+                </div>
+                <div class="semitone-block semitone-block--major">
+                    <span class="semitone-block__name">M2</span>
+                    <span class="semitone-block__count">2</span>
+                </div>
+                <div class="semitone-block semitone-block--minor">
+                    <span class="semitone-block__name">m3</span>
+                    <span class="semitone-block__count">3</span>
+                </div>
+                <div class="semitone-block semitone-block--major">
+                    <span class="semitone-block__name">M3</span>
+                    <span class="semitone-block__count">4</span>
+                </div>
+                <div class="semitone-block semitone-block--perfect">
+                    <span class="semitone-block__name">P4</span>
+                    <span class="semitone-block__count">5</span>
+                </div>
+                <div class="semitone-block semitone-block--tritone">
+                    <span class="semitone-block__name">TT</span>
+                    <span class="semitone-block__count">6</span>
+                </div>
+                <div class="semitone-block semitone-block--perfect">
+                    <span class="semitone-block__name">P5</span>
+                    <span class="semitone-block__count">7</span>
+                </div>
+                <div class="semitone-block semitone-block--minor">
+                    <span class="semitone-block__name">m6</span>
+                    <span class="semitone-block__count">8</span>
+                </div>
+                <div class="semitone-block semitone-block--major">
+                    <span class="semitone-block__name">M6</span>
+                    <span class="semitone-block__count">9</span>
+                </div>
+                <div class="semitone-block semitone-block--minor">
+                    <span class="semitone-block__name">m7</span>
+                    <span class="semitone-block__count">10</span>
+                </div>
+                <div class="semitone-block semitone-block--major">
+                    <span class="semitone-block__name">M7</span>
+                    <span class="semitone-block__count">11</span>
+                </div>
+                <div class="semitone-block semitone-block--perfect">
+                    <span class="semitone-block__name">P8</span>
+                    <span class="semitone-block__count">12</span>
+                </div>
+            </div>
+            <div class="semitone-legend">
+                <div class="semitone-legend__item">
+                    <div class="semitone-legend__dot" style="background:rgba(74,222,128,0.4);border:1px solid rgba(74,222,128,0.6);"></div>
+                    <span><span lang="ja">完全系 (Perfect)</span><span lang="en">Perfect</span></span>
+                </div>
+                <div class="semitone-legend__item">
+                    <div class="semitone-legend__dot" style="background:rgba(96,165,250,0.4);border:1px solid rgba(96,165,250,0.6);"></div>
+                    <span><span lang="ja">長 (Major)</span><span lang="en">Major</span></span>
+                </div>
+                <div class="semitone-legend__item">
+                    <div class="semitone-legend__dot" style="background:rgba(251,191,36,0.4);border:1px solid rgba(251,191,36,0.6);"></div>
+                    <span><span lang="ja">短 (Minor)</span><span lang="en">Minor</span></span>
+                </div>
+                <div class="semitone-legend__item">
+                    <div class="semitone-legend__dot" style="background:rgba(248,113,113,0.4);border:1px solid rgba(248,113,113,0.6);"></div>
+                    <span><span lang="ja">トライトーン (Tritone)</span><span lang="en">Tritone</span></span>
+                </div>
+            </div>
+        </div>
+
+        <p>
+            <span lang="ja">半音数が近い音程ほど、聴き分けが難しくなります。たとえば、P1（ユニゾン）とP8（オクターブ）は特徴的で覚えやすいですが、m3（3半音）とM3（4半音）はたった1半音の差しかなく、混同しやすい代表例です。</span>
+            <span lang="en">Intervals closer in semitone count are harder to distinguish. For example, P1 (unison) and P8 (octave) are distinctive and easy to remember, but m3 (3 semitones) and M3 (4 semitones) differ by only one semitone and are a classic source of confusion.</span>
+        </p>
+
+        <p>
+            <span lang="ja">各音程には、覚えやすくするための「リファレンスソング」がよく使われます。たとえば、P5は「スターウォーズ」の冒頭、P4は「蛍の光」、M3は「きらきら星」の出だしです。こうした曲の冒頭を頭の中で鳴らすことで、音程の距離感をつかみやすくなります。</span>
+            <span lang="en">Each interval has commonly used "reference songs" to aid memorization. For example, P5 is the opening of "Star Wars," P4 is "Auld Lang Syne," and M3 is "Twinkle Twinkle Little Star." Humming the start of these songs in your head helps anchor each interval's distance.</span>
+        </p>
+
+        <!-- Section 3 -->
+        <h2 id="difficulty-steps"><span lang="ja">難易度とステップ -- 段階的に音程を増やす</span><span lang="en">Difficulty Levels -- Adding Intervals Step by Step</span></h2>
+
+        <p>
+            <span lang="ja">13種類の音程を一度に覚えようとしても、混乱するだけです。効果的なのは、少ない音程から始めて、自信がついたら増やしていくアプローチです。</span>
+            <span lang="en">Trying to learn all 13 intervals at once will only cause confusion. The effective approach is to start with a small set and add more as your confidence grows.</span>
+        </p>
+
+        <!-- Difficulty Grid -->
+        <div class="difficulty-grid">
+            <div class="diagram-title"><span lang="ja">難易度別 -- 出題される音程</span><span lang="en">Intervals by Difficulty Level</span></div>
+            <div class="difficulty-row">
+                <div class="difficulty-row__label"><span lang="ja">初級</span><span lang="en">Beginner</span></div>
+                <div class="difficulty-row__cells">
+                    <div class="interval-cell interval-cell--off">P1</div>
+                    <div class="interval-cell interval-cell--off">m2</div>
+                    <div class="interval-cell interval-cell--on">M2</div>
+                    <div class="interval-cell interval-cell--off">m3</div>
+                    <div class="interval-cell interval-cell--on">M3</div>
+                    <div class="interval-cell interval-cell--on">P4</div>
+                    <div class="interval-cell interval-cell--off">TT</div>
+                    <div class="interval-cell interval-cell--on">P5</div>
+                    <div class="interval-cell interval-cell--off">m6</div>
+                    <div class="interval-cell interval-cell--off">M6</div>
+                    <div class="interval-cell interval-cell--off">m7</div>
+                    <div class="interval-cell interval-cell--off">M7</div>
+                    <div class="interval-cell interval-cell--on">P8</div>
+                </div>
+                <div class="difficulty-row__count"><span lang="ja">5種類</span><span lang="en">5 types</span></div>
+            </div>
+            <div class="difficulty-row">
+                <div class="difficulty-row__label"><span lang="ja">中級</span><span lang="en">Intermediate</span></div>
+                <div class="difficulty-row__cells">
+                    <div class="interval-cell interval-cell--off">P1</div>
+                    <div class="interval-cell interval-cell--off">m2</div>
+                    <div class="interval-cell interval-cell--on">M2</div>
+                    <div class="interval-cell interval-cell--on">m3</div>
+                    <div class="interval-cell interval-cell--on">M3</div>
+                    <div class="interval-cell interval-cell--on">P4</div>
+                    <div class="interval-cell interval-cell--off">TT</div>
+                    <div class="interval-cell interval-cell--on">P5</div>
+                    <div class="interval-cell interval-cell--on">m6</div>
+                    <div class="interval-cell interval-cell--on">M6</div>
+                    <div class="interval-cell interval-cell--off">m7</div>
+                    <div class="interval-cell interval-cell--off">M7</div>
+                    <div class="interval-cell interval-cell--on">P8</div>
+                </div>
+                <div class="difficulty-row__count"><span lang="ja">8種類</span><span lang="en">8 types</span></div>
+            </div>
+            <div class="difficulty-row">
+                <div class="difficulty-row__label"><span lang="ja">上級</span><span lang="en">Advanced</span></div>
+                <div class="difficulty-row__cells">
+                    <div class="interval-cell interval-cell--on">P1</div>
+                    <div class="interval-cell interval-cell--on">m2</div>
+                    <div class="interval-cell interval-cell--on">M2</div>
+                    <div class="interval-cell interval-cell--on">m3</div>
+                    <div class="interval-cell interval-cell--on">M3</div>
+                    <div class="interval-cell interval-cell--on">P4</div>
+                    <div class="interval-cell interval-cell--on">TT</div>
+                    <div class="interval-cell interval-cell--on">P5</div>
+                    <div class="interval-cell interval-cell--on">m6</div>
+                    <div class="interval-cell interval-cell--on">M6</div>
+                    <div class="interval-cell interval-cell--on">m7</div>
+                    <div class="interval-cell interval-cell--on">M7</div>
+                    <div class="interval-cell interval-cell--on">P8</div>
+                </div>
+                <div class="difficulty-row__count"><span lang="ja">13種類</span><span lang="en">13 types</span></div>
+            </div>
+        </div>
+
+        <p>
+            <span lang="ja">初級では、間隔が大きく特徴のはっきりした音程（M2, M3, P4, P5, P8）から始めます。中級で短3度・短6度・長6度が加わり、上級では半音違いの音程やトライトーンも含めた全13種類に挑戦します。</span>
+            <span lang="en">Beginners start with widely-spaced, distinctive intervals (M2, M3, P4, P5, P8). At intermediate level, m3, m6, and M6 are added. Advanced level includes all 13 intervals, including semitone-apart pairs and the tritone.</span>
+        </p>
+
+        <div class="article-note">
+            <div class="article-note__title"><span lang="ja">ポイント</span><span lang="en">Key Point</span></div>
+            <p><span lang="ja">各難易度で正解率90%以上を安定して出せるようになってから、次のレベルに進むのが効果的です。焦って先に進むと、似た音程が混ざったときに混乱しやすくなります。</span><span lang="en">Aim for a stable 90%+ accuracy at each level before moving up. Rushing ahead can cause confusion when similar-sounding intervals are mixed in.</span></p>
+        </div>
+
+        <!-- Section 4 -->
+        <h2 id="common-struggles"><span lang="ja">よくある壁 -- 多くの人が詰まるポイント</span><span lang="en">Common Struggles -- Where Most People Get Stuck</span></h2>
+
+        <p>
+            <span lang="ja">インターバル認識のトレーニングで、ほぼ全員が通る「壁」があります。自分だけが苦労しているわけではないと知ることは、練習を続けるうえで重要です。</span>
+            <span lang="en">In interval recognition training, there are "walls" that almost everyone hits. Knowing you're not alone in struggling is important for staying motivated.</span>
+        </p>
+
+        <div class="wall-list">
+            <div class="wall-item">
+                <span class="wall-item__label"><span lang="ja">m3 と M3 の混同</span><span lang="en">Confusing m3 and M3</span></span>
+                <span class="wall-item__desc"><span lang="ja">短3度と長3度はたった1半音の差。「暗い響き」（m3）と「明るい響き」（M3）の違いを感じ取る練習が必要です。リファレンスソングを活用すると区別しやすくなります。</span><span lang="en">Minor 3rd and major 3rd differ by just one semitone. You need to practice sensing the "dark" sound (m3) versus the "bright" sound (M3). Reference songs help make the distinction clearer.</span></span>
+            </div>
+            <div class="wall-item">
+                <span class="wall-item__label"><span lang="ja">P4 と P5 の曖昧さ</span><span lang="en">P4/P5 Ambiguity</span></span>
+                <span class="wall-item__desc"><span lang="ja">完全4度と完全5度は、どちらも「安定した響き」を持つため混同しやすいです。P4は「上に引っ張られる」感覚、P5は「落ち着いた広がり」の感覚 -- 繰り返し聴いて体感を作ることが鍵です。</span><span lang="en">Both P4 and P5 have a "stable" quality, making them easy to confuse. P4 feels like it's "pulling upward," while P5 has a "settled, open" feel. Repeated listening to build an intuitive sense is key.</span></span>
+            </div>
+            <div class="wall-item">
+                <span class="wall-item__label"><span lang="ja">トライトーンの認識</span><span lang="en">Tritone Recognition</span></span>
+                <span class="wall-item__desc"><span lang="ja">トライトーン（増4度/減5度）は独特の不安定な響きを持ちますが、日常的に聴く機会が少ないため、記憶に残りにくい音程です。意識的に繰り返し聴く必要があります。</span><span lang="en">The tritone (augmented 4th / diminished 5th) has a uniquely unstable sound, but because you rarely hear it in everyday music, it's hard to commit to memory. Deliberate, repeated exposure is necessary.</span></span>
+            </div>
+            <div class="wall-item">
+                <span class="wall-item__label"><span lang="ja">下降音程の難しさ</span><span lang="en">Descending Intervals</span></span>
+                <span class="wall-item__desc"><span lang="ja">上昇音程（低い音→高い音）は聴き取れるのに、下降音程（高い音→低い音）になると急に難しく感じる人は多いです。上昇で覚えたリファレンスソングが使えないため、下降専用の感覚を育てる必要があります。</span><span lang="en">Many people can identify ascending intervals (low to high) but struggle with descending ones (high to low). The reference songs learned for ascending don't directly apply, so you need to develop a separate feel for descending intervals.</span></span>
+            </div>
+            <div class="wall-item">
+                <span class="wall-item__label"><span lang="ja">和音で聴くと分からない</span><span lang="en">Harmonic Mode Difficulty</span></span>
+                <span class="wall-item__desc"><span lang="ja">2音を順番に聴けば分かるのに、同時に鳴ると判断できない。旋律的な聴き方と和声的な聴き方は別のスキルです。旋律で安定した後に和音モードに挑戦するのが順当です。</span><span lang="en">You can tell intervals when notes play one after another, but not when they sound simultaneously. Melodic and harmonic listening are different skills. It's natural to master melodic recognition before tackling harmonic mode.</span></span>
+            </div>
+        </div>
+
+        <!-- Section 5 -->
+        <h2 id="effective-practice"><span lang="ja">効果的な練習法</span><span lang="en">Effective Practice Methods</span></h2>
+
+        <h3 id="start-wide"><span lang="ja">広い音程から始める</span><span lang="en">Start with Wide Intervals</span></h3>
+        <p>
+            <span lang="ja">P8（オクターブ）やP5（完全5度）のように、距離の大きい音程は特徴がはっきりしていて覚えやすいです。まず「遠い音程」と「近い音程」の大まかな区別をつける感覚を作り、その後で細かい差に取り組む方が効率的です。</span>
+            <span lang="en">Wide intervals like P8 (octave) and P5 (perfect fifth) have distinctive characters that are easier to memorize. Start by building an ability to roughly sort "wide" from "narrow" intervals, then work on finer distinctions.</span>
+        </p>
+
+        <h3 id="reference-songs"><span lang="ja">リファレンスソングを活用する</span><span lang="en">Use Reference Songs</span></h3>
+        <p>
+            <span lang="ja">各音程を有名な曲の冒頭と結びつけて覚える方法です。たとえば、P5を聴いたときに「スターウォーズのメインテーマの最初の2音だ」と思い出せると、判断の速度が上がります。ただし、この方法に過度に頼ると、曲を思い出す時間がかかりすぎることがあります。最初の手がかりとして使い、慣れてきたら音程そのものの響きで直感的に判断できるようにするのが理想です。</span>
+            <span lang="en">This method links each interval to the opening of a well-known song. For example, hearing P5 and recalling "that's the first two notes of the Star Wars main theme" speeds up your judgment. However, over-reliance on this can slow you down. Use it as a starting crutch, and aim to eventually recognize intervals by their sound alone.</span>
+        </p>
+
+        <h3 id="ascending-then-descending"><span lang="ja">上昇から下降へ段階的に</span><span lang="en">Ascending First, Then Descending</span></h3>
+        <p>
+            <span lang="ja">上昇音程と下降音程を同時に練習しようとすると、混乱しやすくなります。まず上昇モードで音程の特徴を掴み、正解率が安定してきたら下降モードに切り替える。さらに慣れたらランダムモードで上昇・下降・和音を混ぜて練習する -- というステップが効果的です。</span>
+            <span lang="en">Practicing ascending and descending intervals simultaneously can cause confusion. Start with ascending mode to learn each interval's character, switch to descending once your accuracy stabilizes, and then move to random mode (mixing ascending, descending, and harmonic) as your next challenge.</span>
+        </p>
+
+        <h3 id="focus-on-weakpoints"><span lang="ja">苦手な音程を集中的に練習する</span><span lang="en">Focus on Your Weak Points</span></h3>
+        <p>
+            <span lang="ja">全体を均等に練習するよりも、苦手な音程に時間を多く割く方が効率的です。正解率の低い音程を特定し、その音程を重点的に繰り返し聴くことで、聴き分けの精度が上がります。</span>
+            <span lang="en">Rather than practicing all intervals equally, spending more time on your weak intervals is more efficient. Identify which intervals have low accuracy rates, and repeatedly listen to those to sharpen your discrimination.</span>
+        </p>
+
+        <h3 id="dont-rush-levels"><span lang="ja">レベルを焦って上げない</span><span lang="en">Don't Rush to the Next Level</span></h3>
+        <p>
+            <span lang="ja">初級で90%以上を安定して出せるようになってから中級に進みましょう。新しい音程が加わると、それまで聴き分けられていた音程まで混乱することがあります。「土台が固まってから次へ」が、結果的に最も速い上達法です。</span>
+            <span lang="en">Reach a stable 90%+ at the beginner level before moving to intermediate. When new intervals are added, even previously familiar ones can become confusing. "Solid foundation before advancing" is ultimately the fastest path to improvement.</span>
+        </p>
+
+        <!-- Section 6 -->
+        <h2 id="what-app-can-do"><span lang="ja">ソルフェージュPROでできること</span><span lang="en">What Solfege PRO Can Do</span></h2>
+
+        <p>
+            <span lang="ja">ソルフェージュPROの Interval Training は、ここまで紹介した音程の聴き分けを<strong>「出題 → 回答 → 弱点の可視化 → 重点練習」のサイクル</strong>で支援するツールです。</span>
+            <span lang="en">Solfege PRO's Interval Training supports the interval recognition practice described above through a <strong>"question, answer, visualize weaknesses, focused practice" cycle</strong>.</span>
+        </p>
+
+        <h3><span lang="ja">4つの再生モード</span><span lang="en">Four Playback Modes</span></h3>
+        <p>
+            <span lang="ja">音程の聴き方を変えることで、練習の質が変わります。</span>
+            <span lang="en">Changing how you hear intervals changes the quality of your practice.</span>
+        </p>
+
+        <div class="playback-modes">
+            <div class="playback-mode-card">
+                <span class="playback-mode-card__icon">&#8593;</span>
+                <div class="playback-mode-card__name"><span lang="ja">上昇</span><span lang="en">Ascending</span></div>
+                <div class="playback-mode-card__desc"><span lang="ja">低い音 → 高い音の順で再生。最も基本的なモード。</span><span lang="en">Low note then high note. The most fundamental mode.</span></div>
+            </div>
+            <div class="playback-mode-card">
+                <span class="playback-mode-card__icon">&#8595;</span>
+                <div class="playback-mode-card__name"><span lang="ja">下降</span><span lang="en">Descending</span></div>
+                <div class="playback-mode-card__desc"><span lang="ja">高い音 → 低い音の順で再生。上昇とは異なる感覚が求められる。</span><span lang="en">High note then low note. Requires a different sense than ascending.</span></div>
+            </div>
+            <div class="playback-mode-card">
+                <span class="playback-mode-card__icon">&#9835;</span>
+                <div class="playback-mode-card__name"><span lang="ja">和音</span><span lang="en">Harmonic</span></div>
+                <div class="playback-mode-card__desc"><span lang="ja">2音を同時に再生。和声的な聴き方を鍛える上級モード。</span><span lang="en">Both notes played simultaneously. An advanced mode for harmonic listening.</span></div>
+            </div>
+            <div class="playback-mode-card">
+                <span class="playback-mode-card__icon">&#8645;</span>
+                <div class="playback-mode-card__name"><span lang="ja">ランダム</span><span lang="en">Random</span></div>
+                <div class="playback-mode-card__desc"><span lang="ja">上昇・下降・和音をランダムに切替。実践的な耳を鍛える。</span><span lang="en">Randomly switches between ascending, descending, and harmonic. Builds a practical ear.</span></div>
+            </div>
+        </div>
+
+        <h3><span lang="ja">基準音の選択</span><span lang="en">Reference Tone Options</span></h3>
+        <p>
+            <span lang="ja">基準音を固定（C4 / E4 / A4）にするか、ランダムに変動させるかを選べます。固定モードでは特定の音程を繰り返し聴けるため初期学習に向いています。移動モードでは基準音がG3〜F4の範囲でランダムに変わるため、特定の周波数に頼らない本当の音程認識力が鍛えられます。</span>
+            <span lang="en">You can choose a fixed reference tone (C4 / E4 / A4) or a randomly shifting one. Fixed mode is good for initial learning since you hear the same base note repeatedly. Moving mode randomly changes the reference between G3 and F4, training true interval recognition that doesn't rely on a specific frequency.</span>
+        </p>
+
+        <h3><span lang="ja">苦手音程の検出と重点出題</span><span lang="en">Weak Point Detection and Weighted Practice</span></h3>
+        <p>
+            <span lang="ja">アプリは各音程ごとの正解率を記録しています。<strong>正解率70%未満かつ3回以上出題された音程</strong>が「苦手」として検出されます。苦手克服モードでは、苦手な音程ほど出題頻度が高くなります（最大3倍の重み付け）。全体を均等に練習するよりも、弱い部分に集中する方が改善は速くなります。</span>
+            <span lang="en">The app records your accuracy for each interval. Intervals with <strong>accuracy below 70% and at least 3 attempts</strong> are flagged as "weak points." In weak point mode, these intervals appear more frequently (up to 3x weighting). Focusing on weaknesses is faster for improvement than practicing everything equally.</span>
+        </p>
+
+        <h3><span lang="ja">反応時間の記録</span><span lang="en">Reaction Time Tracking</span></h3>
+        <p>
+            <span lang="ja">正解率だけでなく、回答までにかかった時間も記録されます。音程を「時間をかけて正解できる」のと「瞬時に判断できる」のとでは、実用性が大きく異なります。反応時間が短くなっていくのは、音程認識が感覚として定着しつつある証拠です。</span>
+            <span lang="en">Beyond accuracy, the time it takes to answer is also recorded. There's a big practical difference between "can get it right with time" and "can judge instantly." Decreasing reaction times are evidence that interval recognition is becoming intuitive.</span>
+        </p>
+
+        <h3><span lang="ja">習熟度の確認</span><span lang="en">Proficiency Overview</span></h3>
+        <p>
+            <span lang="ja">各音程ごとの正解率・試行回数・習熟度レベル（得意 / 良好 / 要練習 / 苦手）が統計画面で確認できます。「全体で何%正解」だけでなく、「どの音程が弱いのか」が一目で分かるため、次に何を練習すべきかが明確になります。</span>
+            <span lang="en">Accuracy, attempt count, and proficiency level (strong / good / needs practice / weak) for each interval are visible in the statistics screen. This shows not just "overall X% correct" but "which intervals are weak," making it clear what to practice next.</span>
+        </p>
+
+        <div class="cycle-diagram">
+            <div class="cycle-step">
+                <div class="cycle-step__label"><span lang="ja">出題</span><span lang="en">Question</span></div>
+                <div class="cycle-step__desc"><span lang="ja">音程を聴く</span><span lang="en">Listen to interval</span></div>
+            </div>
+            <div class="cycle-arrow">&rarr;</div>
+            <div class="cycle-step">
+                <div class="cycle-step__label"><span lang="ja">回答</span><span lang="en">Answer</span></div>
+                <div class="cycle-step__desc"><span lang="ja">音程を選択</span><span lang="en">Select interval</span></div>
+            </div>
+            <div class="cycle-arrow">&rarr;</div>
+            <div class="cycle-step">
+                <div class="cycle-step__label"><span lang="ja">分析</span><span lang="en">Analyze</span></div>
+                <div class="cycle-step__desc"><span lang="ja">弱点を可視化</span><span lang="en">Visualize weaknesses</span></div>
+            </div>
+            <div class="cycle-arrow">&rarr;</div>
+            <div class="cycle-step">
+                <div class="cycle-step__label"><span lang="ja">重点練習</span><span lang="en">Focus</span></div>
+                <div class="cycle-step__desc"><span lang="ja">苦手を克服</span><span lang="en">Target weak points</span></div>
+            </div>
+        </div>
+
+        <!-- Mid-article CTA -->
+        <div class="article-cta-subtle">
+            <p class="article-cta-subtle__text"><span lang="ja">自分の苦手な音程を確認してみませんか</span><span lang="en">Want to find out which intervals are your weak points?</span></p>
+            <a href="https://apps.apple.com/app/id6756626617" class="article-cta-subtle__button"><span lang="ja">App Storeで見る</span><span lang="en">View on App Store</span></a>
+        </div>
+
+        <!-- Section 7 -->
+        <h2 id="limitations"><span lang="ja">ソルフェージュPROだけでは直接扱いきれないこと</span><span lang="en">What Solfege PRO Does Not Directly Cover</span></h2>
+
+        <p>
+            <span lang="ja">正直に書きます。</span>
+            <span lang="en">Let's be honest.</span>
+        </p>
+
+        <div class="article-honest">
+            <div class="article-honest__title"><span lang="ja">アプリでカバーできない領域</span><span lang="en">Areas Beyond the App's Scope</span></div>
+            <p>
+                <strong><span lang="ja">絶対音感のトレーニング</span><span lang="en">Perfect pitch training</span></strong><span lang="ja"> — このアプリが鍛えるのは相対音感（2音間の距離の認識）です。「この音はドだ」と音名を当てる絶対音感のトレーニングではありません。</span><span lang="en"> — This app trains relative pitch (recognizing the distance between two notes). It is not training for absolute pitch, which identifies individual note names.</span>
+            </p>
+            <p>
+                <strong><span lang="ja">オクターブ超えの音程</span><span lang="en">Extended intervals beyond one octave</span></strong><span lang="ja"> — 9度、10度、11度といった複合音程は、現在のトレーニングの出題範囲外です。1オクターブ以内の13音程に特化しています。</span><span lang="en"> — Compound intervals like 9ths, 10ths, and 11ths are outside the current training scope. The app focuses on the 13 intervals within one octave.</span>
+            </p>
+            <p>
+                <strong><span lang="ja">実際の楽器音でのトレーニング</span><span lang="en">Real instrument timbres</span></strong><span lang="ja"> — 音源はピアノ音のみです。ギター、バイオリン、管楽器など、実際の楽器の音色での出題には対応していません。ピアノ音は音程を聴き取りやすい純粋な音色ですが、楽器固有の響きに慣れる練習は別途必要です。</span><span lang="en"> — The sound source is piano only. It does not support training with guitar, violin, wind instruments, or other timbres. Piano provides a clean tone ideal for pitch discrimination, but developing familiarity with instrument-specific resonances requires separate practice.</span>
+            </p>
+            <p>
+                <strong><span lang="ja">和声的文脈での音程認識</span><span lang="en">Harmonic context (chords and progressions)</span></strong><span lang="ja"> — コード進行の中で音程がどう機能するか、調性の中での役割は、このトレーニングの範囲外です。ソルフェージュPROにはコード認識やコード進行トレーニングが別に用意されていますが、和声的文脈と音程認識を統合した練習ではありません。</span><span lang="en"> — How intervals function within chord progressions or a tonal context is outside this training's scope. Solfege PRO offers separate chord recognition and progression training, but they are not integrated with interval recognition.</span>
+            </p>
+            <p>
+                <strong><span lang="ja">聴音・書き取り（ディクテーション）</span><span lang="en">Musical dictation</span></strong><span lang="ja"> — メロディを聴いて楽譜に書き取る練習は含まれていません。ここで鍛えるのは、あくまで「2音間の距離を聴き取る力」です。</span><span lang="en"> — Listening to a melody and transcribing it to notation is not included. This training focuses strictly on identifying the distance between two notes.</span>
+            </p>
+        </div>
+
+        <p>
+            <span lang="ja">ソルフェージュPROの Interval Training が直接支援できるのは、1オクターブ以内の音程を、ピアノ音源で、2音ずつ聴き分ける練習です。この土台は、耳コピやアンサンブルなど実践的な場面で相対音感を活かすための基礎になりますが、それだけで音楽的な聴力が完成するわけではありません。</span>
+            <span lang="en">What Solfege PRO's Interval Training directly supports is practicing two-note interval recognition within one octave, using piano tones. This foundation is useful for practical applications like playing by ear and ensemble playing, but it alone does not complete your musical listening ability.</span>
+        </p>
+
+        <!-- Section 8 -->
+        <h2 id="how-to-use"><span lang="ja">おすすめの使い方</span><span lang="en">Recommended Usage</span></h2>
+
+        <ol>
+            <li><strong><span lang="ja">初級から始める</span><span lang="en">Start at Beginner level</span></strong><span lang="ja"> — 音程の聴き分けに慣れていなくても、5種類の音程なら十分に取り組めます。まずはここで基本感覚を掴みましょう。</span><span lang="en"> — Even if you're new to interval recognition, 5 intervals is a manageable starting point. Build your basic sense here.</span></li>
+            <li><strong><span lang="ja">上昇モードで練習する</span><span lang="en">Practice in ascending mode</span></strong><span lang="ja"> — 最初は上昇（低音→高音）のみで練習し、音程の響きを覚えることに集中します。</span><span lang="en"> — Start with ascending only (low to high) and focus on learning each interval's sound.</span></li>
+            <li><strong><span lang="ja">正解率90%以上を安定させてから次へ</span><span lang="en">Stabilize at 90%+ before advancing</span></strong><span lang="ja"> — 焦って中級に進むと、似た音程が増えて混乱します。土台を固めてからステップアップしましょう。</span><span lang="en"> — Rushing to intermediate adds similar-sounding intervals that cause confusion. Build a solid foundation first.</span></li>
+            <li><strong><span lang="ja">苦手克服モードを活用する</span><span lang="en">Use weak point mode</span></strong><span lang="ja"> — 統計画面で苦手な音程を確認し、苦手克服モードで重点的に練習します。全体を均等に繰り返すより効率的です。</span><span lang="en"> — Check the statistics screen for weak intervals and practice them with focused mode. This is more efficient than repeating everything equally.</span></li>
+            <li><strong><span lang="ja">再生モードを段階的に変える</span><span lang="en">Gradually change playback modes</span></strong><span lang="ja"> — 上昇 → 下降 → ランダム → 和音の順で挑戦していくと、音程認識がより立体的になります。</span><span lang="en"> — Challenge yourself in this order: ascending, descending, random, harmonic. This builds a more three-dimensional sense of interval recognition.</span></li>
+            <li><strong><span lang="ja">基準音を「移動」にして応用力を高める</span><span lang="en">Switch to moving reference for applied skills</span></strong><span lang="ja"> — 固定基準音に慣れたら、移動モードに切り替えましょう。基準音がランダムに変わることで、特定の音に頼らない本物の相対音感が鍛えられます。</span><span lang="en"> — Once comfortable with a fixed reference, switch to moving mode. Random reference tones build genuine relative pitch that doesn't depend on specific notes.</span></li>
+        </ol>
+
+        <div class="comparison-visual">
+            <div class="comparison-card comparison-card--bad">
+                <div class="comparison-card__header"><span lang="ja">効果が出にくい</span><span lang="en">Less Effective</span></div>
+                <div class="comparison-card__body">
+                    <p><span lang="ja">いきなり上級に挑戦する。全モードを同時に練習する。結果を確認せずに何となく繰り返す。苦手な音程を避けて得意なものばかり練習する。</span><span lang="en">Jumping straight to advanced. Practicing all modes simultaneously. Repeating without checking results. Avoiding weak intervals and only practicing easy ones.</span></p>
+                </div>
+            </div>
+            <div class="comparison-card comparison-card--good">
+                <div class="comparison-card__header"><span lang="ja">効果が出やすい</span><span lang="en">More Effective</span></div>
+                <div class="comparison-card__body">
+                    <p><span lang="ja">初級で90%を安定させてから中級へ。上昇で覚えてから下降に進む。統計で苦手音程を確認して重点練習する。反応時間が短くなっていくのを確認する。</span><span lang="en">Stabilize 90% at beginner before moving to intermediate. Learn ascending first, then descending. Check statistics for weak intervals and focus on them. Track your decreasing reaction times.</span></p>
+                </div>
+            </div>
+        </div>
+
+        <div class="article-note">
+            <div class="article-note__title"><span lang="ja">使い方のコツ</span><span lang="en">Usage Tip</span></div>
+            <p><span lang="ja">1回のセッションは10〜20問程度がおすすめです。短時間で集中して取り組む方が、長時間だらだら続けるよりも効果的です。毎日少しずつ続けることが、音程認識を「感覚」に変えていく鍵です。</span><span lang="en">Sessions of 10-20 questions are recommended. Short, focused sessions are more effective than long, unfocused ones. Practicing a little every day is the key to turning interval recognition into an intuition.</span></p>
+        </div>
+
+    </main>
+
+    <!-- Final CTA -->
+    <section class="article-cta">
+        <h2 class="article-cta__title"><span lang="ja">まず、自分の音程認識力を確認しよう</span><span lang="en">Start by Checking Your Interval Recognition Skills</span></h2>
+        <p class="article-cta__text">
+            <span lang="ja">音程の聴き分けは、知識ではなく感覚のトレーニングです。<br>頭で理解するだけではなく、実際に聴いて、答えて、自分の弱点を知ること。<br>ソルフェージュPROの Interval Training で、まず自分の音程認識力を確かめてみてください。</span>
+            <span lang="en">Interval recognition is sensory training, not knowledge.<br>Reading about it isn't enough -- listen, answer, and discover your weak points.<br>Try Solfege PRO's Interval Training and see where your ear stands.</span>
+        </p>
+        <a href="https://apps.apple.com/app/id6756626617" class="article-cta__button"><span lang="ja">App Storeでダウンロード</span><span lang="en">Download on App Store</span></a>
+    </section>
+
+    <!-- Related Content -->
+    <div class="article-related">
+        <div class="article-related__title"><span lang="ja">関連コンテンツ</span><span lang="en">Related Content</span></div>
+        <a href="rhythm-training.html" class="article-related__link" style="margin-bottom: var(--space-md); display: block;">
+            <div class="article-related__link-title"><span lang="ja">リズム感とは何か -- 前乗り・後乗り・ばらつき・ポケットを分解して理解する</span><span lang="en">What Is Rhythmic Feel? -- Breaking Down Rushing, Dragging, Inconsistency, and Pocket</span></div>
+            <div class="article-related__link-desc"><span lang="ja">リズム感を5つの要素に分解し、タイミング精度を改善する練習法を紹介</span><span lang="en">Break rhythmic feel into 5 elements and learn practices to improve timing accuracy</span></div>
+        </a>
+        <a href="../" class="article-related__link">
+            <div class="article-related__link-title"><span lang="ja">ソルフェージュPRO 練習ガイド</span><span lang="en">Solfege PRO Practice Guide</span></div>
+            <div class="article-related__link-desc"><span lang="ja">ギター・ベース・ドラム・ピアノ・ボーカル向けの課題別練習メニュー</span><span lang="en">Challenge-based practice menus for guitar, bass, drums, piano, and vocals</span></div>
+        </a>
+    </div>
+
+    <!-- Article Note -->
+    <aside class="article-endnote">
+        <p class="article-endnote__text">
+            <span lang="ja">この記事は、音楽教育で広く使われているインターバル認識の概念と、ソルフェージュPROの機能設計をもとに整理しています。リファレンスソングの例は広く知られたものを採用していますが、最適な覚え方は人によって異なります。アプリ内の苦手判定はルールベースの集計に基づいており、個人の音楽的文脈や経験の全てを考慮するものではありません。</span>
+            <span lang="en">This article is organized based on widely used interval recognition concepts in music education and the feature design of Solfege PRO. The reference song examples use well-known songs, but the best memorization method varies by individual. The app's weak point detection is based on rule-based aggregation and does not account for every aspect of an individual's musical context or experience.</span>
+        </p>
+    </aside>
+
+    <!-- Footer -->
+    <footer class="article-footer">
+        <p class="article-footer__text">
+            &copy; 2025 <span lang="ja">ソルフェージュPRO</span><span lang="en">Solfege PRO</span> &mdash;
+            <a href="https://apps.apple.com/app/id6756626617" class="article-footer__link">App Store</a>
+        </p>
+    </footer>
+
+    <!-- Language Toggle Script -->
+    <script>
+    (function() {
+        var langToggle = document.getElementById('lang-toggle');
+        var langText = document.getElementById('lang-text');
+        var currentLang = localStorage.getItem('lang') || 'ja';
+
+        function applyLanguage(lang) {
+            document.documentElement.setAttribute('data-lang', lang);
+            langText.textContent = lang === 'ja' ? 'EN' : 'JA';
+            document.title = lang === 'ja'
+                ? '音程の聴き分けとは何か — インターバルを理解して耳を鍛える | ソルフェージュPRO'
+                : 'What Is Interval Recognition? — Understanding Intervals to Train Your Ear | Solfege PRO';
+            localStorage.setItem('lang', lang);
+            currentLang = lang;
+        }
+
+        // Apply language immediately
+        document.documentElement.setAttribute('data-lang', currentLang);
+        langText.textContent = currentLang === 'ja' ? 'EN' : 'JA';
+
+        langToggle.addEventListener('click', function() {
+            applyLanguage(currentLang === 'ja' ? 'en' : 'ja');
+        });
+    })();
+    </script>
+
+</body>
+</html>

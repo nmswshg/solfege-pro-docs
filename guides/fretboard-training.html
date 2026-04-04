@@ -1,0 +1,969 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>指板を覚えるとは何か — ギターのフレットボードを効率的に習得する | ソルフェージュPRO</title>
+    <meta name="description" content="ギターの指板には100以上のポジションがあります。闇雲に覚えるのではなく、構造を理解し、効率的に習得する方法を解説します。">
+
+    <!-- Canonical -->
+    <link rel="canonical" href="https://nmswshg.github.io/solfege-pro-docs/guides/fretboard-training.html">
+
+    <!-- OGP -->
+    <meta property="og:title" content="指板を覚えるとは何か — ギターのフレットボードを効率的に習得する">
+    <meta property="og:description" content="ギターの指板は「暗記するもの」ではなく「構造を理解するもの」。効率的な覚え方と練習法を解説。">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://nmswshg.github.io/solfege-pro-docs/guides/fretboard-training.html">
+    <meta property="og:site_name" content="ソルフェージュPRO">
+    <meta property="og:image" content="https://nmswshg.github.io/solfege-pro-docs/AppIcon.png">
+    <meta property="og:locale" content="ja_JP">
+    <meta property="article:published_time" content="2026-03-31">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="指板を覚えるとは何か — ギターのフレットボードを効率的に習得する">
+    <meta name="twitter:description" content="ギターの指板は「暗記するもの」ではなく「構造を理解するもの」。効率的な覚え方と練習法を解説。">
+    <meta name="twitter:image" content="https://nmswshg.github.io/solfege-pro-docs/AppIcon.png">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="../style.css?v=2">
+    <link rel="stylesheet" href="article.css?v=2">
+
+    <!-- Fretboard diagram styles -->
+    <style>
+        /* Fretboard Grid Diagram */
+        .fretboard-diagram {
+            background: var(--surface);
+            border-radius: var(--radius-xl);
+            padding: var(--space-xl);
+            margin: var(--space-xl) 0;
+            border: 1px solid var(--surface-light);
+            overflow-x: auto;
+        }
+
+        .fretboard-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+            min-width: 460px;
+        }
+
+        .fretboard-grid__header {
+            display: flex;
+            margin-bottom: var(--space-sm);
+        }
+
+        .fretboard-grid__header-cell {
+            width: 60px;
+            text-align: center;
+            font-size: 11px;
+            font-weight: 700;
+            color: var(--text-secondary);
+            flex-shrink: 0;
+        }
+
+        .fretboard-grid__header-cell:first-child {
+            width: 40px;
+        }
+
+        .fretboard-grid__row {
+            display: flex;
+            align-items: center;
+            border-bottom: 2px solid var(--surface-light);
+        }
+
+        .fretboard-grid__row:last-child {
+            border-bottom: none;
+        }
+
+        .fretboard-grid__string-label {
+            width: 40px;
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--primary);
+            text-align: center;
+            flex-shrink: 0;
+        }
+
+        .fretboard-grid__cell {
+            width: 60px;
+            height: 36px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--text-secondary);
+            position: relative;
+            flex-shrink: 0;
+        }
+
+        .fretboard-grid__cell--note {
+            color: var(--text-primary);
+        }
+
+        .fretboard-grid__cell--note::after {
+            content: "";
+            position: absolute;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            background: rgba(212, 175, 55, 0.15);
+            border: 1px solid rgba(212, 175, 55, 0.4);
+            z-index: 0;
+        }
+
+        .fretboard-grid__cell--highlight {
+            color: var(--primary);
+            font-weight: 700;
+        }
+
+        .fretboard-grid__cell--highlight::after {
+            background: rgba(212, 175, 55, 0.25);
+            border-color: var(--primary);
+        }
+
+        .fretboard-grid__nut {
+            width: 4px;
+            height: 36px;
+            background: var(--text-secondary);
+            flex-shrink: 0;
+            border-radius: 2px;
+        }
+
+        /* Octave Shape Diagram */
+        .octave-diagram {
+            background: var(--surface);
+            border-radius: var(--radius-xl);
+            padding: var(--space-xl);
+            margin: var(--space-xl) 0;
+            border: 1px solid var(--surface-light);
+            overflow-x: auto;
+        }
+
+        .octave-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+            min-width: 400px;
+        }
+
+        .octave-grid__row {
+            display: flex;
+            align-items: center;
+            border-bottom: 2px solid var(--surface-light);
+        }
+
+        .octave-grid__row:last-child {
+            border-bottom: none;
+        }
+
+        .octave-grid__label {
+            width: 40px;
+            font-size: 12px;
+            font-weight: 700;
+            color: var(--text-secondary);
+            text-align: center;
+            flex-shrink: 0;
+        }
+
+        .octave-grid__cell {
+            width: 50px;
+            height: 34px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 11px;
+            color: var(--text-secondary);
+            position: relative;
+            flex-shrink: 0;
+        }
+
+        .octave-grid__cell--root {
+            color: var(--primary);
+            font-weight: 700;
+        }
+
+        .octave-grid__cell--root::after {
+            content: "";
+            position: absolute;
+            width: 26px;
+            height: 26px;
+            border-radius: 50%;
+            background: rgba(212, 175, 55, 0.3);
+            border: 2px solid var(--primary);
+            z-index: 0;
+        }
+
+        .octave-grid__cell--octave {
+            color: #4ADE80;
+            font-weight: 700;
+        }
+
+        .octave-grid__cell--octave::after {
+            content: "";
+            position: absolute;
+            width: 26px;
+            height: 26px;
+            border-radius: 50%;
+            background: rgba(74, 222, 128, 0.2);
+            border: 2px solid #4ADE80;
+            z-index: 0;
+        }
+
+        .octave-arrow {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: var(--space-sm);
+            margin-top: var(--space-md);
+            font-size: 13px;
+            color: var(--text-secondary);
+        }
+
+        .octave-arrow__badge {
+            display: inline-flex;
+            align-items: center;
+            gap: var(--space-xs);
+            padding: 3px 10px;
+            border-radius: var(--radius-sm);
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .octave-arrow__badge--root {
+            background: rgba(212, 175, 55, 0.15);
+            color: var(--primary);
+            border: 1px solid rgba(212, 175, 55, 0.3);
+        }
+
+        .octave-arrow__badge--octave {
+            background: rgba(74, 222, 128, 0.15);
+            color: #4ADE80;
+            border: 1px solid rgba(74, 222, 128, 0.3);
+        }
+
+        /* Feature list for app section */
+        .feature-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--space-md);
+            margin: var(--space-lg) 0;
+        }
+
+        .feature-card {
+            background: var(--surface);
+            border: 1px solid var(--surface-light);
+            border-radius: var(--radius-lg);
+            padding: var(--space-md) var(--space-lg);
+        }
+
+        .feature-card__title {
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: var(--space-xs);
+        }
+
+        .feature-card__desc {
+            font-size: 13px;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        /* Progression steps */
+        .progression-steps {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-md);
+            margin: var(--space-lg) 0;
+        }
+
+        .progression-step {
+            display: flex;
+            align-items: flex-start;
+            gap: var(--space-md);
+            background: var(--surface);
+            border: 1px solid var(--surface-light);
+            border-radius: var(--radius-lg);
+            padding: var(--space-md) var(--space-lg);
+        }
+
+        .progression-step__number {
+            width: 28px;
+            height: 28px;
+            min-width: 28px;
+            background: var(--primary);
+            color: var(--background);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 13px;
+            font-weight: 700;
+            margin-top: 2px;
+        }
+
+        .progression-step__content {
+            flex: 1;
+        }
+
+        .progression-step__title {
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 2px;
+        }
+
+        .progression-step__desc {
+            font-size: 13px;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        @media (max-width: 768px) {
+            .feature-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .fretboard-grid__header-cell,
+            .fretboard-grid__cell {
+                width: 48px;
+            }
+
+            .octave-grid__cell {
+                width: 42px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .fretboard-grid__header-cell,
+            .fretboard-grid__cell {
+                width: 42px;
+                font-size: 10px;
+            }
+
+            .fretboard-grid__string-label {
+                width: 32px;
+                font-size: 11px;
+            }
+
+            .fretboard-grid__cell--note::after,
+            .fretboard-grid__cell--highlight::after {
+                width: 24px;
+                height: 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="article-nav">
+        <div class="article-nav__container">
+            <a href="../" class="article-nav__back">&larr; <span lang="ja">練習ガイド</span><span lang="en">Practice Guide</span></a>
+            <a href="../" class="article-nav__logo">
+                <img src="../AppIcon.png" alt="Solfege PRO" class="article-nav__logo-icon">
+                <span class="article-nav__logo-text"><span lang="ja">ソルフェージュPRO</span><span lang="en">Solfege PRO</span></span>
+            </a>
+            <button class="settings-btn" id="lang-toggle" title="Toggle language">
+                <span id="lang-text">EN</span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Article Header -->
+    <header class="article-header">
+        <div class="article-header__meta">
+            <span class="article-header__tag">Fretboard Training</span>
+            <span><span lang="ja">読了: 約10分</span><span lang="en">10 min read</span></span>
+        </div>
+        <h1 class="article-header__title">
+            <span lang="ja">指板を覚えるとは何か<br>ギターのフレットボードを<br>効率的に習得する</span>
+            <span lang="en">Mastering the Fretboard<br>How to Efficiently Learn<br>Guitar Note Positions</span>
+        </h1>
+        <p class="article-header__lead">
+            <span lang="ja">ギターの指板には100以上の音名ポジションがあります。闇雲に暗記するのではなく、構造を理解して効率的に覚える方法を解説します。</span>
+            <span lang="en">A guitar fretboard has over 100 note positions. Instead of brute-force memorization, learn how understanding the structure makes mastery far more efficient.</span>
+        </p>
+    </header>
+
+    <!-- Article Body -->
+    <main class="article-body">
+
+        <!-- Section 1: Why Learn the Fretboard -->
+        <h2 id="why-learn"><span lang="ja">なぜ指板を覚えるのか</span><span lang="en">Why Learn the Fretboard?</span></h2>
+
+        <p>
+            <span lang="ja">ギターには、ピアノにはない独特の難しさがあります。ピアノでは「ド」の鍵盤は1オクターブに1つしかありません。でもギターでは、同じ「C」の音が指板上の複数の場所に存在します。</span>
+            <span lang="en">Guitar has a unique challenge that piano doesn't. On a piano, there's only one key for each "C" per octave. On guitar, the same "C" note exists in multiple locations across the fretboard.</span>
+        </p>
+
+        <p>
+            <span lang="ja">6弦 x 24フレットで、理論上は144ポジション。そのうち音名として意味のあるポジションだけでも100を超えます。これを「暗記する」と考えると途方もなく感じるかもしれません。</span>
+            <span lang="en">With 6 strings and 24 frets, there are 144 positions in theory. Even counting only musically meaningful positions, the number exceeds 100. Thinking of it as "memorization" can feel overwhelming.</span>
+        </p>
+
+        <p>
+            <span lang="ja">しかし、指板を覚えることで得られるものは大きいです。</span>
+            <span lang="en">But the benefits of knowing the fretboard are significant.</span>
+        </p>
+
+        <ul>
+            <li><strong><span lang="ja">即興演奏</span><span lang="en">Improvisation</span></strong><span lang="ja"> — 「次にどこを押さえればいいか」を考えずに弾ける</span><span lang="en"> — Play without thinking about where to put your fingers next</span></li>
+            <li><strong><span lang="ja">コードボイシング</span><span lang="en">Chord voicing</span></strong><span lang="ja"> — 同じコードを複数のポジションで弾き分けられる</span><span lang="en"> — Play the same chord in multiple positions and voicings</span></li>
+            <li><strong><span lang="ja">トランスポーズ（移調）</span><span lang="en">Transposition</span></strong><span lang="ja"> — キーが変わっても瞬時に対応できる</span><span lang="en"> — Adapt instantly when the key changes</span></li>
+            <li><strong><span lang="ja">耳コピ</span><span lang="en">Transcription</span></strong><span lang="ja"> — 聞こえた音をすぐに指板上で見つけられる</span><span lang="en"> — Quickly locate the notes you hear on the fretboard</span></li>
+            <li><strong><span lang="ja">コミュニケーション</span><span lang="en">Communication</span></strong><span lang="ja"> — 「そこはBbだよ」と言われてすぐ弾ける</span><span lang="en"> — When someone says "play a Bb there," you can respond immediately</span></li>
+        </ul>
+
+        <p>
+            <span lang="ja">指板を知らないギタリストは、暗い部屋で手探りしているようなものです。指板を知っているギタリストは、地図を持って歩いています。</span>
+            <span lang="en">A guitarist who doesn't know the fretboard is like someone feeling around in a dark room. A guitarist who does is walking with a map.</span>
+        </p>
+
+        <!-- Section 2: Fretboard Structure -->
+        <h2 id="structure"><span lang="ja">指板の構造を理解する</span><span lang="en">Understanding the Fretboard Structure</span></h2>
+
+        <p>
+            <span lang="ja">指板を覚える前に、まずその構造を理解しましょう。構造がわかれば、144個のポジションを144個「別々に」覚える必要はなくなります。</span>
+            <span lang="en">Before memorizing the fretboard, understand its structure first. Once you see the patterns, you won't need to memorize 144 positions as 144 separate facts.</span>
+        </p>
+
+        <h3 id="tuning"><span lang="ja">標準チューニング</span><span lang="en">Standard Tuning</span></h3>
+        <p>
+            <span lang="ja">ギターの標準チューニングは、低い方から <strong>E - A - D - G - B - E</strong> です。各弦の開放弦（0フレット）がこの音になっています。</span>
+            <span lang="en">Standard guitar tuning, from lowest to highest string, is <strong>E - A - D - G - B - E</strong>. Each open string (fret 0) produces these notes.</span>
+        </p>
+
+        <h3 id="fret-semitone"><span lang="ja">1フレット = 半音</span><span lang="en">One Fret = One Semitone</span></h3>
+        <p>
+            <span lang="ja">フレットを1つ上がるごとに、音が半音（1セミトーン）上がります。つまり、1弦の開放弦が E なら、1フレットは F、2フレットは F#/Gb、3フレットは G... と規則的に並んでいます。</span>
+            <span lang="en">Each fret raises the pitch by one semitone. So if the open 1st string is E, fret 1 is F, fret 2 is F#/Gb, fret 3 is G, and so on in a regular pattern.</span>
+        </p>
+
+        <h3 id="12th-fret"><span lang="ja">12フレット = 1オクターブ上</span><span lang="en">12th Fret = One Octave Up</span></h3>
+        <p>
+            <span lang="ja">12フレットは開放弦のちょうど1オクターブ上です。つまり、0-11フレットの音名パターンが12フレット以降でそのまま繰り返されます。12フレットまで覚えれば、それ以降は自動的にわかるということです。</span>
+            <span lang="en">The 12th fret is exactly one octave above the open string. This means the note name pattern from frets 0-11 repeats from fret 12 onward. Learn up to the 12th fret, and the rest follows automatically.</span>
+        </p>
+
+        <!-- Fretboard Diagram -->
+        <div class="fretboard-diagram">
+            <div class="diagram-title"><span lang="ja">指板の音名配置（ナチュラルノートのみ）</span><span lang="en">Fretboard Note Layout (Natural Notes Only)</span></div>
+            <div class="fretboard-grid">
+                <div class="fretboard-grid__header">
+                    <div class="fretboard-grid__header-cell"></div>
+                    <div class="fretboard-grid__header-cell"><span lang="ja">開放</span><span lang="en">Open</span></div>
+                    <div class="fretboard-grid__header-cell">1</div>
+                    <div class="fretboard-grid__header-cell">2</div>
+                    <div class="fretboard-grid__header-cell">3</div>
+                    <div class="fretboard-grid__header-cell">4</div>
+                    <div class="fretboard-grid__header-cell">5</div>
+                    <div class="fretboard-grid__header-cell">7</div>
+                    <div class="fretboard-grid__header-cell">8</div>
+                    <div class="fretboard-grid__header-cell">9</div>
+                    <div class="fretboard-grid__header-cell">10</div>
+                    <div class="fretboard-grid__header-cell">12</div>
+                </div>
+                <!-- 1st string (high E) -->
+                <div class="fretboard-grid__row">
+                    <div class="fretboard-grid__string-label">1</div>
+                    <div class="fretboard-grid__cell fretboard-grid__cell--note fretboard-grid__cell--highlight">E</div>
+                    <div class="fretboard-grid__cell fretboard-grid__cell--note">F</div>
+                    <div class="fretboard-grid__cell"></div>
+                    <div class="fretboard-grid__cell fretboard-grid__cell--note">G</div>
+                    <div class="fretboard-grid__cell"></div>
+                    <div class="fretboard-grid__cell fretboard-grid__cell--note">A</div>
+                    <div class="fretboard-grid__cell fretboard-grid__cell--note">B</div>
+                    <div class="fretboard-grid__cell fretboard-grid__cell--note">C</div>
+                    <div class="fretboard-grid__cell"></div>
+                    <div class="fretboard-grid__cell fretboard-grid__cell--note">D</div>
+                    <div class="fretboard-grid__cell fretboard-grid__cell--note fretboard-grid__cell--highlight">E</div>
+                </div>
+                <!-- 2nd string (B) -->
+                <div class="fretboard-grid__row">
+                    <div class="fretboard-grid__string-label">2</div>
+                    <div class="fretboard-grid__cell fretboard-grid__cell--note fretboard-grid__cell--highlight">B</div>
+                    <div class="fretboard-grid__cell fretboard-grid__cell--note">C</div>
+                    <div class="fretboard-grid__cell"></div>
+                    <div class="fretboard-grid__cell fretboard-grid__cell--note">D</div>
+                    <div class="fretboard-grid__cell"></div>
+                    <div class="fretboard-grid__cell fretboard-grid__cell--note">E</div>
+                    <div class="fretboard-grid__cell fretboard-grid__cell--note">F#</div>
+                    <div class="fretboard-grid__cell fretboard-grid__cell--note">G</div>
+                    <div class="fretboard-grid__cell"></div>
+                    <div class="fretboard-grid__cell fretboard-grid__cell--note">A</div>
+                    <div class="fretboard-grid__cell fretboard-grid__cell--note fretboard-grid__cell--highlight">B</div>
+                </div>
+                <!-- 3rd string (G) -->
+                <div class="fretboard-grid__row">
+                    <div class="fretboard-grid__string-label">3</div>
+                    <div class="fretboard-grid__cell fretboard-grid__cell--note fretboard-grid__cell--highlight">G</div>
+                    <div class="fretboard-grid__cell"></div>
+                    <div class="fretboard-grid__cell fretboard-grid__cell--note">A</div>
+                    <div class="fretboard-grid__cell"></div>
+                    <div class="fretboard-grid__cell fretboard-grid__cell--note">B</div>
+                    <div class="fretboard-grid__cell fretboard-grid__cell--note">C</div>
+                    <div class="fretboard-grid__cell fretboard-grid__cell--note">D</div>
+                    <div class="fretboard-grid__cell"></div>
+                    <div class="fretboard-grid__cell fretboard-grid__cell--note">E</div>
+                    <div class="fretboard-grid__cell fretboard-grid__cell--note">F</div>
+                    <div class="fretboard-grid__cell fretboard-grid__cell--note fretboard-grid__cell--highlight">G</div>
+                </div>
+                <!-- 4th string (D) -->
+                <div class="fretboard-grid__row">
+                    <div class="fretboard-grid__string-label">4</div>
+                    <div class="fretboard-grid__cell fretboard-grid__cell--note fretboard-grid__cell--highlight">D</div>
+                    <div class="fretboard-grid__cell"></div>
+                    <div class="fretboard-grid__cell fretboard-grid__cell--note">E</div>
+                    <div class="fretboard-grid__cell fretboard-grid__cell--note">F</div>
+                    <div class="fretboard-grid__cell"></div>
+                    <div class="fretboard-grid__cell fretboard-grid__cell--note">G</div>
+                    <div class="fretboard-grid__cell fretboard-grid__cell--note">A</div>
+                    <div class="fretboard-grid__cell"></div>
+                    <div class="fretboard-grid__cell fretboard-grid__cell--note">B</div>
+                    <div class="fretboard-grid__cell fretboard-grid__cell--note">C</div>
+                    <div class="fretboard-grid__cell fretboard-grid__cell--note fretboard-grid__cell--highlight">D</div>
+                </div>
+                <!-- 5th string (A) -->
+                <div class="fretboard-grid__row">
+                    <div class="fretboard-grid__string-label">5</div>
+                    <div class="fretboard-grid__cell fretboard-grid__cell--note fretboard-grid__cell--highlight">A</div>
+                    <div class="fretboard-grid__cell"></div>
+                    <div class="fretboard-grid__cell fretboard-grid__cell--note">B</div>
+                    <div class="fretboard-grid__cell fretboard-grid__cell--note">C</div>
+                    <div class="fretboard-grid__cell"></div>
+                    <div class="fretboard-grid__cell fretboard-grid__cell--note">D</div>
+                    <div class="fretboard-grid__cell fretboard-grid__cell--note">E</div>
+                    <div class="fretboard-grid__cell fretboard-grid__cell--note">F</div>
+                    <div class="fretboard-grid__cell"></div>
+                    <div class="fretboard-grid__cell fretboard-grid__cell--note">G</div>
+                    <div class="fretboard-grid__cell fretboard-grid__cell--note fretboard-grid__cell--highlight">A</div>
+                </div>
+                <!-- 6th string (low E) -->
+                <div class="fretboard-grid__row">
+                    <div class="fretboard-grid__string-label">6</div>
+                    <div class="fretboard-grid__cell fretboard-grid__cell--note fretboard-grid__cell--highlight">E</div>
+                    <div class="fretboard-grid__cell fretboard-grid__cell--note">F</div>
+                    <div class="fretboard-grid__cell"></div>
+                    <div class="fretboard-grid__cell fretboard-grid__cell--note">G</div>
+                    <div class="fretboard-grid__cell"></div>
+                    <div class="fretboard-grid__cell fretboard-grid__cell--note">A</div>
+                    <div class="fretboard-grid__cell fretboard-grid__cell--note">B</div>
+                    <div class="fretboard-grid__cell fretboard-grid__cell--note">C</div>
+                    <div class="fretboard-grid__cell"></div>
+                    <div class="fretboard-grid__cell fretboard-grid__cell--note">D</div>
+                    <div class="fretboard-grid__cell fretboard-grid__cell--note fretboard-grid__cell--highlight">E</div>
+                </div>
+            </div>
+            <p style="font-size:12px;color:var(--text-secondary);margin-top:var(--space-md);text-align:center;">
+                <span lang="ja">金色の丸 = 開放弦 / 12フレット（オクターブ）。空欄は # / b の音。</span>
+                <span lang="en">Gold circles = open strings / 12th fret (octave). Empty cells are # / b notes.</span>
+            </p>
+        </div>
+
+        <h3 id="same-note"><span lang="ja">同じ音が複数の場所にある</span><span lang="en">The Same Note in Multiple Places</span></h3>
+        <p>
+            <span lang="ja">上の図を見ると、たとえば「C」という音は 1弦8フレット、2弦1フレット、3弦5フレット、4弦10フレット、5弦3フレット... と、あちこちに存在しています。これがギターの指板が「複雑に見える」最大の理由であり、同時に「自由度が高い」理由でもあります。</span>
+            <span lang="en">Looking at the diagram above, the note "C" appears at 1st string fret 8, 2nd string fret 1, 3rd string fret 5, 4th string fret 10, 5th string fret 3, and more. This is both the main reason the fretboard looks complex and the reason it offers so much freedom.</span>
+        </p>
+
+        <div class="article-note">
+            <div class="article-note__title"><span lang="ja">ポイント</span><span lang="en">Key Point</span></div>
+            <p><span lang="ja">指板は「144個の独立したポジション」ではなく、「12音 x 6弦のパターンの繰り返し」です。構造を理解すれば、覚える量は大幅に減ります。</span><span lang="en">The fretboard isn't "144 independent positions" but "a repeating pattern of 12 notes across 6 strings." Understanding the structure dramatically reduces what you need to memorize.</span></p>
+        </div>
+
+        <!-- Section 3: Common Struggles -->
+        <h2 id="common-struggles"><span lang="ja">よくある壁</span><span lang="en">Common Struggles</span></h2>
+
+        <p>
+            <span lang="ja">指板を覚えようとしたとき、多くのギタリストが同じ壁にぶつかります。</span>
+            <span lang="en">When trying to learn the fretboard, most guitarists hit the same walls.</span>
+        </p>
+
+        <h3 id="unknown-territory"><span lang="ja">5-7フレット以上が未知の領域</span><span lang="en">Frets Beyond 5-7 Are Unknown Territory</span></h3>
+        <p>
+            <span lang="ja">開放弦から4-5フレットまではコードの形で覚えている人が多いです。でも、7フレットから先になると「ここは何の音？」と聞かれて答えられない。12フレット以降はほぼ手つかず、という状態はよくあります。</span>
+            <span lang="en">Many guitarists know frets 0-5 because they've learned open chord shapes. But ask "what note is this?" past fret 7, and they can't answer. Everything past the 12th fret is often completely uncharted territory.</span>
+        </p>
+
+        <h3 id="sharps-flats"><span lang="ja">#/bの位置が覚えられない</span><span lang="en">Can't Remember Sharp/Flat Positions</span></h3>
+        <p>
+            <span lang="ja">ナチュラルノート（C, D, E, F, G, A, B）はなんとなく覚えていても、シャープやフラットの位置が曖昧。「E と F の間」「B と C の間」にはシャープ/フラットがないという基本ルールを忘れがちです。</span>
+            <span lang="en">You might roughly know the natural notes (C, D, E, F, G, A, B), but the sharps and flats remain fuzzy. It's easy to forget the basic rule that there's no sharp/flat between E and F, or between B and C.</span>
+        </p>
+
+        <h3 id="cross-string"><span lang="ja">弦をまたぐと混乱する</span><span lang="en">Confusion When Crossing Strings</span></h3>
+        <p>
+            <span lang="ja">1本の弦の上では半音ずつ上がるだけなので理解しやすい。でも、隣の弦に移ると、弦ごとにチューニングが違うため「さっきの音はどこに行った？」となりやすいです。特に2弦と3弦の間は、他の弦間と音程間隔が異なる（4度ではなく3度）ため、パターンが崩れます。</span>
+            <span lang="en">Along a single string, it's straightforward — each fret is one semitone higher. But when you cross to an adjacent string, the different tuning of each string breaks your mental model. The gap between strings 2 and 3 is particularly tricky because the interval is a major third (not a fourth like the others), breaking the otherwise consistent pattern.</span>
+        </p>
+
+        <h3 id="open-fret-disconnect"><span lang="ja">開放弦とフレット音の関連が見えない</span><span lang="en">Can't See the Connection Between Open Strings and Fretted Notes</span></h3>
+        <p>
+            <span lang="ja">「5弦の開放はA」「6弦5フレットもA」ということは知っていても、それが「同じ音」であるという感覚が弱い。開放弦とフレット音を別々のものとして扱ってしまい、指板全体のつながりが見えにくくなります。</span>
+            <span lang="en">You might know that "open 5th string is A" and "6th string fret 5 is also A," but the feeling that they are the same note is weak. When you treat open strings and fretted notes as separate things, the connections across the fretboard become invisible.</span>
+        </p>
+
+        <!-- Section 4: Effective Learning Methods -->
+        <h2 id="effective-methods"><span lang="ja">効果的な覚え方</span><span lang="en">Effective Learning Methods</span></h2>
+
+        <p>
+            <span lang="ja">指板を効率よく覚えるには、いくつかの原則があります。</span>
+            <span lang="en">There are several principles for learning the fretboard efficiently.</span>
+        </p>
+
+        <h3 id="naturals-first"><span lang="ja">まずナチュラルノートだけ覚える</span><span lang="en">Start with Natural Notes Only</span></h3>
+        <p>
+            <span lang="ja">12音すべてを一度に覚えようとしないでください。まずは C, D, E, F, G, A, B の7音だけに集中します。ナチュラルノートの位置がわかれば、シャープやフラットは「その隣」で自動的にわかるからです。たとえば、「ここが F で、隣が G なら、その間は F#/Gb」という推論が効きます。</span>
+            <span lang="en">Don't try to learn all 12 notes at once. Focus first on just the 7 natural notes: C, D, E, F, G, A, B. Once you know where the naturals are, the sharps and flats are automatically "next to them." For example, "if this is F and the next is G, then the fret between them must be F#/Gb."</span>
+        </p>
+
+        <h3 id="one-string"><span lang="ja">1弦ずつ攻略する</span><span lang="en">Learn One String at a Time</span></h3>
+        <p>
+            <span lang="ja">6弦すべてを同時に覚えようとすると混乱します。まず6弦（低いE）を完全に覚え、次に5弦（A）、というように1本ずつ攻略していきましょう。1弦と6弦は同じ音名の並びなので、6弦を覚えれば1弦は自動的にわかります。</span>
+            <span lang="en">Trying to learn all 6 strings at once leads to confusion. Start with the 6th string (low E), master it completely, then move to the 5th string (A), and so on. Since the 1st and 6th strings share the same note names, mastering the 6th string gives you the 1st for free.</span>
+        </p>
+
+        <h3 id="octave-shapes"><span lang="ja">オクターブシェイプを使う</span><span lang="en">Use Octave Shapes</span></h3>
+        <p>
+            <span lang="ja">ギターには「同じ音名が2弦離れて、2フレット上にある」というパターンがあります（2-3弦間を除く）。このオクターブシェイプを覚えると、1つの音の位置から別の位置を芋づる式に見つけられます。</span>
+            <span lang="en">Guitar has a pattern where "the same note name appears 2 strings away and 2 frets up" (except across the 2nd-3rd string gap). Learning this octave shape lets you chain-find note positions from a single known location.</span>
+        </p>
+
+        <!-- Octave Shape Diagram -->
+        <div class="octave-diagram">
+            <div class="diagram-title"><span lang="ja">オクターブシェイプ: 6弦→4弦 / 5弦→3弦</span><span lang="en">Octave Shape: 6th→4th String / 5th→3rd String</span></div>
+            <div class="octave-grid">
+                <div class="fretboard-grid__header">
+                    <div class="fretboard-grid__header-cell" style="width:40px;"></div>
+                    <div class="fretboard-grid__header-cell" style="width:50px;">3</div>
+                    <div class="fretboard-grid__header-cell" style="width:50px;">4</div>
+                    <div class="fretboard-grid__header-cell" style="width:50px;">5</div>
+                    <div class="fretboard-grid__header-cell" style="width:50px;">6</div>
+                    <div class="fretboard-grid__header-cell" style="width:50px;">7</div>
+                    <div class="fretboard-grid__header-cell" style="width:50px;">8</div>
+                </div>
+                <div class="octave-grid__row">
+                    <div class="octave-grid__label">3</div>
+                    <div class="octave-grid__cell"></div>
+                    <div class="octave-grid__cell"></div>
+                    <div class="octave-grid__cell"></div>
+                    <div class="octave-grid__cell"></div>
+                    <div class="octave-grid__cell octave-grid__cell--octave">D</div>
+                    <div class="octave-grid__cell"></div>
+                </div>
+                <div class="octave-grid__row">
+                    <div class="octave-grid__label">4</div>
+                    <div class="octave-grid__cell"></div>
+                    <div class="octave-grid__cell"></div>
+                    <div class="octave-grid__cell octave-grid__cell--octave">G</div>
+                    <div class="octave-grid__cell"></div>
+                    <div class="octave-grid__cell"></div>
+                    <div class="octave-grid__cell"></div>
+                </div>
+                <div class="octave-grid__row">
+                    <div class="octave-grid__label">5</div>
+                    <div class="octave-grid__cell octave-grid__cell--root">D</div>
+                    <div class="octave-grid__cell"></div>
+                    <div class="octave-grid__cell"></div>
+                    <div class="octave-grid__cell"></div>
+                    <div class="octave-grid__cell"></div>
+                    <div class="octave-grid__cell"></div>
+                </div>
+                <div class="octave-grid__row">
+                    <div class="octave-grid__label">6</div>
+                    <div class="octave-grid__cell octave-grid__cell--root">G</div>
+                    <div class="octave-grid__cell"></div>
+                    <div class="octave-grid__cell"></div>
+                    <div class="octave-grid__cell"></div>
+                    <div class="octave-grid__cell"></div>
+                    <div class="octave-grid__cell"></div>
+                </div>
+            </div>
+            <div class="octave-arrow">
+                <span class="octave-arrow__badge octave-arrow__badge--root"><span lang="ja">ルート</span><span lang="en">Root</span></span>
+                &rarr;
+                <span lang="ja">2弦上 + 2フレット上</span><span lang="en">2 strings up + 2 frets up</span>
+                &rarr;
+                <span class="octave-arrow__badge octave-arrow__badge--octave"><span lang="ja">オクターブ</span><span lang="en">Octave</span></span>
+            </div>
+            <p style="font-size:12px;color:var(--text-secondary);margin-top:var(--space-md);text-align:center;">
+                <span lang="ja">2-3弦間では +3フレット上にずれます（長3度チューニングのため）</span>
+                <span lang="en">Across the 2nd-3rd string gap, shift +3 frets up (due to major 3rd tuning)</span>
+            </p>
+        </div>
+
+        <h3 id="fret-ranges"><span lang="ja">フレット範囲を区切って練習する</span><span lang="en">Practice in Fret Ranges</span></h3>
+        <p>
+            <span lang="ja">指板全体を一度に覚えるのではなく、範囲を区切って少しずつ広げていきます。</span>
+            <span lang="en">Instead of learning the entire fretboard at once, divide it into ranges and expand gradually.</span>
+        </p>
+
+        <div class="progression-steps">
+            <div class="progression-step">
+                <div class="progression-step__number">1</div>
+                <div class="progression-step__content">
+                    <div class="progression-step__title"><span lang="ja">フレット 0-5</span><span lang="en">Frets 0-5</span></div>
+                    <div class="progression-step__desc"><span lang="ja">開放弦を含む最もなじみのある範囲。まずここをしっかり覚える。</span><span lang="en">The most familiar range, including open strings. Start here and build confidence.</span></div>
+                </div>
+            </div>
+            <div class="progression-step">
+                <div class="progression-step__number">2</div>
+                <div class="progression-step__content">
+                    <div class="progression-step__title"><span lang="ja">フレット 5-12</span><span lang="en">Frets 5-12</span></div>
+                    <div class="progression-step__desc"><span lang="ja">多くのギタリストが苦手とする中間領域。ここを克服すると大きく進歩する。</span><span lang="en">The mid-range zone where most guitarists struggle. Conquering this makes a huge difference.</span></div>
+                </div>
+            </div>
+            <div class="progression-step">
+                <div class="progression-step__number">3</div>
+                <div class="progression-step__content">
+                    <div class="progression-step__title"><span lang="ja">フレット 0-12（全範囲統合）</span><span lang="en">Frets 0-12 (Full Range Integration)</span></div>
+                    <div class="progression-step__desc"><span lang="ja">両方の範囲を統合して練習。シームレスにポジション移動できるか確認。</span><span lang="en">Integrate both ranges. Check if you can move seamlessly between positions.</span></div>
+                </div>
+            </div>
+            <div class="progression-step">
+                <div class="progression-step__number">4</div>
+                <div class="progression-step__content">
+                    <div class="progression-step__title"><span lang="ja">フレット 0-24（フルレンジ）</span><span lang="en">Frets 0-24 (Full Range)</span></div>
+                    <div class="progression-step__desc"><span lang="ja">12フレット以降は繰り返しなので、ここまで来れば仕上げ段階。</span><span lang="en">Since frets 12+ repeat the pattern, reaching this stage means you're in the finishing phase.</span></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="article-note">
+            <div class="article-note__title"><span lang="ja">ポイント</span><span lang="en">Key Point</span></div>
+            <p><span lang="ja">「ナチュラルノートだけ → 範囲を狭く → 段階的に広げる」が最も効率的です。最初から全部やろうとすると、どこも中途半端になりがちです。</span><span lang="en">"Natural notes only, narrow range, expand gradually" is the most efficient approach. Trying to learn everything at once usually means nothing sticks properly.</span></p>
+        </div>
+
+        <!-- Section 5: What the App Can Do -->
+        <h2 id="what-app-can-do"><span lang="ja">ソルフェージュPROでできること</span><span lang="en">What Solfege PRO Can Do</span></h2>
+
+        <p>
+            <span lang="ja">ソルフェージュPROの Fretboard Training は、ここまで紹介した学習法を<strong>「出題 → 回答 → 弱点把握 → 集中練習」のサイクル</strong>で支援するツールです。</span>
+            <span lang="en">Solfege PRO's Fretboard Training is a tool that supports the learning methods described above through a <strong>"quiz, answer, identify weaknesses, focused practice" cycle</strong>.</span>
+        </p>
+
+        <h3><span lang="ja">チューニング対応</span><span lang="en">Multiple Tuning Support</span></h3>
+        <p>
+            <span lang="ja">Standard チューニングだけでなく、Drop D、Half Step Down、Open G、DADGAD に対応しています。変則チューニングを使うプレイヤーも、自分のチューニングで練習できます。</span>
+            <span lang="en">Beyond Standard tuning, the app supports Drop D, Half Step Down, Open G, and DADGAD. Players who use alternate tunings can practice with their own setup.</span>
+        </p>
+
+        <h3><span lang="ja">フレット範囲の選択</span><span lang="en">Fret Range Selection</span></h3>
+        <p>
+            <span lang="ja">練習するフレット範囲を選べます: 0-5 / 5-12 / 0-12 / 0-24。先に紹介した「段階的に広げる」アプローチをそのまま実践できます。</span>
+            <span lang="en">Choose your practice fret range: 0-5 / 5-12 / 0-12 / 0-24. This directly supports the "expand gradually" approach described above.</span>
+        </p>
+
+        <h3><span lang="ja">弦の絞り込み</span><span lang="en">String Focus</span></h3>
+        <p>
+            <span lang="ja">全弦 / 高音弦（1-3弦）/ 低音弦（4-6弦）/ 個別弦から選択可能。「1弦ずつ攻略する」練習をそのまま設定できます。</span>
+            <span lang="en">Choose from all strings, high strings (1-3), low strings (4-6), or individual strings. This directly enables the "one string at a time" practice method.</span>
+        </p>
+
+        <h3><span lang="ja">ノートモード</span><span lang="en">Note Mode</span></h3>
+        <p>
+            <span lang="ja">出題する音の種類を選べます: ナチュラルノートのみ / シャープ / フラット / すべて。まずナチュラルノートだけで練習し、慣れたらシャープ・フラットを追加するステップアップが可能です。</span>
+            <span lang="en">Choose which notes appear in quizzes: naturals only, sharps, flats, or all. Start with naturals only and add sharps/flats as you gain confidence.</span>
+        </p>
+
+        <div class="feature-grid">
+            <div class="feature-card">
+                <div class="feature-card__title"><span lang="ja">左利き表示</span><span lang="en">Left-Hand Display</span></div>
+                <div class="feature-card__desc"><span lang="ja">指板の向きを左利き用に反転できます。レフティプレイヤーにとって自然な表示で練習可能。</span><span lang="en">Flip the fretboard display for left-handed players. Practice with a natural orientation.</span></div>
+            </div>
+            <div class="feature-card">
+                <div class="feature-card__title"><span lang="ja">オクターブハイライト</span><span lang="en">Octave Highlighting</span></div>
+                <div class="feature-card__desc"><span lang="ja">指板上の同じ音名を持つポジションをハイライト表示。オクターブシェイプの理解を視覚的に支援。</span><span lang="en">Highlights positions with the same note name on the fretboard. Visually reinforces octave shape understanding.</span></div>
+            </div>
+            <div class="feature-card">
+                <div class="feature-card__title"><span lang="ja">全ポジション検索モード</span><span lang="en">Find All Positions Mode</span></div>
+                <div class="feature-card__desc"><span lang="ja">「この音を指板上のすべてのポジションで見つけよ」という出題。音名と指板のつながりを強化。</span><span lang="en">"Find this note everywhere on the fretboard." Strengthens the connection between note names and fretboard locations.</span></div>
+            </div>
+            <div class="feature-card">
+                <div class="feature-card__title"><span lang="ja">弱点追跡</span><span lang="en">Weak Point Tracking</span></div>
+                <div class="feature-card__desc"><span lang="ja">音名・弦・フレット範囲ごとの正答率を記録。どこが弱いかが数値で見える。</span><span lang="en">Tracks accuracy by note, string, and fret range. See exactly where your weak spots are.</span></div>
+            </div>
+            <div class="feature-card">
+                <div class="feature-card__title"><span lang="ja">プリセット保存</span><span lang="en">Custom Presets</span></div>
+                <div class="feature-card__desc"><span lang="ja">よく使う練習設定を保存しておけます。段階的な練習計画をプリセットとして管理可能。</span><span lang="en">Save your favorite practice configurations. Manage your gradual learning plan as presets.</span></div>
+            </div>
+            <div class="feature-card">
+                <div class="feature-card__title"><span lang="ja">シングルタップ回答</span><span lang="en">Single Tap Answer</span></div>
+                <div class="feature-card__desc"><span lang="ja">指板上の正しい位置をタップして回答。反射的に答えられるまで繰り返し練習。</span><span lang="en">Tap the correct position on the fretboard to answer. Practice until you can respond reflexively.</span></div>
+            </div>
+        </div>
+
+        <!-- Cycle Diagram -->
+        <div class="cycle-diagram">
+            <div class="cycle-step">
+                <div class="cycle-step__label"><span lang="ja">出題</span><span lang="en">Quiz</span></div>
+                <div class="cycle-step__desc"><span lang="ja">音名を表示</span><span lang="en">Show a note</span></div>
+            </div>
+            <div class="cycle-arrow">&rarr;</div>
+            <div class="cycle-step">
+                <div class="cycle-step__label"><span lang="ja">回答</span><span lang="en">Answer</span></div>
+                <div class="cycle-step__desc"><span lang="ja">指板をタップ</span><span lang="en">Tap the fretboard</span></div>
+            </div>
+            <div class="cycle-arrow">&rarr;</div>
+            <div class="cycle-step">
+                <div class="cycle-step__label"><span lang="ja">弱点</span><span lang="en">Weakness</span></div>
+                <div class="cycle-step__desc"><span lang="ja">苦手を確認</span><span lang="en">Identify gaps</span></div>
+            </div>
+            <div class="cycle-arrow">&rarr;</div>
+            <div class="cycle-step">
+                <div class="cycle-step__label"><span lang="ja">集中</span><span lang="en">Focus</span></div>
+                <div class="cycle-step__desc"><span lang="ja">設定を絞って再挑戦</span><span lang="en">Narrow settings & retry</span></div>
+            </div>
+        </div>
+
+        <!-- Mid-article CTA -->
+        <div class="article-cta-subtle">
+            <p class="article-cta-subtle__text"><span lang="ja">自分の指板のどこが弱いか、まず確認してみませんか</span><span lang="en">Why not start by checking where your fretboard knowledge is weakest?</span></p>
+            <a href="https://apps.apple.com/app/id6756626617" class="article-cta-subtle__button"><span lang="ja">App Storeで見る</span><span lang="en">View on App Store</span></a>
+        </div>
+
+        <!-- Section 6: Limitations (Honest) -->
+        <h2 id="limitations"><span lang="ja">ソルフェージュPROだけでは直接扱いきれないこと</span><span lang="en">What Solfege PRO Does Not Directly Cover</span></h2>
+
+        <p>
+            <span lang="ja">正直に書きます。</span>
+            <span lang="en">Let's be honest.</span>
+        </p>
+
+        <div class="article-honest">
+            <div class="article-honest__title"><span lang="ja">アプリでカバーできない領域</span><span lang="en">Areas Beyond the App's Scope</span></div>
+            <p>
+                <strong><span lang="ja">CAGEDシステム</span><span lang="en">CAGED system training</span></strong><span lang="ja"> — 指板を5つのコードフォームで体系的に理解するCAGEDシステムには対応していません。CAGED学習は教本やコード理論の教材と併用してください。</span><span lang="en"> — The app does not cover the CAGED system for understanding the fretboard through 5 chord form shapes. For CAGED learning, use textbooks or chord theory resources.</span>
+            </p>
+            <p>
+                <strong><span lang="ja">スケールパターンの視覚化</span><span lang="en">Scale pattern visualization</span></strong><span lang="ja"> — 指板上にスケールパターン（ペンタトニック、メジャースケールのポジション等）を表示する機能はありません。スケール練習は別途行う必要があります。</span><span lang="en"> — The app does not display scale patterns (pentatonic positions, major scale shapes, etc.) on the fretboard. Scale practice needs to be done separately.</span>
+            </p>
+            <p>
+                <strong><span lang="ja">コードシェイプの学習</span><span lang="en">Chord shape learning</span></strong><span lang="ja"> — コードフォームの暗記や、異なるポジションでのコードボイシング学習は範囲外です。</span><span lang="en"> — Memorizing chord forms and learning chord voicings in different positions is outside the scope.</span>
+            </p>
+            <p>
+                <strong><span lang="ja">演奏テクニック</span><span lang="en">Multi-string techniques</span></strong><span lang="ja"> — ベンド、スライド、ハンマリングオン、プリングオフなどの演奏テクニックは扱いません。これは「音名の位置を知る」こととは別のスキルです。</span><span lang="en"> — Bends, slides, hammer-ons, pull-offs, and other playing techniques are not covered. These are separate skills from "knowing note positions."</span>
+            </p>
+            <p>
+                <strong><span lang="ja">音楽的な文脈</span><span lang="en">Musical context</span></strong><span lang="ja"> — 曲に合わせて弾く、バッキングトラックに乗せて弾くといった実践的な文脈での練習はできません。</span><span lang="en"> — Practicing in practical contexts like playing along with songs or over backing tracks is not supported.</span>
+            </p>
+            <p>
+                <strong><span lang="ja">カスタムチューニングの作成</span><span lang="en">Custom tuning creation</span></strong><span lang="ja"> — 対応チューニングは5種類のプリセットのみで、自由にチューニングを定義する機能はありません。</span><span lang="en"> — Only 5 preset tunings are available. There is no feature to define custom tunings freely.</span>
+            </p>
+        </div>
+
+        <p>
+            <span lang="ja">ソルフェージュPROが直接支援できるのは、<strong>「音名がどのポジションにあるか」を正確に、素早く答えられるようになること</strong>です。指板の「地図」を頭に入れるためのツールであり、その地図の上で何を弾くかは、あなた自身の演奏と練習にかかっています。</span>
+            <span lang="en">What Solfege PRO directly supports is <strong>building the ability to accurately and quickly identify where each note is on the fretboard</strong>. It's a tool for building the mental "map" of the fretboard — what you play on that map is up to your own musicianship and practice.</span>
+        </p>
+
+        <!-- Section 7: Recommended Usage -->
+        <h2 id="recommended-usage"><span lang="ja">おすすめの使い方</span><span lang="en">Recommended Usage</span></h2>
+
+        <p>
+            <span lang="ja">効果的な練習の流れを紹介します。</span>
+            <span lang="en">Here's an effective practice progression.</span>
+        </p>
+
+        <ol>
+            <li><strong><span lang="ja">ナチュラルノート + フレット 0-5 + 全弦</span><span lang="en">Natural notes + Frets 0-5 + All strings</span></strong><span lang="ja"> — まずはここから。開放弦を含む基本範囲で、7つのナチュラルノートの位置をしっかり定着させる。</span><span lang="en"> — Start here. Master the 7 natural notes in the basic range including open strings.</span></li>
+            <li><strong><span lang="ja">ナチュラルノート + フレット 5-12 + 全弦</span><span lang="en">Natural notes + Frets 5-12 + All strings</span></strong><span lang="ja"> — 苦手な中間領域を攻略する。ここが最も伸びしろのある部分。</span><span lang="en"> — Tackle the challenging mid-range. This is where you'll see the most growth.</span></li>
+            <li><strong><span lang="ja">ナチュラルノート + フレット 0-12 + 全弦</span><span lang="en">Natural notes + Frets 0-12 + All strings</span></strong><span lang="ja"> — 両範囲を統合して、指板の前半を通しで答えられるか確認する。</span><span lang="en"> — Integrate both ranges. Verify you can answer across the first 12 frets seamlessly.</span></li>
+            <li><strong><span lang="ja"># / b を追加</span><span lang="en">Add sharps / flats</span></strong><span lang="ja"> — ナチュラルノートが安定したら、ノートモードを「すべて」に切り替えて12音全体に広げる。</span><span lang="en"> — Once naturals are solid, switch the note mode to "all" and expand to all 12 notes.</span></li>
+            <li><strong><span lang="ja">全ポジション検索モードで仕上げ</span><span lang="en">Finish with "Find All Positions" mode</span></strong><span lang="ja"> — 1つの音名に対して指板上のすべてのポジションを即答できるか挑戦する。</span><span lang="en"> — Challenge yourself to instantly find every position of a given note on the fretboard.</span></li>
+        </ol>
+
+        <!-- Good vs Bad Comparison -->
+        <div class="comparison-visual">
+            <div class="comparison-card comparison-card--bad">
+                <div class="comparison-card__header"><span lang="ja">効果が出にくい</span><span lang="en">Less Effective</span></div>
+                <div class="comparison-card__body">
+                    <p><span lang="ja">最初から全フレット・全音でランダム出題。正答率が低すぎて何も定着しない。毎回リセットされる感覚。</span><span lang="en">Random quizzes across all frets and all notes from the start. Accuracy is too low for anything to stick. Feels like starting over every time.</span></p>
+                </div>
+            </div>
+            <div class="comparison-card comparison-card--good">
+                <div class="comparison-card__header"><span lang="ja">効果が出やすい</span><span lang="en">More Effective</span></div>
+                <div class="comparison-card__body">
+                    <p><span lang="ja">ナチュラルノート・狭い範囲から始めて正答率90%以上にする → 範囲を広げる → #/b を追加。弱点追跡を確認して、苦手な音・弦に集中。</span><span lang="en">Start with naturals in a narrow range until 90%+ accuracy, expand the range, then add sharps/flats. Check weak point tracking and focus on troublesome notes and strings.</span></p>
+                </div>
+            </div>
+        </div>
+
+        <div class="article-note">
+            <div class="article-note__title"><span lang="ja">使い方のコツ</span><span lang="en">Usage Tip</span></div>
+            <p><span lang="ja">1回のセッションは短くて構いません。5分でも毎日やれば、1週間で開放弦〜5フレットのナチュラルノートは完璧に覚えられるはずです。「短く、毎日、段階的に」が最も効果的です。</span><span lang="en">Each session can be short. Even 5 minutes a day, and within a week you should have the natural notes from open strings to fret 5 locked in. "Short, daily, and gradual" is the most effective approach.</span></p>
+        </div>
+
+    </main>
+
+    <!-- Final CTA -->
+    <section class="article-cta">
+        <h2 class="article-cta__title"><span lang="ja">まず、指板のどこが弱いか確認しよう</span><span lang="en">Start by Finding Your Fretboard Weak Spots</span></h2>
+        <p class="article-cta__text">
+            <span lang="ja">指板の暗記は、闇雲にやっても効果が薄いです。<br>自分がどの弦の、どのフレット範囲が弱いのかを知ること。それが、効率的な学習の出発点です。<br>ソルフェージュPROの Fretboard Training で、まず自分の弱点を確認してみてください。</span>
+            <span lang="en">Brute-force memorization of the fretboard isn't effective.<br>Knowing which strings and fret ranges are your weakest is where efficient learning begins.<br>Try Solfege PRO's Fretboard Training and find your weak spots first.</span>
+        </p>
+        <a href="https://apps.apple.com/app/id6756626617" class="article-cta__button"><span lang="ja">App Storeでダウンロード</span><span lang="en">Download on App Store</span></a>
+    </section>
+
+    <!-- Related Content -->
+    <div class="article-related">
+        <div class="article-related__title"><span lang="ja">関連コンテンツ</span><span lang="en">Related Content</span></div>
+        <a href="../" class="article-related__link">
+            <div class="article-related__link-title"><span lang="ja">ソルフェージュPRO 練習ガイド</span><span lang="en">Solfege PRO Practice Guide</span></div>
+            <div class="article-related__link-desc"><span lang="ja">ギター・ベース・ドラム・ピアノ・ボーカル向けの課題別練習メニュー</span><span lang="en">Challenge-based practice menus for guitar, bass, drums, piano, and vocals</span></div>
+        </a>
+    </div>
+
+    <!-- Article End Note -->
+    <aside class="article-endnote">
+        <p class="article-endnote__text">
+            <span lang="ja">この記事は、ギター指板学習で広く使われる方法論と、ソルフェージュPROの機能設計をもとに整理しています。最適な学習順序やアプローチは個人の経験やプレイスタイルによって異なります。アプリ内のトレーニングは音名ポジションの記憶と想起を支援するものであり、演奏技術やスケール・コード理論の習得を保証するものではありません。</span>
+            <span lang="en">This article is organized based on widely used fretboard learning methodologies and the feature design of Solfege PRO. The optimal learning order and approach vary depending on individual experience and playing style. The in-app training supports memorization and recall of note positions, and does not guarantee mastery of playing technique or scale/chord theory.</span>
+        </p>
+    </aside>
+
+    <!-- Footer -->
+    <footer class="article-footer">
+        <p class="article-footer__text">
+            &copy; 2025 <span lang="ja">ソルフェージュPRO</span><span lang="en">Solfege PRO</span> &mdash;
+            <a href="https://apps.apple.com/app/id6756626617" class="article-footer__link">App Store</a>
+        </p>
+    </footer>
+
+    <!-- Language Toggle Script -->
+    <script>
+    (function() {
+        var langToggle = document.getElementById('lang-toggle');
+        var langText = document.getElementById('lang-text');
+        var currentLang = localStorage.getItem('lang') || 'ja';
+
+        function applyLanguage(lang) {
+            document.documentElement.setAttribute('data-lang', lang);
+            langText.textContent = lang === 'ja' ? 'EN' : 'JA';
+            document.title = lang === 'ja'
+                ? '指板を覚えるとは何か — ギターのフレットボードを効率的に習得する | ソルフェージュPRO'
+                : 'Mastering the Fretboard — How to Efficiently Learn Guitar Note Positions | Solfege PRO';
+            localStorage.setItem('lang', lang);
+            currentLang = lang;
+        }
+
+        // Apply language immediately
+        document.documentElement.setAttribute('data-lang', currentLang);
+        langText.textContent = currentLang === 'ja' ? 'EN' : 'JA';
+
+        langToggle.addEventListener('click', function() {
+            applyLanguage(currentLang === 'ja' ? 'en' : 'ja');
+        });
+    })();
+    </script>
+
+</body>
+</html>
