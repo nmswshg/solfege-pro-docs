@@ -25,6 +25,10 @@
     <meta name="twitter:description" content="「譜読みが苦手」は分解できる。音部記号・臨時記号・加線の壁を知って、練習を変えよう。">
     <meta name="twitter:image" content="https://nmswshg.github.io/solfege-pro-docs/AppIcon.png">
 
+    <!-- Favicon -->
+    <link rel="icon" href="../AppIcon.png" type="image/png">
+    <link rel="apple-touch-icon" href="../AppIcon.png">
+
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -705,7 +709,7 @@
         var currentLang = localStorage.getItem('lang') || 'ja';
 
         function applyLanguage(lang) {
-            document.documentElement.setAttribute('data-lang', lang);
+            document.documentElement.setAttribute('data-lang', lang); document.documentElement.lang = lang;
             langText.textContent = lang === 'ja' ? 'EN' : 'JA';
             document.title = lang === 'ja'
                 ? '譜読みとは何か — 五線譜を素早く読むための基礎と練習法 | ソルフェージュPRO'

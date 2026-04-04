@@ -6,6 +6,25 @@
     <title>トレーニングガイド一覧 | ソルフェージュPRO</title>
     <meta name="description" content="ソルフェージュPROの各トレーニング機能を深く理解するためのガイド記事一覧。リズム、音程、譜読み、指板、コード、スケール、コード進行。">
 
+    <!-- Canonical -->
+    <link rel="canonical" href="https://nmswshg.github.io/solfege-pro-docs/guides/">
+
+    <!-- Favicon -->
+    <link rel="icon" href="../AppIcon.png" type="image/png">
+    <link rel="apple-touch-icon" href="../AppIcon.png">
+
+    <!-- OGP -->
+    <meta property="og:title" content="トレーニングガイド一覧 | ソルフェージュPRO">
+    <meta property="og:description" content="各トレーニングの考え方、効果的な練習法、アプリでできること・できないことを正直に解説。">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://nmswshg.github.io/solfege-pro-docs/guides/">
+    <meta property="og:image" content="https://nmswshg.github.io/solfege-pro-docs/AppIcon.png">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="トレーニングガイド一覧 | ソルフェージュPRO">
+    <meta name="twitter:description" content="各トレーニングの考え方、効果的な練習法、アプリでできること・できないことを正直に解説。">
+
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -138,6 +157,9 @@
         }
 
         @media (max-width: 768px) {
+            /* Keep nav__list visible on this page (only 2 items, fits mobile) */
+            .nav__list { display: flex !important; gap: var(--space-xs); }
+            .nav__link { font-size: 12px; padding: var(--space-sm) var(--space-sm); }
             .guides-header {
                 padding-top: calc(var(--nav-height) + var(--space-xl));
                 padding-left: var(--space-md);
@@ -259,7 +281,7 @@
         var currentLang = localStorage.getItem('lang') || 'ja';
 
         function applyLanguage(lang) {
-            document.documentElement.setAttribute('data-lang', lang);
+            document.documentElement.setAttribute('data-lang', lang); document.documentElement.lang = lang;
             langText.textContent = lang === 'ja' ? 'EN' : 'JA';
             document.title = lang === 'ja'
                 ? 'トレーニングガイド一覧 | ソルフェージュPRO'

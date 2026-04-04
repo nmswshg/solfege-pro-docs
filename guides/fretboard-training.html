@@ -25,6 +25,10 @@
     <meta name="twitter:description" content="ギターの指板は「暗記するもの」ではなく「構造を理解するもの」。効率的な覚え方と練習法を解説。">
     <meta name="twitter:image" content="https://nmswshg.github.io/solfege-pro-docs/AppIcon.png">
 
+    <!-- Favicon -->
+    <link rel="icon" href="../AppIcon.png" type="image/png">
+    <link rel="apple-touch-icon" href="../AppIcon.png">
+
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -946,7 +950,7 @@
         var currentLang = localStorage.getItem('lang') || 'ja';
 
         function applyLanguage(lang) {
-            document.documentElement.setAttribute('data-lang', lang);
+            document.documentElement.setAttribute('data-lang', lang); document.documentElement.lang = lang;
             langText.textContent = lang === 'ja' ? 'EN' : 'JA';
             document.title = lang === 'ja'
                 ? '指板を覚えるとは何か — ギターのフレットボードを効率的に習得する | ソルフェージュPRO'

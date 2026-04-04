@@ -25,6 +25,10 @@
     <meta name="twitter:description" content="Major? Minor? 7th? コードの響きを聴き分ける力は、音程の理解から段階的に鍛えられます。">
     <meta name="twitter:image" content="https://nmswshg.github.io/solfege-pro-docs/AppIcon.png">
 
+    <!-- Favicon -->
+    <link rel="icon" href="../AppIcon.png" type="image/png">
+    <link rel="apple-touch-icon" href="../AppIcon.png">
+
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -499,7 +503,7 @@
         var currentLang = localStorage.getItem('lang') || 'ja';
 
         function applyLanguage(lang) {
-            document.documentElement.setAttribute('data-lang', lang);
+            document.documentElement.setAttribute('data-lang', lang); document.documentElement.lang = lang;
             langText.textContent = lang === 'ja' ? 'EN' : 'JA';
             document.title = lang === 'ja'
                 ? 'コードを聴き分ける力とは何か — 和音の響きを理解する | ソルフェージュPRO'

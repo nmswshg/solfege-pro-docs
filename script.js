@@ -162,7 +162,7 @@ document.addEventListener('DOMContentLoaded', function() {
     let currentLang = localStorage.getItem('lang') || 'ja';
 
     function applyLanguage(lang) {
-        document.documentElement.setAttribute('data-lang', lang);
+        document.documentElement.setAttribute('data-lang', lang); document.documentElement.lang = lang;
         langText.textContent = lang === 'ja' ? 'EN' : 'JA';
         document.title = lang === 'ja' ? 'ソルフェージュPRO 練習ガイド' : 'Solfege PRO - Practice Guide';
         localStorage.setItem('lang', lang);

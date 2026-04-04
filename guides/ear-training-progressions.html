@@ -25,6 +25,10 @@
     <meta name="twitter:description" content="I-V-vi-IV? ii-V-I? コード進行の流れを耳で追えるようになる、機能和声に基づく段階的トレーニング。">
     <meta name="twitter:image" content="https://nmswshg.github.io/solfege-pro-docs/AppIcon.png">
 
+    <!-- Favicon -->
+    <link rel="icon" href="../AppIcon.png" type="image/png">
+    <link rel="apple-touch-icon" href="../AppIcon.png">
+
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -503,7 +507,7 @@
         var currentLang = localStorage.getItem('lang') || 'ja';
 
         function applyLanguage(lang) {
-            document.documentElement.setAttribute('data-lang', lang);
+            document.documentElement.setAttribute('data-lang', lang); document.documentElement.lang = lang;
             langText.textContent = lang === 'ja' ? 'EN' : 'JA';
             document.title = lang === 'ja'
                 ? 'コード進行を聴き取る力とは何か — 和声の流れを理解する | ソルフェージュPRO'

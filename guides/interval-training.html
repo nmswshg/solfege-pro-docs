@@ -25,6 +25,10 @@
     <meta name="twitter:description" content="音程の聴き分けは絶対音感ではなく相対音感。13種類の音程を理解し、段階的に耳を鍛える方法を解説します。">
     <meta name="twitter:image" content="https://nmswshg.github.io/solfege-pro-docs/AppIcon.png">
 
+    <!-- Favicon -->
+    <link rel="icon" href="../AppIcon.png" type="image/png">
+    <link rel="apple-touch-icon" href="../AppIcon.png">
+
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -809,7 +813,7 @@
         var currentLang = localStorage.getItem('lang') || 'ja';
 
         function applyLanguage(lang) {
-            document.documentElement.setAttribute('data-lang', lang);
+            document.documentElement.setAttribute('data-lang', lang); document.documentElement.lang = lang;
             langText.textContent = lang === 'ja' ? 'EN' : 'JA';
             document.title = lang === 'ja'
                 ? '音程の聴き分けとは何か — インターバルを理解して耳を鍛える | ソルフェージュPRO'
