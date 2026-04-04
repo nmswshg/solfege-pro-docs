@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>トレーニングガイド一覧 | ソルフェージュPRO</title>
+    <meta name="description" content="ソルフェージュPROの各トレーニング機能を深く理解するためのガイド記事一覧。リズム、音程、譜読み、指板、コード、スケール、コード進行。">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="../style.css">
+
+    <style>
+        .guides-header {
+            background: linear-gradient(180deg, var(--surface) 0%, var(--background) 100%);
+            padding: var(--space-3xl) var(--space-lg);
+            padding-top: calc(var(--nav-height) + var(--space-3xl));
+            text-align: center;
+            border-bottom: 1px solid var(--surface-light);
+        }
+
+        .guides-header__title {
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: var(--space-md);
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .guides-header__subtitle {
+            color: var(--text-secondary);
+            font-size: 15px;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .guides-main {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: var(--space-2xl) var(--space-lg);
+        }
+
+        .guides-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            gap: var(--space-lg);
+        }
+
+        .guide-card {
+            display: block;
+            background: var(--surface);
+            border: 1px solid var(--surface-light);
+            border-radius: var(--radius-xl);
+            padding: var(--space-xl);
+            text-decoration: none;
+            transition: all 0.2s ease;
+        }
+
+        .guide-card:hover {
+            border-color: var(--primary);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+        }
+
+        .guide-card__icon {
+            font-size: 32px;
+            margin-bottom: var(--space-md);
+        }
+
+        .guide-card__title {
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: var(--space-sm);
+            line-height: 1.4;
+        }
+
+        .guide-card__desc {
+            font-size: 13px;
+            color: var(--text-secondary);
+            line-height: 1.7;
+        }
+
+        .guide-card__tag {
+            display: inline-block;
+            font-size: 11px;
+            font-weight: 600;
+            color: var(--primary);
+            background: rgba(212, 175, 55, 0.15);
+            padding: 2px 8px;
+            border-radius: var(--radius-sm);
+            margin-top: var(--space-md);
+        }
+
+        .guides-footer {
+            background: var(--surface);
+            padding: var(--space-xl) var(--space-lg);
+            text-align: center;
+            border-top: 1px solid var(--surface-light);
+        }
+
+        .guides-footer__text {
+            color: var(--text-secondary);
+            font-size: 14px;
+        }
+
+        .guides-footer__link {
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        .guides-back {
+            text-align: center;
+            margin-top: var(--space-2xl);
+        }
+
+        .guides-back__link {
+            display: inline-block;
+            background: var(--primary);
+            color: var(--background);
+            padding: var(--space-md) var(--space-xl);
+            border-radius: var(--radius-lg);
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 15px;
+            transition: all 0.2s ease;
+        }
+
+        .guides-back__link:hover {
+            transform: scale(1.03);
+            box-shadow: 0 4px 20px rgba(212, 175, 55, 0.3);
+        }
+
+        @media (max-width: 768px) {
+            .guides-header {
+                padding-top: calc(var(--nav-height) + var(--space-xl));
+                padding-left: var(--space-md);
+                padding-right: var(--space-md);
+            }
+            .guides-header__title { font-size: 22px; }
+            .guides-header__subtitle { font-size: 14px; }
+            .guides-main { padding: var(--space-lg) var(--space-md); }
+            .guides-grid { grid-template-columns: 1fr; gap: var(--space-md); }
+            .guide-card { padding: var(--space-lg); }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="nav__container">
+            <a href="../" class="nav__logo">
+                <img src="../AppIcon.png" alt="Solfege PRO" class="nav__logo-icon">
+                <span class="nav__logo-text">
+                    <span lang="ja">ソルフェージュPRO</span>
+                    <span lang="en">Solfege PRO</span>
+                </span>
+            </a>
+            <ul class="nav__list">
+                <li><a href="../" class="nav__link"><span lang="ja">練習ガイド</span><span lang="en">Practice Guide</span></a></li>
+                <li><a href="./" class="nav__link active"><span lang="ja">ガイド一覧</span><span lang="en">Guides</span></a></li>
+            </ul>
+            <div class="nav__settings">
+                <button class="settings-btn" id="lang-toggle" title="Toggle language">
+                    <span id="lang-text">EN</span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Header -->
+    <header class="guides-header">
+        <h1 class="guides-header__title"><span lang="ja">トレーニングガイド</span><span lang="en">Training Guides</span></h1>
+        <p class="guides-header__subtitle">
+            <span lang="ja">各トレーニングの考え方、効果的な練習法、アプリでできること・できないことを正直に解説します。</span>
+            <span lang="en">Honest explanations of each training's concepts, effective practice methods, and what the app can and cannot do.</span>
+        </p>
+    </header>
+
+    <!-- Guide Grid -->
+    <main class="guides-main">
+        <div class="guides-grid">
+
+            <a href="rhythm-training.html" class="guide-card">
+                <div class="guide-card__icon">🥁</div>
+                <div class="guide-card__title"><span lang="ja">リズム感ガイド</span><span lang="en">Rhythm Training Guide</span></div>
+                <div class="guide-card__desc"><span lang="ja">前乗り・後乗り・ばらつき・ポケットを分解して理解する。タイミング精度の計測と改善サイクル。</span><span lang="en">Breaking down rushing, dragging, inconsistency, and pocket. Timing measurement and improvement cycle.</span></div>
+                <span class="guide-card__tag">Rhythm Training</span>
+            </a>
+
+            <a href="interval-training.html" class="guide-card">
+                <div class="guide-card__icon">🎵</div>
+                <div class="guide-card__title"><span lang="ja">音程トレーニングガイド</span><span lang="en">Interval Training Guide</span></div>
+                <div class="guide-card__desc"><span lang="ja">13種類のインターバルを理解し、相対音感を鍛える。段階的な難易度と苦手克服。</span><span lang="en">Understanding 13 intervals and training relative pitch. Step-by-step difficulty and weak point focus.</span></div>
+                <span class="guide-card__tag">Interval Training</span>
+            </a>
+
+            <a href="sight-reading.html" class="guide-card">
+                <div class="guide-card__icon">📖</div>
+                <div class="guide-card__title"><span lang="ja">譜読みガイド</span><span lang="en">Sight Reading Guide</span></div>
+                <div class="guide-card__desc"><span lang="ja">五線譜を素早く正確に読むための基礎。ランドマークノート法と段階的な練習ステップ。</span><span lang="en">Foundations for reading music notation quickly. Landmark note method and progressive practice steps.</span></div>
+                <span class="guide-card__tag">Sight Reading</span>
+            </a>
+
+            <a href="fretboard-training.html" class="guide-card">
+                <div class="guide-card__icon">🎸</div>
+                <div class="guide-card__title"><span lang="ja">指板トレーニングガイド</span><span lang="en">Fretboard Training Guide</span></div>
+                <div class="guide-card__desc"><span lang="ja">ギターのフレットボードを効率的に習得する。オクターブシェイプとフレット範囲ごとの攻略。</span><span lang="en">Efficiently learning guitar note positions. Octave shapes and range-based progression.</span></div>
+                <span class="guide-card__tag">Fretboard Training</span>
+            </a>
+
+            <a href="ear-training-chords.html" class="guide-card">
+                <div class="guide-card__icon">🎹</div>
+                <div class="guide-card__title"><span lang="ja">コード認識ガイド</span><span lang="en">Chord Recognition Guide</span></div>
+                <div class="guide-card__desc"><span lang="ja">和音の響きを聴き分ける力を理解する。トライアドから7thコード、テンションまで段階的に。</span><span lang="en">Understanding chord quality recognition. From triads to 7th chords and tensions, step by step.</span></div>
+                <span class="guide-card__tag">Chord Recognition</span>
+            </a>
+
+            <a href="ear-training-scales.html" class="guide-card">
+                <div class="guide-card__icon">🎼</div>
+                <div class="guide-card__title"><span lang="ja">スケール認識ガイド</span><span lang="en">Scale Recognition Guide</span></div>
+                <div class="guide-card__desc"><span lang="ja">音階とモードを聴き分ける力を理解する。チャーチモードの特性音と段階的な練習。</span><span lang="en">Understanding scales and modes by ear. Church mode characteristics and progressive practice.</span></div>
+                <span class="guide-card__tag">Scale Recognition</span>
+            </a>
+
+            <a href="ear-training-progressions.html" class="guide-card">
+                <div class="guide-card__icon">🎶</div>
+                <div class="guide-card__title"><span lang="ja">コード進行ガイド</span><span lang="en">Progression Training Guide</span></div>
+                <div class="guide-card__desc"><span lang="ja">和声の流れを聴き取る力を理解する。機能和声（T/SD/D）の考え方と段階的な練習。</span><span lang="en">Understanding harmonic movement. Functional harmony (T/SD/D) concepts and step-by-step practice.</span></div>
+                <span class="guide-card__tag">Progression Training</span>
+            </a>
+
+        </div>
+
+        <div class="guides-back">
+            <a href="https://apps.apple.com/app/id6756626617" class="guides-back__link"><span lang="ja">App Storeでダウンロード</span><span lang="en">Download on App Store</span></a>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="guides-footer">
+        <p class="guides-footer__text">
+            &copy; 2025 <span lang="ja">ソルフェージュPRO</span><span lang="en">Solfege PRO</span> &mdash;
+            <a href="https://apps.apple.com/app/id6756626617" class="guides-footer__link">App Store</a>
+        </p>
+    </footer>
+
+    <!-- Language Toggle -->
+    <script>
+    (function() {
+        var langToggle = document.getElementById('lang-toggle');
+        var langText = document.getElementById('lang-text');
+        var currentLang = localStorage.getItem('lang') || 'ja';
+
+        function applyLanguage(lang) {
+            document.documentElement.setAttribute('data-lang', lang);
+            langText.textContent = lang === 'ja' ? 'EN' : 'JA';
+            document.title = lang === 'ja'
+                ? 'トレーニングガイド一覧 | ソルフェージュPRO'
+                : 'Training Guides | Solfege PRO';
+            localStorage.setItem('lang', lang);
+            currentLang = lang;
+        }
+
+        applyLanguage(currentLang);
+
+        langToggle.addEventListener('click', function() {
+            applyLanguage(currentLang === 'ja' ? 'en' : 'ja');
+        });
+    })();
+    </script>
+
+</body>
+</html>
