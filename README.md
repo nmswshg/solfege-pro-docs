@@ -15,9 +15,9 @@ https://nmswshg.github.io/solfege-pro-docs/
 - 管楽器/弦楽器向けQ&A
 - アプリ機能紹介
 
-## 関連リポジトリ
+## アプリ
 
-- アプリ本体: [musician-tool-kit](https://github.com/nmswshg/musician-tool-kit)（プライベート）
+- [App Store](https://apps.apple.com/app/id6756626617)
 
 ## ライセンス
 
