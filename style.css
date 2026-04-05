@@ -43,12 +43,13 @@
    2. Language Toggle System
    ============================================= */
 /* Default: Japanese visible, English hidden */
-[lang="en"] { display: none; }
-[lang="ja"] { display: contents; }
+/* Use :not(html) to prevent matching <html lang="en"> which would hide the entire page */
+:not(html)[lang="en"] { display: none; }
+:not(html)[lang="ja"] { display: contents; }
 
 /* When English is selected */
-[data-lang="en"] [lang="en"] { display: contents; }
-[data-lang="en"] [lang="ja"] { display: none; }
+[data-lang="en"] :not(html)[lang="en"] { display: contents; }
+[data-lang="en"] :not(html)[lang="ja"] { display: none; }
 
 /* =============================================
    3. Base Styles
