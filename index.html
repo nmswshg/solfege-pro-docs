@@ -4,17 +4,13 @@
     <meta charset="UTF-8">
     <meta name="robots" content="index, follow">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Solfege PRO - Practice Guide</title>
-    <meta name="description" content="Effective music training methods for guitarists, bassists, drummers, pianists, and vocalists. Optimal practice menus for each challenge.">
+    <title>ソルフェージュPRO 練習ガイド</title>
+    <meta name="description" content="ギター・ベース・ドラム・ピアノ・ボーカル・管弦楽器。あなたの課題を解決する科学的アプローチの練習メニュー。">
 
-    <!-- Canonical -->
     <link rel="canonical" href="https://nmswshg.github.io/solfege-pro-docs/">
-
-    <!-- Favicon -->
     <link rel="icon" href="AppIcon.png" type="image/png">
     <link rel="apple-touch-icon" href="AppIcon.png">
 
-    <!-- OGP -->
     <meta property="og:title" content="ソルフェージュPRO 練習ガイド">
     <meta property="og:description" content="あなたの音楽的課題を解決する、科学的アプローチの練習ガイド">
     <meta property="og:type" content="website">
@@ -23,1823 +19,536 @@
     <meta property="og:image" content="https://nmswshg.github.io/solfege-pro-docs/AppIcon.png">
     <meta property="og:locale" content="ja_JP">
 
-    <!-- Twitter Card -->
     <meta name="twitter:card" content="summary">
     <meta name="twitter:title" content="ソルフェージュPRO 練習ガイド">
     <meta name="twitter:description" content="あなたの音楽的課題を解決する、科学的アプローチの練習ガイド">
     <meta name="twitter:image" content="https://nmswshg.github.io/solfege-pro-docs/AppIcon.png">
 
-    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
 
-    <!-- Stylesheet -->
-    <link rel="stylesheet" href="style.css?v=3">
+    <link rel="stylesheet" href="style.css?v=4">
+
+    <style>
+        /* Hub-specific styles */
+        .hub-nav {
+            background: rgba(42, 42, 48, 0.95);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            padding: var(--space-md) var(--space-lg);
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            z-index: 1000;
+            border-bottom: 1px solid var(--surface-light);
+            height: var(--nav-height);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .hub-nav__container {
+            display: flex;
+            align-items: center;
+            gap: var(--space-lg);
+            max-width: 1100px;
+            width: 100%;
+        }
+
+        .hub-nav__logo {
+            display: flex;
+            align-items: center;
+            gap: var(--space-sm);
+            text-decoration: none;
+        }
+
+        .hub-nav__logo-icon { width: 32px; height: 32px; border-radius: 8px; }
+
+        .hub-nav__logo-text {
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--primary);
+            letter-spacing: 0.5px;
+        }
+
+        .hub-nav__links {
+            display: flex;
+            gap: var(--space-sm);
+            list-style: none;
+            margin-left: auto;
+        }
+
+        .hub-nav__link {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 13px;
+            padding: var(--space-xs) var(--space-md);
+            border-radius: var(--radius-md);
+            transition: all 0.2s ease;
+        }
+
+        .hub-nav__link:hover { color: var(--primary); background: var(--surface-light); }
+
+        .hub-hero {
+            background: linear-gradient(180deg, var(--surface) 0%, var(--background) 100%);
+            padding: var(--space-3xl) var(--space-lg);
+            padding-top: calc(var(--nav-height) + var(--space-3xl));
+            text-align: center;
+            border-bottom: 1px solid var(--surface-light);
+        }
+
+        .hub-hero__title {
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: var(--space-md);
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hub-hero__subtitle {
+            color: var(--text-secondary);
+            font-size: 16px;
+            max-width: 640px;
+            margin: 0 auto;
+            line-height: 1.8;
+        }
+
+        .hub-main {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: var(--space-2xl) var(--space-lg);
+        }
+
+        .hub-section-title {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: var(--space-lg);
+            padding-bottom: var(--space-md);
+            border-bottom: 2px solid var(--primary);
+            display: flex;
+            align-items: center;
+            gap: var(--space-sm);
+        }
+
+        /* Instrument Card Grid */
+        .instrument-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: var(--space-lg);
+            margin-bottom: var(--space-3xl);
+            align-items: stretch;
+        }
+
+        .instrument-card {
+            display: flex;
+            flex-direction: column;
+            background: var(--surface);
+            border: 1px solid var(--surface-light);
+            border-radius: var(--radius-xl);
+            padding: var(--space-xl);
+            text-decoration: none;
+            transition: all 0.25s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .instrument-card:hover {
+            border-color: var(--primary);
+            transform: translateY(-4px);
+            box-shadow: 0 12px 32px rgba(0, 0, 0, 0.3);
+        }
+
+        .instrument-card__icon {
+            font-size: 40px;
+            margin-bottom: var(--space-md);
+        }
+
+        .instrument-card__title {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: var(--space-sm);
+            line-height: 1.3;
+        }
+
+        .instrument-card__desc {
+            font-size: 14px;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-bottom: var(--space-md);
+            flex: 1;
+        }
+
+        .instrument-card__meta {
+            display: flex;
+            align-items: center;
+            gap: var(--space-sm);
+            flex-wrap: wrap;
+        }
+
+        .instrument-card__badge {
+            display: inline-block;
+            font-size: 12px;
+            font-weight: 500;
+            padding: 2px 10px;
+            border-radius: var(--radius-sm);
+            background: rgba(212, 175, 55, 0.15);
+            color: var(--primary);
+        }
+
+        .instrument-card__arrow {
+            margin-left: auto;
+            color: var(--text-secondary);
+            font-size: 18px;
+            transition: transform 0.2s ease;
+        }
+
+        .instrument-card:hover .instrument-card__arrow {
+            transform: translateX(4px);
+            color: var(--primary);
+        }
+
+        /* Guide Card Grid */
+        .guide-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            gap: var(--space-md);
+            margin-bottom: var(--space-2xl);
+        }
+
+        .guide-grid {
+            align-items: stretch;
+        }
+
+        .guide-card {
+            display: flex;
+            flex-direction: column;
+            background: var(--surface);
+            border: 1px solid var(--surface-light);
+            border-radius: var(--radius-lg);
+            padding: var(--space-lg);
+            text-decoration: none;
+            transition: all 0.2s ease;
+        }
+
+        .guide-card:hover {
+            border-color: var(--primary);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+        }
+
+        .guide-card__icon { font-size: 32px; margin-bottom: var(--space-md); }
+
+        .guide-card__title {
+            font-size: 15px;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: var(--space-sm);
+            line-height: 1.4;
+        }
+
+        .guide-card__desc {
+            font-size: 13px;
+            color: var(--text-secondary);
+            line-height: 1.6;
+            flex: 1;
+        }
+
+        .guide-card__tags {
+            display: flex;
+            gap: 6px;
+            flex-wrap: wrap;
+            margin-top: var(--space-sm);
+        }
+
+        .guide-card__tag {
+            display: inline-block;
+            font-size: 12px;
+            font-weight: 500;
+            color: var(--primary);
+            background: rgba(212, 175, 55, 0.15);
+            padding: 2px 10px;
+            border-radius: var(--radius-sm);
+            align-self: flex-start;
+        }
+
+        .guide-card__tag--deep-dive {
+            color: #60A5FA;
+            background: rgba(96, 165, 250, 0.15);
+            margin-left: 6px;
+        }
+
+        /* CTA */
+        .hub-cta {
+            background: linear-gradient(135deg, var(--surface) 0%, var(--background) 100%);
+            border: 1px solid var(--primary);
+            border-radius: var(--radius-xl);
+            padding: var(--space-2xl);
+            text-align: center;
+            margin-bottom: var(--space-2xl);
+        }
+
+        .hub-cta__title { font-size: 22px; font-weight: 700; margin-bottom: var(--space-md); }
+        .hub-cta__text { color: var(--text-secondary); margin-bottom: var(--space-lg); font-size: 15px; }
+        .hub-cta__button {
+            display: inline-block;
+            background: var(--primary);
+            color: var(--background);
+            padding: var(--space-md) var(--space-xl);
+            border-radius: var(--radius-lg);
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 15px;
+            transition: all 0.2s ease;
+        }
+        .hub-cta__button:hover {
+            transform: scale(1.03);
+            box-shadow: 0 4px 20px rgba(212, 175, 55, 0.3);
+        }
+
+        .hub-footer {
+            background: var(--surface);
+            padding: var(--space-xl) var(--space-lg);
+            text-align: center;
+            border-top: 1px solid var(--surface-light);
+        }
+        .hub-footer__text { color: var(--text-secondary); font-size: 14px; }
+        .hub-footer__link { color: var(--primary); text-decoration: none; }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .instrument-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+
+        @media (max-width: 768px) {
+            .hub-nav { padding: var(--space-sm) var(--space-md); }
+            .hub-nav__links { gap: var(--space-xs); }
+            .hub-nav__link { font-size: 12px; padding: var(--space-xs) var(--space-sm); }
+            .hub-hero {
+                padding-top: calc(var(--nav-height) + var(--space-xl));
+                padding-left: var(--space-md);
+                padding-right: var(--space-md);
+            }
+            .hub-hero__title { font-size: 24px; }
+            .hub-hero__subtitle { font-size: 14px; }
+            .hub-main { padding: var(--space-lg) var(--space-md); }
+            .instrument-grid { grid-template-columns: 1fr; gap: var(--space-md); }
+            .instrument-card { padding: var(--space-lg); }
+            .instrument-card__icon { font-size: 32px; }
+            .instrument-card__title { font-size: 16px; }
+            .guide-grid { grid-template-columns: 1fr 1fr; }
+            .hub-cta { padding: var(--space-xl); }
+            .hub-cta__title { font-size: 19px; }
+            .hub-cta__button { display: block; text-align: center; }
+        }
+
+        @media (max-width: 480px) {
+            .hub-hero__title { font-size: 20px; }
+            .hub-nav__logo-text { font-size: 12px; }
+            .guide-grid { grid-template-columns: 1fr; }
+        }
+    </style>
 </head>
 <body>
-    <!-- Fixed Navigation -->
-    <nav class="nav">
-        <div class="nav__container">
-            <a href="#" class="nav__logo">
-                <img src="AppIcon.png" alt="Solfege PRO" class="nav__logo-icon">
-                <span class="nav__logo-text">
+    <!-- Navigation -->
+    <nav class="hub-nav">
+        <div class="hub-nav__container">
+            <a href="#" class="hub-nav__logo">
+                <img src="AppIcon.png" alt="Solfege PRO" class="hub-nav__logo-icon">
+                <span class="hub-nav__logo-text">
                     <span lang="ja">ソルフェージュPRO</span>
                     <span lang="en">Solfege PRO</span>
                 </span>
             </a>
-            <ul class="nav__list">
-                <li><a href="#guitar" class="nav__link active">🎸 <span lang="ja">ギター・ベース</span><span lang="en">Guitar/Bass</span></a></li>
-                <li><a href="#drums" class="nav__link">🥁 <span lang="ja">ドラム</span><span lang="en">Drums</span></a></li>
-                <li><a href="#piano" class="nav__link">🎹 <span lang="ja">ピアノ</span><span lang="en">Piano</span></a></li>
-                <li><a href="#vocal" class="nav__link">🎤 <span lang="ja">ボーカル</span><span lang="en">Vocal</span></a></li>
-                <li><a href="#wind" class="nav__link">🎺 <span lang="ja">管弦楽器</span><span lang="en">Wind/Strings</span></a></li>
-                <li><a href="#features" class="nav__link">📱 <span lang="ja">機能解説</span><span lang="en">Features</span></a></li>
-                <li><a href="guides/" class="nav__link">📝 <span lang="ja">ガイド一覧</span><span lang="en">Guides</span></a></li>
+            <ul class="hub-nav__links">
+                <li><a href="guides/" class="hub-nav__link"><span lang="ja">ガイド一覧</span><span lang="en">Guides</span></a></li>
             </ul>
-            <div class="nav__settings">
-                <!-- Hamburger Menu Button (Mobile only) -->
-                <button class="hamburger-btn" id="hamburger-btn" aria-label="Menu">
-                    <span class="hamburger-btn__line"></span>
-                    <span class="hamburger-btn__line"></span>
-                    <span class="hamburger-btn__line"></span>
-                </button>
-                <button class="settings-btn" id="lang-toggle" title="Toggle language">
-                    <span id="lang-text">EN</span>
-                </button>
-            </div>
+            <button class="settings-btn" id="lang-toggle" title="Toggle language">
+                <span id="lang-text">EN</span>
+            </button>
         </div>
     </nav>
 
-    <!-- Side Drawer (Mobile only) -->
-    <div class="drawer-overlay" id="drawer-overlay"></div>
-    <aside class="drawer" id="drawer">
-        <div class="drawer__header">
-            <span class="drawer__title"><span lang="ja">メニュー</span><span lang="en">Menu</span></span>
-            <button class="drawer__close" id="drawer-close" aria-label="Close menu">✕</button>
-        </div>
-        <ul class="drawer__list">
-            <li><a href="#guitar" class="drawer__link">🎸 <span lang="ja">ギター・ベース</span><span lang="en">Guitar/Bass</span></a></li>
-            <li><a href="#drums" class="drawer__link">🥁 <span lang="ja">ドラム</span><span lang="en">Drums</span></a></li>
-            <li><a href="#piano" class="drawer__link">🎹 <span lang="ja">ピアノ</span><span lang="en">Piano</span></a></li>
-            <li><a href="#vocal" class="drawer__link">🎤 <span lang="ja">ボーカル</span><span lang="en">Vocal</span></a></li>
-            <li><a href="#wind" class="drawer__link">🎺 <span lang="ja">管弦楽器</span><span lang="en">Wind/Strings</span></a></li>
-            <li><a href="#features" class="drawer__link">📱 <span lang="ja">機能解説</span><span lang="en">Features</span></a></li>
-            <li><a href="guides/" class="drawer__link">📝 <span lang="ja">ガイド一覧</span><span lang="en">Guides</span></a></li>
-        </ul>
-    </aside>
-
-    <!-- Header -->
-    <header class="header">
-        <h1 class="header__title"><span lang="ja">練習ガイド</span><span lang="en">Practice Guide</span></h1>
-        <p class="header__subtitle">
-            <span lang="ja">あなたの音楽的課題を解決するための、制作者が設計した練習メニューと使い方</span>
-            <span lang="en">Practice menus designed by the creator to solve your musical challenges</span>
+    <!-- Hero -->
+    <header class="hub-hero">
+        <h1 class="hub-hero__title"><span lang="ja">練習ガイド</span><span lang="en">Practice Guide</span></h1>
+        <p class="hub-hero__subtitle">
+            <span lang="ja">あなたの楽器と課題に合わせた練習メニュー。<br>科学的根拠に基づく効率的なトレーニングで、確実に上達するための道筋を提案します。</span>
+            <span lang="en">Practice menus tailored to your instrument and challenges.<br>Evidence-based training that provides a clear path to measurable improvement.</span>
         </p>
     </header>
 
     <!-- Main Content -->
-    <main class="main">
+    <main class="hub-main">
 
-        <!-- ============================================ -->
-        <!-- ギター・ベース セクション -->
-        <!-- ============================================ -->
-        <section id="guitar" class="section">
-            <div class="section__header">
-                <span class="section__icon">🎸</span>
-                <h2 class="section__title"><span lang="ja">ギター・ベース</span><span lang="en">Guitar & Bass</span></h2>
-                <div class="section__header-actions">
-                    <button class="expand-all-btn"><span lang="ja">すべて開く</span><span lang="en">Expand All</span></button>
+        <!-- Instrument Cards -->
+        <h2 class="hub-section-title"><span lang="ja">楽器から選ぶ</span><span lang="en">Choose Your Instrument</span></h2>
+
+        <div class="instrument-grid">
+
+            <a href="practice/guitar-bass.html" class="instrument-card">
+                <div class="instrument-card__icon">🎸</div>
+                <div class="instrument-card__title"><span lang="ja">ギター・ベース</span><span lang="en">Guitar & Bass</span></div>
+                <div class="instrument-card__desc"><span lang="ja">セッションで頭が真っ白、耳コピが遅い、同じフレーズばかり、コード進行が聴き取れない</span><span lang="en">Mind goes blank at sessions, slow transcription, stuck on same phrases, can't hear progressions</span></div>
+                <div class="instrument-card__meta">
+                    <span class="instrument-card__badge">4 Q&A</span>
+                    <span class="instrument-card__badge">Fretboard / Interval</span>
+                    <span class="instrument-card__arrow">&rarr;</span>
                 </div>
-            </div>
+            </a>
 
-            <!-- Section TOC -->
-            <nav class="section-toc">
-                <div class="section-toc__title"><span lang="ja">目次</span><span lang="en">Contents</span></div>
-                <ul class="section-toc__list">
-                    <li class="section-toc__item" data-target="guitar-q1"><span lang="ja">セッションで頭が真っ白</span><span lang="en">Mind goes blank at sessions</span></li>
-                    <li class="section-toc__item" data-target="guitar-q2"><span lang="ja">耳コピに時間がかかる</span><span lang="en">Transcribing takes too long</span></li>
-                    <li class="section-toc__item" data-target="guitar-q3"><span lang="ja">同じフレーズばかり</span><span lang="en">Playing same phrases</span></li>
-                    <li class="section-toc__item" data-target="guitar-q4"><span lang="ja">コード進行が聴き取れない</span><span lang="en">Can't hear chord progressions</span></li>
-                </ul>
-            </nav>
-
-            <!-- Q1: セッションで頭が真っ白 -->
-            <article class="question-card" id="guitar-q1">
-                <div class="question-card__header">
-                    <span class="question-card__q">Q</span>
-                    <h3 class="question-card__title">
-                        <span lang="ja">セッションで次のコードが来ると頭が真っ白になる</span>
-                        <span lang="en">Mind goes blank when chord changes come during improvisation</span>
-                    </h3>
+            <a href="practice/drums.html" class="instrument-card">
+                <div class="instrument-card__icon">🥁</div>
+                <div class="instrument-card__title"><span lang="ja">ドラム</span><span lang="en">Drums</span></div>
+                <div class="instrument-card__desc"><span lang="ja">リズムが安定しない、フィル後にズレる、遅いテンポが苦手</span><span lang="en">Rhythm instability, timing slips after fills, struggle with slow tempos</span></div>
+                <div class="instrument-card__meta">
+                    <span class="instrument-card__badge">3 Q&A</span>
+                    <span class="instrument-card__badge">Rhythm Training</span>
+                    <span class="instrument-card__arrow">&rarr;</span>
                 </div>
-                <div class="question-card__content">
-                    <div class="content-block">
-                        <h4 class="content-block__title"><span lang="ja">💡 推奨する練習方法</span><span lang="en">💡 Recommended Practice Method</span></h4>
-                        <div class="tips-box">
-                            <div class="tips-box__content">
-                                <p><strong><span lang="ja">Fretboard Training（指板トレーニング）を毎日15分、6週間続ける。</span><span lang="en">Practice Fretboard Training for 15 minutes daily for 6 weeks.</span></strong></p>
-                                <p><span lang="ja">表示される音名（C, D, E...）を見て、指板上の正しい位置をタップ。最初は1-3弦・0-5フレットから始め、週ごとに範囲を広げていく。</span><span lang="en">Look at the displayed note name (C, D, E...) and tap the correct position on the fretboard. Start with strings 1-3, frets 0-5, and expand the range each week.</span></p>
-                            </div>
-                        </div>
-                    </div>
+            </a>
 
-                    <div class="content-block">
-                        <h4 class="content-block__title"><span lang="ja">なぜこの練習が必要か</span><span lang="en">Why This Practice Is Necessary</span></h4>
-                        <p><span lang="ja">セッションで止まる原因は「考える時間がない」ことではない。<span class="highlight">「考えなければ弾けない」ことが問題。</span></span><span lang="en">When you freeze during improvisation, the issue isn't insufficient time to think. <span class="highlight">The problem is that you require conscious thought to play at all.</span></span></p>
-                        <p><span lang="ja">コード進行を聴いて「次はG7だ」と分かっても、そこから「G7のコードトーンは…G, B, D, F…5弦の10フレットがGで…」と考えている時間はない。</span><span lang="en">Even if your ear recognizes "G7 is coming," you cannot afford the cognitive overhead of calculating "G7 contains G, B, D, F... G is at the 10th fret of the 5th string..." Real-time improvisation demands faster processing than deliberate thought allows.</span></p>
-                        <p><span lang="ja">プロが涼しい顔で弾いているのは、才能ではない。「考えなくても指が動く」状態を作っているから。</span><span lang="en">When professionals navigate changes effortlessly, you're witnessing the result of internalized knowledge, not innate talent. They've developed what motor learning researchers call automaticity - the fretboard mapping has become procedural memory, freeing conscious attention for musical decisions.</span></p>
-                    </div>
-
-                    <div class="content-block">
-                        <h4 class="content-block__title"><span lang="ja">科学的根拠</span><span lang="en">Scientific Background</span></h4>
-                        <div class="science-box">
-                            <div class="science-box__title"><span lang="ja">脳科学的背景</span><span lang="en">Neuroscience Background</span></div>
-                            <div class="science-box__content">
-                                <p><span lang="ja">人間の脳には「ワーキングメモリ」と呼ばれる短期記憶領域がある。容量は限られており、<strong>「G7のコードトーンは…」と考えている間、「次のフレーズ」を考える余裕がなくなる。</strong></span><span lang="en">The human brain has a limited-capacity short-term storage system called "working memory." When this cognitive resource is occupied by deliberate calculations like <strong>"G7's chord tones are G, B, D, F..."</strong>, there's no bandwidth left for musical decision-making or phrase construction.</span></p>
-                                <p><span lang="ja">これを解決するのが<span class="highlight">「自動化（チャンキング）」</span>。繰り返し訓練により、「G7 → 指の位置」という変換が意識を介さず自動的に行われるようになる。</span><span lang="en">The solution is developing <span class="highlight">automaticity through chunking</span>. With deliberate practice, the mapping from "G7 → finger positions" becomes procedural memory, bypassing conscious thought entirely. This is the same mechanism that allows experienced readers to recognize words instantly rather than sounding out individual letters.</span></p>
-                                <p><span lang="ja">認知心理学の研究では、この自動化には<strong>平均10〜20時間の反復練習</strong>が必要とされている。1日15分 × 6週間 = 約10時間で「見える」感覚に到達可能。</span><span lang="en">Research in cognitive psychology and motor learning indicates that developing automaticity requires approximately <strong>10-20 hours of focused, deliberate practice</strong>. At 15 minutes per day over 6 weeks, you accumulate roughly 10 hours - enough to reach what musicians describe as "seeing" the fretboard.</span></p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="content-block">
-                        <h4 class="content-block__title"><span lang="ja">この練習が解決する課題</span><span lang="en">Problems This Practice Solves</span></h4>
-                        <ul class="content-list">
-                            <li><span lang="ja">コードが変わった瞬間に指が止まる</span><span lang="en">Fingers freeze the moment the chord changes</span></li>
-                            <li><span lang="ja">安全なルート音やペンタトニックに逃げてしまう</span><span lang="en">Falling back to safe root notes or pentatonic scales</span></li>
-                            <li><span lang="ja">ハイポジションになると何を弾いていいか分からない</span><span lang="en">Not knowing what to play in higher positions</span></li>
-                            <li><span lang="ja">耳では聴こえているのに、弾く音が見つからない</span><span lang="en">Hearing the notes but unable to find them on the fretboard</span></li>
-                            <li><span lang="ja">テンポが速くなると対応できない</span><span lang="en">Unable to keep up when the tempo increases</span></li>
-                        </ul>
-                    </div>
-
-                    <div class="content-block">
-                        <h4 class="content-block__title"><span lang="ja">どのような状態になれば卒業か</span><span lang="en">Proficiency Benchmarks</span></h4>
-                        <div class="level-cards">
-                            <div class="level-card level-card--beginner">
-                                <h5 class="level-card__title"><span lang="ja">初心者の卒業基準</span><span lang="en">Foundation Level</span></h5>
-                                <div class="level-card__content">
-                                    <p><span lang="ja">正答率 <strong>70%</strong> 以上</span><span lang="en">Accuracy: <strong>70%</strong> or higher</span></p>
-                                    <p><span lang="ja">応答時間 <strong>3秒</strong> 以内</span><span lang="en">Response time: within <strong>3 seconds</strong></span></p>
-                                    <p><span lang="ja">範囲：1〜4弦、0〜5フレット</span><span lang="en">Range: Strings 1-4, Frets 0-5</span></p>
-                                    <p><em><span lang="ja">「考えれば分かる」状態</span><span lang="en">Conscious recall with deliberate thought</span></em></p>
-                                </div>
-                            </div>
-                            <div class="level-card level-card--intermediate">
-                                <h5 class="level-card__title"><span lang="ja">中級者の卒業基準</span><span lang="en">Working Level</span></h5>
-                                <div class="level-card__content">
-                                    <p><span lang="ja">正答率 <strong>85%</strong> 以上</span><span lang="en">Accuracy: <strong>85%</strong> or higher</span></p>
-                                    <p><span lang="ja">応答時間 <strong>2秒</strong> 以内</span><span lang="en">Response time: within <strong>2 seconds</strong></span></p>
-                                    <p><span lang="ja">範囲：全弦、0〜12フレット</span><span lang="en">Range: All strings, Frets 0-12</span></p>
-                                    <p><em><span lang="ja">「少し考えれば分かる」状態</span><span lang="en">Quick recall with minimal conscious effort</span></em></p>
-                                </div>
-                            </div>
-                            <div class="level-card level-card--advanced">
-                                <h5 class="level-card__title"><span lang="ja">上級者の卒業基準</span><span lang="en">Professional Level</span></h5>
-                                <div class="level-card__content">
-                                    <p><span lang="ja">正答率 <strong>95%</strong> 以上</span><span lang="en">Accuracy: <strong>95%</strong> or higher</span></p>
-                                    <p><span lang="ja">応答時間 <strong>1秒</strong> 以内</span><span lang="en">Response time: within <strong>1 second</strong></span></p>
-                                    <p><span lang="ja">範囲：全域ランダム</span><span lang="en">Range: Full range, random</span></p>
-                                    <p><em><span lang="ja">「見える」状態</span><span lang="en">Full automaticity - instant visual recognition</span></em></p>
-                                </div>
-                            </div>
-                        </div>
-                        <p><span lang="ja">「考える」感覚がなくなり「見える」感覚になったとき、卒業。この転換は突然訪れる。</span><span lang="en">Mastery occurs when deliberate calculation gives way to immediate recognition - when you simply "see" the notes without conscious effort. This perceptual shift often happens abruptly after consistent practice.</span></p>
-                    </div>
-
-                    <div class="content-block">
-                        <h4 class="content-block__title"><span lang="ja">週ごとの詳細カリキュラム</span><span lang="en">Detailed Weekly Curriculum</span></h4>
-                        <div class="curriculum-box">
-                            <div class="curriculum-box__title"><span lang="ja">📅 6週間プログラム（1日15分）</span><span lang="en">📅 6-Week Program (15 min/day)</span></div>
-                            <div class="curriculum-week">
-                                <div class="curriculum-week__header"><span lang="ja">Week 1：慣れる</span><span lang="en">Week 1: Get Familiar</span></div>
-                                <div class="curriculum-week__content">
-                                    <span lang="ja">範囲：1-3弦、0-5フレット｜目標：正答率60%、応答時間は気にしない<br>
-                                    この週は「音名を見て押さえる」という行為自体に慣れる。間違っても気にしない。</span>
-                                    <span lang="en">Range: Strings 1-3, Frets 0-5 | Goal: 60% accuracy, don't worry about response time<br>
-                                    This week, get used to the act of "seeing a note name and pressing." Don't worry about mistakes.</span>
-                                </div>
-                            </div>
-                            <div class="curriculum-week">
-                                <div class="curriculum-week__header"><span lang="ja">Week 2：スピードを意識</span><span lang="en">Week 2: Focus on Speed</span></div>
-                                <div class="curriculum-week__content">
-                                    <span lang="ja">範囲：同じ｜目標：正答率70%、応答3秒以内<br>
-                                    応答時間を意識し始める。「少し見えてきた」感覚が生まれる週。</span>
-                                    <span lang="en">Range: Same | Goal: 70% accuracy, within 3 seconds<br>
-                                    Start focusing on response time. The week when you begin to "see" things a little.</span>
-                                </div>
-                            </div>
-                            <div class="curriculum-week">
-                                <div class="curriculum-week__header"><span lang="ja">Week 3：範囲拡張</span><span lang="en">Week 3: Expand Range</span></div>
-                                <div class="curriculum-week__content">
-                                    <span lang="ja">範囲：1-4弦、0-7フレット｜目標：正答率75%、応答2.5秒以内<br>
-                                    4弦を追加。5-6弦は苦手な人が多いので、まだ入れない。</span>
-                                    <span lang="en">Range: Strings 1-4, Frets 0-7 | Goal: 75% accuracy, within 2.5 seconds<br>
-                                    Add string 4. Many struggle with strings 5-6, so don't include them yet.</span>
-                                </div>
-                            </div>
-                            <div class="curriculum-week">
-                                <div class="curriculum-week__header"><span lang="ja">Week 4：全弦へ</span><span lang="en">Week 4: All Strings</span></div>
-                                <div class="curriculum-week__content">
-                                    <span lang="ja">範囲：全弦、0-9フレット｜目標：正答率80%、応答2秒以内<br>
-                                    5-6弦を追加。低音弦は意識的に練習量を増やす。</span>
-                                    <span lang="en">Range: All strings, Frets 0-9 | Goal: 80% accuracy, within 2 seconds<br>
-                                    Add strings 5-6. Consciously increase practice on bass strings.</span>
-                                </div>
-                            </div>
-                            <div class="curriculum-week">
-                                <div class="curriculum-week__header"><span lang="ja">Week 5：ハイポジション</span><span lang="en">Week 5: High Positions</span></div>
-                                <div class="curriculum-week__content">
-                                    <span lang="ja">範囲：全弦、0-12フレット｜目標：正答率85%、応答1.5秒以内<br>
-                                    12フレットまで拡張。オクターブ関係を意識すると覚えやすい。</span>
-                                    <span lang="en">Range: All strings, Frets 0-12 | Goal: 85% accuracy, within 1.5 seconds<br>
-                                    Expand to fret 12. Being aware of octave relationships makes memorization easier.</span>
-                                </div>
-                            </div>
-                            <div class="curriculum-week">
-                                <div class="curriculum-week__header"><span lang="ja">Week 6：完全ランダム</span><span lang="en">Week 6: Full Random</span></div>
-                                <div class="curriculum-week__content">
-                                    <span lang="ja">範囲：全域ランダム｜目標：正答率90%、応答1秒以内<br>
-                                    順番の予測ができない状態で練習。ここで「見える」感覚に転換する人が多い。</span>
-                                    <span lang="en">Range: Full range, random | Goal: 90% accuracy, within 1 second<br>
-                                    Practice in an unpredictable order. Many people experience the shift to "seeing" here.</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="content-block">
-                        <h4 class="content-block__title"><span lang="ja">よくある失敗パターン</span><span lang="en">Common Failure Patterns</span></h4>
-                        <div class="warning-box">
-                            <div class="warning-box__title"><span lang="ja">❌ 失敗パターン1：形で覚える</span><span lang="en">❌ Failure Pattern 1: Memorizing by Shape</span></div>
-                            <div class="warning-box__content">
-                                <span lang="ja">「このフォームがCメジャー」と形で覚えると、転調で使えない。キーがEbになった瞬間に詰む。<br>
-                                <strong>→ 対策：</strong>必ず「音名」で認識する訓練をする。形は結果として身につく。</span>
-                                <span lang="en">If you memorize by shape like "this form is C major," you can't use it when transposing. You'll be stuck the moment the key becomes Eb.<br>
-                                <strong>→ Solution:</strong> Always train to recognize by "note names." Shapes will naturally follow.</span>
-                            </div>
-                        </div>
-                        <div class="warning-box">
-                            <div class="warning-box__title"><span lang="ja">❌ 失敗パターン2：週末まとめて練習</span><span lang="en">❌ Failure Pattern 2: Weekend Cramming</span></div>
-                            <div class="warning-box__content">
-                                <span lang="ja">金曜に覚えたことは月曜には消えている。脳は「繰り返し出会う情報」を重要と判断する。<br>
-                                <strong>→ 対策：</strong>週1回2時間より、毎日15分。記憶の定着率が劇的に変わる。</span>
-                                <span lang="en">What you learned on Friday is gone by Monday. The brain judges "information encountered repeatedly" as important.<br>
-                                <strong>→ Solution:</strong> 15 minutes daily beats 2 hours once a week. Memory retention improves dramatically.</span>
-                            </div>
-                        </div>
-                        <div class="warning-box">
-                            <div class="warning-box__title"><span lang="ja">❌ 失敗パターン3：得意なポジションばかり練習</span><span lang="en">❌ Failure Pattern 3: Only Practicing Comfortable Positions</span></div>
-                            <div class="warning-box__content">
-                                <span lang="ja">1-4弦の5フレット周辺ばかり練習して、5弦・6弦のハイポジションが苦手なまま放置。<br>
-                                <strong>→ 対策：</strong>アプリの統計機能で弱点を特定し、意識的にその範囲を練習する。</span>
-                                <span lang="en">Only practicing around strings 1-4, fret 5, while neglecting weak areas on strings 5-6 in higher positions.<br>
-                                <strong>→ Solution:</strong> Use the app's statistics to identify weaknesses and consciously practice those areas.</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="content-block">
-                        <h4 class="content-block__title"><span lang="ja">卒業後にできるようになること</span><span lang="en">Skills You Will Develop</span></h4>
-                        <ul class="content-list">
-                            <li><span lang="ja">コードが変わっても指が自然に動く</span><span lang="en">Navigate chord changes with fluid, automatic finger movement</span></li>
-                            <li><span lang="ja">「次何弾こう」ではなく「どう弾こう」を考えられる</span><span lang="en">Shift mental focus from "what notes?" to "what expression?" - the hallmark of musical maturity</span></li>
-                            <li><span lang="ja">初見の曲でも、コード進行さえ分かれば対応できる</span><span lang="en">Comp and solo over unfamiliar tunes on the fly, given the changes</span></li>
-                            <li><span lang="ja">セッションが怖くなくなる</span><span lang="en">Improvisation and sitting in no longer feel intimidating</span></li>
-                            <li><span lang="ja">耳コピのスピードが上がる（次のQ&A参照）</span><span lang="en">Transcription speed improves dramatically (see next Q&A)</span></li>
-                        </ul>
-                    </div>
-
-                    <div class="content-block">
-                        <h4 class="content-block__title"><span lang="ja">プロはここから何を考え、行っているか</span><span lang="en">The Professional Perspective</span></h4>
-                        <p><span lang="ja">プロは「音名」をさらに抽象化している。「Dm7 → G7 → Cmaj7」という進行で、アマチュアは音名を追いかける。プロは「IIm7 → V7 → Imaj7」という<span class="highlight">機能</span>で捉えている。だからキーが変わっても同じ感覚で弾ける。</span><span lang="en">Professional improvisers operate at a higher level of abstraction. Where amateurs track specific note names through "Dm7 → G7 → Cmaj7," professionals perceive <span class="highlight">harmonic function</span>: "ii-V-I." This functional hearing allows them to navigate the same progression in any key with identical conceptual frameworks.</span></p>
-                        <p><span lang="ja">さらに上のレベルでは、コードトーンに加えて「この場所で使えるテンション」「アヴォイドノート」を把握している。これらは全て「音名が見えている」ことが前提。<span class="highlight">だから、まず指板。ここが全ての土台になる。</span></span><span lang="en">At the highest levels, musicians instantly know not just chord tones but available tensions and avoid notes for any harmonic situation. This sophisticated decision-making presupposes complete fretboard visualization. <span class="highlight">This is why fretboard mastery comes first - it's the prerequisite for everything that follows.</span></span></p>
-                    </div>
-
-                    <div class="content-block">
-                        <h4 class="content-block__title"><span lang="ja">推奨する練習方法</span><span lang="en">Recommended Practice Method</span></h4>
-                        <p><strong><span lang="ja">使用機能：Fretboard Training</span><span lang="en">Feature: Fretboard Training</span></strong></p>
-                        <div class="table-wrapper"><table class="training-table">
-                            <thead><tr><th><span lang="ja">フェーズ</span><span lang="en">Phase</span></th><th><span lang="ja">期間</span><span lang="en">Period</span></th><th><span lang="ja">設定</span><span lang="en">Settings</span></th><th><span lang="ja">目標</span><span lang="en">Goal</span></th></tr></thead>
-                            <tbody>
-                                <tr><td><span lang="ja">導入期</span><span lang="en">Introduction</span></td><td><span lang="ja">1-2週目</span><span lang="en">Weeks 1-2</span></td><td><span lang="ja">1-4弦、0-5フレット</span><span lang="en">Strings 1-4, Frets 0-5</span></td><td><span lang="ja">正答率70%、応答3秒</span><span lang="en">70% accuracy, 3 sec</span></td></tr>
-                                <tr><td><span lang="ja">拡張期</span><span lang="en">Expansion</span></td><td><span lang="ja">3-4週目</span><span lang="en">Weeks 3-4</span></td><td><span lang="ja">全弦、0-12フレット</span><span lang="en">All strings, Frets 0-12</span></td><td><span lang="ja">正答率80%、応答2秒</span><span lang="en">80% accuracy, 2 sec</span></td></tr>
-                                <tr><td><span lang="ja">定着期</span><span lang="en">Consolidation</span></td><td><span lang="ja">5-6週目</span><span lang="en">Weeks 5-6</span></td><td><span lang="ja">全弦、ランダム</span><span lang="en">All strings, random</span></td><td><span lang="ja">正答率90%、応答1.5秒</span><span lang="en">90% accuracy, 1.5 sec</span></td></tr>
-                            </tbody>
-                        </table></div>
-                        <div class="tips-box">
-                            <div class="tips-box__title"><span lang="ja">💡 効果を最大化するコツ</span><span lang="en">💡 Tips to Maximize Effectiveness</span></div>
-                            <div class="tips-box__content">
-                                <span lang="ja">練習後すぐに実際のギターで同じ音を弾いてみる。アプリと実機を交互に使うことで、視覚・聴覚・触覚が結びつき、定着が加速する。</span>
-                                <span lang="en">Play the same notes on your actual guitar immediately after practice. By alternating between the app and real instrument, visual, auditory, and tactile senses connect, accelerating retention.</span>
-                            </div>
-                        </div>
-                    </div>
+            <a href="practice/piano.html" class="instrument-card">
+                <div class="instrument-card__icon">🎹</div>
+                <div class="instrument-card__title"><span lang="ja">ピアノ</span><span lang="en">Piano</span></div>
+                <div class="instrument-card__desc"><span lang="ja">譜面がないと弾けない、コード譜で困る、同じボイシングばかり</span><span lang="en">Can't play without sheet music, struggling with chord charts, same voicings every time</span></div>
+                <div class="instrument-card__meta">
+                    <span class="instrument-card__badge">3 Q&A</span>
+                    <span class="instrument-card__badge">Interval / Chord</span>
+                    <span class="instrument-card__arrow">&rarr;</span>
                 </div>
-            </article>
+            </a>
 
-            <!-- Q2: 耳コピに時間がかかる -->
-            <article class="question-card" id="guitar-q2">
-                <div class="question-card__header">
-                    <span class="question-card__q">Q</span>
-                    <h3 class="question-card__title"><span lang="ja">耳コピに時間がかかりすぎる</span><span lang="en">Transcription takes too long</span></h3>
+            <a href="practice/vocal.html" class="instrument-card">
+                <div class="instrument-card__icon">🎤</div>
+                <div class="instrument-card__title"><span lang="ja">ボーカル</span><span lang="en">Vocal</span></div>
+                <div class="instrument-card__desc"><span lang="ja">音程が不安定、キー変更で歌えない、ハモリが覚えられない</span><span lang="en">Unstable pitch, can't sing in different keys, can't memorize harmonies</span></div>
+                <div class="instrument-card__meta">
+                    <span class="instrument-card__badge">3 Q&A</span>
+                    <span class="instrument-card__badge">Interval / Scale</span>
+                    <span class="instrument-card__arrow">&rarr;</span>
                 </div>
-                <div class="question-card__content">
-                    <div class="content-block">
-                        <h4 class="content-block__title"><span lang="ja">💡 推奨する練習方法</span><span lang="en">💡 Recommended Practice Method</span></h4>
-                        <div class="tips-box">
-                            <div class="tips-box__content">
-                                <p><strong><span lang="ja">Interval Training（音程トレーニング）を毎日10分、4週間続ける。</span><span lang="en">Practice Interval Training for 10 minutes daily for 4 weeks.</span></strong></p>
-                                <p><span lang="ja">2つの音を聴いて、その音程（長3度、完全5度など）を当てる。最初は完全8度・完全5度から始め、徐々に全音程をカバーしていく。</span><span lang="en">Listen to two notes and identify the interval (major 3rd, perfect 5th, etc.). Start with perfect octave and perfect 5th, then gradually cover all intervals.</span></p>
-                            </div>
-                        </div>
-                    </div>
+            </a>
 
-                    <div class="content-block">
-                        <h4 class="content-block__title"><span lang="ja">なぜこの練習が必要か</span><span lang="en">Why This Practice Is Necessary</span></h4>
-                        <p><span lang="ja">耳コピが遅い人は「音を探している」。耳コピが速い人は「音が聴こえた瞬間に場所が分かる」。この差は才能ではない。<span class="highlight">音程（インターバル）の認識訓練をしたかどうか</span>の差。</span><span lang="en">Musicians who struggle with transcription are hunting and pecking for notes. Skilled transcribers have developed what music educators call <span class="highlight">audiation</span> - they hear internally and know the intervallic relationships instantly. This isn't natural talent; it's <span class="highlight">systematic ear training</span>.</span></p>
-                        <p><span lang="ja">例えば「ド→ミ」という音が聴こえたとき、訓練していない人は「えーと、ドから…レ、ミ、2個上だから…」と数える。訓練した人は「長3度」と瞬時に分かる。</span><span lang="en">When an untrained musician hears C moving to E, they count stepwise: "C... D... E... that's two steps up..." A trained ear immediately recognizes "major 3rd" - the interval is perceived as a single gestalt, not calculated note by note.</span></p>
-                    </div>
-
-                    <div class="content-block">
-                        <h4 class="content-block__title"><span lang="ja">科学的根拠</span><span lang="en">Scientific Basis</span></h4>
-                        <div class="science-box">
-                            <div class="science-box__title"><span lang="ja">聴覚認知の仕組み</span><span lang="en">Auditory Cognition and Interval Perception</span></div>
-                            <div class="science-box__content">
-                                <p><span lang="ja">音程認識は「パターンマッチング」。脳内に「長3度の響き」「完全5度の響き」というテンプレートが形成されると、聴いた音を即座に分類できるようになる。</span><span lang="en">Interval recognition operates through categorical perception - the brain develops internal templates for each interval quality. Once you've encoded the characteristic "color" of a major 3rd versus a perfect 5th, identification becomes instantaneous.</span></p>
-                                <p><span lang="ja">この能力は<strong>先天的なものではなく、後天的に訓練可能</strong>。音楽心理学の研究では、成人でも適切な訓練により音程認識能力が向上することが実証されている。</span><span lang="en">Crucially, this ability is <strong>acquired, not innate</strong>. Music cognition research consistently demonstrates that adult learners can develop strong interval recognition through systematic training - the same mechanism that allows trained musicians to take dictation.</span></p>
-                                <p><span lang="ja">ポイントは<strong>「能動的に聴く」</strong>こと。BGMとして流すだけでは効果がない。「これは何度か？」と問いかけながら聴くことで、脳がパターンを学習する。</span><span lang="en">The key is <strong>engaged, analytical listening</strong>. Passive exposure to music doesn't build these neural pathways. Active interrogation - "What interval was that?" - combined with immediate feedback creates the deliberate practice conditions necessary for perceptual learning.</span></p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="content-block">
-                        <h4 class="content-block__title"><span lang="ja">この練習が解決する課題</span><span lang="en">Problems This Practice Solves</span></h4>
-                        <ul class="content-list">
-                            <li><span lang="ja">メロディを聴いても、どの音か分からない</span><span lang="en">Can't identify notes when hearing a melody</span></li>
-                            <li><span lang="ja">1音ずつ探りながら弾いている</span><span lang="en">Playing by searching one note at a time</span></li>
-                            <li><span lang="ja">聴こえた音を再現するのに何度も聴き直す</span><span lang="en">Need to replay multiple times to reproduce heard sounds</span></li>
-                            <li><span lang="ja">コード感は分かるが、単音が取れない</span><span lang="en">Understand chord feel but can't pick out individual notes</span></li>
-                            <li><span lang="ja">鼻歌で思いついたメロディを楽器で再現できない</span><span lang="en">Can't reproduce melodies you hum on your instrument</span></li>
-                        </ul>
-                    </div>
-
-                    <div class="content-block">
-                        <h4 class="content-block__title"><span lang="ja">どのような状態になれば卒業か</span><span lang="en">Proficiency Benchmarks</span></h4>
-                        <div class="level-cards">
-                            <div class="level-card level-card--beginner">
-                                <h5 class="level-card__title"><span lang="ja">初心者の卒業基準</span><span lang="en">Foundation Level</span></h5>
-                                <div class="level-card__content">
-                                    <p><span lang="ja">完全8度・完全5度・完全4度</span><span lang="en">Perfect octave, perfect 5th, perfect 4th</span></p>
-                                    <p><span lang="ja">長3度・短3度</span><span lang="en">Major 3rd, minor 3rd</span></p>
-                                    <p><span lang="ja">正答率 <strong>80%</strong> 以上</span><span lang="en"><strong>80%</strong> accuracy or higher</span></p>
-                                    <p><em><span lang="ja">基本的な音程が聴き分けられる</span><span lang="en">Reliable recognition of foundational consonances</span></em></p>
-                                </div>
-                            </div>
-                            <div class="level-card level-card--intermediate">
-                                <h5 class="level-card__title"><span lang="ja">中級者の卒業基準</span><span lang="en">Working Level</span></h5>
-                                <div class="level-card__content">
-                                    <p><span lang="ja">全12音程（上昇）</span><span lang="en">All 12 intervals (ascending)</span></p>
-                                    <p><span lang="ja">正答率 <strong>85%</strong> 以上</span><span lang="en"><strong>85%</strong> accuracy or higher</span></p>
-                                    <p><em><span lang="ja">全ての音程を理論的に認識できる</span><span lang="en">Full chromatic interval vocabulary (ascending)</span></em></p>
-                                </div>
-                            </div>
-                            <div class="level-card level-card--advanced">
-                                <h5 class="level-card__title"><span lang="ja">上級者の卒業基準</span><span lang="en">Professional Level</span></h5>
-                                <div class="level-card__content">
-                                    <p><span lang="ja">全12音程（上昇・下降）</span><span lang="en">All 12 intervals (ascending and descending)</span></p>
-                                    <p><span lang="ja">正答率 <strong>95%</strong> 以上</span><span lang="en"><strong>95%</strong> accuracy or higher</span></p>
-                                    <p><em><span lang="ja">瞬時に音程を認識できる</span><span lang="en">Instantaneous recognition in both directions</span></em></p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="content-block">
-                        <h4 class="content-block__title"><span lang="ja">週ごとの詳細カリキュラム</span><span lang="en">Weekly Detailed Curriculum</span></h4>
-                        <div class="curriculum-box">
-                            <div class="curriculum-box__title"><span lang="ja">📅 8週間プログラム（1日10分）</span><span lang="en">📅 8-Week Program (10 minutes daily)</span></div>
-                            <div class="curriculum-week">
-                                <div class="curriculum-week__header"><span lang="ja">Week 1：基準を作る</span><span lang="en">Week 1: Establish the Reference</span></div>
-                                <div class="curriculum-week__content">
-                                    <span lang="ja">対象：完全8度（オクターブ）のみ｜目標：正答率95%<br>
-                                    まずオクターブを「基準点」として確立。「同じ音の高さ違い」という明確な感覚を体に染み込ませる。</span>
-                                    <span lang="en">Target: Perfect octave only | Goal: 95% accuracy<br>
-                                    First establish the octave as your "reference point." Internalize the clear sensation of "same note, different pitch."</span>
-                                </div>
-                            </div>
-                            <div class="curriculum-week">
-                                <div class="curriculum-week__header"><span lang="ja">Week 2：最も安定した協和音程</span><span lang="en">Week 2: The Most Stable Consonance</span></div>
-                                <div class="curriculum-week__content">
-                                    <span lang="ja">対象：+完全5度｜目標：2音程で正答率90%<br>
-                                    完全5度は最も協和度が高く安定した響き。「ドソ」の響きを徹底的に体に入れる。</span>
-                                    <span lang="en">Target: + Perfect 5th | Goal: 90% accuracy with 2 intervals<br>
-                                    Perfect 5th is the most consonant and stable sound. Thoroughly internalize the "C-G" sound.</span>
-                                </div>
-                            </div>
-                            <div class="curriculum-week">
-                                <div class="curriculum-week__header"><span lang="ja">Week 3-4：コードの核となる3度系</span><span lang="en">Week 3-4: The Core of Chords - 3rds</span></div>
-                                <div class="curriculum-week__content">
-                                    <span lang="ja">対象：+長3度、短3度｜目標：4音程で正答率85%<br>
-                                    「明るい（長3度）/暗い（短3度）」の違い。<strong>コードの響きを決める最も重要な音程。</strong>メジャーとマイナーを聴き分ける基礎になる。</span>
-                                    <span lang="en">Target: + Major 3rd, minor 3rd | Goal: 85% accuracy with 4 intervals<br>
-                                    The difference between "bright (major 3rd) / dark (minor 3rd)." <strong>The most important interval that determines chord quality.</strong> Foundation for distinguishing major and minor.</span>
-                                </div>
-                            </div>
-                            <div class="curriculum-week">
-                                <div class="curriculum-week__header"><span lang="ja">Week 5：5度の転回としての完全4度</span><span lang="en">Week 5: Perfect 4th as Inversion of 5th</span></div>
-                                <div class="curriculum-week__content">
-                                    <span lang="ja">対象：+完全4度｜目標：5音程で正答率85%<br>
-                                    完全4度は完全5度の転回形。5度を先に学んでいるので「5度をひっくり返した響き」として認識できる。sus4コードの特徴的な響き。</span>
-                                    <span lang="en">Target: + Perfect 4th | Goal: 85% accuracy with 5 intervals<br>
-                                    Perfect 4th is the inversion of perfect 5th. Having learned 5th first, you can recognize it as "5th flipped." The characteristic sound of sus4 chords.</span>
-                                </div>
-                            </div>
-                            <div class="curriculum-week">
-                                <div class="curriculum-week__header"><span lang="ja">Week 6：メロディの動きを作る2度系</span><span lang="en">Week 6: 2nds That Create Melodic Motion</span></div>
-                                <div class="curriculum-week__content">
-                                    <span lang="ja">対象：+長2度、短2度｜目標：7音程で正答率80%<br>
-                                    短2度（半音）は緊張感、長2度（全音）はスムーズな動き。メロディの「隣の音」への動きを認識する。</span>
-                                    <span lang="en">Target: + Major 2nd, minor 2nd | Goal: 80% accuracy with 7 intervals<br>
-                                    Minor 2nd (half step) creates tension, major 2nd (whole step) is smooth motion. Recognize melodic movement to "neighboring notes."</span>
-                                </div>
-                            </div>
-                            <div class="curriculum-week">
-                                <div class="curriculum-week__header"><span lang="ja">Week 7：3度の転回としての6度系</span><span lang="en">Week 7: 6ths as Inversions of 3rds</span></div>
-                                <div class="curriculum-week__content">
-                                    <span lang="ja">対象：+長6度、短6度｜目標：9音程で正答率75%<br>
-                                    長6度は短3度の転回、短6度は長3度の転回。3度を学んでいるので「3度の広い版」として捉えられる。</span>
-                                    <span lang="en">Target: + Major 6th, minor 6th | Goal: 75% accuracy with 9 intervals<br>
-                                    Major 6th is the inversion of minor 3rd, minor 6th is the inversion of major 3rd. Having learned 3rds, you can perceive them as "wider 3rds."</span>
-                                </div>
-                            </div>
-                            <div class="curriculum-week">
-                                <div class="curriculum-week__header"><span lang="ja">Week 8：不安定な音程（トライトーン・7度）</span><span lang="en">Week 8: Unstable Intervals (Tritone and 7ths)</span></div>
-                                <div class="curriculum-week__content">
-                                    <span lang="ja">対象：+増4度/減5度、長7度、短7度｜目標：全12音程で正答率80%<br>
-                                    増4度（トライトーン）はドミナント7thコードの「解決したがる」響きの正体。長7度はmaj7の美しい響き、短7度はドミナント7thのブルージーな響き。</span>
-                                    <span lang="en">Target: + Augmented 4th/diminished 5th, major 7th, minor 7th | Goal: 80% accuracy with all 12 intervals<br>
-                                    Augmented 4th (tritone) is the source of dominant 7th chord's "wanting to resolve" sound. Major 7th has the beautiful maj7 sound, minor 7th has the bluesy dominant 7th sound.</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="tips-box">
-                            <div class="tips-box__title"><span lang="ja">💡 なぜこの順序なのか</span><span lang="en">💡 Why This Order?</span></div>
-                            <div class="tips-box__content">
-                                <p><span lang="ja">この順序は「協和度」と「転回関係」に基づいている。完全5度を先に学んでから完全4度を学ぶのは、4度が「5度の転回」だから。同様に、3度を先に学んでから6度を学ぶ。既知の音程との関係で新しい音程を理解することで、効率的に12音程全てを習得できる。</span><span lang="en">This order is based on "consonance" and "inversion relationships." Learning perfect 5th before perfect 4th is because 4th is the "inversion of 5th." Similarly, learning 3rds before 6ths. By understanding new intervals in relation to known ones, you can efficiently master all 12 intervals.</span></p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="content-block">
-                        <h4 class="content-block__title"><span lang="ja">よくある失敗パターン</span><span lang="en">Common Failure Patterns</span></h4>
-                        <div class="warning-box">
-                            <div class="warning-box__title"><span lang="ja">❌ 失敗パターン1：最初から全音程に挑戦</span><span lang="en">❌ Failure Pattern 1: Attempting All Intervals From the Start</span></div>
-                            <div class="warning-box__content">
-                                <span lang="ja">12種類を一度に練習しても、混乱するだけ。半音差（短2度と長2度）を聴き分けられない状態で全部やっても効果が薄い。<br>
-                                <strong>→ 対策：</strong>段階的に音程を追加していく。確実に聴き分けられるようになってから次へ。</span>
-                                <span lang="en">Practicing all 12 types at once just causes confusion. Doing everything when you can't distinguish half-step differences (minor 2nd vs major 2nd) is ineffective.<br>
-                                <strong>→ Solution:</strong> Add intervals gradually. Move to the next only after you can reliably distinguish them.</span>
-                            </div>
-                        </div>
-                        <div class="warning-box">
-                            <div class="warning-box__title"><span lang="ja">❌ 失敗パターン2：上昇音程だけ練習</span><span lang="en">❌ Failure Pattern 2: Only Practicing Ascending Intervals</span></div>
-                            <div class="warning-box__content">
-                                <span lang="ja">実際の音楽では下降音程も頻繁に出てくる。上昇だけ練習していると、下降で混乱する。<br>
-                                <strong>→ 対策：</strong>中級以降は下降音程も含めて練習。上昇・下降両方で同じ精度を目指す。</span>
-                                <span lang="en">Descending intervals appear frequently in real music. If you only practice ascending, you'll be confused by descending.<br>
-                                <strong>→ Solution:</strong> From intermediate level, include descending intervals. Aim for the same accuracy in both directions.</span>
-                            </div>
-                        </div>
-                        <div class="warning-box">
-                            <div class="warning-box__title"><span lang="ja">❌ 失敗パターン3：「覚える」だけで「使わない」</span><span lang="en">❌ Failure Pattern 3: Only "Learning" Without "Using"</span></div>
-                            <div class="warning-box__content">
-                                <span lang="ja">アプリで正答率が上がっても、実際の曲で使えなければ意味がない。<br>
-                                <strong>→ 対策：</strong>練習後、好きな曲を聴いて「今の音程は何度か？」と考える習慣をつける。</span>
-                                <span lang="en">Even if your app accuracy improves, it's meaningless if you can't apply it to real songs.<br>
-                                <strong>→ Solution:</strong> After practice, listen to favorite songs and make a habit of thinking "what interval was that?"</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="content-block">
-                        <h4 class="content-block__title"><span lang="ja">卒業後にできるようになること</span><span lang="en">Skills You Will Develop</span></h4>
-                        <ul class="content-list">
-                            <li><span lang="ja">メロディを聴いた瞬間に音程関係が分かる</span><span lang="en">Perceive intervallic relationships instantly upon hearing any melody</span></li>
-                            <li><span lang="ja">1回聴けば大体の音が取れる</span><span lang="en">Transcribe accurately after a single listen</span></li>
-                            <li><span lang="ja">鼻歌で思いついたメロディをすぐに弾ける</span><span lang="en">Realize your inner musical ideas on your instrument immediately</span></li>
-                            <li><span lang="ja">他の楽器の音も相対的に聴き取れるようになる</span><span lang="en">Transcribe parts from any instrument using relative pitch</span></li>
-                            <li><span lang="ja">ハモリパートを即興で作れる</span><span lang="en">Spontaneously create harmony parts in real time</span></li>
-                        </ul>
-                    </div>
-
-                    <div class="content-block">
-                        <h4 class="content-block__title"><span lang="ja">プロはここから何を考え、行っているか</span><span lang="en">The Professional Perspective</span></h4>
-                        <p><span lang="ja">プロは音程を「単体」ではなく「文脈」で聴いている。同じ「短3度」でも、マイナーキーのルートから3rdへの動き、ドミナント7thの3rdから5thへの動き、ブルーノートとしての響き。これらを「違う音」として認識している。</span><span lang="en">Professional musicians hear intervals contextually rather than in isolation. The same minor 3rd carries different meaning depending on its harmonic function: as the defining color of a minor chord, as part of the dominant 7th structure, or as a blue note adding tension. These are perceived as qualitatively different sounds, not just the same interval in different contexts.</span></p>
-                        <p><span lang="ja">さらに、音程の「解決感」を理解している。長7度は短2度下へ、増4度は解決したがる、など。この感覚があると、次に来る音を「予測」できるようになる。</span><span lang="en">Beyond identification, professionals internalize voice-leading tendencies. The major 7th wants to resolve up by half step; the tritone creates tension that pulls toward resolution. This understanding enables melodic anticipation - you hear where the music is going before it arrives.</span></p>
-                    </div>
-
-                    <div class="content-block">
-                        <h4 class="content-block__title"><span lang="ja">推奨する練習方法</span><span lang="en">Recommended Practice Method</span></h4>
-                        <p><strong><span lang="ja">使用機能：Interval Training</span><span lang="en">Feature: Interval Training</span></strong></p>
-                        <div class="table-wrapper"><table class="training-table">
-                            <thead><tr><th><span lang="ja">フェーズ</span><span lang="en">Phase</span></th><th><span lang="ja">期間</span><span lang="en">Period</span></th><th><span lang="ja">対象音程</span><span lang="en">Target Intervals</span></th><th><span lang="ja">目標</span><span lang="en">Goal</span></th></tr></thead>
-                            <tbody>
-                                <tr><td><span lang="ja">基礎期</span><span lang="en">Foundation</span></td><td><span lang="ja">1-2週目</span><span lang="en">Weeks 1-2</span></td><td><span lang="ja">完全8度 → 完全5度</span><span lang="en">P8 → P5</span></td><td><span lang="ja">正答率90%</span><span lang="en">90% accuracy</span></td></tr>
-                                <tr><td><span lang="ja">核心期</span><span lang="en">Core</span></td><td><span lang="ja">3-4週目</span><span lang="en">Weeks 3-4</span></td><td><span lang="ja">+ 長3度、短3度</span><span lang="en">+ M3, m3</span></td><td><span lang="ja">正答率85%</span><span lang="en">85% accuracy</span></td></tr>
-                                <tr><td><span lang="ja">拡張期</span><span lang="en">Expansion</span></td><td><span lang="ja">5-6週目</span><span lang="en">Weeks 5-6</span></td><td><span lang="ja">+ 完全4度、長2度、短2度</span><span lang="en">+ P4, M2, m2</span></td><td><span lang="ja">正答率80%</span><span lang="en">80% accuracy</span></td></tr>
-                                <tr><td><span lang="ja">完成期</span><span lang="en">Completion</span></td><td><span lang="ja">7-8週目</span><span lang="en">Weeks 7-8</span></td><td><span lang="ja">+ 6度系、7度系、増4度/減5度</span><span lang="en">+ 6ths, 7ths, A4/d5</span></td><td><span lang="ja">正答率80%</span><span lang="en">80% accuracy</span></td></tr>
-                            </tbody>
-                        </table></div>
-                    </div>
+            <a href="practice/wind.html" class="instrument-card">
+                <div class="instrument-card__icon">🎺</div>
+                <div class="instrument-card__title"><span lang="ja">管弦楽器</span><span lang="en">Wind & Strings</span></div>
+                <div class="instrument-card__desc"><span lang="ja">ピッチが合わない、初見で止まる</span><span lang="en">Pitch doesn't match, get stuck at sight-reading</span></div>
+                <div class="instrument-card__meta">
+                    <span class="instrument-card__badge">2 Q&A</span>
+                    <span class="instrument-card__badge">Interval / Sight Reading</span>
+                    <span class="instrument-card__arrow">&rarr;</span>
                 </div>
-            </article>
+            </a>
 
-            <!-- Q3: アドリブで同じフレーズばかり -->
-            <article class="question-card" id="guitar-q3">
-                <div class="question-card__header">
-                    <span class="question-card__q">Q</span>
-                    <h3 class="question-card__title"><span lang="ja">アドリブで同じフレーズばかり弾いてしまう</span><span lang="en">Always playing the same phrases when improvising</span></h3>
+            <a href="practice/features.html" class="instrument-card">
+                <div class="instrument-card__icon">📱</div>
+                <div class="instrument-card__title"><span lang="ja">アプリ機能解説</span><span lang="en">App Features</span></div>
+                <div class="instrument-card__desc"><span lang="ja">指板、音程、コード認識、リズム、譜読み — 各トレーニング機能の詳細</span><span lang="en">Fretboard, intervals, chords, rhythm, sight-reading — detailed feature guide</span></div>
+                <div class="instrument-card__meta">
+                    <span class="instrument-card__badge">5 Features</span>
+                    <span class="instrument-card__arrow">&rarr;</span>
                 </div>
-                <div class="question-card__content">
-                    <div class="content-block">
-                        <h4 class="content-block__title"><span lang="ja">💡 推奨する練習方法</span><span lang="en">💡 Recommended Practice Method</span></h4>
-                        <div class="tips-box">
-                            <div class="tips-box__content">
-                                <p><strong><span lang="ja">Fretboard Training（指板トレーニング）で全域をカバー + Interval Trainingの併用。</span><span lang="en">Cover the entire fretboard with Fretboard Training + combine with Interval Training.</span></strong></p>
-                                <p><span lang="ja">指板の「見えない場所」を見える場所に変えることで、手癖から脱出できる。</span><span lang="en">By turning "invisible areas" of the fretboard into visible ones, you can escape from habitual patterns.</span></p>
-                            </div>
-                        </div>
-                    </div>
+            </a>
 
-                    <div class="content-block">
-                        <h4 class="content-block__title"><span lang="ja">なぜこの練習が必要か</span><span lang="en">Why This Practice Is Necessary</span></h4>
-                        <p><span lang="ja">アドリブで同じフレーズばかり弾く原因は「安全な場所から出られない」こと。手癖のポジションを離れると、<span class="highlight">次の音が分からなくなる恐怖</span>がある。</span><span lang="en">The reason you play the same phrases when improvising is "you can't leave your safe zone." When you leave your habitual positions, there's <span class="highlight">fear of not knowing what note comes next</span>.</span></p>
-                        <p><span lang="ja">解決策は「指板全域を安全な場所にする」こと。どこにいても音名が見えれば、怖くない。</span><span lang="en">The solution is "making the entire fretboard a safe zone." If you can see note names everywhere, there's nothing to fear.</span></p>
-                    </div>
-
-                    <div class="content-block">
-                        <h4 class="content-block__title"><span lang="ja">科学的根拠</span><span lang="en">Scientific Basis</span></h4>
-                        <div class="science-box">
-                            <div class="science-box__title"><span lang="ja">「快適領域」と創造性の関係</span><span lang="en">The Relationship Between "Comfort Zone" and Creativity</span></div>
-                            <div class="science-box__content">
-                                <p><span lang="ja">心理学でいう「快適領域（コンフォートゾーン）」から出られないのは、<strong>失敗への恐怖</strong>が原因。脳は「知らない領域」を危険と判断し、避けようとする。</span><span lang="en">The inability to leave your psychological "comfort zone" is caused by <strong>fear of failure</strong>. The brain judges "unknown territory" as dangerous and tries to avoid it.</span></p>
-                                <p><span lang="ja">しかし創造性は「快適領域の外」でこそ発揮される。指板の全域が「既知の領域」になれば、脳は探索を許可し、新しいフレーズが生まれやすくなる。</span><span lang="en">However, creativity flourishes "outside the comfort zone." When the entire fretboard becomes "known territory," your brain permits exploration, making it easier to create new phrases.</span></p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="content-block">
-                        <h4 class="content-block__title"><span lang="ja">この練習が解決する課題</span><span lang="en">Problems This Practice Solves</span></h4>
-                        <ul class="content-list">
-                            <li><span lang="ja">いつも同じポジションでしか弾けない</span><span lang="en">Only able to play in the same positions</span></li>
-                            <li><span lang="ja">手癖フレーズのループから抜け出せない</span><span lang="en">Can't break out of habitual phrase loops</span></li>
-                            <li><span lang="ja">ハイポジションが怖い</span><span lang="en">Afraid of higher positions</span></li>
-                            <li><span lang="ja">「何を弾いていいか分からない」状態に陥る</span><span lang="en">Fall into "don't know what to play" state</span></li>
-                        </ul>
-                    </div>
-
-                    <div class="content-block">
-                        <h4 class="content-block__title"><span lang="ja">よくある失敗パターン</span><span lang="en">Common Failure Pattern</span></h4>
-                        <div class="warning-box">
-                            <div class="warning-box__title"><span lang="ja">❌ 失敗パターン：フレーズ集のコピーだけ</span><span lang="en">❌ Failure Pattern: Only Copying from Lick Books</span></div>
-                            <div class="warning-box__content">
-                                <span lang="ja">フレーズ集を暗記しても、それは「別の手癖」を追加しているだけ。指板の理解なしにフレーズを覚えても、応用が効かない。<br>
-                                <strong>→ 対策：</strong>フレーズを覚えるときは「なぜこの音を使っているか」を音名レベルで理解する。</span>
-                                <span lang="en">Even if you memorize lick books, you're just adding "different habits." Memorizing phrases without understanding the fretboard won't help you adapt.<br>
-                                <strong>→ Solution:</strong> When learning phrases, understand "why these notes are used" at the note-name level.</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="content-block">
-                        <h4 class="content-block__title"><span lang="ja">推奨する練習方法</span><span lang="en">Recommended Practice Method</span></h4>
-                        <p><strong><span lang="ja">使用機能：Fretboard Training + 実践練習</span><span lang="en">Feature: Fretboard Training + Practical Exercise</span></strong></p>
-                        <div class="tips-box">
-                            <div class="tips-box__title"><span lang="ja">💡 「制限練習法」</span><span lang="en">💡 "Restriction Practice Method"</span></div>
-                            <div class="tips-box__content">
-                                <ul class="content-list">
-                                    <li><span lang="ja">「今日は7フレット以上だけで弾く」</span><span lang="en">"Today, only play above fret 7"</span></li>
-                                    <li><span lang="ja">「今日は1-2弦だけで弾く」</span><span lang="en">"Today, only play on strings 1-2"</span></li>
-                                    <li><span lang="ja">「今日はルート音を使わない」</span><span lang="en">"Today, don't use the root note"</span></li>
-                                </ul>
-                                <p><span lang="ja">あえて制限を設けることで、普段使わないエリアを強制的に探索する。新しいフレーズは「不自由」から生まれる。</span><span lang="en">By intentionally setting restrictions, you force yourself to explore areas you normally don't use. New phrases are born from "limitations."</span></p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </article>
-
-            <!-- Q4: コード進行が聴き取れない -->
-            <article class="question-card" id="guitar-q4">
-                <div class="question-card__header">
-                    <span class="question-card__q">Q</span>
-                    <h3 class="question-card__title"><span lang="ja">コード進行が聴き取れない</span><span lang="en">Can't hear chord progressions</span></h3>
-                </div>
-                <div class="question-card__content">
-                    <div class="content-block">
-                        <h4 class="content-block__title"><span lang="ja">💡 推奨する練習方法</span><span lang="en">💡 Recommended Practice Method</span></h4>
-                        <div class="tips-box">
-                            <div class="tips-box__content">
-                                <p><strong><span lang="ja">Chord Recognition（コード認識）+ Interval Trainingの併用。</span><span lang="en">Combine Chord Recognition + Interval Training.</span></strong></p>
-                                <p><span lang="ja">まず個々のコードの響きを覚え、次にベース音の動きを追う訓練をする。いきなり全部を聴こうとしないこと。</span><span lang="en">First memorize the sound of individual chords, then train to follow bass note movement. Don't try to hear everything at once.</span></p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="content-block">
-                        <h4 class="content-block__title"><span lang="ja">なぜこの練習が必要か</span><span lang="en">Why This Practice Is Necessary</span></h4>
-                        <p><span lang="ja">コード進行を聴き取れない人の多くは「コードを1つずつ聴こうとしている」。全ての音を把握しようとして、情報量に溺れる。</span><span lang="en">Many people who can't hear chord progressions are "trying to hear one chord at a time." They drown in information trying to grasp all the notes.</span></p>
-                        <p><span lang="ja">プロは違う。<span class="highlight">「ベース音」と「トップノート」を同時に聴いている。</span></span><span lang="en">Pros are different. <span class="highlight">They listen to "bass notes" and "top notes" simultaneously.</span></span></p>
-                        <p><span lang="ja"><strong>ベース音</strong>でルートを特定し、<strong>トップノート</strong>でコードの色彩を判断する。この2点が分かれば、間の音は「推測」できる。</span><span lang="en">Identify the root with the <strong>bass note</strong>, and judge the chord color with the <strong>top note</strong>. If you know these two points, you can "deduce" the notes in between.</span></p>
-                    </div>
-
-                    <div class="content-block">
-                        <h4 class="content-block__title"><span lang="ja">科学的根拠</span><span lang="en">Scientific Basis</span></h4>
-                        <div class="science-box">
-                            <div class="science-box__title"><span lang="ja">選択的注意と聴覚処理</span><span lang="en">Selective Attention and Auditory Processing</span></div>
-                            <div class="science-box__content">
-                                <p><span lang="ja">人間の聴覚は「選択的注意」が可能。カクテルパーティ効果のように、複数の音源から特定の情報だけを抽出できる。</span><span lang="en">Human hearing is capable of "selective attention." Like the cocktail party effect, we can extract specific information from multiple sound sources.</span></p>
-                                <p><span lang="ja">コードを聴くときも同じ。「全部聴こう」とせず、<strong>「ベースだけ聴く」「トップだけ聴く」と焦点を絞る</strong>ことで、認知負荷を下げながら正確に聴き取れる。</span><span lang="en">The same applies when listening to chords. Instead of trying to "hear everything," <strong>focus on "just the bass" or "just the top"</strong> to reduce cognitive load while hearing accurately.</span></p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="content-block">
-                        <h4 class="content-block__title"><span lang="ja">この練習が解決する課題</span><span lang="en">Problems This Practice Solves</span></h4>
-                        <ul class="content-list">
-                            <li><span lang="ja">曲を聴いても何のコードか分からない</span><span lang="en">Can't identify chords when listening to songs</span></li>
-                            <li><span lang="ja">メジャーとマイナーの区別がつかない</span><span lang="en">Can't distinguish between major and minor</span></li>
-                            <li><span lang="ja">セブンスコードが聴き分けられない</span><span lang="en">Can't differentiate seventh chords</span></li>
-                            <li><span lang="ja">ベース音は分かるが、コードタイプが分からない</span><span lang="en">Know the bass note but not the chord type</span></li>
-                        </ul>
-                    </div>
-
-                    <div class="content-block">
-                        <h4 class="content-block__title"><span lang="ja">どのような状態になれば卒業か</span><span lang="en">Proficiency Benchmarks</span></h4>
-                        <div class="level-cards">
-                            <div class="level-card level-card--beginner">
-                                <h5 class="level-card__title"><span lang="ja">初心者の卒業基準</span><span lang="en">Foundation Level</span></h5>
-                                <div class="level-card__content">
-                                    <p><strong><span lang="ja">3和音</span><span lang="en">Triads</span></strong><span lang="ja">の聴き分け</span><span lang="en"> recognition</span></p>
-                                    <p>Major / minor / dim / aug</p>
-                                    <p><span lang="ja">正答率 <strong>85%</strong> 以上</span><span lang="en"><strong>85%</strong> accuracy or higher</span></p>
-                                </div>
-                            </div>
-                            <div class="level-card level-card--intermediate">
-                                <h5 class="level-card__title"><span lang="ja">中級者の卒業基準</span><span lang="en">Working Level</span></h5>
-                                <div class="level-card__content">
-                                    <p><strong><span lang="ja">4和音（基本）</span><span lang="en">7th chords (basic)</span></strong><span lang="ja">の聴き分け</span><span lang="en"> recognition</span></p>
-                                    <p>7th(dom7) / maj7 / m7</p>
-                                    <p><span lang="ja">正答率 <strong>80%</strong> 以上</span><span lang="en"><strong>80%</strong> accuracy or higher</span></p>
-                                </div>
-                            </div>
-                            <div class="level-card level-card--advanced">
-                                <h5 class="level-card__title"><span lang="ja">上級者の卒業基準</span><span lang="en">Professional Level</span></h5>
-                                <div class="level-card__content">
-                                    <p><strong><span lang="ja">4和音（応用）</span><span lang="en">7th chords (advanced)</span></strong><span lang="ja">の聴き分け</span><span lang="en"> recognition</span></p>
-                                    <p>m7(♭5) / dim7 / sus4 / add9</p>
-                                    <p><span lang="ja">正答率 <strong>80%</strong> 以上</span><span lang="en"><strong>80%</strong> accuracy or higher</span></p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="content-block">
-                        <h4 class="content-block__title"><span lang="ja">科学的根拠</span><span lang="en">Scientific Basis</span></h4>
-                        <div class="science-box">
-                            <div class="science-box__title"><span lang="ja">コード認識の聴覚処理</span><span lang="en">Chord Quality Perception</span></div>
-                            <div class="science-box__content">
-                                <p><span lang="ja">コードを聴くとき、脳は全ての構成音を個別に処理しているわけではない。<strong>「全体の響きの質」</strong>をパターンとして認識している。</span><span lang="en">The brain doesn't analyze chords by parsing individual pitches. Instead, it perceives <strong>chord quality as a gestalt</strong> - the overall harmonic character processed as a single perceptual unit.</span></p>
-                                <p><span lang="ja">Major は「明るく安定」、minor は「暗く内省的」、dim は「不安定で緊張」、aug は「浮遊感」。これらの<strong>「響きの性格」</strong>を体で覚えることが重要。</span><span lang="en">Each chord quality has a distinct emotional signature: major conveys brightness and resolution; minor suggests introspection or melancholy; diminished creates tension and instability; augmented produces a floating, unresolved quality. Training develops immediate recognition of these <strong>harmonic colors</strong>.</span></p>
-                                <p><span lang="ja"><strong>プロの聴き方：</strong>ベース音（ルート）とトップノート（最高音）を同時に聴く。この2点が分かれば、間の音は和声の知識から推測できる。</span><span lang="en"><strong>Professional listening strategy:</strong> Focus on the outer voices - bass (root) and soprano (top note) - simultaneously. With these anchor points identified, inner voices can be deduced from harmonic context and voice-leading conventions.</span></p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="content-block">
-                        <h4 class="content-block__title"><span lang="ja">よくある失敗パターン</span><span lang="en">Common Failure Patterns</span></h4>
-                        <div class="warning-box">
-                            <div class="warning-box__title"><span lang="ja">❌ 失敗パターン1：全部の音を聴こうとする</span><span lang="en">❌ Failure Pattern 1: Trying to Hear All Notes</span></div>
-                            <div class="warning-box__content">
-                                <span lang="ja">4和音には4つの音がある。全部聴き取ろうとすると情報量に溺れる。<br>
-                                <strong>→ 対策：</strong>まずベース音だけに集中。次にトップノートだけに集中。別々に聴いてから統合する。</span>
-                                <span lang="en">A 7th chord has 4 notes. Trying to hear all of them drowns you in information.<br>
-                                <strong>→ Solution:</strong> First focus only on bass. Then focus only on top note. Integrate after hearing them separately.</span>
-                            </div>
-                        </div>
-                        <div class="warning-box">
-                            <div class="warning-box__title"><span lang="ja">❌ 失敗パターン2：3和音を飛ばして4和音から始める</span><span lang="en">❌ Failure Pattern 2: Skipping Triads and Starting with 7ths</span></div>
-                            <div class="warning-box__content">
-                                <span lang="ja">Major/minorの区別が曖昧なまま7thコードに進むと、dom7とmaj7の違いが分からなくなる。<br>
-                                <strong>→ 対策：</strong>まず3和音（Major/minor/dim/aug）を完璧にしてから4和音へ進む。</span>
-                                <span lang="en">If you move to 7th chords while major/minor distinction is unclear, you won't understand the difference between dom7 and maj7.<br>
-                                <strong>→ Solution:</strong> Perfect triads (Major/minor/dim/aug) first, then move to 7th chords.</span>
-                            </div>
-                        </div>
-                        <div class="warning-box">
-                            <div class="warning-box__title"><span lang="ja">❌ 失敗パターン3：dom7とmaj7を混同する</span><span lang="en">❌ Failure Pattern 3: Confusing dom7 and maj7</span></div>
-                            <div class="warning-box__content">
-                                <span lang="ja">どちらも「7th」と呼ばれるが、全く違う響き。dom7は「解決したがる緊張感」、maj7は「完結した美しさ」。<br>
-                                <strong>→ 対策：</strong>dom7（G7→Cmaj）の「解決感」を先に体験してから、maj7の「浮遊する美しさ」を学ぶ。</span>
-                                <span lang="en">Both are called "7th" but sound completely different. dom7 has "tension wanting to resolve," maj7 has "complete beauty."<br>
-                                <strong>→ Solution:</strong> First experience the "resolution feeling" of dom7 (G7→Cmaj), then learn maj7's "floating beauty."</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="content-block">
-                        <h4 class="content-block__title"><span lang="ja">卒業後にできるようになること</span><span lang="en">Skills You Will Develop</span></h4>
-                        <ul class="content-list">
-                            <li><span lang="ja">曲を聴きながらコード進行をメモできる</span><span lang="en">Chart progressions in real time while listening</span></li>
-                            <li><span lang="ja">「このコード、何か違う」という違和感を言語化できる</span><span lang="en">Articulate harmonic nuances precisely - identify what makes a voicing distinctive</span></li>
-                            <li><span lang="ja">代理コードや転調に気づけるようになる</span><span lang="en">Recognize tritone substitutions, borrowed chords, and key modulations by ear</span></li>
-                            <li><span lang="ja">作曲時に「こういう響きが欲しい」を形にできる</span><span lang="en">Translate the harmonic colors you imagine directly into specific chord voicings</span></li>
-                        </ul>
-                    </div>
-
-                    <div class="content-block">
-                        <h4 class="content-block__title"><span lang="ja">推奨する練習方法</span><span lang="en">Recommended Practice Method</span></h4>
-                        <p><strong><span lang="ja">使用機能：Chord Recognition</span><span lang="en">Feature: Chord Recognition</span></strong></p>
-                        <div class="table-wrapper"><table class="training-table">
-                            <thead><tr><th><span lang="ja">フェーズ</span><span lang="en">Phase</span></th><th><span lang="ja">期間</span><span lang="en">Period</span></th><th><span lang="ja">対象コード</span><span lang="en">Target Chords</span></th><th><span lang="ja">目標</span><span lang="en">Goal</span></th></tr></thead>
-                            <tbody>
-                                <tr><td><span lang="ja">3和音期</span><span lang="en">Triads</span></td><td><span lang="ja">1-2週目</span><span lang="en">Weeks 1-2</span></td><td>Major / minor / dim / aug</td><td><span lang="ja">正答率85%</span><span lang="en">85% accuracy</span></td></tr>
-                                <tr><td><span lang="ja">4和音基礎</span><span lang="en">7th Basic</span></td><td><span lang="ja">3-4週目</span><span lang="en">Weeks 3-4</span></td><td>+ 7th(dom7) / maj7</td><td><span lang="ja">正答率80%</span><span lang="en">80% accuracy</span></td></tr>
-                                <tr><td><span lang="ja">4和音拡張</span><span lang="en">7th Expansion</span></td><td><span lang="ja">5-6週目</span><span lang="en">Weeks 5-6</span></td><td>+ m7 / m7(♭5)</td><td><span lang="ja">正答率75%</span><span lang="en">75% accuracy</span></td></tr>
-                                <tr><td><span lang="ja">応用期</span><span lang="en">Advanced</span></td><td><span lang="ja">7-8週目</span><span lang="en">Weeks 7-8</span></td><td>+ dim7 / sus4 / add9</td><td><span lang="ja">正答率75%</span><span lang="en">75% accuracy</span></td></tr>
-                            </tbody>
-                        </table></div>
-                        <div class="tips-box">
-                            <div class="tips-box__title"><span lang="ja">💡 コードの「性格」を覚える</span><span lang="en">💡 Remember Chord "Personalities"</span></div>
-                            <div class="tips-box__content">
-                                <ul class="content-list">
-                                    <li><strong>Major:</strong><span lang="ja">明るい、安定、解決感</span><span lang="en">Bright, stable, resolved</span></li>
-                                    <li><strong>minor:</strong><span lang="ja">暗い、内省的、哀愁</span><span lang="en">Dark, introspective, melancholic</span></li>
-                                    <li><strong>dim:</strong><span lang="ja">不安定、緊張、恐怖感</span><span lang="en">Unstable, tense, fearful</span></li>
-                                    <li><strong>aug:</strong><span lang="ja">浮遊感、不思議、広がり</span><span lang="en">Floating, mysterious, expansive</span></li>
-                                    <li><strong>dom7:</strong><span lang="ja">解決したがる、ブルージー</span><span lang="en">Wants to resolve, bluesy</span></li>
-                                    <li><strong>maj7:</strong><span lang="ja">美しい、洗練、都会的</span><span lang="en">Beautiful, sophisticated, urban</span></li>
-                                    <li><strong>m7:</strong><span lang="ja">ソウルフル、クール、モダン</span><span lang="en">Soulful, cool, modern</span></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </article>
-
-        </section>
-
-        <!-- ============================================ -->
-        <!-- ドラム セクション -->
-        <!-- ============================================ -->
-        <section id="drums" class="section">
-            <div class="section__header">
-                <span class="section__icon">🥁</span>
-                <h2 class="section__title"><span lang="ja">ドラム</span><span lang="en">Drums</span></h2>
-                <div class="section__header-actions">
-                    <button class="expand-all-btn"><span lang="ja">すべて開く</span><span lang="en">Expand All</span></button>
-                </div>
-            </div>
-
-            <!-- Section TOC -->
-            <nav class="section-toc">
-                <div class="section-toc__title"><span lang="ja">目次</span><span lang="en">Contents</span></div>
-                <ul class="section-toc__list">
-                    <li class="section-toc__item" data-target="drums-q1"><span lang="ja">リズムが安定しない</span><span lang="en">Rhythm instability</span></li>
-                    <li class="section-toc__item" data-target="drums-q2"><span lang="ja">フィル後にズレる</span><span lang="en">Timing slips after fills</span></li>
-                    <li class="section-toc__item" data-target="drums-q3"><span lang="ja">遅いテンポが苦手</span><span lang="en">Struggle with slow tempos</span></li>
-                </ul>
-            </nav>
-
-            <!-- Q1: リズムが安定しない / Don't know if my rhythm is stable -->
-            <article class="question-card" id="drums-q1">
-                <div class="question-card__header">
-                    <span class="question-card__q">Q</span>
-                    <h3 class="question-card__title"><span lang="ja">自分のリズムが安定しているか分からない</span><span lang="en">Don't know if my rhythm is stable</span></h3>
-                </div>
-                <div class="question-card__content">
-                    <div class="content-block">
-                        <h4 class="content-block__title"><span lang="ja">💡 推奨する練習方法</span><span lang="en">💡 Recommended Practice Method</span></h4>
-                        <div class="tips-box">
-                            <div class="tips-box__content">
-                                <p><strong><span lang="ja">Rhythm Training（リズムトレーニング）を毎日10分。</span><span lang="en">Practice Rhythm Training for 10 minutes daily.</span></strong></p>
-                                <p><span lang="ja">メトロノームに合わせてタップ/クラップし、ミリ秒単位でズレを測定。「前乗り傾向」「後乗り傾向」「バラつき」を数値で把握する。</span><span lang="en">Tap or clap along with a metronome and measure deviation in milliseconds. Understand your "rushing tendency," "dragging tendency," or "inconsistency" through numerical data.</span></p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="content-block">
-                        <h4 class="content-block__title"><span lang="ja">なぜこの練習が必要か</span><span lang="en">Why This Practice Is Necessary</span></h4>
-                        <p><span lang="ja">「たぶん走ってる」「たぶんモタってる」。この<span class="highlight">「たぶん」を「確実に+18ms前乗り」に変える</span>のがリズム測定。</span><span lang="en">"I'm probably rushing." "I'm probably dragging." Rhythm measurement <span class="highlight">transforms that "probably" into "definitely +18ms ahead."</span></span></p>
-                        <p><span lang="ja">自分の癖を知らないまま練習しても、悪い癖が強化されるだけ。まずは現状を数値で把握することが全ての出発点。</span><span lang="en">Practicing without knowing your habits only reinforces bad ones. Understanding your current state through numbers is the starting point for all improvement.</span></p>
-                    </div>
-
-                    <div class="content-block">
-                        <h4 class="content-block__title"><span lang="ja">科学的根拠</span><span lang="en">Scientific Background</span></h4>
-                        <div class="science-box">
-                            <div class="science-box__title"><span lang="ja">リズム知覚と運動制御</span><span lang="en">Rhythm Perception and Motor Control</span></div>
-                            <div class="science-box__content">
-                                <p><span lang="ja">リズムの精度は<strong>「予測」と「フィードバック」</strong>の2つの能力に依存する。</span><span lang="en">Rhythmic accuracy depends on two abilities: <strong>"prediction" and "feedback."</strong></span></p>
-                                <p><span lang="ja"><strong>予測（内的タイミング）：</strong>次のビートがいつ来るか、体が先に知っている状態。クリックを「聴いてから叩く」のでは遅い。「一緒に叩く」、むしろ「先に予測して叩く」感覚が必要。</span><span lang="en"><strong>Prediction (internal timing):</strong> Your body knowing when the next beat will come before it arrives. Waiting to hear the click before hitting is too late. You need to hit "with" the click, or better yet, develop the sense of predicting and hitting ahead.</span></p>
-                                <p><span lang="ja"><strong>フィードバック：</strong>自分の打点がどれだけズレているか認識し、修正する能力。これは客観的な測定なしには改善できない。「たぶんズレてる」では修正のしようがない。</span><span lang="en"><strong>Feedback:</strong> The ability to recognize how much your timing deviates and correct it. This cannot improve without objective measurement. "I'm probably off" doesn't give you anything to fix.</span></p>
-                            </div>
-                        </div>
-                        <div class="science-box">
-                            <div class="science-box__title"><span lang="ja">JND（弁別閾）と±15msの根拠</span><span lang="en">JND (Just Noticeable Difference) and the ±15ms Standard</span></div>
-                            <div class="science-box__content">
-                                <p><span lang="ja"><strong>JND（Just Noticeable Difference）</strong>とは、人間が「違い」を認識できる最小単位。時間知覚の研究では、<strong>2つの音のズレが20〜30ms以内であれば「同時」と認識される</strong>ことが分かっている。</span><span lang="en"><strong>JND (Just Noticeable Difference)</strong> is the smallest unit of difference humans can perceive. Research in time perception shows that <strong>two sounds within 20-30ms are perceived as "simultaneous."</strong></span></p>
-                                <p><span lang="ja">つまり、±15ms以内のズレは<strong>聴く人に「ズレ」として認識されない</strong>。これがプロレベルの精度基準となる理由。逆に±50msを超えると、明確に「遅れている」「走っている」と感じられる。</span><span lang="en">This means deviations within ±15ms <strong>are not perceived as "off" by listeners</strong>. This is why it's the standard for professional-level precision. Conversely, deviations beyond ±50ms are clearly felt as "dragging" or "rushing."</span></p>
-                                <p><strong><span lang="ja">実用的な基準：</span><span lang="en">Practical standards:</span></strong></p>
-                                <ul class="content-list">
-                                    <li><span lang="ja">±50ms：明らかなズレ。アマチュアバンドでも気づく</span><span lang="en">±50ms: Obvious deviation. Even amateur bands notice</span></li>
-                                    <li><span lang="ja">±30ms：グルーヴに影響。中級者の壁</span><span lang="en">±30ms: Affects groove. The intermediate player's wall</span></li>
-                                    <li><span lang="ja">±15ms：JND以下。プロの領域</span><span lang="en">±15ms: Below JND. Professional territory</span></li>
-                                    <li><span lang="ja">±10ms：スタジオミュージシャン級</span><span lang="en">±10ms: Studio musician level</span></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="content-block">
-                        <h4 class="content-block__title"><span lang="ja">この練習が解決する課題</span><span lang="en">Problems This Practice Solves</span></h4>
-                        <ul class="content-list">
-                            <li><span lang="ja">走っているのかモタっているのか分からない</span><span lang="en">Not knowing if you're rushing or dragging</span></li>
-                            <li><span lang="ja">テンポが速くなると崩れる</span><span lang="en">Falling apart when tempo increases</span></li>
-                            <li><span lang="ja">フィルインの後にズレる</span><span lang="en">Getting off after fills</span></li>
-                            <li><span lang="ja">他のメンバーから「リズムが不安定」と言われる</span><span lang="en">Band members saying "your rhythm is unstable"</span></li>
-                            <li><span lang="ja">クリックに合わせると機械的になる</span><span lang="en">Sounding mechanical when playing with a click</span></li>
-                        </ul>
-                    </div>
-
-                    <div class="content-block">
-                        <h4 class="content-block__title"><span lang="ja">どのような状態になれば卒業か</span><span lang="en">Proficiency Benchmarks</span></h4>
-                        <div class="level-cards">
-                            <div class="level-card level-card--beginner">
-                                <h5 class="level-card__title"><span lang="ja">初心者の卒業基準</span><span lang="en">Foundation Level</span></h5>
-                                <div class="level-card__content">
-                                    <p><span lang="ja">平均誤差 <strong>±50ms</strong> 以内</span><span lang="en">Average deviation within <strong>±50ms</strong></span></p>
-                                    <p>BPM 80-100</p>
-                                    <p><em><span lang="ja">大きなズレがなくなる</span><span lang="en">No major timing errors</span></em></p>
-                                </div>
-                            </div>
-                            <div class="level-card level-card--intermediate">
-                                <h5 class="level-card__title"><span lang="ja">中級者の卒業基準</span><span lang="en">Working Level</span></h5>
-                                <div class="level-card__content">
-                                    <p><span lang="ja">平均誤差 <strong>±30ms</strong> 以内</span><span lang="en">Average deviation within <strong>±30ms</strong></span></p>
-                                    <p>BPM 60-140</p>
-                                    <p><em><span lang="ja">安定したリズムキープ</span><span lang="en">Consistent timekeeping</span></em></p>
-                                </div>
-                            </div>
-                            <div class="level-card level-card--advanced">
-                                <h5 class="level-card__title"><span lang="ja">上級者の卒業基準</span><span lang="en">Professional Level</span></h5>
-                                <div class="level-card__content">
-                                    <p><span lang="ja">平均誤差 <strong>±15ms</strong> 以内</span><span lang="en">Average deviation within <strong>±15ms</strong></span></p>
-                                    <p>BPM 40-180</p>
-                                    <p><em><span lang="ja">プロレベルの精度</span><span lang="en">Professional-level precision</span></em></p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="content-block">
-                        <h4 class="content-block__title"><span lang="ja">週ごとの詳細カリキュラム</span><span lang="en">Weekly Curriculum</span></h4>
-                        <div class="curriculum-box">
-                            <div class="curriculum-box__title"><span lang="ja">📅 4週間プログラム（1日10分）</span><span lang="en">📅 4-Week Program (10 minutes daily)</span></div>
-                            <div class="curriculum-week">
-                                <div class="curriculum-week__header"><span lang="ja">Week 1：現状把握</span><span lang="en">Week 1: Baseline Assessment</span></div>
-                                <div class="curriculum-week__content">
-                                    <span lang="ja">BPM 90固定、4分音符｜タップモードで自分の癖を把握<br>
-                                    走りがちか、モタりがちか、傾向を知る。まだ改善は意識しない。</span><span lang="en">BPM 90 fixed, quarter notes | Use tap mode to understand your habits<br>
-                                    Learn whether you tend to rush or drag. Don't focus on improvement yet.</span>
-                                </div>
-                            </div>
-                            <div class="curriculum-week">
-                                <div class="curriculum-week__header"><span lang="ja">Week 2：意識的修正</span><span lang="en">Week 2: Conscious Correction</span></div>
-                                <div class="curriculum-week__content">
-                                    <span lang="ja">BPM 80-100、4分音符｜自分の癖と逆方向を意識<br>
-                                    走りがちなら「少し遅らせる」意識。数値でフィードバックを見ながら調整。</span><span lang="en">BPM 80-100, quarter notes | Consciously counter your habits<br>
-                                    If you rush, focus on "delaying slightly." Adjust while watching numerical feedback.</span>
-                                </div>
-                            </div>
-                            <div class="curriculum-week">
-                                <div class="curriculum-week__header"><span lang="ja">Week 3：テンポ拡張</span><span lang="en">Week 3: Tempo Expansion</span></div>
-                                <div class="curriculum-week__content">
-                                    <span lang="ja">BPM 60-120、4分・8分音符｜遅いテンポと速いテンポを練習<br>
-                                    遅いテンポの方が実は難しい。「間」を保つ練習。</span><span lang="en">BPM 60-120, quarter and eighth notes | Practice slow and fast tempos<br>
-                                    Slow tempos are actually harder. Practice maintaining "space."</span>
-                                </div>
-                            </div>
-                            <div class="curriculum-week">
-                                <div class="curriculum-week__header"><span lang="ja">Week 4：クラップモード</span><span lang="en">Week 4: Clap Mode</span></div>
-                                <div class="curriculum-week__content">
-                                    <span lang="ja">クラップモードに切り替え｜体全体でリズムを取る<br>
-                                    指先のタップと体全体のグルーヴは別物。実際の演奏に近い形で練習。</span><span lang="en">Switch to clap mode | Feel rhythm with your whole body<br>
-                                    Fingertip tapping and full-body groove are different. Practice closer to actual performance.</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="content-block">
-                        <h4 class="content-block__title"><span lang="ja">よくある失敗パターン</span><span lang="en">Common Mistakes</span></h4>
-                        <div class="warning-box">
-                            <div class="warning-box__title"><span lang="ja">❌ 失敗パターン1：Bluetoothイヤホンを使う</span><span lang="en">❌ Mistake 1: Using Bluetooth Earphones</span></div>
-                            <div class="warning-box__content">
-                                <span lang="ja">AirPodsなどのBluetoothイヤホンは100ms以上の遅延がある。「ちゃんと合わせてるのにアプリがズレる」という違和感は、あなたのせいじゃない。<br>
-                                <strong>→ 対策：</strong>有線イヤホンか内蔵スピーカーを使用する。</span><span lang="en">Bluetooth earphones like AirPods have over 100ms latency. That feeling of "I'm playing in time but the app says I'm off" - it's not your fault.<br>
-                                <strong>→ Solution:</strong> Use wired earphones or built-in speakers.</span>
-                            </div>
-                        </div>
-                        <div class="warning-box">
-                            <div class="warning-box__title"><span lang="ja">❌ 失敗パターン2：クリックを「追いかける」</span><span lang="en">❌ Mistake 2: "Chasing" the Click</span></div>
-                            <div class="warning-box__content">
-                                <span lang="ja">クリック音を聴いてから叩くのでは遅い。常に後追いになり、モタりの癖がつく。<br>
-                                <strong>→ 対策：</strong>クリックと「一緒に」叩く意識。次のビートを「予測」する感覚を養う。</span><span lang="en">Waiting to hear the click before hitting is too late. You'll always be behind, developing a dragging habit.<br>
-                                <strong>→ Solution:</strong> Focus on hitting "with" the click. Develop the sense of "predicting" the next beat.</span>
-                            </div>
-                        </div>
-                        <div class="warning-box">
-                            <div class="warning-box__title"><span lang="ja">❌ 失敗パターン3：速いテンポばかり練習</span><span lang="en">❌ Mistake 3: Only Practicing Fast Tempos</span></div>
-                            <div class="warning-box__content">
-                                <span lang="ja">速いテンポはズレが目立ちにくい。BPM 60などの遅いテンポで「間」を保つ方が実は難しい。<br>
-                                <strong>→ 対策：</strong>遅いテンポと速いテンポを交互に練習する。</span><span lang="en">Timing errors are less noticeable at fast tempos. Maintaining "space" at slow tempos like BPM 60 is actually harder.<br>
-                                <strong>→ Solution:</strong> Alternate between slow and fast tempo practice.</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="content-block">
-                        <h4 class="content-block__title"><span lang="ja">卒業後にできるようになること</span><span lang="en">Skills You Will Develop</span></h4>
-                        <ul class="content-list">
-                            <li><span lang="ja">バンドメンバーから「安定している」と言われる</span><span lang="en">Band members will say "your timing is solid"</span></li>
-                            <li><span lang="ja">クリックなしでも一定のテンポをキープできる</span><span lang="en">Maintain steady tempo even without a click</span></li>
-                            <li><span lang="ja">フィルインの後も安定している</span><span lang="en">Stay in time even after fills</span></li>
-                            <li><span lang="ja">意図的に「前乗り」「後乗り」をコントロールできる</span><span lang="en">Intentionally control "playing ahead" or "laying back"</span></li>
-                        </ul>
-                    </div>
-
-                    <div class="content-block">
-                        <h4 class="content-block__title"><span lang="ja">プロはここから何を考え、行っているか</span><span lang="en">The Professional Perspective</span></h4>
-                        <p><span lang="ja">プロは「ジャストで叩く」だけでなく、<span class="highlight">意図的に前後させる</span>。ロックでは前乗りでドライブ感を出し、R&Bでは後乗りでグルーヴを出す。</span><span lang="en">Professional drummers don't merely play "on the grid" - they <span class="highlight">manipulate time feel intentionally</span>. Playing slightly on top of the beat creates urgency and drive in rock contexts; laying back behind the beat creates the deep pocket essential to R&B and hip-hop.</span></p>
-                        <p><span lang="ja">しかしこれは「±15msを意図的にコントロールできる」という前提があってこそ。まずはジャストで叩ける精度を身につけ、その上で表現として前後させる。</span><span lang="en">However, this expressive timing control presupposes the ability to place notes precisely where intended. You must first develop the muscle memory to play dead center, then deliberately choose to push or pull for musical effect. The ability to deviate is meaningless without the ability to be precise.</span></p>
-                    </div>
-
-                    <div class="content-block">
-                        <h4 class="content-block__title"><span lang="ja">推奨する練習方法</span><span lang="en">Recommended Practice Method</span></h4>
-                        <p><strong><span lang="ja">使用機能：Rhythm Training</span><span lang="en">Feature: Rhythm Training</span></strong></p>
-                        <div class="table-wrapper"><table class="training-table">
-                            <thead><tr><th><span lang="ja">フェーズ</span><span lang="en">Phase</span></th><th><span lang="ja">期間</span><span lang="en">Duration</span></th><th><span lang="ja">設定</span><span lang="en">Settings</span></th><th><span lang="ja">目標</span><span lang="en">Goal</span></th></tr></thead>
-                            <tbody>
-                                <tr><td><span lang="ja">導入期</span><span lang="en">Introduction</span></td><td><span lang="ja">1週目</span><span lang="en">Week 1</span></td><td><span lang="ja">BPM 90、4分音符、タップ</span><span lang="en">BPM 90, quarter notes, tap</span></td><td><span lang="ja">自分の傾向を把握</span><span lang="en">Understand your tendencies</span></td></tr>
-                                <tr><td><span lang="ja">修正期</span><span lang="en">Correction</span></td><td><span lang="ja">2週目</span><span lang="en">Week 2</span></td><td><span lang="ja">BPM 80-100、4分音符</span><span lang="en">BPM 80-100, quarter notes</span></td><td><span lang="ja">平均誤差±40ms</span><span lang="en">Average ±40ms</span></td></tr>
-                                <tr><td><span lang="ja">拡張期</span><span lang="en">Expansion</span></td><td><span lang="ja">3週目</span><span lang="en">Week 3</span></td><td><span lang="ja">BPM 60-120、8分含む</span><span lang="en">BPM 60-120, incl. eighths</span></td><td><span lang="ja">平均誤差±30ms</span><span lang="en">Average ±30ms</span></td></tr>
-                                <tr><td><span lang="ja">実践期</span><span lang="en">Application</span></td><td><span lang="ja">4週目</span><span lang="en">Week 4</span></td><td><span lang="ja">クラップモード</span><span lang="en">Clap mode</span></td><td><span lang="ja">平均誤差±25ms</span><span lang="en">Average ±25ms</span></td></tr>
-                            </tbody>
-                        </table></div>
-                    </div>
-
-                    <div class="tips-box">
-                        <div class="tips-box__title"><span lang="ja">もっと深く知る</span><span lang="en">Learn More</span></div>
-                        <div class="tips-box__content">
-                            <p><span lang="ja">前乗り・後乗り・ばらつき・ポケットの正体と、タイミング精度を鍛える具体的な練習法を詳しく解説しています。</span><span lang="en">A detailed guide on rushing, dragging, inconsistency, pocket, and specific exercises to improve your timing accuracy.</span></p>
-                            <p><a href="guides/rhythm-training.html" style="color: var(--primary); font-weight: 700;"><span lang="ja">→ リズム感ガイドを読む</span><span lang="en">→ Read the Rhythm Guide</span></a></p>
-                        </div>
-                    </div>
-                </div>
-            </article>
-
-            <!-- Q2: フィルインでリズムが崩れる / Rhythm falls apart after fills -->
-            <article class="question-card" id="drums-q2">
-                <div class="question-card__header">
-                    <span class="question-card__q">Q</span>
-                    <h3 class="question-card__title"><span lang="ja">フィルインの後でリズムが崩れる</span><span lang="en">Rhythm falls apart after fills</span></h3>
-                </div>
-                <div class="question-card__content">
-                    <div class="content-block">
-                        <h4 class="content-block__title">💡 推奨する練習方法</h4>
-                        <div class="tips-box">
-                            <div class="tips-box__content">
-                                <p><strong>Rhythm Trainingで「拍抜き練習」を実施。</strong></p>
-                                <p>4拍のうち2・4拍目だけクリックが鳴る設定で練習。外部の音がなくても内部でテンポを保つ訓練をする。</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="content-block">
-                        <h4 class="content-block__title">なぜこの練習が必要か</h4>
-                        <p>フィルイン中は「演奏」に意識が向き、「タイムキープ」がおろそかになる。フィルが終わった後に「1」に戻れない。</p>
-                        <p>これは<span class="highlight">「体内時計」が育っていない</span>証拠。外部のクリックがなくても、自分の中でテンポを刻み続ける感覚が必要。</p>
-                    </div>
-
-                    <div class="content-block">
-                        <h4 class="content-block__title">科学的根拠</h4>
-                        <div class="science-box">
-                            <div class="science-box__title">内的タイミングと外的タイミング</div>
-                            <div class="science-box__content">
-                                <p>リズム感には「外的タイミング」（クリックに合わせる）と「内的タイミング」（自分の中でテンポを刻む）がある。</p>
-                                <p>フィルイン中にズレるのは、外的タイミングに頼りすぎていて内的タイミングが弱い状態。<strong>クリックが「ガイド」から「依存先」になっている</strong>。</p>
-                                <p>内的タイミングを鍛えるには、「2拍目と4拍目だけクリック」「1小節おきにクリック」など、不完全な情報でテンポを維持する練習が効果的。</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="content-block">
-                        <h4 class="content-block__title">推奨する練習方法</h4>
-                        <div class="tips-box">
-                            <div class="tips-box__title">💡 「間引きクリック練習法」</div>
-                            <div class="tips-box__content">
-                                <ul class="content-list">
-                                    <li>Step 1: 4拍全部クリック → 精度を確認</li>
-                                    <li>Step 2: 2拍目・4拍目だけクリック → 1・3拍は自分で刻む</li>
-                                    <li>Step 3: 1拍目だけクリック → 2-4拍は自分で刻む</li>
-                                    <li>Step 4: 1小節おきにクリック → 間の小節は完全に自分</li>
-                                </ul>
-                                <p>徐々にクリックを間引くことで、内的タイミングが強化される。</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </article>
-
-            <!-- Q3: 遅いテンポが苦手 -->
-            <article class="question-card" id="drums-q3">
-                <div class="question-card__header">
-                    <span class="question-card__q">Q</span>
-                    <h3 class="question-card__title"><span lang="ja">遅いテンポ（BPM 60以下）が苦手</span><span lang="en">Struggling with slow tempos (BPM 60 or below)</span></h3>
-                </div>
-                <div class="question-card__content">
-                    <div class="content-block">
-                        <h4 class="content-block__title">💡 推奨する練習方法</h4>
-                        <div class="tips-box">
-                            <div class="tips-box__content">
-                                <p><strong>Rhythm TrainingでBPM 50-60の低速練習を重点的に。</strong></p>
-                                <p>細分化（8分音符で感じる）を使わず、あえて4分音符のみで練習し「間」に耐える能力を養う。</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="content-block">
-                        <h4 class="content-block__title">なぜこの練習が必要か</h4>
-                        <p>速いテンポより遅いテンポの方が難しい。なぜなら<span class="highlight">「間」を保つ能力</span>が問われるから。</p>
-                        <p>BPM 60は1秒に1拍。この「1秒」の間に、体がテンポを見失わないようにするのは想像以上に難しい。</p>
-                    </div>
-
-                    <div class="content-block">
-                        <h4 class="content-block__title">科学的根拠</h4>
-                        <div class="science-box">
-                            <div class="science-box__title">知覚的現在と時間感覚</div>
-                            <div class="science-box__content">
-                                <p>人間が「今」として認識できる時間幅（知覚的現在）は約3秒。BPM 60では1拍が1秒なので、4拍で4秒。<strong>1小節が「知覚的現在」を超えている</strong>。</p>
-                                <p>このため、遅いテンポでは小節全体を「一塊」として感じることが難しく、途中でテンポを見失いやすい。</p>
-                                <p>対策は「細分化」。BPM 60の4分音符を、頭の中でBPM 120の8分音符として数える。見かけ上のテンポを上げることで、知覚的現在の中に収める。</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="content-block">
-                        <h4 class="content-block__title">推奨する練習方法</h4>
-                        <div class="tips-box">
-                            <div class="tips-box__title">💡 「細分化練習法」</div>
-                            <div class="tips-box__content">
-                                <p>BPM 60で練習するとき、頭の中では8分音符（BPM 120相当）でカウントする。「1 と 2 と 3 と 4 と」。体は4分で叩くが、頭は8分で刻む。</p>
-                                <p>慣れてきたら16分音符で刻む。最終的には「細分化しなくても間が保てる」状態を目指す。</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </article>
-
-        </section>
-
-        <!-- ============================================ -->
-        <!-- ピアノ セクション -->
-        <!-- ============================================ -->
-        <section id="piano" class="section">
-            <div class="section__header">
-                <span class="section__icon">🎹</span>
-                <h2 class="section__title"><span lang="ja">ピアノ・キーボード</span><span lang="en">Piano & Keyboard</span></h2>
-                <div class="section__header-actions">
-                    <button class="expand-all-btn"><span lang="ja">すべて開く</span><span lang="en">Expand All</span></button>
-                </div>
-            </div>
-
-            <!-- Section TOC -->
-            <nav class="section-toc">
-                <div class="section-toc__title"><span lang="ja">目次</span><span lang="en">Contents</span></div>
-                <ul class="section-toc__list">
-                    <li class="section-toc__item" data-target="piano-q1"><span lang="ja">譜面がないと弾けない</span><span lang="en">Can't play without sheet music</span></li>
-                    <li class="section-toc__item" data-target="piano-q2"><span lang="ja">コード譜で困る</span><span lang="en">Struggling with chord charts</span></li>
-                    <li class="section-toc__item" data-target="piano-q3"><span lang="ja">同じボイシング</span><span lang="en">Same voicings every time</span></li>
-                </ul>
-            </nav>
-
-            <!-- Q1: 譜面がないと弾けない / Can't play without sheet music -->
-            <article class="question-card" id="piano-q1">
-                <div class="question-card__header">
-                    <span class="question-card__q">Q</span>
-                    <h3 class="question-card__title">
-                        <span lang="ja">譜面がないと何も弾けない</span>
-                        <span lang="en">Can't play anything without sheet music</span>
-                    </h3>
-                </div>
-                <div class="question-card__content">
-                    <div class="content-block">
-                        <h4 class="content-block__title"><span lang="ja">💡 推奨する練習方法</span><span lang="en">💡 Recommended Practice Method</span></h4>
-                        <div class="tips-box">
-                            <div class="tips-box__content">
-                                <p><strong><span lang="ja">Interval Training + Chord Recognitionで「聴覚→指」の回路を構築。</span><span lang="en">Build an "ear-to-fingers" neural pathway using Interval Training + Chord Recognition.</span></strong></p>
-                                <p><span lang="ja">音を聴いて「これは長3度」と分かる→鍵盤上の位置が見える、という変換を訓練する。</span><span lang="en">Train the conversion: hearing a sound and knowing "that's a major 3rd" → visualizing its position on the keyboard.</span></p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="content-block">
-                        <h4 class="content-block__title"><span lang="ja">なぜこの練習が必要か</span><span lang="en">Why This Practice Is Necessary</span></h4>
-                        <p><span lang="ja">クラシック訓練を受けたピアニストに多い悩み。譜面は読めるが、<span class="highlight">「音を聴いて弾く」経験が少ない</span>。</span><span lang="en">A common struggle for classically trained pianists. They can read sheet music, but <span class="highlight">have little experience "playing by ear."</span></span></p>
-                        <p><span lang="ja">譜面は「視覚情報→指の動き」の変換。一方、セッションやアドリブでは「聴覚情報→指の動き」が必要。この回路が育っていない。</span><span lang="en">Sheet music is a "visual information → finger movement" conversion. However, sessions and improvisation require "auditory information → finger movement." This neural pathway hasn't been developed.</span></p>
-                    </div>
-
-                    <div class="content-block">
-                        <h4 class="content-block__title"><span lang="ja">科学的根拠</span><span lang="en">Scientific Background</span></h4>
-                        <div class="science-box">
-                            <div class="science-box__title"><span lang="ja">視覚依存と聴覚処理</span><span lang="en">Notation-Dependent vs. Aural Learning Pathways</span></div>
-                            <div class="science-box__content">
-                                <p><span lang="ja">譜読みは「視覚野→運動野」の神経回路を使う。一方、耳コピや即興は「聴覚野→運動野」の別の回路を使う。</span><span lang="en">Sight-reading engages a visual cortex → motor cortex neural pathway. Transcription, improvisation, and playing by ear utilize an entirely different auditory cortex → motor cortex circuit. These are neurologically distinct skills.</span></p>
-                                <p><strong><span lang="ja">片方の回路だけ発達していても、もう片方は自動的には発達しない。</span><span lang="en">Developing one pathway does not automatically develop the other.</span></strong><span lang="ja">視覚依存の演奏者が聴覚処理を鍛えるには、意識的に「聴いて弾く」訓練が必要。</span><span lang="en"> Classically trained musicians who are notation-dependent must deliberately practice aural skills to build the ear-to-hand connection. This is why conservatory training increasingly emphasizes ear training and improvisation alongside traditional notation-based instruction.</span></p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="content-block">
-                        <h4 class="content-block__title"><span lang="ja">この練習が解決する課題</span><span lang="en">Problems This Practice Solves</span></h4>
-                        <ul class="content-list">
-                            <li><span lang="ja">コードネームだけ渡されると固まる</span><span lang="en">Freezing when given only chord names</span></li>
-                            <li><span lang="ja">「自由に弾いて」と言われると何も出てこない</span><span lang="en">Drawing a blank when told to "play freely"</span></li>
-                            <li><span lang="ja">暗譜しても、少し間違えると立て直せない</span><span lang="en">Unable to recover from mistakes even when playing memorized pieces</span></li>
-                            <li><span lang="ja">セッションに参加できない</span><span lang="en">Unable to sit in or improvise with other musicians</span></li>
-                        </ul>
-                    </div>
-
-                    <div class="content-block">
-                        <h4 class="content-block__title"><span lang="ja">推奨する練習方法</span><span lang="en">Recommended Practice Method</span></h4>
-                        <p><strong><span lang="ja">使用機能：Interval Training → Chord Recognition</span><span lang="en">Features to use: Interval Training → Chord Recognition</span></strong></p>
-                        <div class="tips-box">
-                            <div class="tips-box__title"><span lang="ja">💡 段階的アプローチ</span><span lang="en">💡 Step-by-Step Approach</span></div>
-                            <div class="tips-box__content">
-                                <ol class="content-list content-list--numbered">
-                                    <li><span lang="ja">まず音程認識（Interval Training）で「聴覚→音名」の回路を作る</span><span lang="en">First, build the "ear → note name" pathway with Interval Training</span></li>
-                                    <li><span lang="ja">次にコード認識（Chord Recognition）で「響き→コード名」を学ぶ</span><span lang="en">Next, learn "sound → chord name" with Chord Recognition</span></li>
-                                    <li><span lang="ja">最後に実際の鍵盤で「聴いた音を弾く」練習をする</span><span lang="en">Finally, practice "playing what you hear" on actual keys</span></li>
-                                </ol>
-                                <p><span lang="ja">いきなりセッションに参加するのではなく、段階を踏むことで「聴覚→運動」の回路を育てる。</span><span lang="en">Rather than jumping straight into sessions, build the "auditory → motor" pathway step by step.</span></p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </article>
-
-            <!-- Q2: コード譜だけで弾けない / Don't know what to play with just chord charts -->
-            <article class="question-card" id="piano-q2">
-                <div class="question-card__header">
-                    <span class="question-card__q">Q</span>
-                    <h3 class="question-card__title">
-                        <span lang="ja">コード譜だけ渡されても、何を弾けばいいか分からない</span>
-                        <span lang="en">Don't know what to play when given just chord charts</span>
-                    </h3>
-                </div>
-                <div class="question-card__content">
-                    <div class="content-block">
-                        <h4 class="content-block__title"><span lang="ja">💡 推奨する練習方法</span><span lang="en">💡 Recommended Practice Method</span></h4>
-                        <div class="tips-box">
-                            <div class="tips-box__content">
-                                <p><strong><span lang="ja">Chord Recognition（コード認識）で「響き」と「構成音」を結びつける。</span><span lang="en">Connect "sound" with "chord tones" using Chord Recognition.</span></strong></p>
-                                <p><span lang="ja">Major/minor/7thなど基本コードの響きを聴き分ける訓練から始め、徐々にテンションコードへ拡張。</span><span lang="en">Start by training to distinguish basic chords like Major/minor/7th, then gradually expand to tension chords.</span></p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="content-block">
-                        <h4 class="content-block__title"><span lang="ja">なぜこの練習が必要か</span><span lang="en">Why This Practice Is Necessary</span></h4>
-                        <p><span lang="ja">「Cmaj7」という記号は見たことがある。でも、それが<span class="highlight">どんな響きで、鍵盤上でどう押さえるか</span>が結びついていない。</span><span lang="en">You've seen the symbol "Cmaj7" before. But you haven't connected <span class="highlight">what it sounds like with how to play it on the keyboard</span>.</span></p>
-                        <p><span lang="ja">コードの「理論的知識」と「音としての認識」が分離している状態。両者を統合する訓練が必要。</span><span lang="en">Your "theoretical knowledge" and "aural recognition" of chords are separate. Training is needed to integrate both.</span></p>
-                    </div>
-
-                    <div class="content-block">
-                        <h4 class="content-block__title"><span lang="ja">この練習が解決する課題</span><span lang="en">Problems This Practice Solves</span></h4>
-                        <ul class="content-list">
-                            <li><span lang="ja">コードネームは知っているが、響きが想像できない</span><span lang="en">Knowing chord names but unable to imagine their sound</span></li>
-                            <li><span lang="ja">ボイシングのバリエーションがない</span><span lang="en">Having no variation in voicings</span></li>
-                            <li><span lang="ja">コード進行を見ても、どうつなげていいか分からない</span><span lang="en">Not knowing how to connect chords when looking at progressions</span></li>
-                            <li><span lang="ja">右手で何を弾くか決められない</span><span lang="en">Unable to decide what to play with the right hand</span></li>
-                        </ul>
-                    </div>
-
-                    <div class="content-block">
-                        <h4 class="content-block__title"><span lang="ja">どのような状態になれば卒業か</span><span lang="en">Proficiency Benchmarks</span></h4>
-                        <div class="level-cards">
-                            <div class="level-card level-card--beginner">
-                                <h5 class="level-card__title"><span lang="ja">初心者の卒業基準</span><span lang="en">Foundation Level</span></h5>
-                                <div class="level-card__content">
-                                    <p><span lang="ja">3和音のコードを聴いて識別</span><span lang="en">Identify triads by ear</span></p>
-                                    <p><span lang="ja">正答率 <strong>80%</strong></span><span lang="en">Accuracy: <strong>80%</strong></span></p>
-                                    <p><em><span lang="ja">Major/minor/dimが聴き分けられる</span><span lang="en">Can distinguish Major/minor/dim</span></em></p>
-                                </div>
-                            </div>
-                            <div class="level-card level-card--intermediate">
-                                <h5 class="level-card__title"><span lang="ja">中級者の卒業基準</span><span lang="en">Working Level</span></h5>
-                                <div class="level-card__content">
-                                    <p><span lang="ja">4和音のコードを聴いて識別</span><span lang="en">Identify 7th chords by ear</span></p>
-                                    <p><span lang="ja">正答率 <strong>80%</strong></span><span lang="en">Accuracy: <strong>80%</strong></span></p>
-                                    <p><em><span lang="ja">7th系コードが聴き分けられる</span><span lang="en">Can distinguish 7th chord types</span></em></p>
-                                </div>
-                            </div>
-                            <div class="level-card level-card--advanced">
-                                <h5 class="level-card__title"><span lang="ja">上級者の卒業基準</span><span lang="en">Professional Level</span></h5>
-                                <div class="level-card__content">
-                                    <p><span lang="ja">テンションコードを聴いて識別</span><span lang="en">Identify tension chords by ear</span></p>
-                                    <p><span lang="ja">正答率 <strong>75%</strong></span><span lang="en">Accuracy: <strong>75%</strong></span></p>
-                                    <p><em><span lang="ja">9th/11th/13thが聴き分けられる</span><span lang="en">Can distinguish 9th/11th/13th</span></em></p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="content-block">
-                        <h4 class="content-block__title"><span lang="ja">推奨する練習方法</span><span lang="en">Recommended Practice Method</span></h4>
-                        <p><strong><span lang="ja">使用機能：Chord Recognition</span><span lang="en">Feature to use: Chord Recognition</span></strong></p>
-                        <div class="tips-box">
-                            <div class="tips-box__title"><span lang="ja">💡 「響きから入る」アプローチ</span><span lang="en">💡 "Sound-First" Approach</span></div>
-                            <div class="tips-box__content">
-                                <p><span lang="ja">理論から入ると「C-E-G-BだからCmaj7」という知識になる。響きから入ると「このキラキラした感じがmaj7」という感覚になる。</span><span lang="en">Starting from theory gives you knowledge like "C-E-G-B means Cmaj7." Starting from sound gives you the feeling "this sparkly quality is maj7."</span></p>
-                                <p><span lang="ja">まずChord Recognitionで響きを覚え、その後に理論を紐づける。逆順で学ぶことで「聴覚→理解」の回路ができる。</span><span lang="en">First learn the sounds with Chord Recognition, then connect the theory. Learning in reverse order builds an "ear → understanding" pathway.</span></p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </article>
-
-            <!-- Q3: ボイシングのバリエーションがない -->
-            <article class="question-card" id="piano-q3">
-                <div class="question-card__header">
-                    <span class="question-card__q">Q</span>
-                    <h3 class="question-card__title"><span lang="ja">いつも同じボイシングで弾いてしまう</span><span lang="en">Always using the same voicings</span></h3>
-                </div>
-                <div class="question-card__content">
-                    <div class="content-block">
-                        <h4 class="content-block__title">💡 推奨する練習方法</h4>
-                        <div class="tips-box">
-                            <div class="tips-box__content">
-                                <p><strong>Chord Recognition + Interval Trainingの併用でトップノートを聴き分ける。</strong></p>
-                                <p>同じコードでも「トップがソの場合」「トップがシの場合」で響きが違うことを耳で認識できるようにする。</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="content-block">
-                        <h4 class="content-block__title">なぜこの練習が必要か</h4>
-                        <p>Cmaj7をいつも「ド-ミ-ソ-シ」で弾いていませんか？同じコードでも、<span class="highlight">どの音をトップに持ってくるかで響きが変わる</span>。</p>
-                        <p>プロはメロディとの関係、前後のコードとのつながりを考えてボイシングを選ぶ。そのためには「トップノートを聴き分ける」訓練が必要。</p>
-                    </div>
-
-                    <div class="content-block">
-                        <h4 class="content-block__title">科学的根拠</h4>
-                        <div class="science-box">
-                            <div class="science-box__title">トップノートの心理的影響</div>
-                            <div class="science-box__content">
-                                <p>人間の聴覚は<strong>最も高い音（トップノート）に最も注意を向ける</strong>。同じコードでもトップノートが違えば、印象が大きく変わる。</p>
-                                <p>メロディがEのとき、伴奏のCmaj7もEをトップに持ってくると調和する。逆にBをトップにすると緊張感が出る。この使い分けがボイシングの技術。</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="content-block">
-                        <h4 class="content-block__title">推奨する練習方法</h4>
-                        <div class="tips-box">
-                            <div class="tips-box__title">💡 「トップノート指定練習」</div>
-                            <div class="tips-box__content">
-                                <p>同じコード進行を、トップノートを変えて弾く練習。</p>
-                                <ul class="content-list">
-                                    <li>1回目：全てルートをトップに</li>
-                                    <li>2回目：全て3rdをトップに</li>
-                                    <li>3回目：全て7thをトップに</li>
-                                </ul>
-                                <p>響きの違いを耳で確認しながら、ボイシングの選択肢を増やす。</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </article>
-
-        </section>
-
-        <!-- ============================================ -->
-        <!-- ボーカル セクション -->
-        <!-- ============================================ -->
-        <section id="vocal" class="section">
-            <div class="section__header">
-                <span class="section__icon">🎤</span>
-                <h2 class="section__title"><span lang="ja">ボーカル</span><span lang="en">Vocal</span></h2>
-                <div class="section__header-actions">
-                    <button class="expand-all-btn"><span lang="ja">すべて開く</span><span lang="en">Expand All</span></button>
-                </div>
-            </div>
-
-            <!-- Section TOC -->
-            <nav class="section-toc">
-                <div class="section-toc__title"><span lang="ja">目次</span><span lang="en">Contents</span></div>
-                <ul class="section-toc__list">
-                    <li class="section-toc__item" data-target="vocal-q1"><span lang="ja">音程が不安定</span><span lang="en">Unstable pitch</span></li>
-                    <li class="section-toc__item" data-target="vocal-q2"><span lang="ja">キー変更で歌えない</span><span lang="en">Can't sing in different keys</span></li>
-                    <li class="section-toc__item" data-target="vocal-q3"><span lang="ja">ハモリが覚えられない</span><span lang="en">Can't memorize harmonies</span></li>
-                </ul>
-            </nav>
-
-            <!-- Q1: 音程が不安定 -->
-            <article class="question-card" id="vocal-q1">
-                <div class="question-card__header">
-                    <span class="question-card__q">Q</span>
-                    <h3 class="question-card__title"><span lang="ja">音程が不安定だと言われる</span><span lang="en">Told my pitch is unstable</span></h3>
-                </div>
-                <div class="question-card__content">
-                    <div class="content-block">
-                        <h4 class="content-block__title"><span lang="ja">💡 推奨する練習方法</span><span lang="en">💡 Recommended Practice Method</span></h4>
-                        <div class="tips-box">
-                            <div class="tips-box__content">
-                                <p><strong><span lang="ja">Interval Training（音程トレーニング）で「聴く力」を先に鍛える。</span><span lang="en">Train your "listening ability" first with Interval Training.</span></strong></p>
-                                <p><span lang="ja">まず2つの音の音程を正確に聴き取れるようにする。聴こえない音は、合わせようがない。</span><span lang="en">First, learn to accurately hear the interval between two notes. You cannot match a pitch you cannot hear.</span></p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="content-block">
-                        <h4 class="content-block__title"><span lang="ja">なぜこの練習が必要か</span><span lang="en">Why This Practice Is Necessary</span></h4>
-                        <p><span lang="ja">音程が不安定な原因は大きく2つ。<span class="highlight">「聴こえていない」か「出せていない」</span>か。</span><span lang="en">There are two main causes of unstable pitch: <span class="highlight">either you cannot hear it or you cannot produce it.</span></span></p>
-                        <p><span lang="ja">多くの場合、「聴こえていない」が原因。正しい音程が分からないから、合わせようがない。まずは「聴く力」を鍛える必要がある。</span><span lang="en">In most cases, the problem is not being able to hear correctly. If you do not know the correct pitch, you cannot match it. You need to train your listening ability first.</span></p>
-                    </div>
-
-                    <div class="content-block">
-                        <h4 class="content-block__title"><span lang="ja">科学的根拠</span><span lang="en">Scientific Background</span></h4>
-                        <div class="science-box">
-                            <div class="science-box__title"><span lang="ja">聴覚-運動連携と発声制御</span><span lang="en">Vocal Pitch Control: The Auditory-Motor Loop</span></div>
-                            <div class="science-box__content">
-                                <p><span lang="ja">歌う際の音程コントロールは<strong>「聴覚-運動連携」</strong>に大きく依存する。</span><span lang="en">Vocal intonation relies on a sophisticated <strong>auditory-motor feedback system</strong> involving both anticipatory and corrective mechanisms.</span></p>
-                                <p><span lang="ja"><strong>フィードフォワード制御：</strong>歌う前に「この音程を出すにはこの筋肉をこう動かす」という<strong>内的モデル</strong>が脳内にある。これが発達していないと、音を出してから修正することになり、常に遅れる。</span><span lang="en"><strong>Feedforward control:</strong> Before phonation, the brain activates an <strong>internal motor program</strong> specifying laryngeal muscle configurations for the target pitch. Without a well-developed internal model, singers must rely on real-time correction, which introduces latency and makes accurate intonation nearly impossible on fast passages.</span></p>
-                                <p><span lang="ja"><strong>フィードバック制御：</strong>出した音を聴いて、目標との差を認識し、リアルタイムで修正する。ただし、自分の声は<strong>骨伝導</strong>でも聴こえるため、外から聴こえる音より約100-150Hz低く聴こえる。録音で自分の声が違って聞こえるのはこのため。</span><span lang="en"><strong>Feedback control:</strong> The auditory system monitors the produced pitch and compares it against the target, enabling real-time adjustments. Complicating this process: <strong>bone conduction</strong> causes singers to perceive their own voice approximately 100-150Hz lower than external listeners hear it. This explains why recorded playback often sounds unfamiliar.</span></p>
-                                <p><span lang="ja"><strong>なぜ音程認識訓練が有効か：</strong>「正しい音程」のテンプレートが脳内にないと、修正の基準がない。音程認識訓練で基準を作ることで、フィードバックループが機能し始める。</span><span lang="en"><strong>Why ear training is essential for singers:</strong> Without internalized pitch references, the feedback loop has no target. Interval training builds the auditory templates necessary for the error-detection system to function. You cannot correct toward a target you cannot internally audiate.</span></p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="content-block">
-                        <h4 class="content-block__title"><span lang="ja">この練習が解決する課題</span><span lang="en">Problems This Practice Solves</span></h4>
-                        <ul class="content-list">
-                            <li><span lang="ja">カラオケで音程バーがズレる</span><span lang="en">Pitch bar goes off in karaoke</span></li>
-                            <li><span lang="ja">録音した自分の声を聴くと音痴に聴こえる</span><span lang="en">Sound off-pitch when listening to recordings</span></li>
-                            <li><span lang="ja">高い音になると音程が取れなくなる</span><span lang="en">Lose pitch accuracy on high notes</span></li>
-                            <li><span lang="ja">ハモリパートが歌えない</span><span lang="en">Cannot sing harmony parts</span></li>
-                        </ul>
-                    </div>
-
-                    <div class="content-block">
-                        <h4 class="content-block__title"><span lang="ja">どのような状態になれば卒業か</span><span lang="en">Proficiency Benchmarks</span></h4>
-                        <div class="level-cards">
-                            <div class="level-card level-card--beginner">
-                                <h5 class="level-card__title"><span lang="ja">初心者の卒業基準</span><span lang="en">Foundation Level</span></h5>
-                                <div class="level-card__content">
-                                    <p><span lang="ja">長3度・完全5度・オクターブ</span><span lang="en">Major 3rd, Perfect 5th, Octave</span></p>
-                                    <p><span lang="ja">正答率 <strong>80%</strong></span><span lang="en">Accuracy <strong>80%</strong></span></p>
-                                    <p><em><span lang="ja">基本的な音程が聴き分けられる</span><span lang="en">Reliable aural discrimination of core consonances</span></em></p>
-                                </div>
-                            </div>
-                            <div class="level-card level-card--intermediate">
-                                <h5 class="level-card__title"><span lang="ja">中級者の卒業基準</span><span lang="en">Working Level</span></h5>
-                                <div class="level-card__content">
-                                    <p><span lang="ja">全音程（半音含む）</span><span lang="en">All intervals (including semitones)</span></p>
-                                    <p><span lang="ja">正答率 <strong>80%</strong></span><span lang="en">Accuracy <strong>80%</strong></span></p>
-                                    <p><em><span lang="ja">細かい音程差が分かる</span><span lang="en">Full chromatic discrimination including half steps</span></em></p>
-                                </div>
-                            </div>
-                            <div class="level-card level-card--advanced">
-                                <h5 class="level-card__title"><span lang="ja">上級者の卒業基準</span><span lang="en">Professional Level</span></h5>
-                                <div class="level-card__content">
-                                    <p><span lang="ja">聴いた音程を声で再現</span><span lang="en">Accurately reproduce heard intervals vocally</span></p>
-                                    <p><span lang="ja">誤差 <strong>±20セント</strong> 以内</span><span lang="en">Within <strong>±20 cents</strong> pitch accuracy</span></p>
-                                    <p><em><span lang="ja">聴いて即座に歌える</span><span lang="en">Complete audiation-to-voice connection</span></em></p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="content-block">
-                        <h4 class="content-block__title"><span lang="ja">推奨する練習方法</span><span lang="en">Recommended Practice Method</span></h4>
-                        <p><strong><span lang="ja">使用機能：Interval Training</span><span lang="en">Feature: Interval Training</span></strong></p>
-                        <div class="tips-box">
-                            <div class="tips-box__title"><span lang="ja">💡 「聴く→歌う」セット練習</span><span lang="en">💡 "Listen → Sing" Combined Practice</span></div>
-                            <div class="tips-box__content">
-                                <p><span lang="ja">アプリで音程を聴いたら、答えを選ぶ前に「声に出して歌ってみる」。</span><span lang="en">When you hear an interval in the app, try singing it out loud before selecting the answer.</span></p>
-                                <p><span lang="ja">これにより「聴く→認識する→発声する」の回路が同時に鍛えられる。聴くだけでなく、声に出すことで定着が加速する。</span><span lang="en">This trains the "listen → recognize → vocalize" circuit simultaneously. Vocalizing, not just listening, accelerates retention.</span></p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </article>
-
-            <!-- Q2: キーが変わると歌えない -->
-            <article class="question-card" id="vocal-q2">
-                <div class="question-card__header">
-                    <span class="question-card__q">Q</span>
-                    <h3 class="question-card__title"><span lang="ja">キーを変えると途端に歌えなくなる</span><span lang="en">Can't sing when the key changes</span></h3>
-                </div>
-                <div class="question-card__content">
-                    <div class="content-block">
-                        <h4 class="content-block__title"><span lang="ja">💡 推奨する練習方法</span><span lang="en">💡 Recommended Practice Method</span></h4>
-                        <div class="tips-box">
-                            <div class="tips-box__content">
-                                <p><strong><span lang="ja">Interval Trainingで「相対音感」を鍛える。</span><span lang="en">Train your "relative pitch" with Interval Training.</span></strong></p>
-                                <p><span lang="ja">「この音」ではなく「この音程」で覚えることで、キーが変わっても音の関係で歌える。</span><span lang="en">By memorizing "this interval" instead of "this pitch," you can sing based on the relationship between notes regardless of key.</span></p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="content-block">
-                        <h4 class="content-block__title"><span lang="ja">なぜこの練習が必要か</span><span lang="en">Why This Practice Is Necessary</span></h4>
-                        <p><span lang="ja">原曲のキーでは歌えるのに、キーを変えると歌えない。これは<span class="highlight">「絶対的な音高」で覚えているから</span>。</span><span lang="en">You can sing in the original key but struggle when it changes. This is because <span class="highlight">you memorized the "absolute pitch"</span>.</span></p>
-                        <p><span lang="ja">「このメロディはこの高さ」と覚えていると、キーが変わった瞬間に対応できない。必要なのは「相対音感」。音と音の関係（音程）で覚えること。</span><span lang="en">If you memorize "this melody at this pitch," you cannot adapt the moment the key changes. What you need is "relative pitch"—memorizing the relationship (intervals) between notes.</span></p>
-                    </div>
-
-                    <div class="content-block">
-                        <h4 class="content-block__title"><span lang="ja">科学的根拠</span><span lang="en">Scientific Background</span></h4>
-                        <div class="science-box">
-                            <div class="science-box__title"><span lang="ja">絶対音感 vs 相対音感</span><span lang="en">Absolute Pitch vs. Relative Pitch</span></div>
-                            <div class="science-box__content">
-                                <p><span lang="ja"><strong>絶対音感：</strong>基準なしに音高を特定できる能力。幼少期にしか獲得できないとされる。</span><span lang="en"><strong>Absolute (perfect) pitch:</strong> The rare ability to identify pitches without external reference. Research suggests a critical period for acquisition, typically requiring early childhood exposure and training.</span></p>
-                                <p><span lang="ja"><strong>相対音感：</strong>基準音からの距離（音程）で音を認識する能力。<strong>大人でも訓練で獲得可能。</strong></span><span lang="en"><strong>Relative pitch:</strong> The ability to perceive intervallic relationships from a reference pitch. <strong>Crucially, this skill is fully trainable at any age</strong> and is the foundation of professional musicianship.</span></p>
-                                <p><span lang="ja">キー変更に対応するには相対音感が必要。絶対音感がなくても、相対音感があればどのキーでも歌える。むしろ相対音感の方が実用的。</span><span lang="en">For practical musicianship - including transposition, harmonization, and improvisation - relative pitch is actually more useful than absolute pitch. Musicians with strong relative pitch can perform fluently in any key, whereas those relying solely on absolute pitch often struggle with transposition.</span></p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="content-block">
-                        <h4 class="content-block__title"><span lang="ja">推奨する練習方法</span><span lang="en">Recommended Practice Method</span></h4>
-                        <p><strong><span lang="ja">使用機能：Interval Training（ランダム基準音モード）</span><span lang="en">Feature: Interval Training (Random Root Note Mode)</span></strong></p>
-                        <div class="tips-box">
-                            <div class="tips-box__title"><span lang="ja">💡 「移動ド」で歌う習慣</span><span lang="en">💡 Habit of Singing with "Movable Do"</span></div>
-                            <div class="tips-box__content">
-                                <p><span lang="ja">どのキーでも主音を「ド」と呼ぶ習慣をつける。Cメジャーでも、Gメジャーでも、最初の音は「ド」。</span><span lang="en">Develop the habit of calling the tonic "Do" in any key. Whether in C major or G major, the first note is always "Do."</span></p>
-                                <p><span lang="ja">これにより、メロディを「絶対的な音高」ではなく「スケール上の位置」として認識できるようになる。</span><span lang="en">This allows you to recognize melodies as "positions within the scale" rather than "absolute pitches."</span></p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </article>
-
-            <!-- Q3: ハモリが覚えられない -->
-            <article class="question-card" id="vocal-q3">
-                <div class="question-card__header">
-                    <span class="question-card__q">Q</span>
-                    <h3 class="question-card__title"><span lang="ja">ハモリパートが覚えられない</span><span lang="en">Can't memorize harmony parts</span></h3>
-                </div>
-                <div class="question-card__content">
-                    <div class="content-block">
-                        <h4 class="content-block__title"><span lang="ja">💡 推奨する練習方法</span><span lang="en">💡 Recommended Practice Method</span></h4>
-                        <div class="tips-box">
-                            <div class="tips-box__content">
-                                <p><strong><span lang="ja">Interval Trainingで長3度・短3度・長6度を重点的に訓練。</span><span lang="en">Focus on training major 3rd, minor 3rd, and major 6th with Interval Training.</span></strong></p>
-                                <p><span lang="ja">ハモリで最も多い音程関係を聴き分けられるようにする。これができれば即興でハモれる。</span><span lang="en">Learn to distinguish the most common interval relationships in harmonies. Once you master this, you can harmonize spontaneously.</span></p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="content-block">
-                        <h4 class="content-block__title"><span lang="ja">なぜこの練習が必要か</span><span lang="en">Why This Practice Is Necessary</span></h4>
-                        <p><span lang="ja">ハモリは「メインメロディから一定の音程を保って歌う」こと。<span class="highlight">音程が分からないと、ハモリは成立しない</span>。</span><span lang="en">Harmony means "singing at a constant interval from the main melody." <span class="highlight">Without understanding intervals, harmony is impossible.</span></span></p>
-                        <p><span lang="ja">多くのハモリは「3度上」「3度下」「6度上」など、特定の音程関係で作られている。この関係性が分かれば、メロディを聴きながら即興でハモれる。</span><span lang="en">Most harmonies are built on specific interval relationships like "3rd above," "3rd below," or "6th above." Understanding these relationships allows you to harmonize spontaneously while listening to the melody.</span></p>
-                    </div>
-
-                    <div class="content-block">
-                        <h4 class="content-block__title"><span lang="ja">この練習が解決する課題</span><span lang="en">Problems This Practice Solves</span></h4>
-                        <ul class="content-list">
-                            <li><span lang="ja">ハモリパートを覚えるのに時間がかかる</span><span lang="en">Takes too long to memorize harmony parts</span></li>
-                            <li><span lang="ja">メインボーカルにつられてしまう</span><span lang="en">Get pulled toward the main vocal</span></li>
-                            <li><span lang="ja">即興でハモることができない</span><span lang="en">Cannot harmonize spontaneously</span></li>
-                            <li><span lang="ja">コーラスワークが苦手</span><span lang="en">Struggle with chorus work</span></li>
-                        </ul>
-                    </div>
-
-                    <div class="content-block">
-                        <h4 class="content-block__title"><span lang="ja">推奨する練習方法</span><span lang="en">Recommended Practice Method</span></h4>
-                        <p><strong><span lang="ja">使用機能：Interval Training</span><span lang="en">Feature: Interval Training</span></strong></p>
-                        <div class="tips-box">
-                            <div class="tips-box__title"><span lang="ja">💡 「3度ハモリ」から始める</span><span lang="en">💡 Start with "3rd Harmonies"</span></div>
-                            <div class="tips-box__content">
-                                <p><span lang="ja">まずは長3度と短3度を確実に聴き分ける。ポップスのハモリの8割は3度系。</span><span lang="en">First, master distinguishing major 3rd from minor 3rd. About 80% of pop harmonies are 3rd-based.</span></p>
-                                <p><span lang="ja">Interval Trainingで3度が聴き分けられるようになったら、好きな曲を聴きながら「3度上を歌う」練習をする。最初は単純なメロディから。</span><span lang="en">Once you can distinguish 3rds with Interval Training, practice singing "a 3rd above" while listening to your favorite songs. Start with simple melodies.</span></p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </article>
-
-        </section>
-
-        <!-- ============================================ -->
-        <!-- 管弦楽器 セクション -->
-        <!-- ============================================ -->
-        <section id="wind" class="section">
-            <div class="section__header">
-                <span class="section__icon">🎺</span>
-                <h2 class="section__title"><span lang="ja">管楽器・弦楽器</span><span lang="en">Wind & String Instruments</span></h2>
-                <div class="section__header-actions">
-                    <button class="expand-all-btn"><span lang="ja">すべて開く</span><span lang="en">Expand All</span></button>
-                </div>
-            </div>
-
-            <!-- Section TOC -->
-            <nav class="section-toc">
-                <div class="section-toc__title"><span lang="ja">目次</span><span lang="en">Contents</span></div>
-                <ul class="section-toc__list">
-                    <li class="section-toc__item" data-target="wind-q1"><span lang="ja">ピッチが合わない</span><span lang="en">Pitch doesn't match</span></li>
-                    <li class="section-toc__item" data-target="wind-q2"><span lang="ja">初見で止まる</span><span lang="en">Get stuck at sight-reading</span></li>
-                </ul>
-            </nav>
-
-            <!-- Q1: チューニングが合わない -->
-            <article class="question-card" id="wind-q1">
-                <div class="question-card__header">
-                    <span class="question-card__q">Q</span>
-                    <h3 class="question-card__title"><span lang="ja">アンサンブルでピッチが合わない</span><span lang="en">Pitch doesn't match in ensemble</span></h3>
-                </div>
-                <div class="question-card__content">
-                    <div class="content-block">
-                        <h4 class="content-block__title"><span lang="ja">💡 推奨する練習方法</span><span lang="en">💡 Recommended Practice</span></h4>
-                        <div class="tips-box">
-                            <div class="tips-box__content">
-                                <p><strong><span lang="ja">Interval Training + Tunerで「聴いて合わせる」能力を養う。</span><span lang="en">Develop "listen and match" ability with Interval Training + Tuner.</span></strong></p>
-                                <p><span lang="ja">音程を聴き分ける訓練をしつつ、チューナーでセント単位の微調整感覚を身につける。</span><span lang="en">Train to distinguish intervals while developing fine-tuning sensitivity at the cent level with a tuner.</span></p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="content-block">
-                        <h4 class="content-block__title"><span lang="ja">なぜこの練習が必要か</span><span lang="en">Why This Practice Is Needed</span></h4>
-                        <p><span lang="ja">チューナーで合わせても、アンサンブルになるとピッチが合わない。これは<span class="highlight">「他の音を聴きながら合わせる」訓練不足</span>。</span><span lang="en">Even when tuned with a tuner, pitch doesn't match in ensemble. This is due to <span class="highlight">lack of training in "matching while listening to other sounds"</span>.</span></p>
-                        <p><span lang="ja">チューナーは「自分の音だけ」を測る。しかしアンサンブルでは「他の楽器との関係」でピッチを調整する必要がある。</span><span lang="en">A tuner only measures "your own sound." However, in ensemble, you need to adjust pitch based on "the relationship with other instruments."</span></p>
-                    </div>
-
-                    <div class="content-block">
-                        <h4 class="content-block__title"><span lang="ja">科学的根拠</span><span lang="en">Scientific Basis</span></h4>
-                        <div class="science-box">
-                            <div class="science-box__title"><span lang="ja">純正律と平均律：具体的な数値</span><span lang="en">Just Intonation vs. Equal Temperament: Specific Values</span></div>
-                            <div class="science-box__content">
-                                <p><span lang="ja">チューナーは<strong>平均律（12等分平均律）</strong>を基準にしている。しかしアンサンブルでは、和音が美しく響く<strong>「純正律」</strong>に近づけることが多い。</span><span lang="en">Tuners use <strong>equal temperament (12-tone equal temperament)</strong> as their standard. However, in ensemble, we often aim for <strong>"just intonation"</strong> where chords sound more beautiful.</span></p>
-                                <p><strong><span lang="ja">具体的なセント値の違い：</span><span lang="en">Specific cent value differences:</span></strong></p>
-                                <ul class="content-list">
-                                    <li><strong><span lang="ja">長3度：</span><span lang="en">Major 3rd:</span></strong><span lang="ja">平均律 400セント → 純正律 386セント（<strong>14セント狭い</strong>）</span><span lang="en">Equal temperament 400 cents → Just intonation 386 cents (<strong>14 cents narrower</strong>)</span></li>
-                                    <li><strong><span lang="ja">短3度：</span><span lang="en">Minor 3rd:</span></strong><span lang="ja">平均律 300セント → 純正律 316セント（<strong>16セント広い</strong>）</span><span lang="en">Equal temperament 300 cents → Just intonation 316 cents (<strong>16 cents wider</strong>)</span></li>
-                                    <li><strong><span lang="ja">完全5度：</span><span lang="en">Perfect 5th:</span></strong><span lang="ja">平均律 700セント → 純正律 702セント（ほぼ同じ）</span><span lang="en">Equal temperament 700 cents → Just intonation 702 cents (almost the same)</span></li>
-                                </ul>
-                                <p><span lang="ja">つまり、チューナーで「ピッタリ」に合わせた長3度は、<strong>実際には14セントも広い</strong>。これが「うなり」の原因。アンサンブルでは意図的に低めに取る必要がある。</span><span lang="en">In other words, a major 3rd tuned "perfectly" on a tuner is actually <strong>14 cents too wide</strong>. This causes "beating." In ensemble, you need to intentionally play it lower.</span></p>
-                                <p><span lang="ja"><strong>人間の聴覚は約5セントの差を認識できる</strong>。14セントの差は「明らかに響きが悪い」レベル。この「微調整」が聴こえるかどうかがアンサンブルの質を決める。</span><span lang="en"><strong>Human hearing can perceive differences of about 5 cents</strong>. A 14-cent difference is at the level of "clearly sounds bad." Whether you can hear this "fine adjustment" determines ensemble quality.</span></p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="content-block">
-                        <h4 class="content-block__title"><span lang="ja">この練習が解決する課題</span><span lang="en">Issues This Practice Solves</span></h4>
-                        <ul class="content-list">
-                            <li><span lang="ja">ユニゾンが微妙にズレる</span><span lang="en">Unison is slightly off</span></li>
-                            <li><span lang="ja">和音が「うなる」</span><span lang="en">Chords "beat" or waver</span></li>
-                            <li><span lang="ja">チューナーでは合っているのに、アンサンブルで指摘される</span><span lang="en">Tuner shows correct pitch, but others point out issues in ensemble</span></li>
-                            <li><span lang="ja">どの方向に（高く/低く）調整すべきか分からない</span><span lang="en">Don't know which direction (higher/lower) to adjust</span></li>
-                        </ul>
-                    </div>
-
-                    <div class="content-block">
-                        <h4 class="content-block__title"><span lang="ja">推奨する練習方法</span><span lang="en">Recommended Practice Method</span></h4>
-                        <p><strong><span lang="ja">使用機能：Interval Training + Chord Recognition</span><span lang="en">Features Used: Interval Training + Chord Recognition</span></strong></p>
-                        <div class="tips-box">
-                            <div class="tips-box__title"><span lang="ja">💡 「ドローン練習」</span><span lang="en">💡 "Drone Practice"</span></div>
-                            <div class="tips-box__content">
-                                <p><span lang="ja">ピアノやアプリで基準音（ドローン）を鳴らしながら、様々な音程を吹く/弾く。</span><span lang="en">Play various intervals while sustaining a reference tone (drone) on piano or an app.</span></p>
-                                <p><span lang="ja">ドローンとの響きを聴きながら、最も美しく響くポイントを探す。チューナーは見ない。「耳で合わせる」感覚を養う。</span><span lang="en">Listen to the resonance with the drone and find the most beautiful sounding point. Don't look at the tuner. Develop the sense of "matching by ear."</span></p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </article>
-
-            <!-- Q2: 初見で止まる -->
-            <article class="question-card" id="wind-q2">
-                <div class="question-card__header">
-                    <span class="question-card__q">Q</span>
-                    <h3 class="question-card__title"><span lang="ja">初見演奏で止まってしまう</span><span lang="en">Getting stuck during sight-reading</span></h3>
-                </div>
-                <div class="question-card__content">
-                    <div class="content-block">
-                        <h4 class="content-block__title"><span lang="ja">💡 推奨する練習方法</span><span lang="en">💡 Recommended Practice</span></h4>
-                        <div class="tips-box">
-                            <div class="tips-box__content">
-                                <p><strong><span lang="ja">Sight Reading（譜読みトレーニング）で「見る→運指」を自動化。</span><span lang="en">Develop automaticity in the "notation → fingering" pathway through Sight Reading training.</span></strong></p>
-                                <p><span lang="ja">五線譜上の音符を見て即座に音名を答える。これを繰り返すことで「考える」が「見える」に変わる。</span><span lang="en">Train instant note recognition from staff notation. With sufficient repetition, deliberate decoding transforms into automatic pattern recognition.</span></p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="content-block">
-                        <h4 class="content-block__title"><span lang="ja">なぜこの練習が必要か</span><span lang="en">Why This Practice Is Needed</span></h4>
-                        <p><span lang="ja">初見で止まる原因は「読んでから考える」から。楽譜を見て、音名を認識し、運指を考え、吹く。このプロセスが<span class="highlight">直列処理になっている</span>。</span><span lang="en">Stumbling during sight-reading occurs when each step requires conscious attention: read notation, identify pitch, determine fingering, execute. This <span class="highlight">serial cognitive pipeline</span> creates bottlenecks.</span></p>
-                        <p><span lang="ja">スムーズな初見には「並列処理」が必要。今吹いている音を演奏しながら、次の音を読んでいる状態。</span><span lang="en">Fluent sight-reading requires parallel processing - your eyes must read ahead while your fingers execute the current passage. This "look-ahead" ability only develops when note recognition becomes automatic.</span></p>
-                    </div>
-
-                    <div class="content-block">
-                        <h4 class="content-block__title"><span lang="ja">この練習が解決する課題</span><span lang="en">Issues This Practice Solves</span></h4>
-                        <ul class="content-list">
-                            <li><span lang="ja">臨時記号が出ると止まる</span><span lang="en">Getting stuck when accidentals appear</span></li>
-                            <li><span lang="ja">テンポが速いと追いつけない</span><span lang="en">Can't keep up at fast tempos</span></li>
-                            <li><span lang="ja">リズムが複雑になると混乱する</span><span lang="en">Getting confused with complex rhythms</span></li>
-                            <li><span lang="ja">先を見る余裕がない</span><span lang="en">No time to look ahead</span></li>
-                        </ul>
-                    </div>
-
-                    <div class="content-block">
-                        <h4 class="content-block__title"><span lang="ja">推奨する練習方法</span><span lang="en">Recommended Practice Method</span></h4>
-                        <p><strong><span lang="ja">使用機能：Sight Reading</span><span lang="en">Feature Used: Sight Reading</span></strong></p>
-                        <div class="tips-box">
-                            <div class="tips-box__title"><span lang="ja">💡 「パターン認識」アプローチ</span><span lang="en">💡 "Pattern Recognition" Approach</span></div>
-                            <div class="tips-box__content">
-                                <p><span lang="ja">楽譜を「1音ずつ」ではなく「パターン」として認識する訓練。</span><span lang="en">Training to recognize sheet music as "patterns" rather than "one note at a time."</span></p>
-                                <p><span lang="ja">「ド-ミ-ソ」という3音は「Cのアルペジオ」という1つのパターン。スケールの上行・下行も1つのパターン。パターン認識ができると、処理速度が劇的に上がる。</span><span lang="en">The three notes "C-E-G" are one pattern called "C arpeggio." Ascending and descending scales are also single patterns. When pattern recognition is achieved, processing speed increases dramatically.</span></p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </article>
-
-        </section>
-
-        <!-- ============================================ -->
-        <!-- アプリ機能 セクション -->
-        <!-- ============================================ -->
-        <section id="features" class="section">
-            <div class="section__header">
-                <span class="section__icon">📱</span>
-                <h2 class="section__title"><span lang="ja">アプリ機能解説</span><span lang="en">App Features</span></h2>
-                <div class="section__header-actions">
-                    <button class="expand-all-btn"><span lang="ja">すべて開く</span><span lang="en">Expand All</span></button>
-                </div>
-            </div>
-
-            <!-- Section TOC -->
-            <nav class="section-toc">
-                <div class="section-toc__title"><span lang="ja">目次</span><span lang="en">Contents</span></div>
-                <ul class="section-toc__list">
-                    <li class="section-toc__item" data-target="features-fretboard"><span lang="ja">指板トレーニング</span><span lang="en">Fretboard Training</span></li>
-                    <li class="section-toc__item" data-target="features-interval"><span lang="ja">音程トレーニング</span><span lang="en">Interval Training</span></li>
-                    <li class="section-toc__item" data-target="features-chord"><span lang="ja">コード認識</span><span lang="en">Chord Recognition</span></li>
-                    <li class="section-toc__item" data-target="features-rhythm"><span lang="ja">リズムトレーニング</span><span lang="en">Rhythm Training</span></li>
-                    <li class="section-toc__item" data-target="features-sightreading"><span lang="ja">譜読みトレーニング</span><span lang="en">Sight Reading</span></li>
-                </ul>
-            </nav>
-
-            <!-- Fretboard Training -->
-            <article class="question-card" id="features-fretboard">
-                <div class="question-card__header">
-                    <span class="question-card__q">🎸</span>
-                    <h3 class="question-card__title"><span lang="ja">Fretboard Training（指板トレーニング）</span><span lang="en">Fretboard Training</span></h3>
-                </div>
-                <div class="question-card__content">
-                    <div class="content-block">
-                        <p><span lang="ja">ギター/ベースの指板上で、指定された音名の位置を素早く特定するトレーニング。</span><span lang="en">Training to quickly locate specified note positions on the guitar/bass fretboard.</span></p>
-                        <ul class="content-list">
-                            <li><strong><span lang="ja">範囲設定</span><span lang="en">Range Settings</span></strong><span lang="ja">：弦・フレット範囲を細かく設定可能</span><span lang="en">: Customize string and fret ranges in detail</span></li>
-                            <li><strong><span lang="ja">応答時間測定</span><span lang="en">Response Time</span></strong><span lang="ja">：正解までの時間を記録</span><span lang="en">: Records time to correct answer</span></li>
-                            <li><strong><span lang="ja">弱点分析</span><span lang="en">Weakness Analysis</span></strong><span lang="ja">：苦手なポジションを統計で表示</span><span lang="en">: Displays statistics for difficult positions</span></li>
-                            <li><strong><span lang="ja">プリセット保存</span><span lang="en">Save Presets</span></strong><span lang="ja">：練習設定を保存して再利用</span><span lang="en">: Save and reuse practice settings</span></li>
-                        </ul>
-                    </div>
-                </div>
-            </article>
-
-            <!-- Interval Training -->
-            <article class="question-card" id="features-interval">
-                <div class="question-card__header">
-                    <span class="question-card__q">🎵</span>
-                    <h3 class="question-card__title"><span lang="ja">Interval Training（音程トレーニング）</span><span lang="en">Interval Training</span></h3>
-                </div>
-                <div class="question-card__content">
-                    <div class="content-block">
-                        <p><span lang="ja">2つの音を聴いて、その音程（インターバル）を当てるトレーニング。</span><span lang="en">Training to identify the interval between two notes by ear.</span></p>
-                        <ul class="content-list">
-                            <li><strong><span lang="ja">音程選択</span><span lang="en">Interval Selection</span></strong><span lang="ja">：練習したい音程だけを選択可能</span><span lang="en">: Choose which intervals to practice</span></li>
-                            <li><strong><span lang="ja">上昇/下降</span><span lang="en">Ascending/Descending</span></strong><span lang="ja">：上昇音程、下降音程、両方から選択</span><span lang="en">: Choose ascending, descending, or both</span></li>
-                            <li><strong><span lang="ja">ランダム基準音</span><span lang="en">Random Root Note</span></strong><span lang="ja">：毎回違うキーで出題</span><span lang="en">: Questions in different keys each time</span></li>
-                            <li><strong><span lang="ja">ピアノ音源</span><span lang="en">Piano Sound</span></strong><span lang="ja">：高品質なピアノサウンド</span><span lang="en">: High-quality piano samples</span></li>
-                        </ul>
-                    </div>
-                </div>
-            </article>
-
-            <!-- Chord Recognition -->
-            <article class="question-card" id="features-chord">
-                <div class="question-card__header">
-                    <span class="question-card__q">🎹</span>
-                    <h3 class="question-card__title"><span lang="ja">Chord Recognition（コード認識）</span><span lang="en">Chord Recognition</span></h3>
-                </div>
-                <div class="question-card__content">
-                    <div class="content-block">
-                        <p><span lang="ja">コードを聴いて、そのコードタイプを当てるトレーニング。</span><span lang="en">Training to identify chord types by ear.</span></p>
-                        <ul class="content-list">
-                            <li><strong><span lang="ja">3和音</span><span lang="en">Triads</span></strong><span lang="ja">：Major, minor, dim, aug</span><span lang="en">: Major, minor, dim, aug</span></li>
-                            <li><strong><span lang="ja">4和音</span><span lang="en">7th Chords</span></strong><span lang="ja">：7th, maj7, m7, m7(♭5)</span><span lang="en">: 7th, maj7, m7, m7(♭5)</span></li>
-                            <li><strong><span lang="ja">その他</span><span lang="en">Others</span></strong><span lang="ja">：sus4, add9 など</span><span lang="en">: sus4, add9, etc.</span></li>
-                            <li><strong><span lang="ja">転回形</span><span lang="en">Inversions</span></strong><span lang="ja">：ルートポジション以外の転回形にも対応</span><span lang="en">: Supports inversions beyond root position</span></li>
-                        </ul>
-                    </div>
-                </div>
-            </article>
-
-            <!-- Rhythm Training -->
-            <article class="question-card" id="features-rhythm">
-                <div class="question-card__header">
-                    <span class="question-card__q">🥁</span>
-                    <h3 class="question-card__title"><span lang="ja">Rhythm Training（リズムトレーニング）</span><span lang="en">Rhythm Training</span></h3>
-                </div>
-                <div class="question-card__content">
-                    <div class="content-block">
-                        <p><span lang="ja">クリック音に合わせてタップ/クラップし、リズム精度を測定。</span><span lang="en">Measure your rhythm accuracy by tapping or clapping to click sounds.</span></p>
-                        <ul class="content-list">
-                            <li><strong><span lang="ja">タップモード</span><span lang="en">Tap Mode</span></strong><span lang="ja">：画面タップで測定（静かな環境向け）</span><span lang="en">: Measure by tapping the screen (for quiet environments)</span></li>
-                            <li><strong><span lang="ja">クラップモード</span><span lang="en">Clap Mode</span></strong><span lang="ja">：マイクで手拍子を検出（体全体のグルーヴ向け）</span><span lang="en">: Detect claps via microphone (for full-body groove)</span></li>
-                            <li><strong><span lang="ja">BPM設定</span><span lang="en">BPM Setting</span></strong><span lang="ja">：40〜200BPMまで対応</span><span lang="en">: Supports 40-200 BPM</span></li>
-                            <li><strong><span lang="ja">統計表示</span><span lang="en">Statistics</span></strong><span lang="ja">：平均誤差、走り/モタり傾向を数値化</span><span lang="en">: Quantifies average error, rushing/dragging tendencies</span></li>
-                            <li><strong><span lang="ja">キャリブレーション</span><span lang="en">Calibration</span></strong><span lang="ja">：デバイスの遅延を自動補正</span><span lang="en">: Auto-compensates for device latency</span></li>
-                        </ul>
-                        <div class="warning-box">
-                            <div class="warning-box__title"><span lang="ja">⚠️ Bluetoothイヤホン非推奨</span><span lang="en">⚠️ Bluetooth Earphones Not Recommended</span></div>
-                            <div class="warning-box__content">
-                                <span lang="ja">AirPodsなどのBluetoothイヤホンは100ms以上の遅延があります。正確な測定のため、有線イヤホンまたは内蔵スピーカーをご使用ください。</span><span lang="en">Bluetooth earphones like AirPods have over 100ms latency. For accurate measurement, use wired earphones or the built-in speaker.</span>
-                            </div>
-                        </div>
-                        <p style="margin-top: var(--space-md);"><a href="guides/rhythm-training.html" style="color: var(--primary); font-weight: 700;"><span lang="ja">→ リズム感を深く理解する：前乗り・後乗り・ポケットのガイド</span><span lang="en">→ Deep dive: Understanding rushing, dragging, and pocket</span></a></p>
-                    </div>
-                </div>
-            </article>
-
-            <!-- Sight Reading -->
-            <article class="question-card" id="features-sightreading">
-                <div class="question-card__header">
-                    <span class="question-card__q">📖</span>
-                    <h3 class="question-card__title"><span lang="ja">Sight Reading（譜読みトレーニング）</span><span lang="en">Sight Reading</span></h3>
-                </div>
-                <div class="question-card__content">
-                    <div class="content-block">
-                        <p><span lang="ja">五線譜上の音符を見て、音名を素早く答えるトレーニング。</span><span lang="en">Training to quickly identify note names from sheet music.</span></p>
-                        <ul class="content-list">
-                            <li><strong><span lang="ja">ト音記号/ヘ音記号</span><span lang="en">Treble/Bass Clef</span></strong><span lang="ja">：両方に対応</span><span lang="en">: Supports both clefs</span></li>
-                            <li><strong><span lang="ja">範囲設定</span><span lang="en">Range Settings</span></strong><span lang="ja">：オクターブ範囲を設定可能</span><span lang="en">: Customize octave range</span></li>
-                            <li><strong><span lang="ja">臨時記号</span><span lang="en">Accidentals</span></strong><span lang="ja">：シャープ・フラットの有無を選択</span><span lang="en">: Choose whether to include sharps/flats</span></li>
-                            <li><strong><span lang="ja">応答時間測定</span><span lang="en">Response Time</span></strong><span lang="ja">：読譜速度を記録</span><span lang="en">: Records sight-reading speed</span></li>
-                        </ul>
-                    </div>
-                </div>
-            </article>
-
-        </section>
-
-        <!-- CTA -->
-        <div class="cta">
-            <h2 class="cta__title"><span lang="ja">今日から始めよう</span><span lang="en">Start Today</span></h2>
-            <p class="cta__text">
-                <span lang="ja">毎日15分の練習で、6週間後には「見える」感覚が手に入る。<br>ソルフェージュPROで、効率的なトレーニングを。</span>
-                <span lang="en">With just 15 minutes of daily practice, you'll develop the ability to "see" the fretboard in 6 weeks.<br>Train efficiently with Solfege PRO.</span>
-            </p>
-            <a href="https://apps.apple.com/app/id6756626617" class="cta__button"><span lang="ja">App Storeでダウンロード</span><span lang="en">Download on App Store</span></a>
         </div>
 
-        <!-- Training Guides Link -->
-        <div class="cta" style="border-color: var(--surface-light); margin-top: var(--space-xl);">
-            <h2 class="cta__title"><span lang="ja">トレーニングガイド</span><span lang="en">Training Guides</span></h2>
-            <p class="cta__text">
-                <span lang="ja">各トレーニングの考え方、効果的な練習法、アプリでできること・できないことを正直に解説しています。</span>
-                <span lang="en">Honest explanations of each training's concepts, effective practice methods, and what the app can and cannot do.</span>
+        <!-- Training Guides -->
+        <h2 class="hub-section-title"><span lang="ja">もっと深く学ぶ</span><span lang="en">Deep Dive Articles</span></h2>
+
+        <div class="guide-grid">
+            <a href="guides/rhythm-training.html" class="guide-card">
+                <div class="guide-card__icon">🥁</div>
+                <div class="guide-card__title"><span lang="ja">リズム感ガイド</span><span lang="en">Rhythm Training Guide</span></div>
+                <div class="guide-card__desc"><span lang="ja">前乗り・後乗り・ばらつき・ポケットを分解して理解する</span><span lang="en">Breaking down rushing, dragging, inconsistency, and pocket</span></div>
+                <div class="guide-card__tags"><span class="guide-card__tag">Rhythm</span></div>
+            </a>
+
+            <a href="guides/groove-training.html" class="guide-card">
+                <div class="guide-card__icon">🎛️</div>
+                <div class="guide-card__title"><span lang="ja">グルーヴの正体</span><span lang="en">The Nature of Groove</span></div>
+                <div class="guide-card__desc"><span lang="ja">「正確なのに硬い」を超えるために</span><span lang="en">Going beyond "accurate but stiff"</span></div>
+                <div class="guide-card__tags"><span class="guide-card__tag">Rhythm</span><span class="guide-card__tag guide-card__tag--deep-dive"><span lang="ja">深掘り</span><span lang="en">Deep Dive</span></span></div>
+            </a>
+
+            <a href="guides/interval-training.html" class="guide-card">
+                <div class="guide-card__icon">🎵</div>
+                <div class="guide-card__title"><span lang="ja">音程トレーニングガイド</span><span lang="en">Interval Training Guide</span></div>
+                <div class="guide-card__desc"><span lang="ja">相対音感を鍛え、段階的に13種類のインターバルを習得</span><span lang="en">Train relative pitch, master 13 intervals step by step</span></div>
+                <div class="guide-card__tags"><span class="guide-card__tag">Interval</span></div>
+            </a>
+
+            <a href="guides/sight-reading.html" class="guide-card">
+                <div class="guide-card__icon">📖</div>
+                <div class="guide-card__title"><span lang="ja">譜読みガイド</span><span lang="en">Sight Reading Guide</span></div>
+                <div class="guide-card__desc"><span lang="ja">ランドマークノート法と段階的な練習ステップ</span><span lang="en">Landmark note method and progressive steps</span></div>
+                <div class="guide-card__tags"><span class="guide-card__tag">Sight Reading</span></div>
+            </a>
+
+            <a href="guides/fretboard-training.html" class="guide-card">
+                <div class="guide-card__icon">🎸</div>
+                <div class="guide-card__title"><span lang="ja">指板トレーニングガイド</span><span lang="en">Fretboard Training Guide</span></div>
+                <div class="guide-card__desc"><span lang="ja">オクターブシェイプとフレット範囲ごとの攻略</span><span lang="en">Octave shapes and range-based progression</span></div>
+                <div class="guide-card__tags"><span class="guide-card__tag">Fretboard</span></div>
+            </a>
+
+            <a href="guides/" class="guide-card" style="border-style: dashed; opacity: 0.8;">
+                <div class="guide-card__icon">📝</div>
+                <div class="guide-card__title"><span lang="ja">ガイド一覧を見る</span><span lang="en">View All Guides</span></div>
+                <div class="guide-card__desc"><span lang="ja">コード認識、スケール、コード進行など全ガイド</span><span lang="en">Chord recognition, scales, progressions and more</span></div>
+                <div class="guide-card__tags"><span class="guide-card__tag"><span lang="ja">全8記事</span><span lang="en">8 Articles</span></span></div>
+            </a>
+        </div>
+
+        <!-- CTA -->
+        <div class="hub-cta">
+            <h2 class="hub-cta__title"><span lang="ja">今日から始めよう</span><span lang="en">Start Today</span></h2>
+            <p class="hub-cta__text">
+                <span lang="ja">毎日15分の練習で、確実に変化が見えてくる。<br>ソルフェージュPROで、効率的なトレーニングを。</span>
+                <span lang="en">With just 15 minutes of daily practice, you'll see measurable changes.<br>Train efficiently with Solfege PRO.</span>
             </p>
-            <a href="guides/" class="cta__button" style="background: transparent; color: var(--primary); border: 1px solid var(--primary);"><span lang="ja">ガイド一覧を見る</span><span lang="en">View All Guides</span></a>
+            <a href="https://apps.apple.com/app/id6756626617" class="hub-cta__button"><span lang="ja">App Storeでダウンロード</span><span lang="en">Download on App Store</span></a>
         </div>
 
     </main>
 
     <!-- Footer -->
-    <footer class="footer">
-        <p class="footer__text">
-            © 2025 <span lang="ja">ソルフェージュPRO</span><span lang="en">Solfege PRO</span> |
-            <a href="https://apps.apple.com/app/id6756626617" class="footer__link">App Store</a>
+    <footer class="hub-footer">
+        <p class="hub-footer__text">
+            &copy; 2026 <span lang="ja">ソルフェージュPRO</span><span lang="en">Solfege PRO</span> &mdash;
+            <a href="https://apps.apple.com/app/id6756626617" class="hub-footer__link">App Store</a>
         </p>
     </footer>
 
+    <!-- Language Toggle -->
+    <script>
+    (function() {
+        var langToggle = document.getElementById('lang-toggle');
+        var langText = document.getElementById('lang-text');
+        var currentLang = localStorage.getItem('lang') || 'ja';
 
-    <!-- Scripts -->
-    <script src="script.js"></script>
+        function applyLanguage(lang) {
+            document.documentElement.setAttribute('data-lang', lang);
+            document.documentElement.lang = lang;
+            langText.textContent = lang === 'ja' ? 'EN' : 'JA';
+            document.title = lang === 'ja'
+                ? 'ソルフェージュPRO 練習ガイド'
+                : 'Solfege PRO - Practice Guide';
+            localStorage.setItem('lang', lang);
+            currentLang = lang;
+            document.querySelectorAll('a[href*="apps.apple.com"]').forEach(function(a){a.href='https://apps.apple.com/'+(lang==='ja'?'jp':'us')+'/app/id6756626617';});
+        }
+
+        applyLanguage(currentLang);
+
+        langToggle.addEventListener('click', function() {
+            applyLanguage(currentLang === 'ja' ? 'en' : 'ja');
+        });
+    })();
+    </script>
+
 </body>
 </html>

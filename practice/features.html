@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="ja" data-title-ja="アプリ機能解説 | ソルフェージュPRO" data-title-en="App Features Guide | Solfege PRO">
+<head>
+    <meta charset="UTF-8">
+    <meta name="robots" content="index, follow">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>アプリ機能解説 | ソルフェージュPRO</title>
+    <meta name="description" content="指板、音程、コード認識、リズム、譜読み — ソルフェージュPROの全機能解説">
+
+    <link rel="canonical" href="https://nmswshg.github.io/solfege-pro-docs/practice/features.html">
+    <link rel="icon" href="../AppIcon.png" type="image/png">
+    <link rel="apple-touch-icon" href="../AppIcon.png">
+
+    <meta property="og:title" content="アプリ機能解説 | ソルフェージュPRO">
+    <meta property="og:description" content="指板、音程、コード認識、リズム、譜読み — ソルフェージュPROの全機能解説">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://nmswshg.github.io/solfege-pro-docs/practice/features.html">
+    <meta property="og:site_name" content="ソルフェージュPRO">
+    <meta property="og:image" content="https://nmswshg.github.io/solfege-pro-docs/AppIcon.png">
+    <meta property="og:locale" content="ja_JP">
+
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="アプリ機能解説 | ソルフェージュPRO">
+    <meta name="twitter:description" content="指板、音程、コード認識、リズム、譜読み — ソルフェージュPROの全機能解説">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="../style.css?v=4">
+
+    <style>
+        .practice-nav {
+            background: rgba(42, 42, 48, 0.95);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            padding: var(--space-md) var(--space-lg);
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            z-index: 1000;
+            border-bottom: 1px solid var(--surface-light);
+            height: var(--nav-height);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .practice-nav__container {
+            display: flex;
+            align-items: center;
+            gap: var(--space-lg);
+            max-width: 900px;
+            width: 100%;
+        }
+        .practice-nav__back {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            gap: var(--space-xs);
+            transition: color 0.2s ease;
+            white-space: nowrap;
+        }
+        .practice-nav__back:hover { color: var(--primary); }
+        .practice-nav__logo {
+            display: flex;
+            align-items: center;
+            gap: var(--space-sm);
+            text-decoration: none;
+            margin-left: auto;
+        }
+        .practice-nav__logo-icon {
+            width: 28px; height: 28px; border-radius: 6px;
+        }
+        .practice-nav__logo-text {
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--primary);
+            letter-spacing: 0.5px;
+        }
+        .practice-header {
+            padding: var(--space-3xl) var(--space-lg);
+            padding-top: calc(var(--nav-height) + var(--space-3xl));
+            max-width: 900px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        .practice-header__icon { font-size: 48px; margin-bottom: var(--space-md); }
+        .practice-header__title {
+            font-size: 28px; font-weight: 700;
+            margin-bottom: var(--space-md);
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .practice-header__subtitle {
+            font-size: 15px;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        .practice-header__meta {
+            margin-top: var(--space-md);
+            font-size: 13px;
+            color: var(--text-secondary);
+        }
+        .practice-header__badge {
+            display: inline-block;
+            background: rgba(212, 175, 55, 0.15);
+            color: var(--primary);
+            padding: 2px 10px;
+            border-radius: var(--radius-sm);
+            font-size: 12px;
+            font-weight: 500;
+        }
+        .practice-body {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 var(--space-lg) var(--space-2xl);
+        }
+        .practice-body .section__header {
+            justify-content: center;
+        }
+        .practice-footer {
+            background: var(--surface);
+            padding: var(--space-xl) var(--space-lg);
+            text-align: center;
+            border-top: 1px solid var(--surface-light);
+        }
+        .practice-footer__text {
+            color: var(--text-secondary);
+            font-size: 14px;
+        }
+        .practice-footer__link {
+            color: var(--primary);
+            text-decoration: none;
+        }
+        @media (max-width: 768px) {
+            .practice-nav { padding: var(--space-sm) var(--space-md); }
+            .practice-nav__back { font-size: 13px; }
+            .practice-header {
+                padding: var(--space-xl) var(--space-md);
+                padding-top: calc(var(--nav-height) + var(--space-xl));
+            }
+            .practice-header__icon { font-size: 36px; }
+            .practice-header__title { font-size: 22px; }
+            .practice-body { padding: 0 var(--space-md) var(--space-xl); }
+        }
+        @media (max-width: 480px) {
+            .practice-header__title { font-size: 19px; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="practice-nav">
+        <div class="practice-nav__container">
+            <a href="../" class="practice-nav__back">&larr; <span lang="ja">練習ガイド</span><span lang="en">Practice Guide</span></a>
+            <a href="../" class="practice-nav__logo">
+                <img src="../AppIcon.png" alt="Solfege PRO" class="practice-nav__logo-icon">
+                <span class="practice-nav__logo-text"><span lang="ja">ソルフェージュPRO</span><span lang="en">Solfege PRO</span></span>
+            </a>
+            <button class="settings-btn" id="lang-toggle" title="Toggle language">
+                <span id="lang-text">EN</span>
+            </button>
+        </div>
+    </nav>
+
+    <header class="practice-header">
+        <div class="practice-header__icon">📱</div>
+        <h1 class="practice-header__title"><span lang="ja">アプリ機能解説</span><span lang="en">App Features Guide</span></h1>
+        <p class="practice-header__subtitle"><span lang="ja">指板、音程、コード認識、リズム、譜読み — ソルフェージュPROの全機能解説</span><span lang="en">Fretboard, intervals, chords, rhythm, sight-reading — complete feature guide</span></p>
+        <div class="practice-header__meta">
+            <span class="practice-header__badge">5 Q&amp;A</span>
+        </div>
+    </header>
+
+    <main class="practice-body">
+            <div class="section__header">
+                <span class="section__icon">📱</span>
+                <h2 class="section__title"><span lang="ja">アプリ機能解説</span><span lang="en">App Features</span></h2>
+                <div class="section__header-actions">
+                    <button class="expand-all-btn"><span lang="ja">すべて開く</span><span lang="en">Expand All</span></button>
+                </div>
+            </div>
+
+            <!-- Section TOC -->
+            <nav class="section-toc">
+                <div class="section-toc__title"><span lang="ja">目次</span><span lang="en">Contents</span></div>
+                <ul class="section-toc__list">
+                    <li class="section-toc__item" data-target="features-fretboard"><span lang="ja">指板トレーニング</span><span lang="en">Fretboard Training</span></li>
+                    <li class="section-toc__item" data-target="features-interval"><span lang="ja">音程トレーニング</span><span lang="en">Interval Training</span></li>
+                    <li class="section-toc__item" data-target="features-chord"><span lang="ja">コード認識</span><span lang="en">Chord Recognition</span></li>
+                    <li class="section-toc__item" data-target="features-rhythm"><span lang="ja">リズムトレーニング</span><span lang="en">Rhythm Training</span></li>
+                    <li class="section-toc__item" data-target="features-sightreading"><span lang="ja">譜読みトレーニング</span><span lang="en">Sight Reading</span></li>
+                </ul>
+            </nav>
+
+            <!-- Fretboard Training -->
+            <article class="question-card" id="features-fretboard">
+                <div class="question-card__header">
+                    <span class="question-card__q">🎸</span>
+                    <h3 class="question-card__title"><span lang="ja">Fretboard Training（指板トレーニング）</span><span lang="en">Fretboard Training</span></h3>
+                </div>
+                <div class="question-card__content">
+                    <div class="content-block">
+                        <p><span lang="ja">ギター/ベースの指板上で、指定された音名の位置を素早く特定するトレーニング。</span><span lang="en">Training to quickly locate specified note positions on the guitar/bass fretboard.</span></p>
+                        <ul class="content-list">
+                            <li><strong><span lang="ja">範囲設定</span><span lang="en">Range Settings</span></strong><span lang="ja">：弦・フレット範囲を細かく設定可能</span><span lang="en">: Customize string and fret ranges in detail</span></li>
+                            <li><strong><span lang="ja">応答時間測定</span><span lang="en">Response Time</span></strong><span lang="ja">：正解までの時間を記録</span><span lang="en">: Records time to correct answer</span></li>
+                            <li><strong><span lang="ja">弱点分析</span><span lang="en">Weakness Analysis</span></strong><span lang="ja">：苦手なポジションを統計で表示</span><span lang="en">: Displays statistics for difficult positions</span></li>
+                            <li><strong><span lang="ja">プリセット保存</span><span lang="en">Save Presets</span></strong><span lang="ja">：練習設定を保存して再利用</span><span lang="en">: Save and reuse practice settings</span></li>
+                        </ul>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Interval Training -->
+            <article class="question-card" id="features-interval">
+                <div class="question-card__header">
+                    <span class="question-card__q">🎵</span>
+                    <h3 class="question-card__title"><span lang="ja">Interval Training（音程トレーニング）</span><span lang="en">Interval Training</span></h3>
+                </div>
+                <div class="question-card__content">
+                    <div class="content-block">
+                        <p><span lang="ja">2つの音を聴いて、その音程（インターバル）を当てるトレーニング。</span><span lang="en">Training to identify the interval between two notes by ear.</span></p>
+                        <ul class="content-list">
+                            <li><strong><span lang="ja">音程選択</span><span lang="en">Interval Selection</span></strong><span lang="ja">：練習したい音程だけを選択可能</span><span lang="en">: Choose which intervals to practice</span></li>
+                            <li><strong><span lang="ja">上昇/下降</span><span lang="en">Ascending/Descending</span></strong><span lang="ja">：上昇音程、下降音程、両方から選択</span><span lang="en">: Choose ascending, descending, or both</span></li>
+                            <li><strong><span lang="ja">ランダム基準音</span><span lang="en">Random Root Note</span></strong><span lang="ja">：毎回違うキーで出題</span><span lang="en">: Questions in different keys each time</span></li>
+                            <li><strong><span lang="ja">ピアノ音源</span><span lang="en">Piano Sound</span></strong><span lang="ja">：高品質なピアノサウンド</span><span lang="en">: High-quality piano samples</span></li>
+                        </ul>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Chord Recognition -->
+            <article class="question-card" id="features-chord">
+                <div class="question-card__header">
+                    <span class="question-card__q">🎹</span>
+                    <h3 class="question-card__title"><span lang="ja">Chord Recognition（コード認識）</span><span lang="en">Chord Recognition</span></h3>
+                </div>
+                <div class="question-card__content">
+                    <div class="content-block">
+                        <p><span lang="ja">コードを聴いて、そのコードタイプを当てるトレーニング。</span><span lang="en">Training to identify chord types by ear.</span></p>
+                        <ul class="content-list">
+                            <li><strong><span lang="ja">3和音</span><span lang="en">Triads</span></strong><span lang="ja">：Major, minor, dim, aug</span><span lang="en">: Major, minor, dim, aug</span></li>
+                            <li><strong><span lang="ja">4和音</span><span lang="en">7th Chords</span></strong><span lang="ja">：7th, maj7, m7, m7(♭5)</span><span lang="en">: 7th, maj7, m7, m7(♭5)</span></li>
+                            <li><strong><span lang="ja">その他</span><span lang="en">Others</span></strong><span lang="ja">：sus4, add9 など</span><span lang="en">: sus4, add9, etc.</span></li>
+                            <li><strong><span lang="ja">転回形</span><span lang="en">Inversions</span></strong><span lang="ja">：ルートポジション以外の転回形にも対応</span><span lang="en">: Supports inversions beyond root position</span></li>
+                        </ul>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Rhythm Training -->
+            <article class="question-card" id="features-rhythm">
+                <div class="question-card__header">
+                    <span class="question-card__q">🥁</span>
+                    <h3 class="question-card__title"><span lang="ja">Rhythm Training（リズムトレーニング）</span><span lang="en">Rhythm Training</span></h3>
+                </div>
+                <div class="question-card__content">
+                    <div class="content-block">
+                        <p><span lang="ja">クリック音に合わせてタップ/クラップし、リズム精度を測定。</span><span lang="en">Measure your rhythm accuracy by tapping or clapping to click sounds.</span></p>
+                        <ul class="content-list">
+                            <li><strong><span lang="ja">タップモード</span><span lang="en">Tap Mode</span></strong><span lang="ja">：画面タップで測定（静かな環境向け）</span><span lang="en">: Measure by tapping the screen (for quiet environments)</span></li>
+                            <li><strong><span lang="ja">クラップモード</span><span lang="en">Clap Mode</span></strong><span lang="ja">：マイクで手拍子を検出（体全体のグルーヴ向け）</span><span lang="en">: Detect claps via microphone (for full-body groove)</span></li>
+                            <li><strong><span lang="ja">BPM設定</span><span lang="en">BPM Setting</span></strong><span lang="ja">：40〜200BPMまで対応</span><span lang="en">: Supports 40-200 BPM</span></li>
+                            <li><strong><span lang="ja">統計表示</span><span lang="en">Statistics</span></strong><span lang="ja">：平均誤差、走り/モタり傾向を数値化</span><span lang="en">: Quantifies average error, rushing/dragging tendencies</span></li>
+                            <li><strong><span lang="ja">キャリブレーション</span><span lang="en">Calibration</span></strong><span lang="ja">：デバイスの遅延を自動補正</span><span lang="en">: Auto-compensates for device latency</span></li>
+                        </ul>
+                        <div class="warning-box">
+                            <div class="warning-box__title"><span lang="ja">⚠️ Bluetoothイヤホン非推奨</span><span lang="en">⚠️ Bluetooth Earphones Not Recommended</span></div>
+                            <div class="warning-box__content">
+                                <span lang="ja">AirPodsなどのBluetoothイヤホンは100ms以上の遅延があります。正確な測定のため、有線イヤホンまたは内蔵スピーカーをご使用ください。</span><span lang="en">Bluetooth earphones like AirPods have over 100ms latency. For accurate measurement, use wired earphones or the built-in speaker.</span>
+                            </div>
+                        </div>
+                        <p style="margin-top: var(--space-md);"><a href="guides/rhythm-training.html" style="color: var(--primary); font-weight: 700;"><span lang="ja">→ リズム感を深く理解する：前乗り・後乗り・ポケットのガイド</span><span lang="en">→ Deep dive: Understanding rushing, dragging, and pocket</span></a></p>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Sight Reading -->
+            <article class="question-card" id="features-sightreading">
+                <div class="question-card__header">
+                    <span class="question-card__q">📖</span>
+                    <h3 class="question-card__title"><span lang="ja">Sight Reading（譜読みトレーニング）</span><span lang="en">Sight Reading</span></h3>
+                </div>
+                <div class="question-card__content">
+                    <div class="content-block">
+                        <p><span lang="ja">五線譜上の音符を見て、音名を素早く答えるトレーニング。</span><span lang="en">Training to quickly identify note names from sheet music.</span></p>
+                        <ul class="content-list">
+                            <li><strong><span lang="ja">ト音記号/ヘ音記号</span><span lang="en">Treble/Bass Clef</span></strong><span lang="ja">：両方に対応</span><span lang="en">: Supports both clefs</span></li>
+                            <li><strong><span lang="ja">範囲設定</span><span lang="en">Range Settings</span></strong><span lang="ja">：オクターブ範囲を設定可能</span><span lang="en">: Customize octave range</span></li>
+                            <li><strong><span lang="ja">臨時記号</span><span lang="en">Accidentals</span></strong><span lang="ja">：シャープ・フラットの有無を選択</span><span lang="en">: Choose whether to include sharps/flats</span></li>
+                            <li><strong><span lang="ja">応答時間測定</span><span lang="en">Response Time</span></strong><span lang="ja">：読譜速度を記録</span><span lang="en">: Records sight-reading speed</span></li>
+                        </ul>
+                    </div>
+                </div>
+            </article>
+
+
+        <div class="cta" style="margin-top: var(--space-2xl);">
+            <h2 class="cta__title"><span lang="ja">今日から始めよう</span><span lang="en">Start Today</span></h2>
+            <p class="cta__text">
+                <span lang="ja">ソルフェージュPROで、効率的なトレーニングを。</span>
+                <span lang="en">Train efficiently with Solfege PRO.</span>
+            </p>
+            <a href="https://apps.apple.com/app/id6756626617" class="cta__button"><span lang="ja">App Storeでダウンロード</span><span lang="en">Download on App Store</span></a>
+        </div>
+    </main>
+
+    <footer class="practice-footer">
+        <p class="practice-footer__text">
+            &copy; 2026 <span lang="ja">ソルフェージュPRO</span><span lang="en">Solfege PRO</span> &mdash;
+            <a href="https://apps.apple.com/app/id6756626617" class="practice-footer__link">App Store</a>
+        </p>
+    </footer>
+
+    <script src="practice.js"></script>
+</body>
+</html>

@@ -585,7 +585,7 @@
     <!-- Footer -->
     <footer class="article-footer">
         <p class="article-footer__text">
-            &copy; 2025 <span lang="ja">ソルフェージュPRO</span><span lang="en">Solfege PRO</span> &mdash;
+            &copy; 2026 <span lang="ja">ソルフェージュPRO</span><span lang="en">Solfege PRO</span> &mdash;
             <a href="https://apps.apple.com/app/id6756626617" class="article-footer__link">App Store</a>
         </p>
     </footer>
@@ -604,11 +604,12 @@
                 ? 'スケールを聴き分ける力とは何か — 音階とモードを理解する | ソルフェージュPRO'
                 : 'What Is Scale Recognition? — Understanding Scales and Modes | Solfege PRO';
             localStorage.setItem('lang', lang);
-            currentLang = lang;
+            currentLang = lang; document.querySelectorAll('a[href*="apps.apple.com"]').forEach(function(a){a.href="https://apps.apple.com/"+(lang==="ja"?"jp":"us")+"/app/id6756626617";});
         }
 
         document.documentElement.setAttribute('data-lang', currentLang);
         langText.textContent = currentLang === 'ja' ? 'EN' : 'JA';
+        document.querySelectorAll('a[href*="apps.apple.com"]').forEach(function(a){a.href='https://apps.apple.com/'+(currentLang==='ja'?'jp':'us')+'/app/id6756626617';});
 
         langToggle.addEventListener('click', function() {
             applyLanguage(currentLang === 'ja' ? 'en' : 'ja');

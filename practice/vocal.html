@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="ja" data-title-ja="ボーカル 練習ガイド | ソルフェージュPRO" data-title-en="Vocal Practice Guide | Solfege PRO">
+<head>
+    <meta charset="UTF-8">
+    <meta name="robots" content="index, follow">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ボーカル 練習ガイド | ソルフェージュPRO</title>
+    <meta name="description" content="音程の安定、キー変更、ハモリ — ボーカリストの課題を解決する練習メニュー">
+
+    <link rel="canonical" href="https://nmswshg.github.io/solfege-pro-docs/practice/vocal.html">
+    <link rel="icon" href="../AppIcon.png" type="image/png">
+    <link rel="apple-touch-icon" href="../AppIcon.png">
+
+    <meta property="og:title" content="ボーカル 練習ガイド | ソルフェージュPRO">
+    <meta property="og:description" content="音程の安定、キー変更、ハモリ — ボーカリストの課題を解決する練習メニュー">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://nmswshg.github.io/solfege-pro-docs/practice/vocal.html">
+    <meta property="og:site_name" content="ソルフェージュPRO">
+    <meta property="og:image" content="https://nmswshg.github.io/solfege-pro-docs/AppIcon.png">
+    <meta property="og:locale" content="ja_JP">
+
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="ボーカル 練習ガイド | ソルフェージュPRO">
+    <meta name="twitter:description" content="音程の安定、キー変更、ハモリ — ボーカリストの課題を解決する練習メニュー">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="../style.css?v=4">
+
+    <style>
+        .practice-nav {
+            background: rgba(42, 42, 48, 0.95);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            padding: var(--space-md) var(--space-lg);
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            z-index: 1000;
+            border-bottom: 1px solid var(--surface-light);
+            height: var(--nav-height);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .practice-nav__container {
+            display: flex;
+            align-items: center;
+            gap: var(--space-lg);
+            max-width: 900px;
+            width: 100%;
+        }
+        .practice-nav__back {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            gap: var(--space-xs);
+            transition: color 0.2s ease;
+            white-space: nowrap;
+        }
+        .practice-nav__back:hover { color: var(--primary); }
+        .practice-nav__logo {
+            display: flex;
+            align-items: center;
+            gap: var(--space-sm);
+            text-decoration: none;
+            margin-left: auto;
+        }
+        .practice-nav__logo-icon {
+            width: 28px; height: 28px; border-radius: 6px;
+        }
+        .practice-nav__logo-text {
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--primary);
+            letter-spacing: 0.5px;
+        }
+        .practice-header {
+            padding: var(--space-3xl) var(--space-lg);
+            padding-top: calc(var(--nav-height) + var(--space-3xl));
+            max-width: 900px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        .practice-header__icon { font-size: 48px; margin-bottom: var(--space-md); }
+        .practice-header__title {
+            font-size: 28px; font-weight: 700;
+            margin-bottom: var(--space-md);
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .practice-header__subtitle {
+            font-size: 15px;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        .practice-header__meta {
+            margin-top: var(--space-md);
+            font-size: 13px;
+            color: var(--text-secondary);
+        }
+        .practice-header__badge {
+            display: inline-block;
+            background: rgba(212, 175, 55, 0.15);
+            color: var(--primary);
+            padding: 2px 10px;
+            border-radius: var(--radius-sm);
+            font-size: 12px;
+            font-weight: 500;
+        }
+        .practice-body {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 var(--space-lg) var(--space-2xl);
+        }
+        .practice-body .section__header {
+            justify-content: center;
+        }
+        .practice-footer {
+            background: var(--surface);
+            padding: var(--space-xl) var(--space-lg);
+            text-align: center;
+            border-top: 1px solid var(--surface-light);
+        }
+        .practice-footer__text {
+            color: var(--text-secondary);
+            font-size: 14px;
+        }
+        .practice-footer__link {
+            color: var(--primary);
+            text-decoration: none;
+        }
+        @media (max-width: 768px) {
+            .practice-nav { padding: var(--space-sm) var(--space-md); }
+            .practice-nav__back { font-size: 13px; }
+            .practice-header {
+                padding: var(--space-xl) var(--space-md);
+                padding-top: calc(var(--nav-height) + var(--space-xl));
+            }
+            .practice-header__icon { font-size: 36px; }
+            .practice-header__title { font-size: 22px; }
+            .practice-body { padding: 0 var(--space-md) var(--space-xl); }
+        }
+        @media (max-width: 480px) {
+            .practice-header__title { font-size: 19px; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="practice-nav">
+        <div class="practice-nav__container">
+            <a href="../" class="practice-nav__back">&larr; <span lang="ja">練習ガイド</span><span lang="en">Practice Guide</span></a>
+            <a href="../" class="practice-nav__logo">
+                <img src="../AppIcon.png" alt="Solfege PRO" class="practice-nav__logo-icon">
+                <span class="practice-nav__logo-text"><span lang="ja">ソルフェージュPRO</span><span lang="en">Solfege PRO</span></span>
+            </a>
+            <button class="settings-btn" id="lang-toggle" title="Toggle language">
+                <span id="lang-text">EN</span>
+            </button>
+        </div>
+    </nav>
+
+    <header class="practice-header">
+        <div class="practice-header__icon">🎤</div>
+        <h1 class="practice-header__title"><span lang="ja">ボーカル 練習ガイド</span><span lang="en">Vocal Practice Guide</span></h1>
+        <p class="practice-header__subtitle"><span lang="ja">音程の安定、キー変更、ハモリ — ボーカリストの課題を解決する練習メニュー</span><span lang="en">Pitch stability, key changes, harmonies — practice menus for vocalists</span></p>
+        <div class="practice-header__meta">
+            <span class="practice-header__badge">3 Q&amp;A</span>
+        </div>
+    </header>
+
+    <main class="practice-body">
+            <div class="section__header">
+                <span class="section__icon">🎤</span>
+                <h2 class="section__title"><span lang="ja">ボーカル</span><span lang="en">Vocal</span></h2>
+                <div class="section__header-actions">
+                    <button class="expand-all-btn"><span lang="ja">すべて開く</span><span lang="en">Expand All</span></button>
+                </div>
+            </div>
+
+            <!-- Section TOC -->
+            <nav class="section-toc">
+                <div class="section-toc__title"><span lang="ja">目次</span><span lang="en">Contents</span></div>
+                <ul class="section-toc__list">
+                    <li class="section-toc__item" data-target="vocal-q1"><span lang="ja">音程が不安定</span><span lang="en">Unstable pitch</span></li>
+                    <li class="section-toc__item" data-target="vocal-q2"><span lang="ja">キー変更で歌えない</span><span lang="en">Can't sing in different keys</span></li>
+                    <li class="section-toc__item" data-target="vocal-q3"><span lang="ja">ハモリが覚えられない</span><span lang="en">Can't memorize harmonies</span></li>
+                </ul>
+            </nav>
+
+            <!-- Q1: 音程が不安定 -->
+            <article class="question-card" id="vocal-q1">
+                <div class="question-card__header">
+                    <span class="question-card__q">Q</span>
+                    <h3 class="question-card__title"><span lang="ja">音程が不安定だと言われる</span><span lang="en">Told my pitch is unstable</span></h3>
+                </div>
+                <div class="question-card__content">
+                    <div class="content-block">
+                        <h4 class="content-block__title"><span lang="ja">💡 推奨する練習方法</span><span lang="en">💡 Recommended Practice Method</span></h4>
+                        <div class="tips-box">
+                            <div class="tips-box__content">
+                                <p><strong><span lang="ja">Interval Training（音程トレーニング）で「聴く力」を先に鍛える。</span><span lang="en">Train your "listening ability" first with Interval Training.</span></strong></p>
+                                <p><span lang="ja">まず2つの音の音程を正確に聴き取れるようにする。聴こえない音は、合わせようがない。</span><span lang="en">First, learn to accurately hear the interval between two notes. You cannot match a pitch you cannot hear.</span></p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="content-block">
+                        <h4 class="content-block__title"><span lang="ja">なぜこの練習が必要か</span><span lang="en">Why This Practice Is Necessary</span></h4>
+                        <p><span lang="ja">音程が不安定な原因は大きく2つ。<span class="highlight">「聴こえていない」か「出せていない」</span>か。</span><span lang="en">There are two main causes of unstable pitch: <span class="highlight">either you cannot hear it or you cannot produce it.</span></span></p>
+                        <p><span lang="ja">多くの場合、「聴こえていない」が原因。正しい音程が分からないから、合わせようがない。まずは「聴く力」を鍛える必要がある。</span><span lang="en">In most cases, the problem is not being able to hear correctly. If you do not know the correct pitch, you cannot match it. You need to train your listening ability first.</span></p>
+                    </div>
+
+                    <div class="content-block">
+                        <h4 class="content-block__title"><span lang="ja">科学的根拠</span><span lang="en">Scientific Background</span></h4>
+                        <div class="science-box">
+                            <div class="science-box__title"><span lang="ja">聴覚-運動連携と発声制御</span><span lang="en">Vocal Pitch Control: The Auditory-Motor Loop</span></div>
+                            <div class="science-box__content">
+                                <p><span lang="ja">歌う際の音程コントロールは<strong>「聴覚-運動連携」</strong>に大きく依存する。</span><span lang="en">Vocal intonation relies on a sophisticated <strong>auditory-motor feedback system</strong> involving both anticipatory and corrective mechanisms.</span></p>
+                                <p><span lang="ja"><strong>フィードフォワード制御：</strong>歌う前に「この音程を出すにはこの筋肉をこう動かす」という<strong>内的モデル</strong>が脳内にある。これが発達していないと、音を出してから修正することになり、常に遅れる。</span><span lang="en"><strong>Feedforward control:</strong> Before phonation, the brain activates an <strong>internal motor program</strong> specifying laryngeal muscle configurations for the target pitch. Without a well-developed internal model, singers must rely on real-time correction, which introduces latency and makes accurate intonation nearly impossible on fast passages.</span></p>
+                                <p><span lang="ja"><strong>フィードバック制御：</strong>出した音を聴いて、目標との差を認識し、リアルタイムで修正する。ただし、自分の声は<strong>骨伝導</strong>でも聴こえるため、外から聴こえる音より約100-150Hz低く聴こえる。録音で自分の声が違って聞こえるのはこのため。</span><span lang="en"><strong>Feedback control:</strong> The auditory system monitors the produced pitch and compares it against the target, enabling real-time adjustments. Complicating this process: <strong>bone conduction</strong> causes singers to perceive their own voice approximately 100-150Hz lower than external listeners hear it. This explains why recorded playback often sounds unfamiliar.</span></p>
+                                <p><span lang="ja"><strong>なぜ音程認識訓練が有効か：</strong>「正しい音程」のテンプレートが脳内にないと、修正の基準がない。音程認識訓練で基準を作ることで、フィードバックループが機能し始める。</span><span lang="en"><strong>Why ear training is essential for singers:</strong> Without internalized pitch references, the feedback loop has no target. Interval training builds the auditory templates necessary for the error-detection system to function. You cannot correct toward a target you cannot internally audiate.</span></p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="content-block">
+                        <h4 class="content-block__title"><span lang="ja">この練習が解決する課題</span><span lang="en">Problems This Practice Solves</span></h4>
+                        <ul class="content-list">
+                            <li><span lang="ja">カラオケで音程バーがズレる</span><span lang="en">Pitch bar goes off in karaoke</span></li>
+                            <li><span lang="ja">録音した自分の声を聴くと音痴に聴こえる</span><span lang="en">Sound off-pitch when listening to recordings</span></li>
+                            <li><span lang="ja">高い音になると音程が取れなくなる</span><span lang="en">Lose pitch accuracy on high notes</span></li>
+                            <li><span lang="ja">ハモリパートが歌えない</span><span lang="en">Cannot sing harmony parts</span></li>
+                        </ul>
+                    </div>
+
+                    <div class="content-block">
+                        <h4 class="content-block__title"><span lang="ja">どのような状態になれば卒業か</span><span lang="en">Proficiency Benchmarks</span></h4>
+                        <div class="level-cards">
+                            <div class="level-card level-card--beginner">
+                                <h5 class="level-card__title"><span lang="ja">初心者の卒業基準</span><span lang="en">Foundation Level</span></h5>
+                                <div class="level-card__content">
+                                    <p><span lang="ja">長3度・完全5度・オクターブ</span><span lang="en">Major 3rd, Perfect 5th, Octave</span></p>
+                                    <p><span lang="ja">正答率 <strong>80%</strong></span><span lang="en">Accuracy <strong>80%</strong></span></p>
+                                    <p><em><span lang="ja">基本的な音程が聴き分けられる</span><span lang="en">Reliable aural discrimination of core consonances</span></em></p>
+                                </div>
+                            </div>
+                            <div class="level-card level-card--intermediate">
+                                <h5 class="level-card__title"><span lang="ja">中級者の卒業基準</span><span lang="en">Working Level</span></h5>
+                                <div class="level-card__content">
+                                    <p><span lang="ja">全音程（半音含む）</span><span lang="en">All intervals (including semitones)</span></p>
+                                    <p><span lang="ja">正答率 <strong>80%</strong></span><span lang="en">Accuracy <strong>80%</strong></span></p>
+                                    <p><em><span lang="ja">細かい音程差が分かる</span><span lang="en">Full chromatic discrimination including half steps</span></em></p>
+                                </div>
+                            </div>
+                            <div class="level-card level-card--advanced">
+                                <h5 class="level-card__title"><span lang="ja">上級者の卒業基準</span><span lang="en">Professional Level</span></h5>
+                                <div class="level-card__content">
+                                    <p><span lang="ja">聴いた音程を声で再現</span><span lang="en">Accurately reproduce heard intervals vocally</span></p>
+                                    <p><span lang="ja">誤差 <strong>±20セント</strong> 以内</span><span lang="en">Within <strong>±20 cents</strong> pitch accuracy</span></p>
+                                    <p><em><span lang="ja">聴いて即座に歌える</span><span lang="en">Complete audiation-to-voice connection</span></em></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="content-block">
+                        <h4 class="content-block__title"><span lang="ja">推奨する練習方法</span><span lang="en">Recommended Practice Method</span></h4>
+                        <p><strong><span lang="ja">使用機能：Interval Training</span><span lang="en">Feature: Interval Training</span></strong></p>
+                        <div class="tips-box">
+                            <div class="tips-box__title"><span lang="ja">💡 「聴く→歌う」セット練習</span><span lang="en">💡 "Listen → Sing" Combined Practice</span></div>
+                            <div class="tips-box__content">
+                                <p><span lang="ja">アプリで音程を聴いたら、答えを選ぶ前に「声に出して歌ってみる」。</span><span lang="en">When you hear an interval in the app, try singing it out loud before selecting the answer.</span></p>
+                                <p><span lang="ja">これにより「聴く→認識する→発声する」の回路が同時に鍛えられる。聴くだけでなく、声に出すことで定着が加速する。</span><span lang="en">This trains the "listen → recognize → vocalize" circuit simultaneously. Vocalizing, not just listening, accelerates retention.</span></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Q2: キーが変わると歌えない -->
+            <article class="question-card" id="vocal-q2">
+                <div class="question-card__header">
+                    <span class="question-card__q">Q</span>
+                    <h3 class="question-card__title"><span lang="ja">キーを変えると途端に歌えなくなる</span><span lang="en">Can't sing when the key changes</span></h3>
+                </div>
+                <div class="question-card__content">
+                    <div class="content-block">
+                        <h4 class="content-block__title"><span lang="ja">💡 推奨する練習方法</span><span lang="en">💡 Recommended Practice Method</span></h4>
+                        <div class="tips-box">
+                            <div class="tips-box__content">
+                                <p><strong><span lang="ja">Interval Trainingで「相対音感」を鍛える。</span><span lang="en">Train your "relative pitch" with Interval Training.</span></strong></p>
+                                <p><span lang="ja">「この音」ではなく「この音程」で覚えることで、キーが変わっても音の関係で歌える。</span><span lang="en">By memorizing "this interval" instead of "this pitch," you can sing based on the relationship between notes regardless of key.</span></p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="content-block">
+                        <h4 class="content-block__title"><span lang="ja">なぜこの練習が必要か</span><span lang="en">Why This Practice Is Necessary</span></h4>
+                        <p><span lang="ja">原曲のキーでは歌えるのに、キーを変えると歌えない。これは<span class="highlight">「絶対的な音高」で覚えているから</span>。</span><span lang="en">You can sing in the original key but struggle when it changes. This is because <span class="highlight">you memorized the "absolute pitch"</span>.</span></p>
+                        <p><span lang="ja">「このメロディはこの高さ」と覚えていると、キーが変わった瞬間に対応できない。必要なのは「相対音感」。音と音の関係（音程）で覚えること。</span><span lang="en">If you memorize "this melody at this pitch," you cannot adapt the moment the key changes. What you need is "relative pitch"—memorizing the relationship (intervals) between notes.</span></p>
+                    </div>
+
+                    <div class="content-block">
+                        <h4 class="content-block__title"><span lang="ja">科学的根拠</span><span lang="en">Scientific Background</span></h4>
+                        <div class="science-box">
+                            <div class="science-box__title"><span lang="ja">絶対音感 vs 相対音感</span><span lang="en">Absolute Pitch vs. Relative Pitch</span></div>
+                            <div class="science-box__content">
+                                <p><span lang="ja"><strong>絶対音感：</strong>基準なしに音高を特定できる能力。幼少期にしか獲得できないとされる。</span><span lang="en"><strong>Absolute (perfect) pitch:</strong> The rare ability to identify pitches without external reference. Research suggests a critical period for acquisition, typically requiring early childhood exposure and training.</span></p>
+                                <p><span lang="ja"><strong>相対音感：</strong>基準音からの距離（音程）で音を認識する能力。<strong>大人でも訓練で獲得可能。</strong></span><span lang="en"><strong>Relative pitch:</strong> The ability to perceive intervallic relationships from a reference pitch. <strong>Crucially, this skill is fully trainable at any age</strong> and is the foundation of professional musicianship.</span></p>
+                                <p><span lang="ja">キー変更に対応するには相対音感が必要。絶対音感がなくても、相対音感があればどのキーでも歌える。むしろ相対音感の方が実用的。</span><span lang="en">For practical musicianship - including transposition, harmonization, and improvisation - relative pitch is actually more useful than absolute pitch. Musicians with strong relative pitch can perform fluently in any key, whereas those relying solely on absolute pitch often struggle with transposition.</span></p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="content-block">
+                        <h4 class="content-block__title"><span lang="ja">推奨する練習方法</span><span lang="en">Recommended Practice Method</span></h4>
+                        <p><strong><span lang="ja">使用機能：Interval Training（ランダム基準音モード）</span><span lang="en">Feature: Interval Training (Random Root Note Mode)</span></strong></p>
+                        <div class="tips-box">
+                            <div class="tips-box__title"><span lang="ja">💡 「移動ド」で歌う習慣</span><span lang="en">💡 Habit of Singing with "Movable Do"</span></div>
+                            <div class="tips-box__content">
+                                <p><span lang="ja">どのキーでも主音を「ド」と呼ぶ習慣をつける。Cメジャーでも、Gメジャーでも、最初の音は「ド」。</span><span lang="en">Develop the habit of calling the tonic "Do" in any key. Whether in C major or G major, the first note is always "Do."</span></p>
+                                <p><span lang="ja">これにより、メロディを「絶対的な音高」ではなく「スケール上の位置」として認識できるようになる。</span><span lang="en">This allows you to recognize melodies as "positions within the scale" rather than "absolute pitches."</span></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Q3: ハモリが覚えられない -->
+            <article class="question-card" id="vocal-q3">
+                <div class="question-card__header">
+                    <span class="question-card__q">Q</span>
+                    <h3 class="question-card__title"><span lang="ja">ハモリパートが覚えられない</span><span lang="en">Can't memorize harmony parts</span></h3>
+                </div>
+                <div class="question-card__content">
+                    <div class="content-block">
+                        <h4 class="content-block__title"><span lang="ja">💡 推奨する練習方法</span><span lang="en">💡 Recommended Practice Method</span></h4>
+                        <div class="tips-box">
+                            <div class="tips-box__content">
+                                <p><strong><span lang="ja">Interval Trainingで長3度・短3度・長6度を重点的に訓練。</span><span lang="en">Focus on training major 3rd, minor 3rd, and major 6th with Interval Training.</span></strong></p>
+                                <p><span lang="ja">ハモリで最も多い音程関係を聴き分けられるようにする。これができれば即興でハモれる。</span><span lang="en">Learn to distinguish the most common interval relationships in harmonies. Once you master this, you can harmonize spontaneously.</span></p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="content-block">
+                        <h4 class="content-block__title"><span lang="ja">なぜこの練習が必要か</span><span lang="en">Why This Practice Is Necessary</span></h4>
+                        <p><span lang="ja">ハモリは「メインメロディから一定の音程を保って歌う」こと。<span class="highlight">音程が分からないと、ハモリは成立しない</span>。</span><span lang="en">Harmony means "singing at a constant interval from the main melody." <span class="highlight">Without understanding intervals, harmony is impossible.</span></span></p>
+                        <p><span lang="ja">多くのハモリは「3度上」「3度下」「6度上」など、特定の音程関係で作られている。この関係性が分かれば、メロディを聴きながら即興でハモれる。</span><span lang="en">Most harmonies are built on specific interval relationships like "3rd above," "3rd below," or "6th above." Understanding these relationships allows you to harmonize spontaneously while listening to the melody.</span></p>
+                    </div>
+
+                    <div class="content-block">
+                        <h4 class="content-block__title"><span lang="ja">この練習が解決する課題</span><span lang="en">Problems This Practice Solves</span></h4>
+                        <ul class="content-list">
+                            <li><span lang="ja">ハモリパートを覚えるのに時間がかかる</span><span lang="en">Takes too long to memorize harmony parts</span></li>
+                            <li><span lang="ja">メインボーカルにつられてしまう</span><span lang="en">Get pulled toward the main vocal</span></li>
+                            <li><span lang="ja">即興でハモることができない</span><span lang="en">Cannot harmonize spontaneously</span></li>
+                            <li><span lang="ja">コーラスワークが苦手</span><span lang="en">Struggle with chorus work</span></li>
+                        </ul>
+                    </div>
+
+                    <div class="content-block">
+                        <h4 class="content-block__title"><span lang="ja">推奨する練習方法</span><span lang="en">Recommended Practice Method</span></h4>
+                        <p><strong><span lang="ja">使用機能：Interval Training</span><span lang="en">Feature: Interval Training</span></strong></p>
+                        <div class="tips-box">
+                            <div class="tips-box__title"><span lang="ja">💡 「3度ハモリ」から始める</span><span lang="en">💡 Start with "3rd Harmonies"</span></div>
+                            <div class="tips-box__content">
+                                <p><span lang="ja">まずは長3度と短3度を確実に聴き分ける。ポップスのハモリの8割は3度系。</span><span lang="en">First, master distinguishing major 3rd from minor 3rd. About 80% of pop harmonies are 3rd-based.</span></p>
+                                <p><span lang="ja">Interval Trainingで3度が聴き分けられるようになったら、好きな曲を聴きながら「3度上を歌う」練習をする。最初は単純なメロディから。</span><span lang="en">Once you can distinguish 3rds with Interval Training, practice singing "a 3rd above" while listening to your favorite songs. Start with simple melodies.</span></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+
+        <div class="cta" style="margin-top: var(--space-2xl);">
+            <h2 class="cta__title"><span lang="ja">今日から始めよう</span><span lang="en">Start Today</span></h2>
+            <p class="cta__text">
+                <span lang="ja">ソルフェージュPROで、効率的なトレーニングを。</span>
+                <span lang="en">Train efficiently with Solfege PRO.</span>
+            </p>
+            <a href="https://apps.apple.com/app/id6756626617" class="cta__button"><span lang="ja">App Storeでダウンロード</span><span lang="en">Download on App Store</span></a>
+        </div>
+    </main>
+
+    <footer class="practice-footer">
+        <p class="practice-footer__text">
+            &copy; 2026 <span lang="ja">ソルフェージュPRO</span><span lang="en">Solfege PRO</span> &mdash;
+            <a href="https://apps.apple.com/app/id6756626617" class="practice-footer__link">App Store</a>
+        </p>
+    </footer>
+
+    <script src="practice.js"></script>
+</body>
+</html>

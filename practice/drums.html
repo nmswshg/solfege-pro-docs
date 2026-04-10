@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="ja" data-title-ja="ドラム 練習ガイド | ソルフェージュPRO" data-title-en="Drums Practice Guide | Solfege PRO">
+<head>
+    <meta charset="UTF-8">
+    <meta name="robots" content="index, follow">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ドラム 練習ガイド | ソルフェージュPRO</title>
+    <meta name="description" content="リズムの安定性、フィル後のズレ、遅いテンポ — ドラマーの課題を解決する練習メニュー">
+
+    <link rel="canonical" href="https://nmswshg.github.io/solfege-pro-docs/practice/drums.html">
+    <link rel="icon" href="../AppIcon.png" type="image/png">
+    <link rel="apple-touch-icon" href="../AppIcon.png">
+
+    <meta property="og:title" content="ドラム 練習ガイド | ソルフェージュPRO">
+    <meta property="og:description" content="リズムの安定性、フィル後のズレ、遅いテンポ — ドラマーの課題を解決する練習メニュー">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://nmswshg.github.io/solfege-pro-docs/practice/drums.html">
+    <meta property="og:site_name" content="ソルフェージュPRO">
+    <meta property="og:image" content="https://nmswshg.github.io/solfege-pro-docs/AppIcon.png">
+    <meta property="og:locale" content="ja_JP">
+
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="ドラム 練習ガイド | ソルフェージュPRO">
+    <meta name="twitter:description" content="リズムの安定性、フィル後のズレ、遅いテンポ — ドラマーの課題を解決する練習メニュー">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="../style.css?v=4">
+
+    <style>
+        .practice-nav {
+            background: rgba(42, 42, 48, 0.95);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            padding: var(--space-md) var(--space-lg);
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            z-index: 1000;
+            border-bottom: 1px solid var(--surface-light);
+            height: var(--nav-height);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .practice-nav__container {
+            display: flex;
+            align-items: center;
+            gap: var(--space-lg);
+            max-width: 900px;
+            width: 100%;
+        }
+        .practice-nav__back {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            gap: var(--space-xs);
+            transition: color 0.2s ease;
+            white-space: nowrap;
+        }
+        .practice-nav__back:hover { color: var(--primary); }
+        .practice-nav__logo {
+            display: flex;
+            align-items: center;
+            gap: var(--space-sm);
+            text-decoration: none;
+            margin-left: auto;
+        }
+        .practice-nav__logo-icon {
+            width: 28px; height: 28px; border-radius: 6px;
+        }
+        .practice-nav__logo-text {
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--primary);
+            letter-spacing: 0.5px;
+        }
+        .practice-header {
+            padding: var(--space-3xl) var(--space-lg);
+            padding-top: calc(var(--nav-height) + var(--space-3xl));
+            max-width: 900px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        .practice-header__icon { font-size: 48px; margin-bottom: var(--space-md); }
+        .practice-header__title {
+            font-size: 28px; font-weight: 700;
+            margin-bottom: var(--space-md);
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .practice-header__subtitle {
+            font-size: 15px;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        .practice-header__meta {
+            margin-top: var(--space-md);
+            font-size: 13px;
+            color: var(--text-secondary);
+        }
+        .practice-header__badge {
+            display: inline-block;
+            background: rgba(212, 175, 55, 0.15);
+            color: var(--primary);
+            padding: 2px 10px;
+            border-radius: var(--radius-sm);
+            font-size: 12px;
+            font-weight: 500;
+        }
+        .practice-body {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 var(--space-lg) var(--space-2xl);
+        }
+        .practice-body .section__header {
+            justify-content: center;
+        }
+        .practice-footer {
+            background: var(--surface);
+            padding: var(--space-xl) var(--space-lg);
+            text-align: center;
+            border-top: 1px solid var(--surface-light);
+        }
+        .practice-footer__text {
+            color: var(--text-secondary);
+            font-size: 14px;
+        }
+        .practice-footer__link {
+            color: var(--primary);
+            text-decoration: none;
+        }
+        @media (max-width: 768px) {
+            .practice-nav { padding: var(--space-sm) var(--space-md); }
+            .practice-nav__back { font-size: 13px; }
+            .practice-header {
+                padding: var(--space-xl) var(--space-md);
+                padding-top: calc(var(--nav-height) + var(--space-xl));
+            }
+            .practice-header__icon { font-size: 36px; }
+            .practice-header__title { font-size: 22px; }
+            .practice-body { padding: 0 var(--space-md) var(--space-xl); }
+        }
+        @media (max-width: 480px) {
+            .practice-header__title { font-size: 19px; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="practice-nav">
+        <div class="practice-nav__container">
+            <a href="../" class="practice-nav__back">&larr; <span lang="ja">練習ガイド</span><span lang="en">Practice Guide</span></a>
+            <a href="../" class="practice-nav__logo">
+                <img src="../AppIcon.png" alt="Solfege PRO" class="practice-nav__logo-icon">
+                <span class="practice-nav__logo-text"><span lang="ja">ソルフェージュPRO</span><span lang="en">Solfege PRO</span></span>
+            </a>
+            <button class="settings-btn" id="lang-toggle" title="Toggle language">
+                <span id="lang-text">EN</span>
+            </button>
+        </div>
+    </nav>
+
+    <header class="practice-header">
+        <div class="practice-header__icon">🥁</div>
+        <h1 class="practice-header__title"><span lang="ja">ドラム 練習ガイド</span><span lang="en">Drums Practice Guide</span></h1>
+        <p class="practice-header__subtitle"><span lang="ja">リズムの安定性、フィル後のズレ、遅いテンポ — ドラマーの課題を解決する練習メニュー</span><span lang="en">Rhythm stability, timing after fills, slow tempos — practice menus for drummers</span></p>
+        <div class="practice-header__meta">
+            <span class="practice-header__badge">3 Q&amp;A</span>
+        </div>
+    </header>
+
+    <main class="practice-body">
+            <div class="section__header">
+                <span class="section__icon">🥁</span>
+                <h2 class="section__title"><span lang="ja">ドラム</span><span lang="en">Drums</span></h2>
+                <div class="section__header-actions">
+                    <button class="expand-all-btn"><span lang="ja">すべて開く</span><span lang="en">Expand All</span></button>
+                </div>
+            </div>
+
+            <!-- Section TOC -->
+            <nav class="section-toc">
+                <div class="section-toc__title"><span lang="ja">目次</span><span lang="en">Contents</span></div>
+                <ul class="section-toc__list">
+                    <li class="section-toc__item" data-target="drums-q1"><span lang="ja">リズムが安定しない</span><span lang="en">Rhythm instability</span></li>
+                    <li class="section-toc__item" data-target="drums-q2"><span lang="ja">フィル後にズレる</span><span lang="en">Timing slips after fills</span></li>
+                    <li class="section-toc__item" data-target="drums-q3"><span lang="ja">遅いテンポが苦手</span><span lang="en">Struggle with slow tempos</span></li>
+                </ul>
+            </nav>
+
+            <!-- Q1: リズムが安定しない / Don't know if my rhythm is stable -->
+            <article class="question-card" id="drums-q1">
+                <div class="question-card__header">
+                    <span class="question-card__q">Q</span>
+                    <h3 class="question-card__title"><span lang="ja">自分のリズムが安定しているか分からない</span><span lang="en">Don't know if my rhythm is stable</span></h3>
+                </div>
+                <div class="question-card__content">
+                    <div class="content-block">
+                        <h4 class="content-block__title"><span lang="ja">💡 推奨する練習方法</span><span lang="en">💡 Recommended Practice Method</span></h4>
+                        <div class="tips-box">
+                            <div class="tips-box__content">
+                                <p><strong><span lang="ja">Rhythm Training（リズムトレーニング）を毎日10分。</span><span lang="en">Practice Rhythm Training for 10 minutes daily.</span></strong></p>
+                                <p><span lang="ja">メトロノームに合わせてタップ/クラップし、ミリ秒単位でズレを測定。「前乗り傾向」「後乗り傾向」「バラつき」を数値で把握する。</span><span lang="en">Tap or clap along with a metronome and measure deviation in milliseconds. Understand your "rushing tendency," "dragging tendency," or "inconsistency" through numerical data.</span></p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="content-block">
+                        <h4 class="content-block__title"><span lang="ja">なぜこの練習が必要か</span><span lang="en">Why This Practice Is Necessary</span></h4>
+                        <p><span lang="ja">「たぶん走ってる」「たぶんモタってる」。この<span class="highlight">「たぶん」を「確実に+18ms前乗り」に変える</span>のがリズム測定。</span><span lang="en">"I'm probably rushing." "I'm probably dragging." Rhythm measurement <span class="highlight">transforms that "probably" into "definitely +18ms ahead."</span></span></p>
+                        <p><span lang="ja">自分の癖を知らないまま練習しても、悪い癖が強化されるだけ。まずは現状を数値で把握することが全ての出発点。</span><span lang="en">Practicing without knowing your habits only reinforces bad ones. Understanding your current state through numbers is the starting point for all improvement.</span></p>
+                    </div>
+
+                    <div class="content-block">
+                        <h4 class="content-block__title"><span lang="ja">科学的根拠</span><span lang="en">Scientific Background</span></h4>
+                        <div class="science-box">
+                            <div class="science-box__title"><span lang="ja">リズム知覚と運動制御</span><span lang="en">Rhythm Perception and Motor Control</span></div>
+                            <div class="science-box__content">
+                                <p><span lang="ja">リズムの精度は<strong>「予測」と「フィードバック」</strong>の2つの能力に依存する。</span><span lang="en">Rhythmic accuracy depends on two abilities: <strong>"prediction" and "feedback."</strong></span></p>
+                                <p><span lang="ja"><strong>予測（内的タイミング）：</strong>次のビートがいつ来るか、体が先に知っている状態。クリックを「聴いてから叩く」のでは遅い。「一緒に叩く」、むしろ「先に予測して叩く」感覚が必要。</span><span lang="en"><strong>Prediction (internal timing):</strong> Your body knowing when the next beat will come before it arrives. Waiting to hear the click before hitting is too late. You need to hit "with" the click, or better yet, develop the sense of predicting and hitting ahead.</span></p>
+                                <p><span lang="ja"><strong>フィードバック：</strong>自分の打点がどれだけズレているか認識し、修正する能力。これは客観的な測定なしには改善できない。「たぶんズレてる」では修正のしようがない。</span><span lang="en"><strong>Feedback:</strong> The ability to recognize how much your timing deviates and correct it. This cannot improve without objective measurement. "I'm probably off" doesn't give you anything to fix.</span></p>
+                            </div>
+                        </div>
+                        <div class="science-box">
+                            <div class="science-box__title"><span lang="ja">JND（弁別閾）と±15msの根拠</span><span lang="en">JND (Just Noticeable Difference) and the ±15ms Standard</span></div>
+                            <div class="science-box__content">
+                                <p><span lang="ja"><strong>JND（Just Noticeable Difference）</strong>とは、人間が「違い」を認識できる最小単位。時間知覚の研究では、<strong>2つの音のズレが20〜30ms以内であれば「同時」と認識される</strong>ことが分かっている。</span><span lang="en"><strong>JND (Just Noticeable Difference)</strong> is the smallest unit of difference humans can perceive. Research in time perception shows that <strong>two sounds within 20-30ms are perceived as "simultaneous."</strong></span></p>
+                                <p><span lang="ja">つまり、±15ms以内のズレは<strong>聴く人に「ズレ」として認識されない</strong>。これがプロレベルの精度基準となる理由。逆に±50msを超えると、明確に「遅れている」「走っている」と感じられる。</span><span lang="en">This means deviations within ±15ms <strong>are not perceived as "off" by listeners</strong>. This is why it's the standard for professional-level precision. Conversely, deviations beyond ±50ms are clearly felt as "dragging" or "rushing."</span></p>
+                                <p><strong><span lang="ja">実用的な基準：</span><span lang="en">Practical standards:</span></strong></p>
+                                <ul class="content-list">
+                                    <li><span lang="ja">±50ms：明らかなズレ。アマチュアバンドでも気づく</span><span lang="en">±50ms: Obvious deviation. Even amateur bands notice</span></li>
+                                    <li><span lang="ja">±30ms：グルーヴに影響。中級者の壁</span><span lang="en">±30ms: Affects groove. The intermediate player's wall</span></li>
+                                    <li><span lang="ja">±15ms：JND以下。プロの領域</span><span lang="en">±15ms: Below JND. Professional territory</span></li>
+                                    <li><span lang="ja">±10ms：スタジオミュージシャン級</span><span lang="en">±10ms: Studio musician level</span></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="content-block">
+                        <h4 class="content-block__title"><span lang="ja">この練習が解決する課題</span><span lang="en">Problems This Practice Solves</span></h4>
+                        <ul class="content-list">
+                            <li><span lang="ja">走っているのかモタっているのか分からない</span><span lang="en">Not knowing if you're rushing or dragging</span></li>
+                            <li><span lang="ja">テンポが速くなると崩れる</span><span lang="en">Falling apart when tempo increases</span></li>
+                            <li><span lang="ja">フィルインの後にズレる</span><span lang="en">Getting off after fills</span></li>
+                            <li><span lang="ja">他のメンバーから「リズムが不安定」と言われる</span><span lang="en">Band members saying "your rhythm is unstable"</span></li>
+                            <li><span lang="ja">クリックに合わせると機械的になる</span><span lang="en">Sounding mechanical when playing with a click</span></li>
+                        </ul>
+                    </div>
+
+                    <div class="content-block">
+                        <h4 class="content-block__title"><span lang="ja">どのような状態になれば卒業か</span><span lang="en">Proficiency Benchmarks</span></h4>
+                        <div class="level-cards">
+                            <div class="level-card level-card--beginner">
+                                <h5 class="level-card__title"><span lang="ja">初心者の卒業基準</span><span lang="en">Foundation Level</span></h5>
+                                <div class="level-card__content">
+                                    <p><span lang="ja">平均誤差 <strong>±50ms</strong> 以内</span><span lang="en">Average deviation within <strong>±50ms</strong></span></p>
+                                    <p>BPM 80-100</p>
+                                    <p><em><span lang="ja">大きなズレがなくなる</span><span lang="en">No major timing errors</span></em></p>
+                                </div>
+                            </div>
+                            <div class="level-card level-card--intermediate">
+                                <h5 class="level-card__title"><span lang="ja">中級者の卒業基準</span><span lang="en">Working Level</span></h5>
+                                <div class="level-card__content">
+                                    <p><span lang="ja">平均誤差 <strong>±30ms</strong> 以内</span><span lang="en">Average deviation within <strong>±30ms</strong></span></p>
+                                    <p>BPM 60-140</p>
+                                    <p><em><span lang="ja">安定したリズムキープ</span><span lang="en">Consistent timekeeping</span></em></p>
+                                </div>
+                            </div>
+                            <div class="level-card level-card--advanced">
+                                <h5 class="level-card__title"><span lang="ja">上級者の卒業基準</span><span lang="en">Professional Level</span></h5>
+                                <div class="level-card__content">
+                                    <p><span lang="ja">平均誤差 <strong>±15ms</strong> 以内</span><span lang="en">Average deviation within <strong>±15ms</strong></span></p>
+                                    <p>BPM 40-180</p>
+                                    <p><em><span lang="ja">プロレベルの精度</span><span lang="en">Professional-level precision</span></em></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="content-block">
+                        <h4 class="content-block__title"><span lang="ja">週ごとの詳細カリキュラム</span><span lang="en">Weekly Curriculum</span></h4>
+                        <div class="curriculum-box">
+                            <div class="curriculum-box__title"><span lang="ja">📅 4週間プログラム（1日10分）</span><span lang="en">📅 4-Week Program (10 minutes daily)</span></div>
+                            <div class="curriculum-week">
+                                <div class="curriculum-week__header"><span lang="ja">Week 1：現状把握</span><span lang="en">Week 1: Baseline Assessment</span></div>
+                                <div class="curriculum-week__content">
+                                    <span lang="ja">BPM 90固定、4分音符｜タップモードで自分の癖を把握<br>
+                                    走りがちか、モタりがちか、傾向を知る。まだ改善は意識しない。</span><span lang="en">BPM 90 fixed, quarter notes | Use tap mode to understand your habits<br>
+                                    Learn whether you tend to rush or drag. Don't focus on improvement yet.</span>
+                                </div>
+                            </div>
+                            <div class="curriculum-week">
+                                <div class="curriculum-week__header"><span lang="ja">Week 2：意識的修正</span><span lang="en">Week 2: Conscious Correction</span></div>
+                                <div class="curriculum-week__content">
+                                    <span lang="ja">BPM 80-100、4分音符｜自分の癖と逆方向を意識<br>
+                                    走りがちなら「少し遅らせる」意識。数値でフィードバックを見ながら調整。</span><span lang="en">BPM 80-100, quarter notes | Consciously counter your habits<br>
+                                    If you rush, focus on "delaying slightly." Adjust while watching numerical feedback.</span>
+                                </div>
+                            </div>
+                            <div class="curriculum-week">
+                                <div class="curriculum-week__header"><span lang="ja">Week 3：テンポ拡張</span><span lang="en">Week 3: Tempo Expansion</span></div>
+                                <div class="curriculum-week__content">
+                                    <span lang="ja">BPM 60-120、4分・8分音符｜遅いテンポと速いテンポを練習<br>
+                                    遅いテンポの方が実は難しい。「間」を保つ練習。</span><span lang="en">BPM 60-120, quarter and eighth notes | Practice slow and fast tempos<br>
+                                    Slow tempos are actually harder. Practice maintaining "space."</span>
+                                </div>
+                            </div>
+                            <div class="curriculum-week">
+                                <div class="curriculum-week__header"><span lang="ja">Week 4：クラップモード</span><span lang="en">Week 4: Clap Mode</span></div>
+                                <div class="curriculum-week__content">
+                                    <span lang="ja">クラップモードに切り替え｜体全体でリズムを取る<br>
+                                    指先のタップと体全体のグルーヴは別物。実際の演奏に近い形で練習。</span><span lang="en">Switch to clap mode | Feel rhythm with your whole body<br>
+                                    Fingertip tapping and full-body groove are different. Practice closer to actual performance.</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="content-block">
+                        <h4 class="content-block__title"><span lang="ja">よくある失敗パターン</span><span lang="en">Common Mistakes</span></h4>
+                        <div class="warning-box">
+                            <div class="warning-box__title"><span lang="ja">❌ 失敗パターン1：Bluetoothイヤホンを使う</span><span lang="en">❌ Mistake 1: Using Bluetooth Earphones</span></div>
+                            <div class="warning-box__content">
+                                <span lang="ja">AirPodsなどのBluetoothイヤホンは100ms以上の遅延がある。「ちゃんと合わせてるのにアプリがズレる」という違和感は、あなたのせいじゃない。<br>
+                                <strong>→ 対策：</strong>有線イヤホンか内蔵スピーカーを使用する。</span><span lang="en">Bluetooth earphones like AirPods have over 100ms latency. That feeling of "I'm playing in time but the app says I'm off" - it's not your fault.<br>
+                                <strong>→ Solution:</strong> Use wired earphones or built-in speakers.</span>
+                            </div>
+                        </div>
+                        <div class="warning-box">
+                            <div class="warning-box__title"><span lang="ja">❌ 失敗パターン2：クリックを「追いかける」</span><span lang="en">❌ Mistake 2: "Chasing" the Click</span></div>
+                            <div class="warning-box__content">
+                                <span lang="ja">クリック音を聴いてから叩くのでは遅い。常に後追いになり、モタりの癖がつく。<br>
+                                <strong>→ 対策：</strong>クリックと「一緒に」叩く意識。次のビートを「予測」する感覚を養う。</span><span lang="en">Waiting to hear the click before hitting is too late. You'll always be behind, developing a dragging habit.<br>
+                                <strong>→ Solution:</strong> Focus on hitting "with" the click. Develop the sense of "predicting" the next beat.</span>
+                            </div>
+                        </div>
+                        <div class="warning-box">
+                            <div class="warning-box__title"><span lang="ja">❌ 失敗パターン3：速いテンポばかり練習</span><span lang="en">❌ Mistake 3: Only Practicing Fast Tempos</span></div>
+                            <div class="warning-box__content">
+                                <span lang="ja">速いテンポはズレが目立ちにくい。BPM 60などの遅いテンポで「間」を保つ方が実は難しい。<br>
+                                <strong>→ 対策：</strong>遅いテンポと速いテンポを交互に練習する。</span><span lang="en">Timing errors are less noticeable at fast tempos. Maintaining "space" at slow tempos like BPM 60 is actually harder.<br>
+                                <strong>→ Solution:</strong> Alternate between slow and fast tempo practice.</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="content-block">
+                        <h4 class="content-block__title"><span lang="ja">卒業後にできるようになること</span><span lang="en">Skills You Will Develop</span></h4>
+                        <ul class="content-list">
+                            <li><span lang="ja">バンドメンバーから「安定している」と言われる</span><span lang="en">Band members will say "your timing is solid"</span></li>
+                            <li><span lang="ja">クリックなしでも一定のテンポをキープできる</span><span lang="en">Maintain steady tempo even without a click</span></li>
+                            <li><span lang="ja">フィルインの後も安定している</span><span lang="en">Stay in time even after fills</span></li>
+                            <li><span lang="ja">意図的に「前乗り」「後乗り」をコントロールできる</span><span lang="en">Intentionally control "playing ahead" or "laying back"</span></li>
+                        </ul>
+                    </div>
+
+                    <div class="content-block">
+                        <h4 class="content-block__title"><span lang="ja">プロはここから何を考え、行っているか</span><span lang="en">The Professional Perspective</span></h4>
+                        <p><span lang="ja">プロは「ジャストで叩く」だけでなく、<span class="highlight">意図的に前後させる</span>。ロックでは前乗りでドライブ感を出し、R&Bでは後乗りでグルーヴを出す。</span><span lang="en">Professional drummers don't merely play "on the grid" - they <span class="highlight">manipulate time feel intentionally</span>. Playing slightly on top of the beat creates urgency and drive in rock contexts; laying back behind the beat creates the deep pocket essential to R&B and hip-hop.</span></p>
+                        <p><span lang="ja">しかしこれは「±15msを意図的にコントロールできる」という前提があってこそ。まずはジャストで叩ける精度を身につけ、その上で表現として前後させる。</span><span lang="en">However, this expressive timing control presupposes the ability to place notes precisely where intended. You must first develop the muscle memory to play dead center, then deliberately choose to push or pull for musical effect. The ability to deviate is meaningless without the ability to be precise.</span></p>
+                    </div>
+
+                    <div class="content-block">
+                        <h4 class="content-block__title"><span lang="ja">推奨する練習方法</span><span lang="en">Recommended Practice Method</span></h4>
+                        <p><strong><span lang="ja">使用機能：Rhythm Training</span><span lang="en">Feature: Rhythm Training</span></strong></p>
+                        <div class="table-wrapper"><table class="training-table">
+                            <thead><tr><th><span lang="ja">フェーズ</span><span lang="en">Phase</span></th><th><span lang="ja">期間</span><span lang="en">Duration</span></th><th><span lang="ja">設定</span><span lang="en">Settings</span></th><th><span lang="ja">目標</span><span lang="en">Goal</span></th></tr></thead>
+                            <tbody>
+                                <tr><td><span lang="ja">導入期</span><span lang="en">Introduction</span></td><td><span lang="ja">1週目</span><span lang="en">Week 1</span></td><td><span lang="ja">BPM 90、4分音符、タップ</span><span lang="en">BPM 90, quarter notes, tap</span></td><td><span lang="ja">自分の傾向を把握</span><span lang="en">Understand your tendencies</span></td></tr>
+                                <tr><td><span lang="ja">修正期</span><span lang="en">Correction</span></td><td><span lang="ja">2週目</span><span lang="en">Week 2</span></td><td><span lang="ja">BPM 80-100、4分音符</span><span lang="en">BPM 80-100, quarter notes</span></td><td><span lang="ja">平均誤差±40ms</span><span lang="en">Average ±40ms</span></td></tr>
+                                <tr><td><span lang="ja">拡張期</span><span lang="en">Expansion</span></td><td><span lang="ja">3週目</span><span lang="en">Week 3</span></td><td><span lang="ja">BPM 60-120、8分含む</span><span lang="en">BPM 60-120, incl. eighths</span></td><td><span lang="ja">平均誤差±30ms</span><span lang="en">Average ±30ms</span></td></tr>
+                                <tr><td><span lang="ja">実践期</span><span lang="en">Application</span></td><td><span lang="ja">4週目</span><span lang="en">Week 4</span></td><td><span lang="ja">クラップモード</span><span lang="en">Clap mode</span></td><td><span lang="ja">平均誤差±25ms</span><span lang="en">Average ±25ms</span></td></tr>
+                            </tbody>
+                        </table></div>
+                    </div>
+
+                    <div class="tips-box">
+                        <div class="tips-box__title"><span lang="ja">もっと深く知る</span><span lang="en">Learn More</span></div>
+                        <div class="tips-box__content">
+                            <p><span lang="ja">前乗り・後乗り・ばらつき・ポケットの正体と、タイミング精度を鍛える具体的な練習法を詳しく解説しています。</span><span lang="en">A detailed guide on rushing, dragging, inconsistency, pocket, and specific exercises to improve your timing accuracy.</span></p>
+                            <p><a href="guides/rhythm-training.html" style="color: var(--primary); font-weight: 700;"><span lang="ja">→ リズム感ガイドを読む</span><span lang="en">→ Read the Rhythm Guide</span></a></p>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Q2: フィルインでリズムが崩れる / Rhythm falls apart after fills -->
+            <article class="question-card" id="drums-q2">
+                <div class="question-card__header">
+                    <span class="question-card__q">Q</span>
+                    <h3 class="question-card__title"><span lang="ja">フィルインの後でリズムが崩れる</span><span lang="en">Rhythm falls apart after fills</span></h3>
+                </div>
+                <div class="question-card__content">
+                    <div class="content-block">
+                        <h4 class="content-block__title">💡 推奨する練習方法</h4>
+                        <div class="tips-box">
+                            <div class="tips-box__content">
+                                <p><strong>Rhythm Trainingで「拍抜き練習」を実施。</strong></p>
+                                <p>4拍のうち2・4拍目だけクリックが鳴る設定で練習。外部の音がなくても内部でテンポを保つ訓練をする。</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="content-block">
+                        <h4 class="content-block__title">なぜこの練習が必要か</h4>
+                        <p>フィルイン中は「演奏」に意識が向き、「タイムキープ」がおろそかになる。フィルが終わった後に「1」に戻れない。</p>
+                        <p>これは<span class="highlight">「体内時計」が育っていない</span>証拠。外部のクリックがなくても、自分の中でテンポを刻み続ける感覚が必要。</p>
+                    </div>
+
+                    <div class="content-block">
+                        <h4 class="content-block__title">科学的根拠</h4>
+                        <div class="science-box">
+                            <div class="science-box__title">内的タイミングと外的タイミング</div>
+                            <div class="science-box__content">
+                                <p>リズム感には「外的タイミング」（クリックに合わせる）と「内的タイミング」（自分の中でテンポを刻む）がある。</p>
+                                <p>フィルイン中にズレるのは、外的タイミングに頼りすぎていて内的タイミングが弱い状態。<strong>クリックが「ガイド」から「依存先」になっている</strong>。</p>
+                                <p>内的タイミングを鍛えるには、「2拍目と4拍目だけクリック」「1小節おきにクリック」など、不完全な情報でテンポを維持する練習が効果的。</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="content-block">
+                        <h4 class="content-block__title">推奨する練習方法</h4>
+                        <div class="tips-box">
+                            <div class="tips-box__title">💡 「間引きクリック練習法」</div>
+                            <div class="tips-box__content">
+                                <ul class="content-list">
+                                    <li>Step 1: 4拍全部クリック → 精度を確認</li>
+                                    <li>Step 2: 2拍目・4拍目だけクリック → 1・3拍は自分で刻む</li>
+                                    <li>Step 3: 1拍目だけクリック → 2-4拍は自分で刻む</li>
+                                    <li>Step 4: 1小節おきにクリック → 間の小節は完全に自分</li>
+                                </ul>
+                                <p>徐々にクリックを間引くことで、内的タイミングが強化される。</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Q3: 遅いテンポが苦手 -->
+            <article class="question-card" id="drums-q3">
+                <div class="question-card__header">
+                    <span class="question-card__q">Q</span>
+                    <h3 class="question-card__title"><span lang="ja">遅いテンポ（BPM 60以下）が苦手</span><span lang="en">Struggling with slow tempos (BPM 60 or below)</span></h3>
+                </div>
+                <div class="question-card__content">
+                    <div class="content-block">
+                        <h4 class="content-block__title">💡 推奨する練習方法</h4>
+                        <div class="tips-box">
+                            <div class="tips-box__content">
+                                <p><strong>Rhythm TrainingでBPM 50-60の低速練習を重点的に。</strong></p>
+                                <p>細分化（8分音符で感じる）を使わず、あえて4分音符のみで練習し「間」に耐える能力を養う。</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="content-block">
+                        <h4 class="content-block__title">なぜこの練習が必要か</h4>
+                        <p>速いテンポより遅いテンポの方が難しい。なぜなら<span class="highlight">「間」を保つ能力</span>が問われるから。</p>
+                        <p>BPM 60は1秒に1拍。この「1秒」の間に、体がテンポを見失わないようにするのは想像以上に難しい。</p>
+                    </div>
+
+                    <div class="content-block">
+                        <h4 class="content-block__title">科学的根拠</h4>
+                        <div class="science-box">
+                            <div class="science-box__title">知覚的現在と時間感覚</div>
+                            <div class="science-box__content">
+                                <p>人間が「今」として認識できる時間幅（知覚的現在）は約3秒。BPM 60では1拍が1秒なので、4拍で4秒。<strong>1小節が「知覚的現在」を超えている</strong>。</p>
+                                <p>このため、遅いテンポでは小節全体を「一塊」として感じることが難しく、途中でテンポを見失いやすい。</p>
+                                <p>対策は「細分化」。BPM 60の4分音符を、頭の中でBPM 120の8分音符として数える。見かけ上のテンポを上げることで、知覚的現在の中に収める。</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="content-block">
+                        <h4 class="content-block__title">推奨する練習方法</h4>
+                        <div class="tips-box">
+                            <div class="tips-box__title">💡 「細分化練習法」</div>
+                            <div class="tips-box__content">
+                                <p>BPM 60で練習するとき、頭の中では8分音符（BPM 120相当）でカウントする。「1 と 2 と 3 と 4 と」。体は4分で叩くが、頭は8分で刻む。</p>
+                                <p>慣れてきたら16分音符で刻む。最終的には「細分化しなくても間が保てる」状態を目指す。</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+
+        <div class="cta" style="margin-top: var(--space-2xl);">
+            <h2 class="cta__title"><span lang="ja">今日から始めよう</span><span lang="en">Start Today</span></h2>
+            <p class="cta__text">
+                <span lang="ja">ソルフェージュPROで、効率的なトレーニングを。</span>
+                <span lang="en">Train efficiently with Solfege PRO.</span>
+            </p>
+            <a href="https://apps.apple.com/app/id6756626617" class="cta__button"><span lang="ja">App Storeでダウンロード</span><span lang="en">Download on App Store</span></a>
+        </div>
+    </main>
+
+    <footer class="practice-footer">
+        <p class="practice-footer__text">
+            &copy; 2026 <span lang="ja">ソルフェージュPRO</span><span lang="en">Solfege PRO</span> &mdash;
+            <a href="https://apps.apple.com/app/id6756626617" class="practice-footer__link">App Store</a>
+        </p>
+    </footer>
+
+    <script src="practice.js"></script>
+</body>
+</html>

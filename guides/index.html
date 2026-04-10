@@ -120,6 +120,12 @@
             margin-top: var(--space-md);
         }
 
+        .guide-card__tag--deep-dive {
+            color: #60A5FA;
+            background: rgba(96, 165, 250, 0.15);
+            margin-left: 6px;
+        }
+
         .guides-footer {
             background: var(--surface);
             padding: var(--space-xl) var(--space-lg);
@@ -219,6 +225,14 @@
                 <span class="guide-card__tag">Rhythm Training</span>
             </a>
 
+            <a href="groove-training.html" class="guide-card">
+                <div class="guide-card__icon">🎛️</div>
+                <div class="guide-card__title"><span lang="ja">グルーヴの正体 — 「正確なのに硬い」を超える</span><span lang="en">The Nature of Groove — Beyond "Accurate but Stiff"</span></div>
+                <div class="guide-card__desc"><span lang="ja">予測と張力のバランスがグルーヴを生む。研究知見をもとに、構成要素と段階的な鍛え方を解説。</span><span lang="en">Groove emerges from the balance of prediction and tension. Elements and step-by-step training based on research.</span></div>
+                <span class="guide-card__tag">Rhythm</span>
+                <span class="guide-card__tag guide-card__tag--deep-dive"><span lang="ja">深掘り</span><span lang="en">Deep Dive</span></span>
+            </a>
+
             <a href="interval-training.html" class="guide-card">
                 <div class="guide-card__icon">🎵</div>
                 <div class="guide-card__title"><span lang="ja">音程トレーニングガイド</span><span lang="en">Interval Training Guide</span></div>
@@ -271,7 +285,7 @@
     <!-- Footer -->
     <footer class="guides-footer">
         <p class="guides-footer__text">
-            &copy; 2025 <span lang="ja">ソルフェージュPRO</span><span lang="en">Solfege PRO</span> &mdash;
+            &copy; 2026 <span lang="ja">ソルフェージュPRO</span><span lang="en">Solfege PRO</span> &mdash;
             <a href="https://apps.apple.com/app/id6756626617" class="guides-footer__link">App Store</a>
         </p>
     </footer>
@@ -290,7 +304,7 @@
                 ? 'トレーニングガイド一覧 | ソルフェージュPRO'
                 : 'Training Guides | Solfege PRO';
             localStorage.setItem('lang', lang);
-            currentLang = lang;
+            currentLang = lang; document.querySelectorAll('a[href*="apps.apple.com"]').forEach(function(a){a.href="https://apps.apple.com/"+(lang==="ja"?"jp":"us")+"/app/id6756626617";});
         }
 
         applyLanguage(currentLang);

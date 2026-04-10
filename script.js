@@ -167,6 +167,7 @@ document.addEventListener('DOMContentLoaded', function() {
         document.title = lang === 'ja' ? 'ソルフェージュPRO 練習ガイド' : 'Solfege PRO - Practice Guide';
         localStorage.setItem('lang', lang);
         currentLang = lang;
+        document.querySelectorAll('a[href*="apps.apple.com"]').forEach(function(a){a.href='https://apps.apple.com/'+(lang==='ja'?'jp':'us')+'/app/id6756626617';});
 
         // Update expand/collapse buttons text
         expandAllBtns.forEach(btn => {

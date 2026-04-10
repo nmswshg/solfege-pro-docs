@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="ja" data-title-ja="管弦楽器 練習ガイド | ソルフェージュPRO" data-title-en="Wind & Strings Practice Guide | Solfege PRO">
+<head>
+    <meta charset="UTF-8">
+    <meta name="robots" content="index, follow">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>管弦楽器 練習ガイド | ソルフェージュPRO</title>
+    <meta name="description" content="ピッチ精度、初見力 — 管弦楽器奏者の課題を解決する練習メニュー">
+
+    <link rel="canonical" href="https://nmswshg.github.io/solfege-pro-docs/practice/wind.html">
+    <link rel="icon" href="../AppIcon.png" type="image/png">
+    <link rel="apple-touch-icon" href="../AppIcon.png">
+
+    <meta property="og:title" content="管弦楽器 練習ガイド | ソルフェージュPRO">
+    <meta property="og:description" content="ピッチ精度、初見力 — 管弦楽器奏者の課題を解決する練習メニュー">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://nmswshg.github.io/solfege-pro-docs/practice/wind.html">
+    <meta property="og:site_name" content="ソルフェージュPRO">
+    <meta property="og:image" content="https://nmswshg.github.io/solfege-pro-docs/AppIcon.png">
+    <meta property="og:locale" content="ja_JP">
+
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="管弦楽器 練習ガイド | ソルフェージュPRO">
+    <meta name="twitter:description" content="ピッチ精度、初見力 — 管弦楽器奏者の課題を解決する練習メニュー">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="../style.css?v=4">
+
+    <style>
+        .practice-nav {
+            background: rgba(42, 42, 48, 0.95);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            padding: var(--space-md) var(--space-lg);
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            z-index: 1000;
+            border-bottom: 1px solid var(--surface-light);
+            height: var(--nav-height);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .practice-nav__container {
+            display: flex;
+            align-items: center;
+            gap: var(--space-lg);
+            max-width: 900px;
+            width: 100%;
+        }
+        .practice-nav__back {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            gap: var(--space-xs);
+            transition: color 0.2s ease;
+            white-space: nowrap;
+        }
+        .practice-nav__back:hover { color: var(--primary); }
+        .practice-nav__logo {
+            display: flex;
+            align-items: center;
+            gap: var(--space-sm);
+            text-decoration: none;
+            margin-left: auto;
+        }
+        .practice-nav__logo-icon {
+            width: 28px; height: 28px; border-radius: 6px;
+        }
+        .practice-nav__logo-text {
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--primary);
+            letter-spacing: 0.5px;
+        }
+        .practice-header {
+            padding: var(--space-3xl) var(--space-lg);
+            padding-top: calc(var(--nav-height) + var(--space-3xl));
+            max-width: 900px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        .practice-header__icon { font-size: 48px; margin-bottom: var(--space-md); }
+        .practice-header__title {
+            font-size: 28px; font-weight: 700;
+            margin-bottom: var(--space-md);
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .practice-header__subtitle {
+            font-size: 15px;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        .practice-header__meta {
+            margin-top: var(--space-md);
+            font-size: 13px;
+            color: var(--text-secondary);
+        }
+        .practice-header__badge {
+            display: inline-block;
+            background: rgba(212, 175, 55, 0.15);
+            color: var(--primary);
+            padding: 2px 10px;
+            border-radius: var(--radius-sm);
+            font-size: 12px;
+            font-weight: 500;
+        }
+        .practice-body {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 var(--space-lg) var(--space-2xl);
+        }
+        .practice-body .section__header {
+            justify-content: center;
+        }
+        .practice-footer {
+            background: var(--surface);
+            padding: var(--space-xl) var(--space-lg);
+            text-align: center;
+            border-top: 1px solid var(--surface-light);
+        }
+        .practice-footer__text {
+            color: var(--text-secondary);
+            font-size: 14px;
+        }
+        .practice-footer__link {
+            color: var(--primary);
+            text-decoration: none;
+        }
+        @media (max-width: 768px) {
+            .practice-nav { padding: var(--space-sm) var(--space-md); }
+            .practice-nav__back { font-size: 13px; }
+            .practice-header {
+                padding: var(--space-xl) var(--space-md);
+                padding-top: calc(var(--nav-height) + var(--space-xl));
+            }
+            .practice-header__icon { font-size: 36px; }
+            .practice-header__title { font-size: 22px; }
+            .practice-body { padding: 0 var(--space-md) var(--space-xl); }
+        }
+        @media (max-width: 480px) {
+            .practice-header__title { font-size: 19px; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="practice-nav">
+        <div class="practice-nav__container">
+            <a href="../" class="practice-nav__back">&larr; <span lang="ja">練習ガイド</span><span lang="en">Practice Guide</span></a>
+            <a href="../" class="practice-nav__logo">
+                <img src="../AppIcon.png" alt="Solfege PRO" class="practice-nav__logo-icon">
+                <span class="practice-nav__logo-text"><span lang="ja">ソルフェージュPRO</span><span lang="en">Solfege PRO</span></span>
+            </a>
+            <button class="settings-btn" id="lang-toggle" title="Toggle language">
+                <span id="lang-text">EN</span>
+            </button>
+        </div>
+    </nav>
+
+    <header class="practice-header">
+        <div class="practice-header__icon">🎺</div>
+        <h1 class="practice-header__title"><span lang="ja">管弦楽器 練習ガイド</span><span lang="en">Wind & Strings Practice Guide</span></h1>
+        <p class="practice-header__subtitle"><span lang="ja">ピッチ精度、初見力 — 管弦楽器奏者の課題を解決する練習メニュー</span><span lang="en">Pitch accuracy, sight-reading — practice menus for wind and string players</span></p>
+        <div class="practice-header__meta">
+            <span class="practice-header__badge">2 Q&amp;A</span>
+        </div>
+    </header>
+
+    <main class="practice-body">
+            <div class="section__header">
+                <span class="section__icon">🎺</span>
+                <h2 class="section__title"><span lang="ja">管楽器・弦楽器</span><span lang="en">Wind & String Instruments</span></h2>
+                <div class="section__header-actions">
+                    <button class="expand-all-btn"><span lang="ja">すべて開く</span><span lang="en">Expand All</span></button>
+                </div>
+            </div>
+
+            <!-- Section TOC -->
+            <nav class="section-toc">
+                <div class="section-toc__title"><span lang="ja">目次</span><span lang="en">Contents</span></div>
+                <ul class="section-toc__list">
+                    <li class="section-toc__item" data-target="wind-q1"><span lang="ja">ピッチが合わない</span><span lang="en">Pitch doesn't match</span></li>
+                    <li class="section-toc__item" data-target="wind-q2"><span lang="ja">初見で止まる</span><span lang="en">Get stuck at sight-reading</span></li>
+                </ul>
+            </nav>
+
+            <!-- Q1: チューニングが合わない -->
+            <article class="question-card" id="wind-q1">
+                <div class="question-card__header">
+                    <span class="question-card__q">Q</span>
+                    <h3 class="question-card__title"><span lang="ja">アンサンブルでピッチが合わない</span><span lang="en">Pitch doesn't match in ensemble</span></h3>
+                </div>
+                <div class="question-card__content">
+                    <div class="content-block">
+                        <h4 class="content-block__title"><span lang="ja">💡 推奨する練習方法</span><span lang="en">💡 Recommended Practice</span></h4>
+                        <div class="tips-box">
+                            <div class="tips-box__content">
+                                <p><strong><span lang="ja">Interval Training + Tunerで「聴いて合わせる」能力を養う。</span><span lang="en">Develop "listen and match" ability with Interval Training + Tuner.</span></strong></p>
+                                <p><span lang="ja">音程を聴き分ける訓練をしつつ、チューナーでセント単位の微調整感覚を身につける。</span><span lang="en">Train to distinguish intervals while developing fine-tuning sensitivity at the cent level with a tuner.</span></p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="content-block">
+                        <h4 class="content-block__title"><span lang="ja">なぜこの練習が必要か</span><span lang="en">Why This Practice Is Needed</span></h4>
+                        <p><span lang="ja">チューナーで合わせても、アンサンブルになるとピッチが合わない。これは<span class="highlight">「他の音を聴きながら合わせる」訓練不足</span>。</span><span lang="en">Even when tuned with a tuner, pitch doesn't match in ensemble. This is due to <span class="highlight">lack of training in "matching while listening to other sounds"</span>.</span></p>
+                        <p><span lang="ja">チューナーは「自分の音だけ」を測る。しかしアンサンブルでは「他の楽器との関係」でピッチを調整する必要がある。</span><span lang="en">A tuner only measures "your own sound." However, in ensemble, you need to adjust pitch based on "the relationship with other instruments."</span></p>
+                    </div>
+
+                    <div class="content-block">
+                        <h4 class="content-block__title"><span lang="ja">科学的根拠</span><span lang="en">Scientific Basis</span></h4>
+                        <div class="science-box">
+                            <div class="science-box__title"><span lang="ja">純正律と平均律：具体的な数値</span><span lang="en">Just Intonation vs. Equal Temperament: Specific Values</span></div>
+                            <div class="science-box__content">
+                                <p><span lang="ja">チューナーは<strong>平均律（12等分平均律）</strong>を基準にしている。しかしアンサンブルでは、和音が美しく響く<strong>「純正律」</strong>に近づけることが多い。</span><span lang="en">Tuners use <strong>equal temperament (12-tone equal temperament)</strong> as their standard. However, in ensemble, we often aim for <strong>"just intonation"</strong> where chords sound more beautiful.</span></p>
+                                <p><strong><span lang="ja">具体的なセント値の違い：</span><span lang="en">Specific cent value differences:</span></strong></p>
+                                <ul class="content-list">
+                                    <li><strong><span lang="ja">長3度：</span><span lang="en">Major 3rd:</span></strong><span lang="ja">平均律 400セント → 純正律 386セント（<strong>14セント狭い</strong>）</span><span lang="en">Equal temperament 400 cents → Just intonation 386 cents (<strong>14 cents narrower</strong>)</span></li>
+                                    <li><strong><span lang="ja">短3度：</span><span lang="en">Minor 3rd:</span></strong><span lang="ja">平均律 300セント → 純正律 316セント（<strong>16セント広い</strong>）</span><span lang="en">Equal temperament 300 cents → Just intonation 316 cents (<strong>16 cents wider</strong>)</span></li>
+                                    <li><strong><span lang="ja">完全5度：</span><span lang="en">Perfect 5th:</span></strong><span lang="ja">平均律 700セント → 純正律 702セント（ほぼ同じ）</span><span lang="en">Equal temperament 700 cents → Just intonation 702 cents (almost the same)</span></li>
+                                </ul>
+                                <p><span lang="ja">つまり、チューナーで「ピッタリ」に合わせた長3度は、<strong>実際には14セントも広い</strong>。これが「うなり」の原因。アンサンブルでは意図的に低めに取る必要がある。</span><span lang="en">In other words, a major 3rd tuned "perfectly" on a tuner is actually <strong>14 cents too wide</strong>. This causes "beating." In ensemble, you need to intentionally play it lower.</span></p>
+                                <p><span lang="ja"><strong>人間の聴覚は約5セントの差を認識できる</strong>。14セントの差は「明らかに響きが悪い」レベル。この「微調整」が聴こえるかどうかがアンサンブルの質を決める。</span><span lang="en"><strong>Human hearing can perceive differences of about 5 cents</strong>. A 14-cent difference is at the level of "clearly sounds bad." Whether you can hear this "fine adjustment" determines ensemble quality.</span></p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="content-block">
+                        <h4 class="content-block__title"><span lang="ja">この練習が解決する課題</span><span lang="en">Issues This Practice Solves</span></h4>
+                        <ul class="content-list">
+                            <li><span lang="ja">ユニゾンが微妙にズレる</span><span lang="en">Unison is slightly off</span></li>
+                            <li><span lang="ja">和音が「うなる」</span><span lang="en">Chords "beat" or waver</span></li>
+                            <li><span lang="ja">チューナーでは合っているのに、アンサンブルで指摘される</span><span lang="en">Tuner shows correct pitch, but others point out issues in ensemble</span></li>
+                            <li><span lang="ja">どの方向に（高く/低く）調整すべきか分からない</span><span lang="en">Don't know which direction (higher/lower) to adjust</span></li>
+                        </ul>
+                    </div>
+
+                    <div class="content-block">
+                        <h4 class="content-block__title"><span lang="ja">推奨する練習方法</span><span lang="en">Recommended Practice Method</span></h4>
+                        <p><strong><span lang="ja">使用機能：Interval Training + Chord Recognition</span><span lang="en">Features Used: Interval Training + Chord Recognition</span></strong></p>
+                        <div class="tips-box">
+                            <div class="tips-box__title"><span lang="ja">💡 「ドローン練習」</span><span lang="en">💡 "Drone Practice"</span></div>
+                            <div class="tips-box__content">
+                                <p><span lang="ja">ピアノやアプリで基準音（ドローン）を鳴らしながら、様々な音程を吹く/弾く。</span><span lang="en">Play various intervals while sustaining a reference tone (drone) on piano or an app.</span></p>
+                                <p><span lang="ja">ドローンとの響きを聴きながら、最も美しく響くポイントを探す。チューナーは見ない。「耳で合わせる」感覚を養う。</span><span lang="en">Listen to the resonance with the drone and find the most beautiful sounding point. Don't look at the tuner. Develop the sense of "matching by ear."</span></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Q2: 初見で止まる -->
+            <article class="question-card" id="wind-q2">
+                <div class="question-card__header">
+                    <span class="question-card__q">Q</span>
+                    <h3 class="question-card__title"><span lang="ja">初見演奏で止まってしまう</span><span lang="en">Getting stuck during sight-reading</span></h3>
+                </div>
+                <div class="question-card__content">
+                    <div class="content-block">
+                        <h4 class="content-block__title"><span lang="ja">💡 推奨する練習方法</span><span lang="en">💡 Recommended Practice</span></h4>
+                        <div class="tips-box">
+                            <div class="tips-box__content">
+                                <p><strong><span lang="ja">Sight Reading（譜読みトレーニング）で「見る→運指」を自動化。</span><span lang="en">Develop automaticity in the "notation → fingering" pathway through Sight Reading training.</span></strong></p>
+                                <p><span lang="ja">五線譜上の音符を見て即座に音名を答える。これを繰り返すことで「考える」が「見える」に変わる。</span><span lang="en">Train instant note recognition from staff notation. With sufficient repetition, deliberate decoding transforms into automatic pattern recognition.</span></p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="content-block">
+                        <h4 class="content-block__title"><span lang="ja">なぜこの練習が必要か</span><span lang="en">Why This Practice Is Needed</span></h4>
+                        <p><span lang="ja">初見で止まる原因は「読んでから考える」から。楽譜を見て、音名を認識し、運指を考え、吹く。このプロセスが<span class="highlight">直列処理になっている</span>。</span><span lang="en">Stumbling during sight-reading occurs when each step requires conscious attention: read notation, identify pitch, determine fingering, execute. This <span class="highlight">serial cognitive pipeline</span> creates bottlenecks.</span></p>
+                        <p><span lang="ja">スムーズな初見には「並列処理」が必要。今吹いている音を演奏しながら、次の音を読んでいる状態。</span><span lang="en">Fluent sight-reading requires parallel processing - your eyes must read ahead while your fingers execute the current passage. This "look-ahead" ability only develops when note recognition becomes automatic.</span></p>
+                    </div>
+
+                    <div class="content-block">
+                        <h4 class="content-block__title"><span lang="ja">この練習が解決する課題</span><span lang="en">Issues This Practice Solves</span></h4>
+                        <ul class="content-list">
+                            <li><span lang="ja">臨時記号が出ると止まる</span><span lang="en">Getting stuck when accidentals appear</span></li>
+                            <li><span lang="ja">テンポが速いと追いつけない</span><span lang="en">Can't keep up at fast tempos</span></li>
+                            <li><span lang="ja">リズムが複雑になると混乱する</span><span lang="en">Getting confused with complex rhythms</span></li>
+                            <li><span lang="ja">先を見る余裕がない</span><span lang="en">No time to look ahead</span></li>
+                        </ul>
+                    </div>
+
+                    <div class="content-block">
+                        <h4 class="content-block__title"><span lang="ja">推奨する練習方法</span><span lang="en">Recommended Practice Method</span></h4>
+                        <p><strong><span lang="ja">使用機能：Sight Reading</span><span lang="en">Feature Used: Sight Reading</span></strong></p>
+                        <div class="tips-box">
+                            <div class="tips-box__title"><span lang="ja">💡 「パターン認識」アプローチ</span><span lang="en">💡 "Pattern Recognition" Approach</span></div>
+                            <div class="tips-box__content">
+                                <p><span lang="ja">楽譜を「1音ずつ」ではなく「パターン」として認識する訓練。</span><span lang="en">Training to recognize sheet music as "patterns" rather than "one note at a time."</span></p>
+                                <p><span lang="ja">「ド-ミ-ソ」という3音は「Cのアルペジオ」という1つのパターン。スケールの上行・下行も1つのパターン。パターン認識ができると、処理速度が劇的に上がる。</span><span lang="en">The three notes "C-E-G" are one pattern called "C arpeggio." Ascending and descending scales are also single patterns. When pattern recognition is achieved, processing speed increases dramatically.</span></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+
+        <div class="cta" style="margin-top: var(--space-2xl);">
+            <h2 class="cta__title"><span lang="ja">今日から始めよう</span><span lang="en">Start Today</span></h2>
+            <p class="cta__text">
+                <span lang="ja">ソルフェージュPROで、効率的なトレーニングを。</span>
+                <span lang="en">Train efficiently with Solfege PRO.</span>
+            </p>
+            <a href="https://apps.apple.com/app/id6756626617" class="cta__button"><span lang="ja">App Storeでダウンロード</span><span lang="en">Download on App Store</span></a>
+        </div>
+    </main>
+
+    <footer class="practice-footer">
+        <p class="practice-footer__text">
+            &copy; 2026 <span lang="ja">ソルフェージュPRO</span><span lang="en">Solfege PRO</span> &mdash;
+            <a href="https://apps.apple.com/app/id6756626617" class="practice-footer__link">App Store</a>
+        </p>
+    </footer>
+
+    <script src="practice.js"></script>
+</body>
+</html>

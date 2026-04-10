@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="ja" data-title-ja="ピアノ 練習ガイド | ソルフェージュPRO" data-title-en="Piano Practice Guide | Solfege PRO">
+<head>
+    <meta charset="UTF-8">
+    <meta name="robots" content="index, follow">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ピアノ 練習ガイド | ソルフェージュPRO</title>
+    <meta name="description" content="譜面依存、コード譜、ボイシング — ピアニストの課題を解決する練習メニュー">
+
+    <link rel="canonical" href="https://nmswshg.github.io/solfege-pro-docs/practice/piano.html">
+    <link rel="icon" href="../AppIcon.png" type="image/png">
+    <link rel="apple-touch-icon" href="../AppIcon.png">
+
+    <meta property="og:title" content="ピアノ 練習ガイド | ソルフェージュPRO">
+    <meta property="og:description" content="譜面依存、コード譜、ボイシング — ピアニストの課題を解決する練習メニュー">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://nmswshg.github.io/solfege-pro-docs/practice/piano.html">
+    <meta property="og:site_name" content="ソルフェージュPRO">
+    <meta property="og:image" content="https://nmswshg.github.io/solfege-pro-docs/AppIcon.png">
+    <meta property="og:locale" content="ja_JP">
+
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="ピアノ 練習ガイド | ソルフェージュPRO">
+    <meta name="twitter:description" content="譜面依存、コード譜、ボイシング — ピアニストの課題を解決する練習メニュー">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="../style.css?v=4">
+
+    <style>
+        .practice-nav {
+            background: rgba(42, 42, 48, 0.95);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            padding: var(--space-md) var(--space-lg);
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            z-index: 1000;
+            border-bottom: 1px solid var(--surface-light);
+            height: var(--nav-height);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .practice-nav__container {
+            display: flex;
+            align-items: center;
+            gap: var(--space-lg);
+            max-width: 900px;
+            width: 100%;
+        }
+        .practice-nav__back {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            gap: var(--space-xs);
+            transition: color 0.2s ease;
+            white-space: nowrap;
+        }
+        .practice-nav__back:hover { color: var(--primary); }
+        .practice-nav__logo {
+            display: flex;
+            align-items: center;
+            gap: var(--space-sm);
+            text-decoration: none;
+            margin-left: auto;
+        }
+        .practice-nav__logo-icon {
+            width: 28px; height: 28px; border-radius: 6px;
+        }
+        .practice-nav__logo-text {
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--primary);
+            letter-spacing: 0.5px;
+        }
+        .practice-header {
+            padding: var(--space-3xl) var(--space-lg);
+            padding-top: calc(var(--nav-height) + var(--space-3xl));
+            max-width: 900px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        .practice-header__icon { font-size: 48px; margin-bottom: var(--space-md); }
+        .practice-header__title {
+            font-size: 28px; font-weight: 700;
+            margin-bottom: var(--space-md);
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .practice-header__subtitle {
+            font-size: 15px;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        .practice-header__meta {
+            margin-top: var(--space-md);
+            font-size: 13px;
+            color: var(--text-secondary);
+        }
+        .practice-header__badge {
+            display: inline-block;
+            background: rgba(212, 175, 55, 0.15);
+            color: var(--primary);
+            padding: 2px 10px;
+            border-radius: var(--radius-sm);
+            font-size: 12px;
+            font-weight: 500;
+        }
+        .practice-body {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 var(--space-lg) var(--space-2xl);
+        }
+        .practice-body .section__header {
+            justify-content: center;
+        }
+        .practice-footer {
+            background: var(--surface);
+            padding: var(--space-xl) var(--space-lg);
+            text-align: center;
+            border-top: 1px solid var(--surface-light);
+        }
+        .practice-footer__text {
+            color: var(--text-secondary);
+            font-size: 14px;
+        }
+        .practice-footer__link {
+            color: var(--primary);
+            text-decoration: none;
+        }
+        @media (max-width: 768px) {
+            .practice-nav { padding: var(--space-sm) var(--space-md); }
+            .practice-nav__back { font-size: 13px; }
+            .practice-header {
+                padding: var(--space-xl) var(--space-md);
+                padding-top: calc(var(--nav-height) + var(--space-xl));
+            }
+            .practice-header__icon { font-size: 36px; }
+            .practice-header__title { font-size: 22px; }
+            .practice-body { padding: 0 var(--space-md) var(--space-xl); }
+        }
+        @media (max-width: 480px) {
+            .practice-header__title { font-size: 19px; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="practice-nav">
+        <div class="practice-nav__container">
+            <a href="../" class="practice-nav__back">&larr; <span lang="ja">練習ガイド</span><span lang="en">Practice Guide</span></a>
+            <a href="../" class="practice-nav__logo">
+                <img src="../AppIcon.png" alt="Solfege PRO" class="practice-nav__logo-icon">
+                <span class="practice-nav__logo-text"><span lang="ja">ソルフェージュPRO</span><span lang="en">Solfege PRO</span></span>
+            </a>
+            <button class="settings-btn" id="lang-toggle" title="Toggle language">
+                <span id="lang-text">EN</span>
+            </button>
+        </div>
+    </nav>
+
+    <header class="practice-header">
+        <div class="practice-header__icon">🎹</div>
+        <h1 class="practice-header__title"><span lang="ja">ピアノ 練習ガイド</span><span lang="en">Piano Practice Guide</span></h1>
+        <p class="practice-header__subtitle"><span lang="ja">譜面依存、コード譜、ボイシング — ピアニストの課題を解決する練習メニュー</span><span lang="en">Sheet music dependency, chord charts, voicings — practice menus for pianists</span></p>
+        <div class="practice-header__meta">
+            <span class="practice-header__badge">3 Q&amp;A</span>
+        </div>
+    </header>
+
+    <main class="practice-body">
+            <div class="section__header">
+                <span class="section__icon">🎹</span>
+                <h2 class="section__title"><span lang="ja">ピアノ・キーボード</span><span lang="en">Piano & Keyboard</span></h2>
+                <div class="section__header-actions">
+                    <button class="expand-all-btn"><span lang="ja">すべて開く</span><span lang="en">Expand All</span></button>
+                </div>
+            </div>
+
+            <!-- Section TOC -->
+            <nav class="section-toc">
+                <div class="section-toc__title"><span lang="ja">目次</span><span lang="en">Contents</span></div>
+                <ul class="section-toc__list">
+                    <li class="section-toc__item" data-target="piano-q1"><span lang="ja">譜面がないと弾けない</span><span lang="en">Can't play without sheet music</span></li>
+                    <li class="section-toc__item" data-target="piano-q2"><span lang="ja">コード譜で困る</span><span lang="en">Struggling with chord charts</span></li>
+                    <li class="section-toc__item" data-target="piano-q3"><span lang="ja">同じボイシング</span><span lang="en">Same voicings every time</span></li>
+                </ul>
+            </nav>
+
+            <!-- Q1: 譜面がないと弾けない / Can't play without sheet music -->
+            <article class="question-card" id="piano-q1">
+                <div class="question-card__header">
+                    <span class="question-card__q">Q</span>
+                    <h3 class="question-card__title">
+                        <span lang="ja">譜面がないと何も弾けない</span>
+                        <span lang="en">Can't play anything without sheet music</span>
+                    </h3>
+                </div>
+                <div class="question-card__content">
+                    <div class="content-block">
+                        <h4 class="content-block__title"><span lang="ja">💡 推奨する練習方法</span><span lang="en">💡 Recommended Practice Method</span></h4>
+                        <div class="tips-box">
+                            <div class="tips-box__content">
+                                <p><strong><span lang="ja">Interval Training + Chord Recognitionで「聴覚→指」の回路を構築。</span><span lang="en">Build an "ear-to-fingers" neural pathway using Interval Training + Chord Recognition.</span></strong></p>
+                                <p><span lang="ja">音を聴いて「これは長3度」と分かる→鍵盤上の位置が見える、という変換を訓練する。</span><span lang="en">Train the conversion: hearing a sound and knowing "that's a major 3rd" → visualizing its position on the keyboard.</span></p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="content-block">
+                        <h4 class="content-block__title"><span lang="ja">なぜこの練習が必要か</span><span lang="en">Why This Practice Is Necessary</span></h4>
+                        <p><span lang="ja">クラシック訓練を受けたピアニストに多い悩み。譜面は読めるが、<span class="highlight">「音を聴いて弾く」経験が少ない</span>。</span><span lang="en">A common struggle for classically trained pianists. They can read sheet music, but <span class="highlight">have little experience "playing by ear."</span></span></p>
+                        <p><span lang="ja">譜面は「視覚情報→指の動き」の変換。一方、セッションやアドリブでは「聴覚情報→指の動き」が必要。この回路が育っていない。</span><span lang="en">Sheet music is a "visual information → finger movement" conversion. However, sessions and improvisation require "auditory information → finger movement." This neural pathway hasn't been developed.</span></p>
+                    </div>
+
+                    <div class="content-block">
+                        <h4 class="content-block__title"><span lang="ja">科学的根拠</span><span lang="en">Scientific Background</span></h4>
+                        <div class="science-box">
+                            <div class="science-box__title"><span lang="ja">視覚依存と聴覚処理</span><span lang="en">Notation-Dependent vs. Aural Learning Pathways</span></div>
+                            <div class="science-box__content">
+                                <p><span lang="ja">譜読みは「視覚野→運動野」の神経回路を使う。一方、耳コピや即興は「聴覚野→運動野」の別の回路を使う。</span><span lang="en">Sight-reading engages a visual cortex → motor cortex neural pathway. Transcription, improvisation, and playing by ear utilize an entirely different auditory cortex → motor cortex circuit. These are neurologically distinct skills.</span></p>
+                                <p><strong><span lang="ja">片方の回路だけ発達していても、もう片方は自動的には発達しない。</span><span lang="en">Developing one pathway does not automatically develop the other.</span></strong><span lang="ja">視覚依存の演奏者が聴覚処理を鍛えるには、意識的に「聴いて弾く」訓練が必要。</span><span lang="en"> Classically trained musicians who are notation-dependent must deliberately practice aural skills to build the ear-to-hand connection. This is why conservatory training increasingly emphasizes ear training and improvisation alongside traditional notation-based instruction.</span></p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="content-block">
+                        <h4 class="content-block__title"><span lang="ja">この練習が解決する課題</span><span lang="en">Problems This Practice Solves</span></h4>
+                        <ul class="content-list">
+                            <li><span lang="ja">コードネームだけ渡されると固まる</span><span lang="en">Freezing when given only chord names</span></li>
+                            <li><span lang="ja">「自由に弾いて」と言われると何も出てこない</span><span lang="en">Drawing a blank when told to "play freely"</span></li>
+                            <li><span lang="ja">暗譜しても、少し間違えると立て直せない</span><span lang="en">Unable to recover from mistakes even when playing memorized pieces</span></li>
+                            <li><span lang="ja">セッションに参加できない</span><span lang="en">Unable to sit in or improvise with other musicians</span></li>
+                        </ul>
+                    </div>
+
+                    <div class="content-block">
+                        <h4 class="content-block__title"><span lang="ja">推奨する練習方法</span><span lang="en">Recommended Practice Method</span></h4>
+                        <p><strong><span lang="ja">使用機能：Interval Training → Chord Recognition</span><span lang="en">Features to use: Interval Training → Chord Recognition</span></strong></p>
+                        <div class="tips-box">
+                            <div class="tips-box__title"><span lang="ja">💡 段階的アプローチ</span><span lang="en">💡 Step-by-Step Approach</span></div>
+                            <div class="tips-box__content">
+                                <ol class="content-list content-list--numbered">
+                                    <li><span lang="ja">まず音程認識（Interval Training）で「聴覚→音名」の回路を作る</span><span lang="en">First, build the "ear → note name" pathway with Interval Training</span></li>
+                                    <li><span lang="ja">次にコード認識（Chord Recognition）で「響き→コード名」を学ぶ</span><span lang="en">Next, learn "sound → chord name" with Chord Recognition</span></li>
+                                    <li><span lang="ja">最後に実際の鍵盤で「聴いた音を弾く」練習をする</span><span lang="en">Finally, practice "playing what you hear" on actual keys</span></li>
+                                </ol>
+                                <p><span lang="ja">いきなりセッションに参加するのではなく、段階を踏むことで「聴覚→運動」の回路を育てる。</span><span lang="en">Rather than jumping straight into sessions, build the "auditory → motor" pathway step by step.</span></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Q2: コード譜だけで弾けない / Don't know what to play with just chord charts -->
+            <article class="question-card" id="piano-q2">
+                <div class="question-card__header">
+                    <span class="question-card__q">Q</span>
+                    <h3 class="question-card__title">
+                        <span lang="ja">コード譜だけ渡されても、何を弾けばいいか分からない</span>
+                        <span lang="en">Don't know what to play when given just chord charts</span>
+                    </h3>
+                </div>
+                <div class="question-card__content">
+                    <div class="content-block">
+                        <h4 class="content-block__title"><span lang="ja">💡 推奨する練習方法</span><span lang="en">💡 Recommended Practice Method</span></h4>
+                        <div class="tips-box">
+                            <div class="tips-box__content">
+                                <p><strong><span lang="ja">Chord Recognition（コード認識）で「響き」と「構成音」を結びつける。</span><span lang="en">Connect "sound" with "chord tones" using Chord Recognition.</span></strong></p>
+                                <p><span lang="ja">Major/minor/7thなど基本コードの響きを聴き分ける訓練から始め、徐々にテンションコードへ拡張。</span><span lang="en">Start by training to distinguish basic chords like Major/minor/7th, then gradually expand to tension chords.</span></p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="content-block">
+                        <h4 class="content-block__title"><span lang="ja">なぜこの練習が必要か</span><span lang="en">Why This Practice Is Necessary</span></h4>
+                        <p><span lang="ja">「Cmaj7」という記号は見たことがある。でも、それが<span class="highlight">どんな響きで、鍵盤上でどう押さえるか</span>が結びついていない。</span><span lang="en">You've seen the symbol "Cmaj7" before. But you haven't connected <span class="highlight">what it sounds like with how to play it on the keyboard</span>.</span></p>
+                        <p><span lang="ja">コードの「理論的知識」と「音としての認識」が分離している状態。両者を統合する訓練が必要。</span><span lang="en">Your "theoretical knowledge" and "aural recognition" of chords are separate. Training is needed to integrate both.</span></p>
+                    </div>
+
+                    <div class="content-block">
+                        <h4 class="content-block__title"><span lang="ja">この練習が解決する課題</span><span lang="en">Problems This Practice Solves</span></h4>
+                        <ul class="content-list">
+                            <li><span lang="ja">コードネームは知っているが、響きが想像できない</span><span lang="en">Knowing chord names but unable to imagine their sound</span></li>
+                            <li><span lang="ja">ボイシングのバリエーションがない</span><span lang="en">Having no variation in voicings</span></li>
+                            <li><span lang="ja">コード進行を見ても、どうつなげていいか分からない</span><span lang="en">Not knowing how to connect chords when looking at progressions</span></li>
+                            <li><span lang="ja">右手で何を弾くか決められない</span><span lang="en">Unable to decide what to play with the right hand</span></li>
+                        </ul>
+                    </div>
+
+                    <div class="content-block">
+                        <h4 class="content-block__title"><span lang="ja">どのような状態になれば卒業か</span><span lang="en">Proficiency Benchmarks</span></h4>
+                        <div class="level-cards">
+                            <div class="level-card level-card--beginner">
+                                <h5 class="level-card__title"><span lang="ja">初心者の卒業基準</span><span lang="en">Foundation Level</span></h5>
+                                <div class="level-card__content">
+                                    <p><span lang="ja">3和音のコードを聴いて識別</span><span lang="en">Identify triads by ear</span></p>
+                                    <p><span lang="ja">正答率 <strong>80%</strong></span><span lang="en">Accuracy: <strong>80%</strong></span></p>
+                                    <p><em><span lang="ja">Major/minor/dimが聴き分けられる</span><span lang="en">Can distinguish Major/minor/dim</span></em></p>
+                                </div>
+                            </div>
+                            <div class="level-card level-card--intermediate">
+                                <h5 class="level-card__title"><span lang="ja">中級者の卒業基準</span><span lang="en">Working Level</span></h5>
+                                <div class="level-card__content">
+                                    <p><span lang="ja">4和音のコードを聴いて識別</span><span lang="en">Identify 7th chords by ear</span></p>
+                                    <p><span lang="ja">正答率 <strong>80%</strong></span><span lang="en">Accuracy: <strong>80%</strong></span></p>
+                                    <p><em><span lang="ja">7th系コードが聴き分けられる</span><span lang="en">Can distinguish 7th chord types</span></em></p>
+                                </div>
+                            </div>
+                            <div class="level-card level-card--advanced">
+                                <h5 class="level-card__title"><span lang="ja">上級者の卒業基準</span><span lang="en">Professional Level</span></h5>
+                                <div class="level-card__content">
+                                    <p><span lang="ja">テンションコードを聴いて識別</span><span lang="en">Identify tension chords by ear</span></p>
+                                    <p><span lang="ja">正答率 <strong>75%</strong></span><span lang="en">Accuracy: <strong>75%</strong></span></p>
+                                    <p><em><span lang="ja">9th/11th/13thが聴き分けられる</span><span lang="en">Can distinguish 9th/11th/13th</span></em></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="content-block">
+                        <h4 class="content-block__title"><span lang="ja">推奨する練習方法</span><span lang="en">Recommended Practice Method</span></h4>
+                        <p><strong><span lang="ja">使用機能：Chord Recognition</span><span lang="en">Feature to use: Chord Recognition</span></strong></p>
+                        <div class="tips-box">
+                            <div class="tips-box__title"><span lang="ja">💡 「響きから入る」アプローチ</span><span lang="en">💡 "Sound-First" Approach</span></div>
+                            <div class="tips-box__content">
+                                <p><span lang="ja">理論から入ると「C-E-G-BだからCmaj7」という知識になる。響きから入ると「このキラキラした感じがmaj7」という感覚になる。</span><span lang="en">Starting from theory gives you knowledge like "C-E-G-B means Cmaj7." Starting from sound gives you the feeling "this sparkly quality is maj7."</span></p>
+                                <p><span lang="ja">まずChord Recognitionで響きを覚え、その後に理論を紐づける。逆順で学ぶことで「聴覚→理解」の回路ができる。</span><span lang="en">First learn the sounds with Chord Recognition, then connect the theory. Learning in reverse order builds an "ear → understanding" pathway.</span></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Q3: ボイシングのバリエーションがない -->
+            <article class="question-card" id="piano-q3">
+                <div class="question-card__header">
+                    <span class="question-card__q">Q</span>
+                    <h3 class="question-card__title"><span lang="ja">いつも同じボイシングで弾いてしまう</span><span lang="en">Always using the same voicings</span></h3>
+                </div>
+                <div class="question-card__content">
+                    <div class="content-block">
+                        <h4 class="content-block__title">💡 推奨する練習方法</h4>
+                        <div class="tips-box">
+                            <div class="tips-box__content">
+                                <p><strong>Chord Recognition + Interval Trainingの併用でトップノートを聴き分ける。</strong></p>
+                                <p>同じコードでも「トップがソの場合」「トップがシの場合」で響きが違うことを耳で認識できるようにする。</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="content-block">
+                        <h4 class="content-block__title">なぜこの練習が必要か</h4>
+                        <p>Cmaj7をいつも「ド-ミ-ソ-シ」で弾いていませんか？同じコードでも、<span class="highlight">どの音をトップに持ってくるかで響きが変わる</span>。</p>
+                        <p>プロはメロディとの関係、前後のコードとのつながりを考えてボイシングを選ぶ。そのためには「トップノートを聴き分ける」訓練が必要。</p>
+                    </div>
+
+                    <div class="content-block">
+                        <h4 class="content-block__title">科学的根拠</h4>
+                        <div class="science-box">
+                            <div class="science-box__title">トップノートの心理的影響</div>
+                            <div class="science-box__content">
+                                <p>人間の聴覚は<strong>最も高い音（トップノート）に最も注意を向ける</strong>。同じコードでもトップノートが違えば、印象が大きく変わる。</p>
+                                <p>メロディがEのとき、伴奏のCmaj7もEをトップに持ってくると調和する。逆にBをトップにすると緊張感が出る。この使い分けがボイシングの技術。</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="content-block">
+                        <h4 class="content-block__title">推奨する練習方法</h4>
+                        <div class="tips-box">
+                            <div class="tips-box__title">💡 「トップノート指定練習」</div>
+                            <div class="tips-box__content">
+                                <p>同じコード進行を、トップノートを変えて弾く練習。</p>
+                                <ul class="content-list">
+                                    <li>1回目：全てルートをトップに</li>
+                                    <li>2回目：全て3rdをトップに</li>
+                                    <li>3回目：全て7thをトップに</li>
+                                </ul>
+                                <p>響きの違いを耳で確認しながら、ボイシングの選択肢を増やす。</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+
+        <div class="cta" style="margin-top: var(--space-2xl);">
+            <h2 class="cta__title"><span lang="ja">今日から始めよう</span><span lang="en">Start Today</span></h2>
+            <p class="cta__text">
+                <span lang="ja">ソルフェージュPROで、効率的なトレーニングを。</span>
+                <span lang="en">Train efficiently with Solfege PRO.</span>
+            </p>
+            <a href="https://apps.apple.com/app/id6756626617" class="cta__button"><span lang="ja">App Storeでダウンロード</span><span lang="en">Download on App Store</span></a>
+        </div>
+    </main>
+
+    <footer class="practice-footer">
+        <p class="practice-footer__text">
+            &copy; 2026 <span lang="ja">ソルフェージュPRO</span><span lang="en">Solfege PRO</span> &mdash;
+            <a href="https://apps.apple.com/app/id6756626617" class="practice-footer__link">App Store</a>
+        </p>
+    </footer>
+
+    <script src="practice.js"></script>
+</body>
+</html>
