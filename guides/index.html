@@ -9,6 +9,9 @@
 
     <!-- Canonical -->
     <link rel="canonical" href="https://nmswshg.github.io/solfege-pro-docs/guides/">
+    <link rel="alternate" hreflang="ja" href="https://nmswshg.github.io/solfege-pro-docs/guides/?lang=ja">
+    <link rel="alternate" hreflang="en" href="https://nmswshg.github.io/solfege-pro-docs/guides/?lang=en">
+    <link rel="alternate" hreflang="x-default" href="https://nmswshg.github.io/solfege-pro-docs/guides/">
 
     <!-- Favicon -->
     <link rel="icon" href="../AppIcon.png" type="image/png">
@@ -34,36 +37,14 @@
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
 
     <!-- Stylesheets -->
-    <link rel="stylesheet" href="../style.css?v=3">
+    <link rel="stylesheet" href="../style.css?v=13">
 
     <style>
-        .guides-header {
-            background: linear-gradient(180deg, var(--surface) 0%, var(--background) 100%);
-            padding: var(--space-3xl) var(--space-lg);
-            padding-top: calc(var(--nav-height) + var(--space-3xl));
-            text-align: center;
-            border-bottom: 1px solid var(--surface-light);
-        }
 
-        .guides-header__title {
-            font-size: 28px;
-            font-weight: 700;
-            margin-bottom: var(--space-md);
-            background: linear-gradient(135deg, var(--primary), var(--accent));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
 
-        .guides-header__subtitle {
-            color: var(--text-secondary);
-            font-size: 15px;
-            max-width: 600px;
-            margin: 0 auto;
-        }
 
         .guides-main {
-            max-width: 900px;
+            max-width: 1100px;
             margin: 0 auto;
             padding: var(--space-2xl) var(--space-lg);
         }
@@ -75,11 +56,12 @@
         }
 
         .guide-card {
-            display: block;
+            display: flex;
+            flex-direction: column;
             background: var(--surface);
             border: 1px solid var(--surface-light);
-            border-radius: var(--radius-xl);
-            padding: var(--space-xl);
+            border-radius: var(--radius-lg);
+            padding: var(--space-lg);
             text-decoration: none;
             transition: all 0.2s ease;
         }
@@ -96,7 +78,7 @@
         }
 
         .guide-card__title {
-            font-size: 16px;
+            font-size: 15px;
             font-weight: 700;
             color: var(--text-primary);
             margin-bottom: var(--space-sm);
@@ -106,18 +88,20 @@
         .guide-card__desc {
             font-size: 13px;
             color: var(--text-secondary);
-            line-height: 1.7;
+            line-height: 1.6;
+            flex: 1;
         }
 
         .guide-card__tag {
             display: inline-block;
-            font-size: 11px;
-            font-weight: 600;
+            font-size: 12px;
+            font-weight: 500;
             color: var(--primary);
             background: rgba(212, 175, 55, 0.15);
-            padding: 2px 8px;
+            padding: 2px 10px;
             border-radius: var(--radius-sm);
             margin-top: var(--space-md);
+            align-self: flex-start;
         }
 
         .guide-card__tag--deep-dive {
@@ -166,19 +150,12 @@
         }
 
         @media (max-width: 768px) {
-            /* Keep nav__list visible on this page (only 2 items, fits mobile) */
-            .nav__list { display: flex !important; gap: var(--space-xs); }
-            .nav__link { font-size: 12px; padding: var(--space-sm) var(--space-sm); }
-            .guides-header {
-                padding-top: calc(var(--nav-height) + var(--space-xl));
-                padding-left: var(--space-md);
-                padding-right: var(--space-md);
-            }
-            .guides-header__title { font-size: 22px; }
-            .guides-header__subtitle { font-size: 14px; }
             .guides-main { padding: var(--space-lg) var(--space-md); }
             .guides-grid { grid-template-columns: 1fr; gap: var(--space-md); }
             .guide-card { padding: var(--space-lg); }
+        }
+
+        @media (max-width: 480px) {
         }
     </style>
 </head>
@@ -188,27 +165,44 @@
         <div class="nav__container">
             <a href="../" class="nav__logo">
                 <img src="../AppIcon.png" alt="Solfege PRO" class="nav__logo-icon">
-                <span class="nav__logo-text">
-                    <span lang="ja">ソルフェージュPRO</span>
-                    <span lang="en">Solfege PRO</span>
-                </span>
+                <span class="nav__logo-text"><span lang="ja">ソルフェージュPRO</span><span lang="en">Solfege PRO</span></span>
             </a>
             <ul class="nav__list">
                 <li><a href="../" class="nav__link"><span lang="ja">練習ガイド</span><span lang="en">Practice Guide</span></a></li>
                 <li><a href="./" class="nav__link active"><span lang="ja">ガイド一覧</span><span lang="en">Guides</span></a></li>
+                            <li><a href="../start-here.html" class="nav__link"><span lang="ja">どこから始める？</span><span lang="en">Where to Start?</span></a></li>
             </ul>
             <div class="nav__settings">
                 <button class="settings-btn" id="lang-toggle" title="Toggle language">
                     <span id="lang-text">EN</span>
                 </button>
+                <button class="hamburger-btn" id="hamburger-btn" aria-label="Menu" aria-expanded="false" aria-controls="drawer">
+                    <span class="hamburger-btn__line"></span>
+                    <span class="hamburger-btn__line"></span>
+                    <span class="hamburger-btn__line"></span>
+                </button>
             </div>
         </div>
     </nav>
+        <!-- Mobile drawer (hidden on desktop) -->
+        <div class="drawer-overlay" id="drawer-overlay"></div>
+        <aside class="drawer" id="drawer" aria-label="Mobile menu">
+            <div class="drawer__header">
+                <span class="drawer__title"><span lang="ja">メニュー</span><span lang="en">Menu</span></span>
+                <button class="drawer__close" id="drawer-close" aria-label="Close menu">×</button>
+            </div>
+            <ul class="drawer__list">
+                    <li><a href="../" class="drawer__link"><span lang="ja">練習ガイド</span><span lang="en">Practice Guide</span></a></li>
+                    <li><a href="./" class="drawer__link active"><span lang="ja">ガイド一覧</span><span lang="en">Guides</span></a></li>
+                    <li><a href="../start-here.html" class="drawer__link"><span lang="ja">どこから始める？</span><span lang="en">Where to Start?</span></a></li>
+            </ul>
+        </aside>
+
 
     <!-- Header -->
-    <header class="guides-header">
-        <h1 class="guides-header__title"><span lang="ja">トレーニングガイド</span><span lang="en">Training Guides</span></h1>
-        <p class="guides-header__subtitle">
+    <header class="page-header">
+        <h1 class="page-header__title"><span lang="ja">トレーニングガイド</span><span lang="en">Training Guides</span></h1>
+        <p class="page-header__subtitle">
             <span lang="ja">各トレーニングの考え方、効果的な練習法、アプリでできること・できないことを正直に解説します。</span>
             <span lang="en">Honest explanations of each training's concepts, effective practice methods, and what the app can and cannot do.</span>
         </p>
@@ -216,17 +210,24 @@
 
     <!-- Guide Grid -->
     <main class="guides-main">
+
+        <!-- Recommended reading order -->
+        <section style="background:var(--surface);border:1px solid var(--surface-light);border-left:4px solid var(--primary);border-radius:var(--radius-md);padding:var(--space-lg);margin-bottom:var(--space-xl);">
+            <div style="font-size:14px;font-weight:700;color:var(--text-primary);margin-bottom:var(--space-sm);"><span lang="ja">📍 おすすめの読み順</span><span lang="en">📍 Recommended Reading Order</span></div>
+            <p style="font-size:13px;color:var(--text-secondary);line-height:1.8;margin:0;"><span lang="ja"><strong style="color:var(--text-primary);">リズム系</strong>: ① リズム感ガイド → ⑧ グルーヴの正体（深掘り）<br><strong style="color:var(--text-primary);">音感系</strong>: ② 音程トレーニング → ③ コード認識 → ④ スケール認識 → ⑤ コード進行<br><strong style="color:var(--text-primary);">視覚・指板系</strong>: ⑥ 譜読み（音名特定）／⑦ 指板トレーニング（ギター）<br><br>はじめての方は、自分の楽器の <a href="../" style="color:var(--primary);">楽器別 Q&amp;A</a> でつまずきポイントを特定してから、関連ガイドへ進むと効率的です。迷ったら <a href="../start-here.html" style="color:var(--primary);">どこから始める？</a> 診断へ。</span><span lang="en"><strong style="color:var(--text-primary);">Rhythm path</strong>: ① Rhythm Training → ⑧ Groove (deep dive)<br><strong style="color:var(--text-primary);">Pitch path</strong>: ② Interval → ③ Chord Recognition → ④ Scale Recognition → ⑤ Progression Training<br><strong style="color:var(--text-primary);">Visual / fretboard</strong>: ⑥ Note Reading / ⑦ Fretboard Training (guitar)<br><br>If you're new, start with the <a href="../" style="color:var(--primary);">instrument-specific Q&amp;A</a> on the hub to identify your pain points, then dive into the related guides. Or take the <a href="../start-here.html" style="color:var(--primary);">"Where to start?"</a> diagnostic.</span></p>
+        </section>
+
         <div class="guides-grid">
 
             <a href="rhythm-training.html" class="guide-card">
-                <div class="guide-card__icon">🥁</div>
+                <div class="guide-card__icon"><svg class="icon" aria-hidden="true"><use href="../assets/icons.svg#icon-drum"></use></svg></div>
                 <div class="guide-card__title"><span lang="ja">リズム感ガイド</span><span lang="en">Rhythm Training Guide</span></div>
                 <div class="guide-card__desc"><span lang="ja">前乗り・後乗り・ばらつき・ポケットを分解して理解する。タイミング精度の計測と改善サイクル。</span><span lang="en">Breaking down rushing, dragging, inconsistency, and pocket. Timing measurement and improvement cycle.</span></div>
                 <span class="guide-card__tag">Rhythm Training</span>
             </a>
 
             <a href="groove-training.html" class="guide-card">
-                <div class="guide-card__icon">🎛️</div>
+                <div class="guide-card__icon"><svg class="icon" aria-hidden="true"><use href="../assets/icons.svg#icon-audio-lines"></use></svg></div>
                 <div class="guide-card__title"><span lang="ja">グルーヴの正体 — 「正確なのに硬い」を超える</span><span lang="en">The Nature of Groove — Beyond "Accurate but Stiff"</span></div>
                 <div class="guide-card__desc"><span lang="ja">予測と張力のバランスがグルーヴを生む。研究知見をもとに、構成要素と段階的な鍛え方を解説。</span><span lang="en">Groove emerges from the balance of prediction and tension. Elements and step-by-step training based on research.</span></div>
                 <span class="guide-card__tag">Rhythm</span>
@@ -234,42 +235,42 @@
             </a>
 
             <a href="interval-training.html" class="guide-card">
-                <div class="guide-card__icon">🎵</div>
+                <div class="guide-card__icon"><svg class="icon" aria-hidden="true"><use href="../assets/icons.svg#icon-music-note"></use></svg></div>
                 <div class="guide-card__title"><span lang="ja">音程トレーニングガイド</span><span lang="en">Interval Training Guide</span></div>
                 <div class="guide-card__desc"><span lang="ja">13種類のインターバルを理解し、相対音感を鍛える。段階的な難易度と苦手克服。</span><span lang="en">Understanding 13 intervals and training relative pitch. Step-by-step difficulty and weak point focus.</span></div>
                 <span class="guide-card__tag">Interval Training</span>
             </a>
 
             <a href="sight-reading.html" class="guide-card">
-                <div class="guide-card__icon">📖</div>
+                <div class="guide-card__icon"><svg class="icon" aria-hidden="true"><use href="../assets/icons.svg#icon-book-open"></use></svg></div>
                 <div class="guide-card__title"><span lang="ja">譜読みガイド</span><span lang="en">Sight Reading Guide</span></div>
                 <div class="guide-card__desc"><span lang="ja">五線譜を素早く正確に読むための基礎。ランドマークノート法と段階的な練習ステップ。</span><span lang="en">Foundations for reading music notation quickly. Landmark note method and progressive practice steps.</span></div>
                 <span class="guide-card__tag">Sight Reading</span>
             </a>
 
             <a href="fretboard-training.html" class="guide-card">
-                <div class="guide-card__icon">🎸</div>
+                <div class="guide-card__icon"><svg class="icon" aria-hidden="true"><use href="../assets/icons.svg#icon-guitar"></use></svg></div>
                 <div class="guide-card__title"><span lang="ja">指板トレーニングガイド</span><span lang="en">Fretboard Training Guide</span></div>
                 <div class="guide-card__desc"><span lang="ja">ギターのフレットボードを効率的に習得する。オクターブシェイプとフレット範囲ごとの攻略。</span><span lang="en">Efficiently learning guitar note positions. Octave shapes and range-based progression.</span></div>
                 <span class="guide-card__tag">Fretboard Training</span>
             </a>
 
             <a href="ear-training-chords.html" class="guide-card">
-                <div class="guide-card__icon">🎹</div>
+                <div class="guide-card__icon"><svg class="icon" aria-hidden="true"><use href="../assets/icons.svg#icon-piano"></use></svg></div>
                 <div class="guide-card__title"><span lang="ja">コード認識ガイド</span><span lang="en">Chord Recognition Guide</span></div>
                 <div class="guide-card__desc"><span lang="ja">和音の響きを聴き分ける力を理解する。トライアドから7thコード、テンションまで段階的に。</span><span lang="en">Understanding chord quality recognition. From triads to 7th chords and tensions, step by step.</span></div>
                 <span class="guide-card__tag">Chord Recognition</span>
             </a>
 
             <a href="ear-training-scales.html" class="guide-card">
-                <div class="guide-card__icon">🎼</div>
+                <div class="guide-card__icon"><svg class="icon" aria-hidden="true"><use href="../assets/icons.svg#icon-music-staff"></use></svg></div>
                 <div class="guide-card__title"><span lang="ja">スケール認識ガイド</span><span lang="en">Scale Recognition Guide</span></div>
                 <div class="guide-card__desc"><span lang="ja">音階とモードを聴き分ける力を理解する。チャーチモードの特性音と段階的な練習。</span><span lang="en">Understanding scales and modes by ear. Church mode characteristics and progressive practice.</span></div>
                 <span class="guide-card__tag">Scale Recognition</span>
             </a>
 
             <a href="ear-training-progressions.html" class="guide-card">
-                <div class="guide-card__icon">🎶</div>
+                <div class="guide-card__icon"><svg class="icon" aria-hidden="true"><use href="../assets/icons.svg#icon-music-notes"></use></svg></div>
                 <div class="guide-card__title"><span lang="ja">コード進行ガイド</span><span lang="en">Progression Training Guide</span></div>
                 <div class="guide-card__desc"><span lang="ja">和声の流れを聴き取る力を理解する。機能和声（T/SD/D）の考え方と段階的な練習。</span><span lang="en">Understanding harmonic movement. Functional harmony (T/SD/D) concepts and step-by-step practice.</span></div>
                 <span class="guide-card__tag">Progression Training</span>
@@ -278,7 +279,10 @@
         </div>
 
         <div class="guides-back">
-            <a href="https://apps.apple.com/app/id6756626617" class="guides-back__link"><span lang="ja">App Storeでダウンロード</span><span lang="en">Download on App Store</span></a>
+            <a href="https://apps.apple.com/app/id6756626617" class="app-store-link" aria-label="Download on the App Store">
+                <span lang="ja"><img class="app-store-link__img" src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/ja-jp" alt="App Storeで入手"></span>
+                <span lang="en"><img class="app-store-link__img" src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/en-us" alt="Download on the App Store"></span>
+            </a>
         </div>
     </main>
 
@@ -295,7 +299,14 @@
     (function() {
         var langToggle = document.getElementById('lang-toggle');
         var langText = document.getElementById('lang-text');
-        var currentLang = localStorage.getItem('lang') || 'ja';
+        var urlLang = new URLSearchParams(window.location.search).get('lang');
+        var currentLang = (urlLang === 'ja' || urlLang === 'en') ? urlLang : (localStorage.getItem('lang') || 'ja');
+
+        function syncUrlLang(lang) {
+            var url = new URL(window.location.href);
+            url.searchParams.set('lang', lang);
+            history.replaceState(null, '', url.toString());
+        }
 
         function applyLanguage(lang) {
             document.documentElement.setAttribute('data-lang', lang); document.documentElement.lang = lang;
@@ -310,10 +321,13 @@
         applyLanguage(currentLang);
 
         langToggle.addEventListener('click', function() {
-            applyLanguage(currentLang === 'ja' ? 'en' : 'ja');
+            var newLang = currentLang === 'ja' ? 'en' : 'ja';
+            applyLanguage(newLang);
+            syncUrlLang(newLang);
         });
     })();
     </script>
 
+    <script src="../drawer.js?v=1" defer></script>
 </body>
 </html>

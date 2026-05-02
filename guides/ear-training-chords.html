@@ -9,6 +9,9 @@
 
     <!-- Canonical -->
     <link rel="canonical" href="https://nmswshg.github.io/solfege-pro-docs/guides/ear-training-chords.html">
+    <link rel="alternate" hreflang="ja" href="https://nmswshg.github.io/solfege-pro-docs/guides/ear-training-chords.html?lang=ja">
+    <link rel="alternate" hreflang="en" href="https://nmswshg.github.io/solfege-pro-docs/guides/ear-training-chords.html?lang=en">
+    <link rel="alternate" hreflang="x-default" href="https://nmswshg.github.io/solfege-pro-docs/guides/ear-training-chords.html">
 
     <!-- OGP -->
     <meta property="og:title" content="コードを聴き分ける力とは何か — 和音の響きを理解する">
@@ -36,8 +39,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
 
     <!-- Stylesheets -->
-    <link rel="stylesheet" href="../style.css?v=3">
-    <link rel="stylesheet" href="article.css?v=2">
+    <link rel="stylesheet" href="../style.css?v=13">
+    <link rel="stylesheet" href="article.css?v=8">
 
     <style>
         /* Chord Type Grid */
@@ -103,30 +106,55 @@
 </head>
 <body>
     <!-- Navigation -->
-    <nav class="article-nav">
-        <div class="article-nav__container">
-            <a href="../" class="article-nav__back">&larr; <span lang="ja">練習ガイド</span><span lang="en">Practice Guide</span></a>
-            <a href="../" class="article-nav__logo">
-                <img src="../AppIcon.png" alt="Solfege PRO" class="article-nav__logo-icon">
-                <span class="article-nav__logo-text"><span lang="ja">ソルフェージュPRO</span><span lang="en">Solfege PRO</span></span>
+    <nav class="nav">
+        <div class="nav__container">
+            <a href="../" class="nav__logo">
+                <img src="../AppIcon.png" alt="Solfege PRO" class="nav__logo-icon">
+                <span class="nav__logo-text"><span lang="ja">ソルフェージュPRO</span><span lang="en">Solfege PRO</span></span>
             </a>
-            <button class="settings-btn" id="lang-toggle" title="Toggle language">
-                <span id="lang-text">EN</span>
-            </button>
+            <ul class="nav__list">
+                <li><a href="../" class="nav__link"><span lang="ja">練習ガイド</span><span lang="en">Practice Guide</span></a></li>
+                <li><a href="./" class="nav__link active"><span lang="ja">ガイド一覧</span><span lang="en">Guides</span></a></li>
+                            <li><a href="../start-here.html" class="nav__link"><span lang="ja">どこから始める？</span><span lang="en">Where to Start?</span></a></li>
+            </ul>
+            <div class="nav__settings">
+                <button class="settings-btn" id="lang-toggle" title="Toggle language">
+                    <span id="lang-text">EN</span>
+                </button>
+                <button class="hamburger-btn" id="hamburger-btn" aria-label="Menu" aria-expanded="false" aria-controls="drawer">
+                    <span class="hamburger-btn__line"></span>
+                    <span class="hamburger-btn__line"></span>
+                    <span class="hamburger-btn__line"></span>
+                </button>
+            </div>
         </div>
     </nav>
+        <!-- Mobile drawer (hidden on desktop) -->
+        <div class="drawer-overlay" id="drawer-overlay"></div>
+        <aside class="drawer" id="drawer" aria-label="Mobile menu">
+            <div class="drawer__header">
+                <span class="drawer__title"><span lang="ja">メニュー</span><span lang="en">Menu</span></span>
+                <button class="drawer__close" id="drawer-close" aria-label="Close menu">×</button>
+            </div>
+            <ul class="drawer__list">
+                    <li><a href="../" class="drawer__link"><span lang="ja">練習ガイド</span><span lang="en">Practice Guide</span></a></li>
+                    <li><a href="./" class="drawer__link active"><span lang="ja">ガイド一覧</span><span lang="en">Guides</span></a></li>
+                    <li><a href="../start-here.html" class="drawer__link"><span lang="ja">どこから始める？</span><span lang="en">Where to Start?</span></a></li>
+            </ul>
+        </aside>
+
 
     <!-- Article Header -->
-    <header class="article-header">
-        <div class="article-header__meta">
-            <span class="article-header__tag">Chord Recognition</span>
+    <header class="page-header">
+        <div class="page-header__meta">
+            <span class="page-header__tag">Chord Recognition</span>
             <span><span lang="ja">読了: 約8分</span><span lang="en">8 min read</span></span>
         </div>
-        <h1 class="article-header__title">
+        <h1 class="page-header__title">
             <span lang="ja">コードを聴き分ける力とは何か<br>和音の響きを理解する</span>
             <span lang="en">What Is Chord Recognition?<br>Understanding Harmonic Sounds</span>
         </h1>
-        <p class="article-header__lead">
+        <p class="page-header__subtitle">
             <span lang="ja">コードの響きを「なんとなく明るい・暗い」で終わらせない。構成音の違いを知り、聴き分けの精度を段階的に上げていく方法を解説します。</span>
             <span lang="en">Don't stop at "it sounds kinda bright or dark." Learn the differences in chord tones and build your recognition accuracy step by step.</span>
         </p>
@@ -426,6 +454,9 @@
             <p>
                 <strong><span lang="ja">和声的な文脈</span><span lang="en">Harmonic context</span></strong><span lang="ja"> — コードは単体で出題されます。「コード進行の中でこのコードがどう機能するか」は、Chord Recognition単体では扱いません（Progression Trainingが別途あります）。</span><span lang="en"> — Chords are presented in isolation. "How this chord functions within a progression" is not covered by Chord Recognition alone (Progression Training is available separately).</span>
             </p>
+            <p>
+                <strong><span lang="ja">機能的（functional / scale-degree）聴取</span><span lang="en">Functional (scale-degree) chord listening</span></strong><span lang="ja"> — 「同じ Cmaj7 でも C のキーでは I、F のキーでは V/V」のように、調の中での役割（ローマ数字 / 機能 T-SD-D）として聴き分ける方法は、Chord Recognition の出題形式（quality 判定）の範囲外です。Karpinski / Edlund / Berklee Solfege 系で扱われるこの聴取は、Progression Training と組み合わせ、また movable-do での歌唱練習を併用することで補完できます。</span><span lang="en"> — Hearing chords by their <em>function</em> within a key (e.g., the same Cmaj7 is I in C major but V/V in F major) — Roman-numeral / T-SD-D function listening as taught by Karpinski, Edlund, and the Berklee Solfege tradition — is outside Chord Recognition's quality-based design. Combine Progression Training with movable-do singing practice to develop this complementary skill.</span>
+            </p>
         </div>
 
         <p>
@@ -469,7 +500,10 @@
             <span lang="ja">コードの聴き分けは、「明るい・暗い」の感覚だけでは頭打ちになります。<br>構成音の違いを理解し、段階的に語彙を広げていくこと。<br>ソルフェージュPROの Chord Recognition で、まず自分の現在地を確認してみてください。</span>
             <span lang="en">Chord recognition hits a ceiling if you rely only on "bright vs dark" impressions.<br>Understand the differences in chord tones and gradually expand your vocabulary.<br>Check where you stand with Solfege PRO's Chord Recognition.</span>
         </p>
-        <a href="https://apps.apple.com/app/id6756626617" class="article-cta__button"><span lang="ja">App Storeでダウンロード</span><span lang="en">Download on App Store</span></a>
+        <a href="https://apps.apple.com/app/id6756626617" class="app-store-link" aria-label="Download on the App Store">
+            <span lang="ja"><img class="app-store-link__img" src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/ja-jp" alt="App Storeで入手"></span>
+            <span lang="en"><img class="app-store-link__img" src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/en-us" alt="Download on the App Store"></span>
+        </a>
     </section>
 
     <!-- Related Content -->
@@ -502,7 +536,14 @@
     (function() {
         var langToggle = document.getElementById('lang-toggle');
         var langText = document.getElementById('lang-text');
-        var currentLang = localStorage.getItem('lang') || 'ja';
+        var urlLang = new URLSearchParams(window.location.search).get('lang');
+        var currentLang = (urlLang === 'ja' || urlLang === 'en') ? urlLang : (localStorage.getItem('lang') || 'ja');
+
+        function syncUrlLang(lang) {
+            var url = new URL(window.location.href);
+            url.searchParams.set('lang', lang);
+            history.replaceState(null, '', url.toString());
+        }
 
         function applyLanguage(lang) {
             document.documentElement.setAttribute('data-lang', lang); document.documentElement.lang = lang;
@@ -519,10 +560,13 @@
         document.querySelectorAll('a[href*="apps.apple.com"]').forEach(function(a){a.href='https://apps.apple.com/'+(currentLang==='ja'?'jp':'us')+'/app/id6756626617';});
 
         langToggle.addEventListener('click', function() {
-            applyLanguage(currentLang === 'ja' ? 'en' : 'ja');
+            var newLang = currentLang === 'ja' ? 'en' : 'ja';
+            applyLanguage(newLang);
+            syncUrlLang(newLang);
         });
     })();
     </script>
 
+    <script src="../drawer.js?v=1" defer></script>
 </body>
 </html>

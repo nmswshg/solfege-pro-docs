@@ -9,6 +9,9 @@
 
     <!-- Canonical -->
     <link rel="canonical" href="https://nmswshg.github.io/solfege-pro-docs/guides/rhythm-training.html">
+    <link rel="alternate" hreflang="ja" href="https://nmswshg.github.io/solfege-pro-docs/guides/rhythm-training.html?lang=ja">
+    <link rel="alternate" hreflang="en" href="https://nmswshg.github.io/solfege-pro-docs/guides/rhythm-training.html?lang=en">
+    <link rel="alternate" hreflang="x-default" href="https://nmswshg.github.io/solfege-pro-docs/guides/rhythm-training.html">
 
     <!-- OGP -->
     <meta property="og:title" content="リズム感とは何か — 前乗り・後乗り・ばらつき・ポケットを分解して理解する">
@@ -36,14 +39,15 @@
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
 
     <!-- Stylesheets -->
-    <link rel="stylesheet" href="../style.css?v=3">
-    <link rel="stylesheet" href="article.css?v=2">
+    <link rel="stylesheet" href="../style.css?v=13">
+    <link rel="stylesheet" href="article.css?v=8">
 
-    <!-- Mermaid.js for flowcharts -->
+    <!-- Mermaid.js for flowcharts (renders only the active-language block;
+         display:none blocks fail to render in Mermaid 11) -->
     <script type="module">
         import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
         mermaid.initialize({
-            startOnLoad: true,
+            startOnLoad: false,
             theme: 'dark',
             themeVariables: {
                 primaryColor: '#2A2A30',
@@ -56,35 +60,73 @@
                 fontSize: '14px'
             }
         });
+
+        function renderActiveMermaid() {
+            const lang = document.documentElement.getAttribute('data-lang') || 'ja';
+            const nodes = Array.from(document.querySelectorAll(`.mermaid-lang[lang="${lang}"] .mermaid`))
+                .filter(n => !n.getAttribute('data-processed'));
+            if (nodes.length) mermaid.run({ nodes });
+        }
+        if (document.readyState === 'loading') {
+            window.addEventListener('DOMContentLoaded', renderActiveMermaid);
+        } else {
+            renderActiveMermaid();
+        }
+        window.addEventListener('langchange', renderActiveMermaid);
     </script>
     <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"リズム感とは何か — 前乗り・後乗り・ばらつき・ポケットを分解して理解する","description":"リズム感は1つの才能ではなく、複数の要素に分解できます。タイミング精度を改善するための練習法を紹介します。","author":{"@type":"Organization","name":"ソルフェージュPRO"},"publisher":{"@type":"Organization","name":"ソルフェージュPRO","logo":{"@type":"ImageObject","url":"https://nmswshg.github.io/solfege-pro-docs/AppIcon.png"}},"datePublished":"2026-04-05","dateModified":"2026-04-11","mainEntityOfPage":{"@type":"WebPage","@id":"https://nmswshg.github.io/solfege-pro-docs/guides/rhythm-training.html"}}</script>
 </head>
 <body>
     <!-- Navigation -->
-    <nav class="article-nav">
-        <div class="article-nav__container">
-            <a href="../" class="article-nav__back">&larr; <span lang="ja">練習ガイド</span><span lang="en">Practice Guide</span></a>
-            <a href="../" class="article-nav__logo">
-                <img src="../AppIcon.png" alt="Solfege PRO" class="article-nav__logo-icon">
-                <span class="article-nav__logo-text"><span lang="ja">ソルフェージュPRO</span><span lang="en">Solfege PRO</span></span>
+    <nav class="nav">
+        <div class="nav__container">
+            <a href="../" class="nav__logo">
+                <img src="../AppIcon.png" alt="Solfege PRO" class="nav__logo-icon">
+                <span class="nav__logo-text"><span lang="ja">ソルフェージュPRO</span><span lang="en">Solfege PRO</span></span>
             </a>
-            <button class="settings-btn" id="lang-toggle" title="Toggle language">
-                <span id="lang-text">EN</span>
-            </button>
+            <ul class="nav__list">
+                <li><a href="../" class="nav__link"><span lang="ja">練習ガイド</span><span lang="en">Practice Guide</span></a></li>
+                <li><a href="./" class="nav__link active"><span lang="ja">ガイド一覧</span><span lang="en">Guides</span></a></li>
+                            <li><a href="../start-here.html" class="nav__link"><span lang="ja">どこから始める？</span><span lang="en">Where to Start?</span></a></li>
+            </ul>
+            <div class="nav__settings">
+                <button class="settings-btn" id="lang-toggle" title="Toggle language">
+                    <span id="lang-text">EN</span>
+                </button>
+                <button class="hamburger-btn" id="hamburger-btn" aria-label="Menu" aria-expanded="false" aria-controls="drawer">
+                    <span class="hamburger-btn__line"></span>
+                    <span class="hamburger-btn__line"></span>
+                    <span class="hamburger-btn__line"></span>
+                </button>
+            </div>
         </div>
     </nav>
+        <!-- Mobile drawer (hidden on desktop) -->
+        <div class="drawer-overlay" id="drawer-overlay"></div>
+        <aside class="drawer" id="drawer" aria-label="Mobile menu">
+            <div class="drawer__header">
+                <span class="drawer__title"><span lang="ja">メニュー</span><span lang="en">Menu</span></span>
+                <button class="drawer__close" id="drawer-close" aria-label="Close menu">×</button>
+            </div>
+            <ul class="drawer__list">
+                    <li><a href="../" class="drawer__link"><span lang="ja">練習ガイド</span><span lang="en">Practice Guide</span></a></li>
+                    <li><a href="./" class="drawer__link active"><span lang="ja">ガイド一覧</span><span lang="en">Guides</span></a></li>
+                    <li><a href="../start-here.html" class="drawer__link"><span lang="ja">どこから始める？</span><span lang="en">Where to Start?</span></a></li>
+            </ul>
+        </aside>
+
 
     <!-- Article Header -->
-    <header class="article-header">
-        <div class="article-header__meta">
-            <span class="article-header__tag">Rhythm Training</span>
+    <header class="page-header">
+        <div class="page-header__meta">
+            <span class="page-header__tag">Rhythm Training</span>
             <span><span lang="ja">読了: 約8分</span><span lang="en">8 min read</span></span>
         </div>
-        <h1 class="article-header__title">
+        <h1 class="page-header__title">
             <span lang="ja">リズム感とは何か<br>前乗り・後乗り・ばらつき・ポケットを<br>分解して理解する</span>
             <span lang="en">What Is Rhythmic Feel?<br>Breaking Down Rushing, Dragging,<br>Inconsistency, and Pocket</span>
         </h1>
-        <p class="article-header__lead">
+        <p class="page-header__subtitle">
             <span lang="ja">「リズム感がない」で止まらない。自分のリズムのどこが弱いかを知ることが、練習が効き始める第一歩です。</span>
             <span lang="en">Don't stop at "I have no rhythm." Knowing where your timing is weak is the first step to making practice count.</span>
         </p>
@@ -488,12 +530,12 @@
             <div class="mermaid-lang" lang="ja">
                 <pre class="mermaid">
 flowchart TD
-    A[セッション完了] --> B{診断結果は？}
-    B -->|後乗り傾向| C[BPM -10 に下げる\n全ビートで練習]
-    B -->|前乗り傾向| D[BPM そのまま\nクリック密度を下げる]
-    B -->|ばらつき| E[BPM -20 に下げる\n難易度を1段下げる\n全ビートで練習]
-    B -->|安定| F[BPM +10 に上げる\n難易度を1段上げる\nクリック密度を下げる]
-    C --> G[おすすめ設定で\n再挑戦]
+    A["セッション完了"] --> B{"診断結果は？"}
+    B -->|後乗り傾向| C["BPM -10 に下げる<br/>全ビートで練習"]
+    B -->|前乗り傾向| D["BPM そのまま<br/>クリック密度を下げる"]
+    B -->|ばらつき| E["BPM -20 に下げる<br/>難易度を1段下げる<br/>全ビートで練習"]
+    B -->|安定| F["BPM +10 に上げる<br/>難易度を1段上げる<br/>クリック密度を下げる"]
+    C --> G["おすすめ設定で<br/>再挑戦"]
     D --> G
     E --> G
     F --> G
@@ -511,12 +553,12 @@ flowchart TD
             <div class="mermaid-lang" lang="en">
                 <pre class="mermaid">
 flowchart TD
-    A[Session Complete] --> B{Diagnosis?}
-    B -->|Late tendency| C[Lower BPM -10\nAll Beats]
-    B -->|Early tendency| D[Same BPM\nReduce click density]
-    B -->|Inconsistent| E[Lower BPM -20\nEasier difficulty\nAll Beats]
-    B -->|Stable| F[Raise BPM +10\nHarder difficulty\nSparser clicks]
-    C --> G[Retry with\nrecommended settings]
+    A["Session Complete"] --> B{"Diagnosis?"}
+    B -->|"Late tendency"| C["Lower BPM -10<br/>All Beats"]
+    B -->|"Early tendency"| D["Same BPM<br/>Reduce click density"]
+    B -->|"Inconsistent"| E["Lower BPM -20<br/>Easier difficulty<br/>All Beats"]
+    B -->|"Stable"| F["Raise BPM +10<br/>Harder difficulty<br/>Sparser clicks"]
+    C --> G["Retry with<br/>recommended settings"]
     D --> G
     E --> G
     F --> G
@@ -589,7 +631,10 @@ flowchart TD
             <span lang="ja">リズム感は、漠然と「ある」「ない」で片付けるものではありません。<br>分解して、自分のどこが弱いかを知ること。それが、練習が効き始める第一歩です。<br>ソルフェージュPROの Rhythm Training で、まず1回、自分のタイミングを測ってみてください。</span>
             <span lang="en">Rhythmic feel isn't something you simply "have" or "don't have."<br>Break it down, find where you're weak. That's the first step to making practice work.<br>Try measuring your timing once with Solfege PRO's Rhythm Training.</span>
         </p>
-        <a href="https://apps.apple.com/app/id6756626617" class="article-cta__button"><span lang="ja">App Storeでダウンロード</span><span lang="en">Download on App Store</span></a>
+        <a href="https://apps.apple.com/app/id6756626617" class="app-store-link" aria-label="Download on the App Store">
+            <span lang="ja"><img class="app-store-link__img" src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/ja-jp" alt="App Storeで入手"></span>
+            <span lang="en"><img class="app-store-link__img" src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/en-us" alt="Download on the App Store"></span>
+        </a>
     </section>
 
     <!-- Related Content -->
@@ -626,7 +671,14 @@ flowchart TD
     (function() {
         var langToggle = document.getElementById('lang-toggle');
         var langText = document.getElementById('lang-text');
-        var currentLang = localStorage.getItem('lang') || 'ja';
+        var urlLang = new URLSearchParams(window.location.search).get('lang');
+        var currentLang = (urlLang === 'ja' || urlLang === 'en') ? urlLang : (localStorage.getItem('lang') || 'ja');
+
+        function syncUrlLang(lang) {
+            var url = new URL(window.location.href);
+            url.searchParams.set('lang', lang);
+            history.replaceState(null, '', url.toString());
+        }
 
         function applyMermaidLang(lang) {
             document.querySelectorAll('.mermaid-lang').forEach(function(el) {
@@ -647,6 +699,7 @@ flowchart TD
             localStorage.setItem('lang', lang);
             currentLang = lang; document.querySelectorAll('a[href*="apps.apple.com"]').forEach(function(a){a.href="https://apps.apple.com/"+(lang==="ja"?"jp":"us")+"/app/id6756626617";});
             applyMermaidLang(lang);
+            window.dispatchEvent(new Event('langchange'));
         }
 
         // Apply text language immediately; Mermaid diagrams need render time
@@ -658,10 +711,13 @@ flowchart TD
         setTimeout(function() { applyMermaidLang(currentLang); }, 500);
 
         langToggle.addEventListener('click', function() {
-            applyLanguage(currentLang === 'ja' ? 'en' : 'ja');
+            var newLang = currentLang === 'ja' ? 'en' : 'ja';
+            applyLanguage(newLang);
+            syncUrlLang(newLang);
         });
     })();
     </script>
 
+    <script src="../drawer.js?v=1" defer></script>
 </body>
 </html>

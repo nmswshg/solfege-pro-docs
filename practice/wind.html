@@ -8,6 +8,9 @@
     <meta name="description" content="ピッチ精度、初見力 — 管弦楽器奏者の課題を解決する練習メニュー">
 
     <link rel="canonical" href="https://nmswshg.github.io/solfege-pro-docs/practice/wind.html">
+    <link rel="alternate" hreflang="ja" href="https://nmswshg.github.io/solfege-pro-docs/practice/wind.html?lang=ja">
+    <link rel="alternate" hreflang="en" href="https://nmswshg.github.io/solfege-pro-docs/practice/wind.html?lang=en">
+    <link rel="alternate" hreflang="x-default" href="https://nmswshg.github.io/solfege-pro-docs/practice/wind.html">
     <link rel="icon" href="../AppIcon.png" type="image/png">
     <link rel="apple-touch-icon" href="../AppIcon.png">
 
@@ -27,95 +30,11 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
 
-    <link rel="stylesheet" href="../style.css?v=4">
+    <link rel="stylesheet" href="../style.css?v=13">
 
     <style>
-        .practice-nav {
-            background: rgba(42, 42, 48, 0.95);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            padding: var(--space-md) var(--space-lg);
-            position: fixed;
-            top: 0; left: 0; right: 0;
-            z-index: 1000;
-            border-bottom: 1px solid var(--surface-light);
-            height: var(--nav-height);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        .practice-nav__container {
-            display: flex;
-            align-items: center;
-            gap: var(--space-lg);
-            max-width: 900px;
-            width: 100%;
-        }
-        .practice-nav__back {
-            color: var(--text-secondary);
-            text-decoration: none;
-            font-size: 14px;
-            display: flex;
-            align-items: center;
-            gap: var(--space-xs);
-            transition: color 0.2s ease;
-            white-space: nowrap;
-        }
-        .practice-nav__back:hover { color: var(--primary); }
-        .practice-nav__logo {
-            display: flex;
-            align-items: center;
-            gap: var(--space-sm);
-            text-decoration: none;
-            margin-left: auto;
-        }
-        .practice-nav__logo-icon {
-            width: 28px; height: 28px; border-radius: 6px;
-        }
-        .practice-nav__logo-text {
-            font-size: 13px;
-            font-weight: 700;
-            color: var(--primary);
-            letter-spacing: 0.5px;
-        }
-        .practice-header {
-            padding: var(--space-3xl) var(--space-lg);
-            padding-top: calc(var(--nav-height) + var(--space-3xl));
-            max-width: 900px;
-            margin: 0 auto;
-            text-align: center;
-        }
-        .practice-header__icon { font-size: 48px; margin-bottom: var(--space-md); }
-        .practice-header__title {
-            font-size: 28px; font-weight: 700;
-            margin-bottom: var(--space-md);
-            background: linear-gradient(135deg, var(--primary), var(--accent));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-        .practice-header__subtitle {
-            font-size: 15px;
-            color: var(--text-secondary);
-            max-width: 600px;
-            margin: 0 auto;
-        }
-        .practice-header__meta {
-            margin-top: var(--space-md);
-            font-size: 13px;
-            color: var(--text-secondary);
-        }
-        .practice-header__badge {
-            display: inline-block;
-            background: rgba(212, 175, 55, 0.15);
-            color: var(--primary);
-            padding: 2px 10px;
-            border-radius: var(--radius-sm);
-            font-size: 12px;
-            font-weight: 500;
-        }
         .practice-body {
-            max-width: 900px;
+            max-width: 1100px;
             margin: 0 auto;
             padding: 0 var(--space-lg) var(--space-2xl);
         }
@@ -137,51 +56,72 @@
             text-decoration: none;
         }
         @media (max-width: 768px) {
-            .practice-nav { padding: var(--space-sm) var(--space-md); }
-            .practice-nav__back { font-size: 13px; }
-            .practice-header {
-                padding: var(--space-xl) var(--space-md);
-                padding-top: calc(var(--nav-height) + var(--space-xl));
-            }
-            .practice-header__icon { font-size: 36px; }
-            .practice-header__title { font-size: 22px; }
             .practice-body { padding: 0 var(--space-md) var(--space-xl); }
         }
         @media (max-width: 480px) {
-            .practice-header__title { font-size: 19px; }
         }
     </style>
 </head>
 <body>
-    <nav class="practice-nav">
-        <div class="practice-nav__container">
-            <a href="../" class="practice-nav__back">&larr; <span lang="ja">練習ガイド</span><span lang="en">Practice Guide</span></a>
-            <a href="../" class="practice-nav__logo">
-                <img src="../AppIcon.png" alt="Solfege PRO" class="practice-nav__logo-icon">
-                <span class="practice-nav__logo-text"><span lang="ja">ソルフェージュPRO</span><span lang="en">Solfege PRO</span></span>
+    <nav class="nav">
+        <div class="nav__container">
+            <a href="../" class="nav__logo">
+                <img src="../AppIcon.png" alt="Solfege PRO" class="nav__logo-icon">
+                <span class="nav__logo-text"><span lang="ja">ソルフェージュPRO</span><span lang="en">Solfege PRO</span></span>
             </a>
-            <button class="settings-btn" id="lang-toggle" title="Toggle language">
-                <span id="lang-text">EN</span>
-            </button>
+            <ul class="nav__list">
+                <li><a href="../" class="nav__link active"><span lang="ja">練習ガイド</span><span lang="en">Practice Guide</span></a></li>
+                <li><a href="../guides/" class="nav__link"><span lang="ja">ガイド一覧</span><span lang="en">Guides</span></a></li>
+                            <li><a href="../start-here.html" class="nav__link"><span lang="ja">どこから始める？</span><span lang="en">Where to Start?</span></a></li>
+            </ul>
+            <div class="nav__settings">
+                <button class="settings-btn" id="lang-toggle" title="Toggle language">
+                    <span id="lang-text">EN</span>
+                </button>
+                <button class="hamburger-btn" id="hamburger-btn" aria-label="Menu" aria-expanded="false" aria-controls="drawer">
+                    <span class="hamburger-btn__line"></span>
+                    <span class="hamburger-btn__line"></span>
+                    <span class="hamburger-btn__line"></span>
+                </button>
+            </div>
         </div>
     </nav>
+        <!-- Mobile drawer (hidden on desktop) -->
+        <div class="drawer-overlay" id="drawer-overlay"></div>
+        <aside class="drawer" id="drawer" aria-label="Mobile menu">
+            <div class="drawer__header">
+                <span class="drawer__title"><span lang="ja">メニュー</span><span lang="en">Menu</span></span>
+                <button class="drawer__close" id="drawer-close" aria-label="Close menu">×</button>
+            </div>
+            <ul class="drawer__list">
+                    <li><a href="../" class="drawer__link active"><span lang="ja">練習ガイド</span><span lang="en">Practice Guide</span></a></li>
+                    <li><a href="../guides/" class="drawer__link"><span lang="ja">ガイド一覧</span><span lang="en">Guides</span></a></li>
+                    <li><a href="../start-here.html" class="drawer__link"><span lang="ja">どこから始める？</span><span lang="en">Where to Start?</span></a></li>
+            </ul>
+        </aside>
 
-    <header class="practice-header">
-        <div class="practice-header__icon">🎺</div>
-        <h1 class="practice-header__title"><span lang="ja">管弦楽器 練習ガイド</span><span lang="en">Wind & Strings Practice Guide</span></h1>
-        <p class="practice-header__subtitle"><span lang="ja">ピッチ精度、初見力 — 管弦楽器奏者の課題を解決する練習メニュー</span><span lang="en">Pitch accuracy, sight-reading — practice menus for wind and string players</span></p>
-        <div class="practice-header__meta">
-            <span class="practice-header__badge">2 Q&amp;A</span>
+
+    <header class="page-header">
+        <div class="page-header__icon"><svg class="icon" aria-hidden="true"><use href="../assets/icons.svg#icon-music-generic"></use></svg></div>
+        <h1 class="page-header__title"><span lang="ja">管弦楽器 練習ガイド</span><span lang="en">Wind & Strings Practice Guide</span></h1>
+        <p class="page-header__subtitle"><span lang="ja">ピッチ精度、初見力 — 管弦楽器奏者の課題を解決する練習メニュー</span><span lang="en">Pitch accuracy, sight-reading — practice menus for wind and string players</span></p>
+        <div class="page-header__meta">
+            <span class="page-header__badge">2 Q&amp;A</span>
         </div>
     </header>
 
     <main class="practice-body">
             <div class="section__header">
-                <span class="section__icon">🎺</span>
+                <span class="section__icon"><svg class="icon" aria-hidden="true"><use href="../assets/icons.svg#icon-music-generic"></use></svg></span>
                 <h2 class="section__title"><span lang="ja">管楽器・弦楽器</span><span lang="en">Wind & String Instruments</span></h2>
                 <div class="section__header-actions">
                     <button class="expand-all-btn"><span lang="ja">すべて開く</span><span lang="en">Expand All</span></button>
                 </div>
+            </div>
+
+            <div class="article-note" style="margin-bottom: var(--space-lg);">
+                <div class="article-note__title"><span lang="ja">対象スコープ</span><span lang="en">Scope</span></div>
+                <p><span lang="ja">本ページは管楽器（フルート、サックス、トランペット、クラリネットなど）と擦弦楽器（バイオリン、ビオラ、チェロ、コントラバス）に共通する課題を扱います。下記 Q1（純正律と平均律）と Q2（譜読み）はどちらの楽器群にも適用できます。<strong>弦楽器特有の補足</strong>は各 Q 内のコールアウトで明示します。</span><span lang="en">This page covers issues common to wind instruments (flute, saxophone, trumpet, clarinet, etc.) and bowed strings (violin, viola, cello, double bass). Q1 (just intonation vs. equal temperament) and Q2 (sight reading) apply to both. <strong>String-specific notes</strong> appear in callouts within each Q.</span></p>
             </div>
 
             <!-- Section TOC -->
@@ -232,6 +172,10 @@
                                 <p><span lang="ja"><strong>人間の聴覚は約5セントの差を認識できる</strong>。14セントの差は「明らかに響きが悪い」レベル。この「微調整」が聴こえるかどうかがアンサンブルの質を決める。</span><span lang="en"><strong>Human hearing can perceive differences of about 5 cents</strong>. A 14-cent difference is at the level of "clearly sounds bad." Whether you can hear this "fine adjustment" determines ensemble quality.</span></p>
                             </div>
                         </div>
+                        <div class="article-note" style="margin-top: var(--space-md);">
+                            <div class="article-note__title">🎻 <span lang="ja">弦楽器特有の補足</span><span lang="en">String-Specific Note</span></div>
+                            <p><span lang="ja">弦楽器は固定運指がない分、<strong>純正律方向への微調整がしやすい</strong>のが利点（管楽器より自由度が高い）。一方で、開放弦は強制的に平均律で固定されるため、開放弦と運指音の混在で和音内のピッチが揃わなくなる場面がある。アンサンブルでは「開放弦を避けて運指で取り直す」判断が重要。</span><span lang="en">Strings can adjust toward just intonation more flexibly than winds (no fixed fingerings). However, open strings are locked at equal temperament — mixing open strings with stopped notes inside a chord can break ensemble pitch alignment. Skilled string players choose to refinger rather than use the open string when intonation matters.</span></p>
+                        </div>
                     </div>
 
                     <div class="content-block">
@@ -257,6 +201,16 @@
                     </div>
                 </div>
             </article>
+
+            <!-- Mid-article CTA -->
+            <div class="article-cta-mid">
+                <div class="article-cta-mid__icon"><svg class="icon" aria-hidden="true"><use href="../assets/icons.svg#icon-music-generic"></use></svg></div>
+                <div class="article-cta-mid__body">
+                    <div class="article-cta-mid__title"><span lang="ja">「耳で合わせる」を体系化</span><span lang="en">Train ensemble pitch by ear</span></div>
+                    <div class="article-cta-mid__text"><span lang="ja">Interval / Chord Recognition で純正律方向の微調整を聴き分ける訓練。チューナーに頼らない耳を作ります。</span><span lang="en">Train your ear to hear just-intonation adjustments without relying on a tuner.</span></div>
+                </div>
+                <a href="https://apps.apple.com/app/id6756626617" class="article-cta-mid__button"><span lang="ja">アプリで試す</span><span lang="en">Try it</span></a>
+            </div>
 
             <!-- Q2: 初見で止まる -->
             <article class="question-card" id="wind-q2">
@@ -301,6 +255,10 @@
                                 <p><span lang="ja">「ド-ミ-ソ」という3音は「Cのアルペジオ」という1つのパターン。スケールの上行・下行も1つのパターン。パターン認識ができると、処理速度が劇的に上がる。</span><span lang="en">The three notes "C-E-G" are one pattern called "C arpeggio." Ascending and descending scales are also single patterns. When pattern recognition is achieved, processing speed increases dramatically.</span></p>
                             </div>
                         </div>
+                        <div class="article-note" style="margin-top: var(--space-md);">
+                            <div class="article-note__title">🎻 <span lang="ja">弦楽器特有の補足</span><span lang="en">String-Specific Note</span></div>
+                            <p><span lang="ja">ビオラとチェロは <strong>ハ音記号（C clef）</strong>を使用するため、ト音記号・ヘ音記号に慣れた譜読み回路を新たに作る必要がある。チェロは高音域でト音記号も併用、コントラバスは記譜が実音より 1 オクターブ高い。本機能の Sight Reading（音名特定）は記号別に練習できるので、まずビオラ奏者ならアルト記号、チェロ奏者ならテノール記号から固める運用が有効。</span><span lang="en">Viola and cello use the <strong>C clef</strong>, so reading circuits must be built fresh in addition to the treble/bass clef. Cellists also read treble in upper register; double bass is notated an octave above sounding pitch. Solfege PRO's Sight Reading lets you practice each clef separately — alto clef for violists, tenor clef for cellists.</span></p>
+                        </div>
                     </div>
                 </div>
             </article>
@@ -323,6 +281,17 @@
         </p>
     </footer>
 
+    <!-- Sticky bottom CTA (mobile) -->
+    <div class="sticky-cta">
+        <img class="sticky-cta__icon" src="../AppIcon.png" alt="Solfege PRO">
+        <div class="sticky-cta__text">
+            <strong><span lang="ja">耳でピッチを取る訓練</span><span lang="en">Train your ensemble ear</span></strong>
+            <span lang="ja">純正律方向の微調整・記号別の音名特定</span><span lang="en">Just-intonation ear &amp; per-clef reading</span>
+        </div>
+        <a href="https://apps.apple.com/app/id6756626617" class="sticky-cta__button"><span lang="ja">入手</span><span lang="en">Get</span></a>
+    </div>
+
     <script src="practice.js"></script>
+    <script src="../drawer.js?v=1" defer></script>
 </body>
 </html>

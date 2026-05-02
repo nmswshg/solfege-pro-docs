@@ -9,6 +9,9 @@
 
     <!-- Canonical -->
     <link rel="canonical" href="https://nmswshg.github.io/solfege-pro-docs/guides/ear-training-progressions.html">
+    <link rel="alternate" hreflang="ja" href="https://nmswshg.github.io/solfege-pro-docs/guides/ear-training-progressions.html?lang=ja">
+    <link rel="alternate" hreflang="en" href="https://nmswshg.github.io/solfege-pro-docs/guides/ear-training-progressions.html?lang=en">
+    <link rel="alternate" hreflang="x-default" href="https://nmswshg.github.io/solfege-pro-docs/guides/ear-training-progressions.html">
 
     <!-- OGP -->
     <meta property="og:title" content="コード進行を聴き取る力とは何か — 和声の流れを理解する">
@@ -36,8 +39,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
 
     <!-- Stylesheets -->
-    <link rel="stylesheet" href="../style.css?v=3">
-    <link rel="stylesheet" href="article.css?v=2">
+    <link rel="stylesheet" href="../style.css?v=13">
+    <link rel="stylesheet" href="article.css?v=8">
 
     <style>
         /* Harmonic Function Cycle */
@@ -148,30 +151,55 @@
 </head>
 <body>
     <!-- Navigation -->
-    <nav class="article-nav">
-        <div class="article-nav__container">
-            <a href="../" class="article-nav__back">&larr; <span lang="ja">練習ガイド</span><span lang="en">Practice Guide</span></a>
-            <a href="../" class="article-nav__logo">
-                <img src="../AppIcon.png" alt="Solfege PRO" class="article-nav__logo-icon">
-                <span class="article-nav__logo-text"><span lang="ja">ソルフェージュPRO</span><span lang="en">Solfege PRO</span></span>
+    <nav class="nav">
+        <div class="nav__container">
+            <a href="../" class="nav__logo">
+                <img src="../AppIcon.png" alt="Solfege PRO" class="nav__logo-icon">
+                <span class="nav__logo-text"><span lang="ja">ソルフェージュPRO</span><span lang="en">Solfege PRO</span></span>
             </a>
-            <button class="settings-btn" id="lang-toggle" title="Toggle language">
-                <span id="lang-text">EN</span>
-            </button>
+            <ul class="nav__list">
+                <li><a href="../" class="nav__link"><span lang="ja">練習ガイド</span><span lang="en">Practice Guide</span></a></li>
+                <li><a href="./" class="nav__link active"><span lang="ja">ガイド一覧</span><span lang="en">Guides</span></a></li>
+                            <li><a href="../start-here.html" class="nav__link"><span lang="ja">どこから始める？</span><span lang="en">Where to Start?</span></a></li>
+            </ul>
+            <div class="nav__settings">
+                <button class="settings-btn" id="lang-toggle" title="Toggle language">
+                    <span id="lang-text">EN</span>
+                </button>
+                <button class="hamburger-btn" id="hamburger-btn" aria-label="Menu" aria-expanded="false" aria-controls="drawer">
+                    <span class="hamburger-btn__line"></span>
+                    <span class="hamburger-btn__line"></span>
+                    <span class="hamburger-btn__line"></span>
+                </button>
+            </div>
         </div>
     </nav>
+        <!-- Mobile drawer (hidden on desktop) -->
+        <div class="drawer-overlay" id="drawer-overlay"></div>
+        <aside class="drawer" id="drawer" aria-label="Mobile menu">
+            <div class="drawer__header">
+                <span class="drawer__title"><span lang="ja">メニュー</span><span lang="en">Menu</span></span>
+                <button class="drawer__close" id="drawer-close" aria-label="Close menu">×</button>
+            </div>
+            <ul class="drawer__list">
+                    <li><a href="../" class="drawer__link"><span lang="ja">練習ガイド</span><span lang="en">Practice Guide</span></a></li>
+                    <li><a href="./" class="drawer__link active"><span lang="ja">ガイド一覧</span><span lang="en">Guides</span></a></li>
+                    <li><a href="../start-here.html" class="drawer__link"><span lang="ja">どこから始める？</span><span lang="en">Where to Start?</span></a></li>
+            </ul>
+        </aside>
+
 
     <!-- Article Header -->
-    <header class="article-header">
-        <div class="article-header__meta">
-            <span class="article-header__tag">Progression Training</span>
+    <header class="page-header">
+        <div class="page-header__meta">
+            <span class="page-header__tag">Progression Training</span>
             <span><span lang="ja">読了: 約8分</span><span lang="en">8 min read</span></span>
         </div>
-        <h1 class="article-header__title">
+        <h1 class="page-header__title">
             <span lang="ja">コード進行を聴き取る力とは何か<br>和声の流れを理解する</span>
             <span lang="en">What Is Progression Training?<br>Understanding Harmonic Movement</span>
         </h1>
-        <p class="article-header__lead">
+        <p class="page-header__subtitle">
             <span lang="ja">コードを1つずつ聴き分けることと、進行の「流れ」を聴き取ることは別のスキルです。和声の動きを耳で追う力を、機能和声の考え方から段階的に鍛える方法を解説します。</span>
             <span lang="en">Identifying individual chords and hearing the "flow" of a progression are different skills. Learn how to train your ear to follow harmonic movement, starting from the functional harmony framework.</span>
         </p>
@@ -415,6 +443,9 @@
             <p>
                 <strong><span lang="ja">進行上のアドリブ演奏</span><span lang="en">Improvisation over changes</span></strong><span lang="ja"> — コード進行を聴き取ることと、その進行の上で即興演奏することは別のスキルです。アプリは認識の訓練であり、演奏の訓練ではありません。</span><span lang="en"> — Hearing a progression and improvising over it are different skills. The app trains recognition, not performance.</span>
             </p>
+            <p>
+                <strong><span lang="ja">ベースライン主導 / 度数歌唱（movable-do）での聴取</span><span lang="en">Bass-line-driven listening &amp; movable-do scale-degree singing</span></strong><span lang="ja"> — Karpinski（<em>Manual for Ear Training and Sight Singing</em>）や Edlund（<em>Modus Novus</em>）の伝統では、進行を聴くときに(1)ベースラインの動きを度数で歌い、(2)各和音を I, ii, IV, V のローマ数字で内的にラベルする、というアプローチが標準です。本機能はコード全体の機能（T / SD / D）を選択肢から選ぶ形式で、movable-do 歌唱や独立したベースライン聴取の訓練までは含みません。アプリの聴取と並行して、紙とピアノ（あるいは声）で度数歌唱を行うと、機能感覚の内面化が早まります。</span><span lang="en"> — In the Karpinski (<em>Manual for Ear Training and Sight Singing</em>) / Edlund (<em>Modus Novus</em>) tradition, progressions are heard by (1) singing the bass-line as scale degrees and (2) internally labeling each chord with Roman numerals (I, ii, IV, V). Solfege PRO's Progression Training presents chord function (T / SD / D) as multiple choice and does not include movable-do singing or isolated bass-line drills. Pair the app's listening practice with sung scale-degree exercises (using paper and piano or voice) to internalize functional hearing faster.</span>
+            </p>
         </div>
 
         <p>
@@ -473,7 +504,10 @@
             <span lang="ja">コード進行の聴き取りは、和声の「流れ」を感じ取る力です。<br>個別のコードではなく、コード同士の関係性を聴く。それが、音楽の構造を耳で理解する第一歩です。<br>ソルフェージュPROの Progression Training で、まず2コードの進行から始めてみてください。</span>
             <span lang="en">Progression recognition is the ability to feel the "flow" of harmony.<br>Listen not to individual chords, but to their relationships. That's the first step to understanding musical structure by ear.<br>Start with 2-chord progressions in Solfege PRO's Progression Training.</span>
         </p>
-        <a href="https://apps.apple.com/app/id6756626617" class="article-cta__button"><span lang="ja">App Storeでダウンロード</span><span lang="en">Download on App Store</span></a>
+        <a href="https://apps.apple.com/app/id6756626617" class="app-store-link" aria-label="Download on the App Store">
+            <span lang="ja"><img class="app-store-link__img" src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/ja-jp" alt="App Storeで入手"></span>
+            <span lang="en"><img class="app-store-link__img" src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/en-us" alt="Download on the App Store"></span>
+        </a>
     </section>
 
     <!-- Related Content -->
@@ -506,7 +540,14 @@
     (function() {
         var langToggle = document.getElementById('lang-toggle');
         var langText = document.getElementById('lang-text');
-        var currentLang = localStorage.getItem('lang') || 'ja';
+        var urlLang = new URLSearchParams(window.location.search).get('lang');
+        var currentLang = (urlLang === 'ja' || urlLang === 'en') ? urlLang : (localStorage.getItem('lang') || 'ja');
+
+        function syncUrlLang(lang) {
+            var url = new URL(window.location.href);
+            url.searchParams.set('lang', lang);
+            history.replaceState(null, '', url.toString());
+        }
 
         function applyLanguage(lang) {
             document.documentElement.setAttribute('data-lang', lang); document.documentElement.lang = lang;
@@ -523,10 +564,13 @@
         document.querySelectorAll('a[href*="apps.apple.com"]').forEach(function(a){a.href='https://apps.apple.com/'+(currentLang==='ja'?'jp':'us')+'/app/id6756626617';});
 
         langToggle.addEventListener('click', function() {
-            applyLanguage(currentLang === 'ja' ? 'en' : 'ja');
+            var newLang = currentLang === 'ja' ? 'en' : 'ja';
+            applyLanguage(newLang);
+            syncUrlLang(newLang);
         });
     })();
     </script>
 
+    <script src="../drawer.js?v=1" defer></script>
 </body>
 </html>

@@ -9,6 +9,9 @@
 
     <!-- Canonical -->
     <link rel="canonical" href="https://nmswshg.github.io/solfege-pro-docs/guides/sight-reading.html">
+    <link rel="alternate" hreflang="ja" href="https://nmswshg.github.io/solfege-pro-docs/guides/sight-reading.html?lang=ja">
+    <link rel="alternate" hreflang="en" href="https://nmswshg.github.io/solfege-pro-docs/guides/sight-reading.html?lang=en">
+    <link rel="alternate" hreflang="x-default" href="https://nmswshg.github.io/solfege-pro-docs/guides/sight-reading.html">
 
     <!-- OGP -->
     <meta property="og:title" content="譜読みとは何か — 五線譜を素早く読むための基礎と練習法">
@@ -36,8 +39,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
 
     <!-- Stylesheets -->
-    <link rel="stylesheet" href="../style.css?v=3">
-    <link rel="stylesheet" href="article.css?v=2">
+    <link rel="stylesheet" href="../style.css?v=13">
+    <link rel="stylesheet" href="article.css?v=8">
 
     <!-- Staff diagram styles -->
     <style>
@@ -267,30 +270,55 @@
 </head>
 <body>
     <!-- Navigation -->
-    <nav class="article-nav">
-        <div class="article-nav__container">
-            <a href="../" class="article-nav__back">&larr; <span lang="ja">練習ガイド</span><span lang="en">Practice Guide</span></a>
-            <a href="../" class="article-nav__logo">
-                <img src="../AppIcon.png" alt="Solfege PRO" class="article-nav__logo-icon">
-                <span class="article-nav__logo-text"><span lang="ja">ソルフェージュPRO</span><span lang="en">Solfege PRO</span></span>
+    <nav class="nav">
+        <div class="nav__container">
+            <a href="../" class="nav__logo">
+                <img src="../AppIcon.png" alt="Solfege PRO" class="nav__logo-icon">
+                <span class="nav__logo-text"><span lang="ja">ソルフェージュPRO</span><span lang="en">Solfege PRO</span></span>
             </a>
-            <button class="settings-btn" id="lang-toggle" title="Toggle language">
-                <span id="lang-text">EN</span>
-            </button>
+            <ul class="nav__list">
+                <li><a href="../" class="nav__link"><span lang="ja">練習ガイド</span><span lang="en">Practice Guide</span></a></li>
+                <li><a href="./" class="nav__link active"><span lang="ja">ガイド一覧</span><span lang="en">Guides</span></a></li>
+                            <li><a href="../start-here.html" class="nav__link"><span lang="ja">どこから始める？</span><span lang="en">Where to Start?</span></a></li>
+            </ul>
+            <div class="nav__settings">
+                <button class="settings-btn" id="lang-toggle" title="Toggle language">
+                    <span id="lang-text">EN</span>
+                </button>
+                <button class="hamburger-btn" id="hamburger-btn" aria-label="Menu" aria-expanded="false" aria-controls="drawer">
+                    <span class="hamburger-btn__line"></span>
+                    <span class="hamburger-btn__line"></span>
+                    <span class="hamburger-btn__line"></span>
+                </button>
+            </div>
         </div>
     </nav>
+        <!-- Mobile drawer (hidden on desktop) -->
+        <div class="drawer-overlay" id="drawer-overlay"></div>
+        <aside class="drawer" id="drawer" aria-label="Mobile menu">
+            <div class="drawer__header">
+                <span class="drawer__title"><span lang="ja">メニュー</span><span lang="en">Menu</span></span>
+                <button class="drawer__close" id="drawer-close" aria-label="Close menu">×</button>
+            </div>
+            <ul class="drawer__list">
+                    <li><a href="../" class="drawer__link"><span lang="ja">練習ガイド</span><span lang="en">Practice Guide</span></a></li>
+                    <li><a href="./" class="drawer__link active"><span lang="ja">ガイド一覧</span><span lang="en">Guides</span></a></li>
+                    <li><a href="../start-here.html" class="drawer__link"><span lang="ja">どこから始める？</span><span lang="en">Where to Start?</span></a></li>
+            </ul>
+        </aside>
+
 
     <!-- Article Header -->
-    <header class="article-header">
-        <div class="article-header__meta">
-            <span class="article-header__tag">Sight Reading</span>
+    <header class="page-header">
+        <div class="page-header__meta">
+            <span class="page-header__tag">Sight Reading</span>
             <span><span lang="ja">読了: 約10分</span><span lang="en">10 min read</span></span>
         </div>
-        <h1 class="article-header__title">
+        <h1 class="page-header__title">
             <span lang="ja">譜読みとは何か<br>五線譜を素早く読むための<br>基礎と練習法</span>
             <span lang="en">What Is Sight Reading?<br>Foundations and Practice for<br>Reading Music Notation</span>
         </h1>
-        <p class="article-header__lead">
+        <p class="page-header__subtitle">
             <span lang="ja">「譜読みが苦手」で止まらない。五線譜のどこでつまずいているかを知ることが、読譜力を伸ばす第一歩です。</span>
             <span lang="en">Don't stop at "I'm bad at reading music." Knowing exactly where you stumble on the staff is the first step to improving your notation literacy.</span>
         </p>
@@ -303,8 +331,8 @@
         <h2 id="what-is-sight-reading"><span lang="ja">"譜読み"とは何か</span><span lang="en">What Is "Sight Reading"?</span></h2>
 
         <p>
-            <span lang="ja">譜読み（Sight Reading）とは、五線譜に書かれた音符を見て、その音名をすばやく正確に読み取るスキルです。楽器を演奏する人にとって、楽譜を読むことは音楽の「文字を読む」ことに等しい基礎能力です。</span>
-            <span lang="en">Sight reading is the skill of looking at notes written on a musical staff and quickly, accurately identifying their pitch names. For anyone who plays an instrument, reading sheet music is the fundamental literacy of music — equivalent to reading words in a language.</span>
+            <span lang="ja">譜読み（Sight Reading）は本来、楽譜を見ながらリアルタイムで演奏する能力までを含む幅広いスキルですが（Lehmann &amp; Ericsson, 1996）、その<strong>基盤レイヤー</strong>が「五線譜上の位置から音名をすばやく正確に特定する」能力です。本記事と Solfege PRO の Sight Reading 機能は、この基盤レイヤー（音名特定）に焦点を当てます。実演を伴う本来の sight reading は、これに楽器運動・運指・先読み（look-ahead）などが統合される過程です。</span>
+            <span lang="en">Sight reading, in its full sense, refers to performing from notation in real time (Lehmann &amp; Ericsson, 1996). Its <strong>foundational layer</strong>, however, is the rapid identification of pitch names from staff positions — and that is what this article and Solfege PRO's Sight Reading feature focus on. True performance-based sight reading additionally integrates motor execution, fingering, and look-ahead reading.</span>
         </p>
 
         <p>
@@ -449,48 +477,60 @@
 
         <!-- Landmark Notes Visual -->
         <div class="landmark-diagram">
-            <div class="landmark-diagram__title"><span lang="ja">ランドマークノート — まずこの3つを覚える</span><span lang="en">Landmark Notes — Start with These Three</span></div>
+            <div class="landmark-diagram__title"><span lang="ja">ランドマークノート — まずこの5つを覚える</span><span lang="en">Landmark Notes — Start with These Five</span></div>
             <div class="landmark-container">
                 <!-- Treble Staff -->
                 <div style="position:absolute;top:0;left:0;right:0;height:110px;">
-                    <div style="position:absolute;left:10%;top:8px;font-size:11px;color:var(--text-secondary);font-weight:500;"><span lang="ja">ト音記号</span><span lang="en">Treble Clef</span></div>
+                    <div style="position:absolute;left:5%;top:8px;font-size:11px;color:var(--text-secondary);font-weight:500;"><span lang="ja">ト音記号</span><span lang="en">Treble Clef</span></div>
                     <div class="staff-line" style="top:20px"></div>
                     <div class="staff-line" style="top:32px"></div>
                     <div class="staff-line" style="top:44px"></div>
                     <div class="staff-line" style="top:56px"></div>
                     <div class="staff-line" style="top:68px"></div>
+                    <!-- Middle C (ledger line below) -->
+                    <div class="ledger-line" style="left:25%;top:80px"></div>
+                    <div class="staff-note" style="left:25%;top:80px"></div>
+                    <div style="position:absolute;left:25%;top:92px;transform:translateX(-50%);text-align:center;">
+                        <div style="font-size:13px;font-weight:700;color:var(--primary);">C4</div>
+                        <div style="font-size:10px;color:var(--text-secondary);"><span lang="ja">中央ド（加線）</span><span lang="en">Middle C (ledger)</span></div>
+                    </div>
                     <!-- G on 2nd line -->
-                    <div class="staff-note" style="left:50%;top:56px"></div>
-                    <div style="position:absolute;left:50%;top:78px;transform:translateX(-50%);text-align:center;">
+                    <div class="staff-note" style="left:55%;top:56px"></div>
+                    <div style="position:absolute;left:55%;top:78px;transform:translateX(-50%);text-align:center;">
                         <div style="font-size:13px;font-weight:700;color:var(--primary);">G4</div>
                         <div style="font-size:10px;color:var(--text-secondary);"><span lang="ja">第2線</span><span lang="en">2nd line</span></div>
                     </div>
-                    <!-- Middle C (ledger line below) -->
-                    <div class="ledger-line" style="left:30%;top:80px"></div>
-                    <div class="staff-note" style="left:30%;top:80px"></div>
-                    <div style="position:absolute;left:30%;top:92px;transform:translateX(-50%);text-align:center;">
-                        <div style="font-size:13px;font-weight:700;color:var(--primary);">C4</div>
-                        <div style="font-size:10px;color:var(--text-secondary);"><span lang="ja">中央ド（加線）</span><span lang="en">Middle C (ledger)</span></div>
+                    <!-- F on top (5th) line -->
+                    <div class="staff-note" style="left:85%;top:20px"></div>
+                    <div style="position:absolute;left:85%;top:78px;transform:translateX(-50%);text-align:center;">
+                        <div style="font-size:13px;font-weight:700;color:var(--primary);">F5</div>
+                        <div style="font-size:10px;color:var(--text-secondary);"><span lang="ja">第5線（最上線）</span><span lang="en">Top line</span></div>
                     </div>
                 </div>
                 <!-- Bass Staff -->
                 <div style="position:absolute;top:130px;left:0;right:0;height:110px;">
-                    <div style="position:absolute;left:10%;top:8px;font-size:11px;color:var(--text-secondary);font-weight:500;"><span lang="ja">ヘ音記号</span><span lang="en">Bass Clef</span></div>
+                    <div style="position:absolute;left:5%;top:8px;font-size:11px;color:var(--text-secondary);font-weight:500;"><span lang="ja">ヘ音記号</span><span lang="en">Bass Clef</span></div>
                     <div class="staff-line" style="top:20px"></div>
                     <div class="staff-line" style="top:32px"></div>
                     <div class="staff-line" style="top:44px"></div>
                     <div class="staff-line" style="top:56px"></div>
                     <div class="staff-line" style="top:68px"></div>
+                    <!-- G on bottom (1st) line -->
+                    <div class="staff-note" style="left:25%;top:68px"></div>
+                    <div style="position:absolute;left:25%;top:78px;transform:translateX(-50%);text-align:center;">
+                        <div style="font-size:13px;font-weight:700;color:var(--primary);">G2</div>
+                        <div style="font-size:10px;color:var(--text-secondary);"><span lang="ja">第1線（最下線）</span><span lang="en">Bottom line</span></div>
+                    </div>
                     <!-- F on 4th line -->
-                    <div class="staff-note" style="left:50%;top:32px"></div>
-                    <div style="position:absolute;left:50%;top:78px;transform:translateX(-50%);text-align:center;">
+                    <div class="staff-note" style="left:55%;top:32px"></div>
+                    <div style="position:absolute;left:55%;top:78px;transform:translateX(-50%);text-align:center;">
                         <div style="font-size:13px;font-weight:700;color:var(--primary);">F3</div>
                         <div style="font-size:10px;color:var(--text-secondary);"><span lang="ja">第4線</span><span lang="en">4th line</span></div>
                     </div>
                     <!-- Middle C (ledger line above) -->
-                    <div class="ledger-line" style="left:70%;top:8px"></div>
-                    <div class="staff-note" style="left:70%;top:8px"></div>
-                    <div style="position:absolute;left:70%;top:78px;transform:translateX(-50%);text-align:center;">
+                    <div class="ledger-line" style="left:85%;top:8px"></div>
+                    <div class="staff-note" style="left:85%;top:8px"></div>
+                    <div style="position:absolute;left:85%;top:78px;transform:translateX(-50%);text-align:center;">
                         <div style="font-size:13px;font-weight:700;color:var(--primary);">C4</div>
                         <div style="font-size:10px;color:var(--text-secondary);"><span lang="ja">中央ド（加線）</span><span lang="en">Middle C (ledger)</span></div>
                     </div>
@@ -671,7 +711,10 @@
             <span lang="ja">譜読みは、漠然と「できる」「できない」で片付けるものではありません。<br>どの音部記号で、どの音域で、どの調で迷うのか。分解して弱点を知ること。<br>それが、楽譜がスムーズに読めるようになる第一歩です。<br>ソルフェージュPROの Sight Reading で、まず自分の読譜力を測ってみてください。</span>
             <span lang="en">Sight reading isn't something you simply "can" or "can't" do.<br>Which clef, which range, which key trips you up? Break it down and find your weak spots.<br>That's the first step to reading music fluently.<br>Try checking your reading ability with Solfege PRO's Sight Reading.</span>
         </p>
-        <a href="https://apps.apple.com/app/id6756626617" class="article-cta__button"><span lang="ja">App Storeでダウンロード</span><span lang="en">Download on App Store</span></a>
+        <a href="https://apps.apple.com/app/id6756626617" class="app-store-link" aria-label="Download on the App Store">
+            <span lang="ja"><img class="app-store-link__img" src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/ja-jp" alt="App Storeで入手"></span>
+            <span lang="en"><img class="app-store-link__img" src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/en-us" alt="Download on the App Store"></span>
+        </a>
     </section>
 
     <!-- Related Content -->
@@ -708,7 +751,14 @@
     (function() {
         var langToggle = document.getElementById('lang-toggle');
         var langText = document.getElementById('lang-text');
-        var currentLang = localStorage.getItem('lang') || 'ja';
+        var urlLang = new URLSearchParams(window.location.search).get('lang');
+        var currentLang = (urlLang === 'ja' || urlLang === 'en') ? urlLang : (localStorage.getItem('lang') || 'ja');
+
+        function syncUrlLang(lang) {
+            var url = new URL(window.location.href);
+            url.searchParams.set('lang', lang);
+            history.replaceState(null, '', url.toString());
+        }
 
         function applyLanguage(lang) {
             document.documentElement.setAttribute('data-lang', lang); document.documentElement.lang = lang;
@@ -726,10 +776,13 @@
         document.querySelectorAll('a[href*="apps.apple.com"]').forEach(function(a){a.href='https://apps.apple.com/'+(currentLang==='ja'?'jp':'us')+'/app/id6756626617';});
 
         langToggle.addEventListener('click', function() {
-            applyLanguage(currentLang === 'ja' ? 'en' : 'ja');
+            var newLang = currentLang === 'ja' ? 'en' : 'ja';
+            applyLanguage(newLang);
+            syncUrlLang(newLang);
         });
     })();
     </script>
 
+    <script src="../drawer.js?v=1" defer></script>
 </body>
 </html>

@@ -8,6 +8,9 @@
     <meta name="description" content="譜面依存、コード譜、ボイシング — ピアニストの課題を解決する練習メニュー">
 
     <link rel="canonical" href="https://nmswshg.github.io/solfege-pro-docs/practice/piano.html">
+    <link rel="alternate" hreflang="ja" href="https://nmswshg.github.io/solfege-pro-docs/practice/piano.html?lang=ja">
+    <link rel="alternate" hreflang="en" href="https://nmswshg.github.io/solfege-pro-docs/practice/piano.html?lang=en">
+    <link rel="alternate" hreflang="x-default" href="https://nmswshg.github.io/solfege-pro-docs/practice/piano.html">
     <link rel="icon" href="../AppIcon.png" type="image/png">
     <link rel="apple-touch-icon" href="../AppIcon.png">
 
@@ -27,95 +30,11 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
 
-    <link rel="stylesheet" href="../style.css?v=4">
+    <link rel="stylesheet" href="../style.css?v=13">
 
     <style>
-        .practice-nav {
-            background: rgba(42, 42, 48, 0.95);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            padding: var(--space-md) var(--space-lg);
-            position: fixed;
-            top: 0; left: 0; right: 0;
-            z-index: 1000;
-            border-bottom: 1px solid var(--surface-light);
-            height: var(--nav-height);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        .practice-nav__container {
-            display: flex;
-            align-items: center;
-            gap: var(--space-lg);
-            max-width: 900px;
-            width: 100%;
-        }
-        .practice-nav__back {
-            color: var(--text-secondary);
-            text-decoration: none;
-            font-size: 14px;
-            display: flex;
-            align-items: center;
-            gap: var(--space-xs);
-            transition: color 0.2s ease;
-            white-space: nowrap;
-        }
-        .practice-nav__back:hover { color: var(--primary); }
-        .practice-nav__logo {
-            display: flex;
-            align-items: center;
-            gap: var(--space-sm);
-            text-decoration: none;
-            margin-left: auto;
-        }
-        .practice-nav__logo-icon {
-            width: 28px; height: 28px; border-radius: 6px;
-        }
-        .practice-nav__logo-text {
-            font-size: 13px;
-            font-weight: 700;
-            color: var(--primary);
-            letter-spacing: 0.5px;
-        }
-        .practice-header {
-            padding: var(--space-3xl) var(--space-lg);
-            padding-top: calc(var(--nav-height) + var(--space-3xl));
-            max-width: 900px;
-            margin: 0 auto;
-            text-align: center;
-        }
-        .practice-header__icon { font-size: 48px; margin-bottom: var(--space-md); }
-        .practice-header__title {
-            font-size: 28px; font-weight: 700;
-            margin-bottom: var(--space-md);
-            background: linear-gradient(135deg, var(--primary), var(--accent));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-        .practice-header__subtitle {
-            font-size: 15px;
-            color: var(--text-secondary);
-            max-width: 600px;
-            margin: 0 auto;
-        }
-        .practice-header__meta {
-            margin-top: var(--space-md);
-            font-size: 13px;
-            color: var(--text-secondary);
-        }
-        .practice-header__badge {
-            display: inline-block;
-            background: rgba(212, 175, 55, 0.15);
-            color: var(--primary);
-            padding: 2px 10px;
-            border-radius: var(--radius-sm);
-            font-size: 12px;
-            font-weight: 500;
-        }
         .practice-body {
-            max-width: 900px;
+            max-width: 1100px;
             margin: 0 auto;
             padding: 0 var(--space-lg) var(--space-2xl);
         }
@@ -137,47 +56,63 @@
             text-decoration: none;
         }
         @media (max-width: 768px) {
-            .practice-nav { padding: var(--space-sm) var(--space-md); }
-            .practice-nav__back { font-size: 13px; }
-            .practice-header {
-                padding: var(--space-xl) var(--space-md);
-                padding-top: calc(var(--nav-height) + var(--space-xl));
-            }
-            .practice-header__icon { font-size: 36px; }
-            .practice-header__title { font-size: 22px; }
             .practice-body { padding: 0 var(--space-md) var(--space-xl); }
         }
         @media (max-width: 480px) {
-            .practice-header__title { font-size: 19px; }
         }
     </style>
 </head>
 <body>
-    <nav class="practice-nav">
-        <div class="practice-nav__container">
-            <a href="../" class="practice-nav__back">&larr; <span lang="ja">練習ガイド</span><span lang="en">Practice Guide</span></a>
-            <a href="../" class="practice-nav__logo">
-                <img src="../AppIcon.png" alt="Solfege PRO" class="practice-nav__logo-icon">
-                <span class="practice-nav__logo-text"><span lang="ja">ソルフェージュPRO</span><span lang="en">Solfege PRO</span></span>
+    <nav class="nav">
+        <div class="nav__container">
+            <a href="../" class="nav__logo">
+                <img src="../AppIcon.png" alt="Solfege PRO" class="nav__logo-icon">
+                <span class="nav__logo-text"><span lang="ja">ソルフェージュPRO</span><span lang="en">Solfege PRO</span></span>
             </a>
-            <button class="settings-btn" id="lang-toggle" title="Toggle language">
-                <span id="lang-text">EN</span>
-            </button>
+            <ul class="nav__list">
+                <li><a href="../" class="nav__link active"><span lang="ja">練習ガイド</span><span lang="en">Practice Guide</span></a></li>
+                <li><a href="../guides/" class="nav__link"><span lang="ja">ガイド一覧</span><span lang="en">Guides</span></a></li>
+                            <li><a href="../start-here.html" class="nav__link"><span lang="ja">どこから始める？</span><span lang="en">Where to Start?</span></a></li>
+            </ul>
+            <div class="nav__settings">
+                <button class="settings-btn" id="lang-toggle" title="Toggle language">
+                    <span id="lang-text">EN</span>
+                </button>
+                <button class="hamburger-btn" id="hamburger-btn" aria-label="Menu" aria-expanded="false" aria-controls="drawer">
+                    <span class="hamburger-btn__line"></span>
+                    <span class="hamburger-btn__line"></span>
+                    <span class="hamburger-btn__line"></span>
+                </button>
+            </div>
         </div>
     </nav>
+        <!-- Mobile drawer (hidden on desktop) -->
+        <div class="drawer-overlay" id="drawer-overlay"></div>
+        <aside class="drawer" id="drawer" aria-label="Mobile menu">
+            <div class="drawer__header">
+                <span class="drawer__title"><span lang="ja">メニュー</span><span lang="en">Menu</span></span>
+                <button class="drawer__close" id="drawer-close" aria-label="Close menu">×</button>
+            </div>
+            <ul class="drawer__list">
+                    <li><a href="../" class="drawer__link active"><span lang="ja">練習ガイド</span><span lang="en">Practice Guide</span></a></li>
+                    <li><a href="../guides/" class="drawer__link"><span lang="ja">ガイド一覧</span><span lang="en">Guides</span></a></li>
+                    <li><a href="../start-here.html" class="drawer__link"><span lang="ja">どこから始める？</span><span lang="en">Where to Start?</span></a></li>
+            </ul>
+        </aside>
 
-    <header class="practice-header">
-        <div class="practice-header__icon">🎹</div>
-        <h1 class="practice-header__title"><span lang="ja">ピアノ 練習ガイド</span><span lang="en">Piano Practice Guide</span></h1>
-        <p class="practice-header__subtitle"><span lang="ja">譜面依存、コード譜、ボイシング — ピアニストの課題を解決する練習メニュー</span><span lang="en">Sheet music dependency, chord charts, voicings — practice menus for pianists</span></p>
-        <div class="practice-header__meta">
-            <span class="practice-header__badge">3 Q&amp;A</span>
+
+    <header class="page-header">
+        <div class="page-header__icon"><svg class="icon" aria-hidden="true"><use href="../assets/icons.svg#icon-piano"></use></svg></div>
+        <h1 class="page-header__title"><span lang="ja">ピアノ 練習ガイド</span><span lang="en">Piano Practice Guide</span></h1>
+        <p class="page-header__subtitle"><span lang="ja">譜面依存、コード譜、ボイシング — ピアニストの課題を解決する練習メニュー</span><span lang="en">Sheet music dependency, chord charts, voicings — practice menus for pianists</span></p>
+        <div class="page-header__meta">
+            <span class="page-header__badge">3 Q&amp;A</span>
         </div>
     </header>
 
     <main class="practice-body">
             <div class="section__header">
-                <span class="section__icon">🎹</span>
+                <span class="section__icon"><svg class="icon" aria-hidden="true"><use href="../assets/icons.svg#icon-piano"></use></svg></span>
                 <h2 class="section__title"><span lang="ja">ピアノ・キーボード</span><span lang="en">Piano & Keyboard</span></h2>
                 <div class="section__header-actions">
                     <button class="expand-all-btn"><span lang="ja">すべて開く</span><span lang="en">Expand All</span></button>
@@ -258,6 +193,16 @@
                     </div>
                 </div>
             </article>
+
+            <!-- Mid-article CTA -->
+            <div class="article-cta-mid">
+                <div class="article-cta-mid__icon"><svg class="icon" aria-hidden="true"><use href="../assets/icons.svg#icon-piano"></use></svg></div>
+                <div class="article-cta-mid__body">
+                    <div class="article-cta-mid__title"><span lang="ja">耳と鍵盤を結ぶ訓練</span><span lang="en">Connect ear and keyboard</span></div>
+                    <div class="article-cta-mid__text"><span lang="ja">Interval / Chord Recognition で「聴いた音 → 鍵盤位置」の自動化を計測。</span><span lang="en">Measure the "heard pitch → key location" automaticity with Interval / Chord Recognition.</span></div>
+                </div>
+                <a href="https://apps.apple.com/app/id6756626617" class="article-cta-mid__button"><span lang="ja">アプリで試す</span><span lang="en">Try it</span></a>
+            </div>
 
             <!-- Q2: コード譜だけで弾けない / Don't know what to play with just chord charts -->
             <article class="question-card" id="piano-q2">
@@ -409,6 +354,17 @@
         </p>
     </footer>
 
+    <!-- Sticky bottom CTA (mobile) -->
+    <div class="sticky-cta">
+        <img class="sticky-cta__icon" src="../AppIcon.png" alt="Solfege PRO">
+        <div class="sticky-cta__text">
+            <strong><span lang="ja">譜面なしで弾ける耳に</span><span lang="en">Build a chart-free ear</span></strong>
+            <span lang="ja">音程・コード認識を体系的に</span><span lang="en">Interval &amp; chord training</span>
+        </div>
+        <a href="https://apps.apple.com/app/id6756626617" class="sticky-cta__button"><span lang="ja">入手</span><span lang="en">Get</span></a>
+    </div>
+
     <script src="practice.js"></script>
+    <script src="../drawer.js?v=1" defer></script>
 </body>
 </html>

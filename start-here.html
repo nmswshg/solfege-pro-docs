@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="robots" content="index, follow">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>どこから始める？ — 練習ガイド診断 | ソルフェージュPRO</title>
+    <meta name="description" content="楽器と現在の課題から、最適な練習ガイドを30秒で診断。リズム・音程・コード・譜読み・指板。">
+
+    <link rel="canonical" href="https://nmswshg.github.io/solfege-pro-docs/start-here.html">
+    <link rel="alternate" hreflang="ja" href="https://nmswshg.github.io/solfege-pro-docs/start-here.html?lang=ja">
+    <link rel="alternate" hreflang="en" href="https://nmswshg.github.io/solfege-pro-docs/start-here.html?lang=en">
+    <link rel="alternate" hreflang="x-default" href="https://nmswshg.github.io/solfege-pro-docs/start-here.html">
+    <link rel="icon" href="AppIcon.png" type="image/png">
+    <link rel="apple-touch-icon" href="AppIcon.png">
+
+    <meta property="og:title" content="どこから始める？ — 練習ガイド診断 | ソルフェージュPRO">
+    <meta property="og:description" content="楽器と課題から最適な練習ガイドを診断。30秒で次にやることが見える。">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://nmswshg.github.io/solfege-pro-docs/start-here.html">
+    <meta property="og:site_name" content="ソルフェージュPRO">
+    <meta property="og:image" content="https://nmswshg.github.io/solfege-pro-docs/AppIcon.png">
+    <meta property="og:locale" content="ja_JP">
+
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="どこから始める？ — 練習ガイド診断 | ソルフェージュPRO">
+    <meta name="twitter:description" content="楽器と課題から最適な練習ガイドを診断。30秒で次にやることが見える。">
+    <meta name="twitter:image" content="https://nmswshg.github.io/solfege-pro-docs/AppIcon.png">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css?v=13">
+
+    <style>
+        /* diag-nav byte-identical to global .nav (style.css §4) */
+
+        @media (max-width: 768px) {
+            .diag-main { padding: var(--space-lg) var(--space-md); }
+        }
+        @media (max-width: 480px) {
+        }
+
+        .diag-main {
+            max-width: 1100px; margin: 0 auto;
+            padding: var(--space-2xl) var(--space-lg);
+        }
+
+        .diag-step {
+            margin-bottom: var(--space-2xl);
+        }
+        .diag-step[hidden] { display: none; }
+
+        .diag-step__title {
+            font-size: 18px; font-weight: 700; color: var(--text-primary);
+            margin-bottom: var(--space-lg); padding-bottom: var(--space-sm);
+            border-bottom: 2px solid var(--primary);
+            display: flex; align-items: center; gap: var(--space-sm);
+        }
+        .diag-step__num {
+            background: var(--primary); color: var(--background);
+            width: 28px; height: 28px; border-radius: 50%; display: inline-flex;
+            align-items: center; justify-content: center; font-size: 14px;
+        }
+
+        .diag-options {
+            display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--space-md);
+        }
+        @media (max-width: 540px) {
+            .diag-options { grid-template-columns: 1fr; }
+        }
+
+        .diag-option {
+            background: var(--surface); border: 1px solid var(--surface-light);
+            border-radius: var(--radius-md); padding: var(--space-md) var(--space-lg);
+            text-align: left; cursor: pointer; font-family: inherit; color: var(--text-primary);
+            transition: all 0.2s ease; font-size: 14px;
+            display: flex; align-items: center; gap: var(--space-md);
+        }
+        .diag-option:hover {
+            border-color: var(--primary); transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+        }
+        .diag-option.is-selected {
+            border-color: var(--primary); background: var(--surface-light);
+        }
+        .diag-option__icon { font-size: 24px; flex-shrink: 0; }
+        .diag-option__body { flex: 1; min-width: 0; }
+        .diag-option__title { font-weight: 700; font-size: 14px; margin-bottom: 2px; }
+        .diag-option__desc { font-size: 12px; color: var(--text-secondary); line-height: 1.5; }
+
+        .diag-result {
+            background: linear-gradient(135deg, var(--surface) 0%, var(--surface-light) 100%);
+            border: 1px solid var(--primary); border-radius: var(--radius-lg);
+            padding: var(--space-xl); margin-top: var(--space-lg);
+        }
+        .diag-result__label {
+            font-size: 12px; color: var(--primary); font-weight: 600;
+            text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: var(--space-sm);
+        }
+        .diag-result__title { font-size: 20px; font-weight: 700; margin-bottom: var(--space-sm); }
+        .diag-result__desc { font-size: 14px; color: var(--text-secondary); line-height: 1.7; margin-bottom: var(--space-lg); }
+        .diag-result__cta {
+            display: inline-block; background: var(--primary); color: var(--background);
+            padding: var(--space-md) var(--space-xl); border-radius: var(--radius-md);
+            text-decoration: none; font-weight: 700; font-size: 14px;
+            transition: transform 0.15s ease;
+        }
+        .diag-result__cta:hover { transform: scale(1.03); }
+        .diag-result__cta--secondary {
+            background: transparent; color: var(--primary); border: 1px solid var(--primary);
+            margin-left: var(--space-sm);
+        }
+
+        .diag-restart {
+            background: transparent; color: var(--text-secondary); border: 1px solid var(--surface-light);
+            border-radius: var(--radius-md); padding: var(--space-sm) var(--space-md);
+            font-size: 13px; cursor: pointer; margin-top: var(--space-lg); font-family: inherit;
+        }
+        .diag-restart:hover { color: var(--primary); border-color: var(--primary); }
+
+        .diag-bottom-cta {
+            max-width: 720px; margin: 0 auto var(--space-2xl);
+            padding: var(--space-2xl) var(--space-lg);
+            text-align: center;
+            background: linear-gradient(135deg, var(--surface) 0%, var(--background) 100%);
+            border: 1px solid var(--primary);
+            border-radius: var(--radius-xl);
+        }
+        .diag-bottom-cta__title { font-size: 22px; font-weight: 700; margin-bottom: var(--space-md); }
+        .diag-bottom-cta__text { color: var(--text-secondary); margin-bottom: var(--space-lg); font-size: 15px; line-height: 1.7; }
+
+        .diag-footer {
+            background: var(--surface); padding: var(--space-xl) var(--space-lg);
+            text-align: center; border-top: 1px solid var(--surface-light);
+        }
+        .diag-footer__text { color: var(--text-secondary); font-size: 13px; }
+        .diag-footer__link { color: var(--primary); text-decoration: none; }
+
+        /* .settings-btn comes from style.css; no local override */
+    </style>
+</head>
+<body>
+    <nav class="nav">
+        <div class="nav__container">
+            <a href="./" class="nav__logo">
+                <img src="AppIcon.png" alt="Solfege PRO" class="nav__logo-icon">
+                <span class="nav__logo-text"><span lang="ja">ソルフェージュPRO</span><span lang="en">Solfege PRO</span></span>
+            </a>
+            <ul class="nav__list">
+                <li><a href="./" class="nav__link"><span lang="ja">練習ガイド</span><span lang="en">Practice Guide</span></a></li>
+                <li><a href="guides/" class="nav__link"><span lang="ja">ガイド一覧</span><span lang="en">Guides</span></a></li>
+                            <li><a href="start-here.html" class="nav__link active"><span lang="ja">どこから始める？</span><span lang="en">Where to Start?</span></a></li>
+            </ul>
+            <div class="nav__settings">
+                <button class="settings-btn" id="lang-toggle" title="Toggle language">
+                    <span id="lang-text">EN</span>
+                </button>
+                <button class="hamburger-btn" id="hamburger-btn" aria-label="Menu" aria-expanded="false" aria-controls="drawer">
+                    <span class="hamburger-btn__line"></span>
+                    <span class="hamburger-btn__line"></span>
+                    <span class="hamburger-btn__line"></span>
+                </button>
+            </div>
+        </div>
+    </nav>
+        <!-- Mobile drawer (hidden on desktop) -->
+        <div class="drawer-overlay" id="drawer-overlay"></div>
+        <aside class="drawer" id="drawer" aria-label="Mobile menu">
+            <div class="drawer__header">
+                <span class="drawer__title"><span lang="ja">メニュー</span><span lang="en">Menu</span></span>
+                <button class="drawer__close" id="drawer-close" aria-label="Close menu">×</button>
+            </div>
+            <ul class="drawer__list">
+                    <li><a href="./" class="drawer__link"><span lang="ja">練習ガイド</span><span lang="en">Practice Guide</span></a></li>
+                    <li><a href="guides/" class="drawer__link"><span lang="ja">ガイド一覧</span><span lang="en">Guides</span></a></li>
+                    <li><a href="start-here.html" class="drawer__link active"><span lang="ja">どこから始める？</span><span lang="en">Where to Start?</span></a></li>
+            </ul>
+        </aside>
+
+
+    <header class="page-header">
+        <h1 class="page-header__title"><span lang="ja">どこから始める？</span><span lang="en">Where to Start?</span></h1>
+        <p class="page-header__subtitle"><span lang="ja">楽器と課題を選ぶだけ。30 秒で、最適な練習ガイドを案内します。</span><span lang="en">Pick your instrument and pain point. We'll route you to the right guide in 30 seconds.</span></p>
+    </header>
+
+    <main class="diag-main">
+
+        <!-- Step 1 -->
+        <section class="diag-step" id="step-instrument">
+            <h2 class="diag-step__title"><span class="diag-step__num">1</span> <span lang="ja">楽器を選ぶ</span><span lang="en">Choose Your Instrument</span></h2>
+            <div class="diag-options">
+                <button class="diag-option" data-instrument="guitar">
+                    <span class="diag-option__icon"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#icon-guitar"></use></svg></span>
+                    <span class="diag-option__body">
+                        <span class="diag-option__title"><span lang="ja">ギター・ベース</span><span lang="en">Guitar &amp; Bass</span></span>
+                    </span>
+                </button>
+                <button class="diag-option" data-instrument="drums">
+                    <span class="diag-option__icon"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#icon-drum"></use></svg></span>
+                    <span class="diag-option__body">
+                        <span class="diag-option__title"><span lang="ja">ドラム</span><span lang="en">Drums</span></span>
+                    </span>
+                </button>
+                <button class="diag-option" data-instrument="piano">
+                    <span class="diag-option__icon"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#icon-piano"></use></svg></span>
+                    <span class="diag-option__body">
+                        <span class="diag-option__title"><span lang="ja">ピアノ</span><span lang="en">Piano</span></span>
+                    </span>
+                </button>
+                <button class="diag-option" data-instrument="vocal">
+                    <span class="diag-option__icon"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#icon-microphone"></use></svg></span>
+                    <span class="diag-option__body">
+                        <span class="diag-option__title"><span lang="ja">ボーカル</span><span lang="en">Vocal</span></span>
+                    </span>
+                </button>
+                <button class="diag-option" data-instrument="wind">
+                    <span class="diag-option__icon"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#icon-music-generic"></use></svg></span>
+                    <span class="diag-option__body">
+                        <span class="diag-option__title"><span lang="ja">管楽器・弦楽器</span><span lang="en">Wind &amp; Strings</span></span>
+                    </span>
+                </button>
+                <button class="diag-option" data-instrument="other">
+                    <span class="diag-option__icon"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#icon-music-staff"></use></svg></span>
+                    <span class="diag-option__body">
+                        <span class="diag-option__title"><span lang="ja">その他 / 楽器不問</span><span lang="en">Other / Instrument-agnostic</span></span>
+                    </span>
+                </button>
+            </div>
+        </section>
+
+        <!-- Step 2 (hidden until instrument chosen) -->
+        <section class="diag-step" id="step-pain" hidden>
+            <h2 class="diag-step__title"><span class="diag-step__num">2</span> <span lang="ja">いま一番困っていること</span><span lang="en">Your Main Pain Point</span></h2>
+            <div class="diag-options" id="pain-options"></div>
+        </section>
+
+        <!-- Result (hidden until pain chosen) -->
+        <section class="diag-step" id="step-result" hidden>
+            <h2 class="diag-step__title"><span class="diag-step__num">3</span> <span lang="ja">あなたへのおすすめ</span><span lang="en">Your Recommendation</span></h2>
+            <div class="diag-result" id="result-card"></div>
+            <button class="diag-restart" id="restart-btn"><span lang="ja">↻ もう一度診断する</span><span lang="en">↻ Restart diagnostic</span></button>
+        </section>
+
+    </main>
+
+    <section class="diag-bottom-cta">
+        <h2 class="diag-bottom-cta__title"><span lang="ja">今日から始めよう</span><span lang="en">Start Today</span></h2>
+        <p class="diag-bottom-cta__text">
+            <span lang="ja">診断結果のガイドはアプリの実機能と組み合わせて使うと効果的です。<br>App Store からソルフェージュPROを入手できます。</span>
+            <span lang="en">The recommended guide pairs best with the app's actual training features.<br>Get Solfege PRO on the App Store.</span>
+        </p>
+        <a href="https://apps.apple.com/app/id6756626617" class="app-store-link" aria-label="Download on the App Store">
+            <span lang="ja"><img class="app-store-link__img" src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/ja-jp" alt="App Storeで入手"></span>
+            <span lang="en"><img class="app-store-link__img" src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/en-us" alt="Download on the App Store"></span>
+        </a>
+    </section>
+
+    <footer class="diag-footer">
+        <p class="diag-footer__text">&copy; 2026 <span lang="ja">ソルフェージュPRO</span><span lang="en">Solfege PRO</span> &mdash; <a href="https://apps.apple.com/app/id6756626617" class="diag-footer__link">App Store</a></p>
+    </footer>
+
+    <!-- Sticky bottom CTA (mobile) -->
+    <div class="sticky-cta">
+        <img class="sticky-cta__icon" src="AppIcon.png" alt="Solfege PRO">
+        <div class="sticky-cta__text">
+            <strong><span lang="ja">ソルフェージュPRO</span><span lang="en">Solfege PRO</span></strong>
+            <span lang="ja">楽器別の課題を分解して練習</span><span lang="en">Diagnose &amp; train, by instrument</span>
+        </div>
+        <a href="https://apps.apple.com/app/id6756626617" class="sticky-cta__button"><span lang="ja">入手</span><span lang="en">Get</span></a>
+    </div>
+
+    <script>
+    (function() {
+        // ===== Pain-point map =====
+        // Each entry: { ja, en, guide (relative URL), guideJa, guideEn, descJa, descEn }
+        var PAINS = {
+            guitar: [
+                { ja: 'セッションで頭が真っ白になる', en: 'Mind goes blank at sessions',
+                  guide: 'practice/guitar-bass.html#guitar-q1', guideJa: 'ギター・ベース Q1', guideEn: 'Guitar/Bass Q1',
+                  descJa: '指板の自動化（応答時間と注意の解放）が課題。Fretboard Training を 6 週間プログラムで進めると効果的。',
+                  descEn: 'Fretboard automaticity (response time + freed attention). Run the 6-week Fretboard Training program.' },
+                { ja: '耳コピが遅い／コード進行が聴き取れない', en: 'Slow transcription / can\'t hear progressions',
+                  guide: 'guides/ear-training-progressions.html', guideJa: 'コード進行ガイド', guideEn: 'Progression Guide',
+                  descJa: '機能和声（T/SD/D）を聴き取る訓練 + Interval / Chord 認識との組み合わせ。',
+                  descEn: 'Train functional (T/SD/D) hearing alongside Interval and Chord Recognition.' },
+                { ja: '指板の音名が覚えられない', en: 'Can\'t memorize fretboard note names',
+                  guide: 'guides/fretboard-training.html', guideJa: '指板トレーニングガイド', guideEn: 'Fretboard Training Guide',
+                  descJa: 'オクターブシェイプとフレット範囲ごとの段階的攻略。',
+                  descEn: 'Octave shapes and range-by-range progression.' },
+                { ja: '同じフレーズばかり弾いてしまう', en: 'Stuck on the same phrases',
+                  guide: 'guides/interval-training.html', guideJa: '音程トレーニングガイド', guideEn: 'Interval Training Guide',
+                  descJa: '相対音感の不足が原因のことが多い。13 種類のインターバル聴き分けから。',
+                  descEn: 'Often a relative-pitch issue. Start with 13-interval recognition.' }
+            ],
+            drums: [
+                { ja: 'リズムが安定しない／メンバーから「不安定」と言われる', en: 'Unstable rhythm / band says "off"',
+                  guide: 'practice/drums.html#drums-q1', guideJa: 'ドラム Q1', guideEn: 'Drums Q1',
+                  descJa: 'タイミング SD（ばらつき）の計測と段階的な縮小。Rhythm Training を 4 週間プログラムで。',
+                  descEn: 'Measure timing SD and reduce it through the 4-week Rhythm Training program.' },
+                { ja: 'フィルインの後にズレる', en: 'Timing slips after fills',
+                  guide: 'practice/drums.html#drums-q2', guideJa: 'ドラム Q2', guideEn: 'Drums Q2',
+                  descJa: '内部パルスの維持訓練。フィル中も拍を見失わないトレーニング。',
+                  descEn: 'Maintain internal pulse through fills.' },
+                { ja: '遅いテンポ（BPM 60）が苦手', en: 'Struggle with slow tempos (BPM 60)',
+                  guide: 'practice/drums.html#drums-q3', guideJa: 'ドラム Q3', guideEn: 'Drums Q3',
+                  descJa: 'preferred tempo（BPM 85-120）から離れた領域のサブディビジョン維持。',
+                  descEn: 'Subdivision-based maintenance below the preferred-tempo zone.' },
+                { ja: '「正確だけど硬い」と言われる', en: 'Told "accurate but stiff"',
+                  guide: 'guides/groove-training.html', guideJa: 'グルーヴの正体（深掘り）', guideEn: 'The Nature of Groove (Deep Dive)',
+                  descJa: 'タイミング精度の上に「平均位置（average phase）」を扱う段階。',
+                  descEn: 'Once timing is stable, work on average-phase shaping.' }
+            ],
+            piano: [
+                { ja: '譜面がないと弾けない', en: 'Can\'t play without sheet music',
+                  guide: 'practice/piano.html#piano-q1', guideJa: 'ピアノ Q1', guideEn: 'Piano Q1',
+                  descJa: '聴覚-運動連携の訓練。Interval / Chord Recognition から。',
+                  descEn: 'Auditory-motor loop training via Interval / Chord Recognition.' },
+                { ja: 'コード譜だけで弾けない', en: 'Struggle with chord charts',
+                  guide: 'practice/piano.html#piano-q2', guideJa: 'ピアノ Q2', guideEn: 'Piano Q2',
+                  descJa: 'コード認識 + 即時ボイシング展開のトレーニング。',
+                  descEn: 'Chord recognition + instant voicing-realization training.' },
+                { ja: '同じボイシングばかり使ってしまう', en: 'Always the same voicings',
+                  guide: 'guides/ear-training-chords.html', guideJa: 'コード認識ガイド', guideEn: 'Chord Recognition Guide',
+                  descJa: 'コード quality の聴き分けを起点にボキャブラリーを広げる。',
+                  descEn: 'Expand vocabulary by training chord-quality recognition.' }
+            ],
+            vocal: [
+                { ja: '音程が不安定', en: 'Unstable pitch',
+                  guide: 'practice/vocal.html#vocal-q1', guideJa: 'ボーカル Q1', guideEn: 'Vocal Q1',
+                  descJa: '内的な音程テンプレートを Interval Training で構築。録音と組み合わせる。',
+                  descEn: 'Build internal pitch templates via Interval Training; close the loop with recording.' },
+                { ja: 'キー変更で歌えない', en: 'Can\'t transpose / sing in different keys',
+                  guide: 'guides/ear-training-scales.html', guideJa: 'スケール認識ガイド', guideEn: 'Scale Recognition Guide',
+                  descJa: 'スケール（モード）の relative 構造を聴き分ける訓練。',
+                  descEn: 'Train relative scale (mode) recognition.' },
+                { ja: 'ハモリが覚えられない', en: 'Can\'t memorize harmonies',
+                  guide: 'guides/interval-training.html', guideJa: '音程トレーニングガイド', guideEn: 'Interval Training Guide',
+                  descJa: '3 度・6 度の聴き分けから。同時和声の聴取練習。',
+                  descEn: 'Start with 3rds and 6ths; practice harmonic-interval listening.' }
+            ],
+            wind: [
+                { ja: 'アンサンブルでピッチが合わない', en: 'Pitch doesn\'t match in ensemble',
+                  guide: 'practice/wind.html#wind-q1', guideJa: '管・弦楽器 Q1', guideEn: 'Wind/Strings Q1',
+                  descJa: '純正律方向の微調整を耳で取る訓練。チューナー依存からの脱却。',
+                  descEn: 'Train just-intonation ear; reduce dependency on tuners.' },
+                { ja: '初見で止まる', en: 'Get stuck at sight-reading',
+                  guide: 'practice/wind.html#wind-q2', guideJa: '管・弦楽器 Q2', guideEn: 'Wind/Strings Q2',
+                  descJa: '音名特定の自動化 + パターン認識。記号別（ハ音記号など）の練習も。',
+                  descEn: 'Note-name automaticity + pattern recognition; per-clef practice (incl. C clef).' },
+                { ja: '譜読みそのものが遅い', en: 'Note reading itself is slow',
+                  guide: 'guides/sight-reading.html', guideJa: '譜読みガイド', guideEn: 'Note Reading Guide',
+                  descJa: '5 個のランドマークノートから。基盤レイヤー（音名特定）の積み上げ。',
+                  descEn: 'Start from 5 landmark notes; build the foundational layer.' }
+            ],
+            other: [
+                { ja: 'リズム感を鍛えたい', en: 'Want to train rhythm',
+                  guide: 'guides/rhythm-training.html', guideJa: 'リズム感ガイド', guideEn: 'Rhythm Training Guide',
+                  descJa: '前乗り・後乗り・ばらつき・ポケットの分解と計測。',
+                  descEn: 'Break down rushing, dragging, scatter, and pocket — with measurement.' },
+                { ja: '音感を鍛えたい', en: 'Want to train relative pitch',
+                  guide: 'guides/interval-training.html', guideJa: '音程トレーニングガイド', guideEn: 'Interval Training Guide',
+                  descJa: '13 種類のインターバル聴き分けを段階的に。',
+                  descEn: '13 intervals, step by step.' },
+                { ja: '譜読みを早くしたい', en: 'Want faster note reading',
+                  guide: 'guides/sight-reading.html', guideJa: '譜読みガイド', guideEn: 'Note Reading Guide',
+                  descJa: 'ランドマーク 5 個と段階的拡張。',
+                  descEn: '5 landmarks and gradual expansion.' },
+                { ja: 'コード進行を聴き取りたい', en: 'Want to hear chord progressions',
+                  guide: 'guides/ear-training-progressions.html', guideJa: 'コード進行ガイド', guideEn: 'Progression Training Guide',
+                  descJa: '機能和声（T/SD/D）を聴き取る基礎。',
+                  descEn: 'Foundations of functional (T/SD/D) hearing.' }
+            ]
+        };
+
+        var stepInstrument = document.getElementById('step-instrument');
+        var stepPain = document.getElementById('step-pain');
+        var stepResult = document.getElementById('step-result');
+        var painOptions = document.getElementById('pain-options');
+        var resultCard = document.getElementById('result-card');
+        var restartBtn = document.getElementById('restart-btn');
+
+        function getLang() {
+            return document.documentElement.getAttribute('data-lang') || 'ja';
+        }
+
+        function showPainStep(instrument) {
+            painOptions.innerHTML = '';
+            var pains = PAINS[instrument] || [];
+            pains.forEach(function(p, i) {
+                var btn = document.createElement('button');
+                btn.className = 'diag-option';
+                btn.dataset.painIndex = String(i);
+                btn.dataset.instrument = instrument;
+                btn.innerHTML = '<span class="diag-option__icon">▸</span>' +
+                    '<span class="diag-option__body">' +
+                    '<span class="diag-option__title"><span lang="ja">' + p.ja + '</span><span lang="en">' + p.en + '</span></span>' +
+                    '</span>';
+                btn.addEventListener('click', function() { showResult(instrument, i); });
+                painOptions.appendChild(btn);
+            });
+            stepPain.hidden = false;
+            stepResult.hidden = true;
+            stepPain.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+
+        function showResult(instrument, painIndex) {
+            var p = PAINS[instrument][painIndex];
+            var lang = getLang();
+            var title = lang === 'ja' ? p.guideJa : p.guideEn;
+            var desc = lang === 'ja' ? p.descJa : p.descEn;
+            var label = lang === 'ja' ? '推奨ガイド' : 'Recommended guide';
+            var ctaText = lang === 'ja' ? '読んでみる →' : 'Read it →';
+            var appText = lang === 'ja' ? 'App Store で入手' : 'Get on App Store';
+
+            resultCard.innerHTML =
+                '<div class="diag-result__label">' + label + '</div>' +
+                '<div class="diag-result__title">' + title + '</div>' +
+                '<div class="diag-result__desc">' + desc + '</div>' +
+                '<a href="' + p.guide + '" class="diag-result__cta">' + ctaText + '</a>' +
+                '<a href="https://apps.apple.com/app/id6756626617" class="diag-result__cta diag-result__cta--secondary">' + appText + '</a>';
+            stepResult.hidden = false;
+            stepResult.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+
+        // Step 1: instrument click handlers
+        document.querySelectorAll('#step-instrument .diag-option').forEach(function(btn) {
+            btn.addEventListener('click', function() {
+                document.querySelectorAll('#step-instrument .diag-option').forEach(function(b){ b.classList.remove('is-selected'); });
+                btn.classList.add('is-selected');
+                showPainStep(btn.dataset.instrument);
+            });
+        });
+
+        restartBtn.addEventListener('click', function() {
+            stepPain.hidden = true;
+            stepResult.hidden = true;
+            document.querySelectorAll('#step-instrument .diag-option').forEach(function(b){ b.classList.remove('is-selected'); });
+            stepInstrument.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        });
+
+        // ===== Language toggle =====
+        var langToggle = document.getElementById('lang-toggle');
+        var langText = document.getElementById('lang-text');
+        var urlLang = new URLSearchParams(window.location.search).get('lang');
+        var currentLang = (urlLang === 'ja' || urlLang === 'en') ? urlLang : (localStorage.getItem('lang') || 'ja');
+
+        function syncUrlLang(lang) {
+            var url = new URL(window.location.href);
+            url.searchParams.set('lang', lang);
+            history.replaceState(null, '', url.toString());
+        }
+
+        function applyLanguage(lang) {
+            document.documentElement.setAttribute('data-lang', lang);
+            document.documentElement.lang = lang;
+            langText.textContent = lang === 'ja' ? 'EN' : 'JA';
+            document.title = lang === 'ja'
+                ? 'どこから始める？ — 練習ガイド診断 | ソルフェージュPRO'
+                : 'Where to Start? — Practice Guide Diagnostic | Solfege PRO';
+            localStorage.setItem('lang', lang);
+            currentLang = lang;
+            document.querySelectorAll('a[href*="apps.apple.com"]').forEach(function(a){
+                a.href = 'https://apps.apple.com/' + (lang === 'ja' ? 'jp' : 'us') + '/app/id6756626617';
+            });
+        }
+
+        applyLanguage(currentLang);
+
+        langToggle.addEventListener('click', function() {
+            var newLang = currentLang === 'ja' ? 'en' : 'ja';
+            applyLanguage(newLang);
+            syncUrlLang(newLang);
+        });
+    })();
+    </script>
+    <script src="drawer.js?v=1" defer></script>
+</body>
+</html>

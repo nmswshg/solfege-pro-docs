@@ -155,11 +155,21 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     /* =============================================
-       6. Language Toggle
+       6. Language Toggle (with ?lang= URL param support)
        ============================================= */
     const langToggle = document.getElementById('lang-toggle');
     const langText = document.getElementById('lang-text');
-    let currentLang = localStorage.getItem('lang') || 'ja';
+    // Priority: URL param > localStorage > default 'ja'
+    const urlLang = new URLSearchParams(window.location.search).get('lang');
+    let currentLang = (urlLang === 'ja' || urlLang === 'en')
+        ? urlLang
+        : (localStorage.getItem('lang') || 'ja');
+
+    function syncUrlLang(lang) {
+        const url = new URL(window.location.href);
+        url.searchParams.set('lang', lang);
+        history.replaceState(null, '', url.toString());
+    }
 
     function applyLanguage(lang) {
         document.documentElement.setAttribute('data-lang', lang); document.documentElement.lang = lang;
@@ -188,5 +198,6 @@ document.addEventListener('DOMContentLoaded', function() {
     langToggle.addEventListener('click', () => {
         const newLang = currentLang === 'ja' ? 'en' : 'ja';
         applyLanguage(newLang);
+        syncUrlLang(newLang);
     });
 });

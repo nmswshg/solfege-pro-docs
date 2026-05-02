@@ -8,6 +8,9 @@
     <meta name="description" content="リズムの安定性、フィル後のズレ、遅いテンポ — ドラマーの課題を解決する練習メニュー">
 
     <link rel="canonical" href="https://nmswshg.github.io/solfege-pro-docs/practice/drums.html">
+    <link rel="alternate" hreflang="ja" href="https://nmswshg.github.io/solfege-pro-docs/practice/drums.html?lang=ja">
+    <link rel="alternate" hreflang="en" href="https://nmswshg.github.io/solfege-pro-docs/practice/drums.html?lang=en">
+    <link rel="alternate" hreflang="x-default" href="https://nmswshg.github.io/solfege-pro-docs/practice/drums.html">
     <link rel="icon" href="../AppIcon.png" type="image/png">
     <link rel="apple-touch-icon" href="../AppIcon.png">
 
@@ -27,95 +30,11 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
 
-    <link rel="stylesheet" href="../style.css?v=4">
+    <link rel="stylesheet" href="../style.css?v=13">
 
     <style>
-        .practice-nav {
-            background: rgba(42, 42, 48, 0.95);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            padding: var(--space-md) var(--space-lg);
-            position: fixed;
-            top: 0; left: 0; right: 0;
-            z-index: 1000;
-            border-bottom: 1px solid var(--surface-light);
-            height: var(--nav-height);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        .practice-nav__container {
-            display: flex;
-            align-items: center;
-            gap: var(--space-lg);
-            max-width: 900px;
-            width: 100%;
-        }
-        .practice-nav__back {
-            color: var(--text-secondary);
-            text-decoration: none;
-            font-size: 14px;
-            display: flex;
-            align-items: center;
-            gap: var(--space-xs);
-            transition: color 0.2s ease;
-            white-space: nowrap;
-        }
-        .practice-nav__back:hover { color: var(--primary); }
-        .practice-nav__logo {
-            display: flex;
-            align-items: center;
-            gap: var(--space-sm);
-            text-decoration: none;
-            margin-left: auto;
-        }
-        .practice-nav__logo-icon {
-            width: 28px; height: 28px; border-radius: 6px;
-        }
-        .practice-nav__logo-text {
-            font-size: 13px;
-            font-weight: 700;
-            color: var(--primary);
-            letter-spacing: 0.5px;
-        }
-        .practice-header {
-            padding: var(--space-3xl) var(--space-lg);
-            padding-top: calc(var(--nav-height) + var(--space-3xl));
-            max-width: 900px;
-            margin: 0 auto;
-            text-align: center;
-        }
-        .practice-header__icon { font-size: 48px; margin-bottom: var(--space-md); }
-        .practice-header__title {
-            font-size: 28px; font-weight: 700;
-            margin-bottom: var(--space-md);
-            background: linear-gradient(135deg, var(--primary), var(--accent));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-        .practice-header__subtitle {
-            font-size: 15px;
-            color: var(--text-secondary);
-            max-width: 600px;
-            margin: 0 auto;
-        }
-        .practice-header__meta {
-            margin-top: var(--space-md);
-            font-size: 13px;
-            color: var(--text-secondary);
-        }
-        .practice-header__badge {
-            display: inline-block;
-            background: rgba(212, 175, 55, 0.15);
-            color: var(--primary);
-            padding: 2px 10px;
-            border-radius: var(--radius-sm);
-            font-size: 12px;
-            font-weight: 500;
-        }
         .practice-body {
-            max-width: 900px;
+            max-width: 1100px;
             margin: 0 auto;
             padding: 0 var(--space-lg) var(--space-2xl);
         }
@@ -137,47 +56,63 @@
             text-decoration: none;
         }
         @media (max-width: 768px) {
-            .practice-nav { padding: var(--space-sm) var(--space-md); }
-            .practice-nav__back { font-size: 13px; }
-            .practice-header {
-                padding: var(--space-xl) var(--space-md);
-                padding-top: calc(var(--nav-height) + var(--space-xl));
-            }
-            .practice-header__icon { font-size: 36px; }
-            .practice-header__title { font-size: 22px; }
             .practice-body { padding: 0 var(--space-md) var(--space-xl); }
         }
         @media (max-width: 480px) {
-            .practice-header__title { font-size: 19px; }
         }
     </style>
 </head>
 <body>
-    <nav class="practice-nav">
-        <div class="practice-nav__container">
-            <a href="../" class="practice-nav__back">&larr; <span lang="ja">練習ガイド</span><span lang="en">Practice Guide</span></a>
-            <a href="../" class="practice-nav__logo">
-                <img src="../AppIcon.png" alt="Solfege PRO" class="practice-nav__logo-icon">
-                <span class="practice-nav__logo-text"><span lang="ja">ソルフェージュPRO</span><span lang="en">Solfege PRO</span></span>
+    <nav class="nav">
+        <div class="nav__container">
+            <a href="../" class="nav__logo">
+                <img src="../AppIcon.png" alt="Solfege PRO" class="nav__logo-icon">
+                <span class="nav__logo-text"><span lang="ja">ソルフェージュPRO</span><span lang="en">Solfege PRO</span></span>
             </a>
-            <button class="settings-btn" id="lang-toggle" title="Toggle language">
-                <span id="lang-text">EN</span>
-            </button>
+            <ul class="nav__list">
+                <li><a href="../" class="nav__link active"><span lang="ja">練習ガイド</span><span lang="en">Practice Guide</span></a></li>
+                <li><a href="../guides/" class="nav__link"><span lang="ja">ガイド一覧</span><span lang="en">Guides</span></a></li>
+                            <li><a href="../start-here.html" class="nav__link"><span lang="ja">どこから始める？</span><span lang="en">Where to Start?</span></a></li>
+            </ul>
+            <div class="nav__settings">
+                <button class="settings-btn" id="lang-toggle" title="Toggle language">
+                    <span id="lang-text">EN</span>
+                </button>
+                <button class="hamburger-btn" id="hamburger-btn" aria-label="Menu" aria-expanded="false" aria-controls="drawer">
+                    <span class="hamburger-btn__line"></span>
+                    <span class="hamburger-btn__line"></span>
+                    <span class="hamburger-btn__line"></span>
+                </button>
+            </div>
         </div>
     </nav>
+        <!-- Mobile drawer (hidden on desktop) -->
+        <div class="drawer-overlay" id="drawer-overlay"></div>
+        <aside class="drawer" id="drawer" aria-label="Mobile menu">
+            <div class="drawer__header">
+                <span class="drawer__title"><span lang="ja">メニュー</span><span lang="en">Menu</span></span>
+                <button class="drawer__close" id="drawer-close" aria-label="Close menu">×</button>
+            </div>
+            <ul class="drawer__list">
+                    <li><a href="../" class="drawer__link active"><span lang="ja">練習ガイド</span><span lang="en">Practice Guide</span></a></li>
+                    <li><a href="../guides/" class="drawer__link"><span lang="ja">ガイド一覧</span><span lang="en">Guides</span></a></li>
+                    <li><a href="../start-here.html" class="drawer__link"><span lang="ja">どこから始める？</span><span lang="en">Where to Start?</span></a></li>
+            </ul>
+        </aside>
 
-    <header class="practice-header">
-        <div class="practice-header__icon">🥁</div>
-        <h1 class="practice-header__title"><span lang="ja">ドラム 練習ガイド</span><span lang="en">Drums Practice Guide</span></h1>
-        <p class="practice-header__subtitle"><span lang="ja">リズムの安定性、フィル後のズレ、遅いテンポ — ドラマーの課題を解決する練習メニュー</span><span lang="en">Rhythm stability, timing after fills, slow tempos — practice menus for drummers</span></p>
-        <div class="practice-header__meta">
-            <span class="practice-header__badge">3 Q&amp;A</span>
+
+    <header class="page-header">
+        <div class="page-header__icon"><svg class="icon" aria-hidden="true"><use href="../assets/icons.svg#icon-drum"></use></svg></div>
+        <h1 class="page-header__title"><span lang="ja">ドラム 練習ガイド</span><span lang="en">Drums Practice Guide</span></h1>
+        <p class="page-header__subtitle"><span lang="ja">リズムの安定性、フィル後のズレ、遅いテンポ — ドラマーの課題を解決する練習メニュー</span><span lang="en">Rhythm stability, timing after fills, slow tempos — practice menus for drummers</span></p>
+        <div class="page-header__meta">
+            <span class="page-header__badge">3 Q&amp;A</span>
         </div>
     </header>
 
     <main class="practice-body">
             <div class="section__header">
-                <span class="section__icon">🥁</span>
+                <span class="section__icon"><svg class="icon" aria-hidden="true"><use href="../assets/icons.svg#icon-drum"></use></svg></span>
                 <h2 class="section__title"><span lang="ja">ドラム</span><span lang="en">Drums</span></h2>
                 <div class="section__header-actions">
                     <button class="expand-all-btn"><span lang="ja">すべて開く</span><span lang="en">Expand All</span></button>
@@ -228,16 +163,16 @@
                             </div>
                         </div>
                         <div class="science-box">
-                            <div class="science-box__title"><span lang="ja">JND（弁別閾）と±15msの根拠</span><span lang="en">JND (Just Noticeable Difference) and the ±15ms Standard</span></div>
+                            <div class="science-box__title"><span lang="ja">タイミング精度の目安</span><span lang="en">Reference Standards for Timing Precision</span></div>
                             <div class="science-box__content">
-                                <p><span lang="ja"><strong>JND（Just Noticeable Difference）</strong>とは、人間が「違い」を認識できる最小単位。時間知覚の研究では、<strong>2つの音のズレが20〜30ms以内であれば「同時」と認識される</strong>ことが分かっている。</span><span lang="en"><strong>JND (Just Noticeable Difference)</strong> is the smallest unit of difference humans can perceive. Research in time perception shows that <strong>two sounds within 20-30ms are perceived as "simultaneous."</strong></span></p>
-                                <p><span lang="ja">つまり、±15ms以内のズレは<strong>聴く人に「ズレ」として認識されない</strong>。これがプロレベルの精度基準となる理由。逆に±50msを超えると、明確に「遅れている」「走っている」と感じられる。</span><span lang="en">This means deviations within ±15ms <strong>are not perceived as "off" by listeners</strong>. This is why it's the standard for professional-level precision. Conversely, deviations beyond ±50ms are clearly felt as "dragging" or "rushing."</span></p>
-                                <p><strong><span lang="ja">実用的な基準：</span><span lang="en">Practical standards:</span></strong></p>
+                                <p><span lang="ja">「ズレが知覚される閾値」は文脈依存で、単一の汎用 JND は存在しない。順序判別（TOJ）研究では、刺激や課題により <strong>20〜80ms 程度</strong>の幅が報告される（Hirsh &amp; Sherrick, 1961）。</span><span lang="en">There is no single universal JND for timing — perceived deviation thresholds vary by context, stimulus, and task. Temporal-order-judgment (TOJ) research reports thresholds in the range of <strong>20–80ms</strong> depending on conditions (Hirsh &amp; Sherrick, 1961).</span></p>
+                                <p><span lang="ja">一方で、熟達した演奏者の連続タップにおける<strong>タイミングのばらつき（SD）</strong>は概ね <strong>10〜15ms 程度</strong>と報告されている（Madison, 2001; Repp, 2005）。これは「許容される平均誤差」ではなく、「上手い人ほど打点のばらつきが小さい」という分布の指標。練習目標は SD を縮める方向で扱う。</span><span lang="en">In sensorimotor synchronization studies, expert performers' tap-to-tap timing <strong>variability (SD)</strong> typically falls around <strong>10–15ms</strong> (Madison, 2001; Repp, 2005). This is not a "tolerable average deviation" but a measure of consistency — better players have smaller spread. Training targets should focus on reducing SD.</span></p>
+                                <p><strong><span lang="ja">参考目安（あくまで目安、文脈依存）：</span><span lang="en">Reference ranges (heuristic, context-dependent):</span></strong></p>
                                 <ul class="content-list">
-                                    <li><span lang="ja">±50ms：明らかなズレ。アマチュアバンドでも気づく</span><span lang="en">±50ms: Obvious deviation. Even amateur bands notice</span></li>
-                                    <li><span lang="ja">±30ms：グルーヴに影響。中級者の壁</span><span lang="en">±30ms: Affects groove. The intermediate player's wall</span></li>
-                                    <li><span lang="ja">±15ms：JND以下。プロの領域</span><span lang="en">±15ms: Below JND. Professional territory</span></li>
-                                    <li><span lang="ja">±10ms：スタジオミュージシャン級</span><span lang="en">±10ms: Studio musician level</span></li>
+                                    <li><span lang="ja">±50ms：同じバンド内で「ずれている」と気付かれるレベル</span><span lang="en">±50ms: Bandmates notice timing as "off"</span></li>
+                                    <li><span lang="ja">±30ms：グルーヴ感に影響が出始める</span><span lang="en">±30ms: Begins to affect groove feel</span></li>
+                                    <li><span lang="ja">±15ms：熟達した演奏者の典型的な SD レンジ</span><span lang="en">±15ms: Typical SD range for expert performers</span></li>
+                                    <li><span lang="ja">±10ms：スタジオ録音など高い精度が要求される文脈</span><span lang="en">±10ms: Studio-recording precision territory</span></li>
                                 </ul>
                             </div>
                         </div>
@@ -276,9 +211,9 @@
                             <div class="level-card level-card--advanced">
                                 <h5 class="level-card__title"><span lang="ja">上級者の卒業基準</span><span lang="en">Professional Level</span></h5>
                                 <div class="level-card__content">
-                                    <p><span lang="ja">平均誤差 <strong>±15ms</strong> 以内</span><span lang="en">Average deviation within <strong>±15ms</strong></span></p>
+                                    <p><span lang="ja">タイミング SD <strong>±15ms</strong> 以内</span><span lang="en">Timing SD within <strong>±15ms</strong></span></p>
                                     <p>BPM 40-180</p>
-                                    <p><em><span lang="ja">プロレベルの精度</span><span lang="en">Professional-level precision</span></em></p>
+                                    <p><em><span lang="ja">熟達者の典型的なばらつき</span><span lang="en">Expert-level consistency</span></em></p>
                                 </div>
                             </div>
                         </div>
@@ -364,7 +299,7 @@
                     <div class="content-block">
                         <h4 class="content-block__title"><span lang="ja">プロはここから何を考え、行っているか</span><span lang="en">The Professional Perspective</span></h4>
                         <p><span lang="ja">プロは「ジャストで叩く」だけでなく、<span class="highlight">意図的に前後させる</span>。ロックでは前乗りでドライブ感を出し、R&Bでは後乗りでグルーヴを出す。</span><span lang="en">Professional drummers don't merely play "on the grid" - they <span class="highlight">manipulate time feel intentionally</span>. Playing slightly on top of the beat creates urgency and drive in rock contexts; laying back behind the beat creates the deep pocket essential to R&B and hip-hop.</span></p>
-                        <p><span lang="ja">しかしこれは「±15msを意図的にコントロールできる」という前提があってこそ。まずはジャストで叩ける精度を身につけ、その上で表現として前後させる。</span><span lang="en">However, this expressive timing control presupposes the ability to place notes precisely where intended. You must first develop the muscle memory to play dead center, then deliberately choose to push or pull for musical effect. The ability to deviate is meaningless without the ability to be precise.</span></p>
+                        <p><span lang="ja">ただしこれは「ジャストで安定して叩けるベースライン」が前提。個別の打点を ms 単位で意図的にずらすのは運動制御上難しく、実際には<strong>平均位置（ビートに対する全体の前後）</strong>を寄せる感覚で扱う。まずは打点のばらつきを縮め、その上で「全体としてやや前」「全体としてやや後ろ」を選択する。</span><span lang="en">This expressive control assumes a stable on-the-beat baseline. Shifting individual hits by exact millisecond amounts is motor-control-implausible; in practice, players adjust the <strong>average phase</strong> (overall lead or lag against the beat) rather than each individual stroke. First reduce variability, then shape the average position toward "slightly ahead" or "slightly behind."</span></p>
                     </div>
 
                     <div class="content-block">
@@ -390,6 +325,16 @@
                     </div>
                 </div>
             </article>
+
+            <!-- Mid-article CTA -->
+            <div class="article-cta-mid">
+                <div class="article-cta-mid__icon"><svg class="icon" aria-hidden="true"><use href="../assets/icons.svg#icon-chart-bar"></use></svg></div>
+                <div class="article-cta-mid__body">
+                    <div class="article-cta-mid__title"><span lang="ja">自分のタイミング SD を測ってみる</span><span lang="en">Measure your timing SD</span></div>
+                    <div class="article-cta-mid__text"><span lang="ja">Rhythm Training で打点のばらつきを数値化。「走り / モタり」「平均位置」を分けて確認できます。</span><span lang="en">Rhythm Training quantifies tap-by-tap variability and separates rushing/dragging from average phase.</span></div>
+                </div>
+                <a href="https://apps.apple.com/app/id6756626617" class="article-cta-mid__button"><span lang="ja">アプリで試す</span><span lang="en">Try it</span></a>
+            </div>
 
             <!-- Q2: フィルインでリズムが崩れる / Rhythm falls apart after fills -->
             <article class="question-card" id="drums-q2">
@@ -470,11 +415,11 @@
                     <div class="content-block">
                         <h4 class="content-block__title">科学的根拠</h4>
                         <div class="science-box">
-                            <div class="science-box__title">知覚的現在と時間感覚</div>
+                            <div class="science-box__title">遅いテンポが難しい理由</div>
                             <div class="science-box__content">
-                                <p>人間が「今」として認識できる時間幅（知覚的現在）は約3秒。BPM 60では1拍が1秒なので、4拍で4秒。<strong>1小節が「知覚的現在」を超えている</strong>。</p>
-                                <p>このため、遅いテンポでは小節全体を「一塊」として感じることが難しく、途中でテンポを見失いやすい。</p>
-                                <p>対策は「細分化」。BPM 60の4分音符を、頭の中でBPM 120の8分音符として数える。見かけ上のテンポを上げることで、知覚的現在の中に収める。</p>
+                                <p>大人の自発的なタッピングや好みのテンポ（preferred tempo）は、拍間隔 500〜700ms（BPM 約 85〜120）に集中することが知られている（Fraisse, 1982; Moelants, 2002）。BPM 60 は拍間隔 1000ms で、この快適レンジの遅い端に位置する。</p>
+                                <p>遅いテンポでは、拍と拍の「空白」が長くなり、内的なサブディビジョン（細分化）でテンポを保たないと位置を見失いやすい。これは「拍が知覚できなくなる」という話ではなく（拍知覚自体は拍間隔 1500〜2000ms 程度まで成立する; London, 2012）、能動的な維持コストが上がるという問題。</p>
+                                <p>対策は「細分化」。BPM 60 の 4 分音符を、頭の中で BPM 120 の 8 分音符として数える。見かけ上のサブディビジョンを増やすことで、空白に「足場」を作る。</p>
                             </div>
                         </div>
                     </div>
@@ -510,6 +455,17 @@
         </p>
     </footer>
 
+    <!-- Sticky bottom CTA (mobile) -->
+    <div class="sticky-cta">
+        <img class="sticky-cta__icon" src="../AppIcon.png" alt="Solfege PRO">
+        <div class="sticky-cta__text">
+            <strong><span lang="ja">タイミング SD を計測</span><span lang="en">Measure timing SD</span></strong>
+            <span lang="ja">ドラム精度を見える化</span><span lang="en">Visualize your timing</span>
+        </div>
+        <a href="https://apps.apple.com/app/id6756626617" class="sticky-cta__button"><span lang="ja">入手</span><span lang="en">Get</span></a>
+    </div>
+
     <script src="practice.js"></script>
+    <script src="../drawer.js?v=1" defer></script>
 </body>
 </html>

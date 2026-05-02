@@ -3,116 +3,17 @@
    Extends ../style.css variables & base styles
    ============================================= */
 
-/* =============================================
-   1. Article Navigation (simplified)
-   ============================================= */
-.article-nav {
-    background: rgba(42, 42, 48, 0.95);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    padding: var(--space-md) var(--space-lg);
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    z-index: 1000;
-    border-bottom: 1px solid var(--surface-light);
-    height: var(--nav-height);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.article-nav__container {
-    display: flex;
-    align-items: center;
-    gap: var(--space-lg);
-    max-width: 760px;
-    width: 100%;
-}
-
-.article-nav__back {
-    color: var(--text-secondary);
-    text-decoration: none;
-    font-size: 14px;
-    display: flex;
-    align-items: center;
-    gap: var(--space-xs);
-    transition: color 0.2s ease;
-    white-space: nowrap;
-}
-
-.article-nav__back:hover {
-    color: var(--primary);
-}
-
-.article-nav__logo {
-    display: flex;
-    align-items: center;
-    gap: var(--space-sm);
-    text-decoration: none;
-    margin-left: auto;
-}
-
-.article-nav__logo-icon {
-    width: 28px;
-    height: 28px;
-    border-radius: 6px;
-}
-
-.article-nav__logo-text {
-    font-size: 13px;
-    font-weight: 700;
-    color: var(--primary);
-    letter-spacing: 0.5px;
-}
+/* (Article navigation now uses global .nav from ../style.css) */
 
 /* Language toggle in article nav - reuses .settings-btn from style.css */
-.article-nav .settings-btn {
-    flex-shrink: 0;
-}
 
 /* =============================================
    2. Article Header
    ============================================= */
-.article-header {
-    padding: var(--space-3xl) var(--space-lg);
-    padding-top: calc(var(--nav-height) + var(--space-3xl));
-    max-width: 760px;
-    margin: 0 auto;
-}
 
-.article-header__meta {
-    font-size: 13px;
-    color: var(--text-secondary);
-    margin-bottom: var(--space-md);
-    display: flex;
-    align-items: center;
-    gap: var(--space-md);
-}
 
-.article-header__tag {
-    background: rgba(212, 175, 55, 0.15);
-    color: var(--primary);
-    padding: 2px 10px;
-    border-radius: var(--radius-sm);
-    font-size: 12px;
-    font-weight: 500;
-}
 
-.article-header__title {
-    font-size: 28px;
-    font-weight: 700;
-    line-height: 1.4;
-    color: var(--text-primary);
-    margin-bottom: var(--space-lg);
-}
 
-.article-header__lead {
-    font-size: 16px;
-    color: var(--text-secondary);
-    line-height: 1.8;
-}
 
 /* =============================================
    3. Article Body
@@ -634,7 +535,8 @@
 }
 
 .beat-cell {
-    width: 40px;
+    flex: 1 1 0;
+    min-width: 0;
     height: 32px;
     border-radius: var(--radius-sm);
     display: flex;
@@ -642,12 +544,19 @@
     justify-content: center;
     font-size: 11px;
     font-weight: 700;
-    flex-shrink: 0;
 }
 
 .beat-cell--on { background: var(--primary); color: var(--background); }
 .beat-cell--off { background: var(--surface-light); color: var(--text-secondary); }
-.beat-cell--bar { background: rgba(212, 175, 55, 0.3); color: var(--primary); }
+.beat-cell--bar {
+    flex: 0 0 3px;
+    background: var(--primary);
+    height: 28px;
+    align-self: center;
+    color: transparent;
+    font-size: 0;
+    border-radius: 0;
+}
 
 .density-row__difficulty {
     font-size: 12px;
@@ -781,34 +690,12 @@
    13. Responsive
    ============================================= */
 @media (max-width: 768px) {
-    .article-nav {
-        padding: var(--space-sm) var(--space-md);
-    }
 
-    .article-nav__container {
-        gap: var(--space-sm);
-    }
 
-    .article-nav__back {
-        font-size: 13px;
-    }
 
-    .article-nav__logo-text {
-        font-size: 12px;
-    }
 
-    .article-header {
-        padding: var(--space-xl) var(--space-md);
-        padding-top: calc(var(--nav-height) + var(--space-xl));
-    }
 
-    .article-header__title {
-        font-size: 22px;
-    }
 
-    .article-header__lead {
-        font-size: 15px;
-    }
 
     .article-body {
         padding: 0 var(--space-md) var(--space-2xl);
@@ -937,9 +824,6 @@
 }
 
 @media (max-width: 480px) {
-    .article-header__title {
-        font-size: 19px;
-    }
 
     .article-body h2 {
         font-size: 17px;

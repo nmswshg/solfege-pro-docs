@@ -8,6 +8,9 @@
     <meta name="description" content="セッション、耳コピ、フレーズ、コード進行 — ギタリスト・ベーシストの課題を解決する練習メニュー">
 
     <link rel="canonical" href="https://nmswshg.github.io/solfege-pro-docs/practice/guitar-bass.html">
+    <link rel="alternate" hreflang="ja" href="https://nmswshg.github.io/solfege-pro-docs/practice/guitar-bass.html?lang=ja">
+    <link rel="alternate" hreflang="en" href="https://nmswshg.github.io/solfege-pro-docs/practice/guitar-bass.html?lang=en">
+    <link rel="alternate" hreflang="x-default" href="https://nmswshg.github.io/solfege-pro-docs/practice/guitar-bass.html">
     <link rel="icon" href="../AppIcon.png" type="image/png">
     <link rel="apple-touch-icon" href="../AppIcon.png">
 
@@ -27,95 +30,11 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
 
-    <link rel="stylesheet" href="../style.css?v=4">
+    <link rel="stylesheet" href="../style.css?v=13">
 
     <style>
-        .practice-nav {
-            background: rgba(42, 42, 48, 0.95);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            padding: var(--space-md) var(--space-lg);
-            position: fixed;
-            top: 0; left: 0; right: 0;
-            z-index: 1000;
-            border-bottom: 1px solid var(--surface-light);
-            height: var(--nav-height);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        .practice-nav__container {
-            display: flex;
-            align-items: center;
-            gap: var(--space-lg);
-            max-width: 900px;
-            width: 100%;
-        }
-        .practice-nav__back {
-            color: var(--text-secondary);
-            text-decoration: none;
-            font-size: 14px;
-            display: flex;
-            align-items: center;
-            gap: var(--space-xs);
-            transition: color 0.2s ease;
-            white-space: nowrap;
-        }
-        .practice-nav__back:hover { color: var(--primary); }
-        .practice-nav__logo {
-            display: flex;
-            align-items: center;
-            gap: var(--space-sm);
-            text-decoration: none;
-            margin-left: auto;
-        }
-        .practice-nav__logo-icon {
-            width: 28px; height: 28px; border-radius: 6px;
-        }
-        .practice-nav__logo-text {
-            font-size: 13px;
-            font-weight: 700;
-            color: var(--primary);
-            letter-spacing: 0.5px;
-        }
-        .practice-header {
-            padding: var(--space-3xl) var(--space-lg);
-            padding-top: calc(var(--nav-height) + var(--space-3xl));
-            max-width: 900px;
-            margin: 0 auto;
-            text-align: center;
-        }
-        .practice-header__icon { font-size: 48px; margin-bottom: var(--space-md); }
-        .practice-header__title {
-            font-size: 28px; font-weight: 700;
-            margin-bottom: var(--space-md);
-            background: linear-gradient(135deg, var(--primary), var(--accent));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-        .practice-header__subtitle {
-            font-size: 15px;
-            color: var(--text-secondary);
-            max-width: 600px;
-            margin: 0 auto;
-        }
-        .practice-header__meta {
-            margin-top: var(--space-md);
-            font-size: 13px;
-            color: var(--text-secondary);
-        }
-        .practice-header__badge {
-            display: inline-block;
-            background: rgba(212, 175, 55, 0.15);
-            color: var(--primary);
-            padding: 2px 10px;
-            border-radius: var(--radius-sm);
-            font-size: 12px;
-            font-weight: 500;
-        }
         .practice-body {
-            max-width: 900px;
+            max-width: 1100px;
             margin: 0 auto;
             padding: 0 var(--space-lg) var(--space-2xl);
         }
@@ -137,47 +56,63 @@
             text-decoration: none;
         }
         @media (max-width: 768px) {
-            .practice-nav { padding: var(--space-sm) var(--space-md); }
-            .practice-nav__back { font-size: 13px; }
-            .practice-header {
-                padding: var(--space-xl) var(--space-md);
-                padding-top: calc(var(--nav-height) + var(--space-xl));
-            }
-            .practice-header__icon { font-size: 36px; }
-            .practice-header__title { font-size: 22px; }
             .practice-body { padding: 0 var(--space-md) var(--space-xl); }
         }
         @media (max-width: 480px) {
-            .practice-header__title { font-size: 19px; }
         }
     </style>
 </head>
 <body>
-    <nav class="practice-nav">
-        <div class="practice-nav__container">
-            <a href="../" class="practice-nav__back">&larr; <span lang="ja">練習ガイド</span><span lang="en">Practice Guide</span></a>
-            <a href="../" class="practice-nav__logo">
-                <img src="../AppIcon.png" alt="Solfege PRO" class="practice-nav__logo-icon">
-                <span class="practice-nav__logo-text"><span lang="ja">ソルフェージュPRO</span><span lang="en">Solfege PRO</span></span>
+    <nav class="nav">
+        <div class="nav__container">
+            <a href="../" class="nav__logo">
+                <img src="../AppIcon.png" alt="Solfege PRO" class="nav__logo-icon">
+                <span class="nav__logo-text"><span lang="ja">ソルフェージュPRO</span><span lang="en">Solfege PRO</span></span>
             </a>
-            <button class="settings-btn" id="lang-toggle" title="Toggle language">
-                <span id="lang-text">EN</span>
-            </button>
+            <ul class="nav__list">
+                <li><a href="../" class="nav__link active"><span lang="ja">練習ガイド</span><span lang="en">Practice Guide</span></a></li>
+                <li><a href="../guides/" class="nav__link"><span lang="ja">ガイド一覧</span><span lang="en">Guides</span></a></li>
+                            <li><a href="../start-here.html" class="nav__link"><span lang="ja">どこから始める？</span><span lang="en">Where to Start?</span></a></li>
+            </ul>
+            <div class="nav__settings">
+                <button class="settings-btn" id="lang-toggle" title="Toggle language">
+                    <span id="lang-text">EN</span>
+                </button>
+                <button class="hamburger-btn" id="hamburger-btn" aria-label="Menu" aria-expanded="false" aria-controls="drawer">
+                    <span class="hamburger-btn__line"></span>
+                    <span class="hamburger-btn__line"></span>
+                    <span class="hamburger-btn__line"></span>
+                </button>
+            </div>
         </div>
     </nav>
+        <!-- Mobile drawer (hidden on desktop) -->
+        <div class="drawer-overlay" id="drawer-overlay"></div>
+        <aside class="drawer" id="drawer" aria-label="Mobile menu">
+            <div class="drawer__header">
+                <span class="drawer__title"><span lang="ja">メニュー</span><span lang="en">Menu</span></span>
+                <button class="drawer__close" id="drawer-close" aria-label="Close menu">×</button>
+            </div>
+            <ul class="drawer__list">
+                    <li><a href="../" class="drawer__link active"><span lang="ja">練習ガイド</span><span lang="en">Practice Guide</span></a></li>
+                    <li><a href="../guides/" class="drawer__link"><span lang="ja">ガイド一覧</span><span lang="en">Guides</span></a></li>
+                    <li><a href="../start-here.html" class="drawer__link"><span lang="ja">どこから始める？</span><span lang="en">Where to Start?</span></a></li>
+            </ul>
+        </aside>
 
-    <header class="practice-header">
-        <div class="practice-header__icon">🎸</div>
-        <h1 class="practice-header__title"><span lang="ja">ギター・ベース 練習ガイド</span><span lang="en">Guitar & Bass Practice Guide</span></h1>
-        <p class="practice-header__subtitle"><span lang="ja">セッション、耳コピ、フレーズ、コード進行 — ギタリスト・ベーシストの課題を解決する練習メニュー</span><span lang="en">Sessions, transcription, phrases, progressions — practice menus for guitarists and bassists</span></p>
-        <div class="practice-header__meta">
-            <span class="practice-header__badge">4 Q&amp;A</span>
+
+    <header class="page-header">
+        <div class="page-header__icon"><svg class="icon" aria-hidden="true"><use href="../assets/icons.svg#icon-guitar"></use></svg></div>
+        <h1 class="page-header__title"><span lang="ja">ギター・ベース 練習ガイド</span><span lang="en">Guitar & Bass Practice Guide</span></h1>
+        <p class="page-header__subtitle"><span lang="ja">セッション、耳コピ、フレーズ、コード進行 — ギタリスト・ベーシストの課題を解決する練習メニュー</span><span lang="en">Sessions, transcription, phrases, progressions — practice menus for guitarists and bassists</span></p>
+        <div class="page-header__meta">
+            <span class="page-header__badge">4 Q&amp;A</span>
         </div>
     </header>
 
     <main class="practice-body">
             <div class="section__header">
-                <span class="section__icon">🎸</span>
+                <span class="section__icon"><svg class="icon" aria-hidden="true"><use href="../assets/icons.svg#icon-guitar"></use></svg></span>
                 <h2 class="section__title"><span lang="ja">ギター・ベース</span><span lang="en">Guitar & Bass</span></h2>
                 <div class="section__header-actions">
                     <button class="expand-all-btn"><span lang="ja">すべて開く</span><span lang="en">Expand All</span></button>
@@ -229,7 +164,7 @@
                             <div class="science-box__content">
                                 <p><span lang="ja">人間の脳には「ワーキングメモリ」と呼ばれる短期記憶領域がある。容量は限られており、<strong>「G7のコードトーンは…」と考えている間、「次のフレーズ」を考える余裕がなくなる。</strong></span><span lang="en">The human brain has a limited-capacity short-term storage system called "working memory." When this cognitive resource is occupied by deliberate calculations like <strong>"G7's chord tones are G, B, D, F..."</strong>, there's no bandwidth left for musical decision-making or phrase construction.</span></p>
                                 <p><span lang="ja">これを解決するのが<span class="highlight">「自動化（チャンキング）」</span>。繰り返し訓練により、「G7 → 指の位置」という変換が意識を介さず自動的に行われるようになる。</span><span lang="en">The solution is developing <span class="highlight">automaticity through chunking</span>. With deliberate practice, the mapping from "G7 → finger positions" becomes procedural memory, bypassing conscious thought entirely. This is the same mechanism that allows experienced readers to recognize words instantly rather than sounding out individual letters.</span></p>
-                                <p><span lang="ja">認知心理学の研究では、この自動化には<strong>平均10〜20時間の反復練習</strong>が必要とされている。1日15分 × 6週間 = 約10時間で「見える」感覚に到達可能。</span><span lang="en">Research in cognitive psychology and motor learning indicates that developing automaticity requires approximately <strong>10-20 hours of focused, deliberate practice</strong>. At 15 minutes per day over 6 weeks, you accumulate roughly 10 hours - enough to reach what musicians describe as "seeing" the fretboard.</span></p>
+                                <p><span lang="ja">自動化の進度は<strong>「反応時間」と「注意の解放」</strong>で測れる（Logan, 1988; Anderson, 1982）。同じ問題への正答時間が短くなり、かつ「他のこと（次のフレーズ、グルーヴ）」に注意を回せる量が増えていれば自動化は進んでいる。到達までの時間は課題範囲・反復の質・個人差で大きく変動するため、ここでは具体的な時間を約束しない。次節の卒業基準（応答時間と正答率）で進捗を可視化する。</span><span lang="en">Automaticity progress is measured by <strong>response time and freed attention</strong> (Logan, 1988; Anderson, 1982). You're getting more automatic when (a) the same item is recalled faster and (b) you can spare attention for other things — the next phrase, the groove. Time-to-mastery varies widely with task scope, practice quality, and individual differences, so this guide does not promise a specific number of hours. Use the response-time and accuracy benchmarks below to track progress.</span></p>
                             </div>
                         </div>
                     </div>
@@ -409,6 +344,16 @@
                     </div>
                 </div>
             </article>
+
+            <!-- Mid-article CTA -->
+            <div class="article-cta-mid">
+                <div class="article-cta-mid__icon"><svg class="icon" aria-hidden="true"><use href="../assets/icons.svg#icon-guitar"></use></svg></div>
+                <div class="article-cta-mid__body">
+                    <div class="article-cta-mid__title"><span lang="ja">指板の自動化を測る</span><span lang="en">Measure fretboard automaticity</span></div>
+                    <div class="article-cta-mid__text"><span lang="ja">Fretboard Training で「応答時間」と「正答率」を計測。注意の解放度合いを可視化します。</span><span lang="en">Fretboard Training tracks response time and accuracy — surfacing how much attention is freed.</span></div>
+                </div>
+                <a href="https://apps.apple.com/app/id6756626617" class="article-cta-mid__button"><span lang="ja">アプリで試す</span><span lang="en">Try it</span></a>
+            </div>
 
             <!-- Q2: 耳コピに時間がかかる -->
             <article class="question-card" id="guitar-q2">
@@ -878,6 +823,17 @@
         </p>
     </footer>
 
+    <!-- Sticky bottom CTA (mobile) -->
+    <div class="sticky-cta">
+        <img class="sticky-cta__icon" src="../AppIcon.png" alt="Solfege PRO">
+        <div class="sticky-cta__text">
+            <strong><span lang="ja">指板を「見える」状態に</span><span lang="en">Make the fretboard "visible"</span></strong>
+            <span lang="ja">応答時間と正答率を計測</span><span lang="en">Track response time &amp; accuracy</span>
+        </div>
+        <a href="https://apps.apple.com/app/id6756626617" class="sticky-cta__button"><span lang="ja">入手</span><span lang="en">Get</span></a>
+    </div>
+
     <script src="practice.js"></script>
+    <script src="../drawer.js?v=1" defer></script>
 </body>
 </html>

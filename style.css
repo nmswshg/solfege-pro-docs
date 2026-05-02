@@ -63,6 +63,9 @@
 html {
     scroll-behavior: smooth;
     scroll-padding-top: var(--nav-height);
+    /* Reserve scrollbar space so viewport width is constant across pages
+       (prevents nav width drift between short/long pages). */
+    scrollbar-gutter: stable both-edges;
 }
 
 body {
@@ -160,10 +163,9 @@ body {
 .nav__list {
     display: flex;
     gap: var(--space-sm);
-    justify-content: center;
     list-style: none;
     flex-wrap: wrap;
-    flex: 1;
+    margin-left: auto;
 }
 
 .nav__link {
@@ -940,7 +942,7 @@ body {
         gap: var(--space-sm);
     }
 
-    /* Hide desktop nav list on mobile */
+    /* Hide desktop nav list on mobile; hamburger drawer takes over */
     .nav__list {
         display: none;
     }
@@ -1192,4 +1194,338 @@ body {
     .footer__text {
         font-size: 12px;
     }
+}
+
+/* =============================================
+   Shared Conversion Components (W3)
+   ============================================= */
+
+/* Sticky bottom CTA bar (mobile-only) */
+.sticky-cta {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(42, 42, 48, 0.98);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-top: 1px solid var(--surface-light);
+    padding: 10px 14px;
+    z-index: 999;
+    display: none;
+    align-items: center;
+    gap: 12px;
+    box-shadow: 0 -4px 16px rgba(0, 0, 0, 0.3);
+}
+.sticky-cta__icon {
+    width: 36px;
+    height: 36px;
+    border-radius: 8px;
+    flex-shrink: 0;
+}
+.sticky-cta__text {
+    flex: 1;
+    font-size: 12px;
+    line-height: 1.3;
+    color: var(--text-secondary);
+    min-width: 0;
+}
+.sticky-cta__text strong {
+    color: var(--text-primary);
+    font-size: 13px;
+    display: block;
+    margin-bottom: 2px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.sticky-cta__button {
+    background: var(--primary);
+    color: var(--background);
+    padding: 9px 14px;
+    border-radius: 8px;
+    font-size: 12px;
+    font-weight: 700;
+    text-decoration: none;
+    flex-shrink: 0;
+    transition: transform 0.15s ease;
+}
+.sticky-cta__button:active {
+    transform: scale(0.96);
+}
+@media (max-width: 768px) {
+    .sticky-cta { display: flex; }
+    body { padding-bottom: 70px; }
+}
+
+/* Hero CTA group (above-the-fold buttons) */
+.hero-cta-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-md);
+    justify-content: center;
+    align-items: center;
+    margin-top: var(--space-xl);
+}
+
+/* App Store badge */
+.app-store-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-sm);
+    background: var(--primary);
+    color: var(--background);
+    padding: var(--space-md) var(--space-xl);
+    border-radius: var(--radius-lg);
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 15px;
+    transition: all 0.2s ease;
+    line-height: 1.2;
+}
+.app-store-badge:hover {
+    transform: scale(1.03);
+    box-shadow: 0 4px 20px rgba(212, 175, 55, 0.3);
+}
+.app-store-badge__icon {
+    font-size: 20px;
+}
+.app-store-badge--secondary {
+    background: transparent;
+    color: var(--primary);
+    border: 1px solid var(--primary);
+}
+.app-store-badge--secondary:hover {
+    background: var(--surface-light);
+    box-shadow: none;
+}
+
+
+/* Social proof section */
+.social-proof {
+    background: var(--surface);
+    border: 1px solid var(--surface-light);
+    border-radius: var(--radius-lg);
+    padding: var(--space-lg) var(--space-xl);
+    margin: var(--space-xl) 0;
+    text-align: center;
+}
+.social-proof__title {
+    font-size: 12px;
+    color: var(--text-secondary);
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: var(--space-md);
+}
+.social-proof__list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: var(--space-md) var(--space-xl);
+    list-style: none;
+}
+.social-proof__item {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    font-size: 13px;
+    color: var(--text-secondary);
+}
+.social-proof__item strong {
+    color: var(--text-primary);
+    font-size: 14px;
+}
+.social-proof__icon {
+    color: var(--primary);
+    font-size: 16px;
+}
+
+/* Prominent mid-article CTA (more visible than .article-cta-subtle) */
+.article-cta-mid {
+    display: flex;
+    align-items: center;
+    gap: var(--space-md);
+    background: linear-gradient(90deg, var(--surface) 0%, var(--surface-light) 100%);
+    border-left: 4px solid var(--primary);
+    border-radius: var(--radius-md);
+    padding: var(--space-lg);
+    margin: var(--space-2xl) 0;
+}
+.article-cta-mid__icon {
+    font-size: 32px;
+    flex-shrink: 0;
+    line-height: 1;
+}
+.article-cta-mid__body {
+    flex: 1;
+    min-width: 0;
+}
+.article-cta-mid__title {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 4px;
+}
+.article-cta-mid__text {
+    font-size: 13px;
+    color: var(--text-secondary);
+    line-height: 1.6;
+}
+.article-cta-mid__button {
+    background: var(--primary);
+    color: var(--background);
+    padding: 10px 18px;
+    border-radius: var(--radius-md);
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 700;
+    flex-shrink: 0;
+    white-space: nowrap;
+    transition: transform 0.15s ease;
+}
+.article-cta-mid__button:hover {
+    transform: scale(1.04);
+}
+@media (max-width: 600px) {
+    .article-cta-mid {
+        flex-direction: column;
+        text-align: center;
+        gap: var(--space-sm);
+    }
+}
+
+/* Recommended reading order indicator (guide index) */
+.guide-card__order {
+    display: inline-block;
+    background: var(--primary);
+    color: var(--background);
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 24px;
+    font-size: 12px;
+    font-weight: 700;
+    margin-right: var(--space-sm);
+}
+
+/* =============================================
+   Apple App Store Official Badge (W3 Task A)
+   Uses Apple-hosted badge images for marketing-guideline compliance.
+   ============================================= */
+.app-store-link {
+    display: inline-flex;
+    align-items: center;
+    text-decoration: none;
+    transition: transform 0.2s ease, opacity 0.2s ease;
+    line-height: 0;
+}
+.app-store-link:hover { transform: scale(1.04); }
+.app-store-link:active { opacity: 0.85; }
+.app-store-link__img {
+    height: 50px;
+    width: auto;
+    display: block;
+}
+@media (max-width: 600px) {
+    .app-store-link__img { height: 44px; }
+}
+
+
+
+/* =============================================
+   Icon system (Lucide stroke icons via SVG sprite)
+   Use: <svg class="icon"><use href="/assets/icons.svg#icon-name"></use></svg>
+   ============================================= */
+.icon {
+    width: 1em;
+    height: 1em;
+    flex-shrink: 0;
+    vertical-align: -0.15em;
+    color: currentColor;
+}
+/* Size variants used in cards/headers */
+.guide-card__icon .icon,
+.instrument-card__icon .icon,
+.diag-option__icon .icon { font-size: 32px; }
+.page-header__icon .icon { font-size: 48px; }
+.social-proof__icon .icon { font-size: 18px; }
+.article-cta-mid__icon .icon { font-size: 32px; }
+.question-card__q .icon { font-size: 18px; vertical-align: 0; }
+@media (max-width: 768px) {
+    .page-header__icon .icon { font-size: 36px; }
+    .instrument-card__icon .icon { font-size: 28px; }
+}
+/* The icon containers inherit accent color */
+.guide-card__icon,
+.instrument-card__icon,
+.page-header__icon,
+.social-proof__icon,
+.article-cta-mid__icon { color: var(--primary); }
+
+/* =============================================
+   Page Header (unified hero across all pages)
+   Used by: TOP, start-here, guides index, practice/*, guides/* (articles)
+   ============================================= */
+.page-header {
+    background: linear-gradient(180deg, var(--surface) 0%, var(--background) 100%);
+    padding: var(--space-3xl) var(--space-lg);
+    padding-top: calc(var(--nav-height) + var(--space-3xl));
+    text-align: center;
+    border-bottom: 1px solid var(--surface-light);
+}
+.page-header__icon {
+    font-size: 48px;
+    margin-bottom: var(--space-md);
+}
+.page-header__title {
+    font-size: 32px;
+    font-weight: 700;
+    margin-bottom: var(--space-md);
+    background: linear-gradient(135deg, var(--primary), var(--accent));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    line-height: 1.3;
+}
+.page-header__subtitle {
+    color: var(--text-secondary);
+    font-size: 16px;
+    max-width: 640px;
+    margin: 0 auto;
+    line-height: 1.8;
+}
+.page-header__meta {
+    margin-top: var(--space-md);
+    font-size: 13px;
+    color: var(--text-secondary);
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-md);
+    justify-content: center;
+    flex-wrap: wrap;
+}
+.page-header__badge,
+.page-header__tag {
+    display: inline-block;
+    background: rgba(212, 175, 55, 0.15);
+    color: var(--primary);
+    padding: 2px 10px;
+    border-radius: var(--radius-sm);
+    font-size: 12px;
+    font-weight: 500;
+}
+
+@media (max-width: 768px) {
+    .page-header {
+        padding: var(--space-xl) var(--space-md);
+        padding-top: calc(var(--nav-height) + var(--space-xl));
+    }
+    .page-header__icon { font-size: 36px; }
+    .page-header__title { font-size: 24px; }
+    .page-header__subtitle { font-size: 14px; }
+}
+@media (max-width: 480px) {
+    .page-header__title { font-size: 20px; }
 }
