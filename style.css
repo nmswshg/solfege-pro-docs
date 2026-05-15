@@ -40,16 +40,32 @@
 }
 
 /* =============================================
-   2. Language Toggle System
+   2. Language Toggle System (ja / en / fr / de)
    ============================================= */
-/* Default: Japanese visible, English hidden */
-/* Use :not(html) to prevent matching <html lang="en"> which would hide the entire page */
-:not(html)[lang="en"] { display: none; }
+/* Default: Japanese visible, all others hidden */
+/* Use :not(html) to prevent matching <html lang="X"> which would hide the entire page */
+:not(html)[lang="en"],
+:not(html)[lang="fr"],
+:not(html)[lang="de"] { display: none; }
 :not(html)[lang="ja"] { display: contents; }
 
 /* When English is selected */
 [data-lang="en"] :not(html)[lang="en"] { display: contents; }
-[data-lang="en"] :not(html)[lang="ja"] { display: none; }
+[data-lang="en"] :not(html)[lang="ja"],
+[data-lang="en"] :not(html)[lang="fr"],
+[data-lang="en"] :not(html)[lang="de"] { display: none; }
+
+/* When French is selected */
+[data-lang="fr"] :not(html)[lang="fr"] { display: contents; }
+[data-lang="fr"] :not(html)[lang="ja"],
+[data-lang="fr"] :not(html)[lang="en"],
+[data-lang="fr"] :not(html)[lang="de"] { display: none; }
+
+/* When German is selected */
+[data-lang="de"] :not(html)[lang="de"] { display: contents; }
+[data-lang="de"] :not(html)[lang="ja"],
+[data-lang="de"] :not(html)[lang="en"],
+[data-lang="de"] :not(html)[lang="fr"] { display: none; }
 
 /* =============================================
    3. Base Styles
@@ -130,6 +146,7 @@ body {
     display: flex;
     gap: var(--space-sm);
     align-items: center;
+    position: relative;
 }
 
 .settings-btn {
@@ -158,6 +175,59 @@ body {
     background: var(--primary);
     color: var(--background);
     border-color: var(--primary);
+}
+
+.settings-btn__chevron {
+    display: inline-block;
+    font-size: 9px;
+    margin-left: 2px;
+    opacity: 0.7;
+    transition: transform 0.15s ease;
+}
+
+.settings-btn[aria-expanded="true"] .settings-btn__chevron {
+    transform: rotate(180deg);
+}
+
+/* Language dropdown */
+.lang-menu {
+    position: absolute;
+    top: calc(100% + 6px);
+    right: 0;
+    display: none;
+    list-style: none;
+    margin: 0;
+    padding: 4px;
+    min-width: 144px;
+    background: var(--surface);
+    border: 1px solid var(--surface-light);
+    border-radius: var(--radius-md);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+    z-index: 1001;
+}
+.lang-menu.open { display: block; }
+.lang-menu__item {
+    width: 100%;
+    text-align: left;
+    background: transparent;
+    border: none;
+    color: var(--text-primary);
+    padding: 8px 12px;
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    font: inherit;
+    font-size: 14px;
+    font-family: inherit;
+}
+.lang-menu__item:hover,
+.lang-menu__item:focus {
+    background: var(--surface-light);
+    color: var(--primary);
+    outline: none;
+}
+.lang-menu__item.is-active {
+    color: var(--primary);
+    font-weight: 700;
 }
 
 .nav__list {

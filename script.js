@@ -115,6 +115,19 @@ document.addEventListener('DOMContentLoaded', function() {
     const expandAllBtns = document.querySelectorAll('.expand-all-btn');
     const currentLangGetter = () => document.documentElement.getAttribute('data-lang') || 'ja';
 
+    const EXPAND_LABEL = {
+        ja: 'すべて開く',
+        en: 'Expand All',
+        fr: 'Tout développer',
+        de: 'Alle aufklappen'
+    };
+    const COLLAPSE_LABEL = {
+        ja: 'すべて閉じる',
+        en: 'Collapse All',
+        fr: 'Tout réduire',
+        de: 'Alle zuklappen'
+    };
+
     expandAllBtns.forEach(btn => {
         btn.addEventListener('click', () => {
             const section = btn.closest('.section');
@@ -131,11 +144,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
             // Update button text based on language
             const lang = currentLangGetter();
-            if (allExpanded) {
-                btn.textContent = lang === 'ja' ? 'すべて開く' : 'Expand All';
-            } else {
-                btn.textContent = lang === 'ja' ? 'すべて閉じる' : 'Collapse All';
-            }
+            btn.textContent = allExpanded ? EXPAND_LABEL[lang] : COLLAPSE_LABEL[lang];
         });
     });
 
@@ -155,15 +164,27 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     /* =============================================
-       6. Language Toggle (with ?lang= URL param support)
+       6. Language Toggle (ja → en → fr → de cycle, with ?lang= URL param support)
        ============================================= */
     const langToggle = document.getElementById('lang-toggle');
     const langText = document.getElementById('lang-text');
+    const LANG_CYCLE = ['ja', 'en', 'fr', 'de'];
+    const LANG_LABEL = { ja: 'JA', en: 'EN', fr: 'FR', de: 'DE' };
+    const APP_STORE_LOCALE = { ja: 'jp', en: 'us', fr: 'fr', de: 'de' };
+    const TITLE_LABEL = {
+        ja: 'ソルフェージュPRO 練習ガイド',
+        en: 'Solfege PRO - Practice Guide',
+        fr: 'Solfege PRO - Guide d\'entraînement',
+        de: 'Solfege PRO - Übungsleitfaden'
+    };
+
+    function isValidLang(l) { return LANG_CYCLE.indexOf(l) !== -1; }
+
     // Priority: URL param > localStorage > default 'ja'
     const urlLang = new URLSearchParams(window.location.search).get('lang');
-    let currentLang = (urlLang === 'ja' || urlLang === 'en')
+    let currentLang = isValidLang(urlLang)
         ? urlLang
-        : (localStorage.getItem('lang') || 'ja');
+        : (isValidLang(localStorage.getItem('lang')) ? localStorage.getItem('lang') : 'ja');
 
     function syncUrlLang(lang) {
         const url = new URL(window.location.href);
@@ -171,24 +192,30 @@ document.addEventListener('DOMContentLoaded', function() {
         history.replaceState(null, '', url.toString());
     }
 
+    function nextLang(lang) {
+        const idx = LANG_CYCLE.indexOf(lang);
+        return LANG_CYCLE[(idx + 1) % LANG_CYCLE.length];
+    }
+
     function applyLanguage(lang) {
-        document.documentElement.setAttribute('data-lang', lang); document.documentElement.lang = lang;
-        langText.textContent = lang === 'ja' ? 'EN' : 'JA';
-        document.title = lang === 'ja' ? 'ソルフェージュPRO 練習ガイド' : 'Solfege PRO - Practice Guide';
+        document.documentElement.setAttribute('data-lang', lang);
+        document.documentElement.lang = lang;
+        // Button shows the *next* language (click to switch to it)
+        langText.textContent = LANG_LABEL[nextLang(lang)];
+        document.title = TITLE_LABEL[lang];
         localStorage.setItem('lang', lang);
         currentLang = lang;
-        document.querySelectorAll('a[href*="apps.apple.com"]').forEach(function(a){a.href='https://apps.apple.com/'+(lang==='ja'?'jp':'us')+'/app/id6756626617';});
+        const storeLocale = APP_STORE_LOCALE[lang];
+        document.querySelectorAll('a[href*="apps.apple.com"]').forEach(function(a){
+            a.href = 'https://apps.apple.com/' + storeLocale + '/app/id6756626617';
+        });
 
         // Update expand/collapse buttons text
         expandAllBtns.forEach(btn => {
             const section = btn.closest('.section');
             const cards = section.querySelectorAll('.question-card');
             const allExpanded = Array.from(cards).every(card => card.classList.contains('expanded'));
-            if (allExpanded) {
-                btn.textContent = lang === 'ja' ? 'すべて閉じる' : 'Collapse All';
-            } else {
-                btn.textContent = lang === 'ja' ? 'すべて開く' : 'Expand All';
-            }
+            btn.textContent = allExpanded ? COLLAPSE_LABEL[lang] : EXPAND_LABEL[lang];
         });
     }
 
@@ -196,7 +223,7 @@ document.addEventListener('DOMContentLoaded', function() {
     applyLanguage(currentLang);
 
     langToggle.addEventListener('click', () => {
-        const newLang = currentLang === 'ja' ? 'en' : 'ja';
+        const newLang = nextLang(currentLang);
         applyLanguage(newLang);
         syncUrlLang(newLang);
     });
