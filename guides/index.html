@@ -119,6 +119,64 @@
             margin-left: 6px;
         }
 
+        /* Multi-tag row */
+        .guide-card__tags {
+            display: flex;
+            gap: 6px;
+            flex-wrap: wrap;
+            margin-top: var(--space-md);
+        }
+        .guide-card__tags .guide-card__tag {
+            margin-top: 0;
+            margin-left: 0;
+        }
+
+        .guide-card__tag--science {
+            color: #A78BFA;
+            background: rgba(167, 139, 250, 0.15);
+            margin-left: 6px;
+        }
+
+        /* "Coming soon" cards: dimmed and non-clickable */
+        .guide-card--coming {
+            opacity: 0.65;
+            pointer-events: none;
+            position: relative;
+        }
+        .guide-card__status {
+            display: inline-block;
+            font-size: 11px;
+            font-weight: 600;
+            color: var(--text-secondary);
+            background: rgba(154, 154, 154, 0.18);
+            padding: 2px 8px;
+            border-radius: var(--radius-sm);
+            margin-top: var(--space-sm);
+            align-self: flex-start;
+            letter-spacing: 0.3px;
+        }
+
+        /* Subsection heading inside guides grid */
+        .guides-subhead {
+            grid-column: 1 / -1;
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin: var(--space-lg) 0 0;
+            padding-bottom: var(--space-sm);
+            border-bottom: 1px solid var(--surface-light);
+            display: flex;
+            align-items: center;
+            gap: var(--space-sm);
+        }
+        .guides-subhead:first-child { margin-top: 0; }
+        .guides-subhead__hint {
+            font-size: 12px;
+            font-weight: 400;
+            color: var(--text-secondary);
+            margin-left: auto;
+        }
+
         .guides-footer {
             background: var(--surface);
             padding: var(--space-xl) var(--space-lg);
@@ -167,6 +225,7 @@
         @media (max-width: 480px) {
         }
     </style>
+    <script src="../analytics.js?v=1" defer></script>
 </head>
 <body>
     <!-- Navigation -->
@@ -285,6 +344,48 @@
                 <div class="guide-card__title"><span lang="ja">コード進行ガイド</span><span lang="en">Progression Training Guide</span><span lang="fr">Guide des progressions d'accords</span><span lang="de">Leitfaden zu Akkordfolgen</span></div>
                 <div class="guide-card__desc"><span lang="ja">和声の流れを聴き取る力を理解する。機能和声（T/SD/D）の考え方と段階的な練習。</span><span lang="en">Understanding harmonic movement. Functional harmony (T/SD/D) concepts and step-by-step practice.</span><span lang="fr">Comprendre le mouvement harmonique. Concepts de l'harmonie fonctionnelle (T/SD/D) et progression par étapes.</span><span lang="de">Harmonische Bewegung verstehen. Konzepte der Funktionsharmonik (T/SD/D) und schrittweises Üben.</span></div>
                 <span class="guide-card__tag">Progression Training</span>
+            </a>
+
+            <!-- Cognitive Science series (coming soon) -->
+            <div class="guides-subhead">
+                <svg class="icon" aria-hidden="true" style="width:1em; height:1em; color:#A78BFA;"><use href="../assets/icons.svg#icon-flask"></use></svg>
+                <span><span lang="ja">認知科学シリーズ</span><span lang="en">Cognitive Science Series</span><span lang="fr">Série Sciences cognitives</span><span lang="de">Kognitionswissenschaft-Serie</span></span>
+                <span class="guides-subhead__hint"><span lang="ja">研究知見ベースの読み物</span><span lang="en">Research-grounded reading</span><span lang="fr">Lectures fondées sur la recherche</span><span lang="de">Forschungsbasierte Lektüre</span></span>
+            </div>
+
+            <a href="practice-spacing.html" class="guide-card">
+                <div class="guide-card__icon"><svg class="icon" aria-hidden="true"><use href="../assets/icons.svg#icon-flask"></use></svg></div>
+                <div class="guide-card__title"><span lang="ja">練習時間の最適配分</span><span lang="en">Optimal Practice Scheduling</span><span lang="fr">Répartition optimale du temps d'entraînement</span><span lang="de">Optimale Aufteilung der Übungszeit</span></div>
+                <div class="guide-card__desc"><span lang="ja">spacing・interleaving・testing effect — 同じ時間で 2〜3 倍の定着を得るスケジュール設計。</span><span lang="en">Spacing, interleaving, testing effect — schedule designs that yield 2–3× retention from the same hours.</span><span lang="fr">Spacing, interleaving, testing effect — des plannings qui multiplient par 2 à 3 la rétention à temps égal.</span><span lang="de">Spacing, Interleaving, Testing Effect — Pläne, die mit gleichem Zeitaufwand 2–3× mehr Behaltensleistung bringen.</span></div>
+                <div class="guide-card__tags"><span class="guide-card__tag">Cross-cutting</span><span class="guide-card__tag guide-card__tag--science"><span lang="ja">認知科学</span><span lang="en">Cognitive Science</span><span lang="fr">Sciences cognitives</span><span lang="de">Kognitionswissenschaft</span></span></div>
+            </a>
+
+            <a href="eye-hand-span.html" class="guide-card">
+                <div class="guide-card__icon"><svg class="icon" aria-hidden="true"><use href="../assets/icons.svg#icon-book-open"></use></svg></div>
+                <div class="guide-card__title"><span lang="ja">初見の 3 秒先読み</span><span lang="en">The 3-Second Look-Ahead in Sight-Reading</span><span lang="fr">Anticiper 3 secondes en lecture à vue</span><span lang="de">Drei Sekunden Vorausschau beim Vom-Blatt-Spielen</span></div>
+                <div class="guide-card__desc"><span lang="ja">eye-hand span 研究から、プロが「弾いている音の先」を見ている仕組みと訓練法。</span><span lang="en">Drawing on eye-hand-span research: how pros read ahead of what they play, and how to train it.</span><span lang="fr">À partir des recherches sur l'eye-hand span : comment les pros lisent en avance, et comment s'entraîner.</span><span lang="de">Auf Basis der Eye-Hand-Span-Forschung: wie Profis vorauslesen und wie man es trainiert.</span></div>
+                <div class="guide-card__tags"><span class="guide-card__tag">Reading</span><span class="guide-card__tag guide-card__tag--science"><span lang="ja">認知科学</span><span lang="en">Cognitive Science</span><span lang="fr">Sciences cognitives</span><span lang="de">Kognitionswissenschaft</span></span></div>
+            </a>
+
+            <a href="bpm-60-wall.html" class="guide-card">
+                <div class="guide-card__icon"><svg class="icon" aria-hidden="true"><use href="../assets/icons.svg#icon-audio-lines"></use></svg></div>
+                <div class="guide-card__title"><span lang="ja">BPM 60 の壁</span><span lang="en">The BPM 60 Wall</span><span lang="fr">Le mur du 60 BPM</span><span lang="de">Die 60-BPM-Wand</span></div>
+                <div class="guide-card__desc"><span lang="ja">「遅いほど簡単」は誤り。preferred tempo と subdivision 戦略で長い拍を保つ方法。</span><span lang="en">"Slower is easier" is a myth. How to hold long beats using preferred-tempo research and subdivision strategy.</span><span lang="fr">« Plus lent est plus facile » est un mythe. Tenir les temps longs grâce au tempo préféré et aux subdivisions.</span><span lang="de">„Langsamer ist leichter" ist ein Mythos. Lange Schläge halten mit Preferred-Tempo-Forschung und Subdivisions-Strategie.</span></div>
+                <div class="guide-card__tags"><span class="guide-card__tag">Rhythm</span><span class="guide-card__tag guide-card__tag--science"><span lang="ja">認知科学</span><span lang="en">Cognitive Science</span><span lang="fr">Sciences cognitives</span><span lang="de">Kognitionswissenschaft</span></span></div>
+            </a>
+
+            <a href="mental-practice.html" class="guide-card">
+                <div class="guide-card__icon"><svg class="icon" aria-hidden="true"><use href="../assets/icons.svg#icon-music-note"></use></svg></div>
+                <div class="guide-card__title"><span lang="ja">メンタルプラクティス</span><span lang="en">Mental Practice</span><span lang="fr">Pratique mentale</span><span lang="de">Mentales Üben</span></div>
+                <div class="guide-card__desc"><span lang="ja">楽器なしでも脳は学ぶ。Pascual-Leone の TMS 実験から見えてくる、移動中・通学中の効果的なイメトレ法。</span><span lang="en">The brain learns without the instrument. Effective mental imagery on the commute, from Pascual-Leone's TMS experiments.</span><span lang="fr">Le cerveau apprend sans l'instrument. Imagerie mentale efficace en déplacement, depuis les expériences TMS de Pascual-Leone.</span><span lang="de">Das Gehirn lernt auch ohne Instrument. Wirksame mentale Vorstellung unterwegs — aus Pascual-Leones TMS-Experimenten.</span></div>
+                <div class="guide-card__tags"><span class="guide-card__tag">Cross-cutting</span><span class="guide-card__tag guide-card__tag--science"><span lang="ja">認知科学</span><span lang="en">Cognitive Science</span><span lang="fr">Sciences cognitives</span><span lang="de">Kognitionswissenschaft</span></span></div>
+            </a>
+
+            <a href="absolute-pitch-adult.html" class="guide-card">
+                <div class="guide-card__icon"><svg class="icon" aria-hidden="true"><use href="../assets/icons.svg#icon-piano"></use></svg></div>
+                <div class="guide-card__title"><span lang="ja">大人から絶対音感は獲得できるか</span><span lang="en">Can Adults Acquire Absolute Pitch?</span><span lang="fr">L'oreille absolue à l'âge adulte ?</span><span lang="de">Absolutes Gehör als Erwachsener?</span></div>
+                <div class="guide-card__desc"><span lang="ja">研究が示す「できること」と「できないこと」。Van Hedger / Wong の最新研究と「白鍵バイアス」の罠、相対音感との機会費用を比較する。</span><span lang="en">What the research shows you can and cannot train. Confronts the "white-key bias" trap and recent Van Hedger / Wong findings, weighed against relative-pitch ROI.</span><span lang="fr">Ce que la recherche démontre possible — et impossible. Affronte le piège du « biais des touches blanches » et les récentes recherches Van Hedger / Wong, face au ROI de l'oreille relative.</span><span lang="de">Was die Forschung als trainierbar und untrainierbar zeigt. Die „White-Key-Bias"-Falle und aktuelle Befunde (Van Hedger, Wong) — abgewogen gegen den ROI des relativen Gehörs.</span></div>
+                <div class="guide-card__tags"><span class="guide-card__tag">Interval / Pitch</span><span class="guide-card__tag guide-card__tag--science"><span lang="ja">認知科学</span><span lang="en">Cognitive Science</span><span lang="fr">Sciences cognitives</span><span lang="de">Kognitionswissenschaft</span></span></div>
             </a>
 
         </div>

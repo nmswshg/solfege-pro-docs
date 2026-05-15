@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="ja"
+      data-title-ja="練習時間の最適配分 — 同じ時間で 2〜3 倍効かせるスケジュール設計 | ソルフェージュPRO"
+      data-title-en="Optimal Practice Scheduling — Schedule Designs That Yield 2–3× Retention | Solfege PRO"
+      data-title-fr="Répartition optimale du temps d'entraînement — des plannings 2 à 3 fois plus efficaces | Solfege PRO"
+      data-title-de="Optimale Aufteilung der Übungszeit — Pläne mit 2–3× besserer Behaltensleistung | Solfege PRO">
+<head>
+    <meta charset="UTF-8">
+    <meta name="robots" content="index, follow">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>練習時間の最適配分 — 同じ時間で 2〜3 倍効かせるスケジュール設計 | ソルフェージュPRO</title>
+    <meta name="description" content="「毎日 1 時間反復」は実は非効率。spacing（間隔学習）、interleaving（交互練習）、testing effect（テスト効果）を使った週次スケジュールで、同じ時間から 2〜3 倍の定着を引き出す方法を、認知科学の研究知見に基づいて解説します。">
+
+    <link rel="canonical" href="https://nmswshg.github.io/solfege-pro-docs/guides/practice-spacing.html">
+    <link rel="alternate" hreflang="ja" href="https://nmswshg.github.io/solfege-pro-docs/guides/practice-spacing.html?lang=ja">
+    <link rel="alternate" hreflang="en" href="https://nmswshg.github.io/solfege-pro-docs/guides/practice-spacing.html?lang=en">
+    <link rel="alternate" hreflang="fr" href="https://nmswshg.github.io/solfege-pro-docs/guides/practice-spacing.html?lang=fr">
+    <link rel="alternate" hreflang="de" href="https://nmswshg.github.io/solfege-pro-docs/guides/practice-spacing.html?lang=de">
+    <link rel="alternate" hreflang="x-default" href="https://nmswshg.github.io/solfege-pro-docs/guides/practice-spacing.html">
+
+    <meta property="og:title" content="練習時間の最適配分 — 同じ時間で 2〜3 倍効かせるスケジュール設計">
+    <meta property="og:description" content="「毎日 1 時間反復」は実は非効率。spacing・interleaving・testing effect で、同じ時間から 2〜3 倍の定着を。">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://nmswshg.github.io/solfege-pro-docs/guides/practice-spacing.html">
+    <meta property="og:site_name" content="ソルフェージュPRO">
+    <meta property="og:image" content="https://nmswshg.github.io/solfege-pro-docs/AppIcon.png">
+    <meta property="og:locale" content="ja_JP">
+    <meta property="og:locale:alternate" content="en_US">
+    <meta property="og:locale:alternate" content="fr_FR">
+    <meta property="og:locale:alternate" content="de_DE">
+    <meta property="article:published_time" content="2026-05-16">
+
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="練習時間の最適配分 — 同じ時間で 2〜3 倍効かせるスケジュール設計">
+    <meta name="twitter:description" content="「毎日 1 時間反復」は実は非効率。spacing・interleaving・testing effect で、同じ時間から 2〜3 倍の定着を。">
+    <meta name="twitter:image" content="https://nmswshg.github.io/solfege-pro-docs/AppIcon.png">
+
+    <link rel="icon" href="../AppIcon.png" type="image/png">
+    <link rel="apple-touch-icon" href="../AppIcon.png">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="../style.css?v=15">
+    <link rel="stylesheet" href="article.css?v=8">
+
+    <!-- Mermaid for weekly-schedule diagram -->
+    <script type="module">
+        import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+        mermaid.initialize({
+            startOnLoad: false,
+            theme: 'dark',
+            themeVariables: {
+                primaryColor: '#2A2A30',
+                primaryTextColor: '#F5F5F0',
+                primaryBorderColor: '#D4AF37',
+                lineColor: '#D4AF37',
+                secondaryColor: '#3A3A42',
+                tertiaryColor: '#1A1A1E',
+                fontFamily: 'Noto Sans JP, sans-serif',
+                fontSize: '14px'
+            }
+        });
+        function renderActiveMermaid() {
+            const lang = document.documentElement.getAttribute('data-lang') || 'ja';
+            const nodes = Array.from(document.querySelectorAll(`.mermaid-lang[lang="${lang}"] .mermaid`))
+                .filter(n => !n.getAttribute('data-processed'));
+            if (nodes.length) mermaid.run({ nodes });
+        }
+        if (document.readyState === 'loading') {
+            window.addEventListener('DOMContentLoaded', renderActiveMermaid);
+        } else {
+            renderActiveMermaid();
+        }
+        window.addEventListener('langchange', renderActiveMermaid);
+    </script>
+
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"練習時間の最適配分 — 同じ時間で 2〜3 倍効かせるスケジュール設計","description":"spacing（間隔学習）、interleaving（交互練習）、testing effect（テスト効果）を使った週次スケジュールで、同じ時間から 2〜3 倍の定着を引き出す方法を、認知科学の研究知見に基づいて解説します。","author":{"@type":"Organization","name":"ソルフェージュPRO"},"publisher":{"@type":"Organization","name":"ソルフェージュPRO","logo":{"@type":"ImageObject","url":"https://nmswshg.github.io/solfege-pro-docs/AppIcon.png"}},"datePublished":"2026-05-16","dateModified":"2026-05-16","inLanguage":["ja","en","fr","de"],"mainEntityOfPage":{"@type":"WebPage","@id":"https://nmswshg.github.io/solfege-pro-docs/guides/practice-spacing.html"}}</script>
+    <script src="../analytics.js?v=1" defer></script>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="nav__container">
+            <a href="../" class="nav__logo">
+                <img src="../AppIcon.png" alt="Solfege PRO" class="nav__logo-icon">
+                <span class="nav__logo-text"><span lang="ja">ソルフェージュPRO</span><span lang="en">Solfege PRO</span><span lang="fr">Solfege PRO</span><span lang="de">Solfege PRO</span></span>
+            </a>
+            <ul class="nav__list">
+                <li><a href="../" class="nav__link"><span lang="ja">練習ガイド</span><span lang="en">Practice Guide</span><span lang="fr">Guide d'entraînement</span><span lang="de">Übungsleitfaden</span></a></li>
+                <li><a href="./" class="nav__link active"><span lang="ja">ガイド一覧</span><span lang="en">Guides</span><span lang="fr">Guides</span><span lang="de">Leitfäden</span></a></li>
+                <li><a href="../start-here.html" class="nav__link"><span lang="ja">どこから始める？</span><span lang="en">Where to Start?</span><span lang="fr">Par où commencer ?</span><span lang="de">Wo anfangen?</span></a></li>
+            </ul>
+            <div class="nav__settings">
+                <button class="settings-btn" id="lang-toggle" title="Toggle language">
+                    <span id="lang-text">EN</span>
+                </button>
+                <button class="hamburger-btn" id="hamburger-btn" aria-label="Menu" aria-expanded="false" aria-controls="drawer">
+                    <span class="hamburger-btn__line"></span>
+                    <span class="hamburger-btn__line"></span>
+                    <span class="hamburger-btn__line"></span>
+                </button>
+            </div>
+        </div>
+    </nav>
+    <div class="drawer-overlay" id="drawer-overlay"></div>
+    <aside class="drawer" id="drawer" aria-label="Mobile menu">
+        <div class="drawer__header">
+            <span class="drawer__title"><span lang="ja">メニュー</span><span lang="en">Menu</span><span lang="fr">Menu</span><span lang="de">Menü</span></span>
+            <button class="drawer__close" id="drawer-close" aria-label="Close menu">×</button>
+        </div>
+        <ul class="drawer__list">
+            <li><a href="../" class="drawer__link"><span lang="ja">練習ガイド</span><span lang="en">Practice Guide</span><span lang="fr">Guide d'entraînement</span><span lang="de">Übungsleitfaden</span></a></li>
+            <li><a href="./" class="drawer__link active"><span lang="ja">ガイド一覧</span><span lang="en">Guides</span><span lang="fr">Guides</span><span lang="de">Leitfäden</span></a></li>
+            <li><a href="../start-here.html" class="drawer__link"><span lang="ja">どこから始める？</span><span lang="en">Where to Start?</span><span lang="fr">Par où commencer ?</span><span lang="de">Wo anfangen?</span></a></li>
+        </ul>
+    </aside>
+
+    <!-- Article Header -->
+    <header class="page-header">
+        <div class="page-header__meta">
+            <span class="page-header__tag" style="background:rgba(167,139,250,0.15);color:#A78BFA;"><span lang="ja">認知科学</span><span lang="en">Cognitive Science</span><span lang="fr">Sciences cognitives</span><span lang="de">Kognitionswissenschaft</span></span>
+            <span><span lang="ja">読了: 約 9 分</span><span lang="en">9 min read</span><span lang="fr">Lecture : ~9 min</span><span lang="de">Lesezeit: ca. 9 Min.</span></span>
+        </div>
+        <h1 class="page-header__title">
+            <span lang="ja">練習時間の最適配分<br>同じ時間で 2〜3 倍効かせる<br>スケジュール設計</span>
+            <span lang="en">Optimal Practice Scheduling<br>Schedule Designs That Yield<br>2–3× Retention</span>
+            <span lang="fr">Répartition optimale du temps d'entraînement<br>Des plannings 2 à 3 fois<br>plus efficaces</span>
+            <span lang="de">Optimale Aufteilung der Übungszeit<br>Pläne mit 2–3×<br>besserer Behaltensleistung</span>
+        </h1>
+        <p class="page-header__subtitle">
+            <span lang="ja">「毎日 1 時間反復」は実は非効率。spacing・interleaving・testing effect — 認知科学の頑健な 3 原則を使って、同じ時間から確実に多くを引き出す週次プランを設計します。</span>
+            <span lang="en">"One hour of repetition daily" is actually inefficient. Three robust findings from cognitive science — spacing, interleaving, testing effect — let you design a weekly plan that reliably extracts more from the same hours.</span>
+            <span lang="fr">« Une heure de répétition par jour » est en réalité inefficace. Trois résultats solides des sciences cognitives — spacing, interleaving, testing effect — permettent de concevoir un planning hebdomadaire qui tire bien plus de chaque heure.</span>
+            <span lang="de">„Eine Stunde tägliches Wiederholen" ist tatsächlich ineffizient. Drei robuste Befunde der Kognitionswissenschaft — Spacing, Interleaving, Testing Effect — ermöglichen Wochenpläne, die jeder Übungsstunde verlässlich mehr abringen.</span>
+        </p>
+    </header>
+
+    <!-- Article Body -->
+    <main class="article-body">
+
+        <!-- Section 1: Hook -->
+        <h2 id="why-not-improving"><span lang="ja">「毎日練習しているのに伸びない」のはなぜか</span><span lang="en">Why "Daily Practice" Often Doesn't Translate to Progress</span><span lang="fr">Pourquoi « pratiquer tous les jours » ne suffit souvent pas à progresser</span><span lang="de">Warum „tägliches Üben" oft nicht zu Fortschritt führt</span></h2>
+
+        <p>
+            <span lang="ja">同じ曲を毎日 1 時間反復している。練習中は前日より弾けている気がする。なのに 1 週間後、レッスンや録音で確認すると、思ったほど身についていない。</span>
+            <span lang="en">You repeat the same piece for an hour every day. During practice, it feels like you're playing better than yesterday. But a week later — in a lesson or a recording — you find it hasn't taken root as much as you'd hoped.</span>
+            <span lang="fr">Vous répétez le même morceau une heure chaque jour. Pendant la pratique, vous avez l'impression de jouer mieux que la veille. Pourtant, une semaine plus tard — en cours ou à l'enregistrement — vous constatez que rien ne s'est ancré comme prévu.</span>
+            <span lang="de">Du wiederholst täglich eine Stunde dasselbe Stück. Während des Übens fühlt es sich besser an als am Vortag. Doch eine Woche später — im Unterricht oder bei einer Aufnahme — ist nicht so viel hängen geblieben, wie du gehofft hattest.</span>
+        </p>
+
+        <p>
+            <span lang="ja">これは怠惰でも才能不足でもありません。<span class="highlight">「練習中の感覚」と「長期記憶への定着」は別物</span>であり、しかも前者は後者を悪化させる方向に働くことが認知科学で繰り返し示されています<sup>[1][2]</sup>。</span>
+            <span lang="en">It's not laziness, and it's not a lack of talent. <span class="highlight">"How it feels during practice" and "what gets consolidated into long-term memory" are two different things</span> — and cognitive science has repeatedly shown that the former can actually work against the latter<sup>[1][2]</sup>.</span>
+            <span lang="fr">Ce n'est ni de la paresse ni un manque de talent. <span class="highlight">« Ce qu'on ressent pendant la pratique » et « ce qui se consolide en mémoire à long terme » sont deux choses différentes</span> — et les sciences cognitives ont montré à maintes reprises que la première peut en réalité jouer contre la seconde<sup>[1][2]</sup>.</span>
+            <span lang="de">Es liegt weder an Faulheit noch an fehlendem Talent. <span class="highlight">„Das Gefühl während des Übens" und „was im Langzeitgedächtnis verankert wird" sind zweierlei</span> — und die Kognitionswissenschaft hat wiederholt gezeigt, dass das eine dem anderen sogar entgegenwirken kann<sup>[1][2]</sup>.</span>
+        </p>
+
+        <p>
+            <span lang="ja">この記事では、認知科学で 30 年以上の蓄積がある 3 つの原則 — <strong>spacing（間隔学習）</strong>、<strong>interleaving（交互練習）</strong>、<strong>testing effect（テスト効果）</strong> — を解説し、これを週次の練習計画にどう落とすかを示します。</span>
+            <span lang="en">In this guide, we'll walk through three principles with three decades of cognitive-science research behind them — <strong>spacing</strong>, <strong>interleaving</strong>, and <strong>testing effect</strong> — and translate them into a concrete weekly practice plan.</span>
+            <span lang="fr">Dans ce guide, nous explorerons trois principes adossés à trente ans de recherche en sciences cognitives — <strong>spacing</strong>, <strong>interleaving</strong> et <strong>testing effect</strong> — et nous les traduirons en un planning hebdomadaire concret.</span>
+            <span lang="de">In diesem Leitfaden behandeln wir drei Prinzipien mit drei Jahrzehnten kognitionswissenschaftlicher Forschung im Rücken — <strong>Spacing</strong>, <strong>Interleaving</strong> und <strong>Testing Effect</strong> — und übersetzen sie in einen konkreten Wochenplan.</span>
+        </p>
+
+        <!-- Section 2: Three principles -->
+        <h2 id="three-principles"><span lang="ja">3 つの認知科学的原則</span><span lang="en">Three Principles from Cognitive Science</span><span lang="fr">Trois principes issus des sciences cognitives</span><span lang="de">Drei Prinzipien aus der Kognitionswissenschaft</span></h2>
+
+        <h3 id="spacing"><span lang="ja">① Spacing — 間隔を空けるほど記憶は強くなる</span><span lang="en">1. Spacing — The Longer the Gap, the Stronger the Memory</span><span lang="fr">1. Spacing — plus l'écart est long, plus la mémoire est solide</span><span lang="de">1. Spacing — je länger der Abstand, desto stärker die Erinnerung</span></h3>
+
+        <p>
+            <span lang="ja">同じ 60 分を「今日まとめて 60 分」やるのと「20 分 × 3 日」に分けるのとでは、後者の方が 1 週間後の保持率が高い。これは Ebbinghaus が 1885 年に忘却曲線として記述して以来、心理学で最も頑健な現象のひとつです<sup>[1]</sup>。</span>
+            <span lang="en">The same 60 minutes practiced as "20 minutes × 3 days" yields higher retention one week later than "60 minutes today, all at once." First documented by Ebbinghaus's forgetting curve in 1885, this is one of the most robust findings in all of psychology<sup>[1]</sup>.</span>
+            <span lang="fr">Les mêmes 60 minutes réparties en « 20 minutes × 3 jours » donnent une meilleure rétention à une semaine qu'un bloc de 60 minutes le même jour. Documenté pour la première fois par Ebbinghaus en 1885 (courbe de l'oubli), c'est l'un des résultats les plus solides de toute la psychologie<sup>[1]</sup>.</span>
+            <span lang="de">Dieselben 60 Minuten als „20 Minuten × 3 Tage" ergeben nach einer Woche mehr Behaltensleistung als 60 Minuten am Stück. Erstmals 1885 von Ebbinghaus in der Vergessenskurve beschrieben — einer der robustesten Befunde der gesamten Psychologie<sup>[1]</sup>.</span>
+        </p>
+
+        <p>
+            <span lang="ja">Cepeda らによる定量的メタ分析（言語・運動・楽器を含む数百研究の統合）では、集中学習に対して分散学習は<strong>保持率を平均 10〜30% 改善</strong>し、条件によっては 2 倍以上に達することが示されました<sup>[2]</sup>。</span>
+            <span lang="en">A quantitative meta-analysis by Cepeda and colleagues (synthesizing hundreds of studies across verbal, motor, and instrumental domains) found that distributed practice improves retention by an <strong>average of 10–30%</strong> over massed practice, with the effect doubling under some conditions<sup>[2]</sup>.</span>
+            <span lang="fr">Une méta-analyse quantitative de Cepeda et coll. (synthèse de centaines d'études dans les domaines verbal, moteur et instrumental) a montré que la pratique distribuée améliore la rétention de <strong>10 à 30 % en moyenne</strong> par rapport à la pratique massée, avec un effet doublant dans certaines conditions<sup>[2]</sup>.</span>
+            <span lang="de">Eine quantitative Metaanalyse von Cepeda et al. (Synthese hunderter Studien zu verbalem, motorischem und instrumentalem Lernen) zeigt, dass verteiltes Üben die Behaltensleistung gegenüber massiertem im Mittel um <strong>10–30 %</strong> verbessert — unter bestimmten Bedingungen sogar verdoppelt<sup>[2]</sup>.</span>
+        </p>
+
+        <p>
+            <span lang="ja"><strong>実装ルール</strong>: テストや本番までの間隔が長いほど、復習の間隔も長くすべきです。一般的な指針は<strong>「テスト間隔の 10〜20%」</strong>。例えば 1 ヶ月後の本番なら 3〜5 日おきの復習、1 週間後なら 1 日おきが目安です<sup>[2]</sup>。</span>
+            <span lang="en"><strong>Practical rule</strong>: the longer the gap to the performance or test, the longer your review interval should be. A common guideline is <strong>"10–20% of the test interval"</strong>. For a gig in one month, review every 3–5 days; for one in a week, every other day<sup>[2]</sup>.</span>
+            <span lang="fr"><strong>Règle pratique</strong> : plus l'échéance est lointaine, plus l'intervalle de révision doit être long. Repère courant : <strong>10 à 20 % de l'intervalle jusqu'au test</strong>. Pour un concert dans un mois, révisez tous les 3 à 5 jours ; dans une semaine, un jour sur deux<sup>[2]</sup>.</span>
+            <span lang="de"><strong>Praktische Regel</strong>: Je weiter der Auftritt/Test entfernt, desto größer die Wiederholungsabstände. Faustregel: <strong>10–20 % des Zielintervalls</strong>. Für einen Auftritt in einem Monat: alle 3–5 Tage; in einer Woche: jeden zweiten Tag<sup>[2]</sup>.</span>
+        </p>
+
+        <!-- Visual: Forgetting curve / spacing benefit -->
+        <div class="comparison-visual">
+            <div class="comparison-card comparison-card--bad">
+                <div class="comparison-card__header"><span lang="ja">集中学習（Massed）</span><span lang="en">Massed Practice</span><span lang="fr">Pratique massée</span><span lang="de">Massiertes Üben</span></div>
+                <div class="comparison-card__body">
+                    <p><span lang="ja">月曜 60 分集中、火〜日休み。<br><strong>短期：</strong>練習直後は弾ける感覚あり。<br><strong>1 週間後：</strong>保持率 30〜50%。「あれ、できてたのに」が頻発。</span><span lang="en">Mon 60 min straight, Tue–Sun nothing.<br><strong>Short-term:</strong> Feels great right after.<br><strong>1 week later:</strong> Retention 30–50%. "I had it the other day…"</span><span lang="fr">Lundi 60 min d'affilée, mardi à dimanche rien.<br><strong>Court terme :</strong> Excellente sensation juste après.<br><strong>1 semaine plus tard :</strong> rétention 30–50 %. « Je l'avais pourtant… »</span><span lang="de">Mo 60 Min. am Stück, Di–So nichts.<br><strong>Kurzfristig:</strong> Fühlt sich direkt danach gut an.<br><strong>1 Woche später:</strong> Behalten 30–50 %. „Eigentlich konnte ich das doch…"</span></p>
+                </div>
+            </div>
+            <div class="comparison-card comparison-card--good">
+                <div class="comparison-card__header"><span lang="ja">分散学習（Distributed）</span><span lang="en">Distributed Practice</span><span lang="fr">Pratique distribuée</span><span lang="de">Verteiltes Üben</span></div>
+                <div class="comparison-card__body">
+                    <p><span lang="ja">月・水・金に 20 分ずつ（合計同じ 60 分）。<br><strong>短期：</strong>各セッション後の達成感はやや低い。<br><strong>1 週間後：</strong>保持率 60〜80%。本番で崩れない。</span><span lang="en">Mon/Wed/Fri 20 min each (same 60 min total).<br><strong>Short-term:</strong> Each session feels less satisfying.<br><strong>1 week later:</strong> Retention 60–80%. Holds up under performance.</span><span lang="fr">Lun / mer / ven 20 min chacun (60 min au total, identique).<br><strong>Court terme :</strong> Chaque session paraît moins satisfaisante.<br><strong>1 semaine plus tard :</strong> rétention 60–80 %. Tient en condition réelle.</span><span lang="de">Mo/Mi/Fr je 20 Min. (insgesamt gleiche 60 Min.).<br><strong>Kurzfristig:</strong> Jede Einheit fühlt sich weniger befriedigend an.<br><strong>1 Woche später:</strong> Behalten 60–80 %. Hält im Ernstfall.</span></p>
+                </div>
+            </div>
+        </div>
+
+        <h3 id="interleaving"><span lang="ja">② Interleaving — 混ぜて練習するほど身につく</span><span lang="en">2. Interleaving — Mixing Topics Outperforms Blocked Practice</span><span lang="fr">2. Interleaving — mélanger les sujets bat la pratique en bloc</span><span lang="de">2. Interleaving — Vermischen schlägt blockweises Üben</span></h3>
+
+        <p>
+            <span lang="ja">A・B・C の 3 つの題材を練習するとき、<strong>「AAAA → BBBB → CCCC」（ブロック練習）</strong>と<strong>「A B C A B C A B C」（インターリーブ）</strong>では、後者の方が長期保持で大きく勝ります<sup>[3][4]</sup>。</span>
+            <span lang="en">When practicing three items A, B, C, the order <strong>"AAAA → BBBB → CCCC" (blocked)</strong> loses substantially to <strong>"A B C A B C A B C" (interleaved)</strong> in long-term retention<sup>[3][4]</sup>.</span>
+            <span lang="fr">Lorsque vous travaillez trois éléments A, B, C, l'ordre <strong>« AAAA → BBBB → CCCC » (blocs)</strong> est nettement battu par <strong>« A B C A B C A B C » (interleaving)</strong> en rétention à long terme<sup>[3][4]</sup>.</span>
+            <span lang="de">Beim Üben dreier Stoffe A, B, C verliert die Reihenfolge <strong>„AAAA → BBBB → CCCC" (blockweise)</strong> deutlich gegen <strong>„A B C A B C A B C" (verschränkt)</strong> in der Langzeit-Behaltensleistung<sup>[3][4]</sup>.</span>
+        </p>
+
+        <p>
+            <span lang="ja">音楽の運動学習においても同様の結果が報告されており、特にスケール・コード・リズムパターンといった<strong>区別が必要な題材</strong>で効果が顕著です。ブロック練習は「次に何が来るか」を脳が予測できてしまうため、毎回ゼロから取り組む必要がなくなり、結果として記憶の検索回路が鍛えられません。インターリーブはこの「楽さ」を意図的に取り上げます。</span>
+            <span lang="en">Music motor-learning studies replicate this finding, particularly for items that need to be <strong>discriminated from one another</strong> — scales, chord qualities, rhythm patterns. Blocked practice lets the brain predict "what's next," so each attempt skips the work of re-engaging the material; the retrieval pathway never gets exercised. Interleaving deliberately removes that ease.</span>
+            <span lang="fr">Des études sur l'apprentissage moteur en musique reproduisent ce résultat, surtout pour des éléments à <strong>distinguer entre eux</strong> — gammes, qualités d'accord, motifs rythmiques. La pratique en bloc laisse le cerveau anticiper « la suite », chaque essai sautant la phase de remobilisation ; le circuit de récupération n'est jamais sollicité. L'interleaving retire volontairement ce confort.</span>
+            <span lang="de">Studien zum motorischen Lernen in der Musik bestätigen dies, besonders bei Stoffen, die <strong>voneinander unterschieden</strong> werden müssen — Tonleitern, Akkordqualitäten, Rhythmusmuster. Beim Blocküben antizipiert das Gehirn „was als Nächstes kommt"; jeder Versuch spart sich die Re-Aktivierung. Der Abrufpfad wird nie trainiert. Interleaving entfernt diesen Komfort gezielt.</span>
+        </p>
+
+        <p>
+            <span lang="ja"><strong>反直感的なポイント</strong>: インターリーブは<strong>練習中のパフォーマンスを下げます</strong>。1 セッション内で見ると、ブロック練習の方が「上手く弾けている」感覚があります。だから多くの人は無意識にブロック練習を選びます。しかし数日〜数週間後のテストで測ると、インターリーブが大きく勝ちます<sup>[3]</sup>。これが Robert Bjork の言う <em>desirable difficulties</em>（望ましい困難）です。</span>
+            <span lang="en"><strong>Counter-intuitive point</strong>: interleaving <strong>worsens within-session performance</strong>. In one session, blocked practice <em>feels</em> better — that's why most people unconsciously choose it. But tested days or weeks later, interleaving wins by a large margin<sup>[3]</sup>. This is what Robert Bjork calls <em>desirable difficulties</em>.</span>
+            <span lang="fr"><strong>Point contre-intuitif</strong> : l'interleaving <strong>dégrade la performance en cours de séance</strong>. Sur une session, la pratique en bloc <em>semble</em> meilleure — c'est pourquoi la plupart des gens la choisissent inconsciemment. Mais testée à quelques jours ou semaines, l'interleaving l'emporte largement<sup>[3]</sup>. C'est ce que Robert Bjork appelle <em>desirable difficulties</em> (difficultés souhaitables).</span>
+            <span lang="de"><strong>Kontraintuitiv</strong>: Interleaving <strong>verschlechtert die Leistung in der Einheit selbst</strong>. Innerhalb einer Sitzung <em>fühlt</em> sich Blocküben besser an — deshalb wählen die meisten es unbewusst. Doch Tage oder Wochen später getestet, gewinnt Interleaving deutlich<sup>[3]</sup>. Robert Bjork nennt das <em>desirable difficulties</em> (erwünschte Schwierigkeiten).</span>
+        </p>
+
+        <h3 id="testing-effect"><span lang="ja">③ Testing Effect — 思い出すこと自体が記憶を強化する</span><span lang="en">3. Testing Effect — Retrieval Itself Strengthens Memory</span><span lang="fr">3. Testing effect — la récupération renforce elle-même la mémoire</span><span lang="de">3. Testing Effect — der Abruf selbst stärkt das Gedächtnis</span></h3>
+
+        <p>
+            <span lang="ja">「読み返す（再学習）」より「思い出す（テスト・自己テスト）」方が、同じ時間で記憶が定着します。Roediger と Karpicke の一連の実験では、<strong>復習 4 回</strong>と<strong>復習 1 回＋テスト 3 回</strong>を比較し、後者の方が 1 週間後の保持率で大きく上回りました<sup>[5]</sup>。</span>
+            <span lang="en">"Recalling (testing/self-testing)" consolidates memory more efficiently than "reviewing (re-reading)" for the same time invested. Roediger and Karpicke's series of experiments compared <strong>4 reviews</strong> versus <strong>1 review + 3 tests</strong>; the latter group showed substantially higher retention one week later<sup>[5]</sup>.</span>
+            <span lang="fr">« Se rappeler (test / auto-test) » consolide mieux la mémoire que « relire » à temps égal. La série d'expériences de Roediger et Karpicke comparait <strong>4 relectures</strong> à <strong>1 relecture + 3 tests</strong> ; le second groupe affichait une rétention nettement supérieure une semaine plus tard<sup>[5]</sup>.</span>
+            <span lang="de">„Erinnern (Test/Selbsttest)" verankert das Gedächtnis bei gleicher Zeit besser als „Wiederholen (Nachlesen)". Roediger und Karpicke verglichen <strong>4 Wiederholungen</strong> mit <strong>1 Wiederholung + 3 Tests</strong>; die zweite Gruppe behielt nach einer Woche deutlich mehr<sup>[5]</sup>.</span>
+        </p>
+
+        <p>
+            <span lang="ja">音楽練習における「テスト」とは、譜面を閉じて弾く、メトロノームなしで弾く、初めてのキーで弾く、別の楽器で歌う、など<strong>「ヒントを取り去って自力で取り出す」</strong>こと全般を指します。「正解を見ながら反復」は再学習に相当し、効果が薄いのです。</span>
+            <span lang="en">"Testing" in a music context means anything that forces you to <strong>retrieve without aids</strong>: closing the score, dropping the metronome, playing in a new key, singing the line on another instrument. "Repeating while looking at the answer" is review — and review is the weaker option.</span>
+            <span lang="fr">En contexte musical, « se tester » signifie tout ce qui vous oblige à <strong>récupérer sans aide</strong> : fermer la partition, couper le métronome, jouer dans une autre tonalité, chanter la ligne sur un autre instrument. « Répéter en regardant la réponse » relève de la révision — et c'est l'option la plus faible.</span>
+            <span lang="de">„Testen" im Musikalltag bedeutet alles, was den <strong>Abruf ohne Hilfen</strong> erzwingt: Noten zuklappen, Metronom abschalten, in einer neuen Tonart spielen, die Linie auf einem anderen Instrument singen. „Wiederholen mit Antwort vor Augen" ist Wiederholung — und damit die schwächere Option.</span>
+        </p>
+
+        <div class="article-note">
+            <div class="article-note__title"><span lang="ja">3 原則を 1 行で</span><span lang="en">The Three Principles in One Line</span><span lang="fr">Les trois principes en une ligne</span><span lang="de">Die drei Prinzipien in einem Satz</span></div>
+            <p><span lang="ja"><strong>Spacing</strong>: 間を空ける。<strong>Interleaving</strong>: 混ぜる。<strong>Testing</strong>: ヒントを外して思い出す。— この 3 つを満たす練習は、満たさない練習に長期で必ず勝ちます<sup>[2][3][5]</sup>。</span><span lang="en"><strong>Spacing</strong>: leave gaps. <strong>Interleaving</strong>: mix items. <strong>Testing</strong>: retrieve without cues. Practice that satisfies all three reliably beats practice that doesn't, over the long run<sup>[2][3][5]</sup>.</span><span lang="fr"><strong>Spacing</strong> : laissez des écarts. <strong>Interleaving</strong> : mélangez les items. <strong>Testing</strong> : récupérez sans indice. Une pratique qui réunit ces trois éléments bat à long terme une pratique qui n'en réunit pas<sup>[2][3][5]</sup>.</span><span lang="de"><strong>Spacing</strong>: Abstände lassen. <strong>Interleaving</strong>: durchmischen. <strong>Testing</strong>: ohne Hinweise abrufen. Üben, das alle drei erfüllt, schlägt langfristig zuverlässig Üben, das das nicht tut<sup>[2][3][5]</sup>.</span></p>
+        </div>
+
+        <!-- Section 3: The paradox -->
+        <h2 id="paradox"><span lang="ja">「気持ちよく弾けている」は学習が起きていないサイン</span><span lang="en">"It Feels Smooth" Is a Sign That No Learning Is Happening</span><span lang="fr">« Ça coule tout seul » est le signe que rien ne s'apprend</span><span lang="de">„Es läuft glatt" ist ein Zeichen, dass kein Lernen stattfindet</span></h2>
+
+        <p>
+            <span lang="ja">3 原則すべてに共通するのは、<strong>「練習中の主観的な滑らかさ」と「長期保持」が逆相関する</strong>という不快な事実です。集中学習は今この瞬間は流暢に弾ける。ブロック練習も流暢に弾ける。読みながらの反復も流暢に弾ける。だが、これらすべてが 1 週間後の自分を裏切ります。</span>
+            <span lang="en">All three principles share an uncomfortable fact: <strong>subjective fluency during practice is inversely related to long-term retention</strong>. Massed practice flows smoothly. Blocked practice flows smoothly. Repetition with the score open flows smoothly. And all three betray your future self one week later.</span>
+            <span lang="fr">Les trois principes partagent un fait dérangeant : <strong>la fluidité ressentie pendant la pratique est inversement corrélée à la rétention à long terme</strong>. La pratique massée coule bien. Les blocs coulent bien. La répétition avec la partition ouverte coule bien. Et ces trois options trahissent votre vous-même de la semaine prochaine.</span>
+            <span lang="de">Allen drei Prinzipien ist eine unbequeme Tatsache gemein: <strong>subjektive Flüssigkeit beim Üben korreliert negativ mit Langzeit-Behalten</strong>. Massiertes Üben fließt. Blockweises Üben fließt. Wiederholen mit offenen Noten fließt. Und alle drei lassen das Ich von nächster Woche im Stich.</span>
+        </p>
+
+        <p>
+            <span lang="ja">Robert Bjork はこれを <em>desirable difficulties</em> と呼びます。<span class="highlight">練習が「少し苦しい」「思い出すのに引っかかる」「うまく弾けない時がある」状態のとき、最も学習が起きている</span>のです<sup>[3]</sup>。逆に、リラックスして「気持ちよく流せている」とき、運動回路は何も新しく書かれていません。</span>
+            <span lang="en">Robert Bjork calls this <em>desirable difficulties</em>. <span class="highlight">When practice feels slightly hard, retrieval catches a bit, and there are moments where it doesn't quite come out — that's when the most learning is happening</span><sup>[3]</sup>. Conversely, when you're relaxed and "in the flow," very little new is being written to the motor system.</span>
+            <span lang="fr">Robert Bjork parle de <em>desirable difficulties</em>. <span class="highlight">Quand la pratique semble un peu difficile, que la récupération accroche, qu'il y a des moments où ça ne sort pas tout à fait — c'est là que l'apprentissage se produit le plus</span><sup>[3]</sup>. À l'inverse, quand on est détendu et « dans le flow », très peu de nouveau s'inscrit dans le système moteur.</span>
+            <span lang="de">Robert Bjork nennt das <em>desirable difficulties</em>. <span class="highlight">Wenn das Üben sich leicht schwer anfühlt, der Abruf manchmal hakt und es Momente gibt, in denen es nicht ganz klappt — genau dann findet das meiste Lernen statt</span><sup>[3]</sup>. Umgekehrt: wenn du entspannt im „Flow" bist, wird kaum Neues in das motorische System geschrieben.</span>
+        </p>
+
+        <p>
+            <span lang="ja">この事実は、多くの練習者の直感と真逆です。「気持ちよく弾けた日 = 良い練習」と感じてしまう。だから、効率の悪い練習を「気持ちいいから」と続け、効率の良い練習を「不快だから」と避けてしまう。これが「毎日 1 時間やっているのに伸びない」の正体です。</span>
+            <span lang="en">This runs directly against most practitioners' intuition. "A day when I played smoothly = a good practice day" feels obvious. So we keep doing inefficient practice "because it feels good" and avoid efficient practice "because it feels bad." That's the core of "I practice an hour every day and I'm not improving."</span>
+            <span lang="fr">Cela va à l'encontre de l'intuition de la plupart des pratiquants. « Un jour où j'ai joué fluidement = une bonne journée de pratique » paraît évident. Alors on poursuit une pratique inefficace « parce que ça fait du bien » et on évite la pratique efficace « parce que c'est désagréable ». Voilà le cœur de « je joue une heure par jour et je ne progresse pas ».</span>
+            <span lang="de">Das widerspricht der Intuition der meisten direkt. „Ein Tag, an dem es flüssig lief = ein guter Übetag" wirkt selbstverständlich. Also halten wir an ineffizientem Üben fest „weil es sich gut anfühlt" und meiden effizientes Üben „weil es sich schlecht anfühlt". Genau das ist der Kern von „Ich übe jeden Tag eine Stunde und werde nicht besser".</span>
+        </p>
+
+        <!-- Section 4: Weekly schedule -->
+        <h2 id="weekly-schedule"><span lang="ja">具体的な週次スケジュール</span><span lang="en">Concrete Weekly Schedules</span><span lang="fr">Plannings hebdomadaires concrets</span><span lang="de">Konkrete Wochenpläne</span></h2>
+
+        <p>
+            <span lang="ja">3 原則を 1 週間の練習計画に落とすと、こうなります。</span>
+            <span lang="en">Here's how to translate the three principles into a one-week plan.</span>
+            <span lang="fr">Voici comment traduire les trois principes en un planning d'une semaine.</span>
+            <span lang="de">So übersetzt man die drei Prinzipien in einen Wochenplan.</span>
+        </p>
+
+        <div class="comparison-visual">
+            <div class="comparison-card comparison-card--bad">
+                <div class="comparison-card__header">❌ <span lang="ja">悪い例: 集中＋ブロック</span><span lang="en">Bad: Massed + Blocked</span><span lang="fr">Mauvais : massé + blocs</span><span lang="de">Schlecht: massiert + blockweise</span></div>
+                <div class="comparison-card__body">
+                    <p><span lang="ja"><strong>月：</strong>練習なし<br><strong>火：</strong>練習なし<br><strong>水：</strong>練習なし<br><strong>木：</strong>練習なし<br><strong>金：</strong>練習なし<br><strong>土：</strong>譜面開いてスケール 60 分連続<br><strong>日：</strong>練習なし</span><span lang="en"><strong>Mon:</strong> none<br><strong>Tue:</strong> none<br><strong>Wed:</strong> none<br><strong>Thu:</strong> none<br><strong>Fri:</strong> none<br><strong>Sat:</strong> 60 min straight scales with score open<br><strong>Sun:</strong> none</span><span lang="fr"><strong>Lun :</strong> rien<br><strong>Mar :</strong> rien<br><strong>Mer :</strong> rien<br><strong>Jeu :</strong> rien<br><strong>Ven :</strong> rien<br><strong>Sam :</strong> 60 min de gammes d'affilée, partition ouverte<br><strong>Dim :</strong> rien</span><span lang="de"><strong>Mo:</strong> nichts<br><strong>Di:</strong> nichts<br><strong>Mi:</strong> nichts<br><strong>Do:</strong> nichts<br><strong>Fr:</strong> nichts<br><strong>Sa:</strong> 60 Min. Tonleitern am Stück mit offenen Noten<br><strong>So:</strong> nichts</span></p>
+                    <p style="margin-top:var(--space-sm);"><em><span lang="ja">合計 60 分 / spacing なし / interleaving なし / testing なし</span><span lang="en">Total 60 min / no spacing / no interleaving / no testing</span><span lang="fr">Total 60 min / pas de spacing / pas d'interleaving / pas de test</span><span lang="de">Gesamt 60 Min. / kein Spacing / kein Interleaving / kein Testing</span></em></p>
+                </div>
+            </div>
+            <div class="comparison-card comparison-card--good">
+                <div class="comparison-card__header">✅ <span lang="ja">良い例: 分散＋交互＋自己テスト</span><span lang="en">Good: Distributed + Interleaved + Self-Test</span><span lang="fr">Bon : distribué + entrelacé + auto-test</span><span lang="de">Gut: verteilt + verschränkt + Selbsttest</span></div>
+                <div class="comparison-card__body">
+                    <p><span lang="ja"><strong>月：</strong>20 分（音程 → コード → リズム のローテーション）<br><strong>水：</strong>20 分（同上、最初の 5 分は譜面を閉じて自己テスト）<br><strong>金：</strong>20 分（同上、別のキーに移動）<br><strong>日：</strong>10 分復習（録音し、聴き返す）</span><span lang="en"><strong>Mon:</strong> 20 min (rotate Interval → Chord → Rhythm)<br><strong>Wed:</strong> 20 min (same, first 5 min closed-book self-test)<br><strong>Fri:</strong> 20 min (same, transposed to a new key)<br><strong>Sun:</strong> 10 min review (record and listen back)</span><span lang="fr"><strong>Lun :</strong> 20 min (rotation intervalles → accords → rythme)<br><strong>Mer :</strong> 20 min (idem, 5 premières min en auto-test, sans partition)<br><strong>Ven :</strong> 20 min (idem, transposé dans une autre tonalité)<br><strong>Dim :</strong> 10 min de révision (enregistrer et réécouter)</span><span lang="de"><strong>Mo:</strong> 20 Min. (Rotation Intervalle → Akkorde → Rhythmus)<br><strong>Mi:</strong> 20 Min. (dito, erste 5 Min. Selbsttest ohne Noten)<br><strong>Fr:</strong> 20 Min. (dito, in eine andere Tonart transponiert)<br><strong>So:</strong> 10 Min. Wiederholung (aufnehmen und anhören)</span></p>
+                    <p style="margin-top:var(--space-sm);"><em><span lang="ja">合計 70 分 / spacing ✓ / interleaving ✓ / testing ✓</span><span lang="en">Total 70 min / spacing ✓ / interleaving ✓ / testing ✓</span><span lang="fr">Total 70 min / spacing ✓ / interleaving ✓ / testing ✓</span><span lang="de">Gesamt 70 Min. / Spacing ✓ / Interleaving ✓ / Testing ✓</span></em></p>
+                </div>
+            </div>
+        </div>
+
+        <p>
+            <span lang="ja">合計練習時間はほぼ同じ。しかし「悪い例」は集中学習＋ブロック＋見ながらで 3 原則すべてに反しており、「良い例」は 3 原則すべてに沿っています。同じ 1 時間で <strong>1 週間後の保持率は 2 倍以上の差</strong>が見込めます<sup>[2][3]</sup>。</span>
+            <span lang="en">The total practice time is roughly the same. But the "bad" plan violates all three principles (massed, blocked, score-open), while the "good" plan satisfies them all. For the same hour invested, expect <strong>a 2× or larger gap in retention</strong> a week later<sup>[2][3]</sup>.</span>
+            <span lang="fr">Le temps total de pratique est quasi identique. Mais le « mauvais » planning viole les trois principes (massé, blocs, partition ouverte), alors que le « bon » les respecte tous. Pour la même heure investie, attendez-vous à <strong>un écart de rétention d'au moins 2×</strong> une semaine plus tard<sup>[2][3]</sup>.</span>
+            <span lang="de">Die Gesamtübezeit ist nahezu gleich. Doch der „schlechte" Plan verletzt alle drei Prinzipien (massiert, blockweise, mit Noten), der „gute" erfüllt sie alle. Für dieselbe Stunde Aufwand sind <strong>2× oder mehr Unterschied beim Behalten</strong> eine Woche später zu erwarten<sup>[2][3]</sup>.</span>
+        </p>
+
+        <!-- Flowchart: how to design a week -->
+        <div class="mermaid-container">
+            <div class="diagram-title"><span lang="ja">あなたの週次プランを設計するフロー</span><span lang="en">Designing Your Weekly Plan</span><span lang="fr">Concevoir votre planning hebdomadaire</span><span lang="de">Deinen Wochenplan entwerfen</span></div>
+            <div class="mermaid-lang" lang="ja">
+                <pre class="mermaid">
+flowchart TD
+    A["週に確保できる合計時間は？"] --> B{"60 分以下"}
+    A --> C{"60-180 分"}
+    A --> D{"180 分以上"}
+    B --> E["20 分 × 3 日<br/>分散最優先"]
+    C --> F["25 分 × 5 日 or<br/>30 分 × 4 日<br/>2 分野を毎日<br/>インターリーブ"]
+    D --> G["40 分 × 5 日<br/>3-4 分野を<br/>ローテーション<br/>+ 週末に自己テスト"]
+    E --> H["各セッション内で<br/>音程・コード・リズム<br/>のうち 2-3 つを混ぜる"]
+    F --> H
+    G --> H
+    H --> I["最後の 5 分は必ず<br/>譜面・ガイドを閉じて<br/>自己テスト"]
+
+    style A fill:#2A2A30,stroke:#D4AF37,color:#F5F5F0
+    style B fill:#3A3A42,stroke:#F87171,color:#F5F5F0
+    style C fill:#3A3A42,stroke:#FBBF24,color:#F5F5F0
+    style D fill:#3A3A42,stroke:#4ADE80,color:#F5F5F0
+    style E fill:#2A2A30,stroke:#D4AF37,color:#F5F5F0
+    style F fill:#2A2A30,stroke:#D4AF37,color:#F5F5F0
+    style G fill:#2A2A30,stroke:#D4AF37,color:#F5F5F0
+    style H fill:#2A2A30,stroke:#A78BFA,color:#F5F5F0
+    style I fill:#2A2A30,stroke:#A78BFA,color:#F5F5F0
+                </pre>
+            </div>
+            <div class="mermaid-lang" lang="en">
+                <pre class="mermaid">
+flowchart TD
+    A["Total time available per week?"] --> B{"&lt; 60 min"}
+    A --> C{"60-180 min"}
+    A --> D{"&gt; 180 min"}
+    B --> E["20 min × 3 days<br/>Prioritize spacing"]
+    C --> F["25 min × 5 days<br/>or 30 min × 4 days<br/>Interleave 2 areas<br/>daily"]
+    D --> G["40 min × 5 days<br/>Rotate 3-4 areas<br/>+ weekend self-test"]
+    E --> H["Within each session<br/>mix 2-3 of:<br/>Interval / Chord / Rhythm"]
+    F --> H
+    G --> H
+    H --> I["Last 5 min: always<br/>close the score/guide<br/>and self-test"]
+
+    style A fill:#2A2A30,stroke:#D4AF37,color:#F5F5F0
+    style B fill:#3A3A42,stroke:#F87171,color:#F5F5F0
+    style C fill:#3A3A42,stroke:#FBBF24,color:#F5F5F0
+    style D fill:#3A3A42,stroke:#4ADE80,color:#F5F5F0
+    style E fill:#2A2A30,stroke:#D4AF37,color:#F5F5F0
+    style F fill:#2A2A30,stroke:#D4AF37,color:#F5F5F0
+    style G fill:#2A2A30,stroke:#D4AF37,color:#F5F5F0
+    style H fill:#2A2A30,stroke:#A78BFA,color:#F5F5F0
+    style I fill:#2A2A30,stroke:#A78BFA,color:#F5F5F0
+                </pre>
+            </div>
+            <div class="mermaid-lang" lang="fr">
+                <pre class="mermaid">
+flowchart TD
+    A["Temps total par semaine ?"] --> B{"&lt; 60 min"}
+    A --> C{"60-180 min"}
+    A --> D{"&gt; 180 min"}
+    B --> E["20 min × 3 jours<br/>Spacing en priorité"]
+    C --> F["25 min × 5 jours<br/>ou 30 min × 4 jours<br/>Entrelacer 2 domaines<br/>chaque jour"]
+    D --> G["40 min × 5 jours<br/>Roter 3-4 domaines<br/>+ auto-test le week-end"]
+    E --> H["Dans chaque séance<br/>mélanger 2-3 de :<br/>Intervalles / Accords / Rythme"]
+    F --> H
+    G --> H
+    H --> I["5 dernières min :<br/>fermer la partition<br/>et s'auto-tester"]
+
+    style A fill:#2A2A30,stroke:#D4AF37,color:#F5F5F0
+    style B fill:#3A3A42,stroke:#F87171,color:#F5F5F0
+    style C fill:#3A3A42,stroke:#FBBF24,color:#F5F5F0
+    style D fill:#3A3A42,stroke:#4ADE80,color:#F5F5F0
+    style E fill:#2A2A30,stroke:#D4AF37,color:#F5F5F0
+    style F fill:#2A2A30,stroke:#D4AF37,color:#F5F5F0
+    style G fill:#2A2A30,stroke:#D4AF37,color:#F5F5F0
+    style H fill:#2A2A30,stroke:#A78BFA,color:#F5F5F0
+    style I fill:#2A2A30,stroke:#A78BFA,color:#F5F5F0
+                </pre>
+            </div>
+            <div class="mermaid-lang" lang="de">
+                <pre class="mermaid">
+flowchart TD
+    A["Verfügbare Zeit pro Woche?"] --> B{"&lt; 60 Min."}
+    A --> C{"60-180 Min."}
+    A --> D{"&gt; 180 Min."}
+    B --> E["20 Min. × 3 Tage<br/>Spacing zuerst"]
+    C --> F["25 Min. × 5 Tage<br/>oder 30 Min. × 4 Tage<br/>2 Bereiche täglich<br/>verschränken"]
+    D --> G["40 Min. × 5 Tage<br/>3-4 Bereiche rotieren<br/>+ Wochenend-Selbsttest"]
+    E --> H["In jeder Einheit<br/>2-3 mischen aus:<br/>Intervall / Akkord / Rhythmus"]
+    F --> H
+    G --> H
+    H --> I["Letzte 5 Min.:<br/>Noten/Leitfaden zu<br/>und selbst testen"]
+
+    style A fill:#2A2A30,stroke:#D4AF37,color:#F5F5F0
+    style B fill:#3A3A42,stroke:#F87171,color:#F5F5F0
+    style C fill:#3A3A42,stroke:#FBBF24,color:#F5F5F0
+    style D fill:#3A3A42,stroke:#4ADE80,color:#F5F5F0
+    style E fill:#2A2A30,stroke:#D4AF37,color:#F5F5F0
+    style F fill:#2A2A30,stroke:#D4AF37,color:#F5F5F0
+    style G fill:#2A2A30,stroke:#D4AF37,color:#F5F5F0
+    style H fill:#2A2A30,stroke:#A78BFA,color:#F5F5F0
+    style I fill:#2A2A30,stroke:#A78BFA,color:#F5F5F0
+                </pre>
+            </div>
+        </div>
+
+        <!-- Mid CTA -->
+        <div class="article-cta-subtle">
+            <p class="article-cta-subtle__text"><span lang="ja">ソルフェージュPRO は 5 つのモジュール（音程・コード・リズム・譜読み・指板）構成。アプリ内ですでに interleaving が組める設計です。</span><span lang="en">Solfege PRO offers 5 modules (Interval / Chord / Rhythm / Sight Reading / Fretboard) — interleaving is built into how the app is used.</span><span lang="fr">Solfege PRO propose 5 modules (intervalles / accords / rythme / lecture / manche) — l'interleaving est intégré à l'usage de l'app.</span><span lang="de">Solfege PRO bietet 5 Module (Intervall / Akkord / Rhythmus / Notenlesen / Griffbrett) — Interleaving ist Teil der App-Nutzung.</span></p>
+            <a href="https://apps.apple.com/app/id6756626617" class="article-cta-subtle__button"><span lang="ja">App Storeで見る</span><span lang="en">View on App Store</span><span lang="fr">Voir sur l'App Store</span><span lang="de">Im App Store ansehen</span></a>
+        </div>
+
+        <!-- Section 5: 10,000 hours -->
+        <h2 id="10000-hours"><span lang="ja">「10,000 時間」の誤読</span><span lang="en">The "10,000 Hours" Misreading</span><span lang="fr">Le contresens des « 10 000 heures »</span><span lang="de">Der Missverständnis-Mythos „10 000 Stunden"</span></h2>
+
+        <p>
+            <span lang="ja">この記事の最後に、最も広まっている誤読を破壊しておきます。<strong>「10,000 時間練習すれば誰でもプロになれる」は Anders Ericsson の主張の誤読です</strong>。</span>
+            <span lang="en">Before closing, let's puncture the most widespread misreading in this area. <strong>"10,000 hours of practice makes anyone a pro" is a misreading of Anders Ericsson's work.</strong></span>
+            <span lang="fr">Avant de conclure, démontons le contresens le plus répandu sur ce sujet. <strong>« 10 000 heures de pratique suffisent à faire un pro de n'importe qui » est une lecture erronée des travaux d'Anders Ericsson.</strong></span>
+            <span lang="de">Vor dem Schluss räumen wir mit dem verbreitetsten Missverständnis auf. <strong>„10 000 Übungsstunden machen aus jedem einen Profi" ist eine Fehllesart der Arbeiten von Anders Ericsson.</strong></span>
+        </p>
+
+        <p>
+            <span lang="ja">Ericsson らの 1993 年の論文<sup>[6]</sup>が示したのは、エリート演奏家の累積練習時間が概ね 10,000 時間オーダーであるという観察事実です。そしてその<strong>練習の質を「deliberate practice（意図的練習）」</strong>と定義しました — 自分の限界の少し外を狙い、即時フィードバックを受け、修正する、苦しい練習のことです。</span>
+            <span lang="en">The 1993 paper by Ericsson and colleagues<sup>[6]</sup> showed that elite performers' cumulative practice was on the order of 10,000 hours. Crucially, they defined the <strong>quality of that practice as "deliberate practice"</strong> — uncomfortable work aimed just beyond your current limits, with immediate feedback and correction.</span>
+            <span lang="fr">L'article de 1993 d'Ericsson et coll.<sup>[6]</sup> montrait que la pratique cumulée des interprètes d'élite était de l'ordre de 10 000 heures. Surtout, ils définissaient <strong>la qualité de cette pratique comme « deliberate practice »</strong> — un travail inconfortable visant juste au-delà de ses limites, avec rétroaction immédiate et correction.</span>
+            <span lang="de">Die Arbeit von Ericsson et al. (1993)<sup>[6]</sup> zeigte, dass die kumulierte Übezeit von Spitzenkönnern in der Größenordnung von 10 000 Stunden lag. Entscheidend: Sie definierten die <strong>Qualität als „deliberate practice"</strong> — unbequemes Arbeiten knapp jenseits der eigenen Grenze, mit sofortigem Feedback und Korrektur.</span>
+        </p>
+
+        <p>
+            <span lang="ja">大衆書（Malcolm Gladwell の "Outliers" など）は質の部分を切り落とし、「時間さえかければ」というメッセージに変えて広めました。Ericsson 自身は晩年まで「私の研究はそう読むべきでない」と訂正し続けました。<span class="highlight">本記事の 3 原則（spacing・interleaving・testing）は、まさに「練習の質」の中身そのものです</span>。時間より、何を、どう練習するかが大事です。</span>
+            <span lang="en">Popular books (notably Malcolm Gladwell's <em>Outliers</em>) stripped out the quality clause and spread the simpler "just put in the hours" message. Ericsson spent his later years correcting this misreading. <span class="highlight">The three principles in this article — spacing, interleaving, testing — are precisely what "practice quality" actually consists of</span>. Hours matter less than what and how.</span>
+            <span lang="fr">Des ouvrages grand public (notamment <em>Outliers</em> de Malcolm Gladwell) ont évacué la condition de qualité et diffusé le message simplifié du « il suffit d'y mettre les heures ». Ericsson a passé ses dernières années à corriger cette lecture. <span class="highlight">Les trois principes de cet article — spacing, interleaving, testing — sont précisément le contenu réel de la « qualité de pratique »</span>. Les heures comptent moins que le quoi et le comment.</span>
+            <span lang="de">Populärbücher (vor allem Malcolm Gladwells <em>Outliers</em>) strichen die Qualitätsbedingung und verbreiteten die simplere Botschaft „einfach Stunden investieren". Ericsson hat in seinen späten Jahren wiederholt klargestellt, dass das eine Fehllesart ist. <span class="highlight">Die drei Prinzipien dieses Artikels — Spacing, Interleaving, Testing — sind genau das, woraus „Übungsqualität" tatsächlich besteht</span>. Stunden zählen weniger als das Was und das Wie.</span>
+        </p>
+
+        <!-- Section 6: App connection -->
+        <h2 id="what-app-can-do"><span lang="ja">ソルフェージュPRO でできること</span><span lang="en">What Solfege PRO Can Do</span><span lang="fr">Ce que Solfege PRO peut faire</span><span lang="de">Was Solfege PRO leisten kann</span></h2>
+
+        <p>
+            <span lang="ja">ソルフェージュPRO は 5 つのモジュール（Interval / Chord / Rhythm / Sight Reading / Fretboard）構成です。これが 3 原則とどう接続するかを整理します。</span>
+            <span lang="en">Solfege PRO is built from five modules (Interval / Chord / Rhythm / Sight Reading / Fretboard). Here's how each of the three principles maps onto how you use them.</span>
+            <span lang="fr">Solfege PRO se compose de cinq modules (Intervalles / Accords / Rythme / Lecture à vue / Manche). Voici comment chacun des trois principes s'y branche.</span>
+            <span lang="de">Solfege PRO besteht aus fünf Modulen (Intervall / Akkord / Rhythmus / Notenlesen / Griffbrett). So bilden sich die drei Prinzipien darin ab.</span>
+        </p>
+
+        <h3><span lang="ja">Spacing — 短いセッションを複数日に</span><span lang="en">Spacing — Short Sessions Across Multiple Days</span><span lang="fr">Spacing — sessions courtes réparties sur plusieurs jours</span><span lang="de">Spacing — kurze Einheiten über mehrere Tage</span></h3>
+        <p>
+            <span lang="ja">アプリのセッションは 5〜15 分で完結する設計です。1 回 60 分を 3 日に分けるより、1 回 10 分を週 4 日に分ける方が定着します。</span>
+            <span lang="en">Sessions are designed to complete in 5–15 minutes. Splitting "60 minutes once" into "10 minutes × 4 times across the week" produces better retention.</span>
+            <span lang="fr">Les sessions sont conçues pour durer 5 à 15 minutes. « 10 min × 4 fois dans la semaine » bat « 60 min en une fois » pour la rétention.</span>
+            <span lang="de">Einheiten sind auf 5–15 Minuten ausgelegt. „10 Min. × 4-mal pro Woche" schlägt „einmal 60 Min." beim Behalten.</span>
+        </p>
+
+        <h3><span lang="ja">Interleaving — モジュール横断ローテーション</span><span lang="en">Interleaving — Cross-Module Rotation</span><span lang="fr">Interleaving — rotation entre modules</span><span lang="de">Interleaving — Rotation zwischen Modulen</span></h3>
+        <p>
+            <span lang="ja">1 セッション内で「音程 → コード → リズム」のように 2〜3 モジュールを切り替えると、それ自体が interleaving の実装になります。1 モジュールだけ連続しないこと。</span>
+            <span lang="en">Switching between 2–3 modules inside one session (e.g., Interval → Chord → Rhythm) is interleaving in action. Don't stay in one module for an extended block.</span>
+            <span lang="fr">Alterner 2 à 3 modules dans une session (ex. Intervalles → Accords → Rythme) constitue de l'interleaving en pratique. N'enchaînez pas un seul module sur une longue durée.</span>
+            <span lang="de">In einer Einheit zwischen 2–3 Modulen wechseln (z. B. Intervall → Akkord → Rhythmus) ist gelebtes Interleaving. Nicht lange in einem einzigen Modul bleiben.</span>
+        </p>
+
+        <h3><span lang="ja">Testing — クイズ形式が標準</span><span lang="en">Testing — Built-In as the Default Format</span><span lang="fr">Testing — format quiz par défaut</span><span lang="de">Testing — Quiz-Format als Standard</span></h3>
+        <p>
+            <span lang="ja">各モジュールは「鳴った音は何の音程か？」「この譜面の音名は？」のように<strong>毎回 retrieval を要求</strong>するクイズ形式です。これは testing effect の直接的な実装で、ヒントなしの思い出しを繰り返すこと自体が記憶を強化します。</span>
+            <span lang="en">Every module asks "what interval did you just hear?", "what's this note on the staff?" — <strong>each prompt requires retrieval</strong>. That's the testing effect built directly into the format: repeated hint-free recall is what strengthens memory.</span>
+            <span lang="fr">Chaque module pose « quel intervalle vient d'être joué ? », « quelle est cette note sur la portée ? » — <strong>chaque question force la récupération</strong>. C'est l'effet de test intégré au format même : la récupération répétée sans indice consolide la mémoire.</span>
+            <span lang="de">Jedes Modul fragt: „Welches Intervall war das?", „Welche Note auf dem Notensystem?" — <strong>jede Aufgabe verlangt einen Abruf</strong>. Das ist der Testing Effect direkt im Format: wiederholter Abruf ohne Hilfen stärkt das Gedächtnis.</span>
+        </p>
+
+        <!-- Section 7: Limitations -->
+        <h2 id="limitations"><span lang="ja">ソルフェージュPRO だけでは扱いきれないこと</span><span lang="en">What Solfege PRO Does Not Directly Cover</span><span lang="fr">Ce que Solfege PRO ne couvre pas directement</span><span lang="de">Was Solfege PRO nicht direkt abdeckt</span></h2>
+
+        <p>
+            <span lang="ja">正直に書きます。</span>
+            <span lang="en">Let's be honest.</span>
+            <span lang="fr">Soyons honnêtes.</span>
+            <span lang="de">Sei ehrlich.</span>
+        </p>
+
+        <div class="article-honest">
+            <div class="article-honest__title"><span lang="ja">アプリでカバーできない領域</span><span lang="en">Areas Beyond the App's Scope</span><span lang="fr">Domaines hors du champ de l'app</span><span lang="de">Bereiche außerhalb der App</span></div>
+            <p>
+                <strong><span lang="ja">楽器そのものの練習スケジュール</span><span lang="en">Instrument-specific practice scheduling</span><span lang="fr">Plannings spécifiques à l'instrument</span><span lang="de">Instrumentenspezifische Übepläne</span></strong><span lang="ja"> — 曲・スケール・テクニックの練習配分は、最終的には演奏者自身か指導者が組み立てるものです。アプリは「耳」と「読譜」と「リズム」の側面で 3 原則を実装します。</span><span lang="en"> — How you distribute work on pieces, scales, and technique is ultimately for the player or teacher to schedule. The app handles the ear, reading, and rhythm side of the three principles.</span><span lang="fr"> — La répartition du travail sur les morceaux, gammes et techniques relève in fine du musicien ou du professeur. L'app applique les trois principes au volet oreille / lecture / rythme.</span><span lang="de"> — Wie du Arbeit an Stücken, Tonleitern und Technik verteilst, plant letztlich der Spieler oder Lehrer. Die App setzt die drei Prinzipien auf der Seite von Gehör, Lesen und Rhythmus um.</span>
+            </p>
+            <p>
+                <strong><span lang="ja">数ヶ月単位の保持測定</span><span lang="en">Months-long retention measurement</span><span lang="fr">Mesure de rétention sur plusieurs mois</span><span lang="de">Mehrmonatige Behaltensmessung</span></strong><span lang="ja"> — アプリ内のスコアは短期的な変化を示しますが、3 ヶ月後の保持率を厳密に測るには、定期的な「テストセッション」を自分で組む必要があります。</span><span lang="en"> — In-app scores reflect short-term changes, but rigorously measuring 3-month retention requires you to schedule periodic "test sessions" yourself.</span><span lang="fr"> — Les scores intégrés reflètent les variations à court terme ; mesurer rigoureusement la rétention à 3 mois suppose de planifier soi-même des sessions de test régulières.</span><span lang="de"> — In-App-Scores zeigen kurzfristige Veränderungen. Eine strenge Messung der 3-Monats-Behaltensleistung erfordert eigene, regelmäßige „Testsessions".</span>
+            </p>
+            <p>
+                <strong><span lang="ja">個人差</span><span lang="en">Individual variation</span><span lang="fr">Différences interindividuelles</span><span lang="de">Individuelle Unterschiede</span></strong><span lang="ja"> — 3 原則の効果サイズは平均値です。睡眠・集中力・ストレス・学習段階によって個人ごとに最適な配分は変わります。アプリの提案は「平均的に有効」な出発点であり、自分の手応えで微調整してください。</span><span lang="en"> — The effect sizes for the three principles are averages. Sleep, attention, stress, and stage of learning all shift the optimal distribution per person. App suggestions are an "average-good" starting point; tune from there based on your own results.</span><span lang="fr"> — Les tailles d'effet des trois principes sont des moyennes. Le sommeil, l'attention, le stress et le stade d'apprentissage modifient la répartition optimale propre à chacun. Les suggestions de l'app sont un point de départ « moyennement bon » — ajustez selon vos résultats.</span><span lang="de"> — Die Effektstärken der drei Prinzipien sind Mittelwerte. Schlaf, Aufmerksamkeit, Stress und Lernphase verschieben das individuelle Optimum. App-Vorschläge sind ein „im Mittel gutes" Ausgangspunkt — feinjustiere anhand eigener Ergebnisse.</span>
+            </p>
+        </div>
+
+        <!-- Section 8: Recommended usage -->
+        <h2 id="how-to-use"><span lang="ja">おすすめの使い方 — 30 日プラン例</span><span lang="en">Recommended Usage — A 30-Day Plan</span><span lang="fr">Utilisation recommandée — un plan de 30 jours</span><span lang="de">Empfohlene Nutzung — ein 30-Tage-Plan</span></h2>
+
+        <ol>
+            <li><strong><span lang="ja">Day 1：基準測定</span><span lang="en">Day 1: Baseline</span><span lang="fr">Jour 1 : référence</span><span lang="de">Tag 1: Ausgangsmessung</span></strong><span lang="ja"> — Interval / Chord / Rhythm を各 5 分。点数を記録。</span><span lang="en"> — 5 min each of Interval / Chord / Rhythm. Record scores.</span><span lang="fr"> — 5 min de chaque : Intervalles / Accords / Rythme. Notez les scores.</span><span lang="de"> — Je 5 Min. Intervall / Akkord / Rhythmus. Werte notieren.</span></li>
+            <li><strong><span lang="ja">Day 2-7：日々 15 分、3 モジュール ローテーション</span><span lang="en">Days 2–7: 15 min/day, rotate three modules</span><span lang="fr">Jours 2–7 : 15 min/jour, rotation entre trois modules</span><span lang="de">Tage 2–7: 15 Min./Tag, drei Module rotieren</span></strong><span lang="ja"> — 1 つのモジュールを 5 分続けたら次に切り替え。</span><span lang="en"> — Switch modules every 5 minutes; never linger on one for the whole session.</span><span lang="fr"> — Changez de module toutes les 5 minutes ; ne restez jamais sur un seul pendant toute la séance.</span><span lang="de"> — Wechsle das Modul alle 5 Min.; bleib nie eine ganze Einheit in einem.</span></li>
+            <li><strong><span lang="ja">Day 8：自己テスト</span><span lang="en">Day 8: Self-test</span><span lang="fr">Jour 8 : auto-test</span><span lang="de">Tag 8: Selbsttest</span></strong><span lang="ja"> — 練習なしで、Day 1 と同じ条件で計測。Day 1 との差を見る。</span><span lang="en"> — No warm-up. Re-measure under Day-1 conditions. Compare with Day 1.</span><span lang="fr"> — Sans échauffement. Remesurez aux conditions du jour 1. Comparez.</span><span lang="de"> — Ohne Aufwärmen. Unter Day-1-Bedingungen erneut messen. Mit Day 1 vergleichen.</span></li>
+            <li><strong><span lang="ja">Day 9-21：継続。ただし週 1 回は新キーや別楽器で「移し替え」テスト</span><span lang="en">Days 9–21: continue, plus a weekly "transfer" test in a new key or on a different instrument</span><span lang="fr">Jours 9–21 : continuez, plus un test « de transfert » hebdomadaire dans une autre tonalité ou sur un autre instrument</span><span lang="de">Tage 9–21: weitermachen, dazu wöchentlich ein „Transfer"-Test in einer neuen Tonart oder auf einem anderen Instrument</span></strong></li>
+            <li><strong><span lang="ja">Day 22-29：休む日を意図的に挟む（spacing 強化）</span><span lang="en">Days 22–29: deliberately insert rest days (to amplify spacing)</span><span lang="fr">Jours 22–29 : intercalez des jours de repos volontaires (pour renforcer le spacing)</span><span lang="de">Tage 22–29: bewusst Ruhetage einplanen (zur Verstärkung des Spacings)</span></strong></li>
+            <li><strong><span lang="ja">Day 30：最終測定</span><span lang="en">Day 30: Final measurement</span><span lang="fr">Jour 30 : mesure finale</span><span lang="de">Tag 30: Schlussmessung</span></strong><span lang="ja"> — Day 1 / Day 8 と比較。30 日で何が変わったかを数値で確認。</span><span lang="en"> — Compare against Day 1 and Day 8. See in numbers what 30 days actually changed.</span><span lang="fr"> — Comparez aux jours 1 et 8. Voyez chiffres à l'appui ce qui a évolué en 30 jours.</span><span lang="de"> — Mit Tag 1 und Tag 8 vergleichen. In Zahlen sehen, was sich in 30 Tagen wirklich verändert hat.</span></li>
+        </ol>
+
+        <p>
+            <span lang="ja">「練習中の手応え」ではなく<strong>「測定値の推移」</strong>を信じてください。3 原則の効果は、まさにこの 30 日のような時間スケールで初めて見える種類の改善です。</span>
+            <span lang="en">Trust the <strong>measurement trend</strong>, not how it felt during practice. The benefits of the three principles only become visible on exactly this kind of 30-day timescale.</span>
+            <span lang="fr">Faites confiance à la <strong>courbe de mesure</strong>, pas à la sensation pendant la pratique. Les bénéfices des trois principes ne deviennent visibles qu'à cette échelle de 30 jours.</span>
+            <span lang="de">Vertraue dem <strong>Messverlauf</strong>, nicht dem Übe-Gefühl. Die Wirkung der drei Prinzipien zeigt sich erst auf genau dieser 30-Tage-Skala.</span>
+        </p>
+
+        <!-- References -->
+        <h2 id="references"><span lang="ja">参考文献</span><span lang="en">References</span><span lang="fr">Références</span><span lang="de">Literatur</span></h2>
+
+        <ol>
+            <li>
+                <span lang="ja">Ebbinghaus, H. (1885). <em>Über das Gedächtnis: Untersuchungen zur experimentellen Psychologie</em>. Duncker &amp; Humblot. — 忘却曲線の古典。間隔学習の起源。</span>
+                <span lang="en">Ebbinghaus, H. (1885). <em>Über das Gedächtnis: Untersuchungen zur experimentellen Psychologie</em>. Duncker &amp; Humblot. — Classic origin of the forgetting curve and spacing effect.</span>
+                <span lang="fr">Ebbinghaus, H. (1885). <em>Über das Gedächtnis: Untersuchungen zur experimentellen Psychologie</em>. Duncker &amp; Humblot. — Origine classique de la courbe de l'oubli et du spacing effect.</span>
+                <span lang="de">Ebbinghaus, H. (1885). <em>Über das Gedächtnis: Untersuchungen zur experimentellen Psychologie</em>. Duncker &amp; Humblot. — Klassischer Ursprung der Vergessenskurve und des Spacing Effects.</span>
+            </li>
+            <li>
+                <span lang="ja">Cepeda, N. J., Pashler, H., Vul, E., Wixted, J. T., &amp; Rohrer, D. (2006). Distributed practice in verbal recall tasks: A review and quantitative synthesis. <em>Psychological Bulletin</em>, 132(3), 354–380. — 分散学習効果の決定的なメタ分析。</span>
+                <span lang="en">Cepeda, N. J., Pashler, H., Vul, E., Wixted, J. T., &amp; Rohrer, D. (2006). Distributed practice in verbal recall tasks: A review and quantitative synthesis. <em>Psychological Bulletin</em>, 132(3), 354–380. — Definitive meta-analysis of the distributed-practice effect.</span>
+                <span lang="fr">Cepeda, N. J., Pashler, H., Vul, E., Wixted, J. T., &amp; Rohrer, D. (2006). Distributed practice in verbal recall tasks: A review and quantitative synthesis. <em>Psychological Bulletin</em>, 132(3), 354–380. — Méta-analyse de référence sur la pratique distribuée.</span>
+                <span lang="de">Cepeda, N. J., Pashler, H., Vul, E., Wixted, J. T., &amp; Rohrer, D. (2006). Distributed practice in verbal recall tasks: A review and quantitative synthesis. <em>Psychological Bulletin</em>, 132(3), 354–380. — Maßgebliche Metaanalyse zum Effekt verteilten Übens.</span>
+            </li>
+            <li>
+                <span lang="ja">Bjork, R. A. (1994). Memory and metamemory considerations in the training of human beings. In J. Metcalfe &amp; A. Shimamura (Eds.), <em>Metacognition: Knowing about knowing</em> (pp. 185–205). MIT Press. — <em>desirable difficulties</em> の概念提唱。</span>
+                <span lang="en">Bjork, R. A. (1994). Memory and metamemory considerations in the training of human beings. In J. Metcalfe &amp; A. Shimamura (Eds.), <em>Metacognition: Knowing about knowing</em> (pp. 185–205). MIT Press. — Original articulation of <em>desirable difficulties</em>.</span>
+                <span lang="fr">Bjork, R. A. (1994). Memory and metamemory considerations in the training of human beings. In J. Metcalfe &amp; A. Shimamura (dir.), <em>Metacognition: Knowing about knowing</em> (p. 185–205). MIT Press. — Énoncé originel des <em>desirable difficulties</em>.</span>
+                <span lang="de">Bjork, R. A. (1994). Memory and metamemory considerations in the training of human beings. In J. Metcalfe &amp; A. Shimamura (Hrsg.), <em>Metacognition: Knowing about knowing</em> (S. 185–205). MIT Press. — Erstformulierung der <em>desirable difficulties</em>.</span>
+            </li>
+            <li>
+                <span lang="ja">Rohrer, D., &amp; Taylor, K. (2007). The shuffling of mathematics problems improves learning. <em>Instructional Science</em>, 35(6), 481–498. — インターリーブの代表的実証研究（数学題材だが原理は転用可能）。</span>
+                <span lang="en">Rohrer, D., &amp; Taylor, K. (2007). The shuffling of mathematics problems improves learning. <em>Instructional Science</em>, 35(6), 481–498. — Representative empirical study of interleaving (math task, principle generalizes).</span>
+                <span lang="fr">Rohrer, D., &amp; Taylor, K. (2007). The shuffling of mathematics problems improves learning. <em>Instructional Science</em>, 35(6), 481–498. — Étude empirique de référence sur l'interleaving (en maths, mais le principe généralise).</span>
+                <span lang="de">Rohrer, D., &amp; Taylor, K. (2007). The shuffling of mathematics problems improves learning. <em>Instructional Science</em>, 35(6), 481–498. — Repräsentative empirische Studie zum Interleaving (Mathe, Prinzip übertragbar).</span>
+            </li>
+            <li>
+                <span lang="ja">Roediger, H. L., &amp; Karpicke, J. D. (2006). Test-enhanced learning: Taking memory tests improves long-term retention. <em>Psychological Science</em>, 17(3), 249–255. — testing effect の代表論文。</span>
+                <span lang="en">Roediger, H. L., &amp; Karpicke, J. D. (2006). Test-enhanced learning: Taking memory tests improves long-term retention. <em>Psychological Science</em>, 17(3), 249–255. — Landmark paper on the testing effect.</span>
+                <span lang="fr">Roediger, H. L., &amp; Karpicke, J. D. (2006). Test-enhanced learning: Taking memory tests improves long-term retention. <em>Psychological Science</em>, 17(3), 249–255. — Article de référence sur l'effet de test.</span>
+                <span lang="de">Roediger, H. L., &amp; Karpicke, J. D. (2006). Test-enhanced learning: Taking memory tests improves long-term retention. <em>Psychological Science</em>, 17(3), 249–255. — Schlüsselarbeit zum Testing Effect.</span>
+            </li>
+            <li>
+                <span lang="ja">Ericsson, K. A., Krampe, R. T., &amp; Tesch-Römer, C. (1993). The role of deliberate practice in the acquisition of expert performance. <em>Psychological Review</em>, 100(3), 363–406. — 「10,000 時間」の元ネタ。質（deliberate practice）こそが核であることを明示。</span>
+                <span lang="en">Ericsson, K. A., Krampe, R. T., &amp; Tesch-Römer, C. (1993). The role of deliberate practice in the acquisition of expert performance. <em>Psychological Review</em>, 100(3), 363–406. — Origin of the "10,000 hours" figure. Makes clear that quality (deliberate practice), not hours alone, is the core finding.</span>
+                <span lang="fr">Ericsson, K. A., Krampe, R. T., &amp; Tesch-Römer, C. (1993). The role of deliberate practice in the acquisition of expert performance. <em>Psychological Review</em>, 100(3), 363–406. — Origine du chiffre des « 10 000 heures ». Précise que la qualité (pratique délibérée), et non les heures seules, est le résultat central.</span>
+                <span lang="de">Ericsson, K. A., Krampe, R. T., &amp; Tesch-Römer, C. (1993). The role of deliberate practice in the acquisition of expert performance. <em>Psychological Review</em>, 100(3), 363–406. — Ursprung der „10 000 Stunden"-Zahl. Stellt klar, dass Qualität (deliberate practice), nicht Stunden allein, der Kernbefund ist.</span>
+            </li>
+        </ol>
+
+    </main>
+
+    <!-- Final CTA -->
+    <section class="article-cta">
+        <h2 class="article-cta__title"><span lang="ja">同じ時間から、もっと多くを引き出そう</span><span lang="en">Get More Out of the Same Hours</span><span lang="fr">Tirez plus de chaque heure</span><span lang="de">Mehr aus denselben Stunden</span></h2>
+        <p class="article-cta__text">
+            <span lang="ja">spacing・interleaving・testing。<br>3 つの原則は、追加の練習時間ではなく、いつ・何を・どう配置するかを変えるだけで効きます。<br>ソルフェージュPRO の 5 モジュール構成は、その配分を自然に組み込めるよう設計されています。</span>
+            <span lang="en">Spacing, interleaving, testing.<br>The three principles work by changing <em>when, what, and how</em> you arrange practice — not by adding hours.<br>Solfege PRO's 5-module structure is designed so that this distribution falls into place naturally.</span>
+            <span lang="fr">Spacing, interleaving, testing.<br>Les trois principes opèrent en changeant <em>quand, quoi et comment</em> on organise la pratique — sans ajouter d'heures.<br>La structure à 5 modules de Solfege PRO est conçue pour que cette répartition se mette en place naturellement.</span>
+            <span lang="de">Spacing, Interleaving, Testing.<br>Die drei Prinzipien wirken über das <em>Wann, Was und Wie</em> der Übungsorganisation — nicht über zusätzliche Stunden.<br>Die 5-Modul-Struktur von Solfege PRO ist so angelegt, dass sich diese Verteilung von selbst ergibt.</span>
+        </p>
+        <a href="https://apps.apple.com/app/id6756626617" class="app-store-link" aria-label="Download on the App Store">
+            <span lang="ja"><img class="app-store-link__img" src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/ja-jp" alt="App Storeで入手"></span>
+            <span lang="en"><img class="app-store-link__img" src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/en-us" alt="Download on the App Store"></span>
+            <span lang="fr"><img class="app-store-link__img" src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/fr-fr" alt="Télécharger dans l'App Store"></span>
+            <span lang="de"><img class="app-store-link__img" src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/de-de" alt="Laden im App Store"></span>
+        </a>
+    </section>
+
+    <!-- Related content -->
+    <div class="article-related">
+        <div class="article-related__title"><span lang="ja">関連コンテンツ</span><span lang="en">Related Content</span><span lang="fr">Contenu associé</span><span lang="de">Verwandte Inhalte</span></div>
+        <a href="rhythm-training.html" class="article-related__link" style="margin-bottom: var(--space-md);">
+            <div class="article-related__link-title"><span lang="ja">リズム感とは何か</span><span lang="en">What Is Rhythmic Feel?</span><span lang="fr">Qu'est-ce que le sens rythmique ?</span><span lang="de">Was ist rhythmisches Empfinden?</span></div>
+            <div class="article-related__link-desc"><span lang="ja">前乗り・後乗り・ばらつき・ポケットの分解。Rhythm Training の使い方。</span><span lang="en">Breaking down rushing, dragging, scatter, and pocket — and how to use Rhythm Training.</span><span lang="fr">Décomposer rushing, dragging, dispersion, pocket — et comment utiliser Rhythm Training.</span><span lang="de">Vorlauf, Nachlauf, Streuung, Pocket — und wie man Rhythm Training nutzt.</span></div>
+        </a>
+        <a href="interval-training.html" class="article-related__link" style="margin-bottom: var(--space-md);">
+            <div class="article-related__link-title"><span lang="ja">音程トレーニングガイド</span><span lang="en">Interval Training Guide</span><span lang="fr">Guide des intervalles</span><span lang="de">Intervall-Leitfaden</span></div>
+            <div class="article-related__link-desc"><span lang="ja">interleaving の対象として最適。13 音程の段階的な習得。</span><span lang="en">An ideal interleaving target: mastering the 13 intervals step by step.</span><span lang="fr">Cible idéale pour l'interleaving : maîtriser les 13 intervalles par étapes.</span><span lang="de">Ideales Interleaving-Ziel: die 13 Intervalle Schritt für Schritt meistern.</span></div>
+        </a>
+        <a href="../" class="article-related__link">
+            <div class="article-related__link-title"><span lang="ja">ソルフェージュPRO 練習ガイド</span><span lang="en">Solfege PRO Practice Guide</span><span lang="fr">Guide d'entraînement Solfege PRO</span><span lang="de">Solfege PRO Übungsleitfaden</span></div>
+            <div class="article-related__link-desc"><span lang="ja">楽器別の課題と練習メニュー。</span><span lang="en">Per-instrument challenges and practice menus.</span><span lang="fr">Problématiques et programmes par instrument.</span><span lang="de">Probleme und Übemenüs je Instrument.</span></div>
+        </a>
+    </div>
+
+    <!-- Article Note -->
+    <aside class="article-endnote">
+        <p class="article-endnote__text">
+            <span lang="ja">本記事は、認知科学・運動学習論で広く支持される 3 原則を、音楽練習の現場に翻訳する試みです。挙げた効果サイズや時間目安は研究の平均値であり、個人差・楽器差・学習段階によって変動します。10,000 時間ルールの誤読を含む通俗的な練習論については、Ericsson 自身の訂正および Bjork による「desirable difficulties」の枠組みに依拠しています。</span>
+            <span lang="en">This article translates three principles broadly supported in cognitive science and motor-learning research into the music-practice context. Effect sizes and time guidelines are averages across studies; individual, instrument, and stage-of-learning variation is large. On the misreading of the "10,000-hour rule" we follow Ericsson's own corrections and Bjork's "desirable difficulties" framework.</span>
+            <span lang="fr">Cet article traduit trois principes largement soutenus en sciences cognitives et en apprentissage moteur dans le contexte de la pratique musicale. Les tailles d'effet et les repères temporels sont des moyennes ; les variations individuelles, instrumentales et selon le stade d'apprentissage sont importantes. Sur la mauvaise lecture de la « règle des 10 000 heures », nous suivons les corrections d'Ericsson lui-même et le cadre des « desirable difficulties » de Bjork.</span>
+            <span lang="de">Dieser Artikel überträgt drei in Kognitionswissenschaft und motorischem Lernen breit gestützte Prinzipien auf den Musikalltag. Die genannten Effektstärken und Zeitangaben sind Studien-Mittelwerte; individuelle, instrumentale und lernphasenbedingte Schwankungen sind erheblich. Zur Fehllesart der „10 000-Stunden-Regel" folgen wir Ericssons eigenen Korrekturen und Bjorks Rahmen der „desirable difficulties".</span>
+        </p>
+    </aside>
+
+    <!-- Footer -->
+    <footer class="article-footer">
+        <p class="article-footer__text">
+            &copy; 2026 <span lang="ja">ソルフェージュPRO</span><span lang="en">Solfege PRO</span><span lang="fr">Solfege PRO</span><span lang="de">Solfege PRO</span> &mdash;
+            <a href="https://apps.apple.com/app/id6756626617" class="article-footer__link">App Store</a>
+        </p>
+    </footer>
+
+    <script src="../lang-toggle.js?v=2" defer></script>
+    <script src="../drawer.js?v=1" defer></script>
+</body>
+</html>
