@@ -192,14 +192,77 @@
 
     <header class="page-header">
         <h1 class="page-header__title"><span lang="ja">どこから始める？</span><span lang="en">Where to Start?</span><span lang="fr">Par où commencer ?</span><span lang="de">Wo anfangen?</span></h1>
-        <p class="page-header__subtitle"><span lang="ja">楽器と課題を選ぶだけ。30 秒で、最適な練習ガイドを案内します。</span><span lang="en">Pick your instrument and pain point. We'll route you to the right guide in 30 seconds.</span><span lang="fr">Choisissez votre instrument et votre point de blocage. Nous vous orientons vers le bon guide en 30 secondes.</span><span lang="de">Wähle dein Instrument und dein Problem aus. In 30 Sekunden führen wir dich zum passenden Leitfaden.</span></p>
+        <p class="page-header__subtitle"><span lang="ja">あなたの状況・楽器・課題を選ぶだけ。1 分以内で、最適な練習ガイドを案内します。</span><span lang="en">Pick your situation, instrument, and pain point. We'll route you to the right guide in under a minute.</span><span lang="fr">Choisissez votre situation, votre instrument et votre point de blocage. Nous vous orientons vers le bon guide en moins d'une minute.</span><span lang="de">Wähle deine Situation, dein Instrument und dein Problem aus. In unter einer Minute führen wir dich zum passenden Leitfaden.</span></p>
     </header>
 
     <main class="diag-main">
 
-        <!-- Step 1 -->
-        <section class="diag-step" id="step-instrument">
-            <h2 class="diag-step__title"><span class="diag-step__num">1</span> <span lang="ja">楽器を選ぶ</span><span lang="en">Choose Your Instrument</span><span lang="fr">Choisir l'instrument</span><span lang="de">Instrument wählen</span></h2>
+        <!-- Step 1: Persona (situation) -->
+        <section class="diag-step" id="step-persona">
+            <h2 class="diag-step__title"><span class="diag-step__num">1</span> <span lang="ja">あなたの状況</span><span lang="en">Your Situation</span><span lang="fr">Votre situation</span><span lang="de">Deine Situation</span></h2>
+            <div class="diag-options">
+                <button class="diag-option" data-persona="beginner">
+                    <span class="diag-option__icon">▸</span>
+                    <span class="diag-option__body">
+                        <span class="diag-option__title"><span lang="ja">新しく始めた / 始めたい</span><span lang="en">Just started / starting out</span><span lang="fr">Je débute / je commence</span><span lang="de">Anfang / Neueinstieg</span></span>
+                        <span class="diag-option__desc"><span lang="ja">楽器に触り始めて1年以内</span><span lang="en">Within a year of picking up the instrument</span><span lang="fr">Moins d'un an de pratique</span><span lang="de">Weniger als ein Jahr Praxis</span></span>
+                    </span>
+                </button>
+                <button class="diag-option" data-persona="plateau">
+                    <span class="diag-option__icon">▸</span>
+                    <span class="diag-option__body">
+                        <span class="diag-option__title"><span lang="ja">何年もやってる、伸び悩み</span><span lang="en">Years in, hitting a plateau</span><span lang="fr">Plusieurs années, je stagne</span><span lang="de">Erfahren, aber stagniert</span></span>
+                        <span class="diag-option__desc"><span lang="ja">弾けるけど耳・理論で詰まる</span><span lang="en">Can play but stuck on ear/theory</span><span lang="fr">Je joue mais bloqué sur l'oreille/théorie</span><span lang="de">Spielen ja, aber Gehör/Theorie hakt</span></span>
+                    </span>
+                </button>
+                <button class="diag-option" data-persona="parent">
+                    <span class="diag-option__icon">▸</span>
+                    <span class="diag-option__body">
+                        <span class="diag-option__title"><span lang="ja">子供の楽器学習をサポート</span><span lang="en">Supporting my child's music learning</span><span lang="fr">J'accompagne l'apprentissage de mon enfant</span><span lang="de">Ich unterstütze das Musiklernen meines Kindes</span></span>
+                        <span class="diag-option__desc"><span lang="ja">家庭学習を効果的にしたい親</span><span lang="en">Parent wanting effective home practice</span><span lang="fr">Parent cherchant une pratique efficace à la maison</span><span lang="de">Eltern, die effektives Üben zuhause suchen</span></span>
+                    </span>
+                </button>
+                <button class="diag-option" data-persona="exam">
+                    <span class="diag-option__icon">▸</span>
+                    <span class="diag-option__body">
+                        <span class="diag-option__title"><span lang="ja">受験・試験対策</span><span lang="en">Exam / audition prep</span><span lang="fr">Préparation d'examen / audition</span><span lang="de">Prüfungs-/Aufnahmevorbereitung</span></span>
+                        <span class="diag-option__desc"><span lang="ja">音大入試・教員試験・ソルフェージュ試験</span><span lang="en">Conservatory, teacher, or solfege exams</span><span lang="fr">Conservatoire, professorat ou solfège</span><span lang="de">Hochschule, Lehramt oder Solfège</span></span>
+                    </span>
+                </button>
+                <button class="diag-option" data-persona="session">
+                    <span class="diag-option__icon">▸</span>
+                    <span class="diag-option__body">
+                        <span class="diag-option__title"><span lang="ja">ジャム・セッション・アドリブ</span><span lang="en">Jam / session / improv</span><span lang="fr">Jam / session / impro</span><span lang="de">Jam / Session / Improvisation</span></span>
+                        <span class="diag-option__desc"><span lang="ja">即興演奏で自由に鳴らしたい</span><span lang="en">Want to play freely in improv settings</span><span lang="fr">Jouer librement en impro</span><span lang="de">Frei improvisieren können</span></span>
+                    </span>
+                </button>
+                <button class="diag-option" data-persona="no-instrument">
+                    <span class="diag-option__icon">▸</span>
+                    <span class="diag-option__body">
+                        <span class="diag-option__title"><span lang="ja">スキマ時間で楽器を出さずに練習</span><span lang="en">Practice in spare time, no instrument</span><span lang="fr">M'entraîner sans instrument, à temps perdu</span><span lang="de">Üben in Pausen, ohne Instrument</span></span>
+                        <span class="diag-option__desc"><span lang="ja">通勤・育児中・夜間でも続けたい</span><span lang="en">Commute, parenting hours, late nights</span><span lang="fr">Transports, garde d'enfant, soirées</span><span lang="de">Pendeln, Kinderbetreuung, Abendstunden</span></span>
+                    </span>
+                </button>
+                <button class="diag-option" data-persona="dtm">
+                    <span class="diag-option__icon">▸</span>
+                    <span class="diag-option__body">
+                        <span class="diag-option__title"><span lang="ja">DTM・作曲のため</span><span lang="en">For DTM / composition</span><span lang="fr">Pour la MAO / composition</span><span lang="de">Für DAW / Komposition</span></span>
+                        <span class="diag-option__desc"><span lang="ja">コード進行の引き出しを増やしたい</span><span lang="en">Expand chord-progression vocabulary</span><span lang="fr">Élargir le vocabulaire des progressions</span><span lang="de">Akkordfolgen-Wortschatz erweitern</span></span>
+                    </span>
+                </button>
+                <button class="diag-option" data-persona="skip">
+                    <span class="diag-option__icon">▸</span>
+                    <span class="diag-option__body">
+                        <span class="diag-option__title"><span lang="ja">どれでもない / スキップ</span><span lang="en">None of the above / skip</span><span lang="fr">Aucun / passer</span><span lang="de">Keines / überspringen</span></span>
+                        <span class="diag-option__desc"><span lang="ja">先に進む</span><span lang="en">Continue without selecting</span><span lang="fr">Continuer sans choisir</span><span lang="de">Ohne Auswahl fortfahren</span></span>
+                    </span>
+                </button>
+            </div>
+        </section>
+
+        <!-- Step 2: Instrument (hidden until persona chosen) -->
+        <section class="diag-step" id="step-instrument" hidden>
+            <h2 class="diag-step__title"><span class="diag-step__num">2</span> <span lang="ja">楽器を選ぶ</span><span lang="en">Choose Your Instrument</span><span lang="fr">Choisir l'instrument</span><span lang="de">Instrument wählen</span></h2>
             <div class="diag-options">
                 <button class="diag-option" data-instrument="guitar">
                     <span class="diag-option__icon"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#icon-guitar"></use></svg></span>
@@ -240,15 +303,15 @@
             </div>
         </section>
 
-        <!-- Step 2 (hidden until instrument chosen) -->
+        <!-- Step 3: Pain (hidden until instrument chosen) -->
         <section class="diag-step" id="step-pain" hidden>
-            <h2 class="diag-step__title"><span class="diag-step__num">2</span> <span lang="ja">いま一番困っていること</span><span lang="en">Your Main Pain Point</span><span lang="fr">Votre point de blocage principal</span><span lang="de">Dein Hauptproblem</span></h2>
+            <h2 class="diag-step__title"><span class="diag-step__num">3</span> <span lang="ja">いま一番困っていること</span><span lang="en">Your Main Pain Point</span><span lang="fr">Votre point de blocage principal</span><span lang="de">Dein Hauptproblem</span></h2>
             <div class="diag-options" id="pain-options"></div>
         </section>
 
-        <!-- Result (hidden until pain chosen) -->
+        <!-- Step 4: Result (hidden until pain chosen) -->
         <section class="diag-step" id="step-result" hidden>
-            <h2 class="diag-step__title"><span class="diag-step__num">3</span> <span lang="ja">あなたへのおすすめ</span><span lang="en">Your Recommendation</span><span lang="fr">Notre recommandation</span><span lang="de">Unsere Empfehlung</span></h2>
+            <h2 class="diag-step__title"><span class="diag-step__num">4</span> <span lang="ja">あなたへのおすすめ</span><span lang="en">Your Recommendation</span><span lang="fr">Notre recommandation</span><span lang="de">Unsere Empfehlung</span></h2>
             <div class="diag-result" id="result-card"></div>
             <button class="diag-restart" id="restart-btn"><span lang="ja">↻ もう一度診断する</span><span lang="en">↻ Restart diagnostic</span><span lang="fr">↻ Recommencer le diagnostic</span><span lang="de">↻ Diagnose erneut starten</span></button>
         </section>
@@ -437,6 +500,7 @@
             app:     { ja: 'App Store で入手',     en: 'Get on App Store',   fr: 'Obtenir sur App Store', de: 'Im App Store laden' }
         };
 
+        var stepPersona = document.getElementById('step-persona');
         var stepInstrument = document.getElementById('step-instrument');
         var stepPain = document.getElementById('step-pain');
         var stepResult = document.getElementById('step-result');
@@ -499,7 +563,24 @@
             stepResult.scrollIntoView({ behavior: 'smooth', block: 'start' });
         }
 
-        // Step 1: instrument click handlers
+        // Step 1: persona click handlers
+        // Phase 1 (2026-05-20): persona is captured for analytics only.
+        // Downstream recommendation logic is unchanged.
+        document.querySelectorAll('#step-persona .diag-option').forEach(function(btn) {
+            btn.addEventListener('click', function() {
+                document.querySelectorAll('#step-persona .diag-option').forEach(function(b){ b.classList.remove('is-selected'); });
+                btn.classList.add('is-selected');
+                if (window.SolfegeAnalytics && window.SolfegeAnalytics.track) {
+                    window.SolfegeAnalytics.track('diagnostic_persona_select', {
+                        persona: btn.dataset.persona
+                    });
+                }
+                stepInstrument.hidden = false;
+                stepInstrument.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            });
+        });
+
+        // Step 2: instrument click handlers
         document.querySelectorAll('#step-instrument .diag-option').forEach(function(btn) {
             btn.addEventListener('click', function() {
                 document.querySelectorAll('#step-instrument .diag-option').forEach(function(b){ b.classList.remove('is-selected'); });
@@ -509,10 +590,12 @@
         });
 
         restartBtn.addEventListener('click', function() {
+            stepInstrument.hidden = true;
             stepPain.hidden = true;
             stepResult.hidden = true;
+            document.querySelectorAll('#step-persona .diag-option').forEach(function(b){ b.classList.remove('is-selected'); });
             document.querySelectorAll('#step-instrument .diag-option').forEach(function(b){ b.classList.remove('is-selected'); });
-            stepInstrument.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            stepPersona.scrollIntoView({ behavior: 'smooth', block: 'start' });
         });
     })();
     </script>
