@@ -148,6 +148,37 @@
         .diag-footer__link { color: var(--primary); text-decoration: none; }
 
         /* .settings-btn comes from style.css; no local override */
+
+        /* Phase 2-followup (2026-05-21): persona/instrument breadcrumb shown
+           inside Step 3 + Step 4 so the user keeps seeing which Step 1/2
+           selections drove the content below. */
+        .diag-context {
+            display: flex; flex-wrap: wrap; align-items: center;
+            gap: var(--space-sm);
+            background: var(--surface);
+            border: 1px solid var(--surface-light);
+            border-left: 3px solid var(--primary);
+            border-radius: var(--radius-md);
+            padding: var(--space-sm) var(--space-md);
+            margin-bottom: var(--space-lg);
+            font-size: 13px;
+        }
+        .diag-context__chip {
+            display: inline-flex; align-items: center; gap: 4px;
+            color: var(--text-primary); font-weight: 600;
+        }
+        .diag-context__chip-label {
+            color: var(--text-secondary); font-weight: 400; margin-right: 2px;
+        }
+        .diag-context__sep { color: var(--text-secondary); }
+        .diag-result__intro {
+            color: var(--text-secondary); font-size: 13px;
+            margin-bottom: var(--space-sm);
+            font-weight: 500;
+        }
+        .diag-result__intro strong {
+            color: var(--primary); font-weight: 700;
+        }
     </style>
     <script src="analytics.js?v=1" defer></script>
 </head>
@@ -306,6 +337,11 @@
         <!-- Step 3: Pain (hidden until instrument chosen) -->
         <section class="diag-step" id="step-pain" hidden>
             <h2 class="diag-step__title"><span class="diag-step__num">3</span> <span lang="ja">いま一番困っていること</span><span lang="en">Your Main Pain Point</span><span lang="fr">Votre point de blocage principal</span><span lang="de">Dein Hauptproblem</span></h2>
+            <div class="diag-context" id="pain-context" hidden>
+                <span class="diag-context__chip" id="pain-context-persona"></span>
+                <span class="diag-context__sep" id="pain-context-sep">・</span>
+                <span class="diag-context__chip" id="pain-context-instrument"></span>
+            </div>
             <div class="diag-options" id="pain-options"></div>
         </section>
 
@@ -1071,6 +1107,43 @@
             app:     { ja: 'App Store で入手',     en: 'Get on App Store',   fr: 'Obtenir sur App Store', de: 'Im App Store laden' }
         };
 
+        // Phase 2-followup (2026-05-21): breadcrumb labels for the Step 3
+        // and Step 4 context chips. Keeps the user oriented — they always
+        // see which Step 1/2 selections drove the recommendation.
+        var PERSONA_LABELS = {
+            beginner:        { ja: '新しく始めた',     en: 'Just starting',  fr: 'Débutant',         de: 'Anfang' },
+            plateau:         { ja: '中級・伸び悩み',   en: 'Plateau',         fr: 'Stagnation',       de: 'Plateau' },
+            parent:          { ja: '子供のサポート',   en: 'Parent',          fr: 'Parent',           de: 'Eltern' },
+            exam:            { ja: '受験・試験対策',   en: 'Exam prep',       fr: 'Examens',          de: 'Prüfung' },
+            session:         { ja: 'ジャム・即興',     en: 'Session / Improv', fr: 'Session / Impro', de: 'Session / Impro' },
+            'no-instrument': { ja: 'スキマ時間',       en: 'No instrument',   fr: 'Sans instrument',  de: 'Ohne Instrument' },
+            dtm:             { ja: 'DTM・作曲',        en: 'DTM',             fr: 'MAO',              de: 'DAW' },
+            skip:            { ja: '指定なし',         en: 'No filter',       fr: 'Aucun',            de: 'Keiner' }
+        };
+        var INSTRUMENT_LABELS = {
+            guitar: { ja: 'ギター・ベース', en: 'Guitar & Bass',     fr: 'Guitare & basse',   de: 'Gitarre & Bass' },
+            drums:  { ja: 'ドラム',         en: 'Drums',              fr: 'Batterie',           de: 'Schlagzeug' },
+            piano:  { ja: 'ピアノ',         en: 'Piano',              fr: 'Piano',              de: 'Klavier' },
+            vocal:  { ja: 'ボーカル',       en: 'Vocal',              fr: 'Chant',              de: 'Gesang' },
+            wind:   { ja: '管・弦楽器',     en: 'Wind & Strings',     fr: 'Vents & cordes',     de: 'Bläser & Streicher' },
+            other:  { ja: 'その他',         en: 'Other',              fr: 'Autre',              de: 'Sonstige' },
+            any:    { ja: '楽器不問',       en: 'Instrument-agnostic', fr: 'Tous instruments',  de: 'Instrument egal' }
+        };
+        var CHIP_LABELS = {
+            persona:    { ja: '状況', en: 'Situation', fr: 'Situation', de: 'Situation' },
+            instrument: { ja: '楽器', en: 'Instrument', fr: 'Instrument', de: 'Instrument' }
+        };
+        var RESULT_INTRO = {
+            withInst: { ja: '<strong>{P}</strong> のあなた / 楽器: <strong>{I}</strong> から:',
+                        en: 'For you (<strong>{P}</strong>) on <strong>{I}</strong>:',
+                        fr: 'Pour vous (<strong>{P}</strong>) sur <strong>{I}</strong> :',
+                        de: 'Für dich (<strong>{P}</strong>) auf <strong>{I}</strong>:' },
+            noInst:   { ja: '<strong>{P}</strong> のあなたへ:',
+                        en: 'For you (<strong>{P}</strong>):',
+                        fr: 'Pour vous (<strong>{P}</strong>) :',
+                        de: 'Für dich (<strong>{P}</strong>):' }
+        };
+
         var stepPersona = document.getElementById('step-persona');
         var stepInstrument = document.getElementById('step-instrument');
         var stepPain = document.getElementById('step-pain');
@@ -1136,8 +1209,39 @@
             if (par) par.hidden = !isParent;
         }
 
+        function buildChip(labelMap, valueMap) {
+            var html = '';
+            LANG_CYCLE.forEach(function(lng) {
+                html += '<span lang="' + lng + '"><span class="diag-context__chip-label">' + labelMap[lng] + ':</span> ' + valueMap[lng] + '</span>';
+            });
+            return html;
+        }
+
+        function applyDiagContext(persona, instrument) {
+            var ctx = document.getElementById('pain-context');
+            var pChip = document.getElementById('pain-context-persona');
+            var iChip = document.getElementById('pain-context-instrument');
+            var sep   = document.getElementById('pain-context-sep');
+            if (!ctx || !pChip || !iChip) return;
+            var pLabel = PERSONA_LABELS[persona];
+            var iLabel = INSTRUMENT_LABELS[instrument];
+            if (!pLabel) { ctx.hidden = true; return; }
+            pChip.innerHTML = buildChip(CHIP_LABELS.persona, pLabel);
+            if (iLabel && instrument !== 'any') {
+                iChip.innerHTML = buildChip(CHIP_LABELS.instrument, iLabel);
+                iChip.hidden = false;
+                sep.hidden = false;
+            } else {
+                iChip.innerHTML = '';
+                iChip.hidden = true;
+                sep.hidden = true;
+            }
+            ctx.hidden = false;
+        }
+
         function showPainStep(instrument) {
             painOptions.innerHTML = '';
+            applyDiagContext(selectedPersona, instrument);
             var pains = resolvePains(selectedPersona, instrument);
             pains.forEach(function(p, i) {
                 var btn = document.createElement('button');
@@ -1188,7 +1292,25 @@
             var ctaText = RESULT_LABELS.cta[lang];
             var appText = RESULT_LABELS.app[lang];
 
-            resultCard.innerHTML =
+            // Build the persona/instrument intro line that prefaces the
+            // recommended guide — makes Step 1 selection visibly drive Step 4.
+            var introHtml = '';
+            var pLabel = PERSONA_LABELS[selectedPersona];
+            var iLabel = INSTRUMENT_LABELS[instrument];
+            if (pLabel) {
+                var hasInst = (iLabel && instrument !== 'any');
+                var tplSet = hasInst ? RESULT_INTRO.withInst : RESULT_INTRO.noInst;
+                introHtml = '<div class="diag-result__intro">';
+                LANG_CYCLE.forEach(function(lng) {
+                    var tpl = tplSet[lng] || tplSet.ja;
+                    var text = tpl.replace('{P}', pLabel[lng]);
+                    if (hasInst) text = text.replace('{I}', iLabel[lng]);
+                    introHtml += '<span lang="' + lng + '">' + text + '</span>';
+                });
+                introHtml += '</div>';
+            }
+
+            resultCard.innerHTML = introHtml +
                 '<div class="diag-result__label">' + label + '</div>' +
                 '<div class="diag-result__title">' + title + '</div>' +
                 '<div class="diag-result__desc">' + desc + '</div>' +

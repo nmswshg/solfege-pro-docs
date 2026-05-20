@@ -552,6 +552,65 @@ test.describe('Diagnostic funnel GA4 events', () => {
         expect(parentHidden).toBe(1);
     });
 
+    // ===== Phase 2-followup: persona+instrument breadcrumb at Step 3 / Step 4 =====
+
+    test('Step 3 shows the persona and instrument breadcrumb', async ({ page }) => {
+        await installEventCapture(page);
+        await selectPersonaAndInstrument(page, 'parent', 'piano');
+
+        // Persona chip visible with the JA label "子供のサポート"
+        const personaText = await page.locator('#pain-context-persona span[lang="ja"]').first().textContent();
+        expect(personaText).toContain('子供のサポート');
+
+        // Instrument chip visible with "ピアノ"
+        const instrumentText = await page.locator('#pain-context-instrument span[lang="ja"]').first().textContent();
+        expect(instrumentText).toContain('ピアノ');
+
+        // The context container is not hidden
+        const ctxHidden = await page.locator('#pain-context[hidden]').count();
+        expect(ctxHidden).toBe(0);
+    });
+
+    test('Step 3 breadcrumb hides the instrument chip for instrument-agnostic personas', async ({ page }) => {
+        // dtm bypasses Step 2; instrument=='any' should drop the instrument chip
+        await installEventCapture(page);
+        await page.goto('/start-here.html');
+        await page.click('[data-persona="dtm"]');
+        await page.waitForSelector('#step-pain:not([hidden]) .diag-option');
+
+        const personaText = await page.locator('#pain-context-persona span[lang="ja"]').first().textContent();
+        expect(personaText).toContain('DTM');
+
+        const instrumentChipHidden = await page.locator('#pain-context-instrument[hidden]').count();
+        expect(instrumentChipHidden).toBe(1);
+    });
+
+    test('Step 4 result intro line shows the persona + instrument selection', async ({ page }) => {
+        await installEventCapture(page);
+        await selectPersonaAndInstrument(page, 'parent', 'piano');
+        await page.click('#step-pain .diag-option:first-child');
+        await page.waitForSelector('#step-result:not([hidden]) .diag-result__intro');
+
+        const introJa = await page.locator('.diag-result__intro span[lang="ja"]').textContent();
+        expect(introJa).toContain('子供のサポート');
+        expect(introJa).toContain('ピアノ');
+    });
+
+    test('Step 4 intro line for instrument-agnostic persona shows only persona', async ({ page }) => {
+        await installEventCapture(page);
+        await page.goto('/start-here.html');
+        await page.click('[data-persona="dtm"]');
+        await page.waitForSelector('#step-pain:not([hidden]) .diag-option');
+        await page.click('#step-pain .diag-option:first-child');
+        await page.waitForSelector('#step-result:not([hidden]) .diag-result__intro');
+
+        const introJa = await page.locator('.diag-result__intro span[lang="ja"]').textContent();
+        expect(introJa).toContain('DTM');
+        // No instrument name should appear (Step 2 was skipped)
+        expect(introJa).not.toContain('ピアノ');
+        expect(introJa).not.toContain('ギター');
+    });
+
     test('switching parent → plateau swaps title back to default', async ({ page }) => {
         await installEventCapture(page);
         await page.goto('/start-here.html');
