@@ -1147,7 +1147,15 @@
         }
 
         function showResult(instrument, painIndex) {
-            var p = PAINS[instrument][painIndex];
+            // Re-resolve with the *same* lookup chain that showPainStep used,
+            // so persona-aware (PERSONA_PAINS) entries are honored at Step 4
+            // too. Without this, a parent×piano user would click a
+            // parent-specific pain at Step 3 and land on the PAINS[piano]
+            // guide instead of the parent's recommended guide — and GA4's
+            // diagnostic_complete payload would carry the wrong pain_ja /
+            // guide_path.
+            var pains = resolvePains(selectedPersona, instrument);
+            var p = pains[painIndex];
             var lang = getLang();
             var titleByLang = { ja: p.guideJa, en: p.guideEn, fr: p.guideFr, de: p.guideDe };
             var descByLang  = { ja: p.descJa,  en: p.descEn,  fr: p.descFr,  de: p.descDe  };

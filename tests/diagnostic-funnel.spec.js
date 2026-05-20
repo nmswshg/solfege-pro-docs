@@ -401,6 +401,36 @@ test.describe('Diagnostic funnel GA4 events', () => {
         expect(sessionGuitar.sort()).not.toEqual(sessionDrums.sort());
     });
 
+    test('Step 4 guide matches the persona-aware pain clicked at Step 3 (regression)', async ({ page }) => {
+        // Bug found 2026-05-21: showResult was reading PAINS[instrument]
+        // directly instead of going through resolvePains. That meant a
+        // parent × piano user would see parent-specific pains at Step 3 but
+        // be sent to the PAINS.piano guide at Step 4 (and GA4 would log
+        // PAINS pain_ja / guide_path, not the parent ones).
+        await installEventCapture(page);
+        await selectPersonaAndInstrument(page, 'parent', 'piano');
+
+        // Capture the parent-specific pain_ja shown at Step 3 (first option).
+        const step3Title = await page.locator('#step-pain .diag-option:first-child .diag-option__title span[lang="ja"]').textContent();
+
+        await page.click('#step-pain .diag-option:first-child');
+        await page.waitForSelector('#step-result:not([hidden])');
+
+        // diagnostic_complete must carry the SAME pain_ja shown at Step 3.
+        const events = await page.evaluate(() => window.__events__);
+        const completeEvent = events.find(e => e.name === 'diagnostic_complete');
+        expect(completeEvent.params.pain_ja).toBe(step3Title);
+
+        // And the rendered guide title at Step 4 should not be the plateau
+        // (PAINS) guide for the same pain index. Sanity: parent.piano[0]
+        // points to one of the parent-friendly guides.
+        const step4Title = await page.locator('#step-result .diag-result__title').textContent();
+        // Parent persona guides include 子供 / 家庭 / 親 themes — assert the
+        // resolved guide title is not the PAINS.piano[0] title ("ピアノ Q1").
+        expect(step4Title).not.toBe('ピアノ Q1');
+        expect(completeEvent.params.guide_path).not.toBe('practice/piano.html#piano-q1');
+    });
+
     test('selecting parent then changing to dtm rerenders a fresh dtm pain set', async ({ page }) => {
         // The user could click persona, instrument, see pains, then go back and
         // pick a different persona. We don't currently expose a "back" UI to
