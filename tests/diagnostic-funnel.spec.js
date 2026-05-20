@@ -305,4 +305,121 @@ test.describe('Diagnostic funnel GA4 events', () => {
         expect(count).toBeGreaterThanOrEqual(3);
         expect(count).toBeLessThanOrEqual(4);
     });
+
+    // ===== Phase 2-full: persona-specific pain content =====
+    // These tests verify that PERSONA_PAINS data is actually wired through —
+    // i.e. selecting a different persona changes the pain set rendered,
+    // not just the analytics tag.
+
+    async function selectPersonaAndInstrument(page, persona, instrument) {
+        await page.goto('/start-here.html');
+        await page.click(`[data-persona="${persona}"]`);
+        await page.waitForSelector('#step-instrument:not([hidden]) .diag-option');
+        await page.click(`#step-instrument [data-instrument="${instrument}"]`);
+        await page.waitForSelector('#step-pain:not([hidden]) .diag-option');
+    }
+
+    async function getPainTitles(page) {
+        return await page.locator('#step-pain .diag-option .diag-option__title span[lang="ja"]').allTextContents();
+    }
+
+    test('parent persona × piano shows parent-specific pains (not the plateau set)', async ({ page }) => {
+        await installEventCapture(page);
+        await selectPersonaAndInstrument(page, 'parent', 'piano');
+        const parentPiano = await getPainTitles(page);
+
+        await selectPersonaAndInstrument(page, 'plateau', 'piano');
+        const plateauPiano = await getPainTitles(page);
+
+        // Sets must differ — Phase 2 is what makes them link
+        expect(parentPiano.join('|')).not.toBe(plateauPiano.join('|'));
+        // Parent set should mention the child somewhere
+        expect(parentPiano.join(' ')).toMatch(/子供|家|家庭/);
+    });
+
+    test('dtm persona uses the `any` set — same pains regardless of instrument', async ({ page }) => {
+        await installEventCapture(page);
+        await selectPersonaAndInstrument(page, 'dtm', 'guitar');
+        const dtmGuitar = await getPainTitles(page);
+
+        await selectPersonaAndInstrument(page, 'dtm', 'piano');
+        const dtmPiano = await getPainTitles(page);
+
+        // Same `any` set — instrument is irrelevant
+        expect(dtmGuitar.sort()).toEqual(dtmPiano.sort());
+        expect(dtmGuitar.length).toBe(4);
+    });
+
+    test('exam persona uses the `any` set (instrument-agnostic theory exams)', async ({ page }) => {
+        await installEventCapture(page);
+        await selectPersonaAndInstrument(page, 'exam', 'vocal');
+        const examVocal = await getPainTitles(page);
+
+        await selectPersonaAndInstrument(page, 'exam', 'wind');
+        const examWind = await getPainTitles(page);
+
+        expect(examVocal.sort()).toEqual(examWind.sort());
+        expect(examVocal.length).toBe(4);
+    });
+
+    test('no-instrument persona uses the `any` set (instrument-agnostic spare time)', async ({ page }) => {
+        await installEventCapture(page);
+        await selectPersonaAndInstrument(page, 'no-instrument', 'guitar');
+        const noInstGuitar = await getPainTitles(page);
+
+        await selectPersonaAndInstrument(page, 'no-instrument', 'drums');
+        const noInstDrums = await getPainTitles(page);
+
+        expect(noInstGuitar.sort()).toEqual(noInstDrums.sort());
+        expect(noInstGuitar.length).toBe(4);
+    });
+
+    test('beginner persona shows instrument-specific pain sets (guitar ≠ piano)', async ({ page }) => {
+        await installEventCapture(page);
+        await selectPersonaAndInstrument(page, 'beginner', 'guitar');
+        const beginnerGuitar = await getPainTitles(page);
+
+        await selectPersonaAndInstrument(page, 'beginner', 'piano');
+        const beginnerPiano = await getPainTitles(page);
+
+        expect(beginnerGuitar.length).toBe(4);
+        expect(beginnerPiano.length).toBe(4);
+        // Different instruments → different pain sets
+        expect(beginnerGuitar.sort()).not.toEqual(beginnerPiano.sort());
+    });
+
+    test('session persona shows instrument-specific pain sets (guitar ≠ drums)', async ({ page }) => {
+        await installEventCapture(page);
+        await selectPersonaAndInstrument(page, 'session', 'guitar');
+        const sessionGuitar = await getPainTitles(page);
+
+        await selectPersonaAndInstrument(page, 'session', 'drums');
+        const sessionDrums = await getPainTitles(page);
+
+        expect(sessionGuitar.length).toBe(4);
+        expect(sessionDrums.length).toBe(4);
+        expect(sessionGuitar.sort()).not.toEqual(sessionDrums.sort());
+    });
+
+    test('selecting parent then changing to dtm rerenders a fresh dtm pain set', async ({ page }) => {
+        // The user could click persona, instrument, see pains, then go back and
+        // pick a different persona. We don't currently expose a "back" UI to
+        // step-persona, but restart does that — verify it works end-to-end.
+        await installEventCapture(page);
+        await selectPersonaAndInstrument(page, 'parent', 'guitar');
+        const parentGuitar = await getPainTitles(page);
+
+        await page.click('#step-pain .diag-option:first-child');
+        await page.waitForSelector('#step-result:not([hidden])');
+        await page.click('#restart-btn');
+        await page.waitForFunction(() => document.getElementById('step-instrument').hidden === true);
+
+        await page.click('[data-persona="dtm"]');
+        await page.waitForSelector('#step-instrument:not([hidden])');
+        await page.click('#step-instrument [data-instrument="guitar"]');
+        await page.waitForSelector('#step-pain:not([hidden])');
+        const dtmGuitar = await getPainTitles(page);
+
+        expect(parentGuitar.sort()).not.toEqual(dtmGuitar.sort());
+    });
 });
