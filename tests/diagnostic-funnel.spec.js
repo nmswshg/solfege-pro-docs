@@ -523,6 +523,49 @@ test.describe('Diagnostic funnel GA4 events', () => {
         expect(instrumentEvent).toBeUndefined();
     });
 
+    // ===== Phase 2-fix: parent persona Step 2 wording =====
+
+    test('parent persona shows "お子様の楽器を選ぶ" at Step 2', async ({ page }) => {
+        await installEventCapture(page);
+        await page.goto('/start-here.html');
+        await page.click('[data-persona="parent"]');
+        await page.waitForSelector('#step-instrument:not([hidden])');
+
+        // parent variant should be visible, default variant hidden
+        const parentVariantVisible = await page.locator('.step2-title-variant[data-variant="parent"]:not([hidden]) span[lang="ja"]').textContent();
+        expect(parentVariantVisible).toBe('お子様の楽器を選ぶ');
+
+        const defaultHidden = await page.locator('.step2-title-variant[data-variant="default"][hidden]').count();
+        expect(defaultHidden).toBe(1);
+    });
+
+    test('non-parent personas show default "楽器を選ぶ" at Step 2', async ({ page }) => {
+        await installEventCapture(page);
+        await page.goto('/start-here.html');
+        await page.click('[data-persona="plateau"]');
+        await page.waitForSelector('#step-instrument:not([hidden])');
+
+        const defaultVisible = await page.locator('.step2-title-variant[data-variant="default"]:not([hidden]) span[lang="ja"]').textContent();
+        expect(defaultVisible).toBe('楽器を選ぶ');
+
+        const parentHidden = await page.locator('.step2-title-variant[data-variant="parent"][hidden]').count();
+        expect(parentHidden).toBe(1);
+    });
+
+    test('switching parent → plateau swaps title back to default', async ({ page }) => {
+        await installEventCapture(page);
+        await page.goto('/start-here.html');
+        await page.click('[data-persona="parent"]');
+        await page.waitForSelector('.step2-title-variant[data-variant="parent"]:not([hidden])');
+
+        // Switch personas without restart
+        await page.click('[data-persona="plateau"]');
+        await page.waitForSelector('.step2-title-variant[data-variant="default"]:not([hidden])');
+
+        const parentHidden = await page.locator('.step2-title-variant[data-variant="parent"][hidden]').count();
+        expect(parentHidden).toBe(1);
+    });
+
     test('switching from parent (Step 2 shown) to dtm hides Step 2', async ({ page }) => {
         // Without restarting, the user picks parent then re-picks dtm.
         // Step 2 should hide when dtm is selected.

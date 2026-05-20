@@ -262,7 +262,7 @@
 
         <!-- Step 2: Instrument (hidden until persona chosen) -->
         <section class="diag-step" id="step-instrument" hidden>
-            <h2 class="diag-step__title"><span class="diag-step__num">2</span> <span lang="ja">楽器を選ぶ</span><span lang="en">Choose Your Instrument</span><span lang="fr">Choisir l'instrument</span><span lang="de">Instrument wählen</span></h2>
+            <h2 class="diag-step__title"><span class="diag-step__num">2</span> <span class="step2-title-variant" data-variant="default"><span lang="ja">楽器を選ぶ</span><span lang="en">Choose Your Instrument</span><span lang="fr">Choisir l'instrument</span><span lang="de">Instrument wählen</span></span><span class="step2-title-variant" data-variant="parent" hidden><span lang="ja">お子様の楽器を選ぶ</span><span lang="en">Choose Your Child's Instrument</span><span lang="fr">Choisir l'instrument de votre enfant</span><span lang="de">Das Instrument deines Kindes wählen</span></span></h2>
             <div class="diag-options">
                 <button class="diag-option" data-instrument="guitar">
                     <span class="diag-option__icon"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#icon-guitar"></use></svg></span>
@@ -1124,6 +1124,18 @@
             return keys.length === 1 && keys[0] === 'any';
         }
 
+        // Phase 2-fix (2026-05-21): swap the Step 2 title between the default
+        // "楽器を選ぶ" and the parent-specific "お子様の楽器を選ぶ" — the parent
+        // persona shops for a child, not themselves, and the wording was
+        // confusing them mid-flow.
+        function applyStep2Title(persona) {
+            var isParent = (persona === 'parent');
+            var def = document.querySelector('#step-instrument .step2-title-variant[data-variant="default"]');
+            var par = document.querySelector('#step-instrument .step2-title-variant[data-variant="parent"]');
+            if (def) def.hidden = isParent;
+            if (par) par.hidden = !isParent;
+        }
+
         function showPainStep(instrument) {
             painOptions.innerHTML = '';
             var pains = resolvePains(selectedPersona, instrument);
@@ -1239,6 +1251,7 @@
                     });
                     showPainStep('any');
                 } else {
+                    applyStep2Title(selectedPersona);
                     stepInstrument.hidden = false;
                     stepInstrument.scrollIntoView({ behavior: 'smooth', block: 'start' });
                 }
