@@ -508,6 +508,16 @@
         var resultCard = document.getElementById('result-card');
         var restartBtn = document.getElementById('restart-btn');
 
+        // Diagnostic funnel state — used to attach persona context to
+        // downstream events (instrument/pain/complete/guide_click).
+        var selectedPersona = null;
+
+        function trackEvent(name, params) {
+            if (window.SolfegeAnalytics && window.SolfegeAnalytics.track) {
+                window.SolfegeAnalytics.track(name, params || {});
+            }
+        }
+
         function getLang() {
             var l = document.documentElement.getAttribute('data-lang') || 'ja';
             return LANG_CYCLE.indexOf(l) !== -1 ? l : 'ja';
@@ -534,7 +544,15 @@
                         '<span lang="de">' + escapeHtml(p.de) + '</span>' +
                     '</span>' +
                     '</span>';
-                btn.addEventListener('click', function() { showResult(instrument, i); });
+                btn.addEventListener('click', function() {
+                    trackEvent('diagnostic_pain_select', {
+                        persona: selectedPersona || 'unknown',
+                        instrument: instrument,
+                        pain_index: i,
+                        pain_ja: p.ja
+                    });
+                    showResult(instrument, i);
+                });
                 painOptions.appendChild(btn);
             });
             stepPain.hidden = false;
@@ -557,8 +575,31 @@
                 '<div class="diag-result__label">' + label + '</div>' +
                 '<div class="diag-result__title">' + title + '</div>' +
                 '<div class="diag-result__desc">' + desc + '</div>' +
-                '<a href="' + p.guide + '" class="diag-result__cta">' + ctaText + '</a>' +
-                '<a href="https://apps.apple.com/app/id6756626617" class="diag-result__cta diag-result__cta--secondary">' + appText + '</a>';
+                '<a href="' + p.guide + '" class="diag-result__cta" data-cta-type="guide">' + ctaText + '</a>' +
+                '<a href="https://apps.apple.com/app/id6756626617" class="diag-result__cta diag-result__cta--secondary" data-cta-type="app">' + appText + '</a>';
+
+            // Attach click handlers to the freshly-rendered result CTAs.
+            // (innerHTML resets, so we re-bind each render.)
+            resultCard.querySelectorAll('a[data-cta-type]').forEach(function(a) {
+                a.addEventListener('click', function() {
+                    trackEvent('diagnostic_guide_click', {
+                        persona: selectedPersona || 'unknown',
+                        instrument: instrument,
+                        pain_index: painIndex,
+                        guide_path: p.guide,
+                        cta_type: a.dataset.ctaType
+                    });
+                });
+            });
+
+            trackEvent('diagnostic_complete', {
+                persona: selectedPersona || 'unknown',
+                instrument: instrument,
+                pain_index: painIndex,
+                pain_ja: p.ja,
+                guide_path: p.guide
+            });
+
             stepResult.hidden = false;
             stepResult.scrollIntoView({ behavior: 'smooth', block: 'start' });
         }
@@ -570,11 +611,10 @@
             btn.addEventListener('click', function() {
                 document.querySelectorAll('#step-persona .diag-option').forEach(function(b){ b.classList.remove('is-selected'); });
                 btn.classList.add('is-selected');
-                if (window.SolfegeAnalytics && window.SolfegeAnalytics.track) {
-                    window.SolfegeAnalytics.track('diagnostic_persona_select', {
-                        persona: btn.dataset.persona
-                    });
-                }
+                selectedPersona = btn.dataset.persona;
+                trackEvent('diagnostic_persona_select', {
+                    persona: selectedPersona
+                });
                 stepInstrument.hidden = false;
                 stepInstrument.scrollIntoView({ behavior: 'smooth', block: 'start' });
             });
@@ -585,11 +625,19 @@
             btn.addEventListener('click', function() {
                 document.querySelectorAll('#step-instrument .diag-option').forEach(function(b){ b.classList.remove('is-selected'); });
                 btn.classList.add('is-selected');
+                trackEvent('diagnostic_instrument_select', {
+                    persona: selectedPersona || 'unknown',
+                    instrument: btn.dataset.instrument
+                });
                 showPainStep(btn.dataset.instrument);
             });
         });
 
         restartBtn.addEventListener('click', function() {
+            trackEvent('diagnostic_restart', {
+                persona_at_restart: selectedPersona || 'unknown'
+            });
+            selectedPersona = null;
             stepInstrument.hidden = true;
             stepPain.hidden = true;
             stepResult.hidden = true;
