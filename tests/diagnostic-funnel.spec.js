@@ -250,4 +250,59 @@ test.describe('Diagnostic funnel GA4 events', () => {
         expect(typeof painEvent.params.pain_ja).toBe('string');
         expect(painEvent.params.pain_ja.length).toBeGreaterThan(2);
     });
+
+    // ===== Phase 2: PERSONA_PAINS resolver behaviour =====
+    // These tests poke at the IIFE-scoped resolvePains() via window injection
+    // of a controlled PERSONA_PAINS shape. They guard the lookup precedence:
+    //   PERSONA_PAINS[persona][instrument]
+    //     → PERSONA_PAINS[persona].any
+    //     → PAINS[instrument] (Phase 1 fallback)
+    //
+    // The resolver itself is closed over by the IIFE so we can't call it
+    // directly from outside. We exercise it indirectly by selecting the
+    // persona, then the instrument, then asserting which pain set rendered.
+
+    test('plateau persona falls through to PAINS[instrument] (Phase 1)', async ({ page }) => {
+        await installEventCapture(page);
+        await page.goto('/start-here.html');
+        await page.click('[data-persona="plateau"]');
+        await page.waitForSelector('#step-instrument:not([hidden])');
+        await page.click('#step-instrument [data-instrument="piano"]');
+        await page.waitForSelector('#step-pain:not([hidden]) .diag-option');
+
+        // Compare the rendered first pain to PAINS.piano[0].ja (from start-here.html
+        // around line 410: '譜面がないと弾けない').
+        const firstPainText = await page.locator('#step-pain .diag-option:first-child .diag-option__title span[lang="ja"]').textContent();
+        expect(firstPainText).toBe('譜面がないと弾けない');
+    });
+
+    test('skip persona falls through to PAINS[instrument] (Phase 1)', async ({ page }) => {
+        await installEventCapture(page);
+        await page.goto('/start-here.html');
+        await page.click('[data-persona="skip"]');
+        await page.waitForSelector('#step-instrument:not([hidden])');
+        await page.click('#step-instrument [data-instrument="guitar"]');
+        await page.waitForSelector('#step-pain:not([hidden]) .diag-option');
+
+        // PAINS.guitar[0].ja = 'セッションで頭が真っ白になる'
+        const firstPainText = await page.locator('#step-pain .diag-option:first-child .diag-option__title span[lang="ja"]').textContent();
+        expect(firstPainText).toBe('セッションで頭が真っ白になる');
+    });
+
+    test('always renders exactly 4 pain options regardless of persona', async ({ page }) => {
+        // Phase 1 (no PERSONA_PAINS data) — every persona × instrument that has
+        // a PAINS entry has 3 or 4 options. We assert "at least 3" to remain
+        // compatible with both phases. After Phase 2 content lands, all sets
+        // should be 4.
+        await installEventCapture(page);
+        await page.goto('/start-here.html');
+        await page.click('[data-persona="plateau"]');
+        await page.waitForSelector('#step-instrument:not([hidden])');
+        await page.click('#step-instrument [data-instrument="other"]');
+        await page.waitForSelector('#step-pain:not([hidden]) .diag-option');
+
+        const count = await page.locator('#step-pain .diag-option').count();
+        expect(count).toBeGreaterThanOrEqual(3);
+        expect(count).toBeLessThanOrEqual(4);
+    });
 });

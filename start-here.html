@@ -350,7 +350,21 @@
 
     <script>
     (function() {
-        // ===== Pain-point map (ja/en/fr/de) =====
+        // ===== Persona-aware pain-point overrides (Phase 2, 2026-05-21) =====
+        // Keyed by persona (Step 1) → instrument (Step 2) OR `any` (instrument-agnostic).
+        // The 4-pain set surfaced at Step 3 is resolved by resolvePains():
+        //   PERSONA_PAINS[persona][instrument]  →  PERSONA_PAINS[persona].any
+        //   →  PAINS[instrument] (the Phase 1 fallback, used by plateau & skip).
+        //
+        // Each pain entry mirrors the PAINS shape (13 fields):
+        //   { ja, en, fr, de,
+        //     guide, guideJa, guideEn, guideFr, guideDe,
+        //     descJa, descEn, descFr, descDe }
+        var PERSONA_PAINS = {
+            /* populated by Phase 2-full content drop (commit follow-up) */
+        };
+
+        // ===== Pain-point map (ja/en/fr/de) — Phase 1 fallback =====
         // Each entry has localized fields per language: { ja, en, fr, de, guide, guideJa, guideEn, guideFr, guideDe, descJa, descEn, descFr, descDe }
         var PAINS = {
             guitar: [
@@ -527,9 +541,24 @@
             return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
         }
 
+        // Resolve which pain set to display.
+        // Phase 2 (2026-05-21): persona-aware pain options.
+        //  • PERSONA_PAINS[persona][instrument] — instrument-specific override
+        //  • PERSONA_PAINS[persona].any         — instrument-agnostic override
+        //  • PAINS[instrument]                  — Phase 1 fallback (also used by
+        //                                          plateau and skip personas)
+        function resolvePains(persona, instrument) {
+            if (persona && PERSONA_PAINS[persona]) {
+                var ps = PERSONA_PAINS[persona];
+                if (ps[instrument]) return ps[instrument];
+                if (ps.any) return ps.any;
+            }
+            return PAINS[instrument] || [];
+        }
+
         function showPainStep(instrument) {
             painOptions.innerHTML = '';
-            var pains = PAINS[instrument] || [];
+            var pains = resolvePains(selectedPersona, instrument);
             pains.forEach(function(p, i) {
                 var btn = document.createElement('button');
                 btn.className = 'diag-option';
