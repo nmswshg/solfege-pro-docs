@@ -314,8 +314,14 @@ test.describe('Diagnostic funnel GA4 events', () => {
     async function selectPersonaAndInstrument(page, persona, instrument) {
         await page.goto('/start-here.html');
         await page.click(`[data-persona="${persona}"]`);
-        await page.waitForSelector('#step-instrument:not([hidden]) .diag-option');
-        await page.click(`#step-instrument [data-instrument="${instrument}"]`);
+        // After persona click, either Step 2 (normal personas) becomes visible,
+        // or Step 3 appears directly (instrument-agnostic personas like dtm /
+        // exam / no-instrument — Step 2 is bypassed).
+        await page.waitForSelector('#step-instrument:not([hidden]) .diag-option, #step-pain:not([hidden]) .diag-option');
+        const step2Visible = await page.locator('#step-instrument:not([hidden])').count() > 0;
+        if (step2Visible) {
+            await page.click(`#step-instrument [data-instrument="${instrument}"]`);
+        }
         await page.waitForSelector('#step-pain:not([hidden]) .diag-option');
     }
 
@@ -429,6 +435,108 @@ test.describe('Diagnostic funnel GA4 events', () => {
         // resolved guide title is not the PAINS.piano[0] title ("ピアノ Q1").
         expect(step4Title).not.toBe('ピアノ Q1');
         expect(completeEvent.params.guide_path).not.toBe('practice/piano.html#piano-q1');
+    });
+
+    // ===== Phase 2-fix: Step 2 bypass for instrument-agnostic personas =====
+    // dtm / exam / no-instrument all key their pains under `any` only.
+    // Going through Step 2 (instrument) adds no information for these users,
+    // so the persona click takes them straight to Step 3.
+
+    test('dtm persona bypasses Step 2 — Step 3 appears directly', async ({ page }) => {
+        await installEventCapture(page);
+        await page.goto('/start-here.html');
+        await page.click('[data-persona="dtm"]');
+        await page.waitForSelector('#step-pain:not([hidden]) .diag-option');
+
+        // Step 2 must remain hidden after persona click for dtm
+        const step2Hidden = await page.locator('#step-instrument[hidden]').count();
+        expect(step2Hidden).toBe(1);
+
+        // A diagnostic_step2_skipped event should have fired
+        const events = await page.evaluate(() => window.__events__);
+        const skipEvent = events.find(e => e.name === 'diagnostic_step2_skipped');
+        expect(skipEvent).toBeDefined();
+        expect(skipEvent.params.persona).toBe('dtm');
+    });
+
+    test('exam persona bypasses Step 2', async ({ page }) => {
+        await installEventCapture(page);
+        await page.goto('/start-here.html');
+        await page.click('[data-persona="exam"]');
+        await page.waitForSelector('#step-pain:not([hidden]) .diag-option');
+
+        const step2Hidden = await page.locator('#step-instrument[hidden]').count();
+        expect(step2Hidden).toBe(1);
+    });
+
+    test('no-instrument persona bypasses Step 2', async ({ page }) => {
+        await installEventCapture(page);
+        await page.goto('/start-here.html');
+        await page.click('[data-persona="no-instrument"]');
+        await page.waitForSelector('#step-pain:not([hidden]) .diag-option');
+
+        const step2Hidden = await page.locator('#step-instrument[hidden]').count();
+        expect(step2Hidden).toBe(1);
+    });
+
+    test('parent persona does NOT bypass Step 2 (instrument-specific)', async ({ page }) => {
+        await installEventCapture(page);
+        await page.goto('/start-here.html');
+        await page.click('[data-persona="parent"]');
+        await page.waitForSelector('#step-instrument:not([hidden]) .diag-option');
+
+        // Step 2 must be visible
+        const step2Hidden = await page.locator('#step-instrument[hidden]').count();
+        expect(step2Hidden).toBe(0);
+
+        // No skip event should fire for parent
+        const events = await page.evaluate(() => window.__events__);
+        const skipEvent = events.find(e => e.name === 'diagnostic_step2_skipped');
+        expect(skipEvent).toBeUndefined();
+    });
+
+    test('plateau persona does NOT bypass Step 2 (falls through to PAINS)', async ({ page }) => {
+        await installEventCapture(page);
+        await page.goto('/start-here.html');
+        await page.click('[data-persona="plateau"]');
+        await page.waitForSelector('#step-instrument:not([hidden]) .diag-option');
+
+        const step2Hidden = await page.locator('#step-instrument[hidden]').count();
+        expect(step2Hidden).toBe(0);
+    });
+
+    test('dtm bypass flow still fires diagnostic_complete with instrument=any', async ({ page }) => {
+        await installEventCapture(page);
+        await page.goto('/start-here.html');
+        await page.click('[data-persona="dtm"]');
+        await page.waitForSelector('#step-pain:not([hidden]) .diag-option');
+        await page.click('#step-pain .diag-option:first-child');
+        await page.waitForSelector('#step-result:not([hidden])');
+
+        const events = await page.evaluate(() => window.__events__);
+        const completeEvent = events.find(e => e.name === 'diagnostic_complete');
+        expect(completeEvent).toBeDefined();
+        expect(completeEvent.params.persona).toBe('dtm');
+        expect(completeEvent.params.instrument).toBe('any');
+        // diagnostic_instrument_select must NOT fire for the bypass flow
+        const instrumentEvent = events.find(e => e.name === 'diagnostic_instrument_select');
+        expect(instrumentEvent).toBeUndefined();
+    });
+
+    test('switching from parent (Step 2 shown) to dtm hides Step 2', async ({ page }) => {
+        // Without restarting, the user picks parent then re-picks dtm.
+        // Step 2 should hide when dtm is selected.
+        await installEventCapture(page);
+        await page.goto('/start-here.html');
+        await page.click('[data-persona="parent"]');
+        await page.waitForSelector('#step-instrument:not([hidden])');
+
+        // Now switch to dtm without restart
+        await page.click('[data-persona="dtm"]');
+        await page.waitForSelector('#step-pain:not([hidden]) .diag-option');
+
+        const step2Hidden = await page.locator('#step-instrument[hidden]').count();
+        expect(step2Hidden).toBe(1);
     });
 
     test('selecting parent then changing to dtm rerenders a fresh dtm pain set', async ({ page }) => {

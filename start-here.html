@@ -1113,6 +1113,17 @@
             return PAINS[instrument] || [];
         }
 
+        // Phase 2-fix (2026-05-21): personas where every pain is keyed by `any`
+        // (no instrument-specific entries) — Step 2 is noise for these users.
+        // Detected by structure, so adding instrument keys to a persona later
+        // automatically toggles the bypass off.
+        function isInstrumentAgnostic(persona) {
+            var ps = PERSONA_PAINS[persona];
+            if (!ps) return false;
+            var keys = Object.keys(ps);
+            return keys.length === 1 && keys[0] === 'any';
+        }
+
         function showPainStep(instrument) {
             painOptions.innerHTML = '';
             var pains = resolvePains(selectedPersona, instrument);
@@ -1199,8 +1210,11 @@
         }
 
         // Step 1: persona click handlers
-        // Phase 1 (2026-05-20): persona is captured for analytics only.
-        // Downstream recommendation logic is unchanged.
+        // Phase 1 (2026-05-20): persona captured for analytics.
+        // Phase 2 (2026-05-21): persona drives PERSONA_PAINS at Step 3.
+        // Phase 2-fix (2026-05-21): bypass Step 2 entirely when the chosen
+        // persona is instrument-agnostic (dtm / exam / no-instrument as of
+        // today — derived from PERSONA_PAINS structure, not hardcoded).
         document.querySelectorAll('#step-persona .diag-option').forEach(function(btn) {
             btn.addEventListener('click', function() {
                 document.querySelectorAll('#step-persona .diag-option').forEach(function(b){ b.classList.remove('is-selected'); });
@@ -1209,8 +1223,25 @@
                 trackEvent('diagnostic_persona_select', {
                     persona: selectedPersona
                 });
-                stepInstrument.hidden = false;
-                stepInstrument.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                // Reset any prior selections in Step 2 / Step 3 / Step 4 so a
+                // restart-less persona change doesn't leak stale state.
+                stepPain.hidden = true;
+                stepResult.hidden = true;
+                document.querySelectorAll('#step-instrument .diag-option').forEach(function(b){ b.classList.remove('is-selected'); });
+
+                if (isInstrumentAgnostic(selectedPersona)) {
+                    // Skip Step 2 — instrument is irrelevant for this persona.
+                    // 'any' is the sentinel surface that resolvePains uses.
+                    stepInstrument.hidden = true;
+                    trackEvent('diagnostic_step2_skipped', {
+                        persona: selectedPersona,
+                        reason: 'instrument_agnostic_persona'
+                    });
+                    showPainStep('any');
+                } else {
+                    stepInstrument.hidden = false;
+                    stepInstrument.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
             });
         });
 
