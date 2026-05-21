@@ -21,6 +21,7 @@ const PAGES = [
     '/guides/ear-training-chords.html',
     '/guides/ear-training-scales.html',
     '/guides/ear-training-progressions.html',
+    '/guides/chord-function-curriculum.html',
     '/guides/sight-reading.html',
     '/guides/fretboard-training.html',
     '/practice/features.html',
