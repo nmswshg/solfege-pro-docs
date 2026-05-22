@@ -1599,3 +1599,150 @@ body {
 @media (max-width: 480px) {
     .page-header__title { font-size: 20px; }
 }
+
+/* ========================================================================
+   ANIMATIONS
+   PdM-prioritized motion: funnel transitions (start-here.html),
+   CTA micro-interactions (App Store badge, sticky CTA), and limited
+   scroll-driven reveals. All respect prefers-reduced-motion.
+   ======================================================================== */
+
+/* --- Scroll-driven reveal (applied by animations.js to .reveal elements) --- */
+.reveal {
+    opacity: 0;
+    transform: translateY(12px);
+    transition: opacity 450ms cubic-bezier(0.2, 0.8, 0.2, 1),
+                transform 450ms cubic-bezier(0.2, 0.8, 0.2, 1);
+    will-change: opacity, transform;
+}
+.reveal.is-revealed {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* --- App Store badge micro-interaction (CTA polish) --- */
+.app-store-link {
+    display: inline-block;
+    transition: transform 180ms cubic-bezier(0.2, 0.8, 0.2, 1),
+                filter 180ms ease;
+    will-change: transform;
+}
+.app-store-link:hover {
+    transform: translateY(-2px) scale(1.02);
+    filter: brightness(1.06);
+}
+.app-store-link:active {
+    transform: translateY(0) scale(0.98);
+    transition-duration: 80ms;
+    filter: brightness(0.96);
+}
+
+/* --- Sticky bottom CTA: hide above the fold, reveal after scroll --- */
+.sticky-cta {
+    transition: transform 320ms cubic-bezier(0.2, 0.8, 0.2, 1),
+                opacity 200ms ease;
+}
+.sticky-cta--hidden {
+    transform: translateY(120%);
+    opacity: 0;
+    pointer-events: none;
+}
+
+/* --- Diagnostic funnel progress bar (start-here.html) --- */
+.diag-progress {
+    max-width: 720px;
+    margin: 0 auto var(--space-xl);
+    padding: 0 var(--space-lg);
+}
+.diag-progress__steps {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 4px;
+    margin-bottom: var(--space-sm);
+}
+.diag-progress__step {
+    height: 3px;
+    background: var(--surface-light);
+    border-radius: 2px;
+    transition: background 400ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+.diag-progress__step.is-active {
+    background: var(--primary);
+}
+.diag-progress__labels {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 4px;
+    font-size: 11px;
+    color: var(--text-secondary);
+    letter-spacing: 0.5px;
+}
+.diag-progress__labels > span {
+    text-align: center;
+    transition: color 400ms ease, font-weight 400ms ease;
+}
+.diag-progress__labels > span.is-active {
+    color: var(--primary);
+    font-weight: 700;
+}
+
+/* --- Diagnostic step entry animation --- */
+.diag-step.is-entering {
+    animation: diag-step-enter 380ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+@keyframes diag-step-enter {
+    from { opacity: 0; transform: translateY(16px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+/* --- Selected option confirmation pulse --- */
+.diag-option.is-confirming {
+    animation: diag-option-confirm 520ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+@keyframes diag-option-confirm {
+    0%   { box-shadow: 0 0 0 0 rgba(212, 175, 55, 0.0); }
+    40%  { box-shadow: 0 0 0 6px rgba(212, 175, 55, 0.18); }
+    100% { box-shadow: 0 0 0 0 rgba(212, 175, 55, 0.0); }
+}
+
+/* --- Result card reveal (diagnostic Step 4) --- */
+.diag-result.is-entering {
+    animation: diag-result-enter 480ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+@keyframes diag-result-enter {
+    from { opacity: 0; transform: scale(0.97) translateY(10px); }
+    to   { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+/* --- Respect user's motion preferences --- */
+@media (prefers-reduced-motion: reduce) {
+    .reveal,
+    .reveal.is-revealed,
+    .app-store-link,
+    .app-store-link:hover,
+    .app-store-link:active,
+    .sticky-cta,
+    .sticky-cta--hidden,
+    .diag-progress__step,
+    .diag-progress__labels > span {
+        transition: none !important;
+        animation: none !important;
+    }
+    .reveal {
+        opacity: 1;
+        transform: none;
+    }
+    .app-store-link:hover,
+    .app-store-link:active {
+        transform: none;
+        filter: none;
+    }
+    .sticky-cta--hidden {
+        transform: translateY(120%);
+    }
+    .diag-step.is-entering,
+    .diag-option.is-confirming,
+    .diag-result.is-entering {
+        animation: none;
+    }
+}

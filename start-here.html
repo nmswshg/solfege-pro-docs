@@ -228,6 +228,22 @@
 
     <main class="diag-main">
 
+        <!-- Progress bar (4-step funnel indicator) -->
+        <div class="diag-progress" role="progressbar" aria-valuemin="0" aria-valuemax="4" aria-valuenow="1" aria-label="Diagnostic progress">
+            <div class="diag-progress__steps">
+                <div class="diag-progress__step is-active" data-step="1"></div>
+                <div class="diag-progress__step" data-step="2"></div>
+                <div class="diag-progress__step" data-step="3"></div>
+                <div class="diag-progress__step" data-step="4"></div>
+            </div>
+            <div class="diag-progress__labels">
+                <span class="is-active"><span lang="ja">状況</span><span lang="en">Status</span><span lang="fr">Situation</span><span lang="de">Situation</span></span>
+                <span><span lang="ja">楽器</span><span lang="en">Instrument</span><span lang="fr">Instrument</span><span lang="de">Instrument</span></span>
+                <span><span lang="ja">課題</span><span lang="en">Pain</span><span lang="fr">Difficulté</span><span lang="de">Problem</span></span>
+                <span><span lang="ja">結果</span><span lang="en">Result</span><span lang="fr">Résultat</span><span lang="de">Ergebnis</span></span>
+            </div>
+        </div>
+
         <!-- Step 1: Persona (situation) -->
         <section class="diag-step" id="step-persona">
             <h2 class="diag-step__title"><span class="diag-step__num">1</span> <span lang="ja">あなたの状況</span><span lang="en">Your Situation</span><span lang="fr">Votre situation</span><span lang="de">Deine Situation</span></h2>
@@ -1171,6 +1187,63 @@
             return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
         }
 
+        // Animation helpers (B + C + result feedback).
+        // All paths must remain functional when the user prefers reduced
+        // motion — the helpers no-op the visual layer but still update DOM.
+        var prefersReducedMotion = window.matchMedia &&
+            window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+        function updateProgress(step) {
+            var progressBar = document.querySelector('.diag-progress');
+            if (!progressBar) return;
+            progressBar.setAttribute('aria-valuenow', String(step));
+            var segments = progressBar.querySelectorAll('.diag-progress__step');
+            var labels = progressBar.querySelectorAll('.diag-progress__labels > span');
+            for (var i = 0; i < segments.length; i++) {
+                segments[i].classList.toggle('is-active', i < step);
+            }
+            for (var j = 0; j < labels.length; j++) {
+                labels[j].classList.toggle('is-active', j < step);
+            }
+        }
+
+        function revealStep(stepEl) {
+            if (!stepEl) return;
+            stepEl.hidden = false;
+            if (prefersReducedMotion) {
+                stepEl.scrollIntoView({ behavior: 'auto', block: 'start' });
+                return;
+            }
+            stepEl.classList.remove('is-entering');
+            // Force a reflow so the entry animation restarts on re-entry.
+            void stepEl.offsetWidth;
+            stepEl.classList.add('is-entering');
+            stepEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            setTimeout(function() {
+                stepEl.classList.remove('is-entering');
+            }, 500);
+        }
+
+        function confirmOption(btn) {
+            if (!btn || prefersReducedMotion) return;
+            btn.classList.remove('is-confirming');
+            void btn.offsetWidth;
+            btn.classList.add('is-confirming');
+            setTimeout(function() {
+                btn.classList.remove('is-confirming');
+            }, 600);
+        }
+
+        function revealResultCard(card) {
+            if (!card || prefersReducedMotion) return;
+            card.classList.remove('is-entering');
+            void card.offsetWidth;
+            card.classList.add('is-entering');
+            setTimeout(function() {
+                card.classList.remove('is-entering');
+            }, 600);
+        }
+
         // Resolve which pain set to display.
         // Phase 2 (2026-05-21): persona-aware pain options.
         //  • PERSONA_PAINS[persona][instrument] — instrument-specific override
@@ -1258,6 +1331,7 @@
                     '</span>' +
                     '</span>';
                 btn.addEventListener('click', function() {
+                    confirmOption(btn);
                     trackEvent('diagnostic_pain_select', {
                         persona: selectedPersona || 'unknown',
                         instrument: instrument,
@@ -1268,9 +1342,9 @@
                 });
                 painOptions.appendChild(btn);
             });
-            stepPain.hidden = false;
             stepResult.hidden = true;
-            stepPain.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            revealStep(stepPain);
+            updateProgress(3);
         }
 
         function showResult(instrument, painIndex) {
@@ -1339,8 +1413,9 @@
                 guide_path: p.guide
             });
 
-            stepResult.hidden = false;
-            stepResult.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            revealStep(stepResult);
+            revealResultCard(resultCard);
+            updateProgress(4);
         }
 
         // Step 1: persona click handlers
@@ -1353,6 +1428,7 @@
             btn.addEventListener('click', function() {
                 document.querySelectorAll('#step-persona .diag-option').forEach(function(b){ b.classList.remove('is-selected'); });
                 btn.classList.add('is-selected');
+                confirmOption(btn);
                 selectedPersona = btn.dataset.persona;
                 trackEvent('diagnostic_persona_select', {
                     persona: selectedPersona
@@ -1374,8 +1450,8 @@
                     showPainStep('any');
                 } else {
                     applyStep2Title(selectedPersona);
-                    stepInstrument.hidden = false;
-                    stepInstrument.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    revealStep(stepInstrument);
+                    updateProgress(2);
                 }
             });
         });
@@ -1385,6 +1461,7 @@
             btn.addEventListener('click', function() {
                 document.querySelectorAll('#step-instrument .diag-option').forEach(function(b){ b.classList.remove('is-selected'); });
                 btn.classList.add('is-selected');
+                confirmOption(btn);
                 trackEvent('diagnostic_instrument_select', {
                     persona: selectedPersona || 'unknown',
                     instrument: btn.dataset.instrument
@@ -1403,11 +1480,13 @@
             stepResult.hidden = true;
             document.querySelectorAll('#step-persona .diag-option').forEach(function(b){ b.classList.remove('is-selected'); });
             document.querySelectorAll('#step-instrument .diag-option').forEach(function(b){ b.classList.remove('is-selected'); });
+            updateProgress(1);
             stepPersona.scrollIntoView({ behavior: 'smooth', block: 'start' });
         });
     })();
     </script>
     <script src="lang-toggle.js?v=2" defer></script>
     <script src="drawer.js?v=1" defer></script>
+    <script src="animations.js?v=1" defer></script>
 </body>
 </html>
