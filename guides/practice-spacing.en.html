@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html lang="en"
+      data-title-ja="練習時間の最適配分 — 同じ時間で 2〜3 倍効かせるスケジュール設計 | ソルフェージュPRO"
+      data-title-en="Optimal Practice Scheduling — Schedule Designs That Yield 2–3× Retention | Solfege PRO"
+      data-title-fr="Répartition optimale du temps d'entraînement — des plannings 2 à 3 fois plus efficaces | Solfege PRO"
+      data-title-de="Optimale Aufteilung der Übungszeit — Pläne mit 2–3× besserer Behaltensleistung | Solfege PRO">
+<head>
+    <meta charset="UTF-8">
+    <meta name="robots" content="index, follow">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Optimal Practice Scheduling — Schedule Designs That Yield 2–3× Retention | Solfege PRO</title>
+    <meta name="description" content="「毎日 1 時間反復」は実は非効率。spacing（間隔学習）、interleaving（交互練習）、testing effect（テスト効果）を使った週次スケジュールで、同じ時間から 2〜3 倍の定着を引き出す方法を、認知科学の研究知見に基づいて解説します。">
+
+    <link rel="canonical" href="https://nmswshg.github.io/solfege-pro-docs/guides/practice-spacing.en.html">
+    <link rel="alternate" hreflang="ja" href="https://nmswshg.github.io/solfege-pro-docs/guides/practice-spacing.html">
+    <link rel="alternate" hreflang="en" href="https://nmswshg.github.io/solfege-pro-docs/guides/practice-spacing.en.html">
+    <link rel="alternate" hreflang="fr" href="https://nmswshg.github.io/solfege-pro-docs/guides/practice-spacing.fr.html">
+    <link rel="alternate" hreflang="de" href="https://nmswshg.github.io/solfege-pro-docs/guides/practice-spacing.de.html">
+    <link rel="alternate" hreflang="x-default" href="https://nmswshg.github.io/solfege-pro-docs/guides/practice-spacing.html">
+
+    <meta property="og:title" content="Optimal Practice Scheduling — Schedule Designs That Yield 2–3× Retention">
+    <meta property="og:description" content="「毎日 1 時間反復」は実は非効率。spacing・interleaving・testing effect で、同じ時間から 2〜3 倍の定着を。">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://nmswshg.github.io/solfege-pro-docs/guides/practice-spacing.en.html">
+    <meta property="og:site_name" content="ソルフェージュPRO">
+    <meta property="og:image" content="https://nmswshg.github.io/solfege-pro-docs/AppIcon.png">
+    <meta property="og:locale" content="en_US">
+    <meta property="og:locale:alternate" content="ja_JP">
+    <meta property="og:locale:alternate" content="fr_FR">
+    <meta property="og:locale:alternate" content="de_DE">
+    <meta property="article:published_time" content="2026-05-16">
+
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Optimal Practice Scheduling — Schedule Designs That Yield 2–3× Retention">
+    <meta name="twitter:description" content="「毎日 1 時間反復」は実は非効率。spacing・interleaving・testing effect で、同じ時間から 2〜3 倍の定着を。">
+    <meta name="twitter:image" content="https://nmswshg.github.io/solfege-pro-docs/AppIcon.png">
+
+    <link rel="icon" href="../AppIcon.png" type="image/png">
+    <link rel="apple-touch-icon" href="../AppIcon.png">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="../style.css?v=15">
+    <link rel="stylesheet" href="article.css?v=8">
+
+    <!-- Mermaid for weekly-schedule diagram -->
+    <script type="module">
+        import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+        mermaid.initialize({
+            startOnLoad: false,
+            theme: 'dark',
+            themeVariables: {
+                primaryColor: '#2A2A30',
+                primaryTextColor: '#F5F5F0',
+                primaryBorderColor: '#D4AF37',
+                lineColor: '#D4AF37',
+                secondaryColor: '#3A3A42',
+                tertiaryColor: '#1A1A1E',
+                fontFamily: 'Noto Sans JP, sans-serif',
+                fontSize: '14px'
+            }
+        });
+        function renderActiveMermaid() {
+            const lang = document.documentElement.getAttribute('data-lang') || 'ja';
+            const nodes = Array.from(document.querySelectorAll(`.mermaid-lang[lang="${lang}"] .mermaid`))
+                .filter(n => !n.getAttribute('data-processed'));
+            if (nodes.length) mermaid.run({ nodes });
+        }
+        if (document.readyState === 'loading') {
+            window.addEventListener('DOMContentLoaded', renderActiveMermaid);
+        } else {
+            renderActiveMermaid();
+        }
+        window.addEventListener('langchange', renderActiveMermaid);
+    </script>
+
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"練習時間の最適配分 — 同じ時間で 2〜3 倍効かせるスケジュール設計","description":"spacing（間隔学習）、interleaving（交互練習）、testing effect（テスト効果）を使った週次スケジュールで、同じ時間から 2〜3 倍の定着を引き出す方法を、認知科学の研究知見に基づいて解説します。","author":{"@type":"Organization","name":"ソルフェージュPRO"},"publisher":{"@type":"Organization","name":"ソルフェージュPRO","logo":{"@type":"ImageObject","url":"https://nmswshg.github.io/solfege-pro-docs/AppIcon.png"}},"datePublished":"2026-05-16","dateModified":"2026-05-16","inLanguage":["ja","en","fr","de"],"mainEntityOfPage":{"@type":"WebPage","@id":"https://nmswshg.github.io/solfege-pro-docs/guides/practice-spacing.html"}}</script>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="nav__container">
+            <a href="../" class="nav__logo">
+                <img src="../AppIcon.png" alt="Solfege PRO" class="nav__logo-icon">
+                <span class="nav__logo-text">Solfege PRO</span>
+            </a>
+            <ul class="nav__list">
+                <li><a href="../" class="nav__link">Practice Guide</a></li>
+                <li><a href="./" class="nav__link active">Guides</a></li>
+                <li><a href="../start-here.html" class="nav__link">Where to Start?</a></li>
+            </ul>
+            <div class="nav__settings">
+                <button class="settings-btn" id="lang-toggle" title="Toggle language">
+                    <span id="lang-text">EN</span>
+                </button>
+                <button class="hamburger-btn" id="hamburger-btn" aria-label="Menu" aria-expanded="false" aria-controls="drawer">
+                    <span class="hamburger-btn__line"></span>
+                    <span class="hamburger-btn__line"></span>
+                    <span class="hamburger-btn__line"></span>
+                </button>
+            </div>
+        </div>
+    </nav>
+    <div class="drawer-overlay" id="drawer-overlay"></div>
+    <aside class="drawer" id="drawer" aria-label="Mobile menu">
+        <div class="drawer__header">
+            <span class="drawer__title">Menu</span>
+            <button class="drawer__close" id="drawer-close" aria-label="Close menu">×</button>
+        </div>
+        <ul class="drawer__list">
+            <li><a href="../" class="drawer__link">Practice Guide</a></li>
+            <li><a href="./" class="drawer__link active">Guides</a></li>
+            <li><a href="../start-here.html" class="drawer__link">Where to Start?</a></li>
+        </ul>
+    </aside>
+
+    <!-- Article Header -->
+    <header class="page-header">
+        <div class="page-header__meta">
+            <span class="page-header__tag" style="background:rgba(167,139,250,0.15);color:#A78BFA;">Cognitive Science</span>
+            <span>9 min read</span>
+        </div>
+        <h1 class="page-header__title">
+            
+            Optimal Practice Scheduling<br>Schedule Designs That Yield<br>2–3× Retention
+            
+            
+        </h1>
+        <p class="page-header__subtitle">
+            
+            "One hour of repetition daily" is actually inefficient. Three robust findings from cognitive science — spacing, interleaving, testing effect — let you design a weekly plan that reliably extracts more from the same hours.
+            
+            
+        </p>
+    </header>
+
+    <!-- Article Body -->
+    <main class="article-body">
+
+        <!-- Section 1: Hook -->
+        <h2 id="why-not-improving">Why "Daily Practice" Often Doesn't Translate to Progress</h2>
+
+        <p>
+            
+            You repeat the same piece for an hour every day. During practice, it feels like you're playing better than yesterday. But a week later — in a lesson or a recording — you find it hasn't taken root as much as you'd hoped.
+            
+            
+        </p>
+
+        <p>
+            であり、しかも前者は後者を悪化させる方向に働くことが認知科学で繰り返し示されています<sup>[1][2]</sup>。</span>
+            It's not laziness, and it's not a lack of talent. <span class="highlight">"How it feels during practice" and "what gets consolidated into long-term memory" are two different things — and cognitive science has repeatedly shown that the former can actually work against the latter<sup>[1][2]</sup>.</span>
+             — et les sciences cognitives ont montré à maintes reprises que la première peut en réalité jouer contre la seconde<sup>[1][2]</sup>.</span>
+             — und die Kognitionswissenschaft hat wiederholt gezeigt, dass das eine dem anderen sogar entgegenwirken kann<sup>[1][2]</sup>.</span>
+        </p>
+
+        <p>
+            
+            In this guide, we'll walk through three principles with three decades of cognitive-science research behind them — <strong>spacing</strong>, <strong>interleaving</strong>, and <strong>testing effect</strong> — and translate them into a concrete weekly practice plan.
+            
+            
+        </p>
+
+        <!-- Section 2: Three principles -->
+        <h2 id="three-principles">Three Principles from Cognitive Science</h2>
+
+        <h3 id="spacing">1. Spacing — The Longer the Gap, the Stronger the Memory</h3>
+
+        <p>
+            
+            The same 60 minutes practiced as "20 minutes × 3 days" yields higher retention one week later than "60 minutes today, all at once." First documented by Ebbinghaus's forgetting curve in 1885, this is one of the most robust findings in all of psychology<sup>[1]</sup>.
+            
+            
+        </p>
+
+        <p>
+            
+            A quantitative meta-analysis by Cepeda and colleagues (synthesizing hundreds of studies across verbal, motor, and instrumental domains) found that distributed practice improves retention by an <strong>average of 10–30%</strong> over massed practice, with the effect doubling under some conditions<sup>[2]</sup>.
+            
+            
+        </p>
+
+        <p>
+            
+            <strong>Practical rule</strong>: the longer the gap to the performance or test, the longer your review interval should be. A common guideline is <strong>"10–20% of the test interval"</strong>. For a gig in one month, review every 3–5 days; for one in a week, every other day<sup>[2]</sup>.
+            
+            
+        </p>
+
+        <!-- Visual: Forgetting curve / spacing benefit -->
+        <div class="comparison-visual">
+            <div class="comparison-card comparison-card--bad">
+                <div class="comparison-card__header">Massed Practice</div>
+                <div class="comparison-card__body">
+                    <p>Mon 60 min straight, Tue–Sun nothing.<br><strong>Short-term:</strong> Feels great right after.<br><strong>1 week later:</strong> Retention 30–50%. "I had it the other day…"</p>
+                </div>
+            </div>
+            <div class="comparison-card comparison-card--good">
+                <div class="comparison-card__header">Distributed Practice</div>
+                <div class="comparison-card__body">
+                    <p>Mon/Wed/Fri 20 min each (same 60 min total).<br><strong>Short-term:</strong> Each session feels less satisfying.<br><strong>1 week later:</strong> Retention 60–80%. Holds up under performance.</p>
+                </div>
+            </div>
+        </div>
+
+        <h3 id="interleaving">2. Interleaving — Mixing Topics Outperforms Blocked Practice</h3>
+
+        <p>
+            
+            When practicing three items A, B, C, the order <strong>"AAAA → BBBB → CCCC" (blocked)</strong> loses substantially to <strong>"A B C A B C A B C" (interleaved)</strong> in long-term retention<sup>[3][4]</sup>.
+            
+            
+        </p>
+
+        <p>
+            
+            Music motor-learning studies replicate this finding, particularly for items that need to be <strong>discriminated from one another</strong> — scales, chord qualities, rhythm patterns. Blocked practice lets the brain predict "what's next," so each attempt skips the work of re-engaging the material; the retrieval pathway never gets exercised. Interleaving deliberately removes that ease.
+            
+            
+        </p>
+
+        <p>
+            
+            <strong>Counter-intuitive point</strong>: interleaving <strong>worsens within-session performance</strong>. In one session, blocked practice <em>feels</em> better — that's why most people unconsciously choose it. But tested days or weeks later, interleaving wins by a large margin<sup>[3]</sup>. This is what Robert Bjork calls <em>desirable difficulties</em>.
+            
+            
+        </p>
+
+        <h3 id="testing-effect">3. Testing Effect — Retrieval Itself Strengthens Memory</h3>
+
+        <p>
+            
+            "Recalling (testing/self-testing)" consolidates memory more efficiently than "reviewing (re-reading)" for the same time invested. Roediger and Karpicke's series of experiments compared <strong>4 reviews</strong> versus <strong>1 review + 3 tests</strong>; the latter group showed substantially higher retention one week later<sup>[5]</sup>.
+            
+            
+        </p>
+
+        <p>
+            
+            "Testing" in a music context means anything that forces you to <strong>retrieve without aids</strong>: closing the score, dropping the metronome, playing in a new key, singing the line on another instrument. "Repeating while looking at the answer" is review — and review is the weaker option.
+            
+            
+        </p>
+
+        <div class="article-note">
+            <div class="article-note__title">The Three Principles in One Line</div>
+            <p><strong>Spacing</strong>: leave gaps. <strong>Interleaving</strong>: mix items. <strong>Testing</strong>: retrieve without cues. Practice that satisfies all three reliably beats practice that doesn't, over the long run<sup>[2][3][5]</sup>.</p>
+        </div>
+
+        <!-- Section 3: The paradox -->
+        <h2 id="paradox">"It Feels Smooth" Is a Sign That No Learning Is Happening</h2>
+
+        <p>
+            
+            All three principles share an uncomfortable fact: <strong>subjective fluency during practice is inversely related to long-term retention</strong>. Massed practice flows smoothly. Blocked practice flows smoothly. Repetition with the score open flows smoothly. And all three betray your future self one week later.
+            
+            
+        </p>
+
+        <p>
+            のです<sup>[3]</sup>。逆に、リラックスして「気持ちよく流せている」とき、運動回路は何も新しく書かれていません。</span>
+            Robert Bjork calls this <em>desirable difficulties</em>. <span class="highlight">When practice feels slightly hard, retrieval catches a bit, and there are moments where it doesn't quite come out — that's when the most learning is happening<sup>[3]</sup>. Conversely, when you're relaxed and "in the flow," very little new is being written to the motor system.</span>
+            <sup>[3]</sup>. À l'inverse, quand on est détendu et « dans le flow », très peu de nouveau s'inscrit dans le système moteur.</span>
+            <sup>[3]</sup>. Umgekehrt: wenn du entspannt im „Flow" bist, wird kaum Neues in das motorische System geschrieben.</span>
+        </p>
+
+        <p>
+            
+            This runs directly against most practitioners' intuition. "A day when I played smoothly = a good practice day" feels obvious. So we keep doing inefficient practice "because it feels good" and avoid efficient practice "because it feels bad." That's the core of "I practice an hour every day and I'm not improving."
+            
+            
+        </p>
+
+        <!-- Section 4: Weekly schedule -->
+        <h2 id="weekly-schedule">Concrete Weekly Schedules</h2>
+
+        <p>
+            
+            Here's how to translate the three principles into a one-week plan.
+            
+            
+        </p>
+
+        <div class="comparison-visual">
+            <div class="comparison-card comparison-card--bad">
+                <div class="comparison-card__header">❌ Bad: Massed + Blocked</div>
+                <div class="comparison-card__body">
+                    <p><strong>Mon:</strong> none<br><strong>Tue:</strong> none<br><strong>Wed:</strong> none<br><strong>Thu:</strong> none<br><strong>Fri:</strong> none<br><strong>Sat:</strong> 60 min straight scales with score open<br><strong>Sun:</strong> none</p>
+                    <p style="margin-top:var(--space-sm);"><em>Total 60 min / no spacing / no interleaving / no testing</em></p>
+                </div>
+            </div>
+            <div class="comparison-card comparison-card--good">
+                <div class="comparison-card__header">✅ Good: Distributed + Interleaved + Self-Test</div>
+                <div class="comparison-card__body">
+                    <p><strong>Mon:</strong> 20 min (rotate Interval → Chord → Rhythm)<br><strong>Wed:</strong> 20 min (same, first 5 min closed-book self-test)<br><strong>Fri:</strong> 20 min (same, transposed to a new key)<br><strong>Sun:</strong> 10 min review (record and listen back)</p>
+                    <p style="margin-top:var(--space-sm);"><em>Total 70 min / spacing ✓ / interleaving ✓ / testing ✓</em></p>
+                </div>
+            </div>
+        </div>
+
+        <p>
+            
+            The total practice time is roughly the same. But the "bad" plan violates all three principles (massed, blocked, score-open), while the "good" plan satisfies them all. For the same hour invested, expect <strong>a 2× or larger gap in retention</strong> a week later<sup>[2][3]</sup>.
+            
+            
+        </p>
+
+        <!-- Flowchart: how to design a week -->
+        <div class="mermaid-container">
+            <div class="diagram-title">Designing Your Weekly Plan</div>
+            <div class="mermaid-lang" lang="ja">
+                <pre class="mermaid">
+flowchart TD
+    A["週に確保できる合計時間は？"] --> B{"60 分以下"}
+    A --> C{"60-180 分"}
+    A --> D{"180 分以上"}
+    B --> E["20 分 × 3 日<br/>分散最優先"]
+    C --> F["25 分 × 5 日 or<br/>30 分 × 4 日<br/>2 分野を毎日<br/>インターリーブ"]
+    D --> G["40 分 × 5 日<br/>3-4 分野を<br/>ローテーション<br/>+ 週末に自己テスト"]
+    E --> H["各セッション内で<br/>音程・コード・リズム<br/>のうち 2-3 つを混ぜる"]
+    F --> H
+    G --> H
+    H --> I["最後の 5 分は必ず<br/>譜面・ガイドを閉じて<br/>自己テスト"]
+
+    style A fill:#2A2A30,stroke:#D4AF37,color:#F5F5F0
+    style B fill:#3A3A42,stroke:#F87171,color:#F5F5F0
+    style C fill:#3A3A42,stroke:#FBBF24,color:#F5F5F0
+    style D fill:#3A3A42,stroke:#4ADE80,color:#F5F5F0
+    style E fill:#2A2A30,stroke:#D4AF37,color:#F5F5F0
+    style F fill:#2A2A30,stroke:#D4AF37,color:#F5F5F0
+    style G fill:#2A2A30,stroke:#D4AF37,color:#F5F5F0
+    style H fill:#2A2A30,stroke:#A78BFA,color:#F5F5F0
+    style I fill:#2A2A30,stroke:#A78BFA,color:#F5F5F0
+                </pre>
+            </div>
+            <div class="mermaid-lang" lang="en">
+                <pre class="mermaid">
+flowchart TD
+    A["Total time available per week?"] --> B{"&lt; 60 min"}
+    A --> C{"60-180 min"}
+    A --> D{"&gt; 180 min"}
+    B --> E["20 min × 3 days<br/>Prioritize spacing"]
+    C --> F["25 min × 5 days<br/>or 30 min × 4 days<br/>Interleave 2 areas<br/>daily"]
+    D --> G["40 min × 5 days<br/>Rotate 3-4 areas<br/>+ weekend self-test"]
+    E --> H["Within each session<br/>mix 2-3 of:<br/>Interval / Chord / Rhythm"]
+    F --> H
+    G --> H
+    H --> I["Last 5 min: always<br/>close the score/guide<br/>and self-test"]
+
+    style A fill:#2A2A30,stroke:#D4AF37,color:#F5F5F0
+    style B fill:#3A3A42,stroke:#F87171,color:#F5F5F0
+    style C fill:#3A3A42,stroke:#FBBF24,color:#F5F5F0
+    style D fill:#3A3A42,stroke:#4ADE80,color:#F5F5F0
+    style E fill:#2A2A30,stroke:#D4AF37,color:#F5F5F0
+    style F fill:#2A2A30,stroke:#D4AF37,color:#F5F5F0
+    style G fill:#2A2A30,stroke:#D4AF37,color:#F5F5F0
+    style H fill:#2A2A30,stroke:#A78BFA,color:#F5F5F0
+    style I fill:#2A2A30,stroke:#A78BFA,color:#F5F5F0
+                </pre>
+            </div>
+            <div class="mermaid-lang" lang="fr">
+                <pre class="mermaid">
+flowchart TD
+    A["Temps total par semaine ?"] --> B{"&lt; 60 min"}
+    A --> C{"60-180 min"}
+    A --> D{"&gt; 180 min"}
+    B --> E["20 min × 3 jours<br/>Spacing en priorité"]
+    C --> F["25 min × 5 jours<br/>ou 30 min × 4 jours<br/>Entrelacer 2 domaines<br/>chaque jour"]
+    D --> G["40 min × 5 jours<br/>Roter 3-4 domaines<br/>+ auto-test le week-end"]
+    E --> H["Dans chaque séance<br/>mélanger 2-3 de :<br/>Intervalles / Accords / Rythme"]
+    F --> H
+    G --> H
+    H --> I["5 dernières min :<br/>fermer la partition<br/>et s'auto-tester"]
+
+    style A fill:#2A2A30,stroke:#D4AF37,color:#F5F5F0
+    style B fill:#3A3A42,stroke:#F87171,color:#F5F5F0
+    style C fill:#3A3A42,stroke:#FBBF24,color:#F5F5F0
+    style D fill:#3A3A42,stroke:#4ADE80,color:#F5F5F0
+    style E fill:#2A2A30,stroke:#D4AF37,color:#F5F5F0
+    style F fill:#2A2A30,stroke:#D4AF37,color:#F5F5F0
+    style G fill:#2A2A30,stroke:#D4AF37,color:#F5F5F0
+    style H fill:#2A2A30,stroke:#A78BFA,color:#F5F5F0
+    style I fill:#2A2A30,stroke:#A78BFA,color:#F5F5F0
+                </pre>
+            </div>
+            <div class="mermaid-lang" lang="de">
+                <pre class="mermaid">
+flowchart TD
+    A["Verfügbare Zeit pro Woche?"] --> B{"&lt; 60 Min."}
+    A --> C{"60-180 Min."}
+    A --> D{"&gt; 180 Min."}
+    B --> E["20 Min. × 3 Tage<br/>Spacing zuerst"]
+    C --> F["25 Min. × 5 Tage<br/>oder 30 Min. × 4 Tage<br/>2 Bereiche täglich<br/>verschränken"]
+    D --> G["40 Min. × 5 Tage<br/>3-4 Bereiche rotieren<br/>+ Wochenend-Selbsttest"]
+    E --> H["In jeder Einheit<br/>2-3 mischen aus:<br/>Intervall / Akkord / Rhythmus"]
+    F --> H
+    G --> H
+    H --> I["Letzte 5 Min.:<br/>Noten/Leitfaden zu<br/>und selbst testen"]
+
+    style A fill:#2A2A30,stroke:#D4AF37,color:#F5F5F0
+    style B fill:#3A3A42,stroke:#F87171,color:#F5F5F0
+    style C fill:#3A3A42,stroke:#FBBF24,color:#F5F5F0
+    style D fill:#3A3A42,stroke:#4ADE80,color:#F5F5F0
+    style E fill:#2A2A30,stroke:#D4AF37,color:#F5F5F0
+    style F fill:#2A2A30,stroke:#D4AF37,color:#F5F5F0
+    style G fill:#2A2A30,stroke:#D4AF37,color:#F5F5F0
+    style H fill:#2A2A30,stroke:#A78BFA,color:#F5F5F0
+    style I fill:#2A2A30,stroke:#A78BFA,color:#F5F5F0
+                </pre>
+            </div>
+        </div>
+
+        <!-- Mid CTA -->
+        <div class="article-cta-subtle">
+            <p class="article-cta-subtle__text">Solfege PRO offers 5 modules (Interval / Chord / Rhythm / Sight Reading / Fretboard) — interleaving is built into how the app is used.</p>
+            <a href="https://apps.apple.com/app/id6756626617" class="article-cta-subtle__button">View on App Store</a>
+        </div>
+
+        <!-- Section 5: 10,000 hours -->
+        <h2 id="10000-hours">The "10,000 Hours" Misreading</h2>
+
+        <p>
+            
+            Before closing, let's puncture the most widespread misreading in this area. <strong>"10,000 hours of practice makes anyone a pro" is a misreading of Anders Ericsson's work.</strong>
+            
+            
+        </p>
+
+        <p>
+            
+            The 1993 paper by Ericsson and colleagues<sup>[6]</sup> showed that elite performers' cumulative practice was on the order of 10,000 hours. Crucially, they defined the <strong>quality of that practice as "deliberate practice"</strong> — uncomfortable work aimed just beyond your current limits, with immediate feedback and correction.
+            
+            
+        </p>
+
+        <p>
+            。時間より、何を、どう練習するかが大事です。</span>
+            Popular books (notably Malcolm Gladwell's <em>Outliers</em>) stripped out the quality clause and spread the simpler "just put in the hours" message. Ericsson spent his later years correcting this misreading. <span class="highlight">The three principles in this article — spacing, interleaving, testing — are precisely what "practice quality" actually consists of. Hours matter less than what and how.</span>
+            . Les heures comptent moins que le quoi et le comment.</span>
+            . Stunden zählen weniger als das Was und das Wie.</span>
+        </p>
+
+        <!-- Section 6: App connection -->
+        <h2 id="what-app-can-do">What Solfege PRO Can Do</h2>
+
+        <p>
+            
+            Solfege PRO is built from five modules (Interval / Chord / Rhythm / Sight Reading / Fretboard). Here's how each of the three principles maps onto how you use them.
+            
+            
+        </p>
+
+        <h3>Spacing — Short Sessions Across Multiple Days</h3>
+        <p>
+            
+            Sessions are designed to complete in 5–15 minutes. Splitting "60 minutes once" into "10 minutes × 4 times across the week" produces better retention.
+            
+            
+        </p>
+
+        <h3>Interleaving — Cross-Module Rotation</h3>
+        <p>
+            
+            Switching between 2–3 modules inside one session (e.g., Interval → Chord → Rhythm) is interleaving in action. Don't stay in one module for an extended block.
+            
+            
+        </p>
+
+        <h3>Testing — Built-In as the Default Format</h3>
+        <p>
+            
+            Every module asks "what interval did you just hear?", "what's this note on the staff?" — <strong>each prompt requires retrieval</strong>. That's the testing effect built directly into the format: repeated hint-free recall is what strengthens memory.
+            
+            
+        </p>
+
+        <!-- Section 7: Limitations -->
+        <h2 id="limitations">What Solfege PRO Does Not Directly Cover</h2>
+
+        <p>
+            
+            Let's be honest.
+            
+            
+        </p>
+
+        <div class="article-honest">
+            <div class="article-honest__title">Areas Beyond the App's Scope</div>
+            <p>
+                <strong>Instrument-specific practice scheduling</strong> — How you distribute work on pieces, scales, and technique is ultimately for the player or teacher to schedule. The app handles the ear, reading, and rhythm side of the three principles.
+            </p>
+            <p>
+                <strong>Months-long retention measurement</strong> — In-app scores reflect short-term changes, but rigorously measuring 3-month retention requires you to schedule periodic "test sessions" yourself.
+            </p>
+            <p>
+                <strong>Individual variation</strong> — The effect sizes for the three principles are averages. Sleep, attention, stress, and stage of learning all shift the optimal distribution per person. App suggestions are an "average-good" starting point; tune from there based on your own results.
+            </p>
+        </div>
+
+        <!-- Section 8: Recommended usage -->
+        <h2 id="how-to-use">Recommended Usage — A 30-Day Plan</h2>
+
+        <ol>
+            <li><strong>Day 1: Baseline</strong> — 5 min each of Interval / Chord / Rhythm. Record scores.</li>
+            <li><strong>Days 2–7: 15 min/day, rotate three modules</strong> — Switch modules every 5 minutes; never linger on one for the whole session.</li>
+            <li><strong>Day 8: Self-test</strong> — No warm-up. Re-measure under Day-1 conditions. Compare with Day 1.</li>
+            <li><strong>Days 9–21: continue, plus a weekly "transfer" test in a new key or on a different instrument</strong></li>
+            <li><strong>Days 22–29: deliberately insert rest days (to amplify spacing)</strong></li>
+            <li><strong>Day 30: Final measurement</strong> — Compare against Day 1 and Day 8. See in numbers what 30 days actually changed.</li>
+        </ol>
+
+        <p>
+            
+            Trust the <strong>measurement trend</strong>, not how it felt during practice. The benefits of the three principles only become visible on exactly this kind of 30-day timescale.
+            
+            
+        </p>
+
+        <!-- References -->
+        <h2 id="references">References</h2>
+
+        <ol>
+            <li>
+                
+                Ebbinghaus, H. (1885). <em>Über das Gedächtnis: Untersuchungen zur experimentellen Psychologie</em>. Duncker &amp; Humblot. — Classic origin of the forgetting curve and spacing effect.
+                
+                
+            </li>
+            <li>
+                
+                Cepeda, N. J., Pashler, H., Vul, E., Wixted, J. T., &amp; Rohrer, D. (2006). Distributed practice in verbal recall tasks: A review and quantitative synthesis. <em>Psychological Bulletin</em>, 132(3), 354–380. — Definitive meta-analysis of the distributed-practice effect.
+                
+                
+            </li>
+            <li>
+                
+                Bjork, R. A. (1994). Memory and metamemory considerations in the training of human beings. In J. Metcalfe &amp; A. Shimamura (Eds.), <em>Metacognition: Knowing about knowing</em> (pp. 185–205). MIT Press. — Original articulation of <em>desirable difficulties</em>.
+                
+                
+            </li>
+            <li>
+                
+                Rohrer, D., &amp; Taylor, K. (2007). The shuffling of mathematics problems improves learning. <em>Instructional Science</em>, 35(6), 481–498. — Representative empirical study of interleaving (math task, principle generalizes).
+                
+                
+            </li>
+            <li>
+                
+                Roediger, H. L., &amp; Karpicke, J. D. (2006). Test-enhanced learning: Taking memory tests improves long-term retention. <em>Psychological Science</em>, 17(3), 249–255. — Landmark paper on the testing effect.
+                
+                
+            </li>
+            <li>
+                
+                Ericsson, K. A., Krampe, R. T., &amp; Tesch-Römer, C. (1993). The role of deliberate practice in the acquisition of expert performance. <em>Psychological Review</em>, 100(3), 363–406. — Origin of the "10,000 hours" figure. Makes clear that quality (deliberate practice), not hours alone, is the core finding.
+                
+                
+            </li>
+        </ol>
+
+    </main>
+
+    <!-- Final CTA -->
+    <section class="article-cta">
+        <h2 class="article-cta__title">Get More Out of the Same Hours</h2>
+        <p class="article-cta__text">
+            
+            Spacing, interleaving, testing.<br>The three principles work by changing <em>when, what, and how</em> you arrange practice — not by adding hours.<br>Solfege PRO's 5-module structure is designed so that this distribution falls into place naturally.
+            
+            
+        </p>
+                <p style="font-size: 14px; color: var(--text-secondary); margin-bottom: var(--space-md); text-align: center;">
+            
+            JPY 980/month (1-week free trial)
+            
+            
+        </p>
+        <a href="https://apps.apple.com/app/id6756626617" class="app-store-link" aria-label="Download on the App Store">
+            
+            <img class="app-store-link__img" src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/en-us" alt="Download on the App Store">
+            
+            
+        </a>
+    </section>
+
+    <!-- Related content -->
+    <div class="article-related">
+        <div class="article-related__title">Related Content</div>
+        <a href="rhythm-training.html" class="article-related__link" style="margin-bottom: var(--space-md);">
+            <div class="article-related__link-title">What Is Rhythmic Feel?</div>
+            <div class="article-related__link-desc">Breaking down rushing, dragging, scatter, and pocket — and how to use Rhythm Training.</div>
+        </a>
+        <a href="interval-training.html" class="article-related__link" style="margin-bottom: var(--space-md);">
+            <div class="article-related__link-title">Interval Training Guide</div>
+            <div class="article-related__link-desc">An ideal interleaving target: mastering the 13 intervals step by step.</div>
+        </a>
+        <a href="../" class="article-related__link">
+            <div class="article-related__link-title">Solfege PRO Practice Guide</div>
+            <div class="article-related__link-desc">Per-instrument challenges and practice menus.</div>
+        </a>
+    </div>
+
+    <!-- Article Note -->
+    <aside class="article-endnote">
+        <p class="article-endnote__text">
+            
+            This article translates three principles broadly supported in cognitive science and motor-learning research into the music-practice context. Effect sizes and time guidelines are averages across studies; individual, instrument, and stage-of-learning variation is large. On the misreading of the "10,000-hour rule" we follow Ericsson's own corrections and Bjork's "desirable difficulties" framework.
+            
+            
+        </p>
+    </aside>
+
+    <!-- Footer -->
+    <footer class="article-footer">
+        <p class="article-footer__text">
+            &copy; 2026 Solfege PRO &mdash;
+            <a href="https://apps.apple.com/app/id6756626617" class="article-footer__link">App Store</a>
+        </p>
+    </footer>
+    <script src="../bootstrap.js" defer></script>
+</body>
+</html>

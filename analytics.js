@@ -113,15 +113,46 @@
     }
 
     // ---- Language change tracking ----
-    var _prevLang = null;
+    // Since 2026-05-23 lang switching is path-based: changing language
+    // means navigating to /foo.X.html (full page load), not a same-page
+    // toggle. So we detect changes across navigation via sessionStorage —
+    // compare the page's current lang to the value stored on the previous
+    // page in this session. Same-page langchange events (legacy) also
+    // still flow through, for safety.
     function setupLangChangeTracking() {
+        try {
+            var currentLang = getLang();
+            var storedPrev = sessionStorage.getItem('_analytics_prev_lang');
+            if (storedPrev && storedPrev !== currentLang) {
+                // About to fire lang_change — but if a redirect marker
+                // is present, this transition was triggered by lang-toggle
+                // migrating a legacy ?lang= URL (not a user switch). Drop.
+                // The marker is only consumed in this branch so it survives
+                // the unrelated analytics init that runs on the source page
+                // before window.location.replace takes effect.
+                var redirectTarget = sessionStorage.getItem('_analytics_redirect_target');
+                if (redirectTarget) {
+                    sessionStorage.removeItem('_analytics_redirect_target');
+                } else {
+                    track('lang_change', {
+                        from_lang: storedPrev,
+                        to_lang: currentLang,
+                    });
+                }
+            }
+            sessionStorage.setItem('_analytics_prev_lang', currentLang);
+        } catch (e) { /* sessionStorage unavailable — silent */ }
+
+        // Same-page langchange (kept for completeness / legacy callers).
+        var _prevLang = getLang();
         window.addEventListener('langchange', function() {
             var nowLang = getLang();
-            if (_prevLang !== null && _prevLang !== nowLang) {
+            if (_prevLang !== nowLang) {
                 track('lang_change', {
                     from_lang: _prevLang,
-                    to_lang: nowLang
+                    to_lang: nowLang,
                 });
+                try { sessionStorage.setItem('_analytics_prev_lang', nowLang); } catch (e) {}
             }
             _prevLang = nowLang;
         });

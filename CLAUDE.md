@@ -37,6 +37,28 @@ npm run check-layout   # Playwright sweep — 12 viewport で overflow / directi
 
 ---
 
+## URL & content language convention (since 2026-05-23)
+
+各記事は **path-based URL** で言語分離:
+
+| Lang | URL pattern | ファイル |
+|---|---|---|
+| ja | `/guides/foo.html` (従来通り) | source (multi-lang, 4 lang spans) |
+| en | `/guides/foo.en.html` | generated (en spans のみ) |
+| fr | `/guides/foo.fr.html` | generated (fr spans のみ) |
+| de | `/guides/foo.de.html` | generated (de spans のみ) |
+
+**source 編集ルール**:
+- 編集対象は **source HTML (foo.html)** のみ。`<span lang="ja|en|fr|de">...</span>` の 4 つを全部更新
+- `foo.en.html` / `foo.fr.html` / `foo.de.html` は **生成ファイル** — 手で編集禁止
+- `npm run build` (または pre-commit hook 経由で自動) で source から regen
+- sitemap.xml も同じ build スクリプトで自動生成 (124 URLs)
+- `?lang=X` 形式は廃止。lang-toggle.js が legacy URL を `.X.html` に自動 redirect
+
+**URL switching**: lang dropdown は同一 page の lang を変えるのではなく、**該当言語ファイルへナビゲート** する (full page load)。
+
+詳細: `tools/build-langs.js` / `lang-toggle.js`
+
 ## Language
 
 - 思考・コード・コミットメッセージ: 英語

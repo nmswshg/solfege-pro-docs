@@ -1,7 +1,13 @@
 #!/usr/bin/env bash
 #
-# Pre-commit hook: run the static responsive-CSS linter when any *.css or
-# *.html file is staged. Blocks the commit on failure.
+# Pre-commit hook:
+#
+# 1. When a NON-GENERATED *.html source is staged, regenerate the .en/.fr/.de
+#    language variants (and sitemap.xml) and stage them too — so the commit
+#    always contains a consistent set of source + variants.
+#
+# 2. When any *.css or *.html file is staged, run the static responsive-CSS
+#    linter (CLAUDE.md hard rules). Blocks the commit on failure.
 #
 # Install once per clone:
 #   git config core.hooksPath .githooks
@@ -11,17 +17,53 @@
 
 set -euo pipefail
 
-# Only run if any HTML/CSS file is staged.
-STAGED=$(git diff --cached --name-only --diff-filter=ACMR \
+REPO_ROOT=$(git rev-parse --show-toplevel)
+cd "$REPO_ROOT"
+
+# -----------------------------------------------------------------
+# Phase 1: regenerate language variants from staged source files.
+# -----------------------------------------------------------------
+STAGED_SOURCES=$(git diff --cached --name-only --diff-filter=ACMR \
+    | grep -E '\.html$' \
+    | grep -vE '\.(en|fr|de)\.html$' || true)
+
+if [ -n "$STAGED_SOURCES" ]; then
+    if [ -f tools/build-langs.js ] && command -v node >/dev/null 2>&1; then
+        echo "[pre-commit] Regenerating lang variants for staged sources:"
+        echo "$STAGED_SOURCES" | sed 's/^/  /'
+        # shellcheck disable=SC2086  # we want word-splitting of $STAGED_SOURCES
+        node tools/build-langs.js $STAGED_SOURCES
+        # Re-stage the regenerated variants + sitemap.
+        for src in $STAGED_SOURCES; do
+            base="${src%.html}"
+            for lang in en fr de; do
+                variant="${base}.${lang}.html"
+                if [ -f "$variant" ]; then
+                    git add -- "$variant"
+                fi
+            done
+            # Source file itself may have been edited by hreflang migration.
+            git add -- "$src"
+        done
+        if [ -f sitemap.xml ]; then
+            git add -- sitemap.xml
+        fi
+    else
+        echo "[pre-commit] WARNING: tools/build-langs.js or node missing — skipping lang variant regen"
+    fi
+fi
+
+# -----------------------------------------------------------------
+# Phase 2: static responsive-CSS linter.
+# -----------------------------------------------------------------
+STAGED_CSS_HTML=$(git diff --cached --name-only --diff-filter=ACMR \
     | grep -E '\.(css|html)$' || true)
 
-if [ -z "$STAGED" ]; then
+if [ -z "$STAGED_CSS_HTML" ]; then
     exit 0
 fi
 
-REPO_ROOT=$(git rev-parse --show-toplevel)
 SCRIPT="${REPO_ROOT}/tools/check-responsive-css.sh"
-
 if [ ! -x "$SCRIPT" ]; then
     echo "[pre-commit] WARNING: $SCRIPT not executable — skipping"
     exit 0

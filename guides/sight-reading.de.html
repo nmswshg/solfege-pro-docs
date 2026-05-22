@@ -1,0 +1,819 @@
+<!DOCTYPE html>
+<html lang="de"
+      data-title-ja="譜読みとは何か — 五線譜を素早く読むための基礎と練習法 | ソルフェージュPRO"
+      data-title-en="What Is Sight Reading? — Foundations and Practice for Reading Music Notation | Solfege PRO"
+      data-title-fr="Qu'est-ce que la lecture à vue ? — Bases et entraînement pour lire la portée rapidement | Solfege PRO"
+      data-title-de="Was ist Vom-Blatt-Lesen? — Grundlagen und Übungen zum schnellen Notenlesen | Solfege PRO">
+<head>
+    <meta charset="UTF-8">
+    <meta name="robots" content="index, follow">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Was ist Vom-Blatt-Lesen? — Grundlagen und Übungen zum schnellen Notenlesen | Solfege PRO</title>
+    <meta name="description" content="譜読みは1つの才能ではなく、複数のスキルに分解できます。音部記号・臨時記号・調号・加線の読み方を整理し、五線譜をスムーズに読むための練習法を紹介します。">
+
+    <!-- Canonical -->
+    <link rel="canonical" href="https://nmswshg.github.io/solfege-pro-docs/guides/sight-reading.de.html">
+    <link rel="alternate" hreflang="ja" href="https://nmswshg.github.io/solfege-pro-docs/guides/sight-reading.html">
+    <link rel="alternate" hreflang="en" href="https://nmswshg.github.io/solfege-pro-docs/guides/sight-reading.en.html">
+    <link rel="alternate" hreflang="fr" href="https://nmswshg.github.io/solfege-pro-docs/guides/sight-reading.fr.html">
+    <link rel="alternate" hreflang="de" href="https://nmswshg.github.io/solfege-pro-docs/guides/sight-reading.de.html">
+    <link rel="alternate" hreflang="x-default" href="https://nmswshg.github.io/solfege-pro-docs/guides/sight-reading.html">
+
+    <!-- OGP -->
+    <meta property="og:title" content="Was ist Vom-Blatt-Lesen? — Grundlagen und Übungen zum schnellen Notenlesen">
+    <meta property="og:description" content="「譜読みが苦手」は分解できる。音部記号・臨時記号・加線の壁を知って、練習を変えよう。">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://nmswshg.github.io/solfege-pro-docs/guides/sight-reading.de.html">
+    <meta property="og:site_name" content="ソルフェージュPRO">
+    <meta property="og:image" content="https://nmswshg.github.io/solfege-pro-docs/AppIcon.png">
+    <meta property="og:locale" content="de_DE">
+    <meta property="og:locale:alternate" content="ja_JP">
+    <meta property="og:locale:alternate" content="en_US">
+    <meta property="og:locale:alternate" content="fr_FR">
+    <meta property="article:published_time" content="2026-03-31">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Was ist Vom-Blatt-Lesen? — Grundlagen und Übungen zum schnellen Notenlesen">
+    <meta name="twitter:description" content="「譜読みが苦手」は分解できる。音部記号・臨時記号・加線の壁を知って、練習を変えよう。">
+    <meta name="twitter:image" content="https://nmswshg.github.io/solfege-pro-docs/AppIcon.png">
+
+    <!-- Favicon -->
+    <link rel="icon" href="../AppIcon.png" type="image/png">
+    <link rel="apple-touch-icon" href="../AppIcon.png">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="../style.css?v=15">
+    <link rel="stylesheet" href="article.css?v=8">
+
+    <!-- Staff diagram styles -->
+    <style>
+        /* Staff Diagram */
+        .staff-diagram {
+            background: var(--surface);
+            border: 1px solid var(--surface-light);
+            border-radius: 12px;
+            padding: var(--space-xl) var(--space-lg);
+            margin: var(--space-xl) 0;
+            overflow-x: auto; /* lint-skip: musical staff notation is fixed-size visual */
+        }
+        .staff-diagram__title {
+            font-size: 13px;
+            color: var(--text-secondary);
+            text-align: center;
+            margin-bottom: var(--space-lg);
+            font-weight: 500;
+        }
+        .staff-container {
+            position: relative;
+            width: 100%;
+            max-width: 500px;
+            margin: 0 auto;
+            height: 160px;
+        }
+        .staff-line {
+            position: absolute;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: var(--text-secondary);
+            opacity: 0.4;
+        }
+        .staff-line:nth-child(1) { top: 20px; }
+        .staff-line:nth-child(2) { top: 40px; }
+        .staff-line:nth-child(3) { top: 60px; }
+        .staff-line:nth-child(4) { top: 80px; }
+        .staff-line:nth-child(5) { top: 100px; }
+        .staff-label {
+            position: absolute;
+            font-size: 10px;
+            color: var(--primary);
+            font-weight: 500;
+            white-space: nowrap;
+        }
+        .staff-note {
+            position: absolute;
+            width: 14px;
+            height: 10px;
+            background: var(--primary);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+        }
+        .staff-note-label {
+            position: absolute;
+            font-size: 11px;
+            color: var(--text-primary);
+            font-weight: 500;
+            transform: translateX(-50%);
+            white-space: nowrap;
+        }
+        .staff-clef {
+            position: absolute;
+            left: 8px;
+            font-size: 48px;
+            color: var(--text-secondary);
+            opacity: 0.7;
+            line-height: 1;
+        }
+        .staff-clef--treble { top: 18px; }
+        .staff-clef--bass { top: 10px; }
+        .staff-brace {
+            position: absolute;
+            left: 0;
+            top: 20px;
+            height: 80px;
+            width: 3px;
+            background: var(--text-secondary);
+            opacity: 0.4;
+            border-radius: 2px;
+        }
+        .ledger-line {
+            position: absolute;
+            width: 24px;
+            height: 1px;
+            background: var(--text-secondary);
+            opacity: 0.5;
+            transform: translateX(-50%);
+        }
+
+        /* Landmark Notes Diagram */
+        .landmark-diagram {
+            background: var(--surface);
+            border: 1px solid var(--surface-light);
+            border-radius: 12px;
+            padding: var(--space-xl) var(--space-lg);
+            margin: var(--space-xl) 0;
+        }
+        .landmark-diagram__title {
+            font-size: 13px;
+            color: var(--text-secondary);
+            text-align: center;
+            margin-bottom: var(--space-lg);
+            font-weight: 500;
+        }
+        .landmark-container {
+            position: relative;
+            width: 100%;
+            max-width: 500px;
+            margin: 0 auto;
+            height: 240px;
+        }
+        .landmark-note {
+            position: absolute;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+        }
+        .landmark-note__dot {
+            width: 16px;
+            height: 12px;
+            background: var(--primary);
+            border-radius: 50%;
+        }
+        .landmark-note__name {
+            font-size: 12px;
+            font-weight: 700;
+            color: var(--primary);
+        }
+        .landmark-note__desc {
+            font-size: 10px;
+            color: var(--text-secondary);
+            white-space: nowrap;
+        }
+
+        /* Skill Component List */
+        .skill-list {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--space-md);
+            margin: var(--space-lg) 0;
+        }
+        @media (max-width: 520px) {
+            .skill-list { grid-template-columns: 1fr; }
+        }
+        .skill-item {
+            background: var(--surface);
+            border: 1px solid var(--surface-light);
+            border-radius: 10px;
+            padding: var(--space-md) var(--space-lg);
+        }
+        .skill-item__name {
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 4px;
+        }
+        .skill-item__desc {
+            font-size: 12px;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        /* Difficulty Steps */
+        .difficulty-steps {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-sm);
+            margin: var(--space-lg) 0;
+        }
+        .difficulty-step {
+            display: flex;
+            align-items: center;
+            gap: var(--space-md);
+            background: var(--surface);
+            border: 1px solid var(--surface-light);
+            border-radius: 10px;
+            padding: var(--space-md) var(--space-lg);
+        }
+        .difficulty-step__number {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            background: var(--primary);
+            color: var(--background);
+            font-size: 13px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+        .difficulty-step__text {
+            font-size: 13px;
+            color: var(--text-primary);
+            line-height: 1.5;
+        }
+
+        /* Wall Item */
+        .wall-list {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-md);
+            margin: var(--space-lg) 0;
+        }
+        .wall-item {
+            background: var(--surface);
+            border-left: 3px solid var(--primary);
+            border-radius: 0 10px 10px 0;
+            padding: var(--space-md) var(--space-lg);
+        }
+        .wall-item__title {
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 4px;
+        }
+        .wall-item__desc {
+            font-size: 13px;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+    </style>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"譜読みとは何か — 五線譜を素早く読むための基礎と練習法","description":"五線譜を素早く正確に読むための基礎と段階的な練習法を紹介します。","author":{"@type":"Organization","name":"ソルフェージュPRO"},"publisher":{"@type":"Organization","name":"ソルフェージュPRO","logo":{"@type":"ImageObject","url":"https://nmswshg.github.io/solfege-pro-docs/AppIcon.png"}},"datePublished":"2026-04-05","mainEntityOfPage":{"@type":"WebPage","@id":"https://nmswshg.github.io/solfege-pro-docs/guides/sight-reading.html"}}</script>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="nav__container">
+            <a href="../" class="nav__logo">
+                <img src="../AppIcon.png" alt="Solfege PRO" class="nav__logo-icon">
+                <span class="nav__logo-text">Solfege PRO</span>
+            </a>
+            <ul class="nav__list">
+                <li><a href="../" class="nav__link">Übungsleitfaden</a></li>
+                <li><a href="./" class="nav__link active">Leitfäden</a></li>
+                            <li><a href="../start-here.html" class="nav__link">Wo anfangen?</a></li>
+            </ul>
+            <div class="nav__settings">
+                <button class="settings-btn" id="lang-toggle" title="Toggle language">
+                    <span id="lang-text">EN</span>
+                </button>
+                <button class="hamburger-btn" id="hamburger-btn" aria-label="Menu" aria-expanded="false" aria-controls="drawer">
+                    <span class="hamburger-btn__line"></span>
+                    <span class="hamburger-btn__line"></span>
+                    <span class="hamburger-btn__line"></span>
+                </button>
+            </div>
+        </div>
+    </nav>
+        <!-- Mobile drawer (hidden on desktop) -->
+        <div class="drawer-overlay" id="drawer-overlay"></div>
+        <aside class="drawer" id="drawer" aria-label="Mobile menu">
+            <div class="drawer__header">
+                <span class="drawer__title">Menü</span>
+                <button class="drawer__close" id="drawer-close" aria-label="Close menu">×</button>
+            </div>
+            <ul class="drawer__list">
+                    <li><a href="../" class="drawer__link">Übungsleitfaden</a></li>
+                    <li><a href="./" class="drawer__link active">Leitfäden</a></li>
+                    <li><a href="../start-here.html" class="drawer__link">Wo anfangen?</a></li>
+            </ul>
+        </aside>
+
+
+    <!-- Article Header -->
+    <header class="page-header">
+        <div class="page-header__meta">
+            <span class="page-header__tag">Sight Reading</span>
+            <span>Lesezeit: ca. 10 Min.</span>
+        </div>
+        <h1 class="page-header__title">
+            
+            
+            
+            Was ist Vom-Blatt-Lesen?<br>Grundlagen und Übungen zum<br>schnellen Notenlesen
+        </h1>
+        <p class="page-header__subtitle">
+            
+            
+            
+            Bleib nicht bei „ich kann keine Noten lesen" stehen. Genau zu wissen, wo du im Notensystem stockst, ist der erste Schritt, dein Notenlesen zu verbessern.
+        </p>
+    </header>
+
+    <!-- Article Body -->
+    <main class="article-body">
+
+        <!-- Section 1 -->
+        <h2 id="what-is-sight-reading">Was ist „Vom-Blatt-Lesen"?</h2>
+
+        <p>
+            
+            
+            
+            Vom-Blatt-Lesen meint im umfassenden Sinn das Spielen einer Partitur in Echtzeit (Lehmann &amp; Ericsson, 1996). Die <strong>grundlegende Ebene</strong> ist jedoch das schnelle Erkennen von Notennamen anhand der Position im Notensystem — und genau darauf konzentrieren sich dieser Artikel und die Sight-Reading-Funktion von Solfege PRO. Echtes Vom-Blatt-Spielen ergänzt diese Ebene um Motorik, Fingersatz und vorausschauendes Lesen.
+        </p>
+
+        <p>
+            
+            
+            
+            Trotzdem sagen viele Musiker:innen „ich kann keine Noten lesen" oder „vor einer Partitur wird mein Kopf leer". Selbst nach Jahren am Klavier oder an der Gitarre zählen manche noch jede Note einzeln auf dem Notensystem.
+        </p>
+
+        <p>
+            
+            
+            
+            Vom-Blatt-Lesen ist eine eigenständige Fähigkeit, getrennt vom Gehörtraining oder Rhythmusgefühl. Sie ähnelt visueller Mustererkennung und lässt sich mit dem richtigen Üben stetig verbessern. Damit das Üben wirkt, musst du zuerst verstehen, aus welchen Bestandteilen das Notenlesen besteht.
+        </p>
+
+        <!-- Section 2 -->
+        <h2 id="breakdown">Vom-Blatt-Lesen aufschlüsseln</h2>
+
+        <p>
+            
+            
+            
+            „Ich kann keine Noten lesen" kann je nach Person sehr Unterschiedliches bedeuten. Vom-Blatt-Lesen ist die Kombination mehrerer eigenständiger Teilfähigkeiten.
+        </p>
+
+        <div class="skill-list">
+            <div class="skill-item">
+                <div class="skill-item__name">Linie oder Zwischenraum</div>
+                <div class="skill-item__desc">Sofort erkennen, ob eine Note auf einer Linie oder in einem Zwischenraum sitzt. Der Ausgangspunkt jedes Notenlesens.</div>
+            </div>
+            <div class="skill-item">
+                <div class="skill-item__name">Schlüssel erkennen</div>
+                <div class="skill-item__desc">Dieselbe Position im Notensystem ergibt im Violin- bzw. Bassschlüssel andere Noten. Kannst du fließend zwischen beiden umschalten?</div>
+            </div>
+            <div class="skill-item">
+                <div class="skill-item__name">Versetzungszeichen</div>
+                <div class="skill-item__desc">Kreuze (♯), Bes (♭) und Auflösungszeichen (♮) richtig lesen. Eine häufige Fehlerquelle.</div>
+            </div>
+            <div class="skill-item">
+                <div class="skill-item__name">Tonartvorzeichen</div>
+                <div class="skill-item__desc">Die Vorzeichen der Tonart über das ganze Stück anwenden. Lesen mit Bewusstsein für die Tonart.</div>
+            </div>
+            <div class="skill-item">
+                <div class="skill-item__name">Hilfslinien</div>
+                <div class="skill-item__desc">Noten, die über oder unter dem fünflinigen Notensystem liegen. In hohen und tiefen Lagen häufig — und ein massiver Tempobremser.</div>
+            </div>
+            <div class="skill-item">
+                <div class="skill-item__name">Positionsmuster</div>
+                <div class="skill-item__desc">Weißt du reflexartig „2. Linie = G (Violinschlüssel)", ohne bewusst zu zählen? Mustererkennung statt Auswendiglernen.</div>
+            </div>
+        </div>
+
+        <!-- Staff Diagram -->
+        <div class="staff-diagram">
+            <div class="staff-diagram__title">Notensystem im Violinschlüssel — Notennamen auf Linien und in Zwischenräumen</div>
+            <div class="staff-container">
+                <!-- Brace -->
+                <div class="staff-brace"></div>
+                <!-- Clef symbol -->
+                <div class="staff-clef staff-clef--treble">&#119070;</div>
+                <!-- Five staff lines -->
+                <div class="staff-line" style="top:20px"></div>
+                <div class="staff-line" style="top:40px"></div>
+                <div class="staff-line" style="top:60px"></div>
+                <div class="staff-line" style="top:80px"></div>
+                <div class="staff-line" style="top:100px"></div>
+
+                <!-- Line notes (E, G, B, D, F) -->
+                <div class="staff-note" style="left:25%;top:100px"></div>
+                <div class="staff-note-label" style="left:25%;top:118px">E4</div>
+
+                <div class="staff-note" style="left:35%;top:80px"></div>
+                <div class="staff-note-label" style="left:35%;top:118px">G4</div>
+
+                <div class="staff-note" style="left:45%;top:60px"></div>
+                <div class="staff-note-label" style="left:45%;top:118px">B4</div>
+
+                <div class="staff-note" style="left:55%;top:40px"></div>
+                <div class="staff-note-label" style="left:55%;top:118px">D5</div>
+
+                <div class="staff-note" style="left:65%;top:20px"></div>
+                <div class="staff-note-label" style="left:65%;top:118px">F5</div>
+
+                <!-- Labels -->
+                <div class="staff-label" style="right:-40px;top:14px">5. Linie</div>
+                <div class="staff-label" style="right:-40px;top:94px">1. Linie</div>
+
+                <!-- Space note labels below -->
+                <div style="position:absolute;bottom:10px;left:0;right:0;text-align:center;font-size:11px;color:var(--text-secondary);">
+                    
+                    
+                    
+                    Noten auf den Linien: E - G - H - D - F (von unten nach oben)
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 3 -->
+        <h2 id="common-walls">Häufige Hürden</h2>
+
+        <p>
+            
+            
+            
+            Beim Üben von Vom-Blatt-Lesen stolpern die meisten an denselben Stellen. Zu erkennen, gegen welche Hürde du gerade läufst, ist die Abkürzung zu effizientem Üben.
+        </p>
+
+        <div class="wall-list">
+            <div class="wall-item">
+                <div class="wall-item__title">Verwirrung im Bassschlüssel</div>
+                <div class="wall-item__desc">Das visuelle Gedächtnis für den Violinschlüssel funkt dazwischen. Im Bassschlüssel ist die 2. Linie H, aber dein Hirn liest dort G wie im Violinschlüssel. Du brauchst einen mentalen „Umschalter" zwischen beiden Systemen. Besonders deutlich beim zweihändigen Klavierspiel.</div>
+            </div>
+            <div class="wall-item">
+                <div class="wall-item__title">Übersehene Versetzungszeichen</div>
+                <div class="wall-item__desc">Kreuze oder Bes werden als Stammtöne gelesen. Besonders häufig in B-Tonarten (B-Dur, Es-Dur usw.). Wer eine Partitur „nebenbei" liest, übersieht zuerst die Versetzungszeichen.</div>
+            </div>
+            <div class="wall-item">
+                <div class="wall-item__title">Blockade bei Hilfslinien</div>
+                <div class="wall-item__desc">Sobald Noten über oder unter dem System liegen, sinkt das Tempo deutlich. Du beginnst, jede Hilfslinie einzeln zu zählen. Besonders oft über dem Violinsystem (ab A5) oder unter dem Basssystem (ab C2 abwärts).</div>
+            </div>
+            <div class="wall-item">
+                <div class="wall-item__title">Tonartvorzeichen vergessen</div>
+                <div class="wall-item__desc">Du prüfst die Tonart am Anfang und vergisst sie mitten im Spiel. Besonders häufig ab drei Vorzeichen. Statt F♯ ein F zu spielen, ist das klassische Beispiel.</div>
+            </div>
+        </div>
+
+        <div class="article-note">
+            <div class="article-note__title">Wichtig</div>
+            <p>Diese Hürden sind keine Talentfrage, sondern eine Frage der Gewohnheit. Erkenne, gegen welche du gerade läufst, übe gezielt dort — und dein Lesetempo steigt zuverlässig.</p>
+        </div>
+
+        <!-- Section 4 -->
+        <h2 id="effective-practice">Wirksame Übungsmethoden</h2>
+
+        <p>
+            
+            
+            
+            Beim Vom-Blatt-Lesen gibt es ein paar Grundprinzipien. Statt willkürlich durch Partituren zu lesen, ist es wichtig, die Schwierigkeit in Stufen zu steuern.
+        </p>
+
+        <h3 id="one-clef">Mit einem Schlüssel beginnen</h3>
+        <p>
+            
+            
+            
+            Violin- und Bassschlüssel gleichzeitig zu üben kann zu mentalen Interferenzen führen. Konzentriere dich zuerst nur auf den Violinschlüssel, bis du Linien und Zwischenräume reflexartig erkennst. Wenn der Violinschlüssel sitzt, nimm den Bassschlüssel als separate Übungsspur dazu.
+        </p>
+
+        <h3 id="landmark-notes">Zuerst Landmark-Noten lernen</h3>
+        <p>
+            
+            
+            
+            Alle Noten des Systems auf einmal lernen zu wollen, ist ineffizient. Beginne stattdessen mit „Landmark-Noten" — wenigen, absolut sicheren Bezugspunkten — und bestimme andere Noten über ihren Abstand zu diesen Markern.
+        </p>
+
+        <!-- Landmark Notes Visual -->
+        <div class="landmark-diagram">
+            <div class="landmark-diagram__title">Landmark-Noten — beginne mit diesen fünf</div>
+            <div class="landmark-container">
+                <!-- Treble Staff -->
+                <div style="position:absolute;top:0;left:0;right:0;height:110px;">
+                    <div style="position:absolute;left:5%;top:8px;font-size:11px;color:var(--text-secondary);font-weight:500;">Violinschlüssel</div>
+                    <div class="staff-line" style="top:20px"></div>
+                    <div class="staff-line" style="top:32px"></div>
+                    <div class="staff-line" style="top:44px"></div>
+                    <div class="staff-line" style="top:56px"></div>
+                    <div class="staff-line" style="top:68px"></div>
+                    <!-- Middle C (ledger line below) -->
+                    <div class="ledger-line" style="left:25%;top:80px"></div>
+                    <div class="staff-note" style="left:25%;top:80px"></div>
+                    <div style="position:absolute;left:25%;top:92px;transform:translateX(-50%);text-align:center;">
+                        <div style="font-size:13px;font-weight:700;color:var(--primary);">C4</div>
+                        <div style="font-size:10px;color:var(--text-secondary);">eingestrichenes C (Hilfslinie)</div>
+                    </div>
+                    <!-- G on 2nd line -->
+                    <div class="staff-note" style="left:55%;top:56px"></div>
+                    <div style="position:absolute;left:55%;top:78px;transform:translateX(-50%);text-align:center;">
+                        <div style="font-size:13px;font-weight:700;color:var(--primary);">G4</div>
+                        <div style="font-size:10px;color:var(--text-secondary);">2. Linie</div>
+                    </div>
+                    <!-- F on top (5th) line -->
+                    <div class="staff-note" style="left:85%;top:20px"></div>
+                    <div style="position:absolute;left:85%;top:78px;transform:translateX(-50%);text-align:center;">
+                        <div style="font-size:13px;font-weight:700;color:var(--primary);">F5</div>
+                        <div style="font-size:10px;color:var(--text-secondary);">Oberste Linie</div>
+                    </div>
+                </div>
+                <!-- Bass Staff -->
+                <div style="position:absolute;top:130px;left:0;right:0;height:110px;">
+                    <div style="position:absolute;left:5%;top:8px;font-size:11px;color:var(--text-secondary);font-weight:500;">Bassschlüssel</div>
+                    <div class="staff-line" style="top:20px"></div>
+                    <div class="staff-line" style="top:32px"></div>
+                    <div class="staff-line" style="top:44px"></div>
+                    <div class="staff-line" style="top:56px"></div>
+                    <div class="staff-line" style="top:68px"></div>
+                    <!-- G on bottom (1st) line -->
+                    <div class="staff-note" style="left:25%;top:68px"></div>
+                    <div style="position:absolute;left:25%;top:78px;transform:translateX(-50%);text-align:center;">
+                        <div style="font-size:13px;font-weight:700;color:var(--primary);">G2</div>
+                        <div style="font-size:10px;color:var(--text-secondary);">Unterste Linie</div>
+                    </div>
+                    <!-- F on 4th line -->
+                    <div class="staff-note" style="left:55%;top:32px"></div>
+                    <div style="position:absolute;left:55%;top:78px;transform:translateX(-50%);text-align:center;">
+                        <div style="font-size:13px;font-weight:700;color:var(--primary);">F3</div>
+                        <div style="font-size:10px;color:var(--text-secondary);">4. Linie</div>
+                    </div>
+                    <!-- Middle C (ledger line above) -->
+                    <div class="ledger-line" style="left:85%;top:8px"></div>
+                    <div class="staff-note" style="left:85%;top:8px"></div>
+                    <div style="position:absolute;left:85%;top:78px;transform:translateX(-50%);text-align:center;">
+                        <div style="font-size:13px;font-weight:700;color:var(--primary);">C4</div>
+                        <div style="font-size:10px;color:var(--text-secondary);">eingestrichenes C (Hilfslinie)</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <h3 id="no-accidentals-first">Erst ohne Versetzungszeichen üben</h3>
+        <p>
+            
+            
+            
+            Noten mit Versetzungszeichen (♯, ♭) erst angehen, wenn die Stammtöne (C, D, E, F, G, A, H) sicher sitzen. Versetzungszeichen davor zu ergänzen, verdoppelt die Verwirrung. Festige zuerst C-Dur mit seinen sieben Stammtönen, dann gehe zu anderen Tonarten weiter.
+        </p>
+
+        <h3 id="add-key-signatures">Tonartvorzeichen schrittweise hinzufügen</h3>
+        <p>
+            
+            
+            
+            Nach C-Dur beginne mit einem Kreuz (G-Dur) oder einem B (F-Dur). Nicht mehrere Vorzeichen auf einmal hinzufügen — eins nach dem anderen, und jedes neue Muster sich setzen lassen. Achte in jeder Tonart bewusst darauf, welche Töne verändert sind.
+        </p>
+
+        <div class="difficulty-steps">
+            <div class="difficulty-step">
+                <div class="difficulty-step__number">1</div>
+                <div class="difficulty-step__text">Violinschlüssel, C-Dur, nur Stammtöne — die Zuordnung Position → Notenname zum Reflex machen</div>
+            </div>
+            <div class="difficulty-step">
+                <div class="difficulty-step__number">2</div>
+                <div class="difficulty-step__text">Kreuze/Bes nacheinander hinzufügen (G, F, D, B…) — Sicherheit bei Tonartvorzeichen aufbauen</div>
+            </div>
+            <div class="difficulty-step">
+                <div class="difficulty-step__number">3</div>
+                <div class="difficulty-step__text">Bassschlüssel hinzufügen — als eigenes System üben</div>
+            </div>
+            <div class="difficulty-step">
+                <div class="difficulty-step__number">4</div>
+                <div class="difficulty-step__text">Auf Bereiche mit Hilfslinien ausweiten — die Angst vor dem Bereich außerhalb des Systems verlieren</div>
+            </div>
+            <div class="difficulty-step">
+                <div class="difficulty-step__number">5</div>
+                <div class="difficulty-step__text">Alle-Noten-Modus (mit Versetzungszeichen) — sofort auf jedes Kreuz oder B reagieren</div>
+            </div>
+        </div>
+
+        <!-- Section 5 -->
+        <h2 id="what-app-can-do">Was Solfege PRO leisten kann</h2>
+
+        <p>
+            
+            
+            
+            Sight Reading in Solfege PRO zeigt eine Note im Notensystem und fragt nach ihrem Namen. Den oben beschriebenen Ansatz „Schwierigkeit schrittweise steigern" steuerst du flexibel über die Einstellungen der App.
+        </p>
+
+        <h3>Alle 12 Tonarten</h3>
+        <p>
+            
+            
+            
+            Übe in allen 12 Tonarten, von C-Dur bis B-Dur, mit der korrekten Kreuz-/B-Schreibweise. Lerne visuell und interaktiv, welche Töne sich in jeder Tonart ändern.
+        </p>
+
+        <h3>Violin- und Bassschlüssel umschaltbar</h3>
+        <p>
+            
+            
+            
+            Wähle aus, welchen Schlüssel du übst. Beginne nur mit dem Violinschlüssel und füge den Bassschlüssel hinzu, wenn du bereit bist — der schrittweise Ansatz wird unterstützt.
+        </p>
+
+        <h3>Modus für Versetzungszeichen</h3>
+        <p>
+            
+            
+            
+            Wechsle zwischen „nur Tonleiternoten" (Noten innerhalb der Tonart) und „alle Noten" (mit Versetzungszeichen). Beginne mit Tonleiternoten, um die Stammtöne zu festigen, und wechsle dann in den Alle-Noten-Modus, um Versetzungszeichen zu üben.
+        </p>
+
+        <h3>Hilfslinien ein-/ausschalten</h3>
+        <p>
+            
+            
+            
+            Schalte Noten auf Hilfslinien an oder aus. Lass sie ausgeschaltet, bis du innerhalb des Systems sicher bist, und konzentriere dich auf den Kernbereich.
+        </p>
+
+        <h3>Schwachstellen-Modus</h3>
+        <p>
+            
+            
+            
+            Ein Modus, der Noten, bei denen du dich vertan hast, automatisch häufiger abfragt. Triff Schwachstellen, die du selbst kaum bemerkst. „Ich verwechsle immer D5 und H4" oder „im Bassschlüssel verwechsle ich F und A" — dieser Modus korrigiert solche Muster effizient.
+        </p>
+
+        <h3>Üben nach Tonart</h3>
+        <p>
+            
+            
+            
+            Konzentriere dich auf eine bestimmte Tonart. Indem du schwierige Tonarten gezielt übst (z. B. solche mit vielen Bes), baust du schrittweise eine Lesefähigkeit für alle Tonarten auf.
+        </p>
+
+        <h3>Fehleranalyse</h3>
+        <p>
+            
+            
+            
+            Wertet deine Fehlermuster aus: „Positionsverwechslung" (Nachbarlinie oder -zwischenraum gelesen), „Oktavfehler" (richtiger Notenname, falsche Oktave), „Versetzungszeichen übersehen". Wenn du deine Fehlerneigungen kennst, weißt du, worauf du dich konzentrieren musst.
+        </p>
+
+        <!-- Mid-article CTA -->
+        <div class="article-cta-subtle">
+            <p class="article-cta-subtle__text">Kostenlos starten und dein Notenlesen prüfen</p>
+            <a href="https://apps.apple.com/app/id6756626617" class="article-cta-subtle__button">Im App Store ansehen</a>
+        </div>
+
+        <!-- Section 6 -->
+        <h2 id="limitations">Was Solfege PRO nicht direkt abdeckt</h2>
+
+        <p>
+            
+            
+            
+            Sagen wir es ehrlich.
+        </p>
+
+        <div class="article-honest">
+            <div class="article-honest__title">Bereiche, die die App nicht abdeckt</div>
+            <p>
+                <strong>Rhythmuslesen (Notenwerte)</strong> — Das aktuelle Sight Reading konzentriert sich auf das Erkennen der Notennamen. Das Lesen von Notenwerten (Ganze, Viertel, Achtel usw.) wird nicht abgedeckt. Rhythmuslesen ist eine eigenständige Fähigkeit und für eine spätere Erweiterung in Prüfung.
+            </p>
+            <p>
+                <strong>Akkordlesen (mehrere Noten gleichzeitig)</strong> — Die Noten werden einzeln präsentiert. Akkorde auf einen Blick zu lesen, erfordert Übung mit echten Partituren.
+            </p>
+            <p>
+                <strong>Alt- und Tenorschlüssel</strong> — Unterstützt werden nur Violin- und Bassschlüssel. Die für Bratsche und Cello nötigen C-Schlüssel stehen nicht zur Verfügung.
+            </p>
+            <p>
+                <strong>Moll-Tonartvorzeichen</strong> — Das Training basiert auf Dur-Tonartvorzeichen. Eine eigene Funktion für Moll-spezifische Muster (Vorzeichen in harmonischem oder melodischem Moll usw.) gibt es nicht.
+            </p>
+            <p>
+                <strong>Antworten in Solmisationssilben (Do-Re-Mi)</strong> — Antworten erfolgen mit Buchstabennamen (C, D, E …). Solmisation mit festem oder beweglichem Do wird nicht unterstützt.
+            </p>
+            <p>
+                <strong>Echtzeit-Vom-Blatt-Lesen unter Tempo</strong> — Die Noten kommen einzeln und ohne Tempo. Du kannst nicht das Lesen einer fließend laufenden Partitur in Echtzeit üben wie beim echten Vom-Blatt-Spielen. Die App baut Reflexe für die Notennamenerkennung auf, die du dann auf echtes Notenlesen überträgst.
+            </p>
+        </div>
+
+        <p>
+            
+            
+            
+            Sight Reading in Solfege PRO unterstützt direkt das Erhöhen von Tempo und Genauigkeit beim Erkennen von Notennamen im System. Es ist ein Werkzeug, um die Basis „Note sehen, Name wissen" zu festigen — nicht, um echtes Vom-Blatt-Spielen vollständig zu ersetzen.
+        </p>
+
+        <!-- Section 7 -->
+        <h2 id="how-to-use">Empfohlene Nutzung</h2>
+
+        <p>
+            
+            
+            
+            Sight Reading in Solfege PRO ist dafür konzipiert, in folgender schrittweiser Reihenfolge genutzt zu werden.
+        </p>
+
+        <ol>
+            <li><strong>Violinschlüssel + C-Dur + nur Stammtöne</strong> — Linien und Zwischenräume reflexartig lesen. Das ist die Grundlage für alles Weitere.</li>
+            <li><strong>Tonarten einzeln hinzunehmen</strong> — Beginne mit G-Dur (1 Kreuz) und F-Dur (1 B). Achte darauf, welche Töne sich in jeder Tonart ändern.</li>
+            <li><strong>Bassschlüssel hinzunehmen</strong> — Zuerst in C-Dur. Übe ihn als ein vom Violinschlüssel getrenntes System.</li>
+            <li><strong>Hilfslinien aktivieren</strong> — Übe weiter, bis dir Noten außerhalb des Systems vertraut sind.</li>
+            <li><strong>Schwachstellen-Modus nutzen</strong> — Sieh dir deine Fehlermuster an und arbeite gezielt an deinen Schwachstellen.</li>
+            <li><strong>Zurück zu echten Noten</strong> — Übertrage die in der App aufgebauten Reflexe in das echte Spielen.</li>
+        </ol>
+
+        <div class="article-note">
+            <div class="article-note__title">Tipp zur Nutzung</div>
+            <p>Sitzungen dürfen kurz sein. Nur 5 Minuten täglich mit denselben Einstellungen reichen — dein Erkennungstempo wächst stetig. Der Wechsel von „nachdenken und antworten" zu „auf einen Blick wissen" stellt sich durch Wiederholung von selbst ein.</p>
+        </div>
+
+        <!-- Visual: Good vs Bad Comparison -->
+        <div class="comparison-visual">
+            <div class="comparison-card comparison-card--bad">
+                <div class="comparison-card__header">Weniger wirksam</div>
+                <div class="comparison-card__body">
+                    <p>Von Anfang an mit allen Tonarten, beiden Schlüsseln, Hilfslinien und Versetzungszeichen üben. Zu schwer, frustrierend. Den Ergebnisbildschirm ungelesen schließen.</p>
+                </div>
+            </div>
+            <div class="comparison-card comparison-card--good">
+                <div class="comparison-card__header">Wirksamer</div>
+                <div class="comparison-card__body">
+                    <p>Mit C-Dur und Violinschlüssel anfangen → eine Tonart hinzunehmen, sobald die Trefferquote stabil ist → die Fehleranalyse prüfen → den Schwachstellen-Modus einsetzen → die Schwierigkeit Schritt für Schritt steigern.</p>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Final CTA -->
+    <section class="article-cta">
+        <h2 class="article-cta__title">Prüfe zuerst dein Vom-Blatt-Lesen</h2>
+        <p class="article-cta__text">
+            
+            
+            
+            Vom-Blatt-Lesen ist kein simples „können" oder „nicht können".<br>Welcher Schlüssel, welche Lage, welche Tonart bringt dich ins Straucheln? Schlüssle es auf und finde deine Schwachstellen.<br>Das ist der erste Schritt zu flüssigem Notenlesen.<br>Prüfe dein Notenlesen mit Sight Reading in Solfege PRO.
+        </p>
+                <p style="font-size: 14px; color: var(--text-secondary); margin-bottom: var(--space-md); text-align: center;">
+            
+            
+            
+            980 JPY/Monat (1 Woche Gratistestphase)
+        </p>
+        <a href="https://apps.apple.com/app/id6756626617" class="app-store-link" aria-label="Download on the App Store">
+            
+            
+            
+            <img class="app-store-link__img" src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/de-de" alt="Laden im App Store">
+        </a>
+    </section>
+
+    <!-- Related Content -->
+    <div class="article-related">
+        <div class="article-related__title">Verwandte Inhalte</div>
+        <a href="rhythm-training.html" class="article-related__link">
+            <div class="article-related__link-title">Was ist rhythmisches Empfinden? — Vorlauf, Nachlauf, Streuung und Pocket aufschlüsseln</div>
+            <div class="article-related__link-desc">Fünf Elemente des Rhythmusgefühls und Übungsmethoden zur Verbesserung der Timing-Genauigkeit</div>
+        </a>
+        <a href="../" class="article-related__link">
+            <div class="article-related__link-title">Solfege PRO Übungsleitfaden</div>
+            <div class="article-related__link-desc">Aufgabenbasierte Übungsmenüs für Gitarre, Bass, Schlagzeug, Klavier und Gesang</div>
+        </a>
+    </div>
+
+    <!-- Article Note -->
+    <aside class="article-endnote">
+        <p class="article-endnote__text">
+            
+            
+            
+            Dieser Artikel orientiert sich an weit verbreiteten Grundkonzepten des Notenleseunterrichts und am Funktionsdesign von Solfege PRO. Es gibt viele Wege, Vom-Blatt-Lesen zu lernen, und die hier vorgestellten Methoden sind nicht für jede:n Lernende:n optimal. Sight Reading in der App unterstützt Tempo und Genauigkeit der Notennamenerkennung, garantiert aber nicht die vollständige Vom-Blatt-Lesefähigkeit im echten Spiel.
+        </p>
+    </aside>
+
+    <!-- Footer -->
+    <footer class="article-footer">
+        <p class="article-footer__text">
+            &copy; 2026 Solfege PRO &mdash;
+            <a href="https://apps.apple.com/app/id6756626617" class="article-footer__link">App Store</a>
+        </p>
+    </footer>
+    <script src="../bootstrap.js" defer></script>
+</body>
+</html>
