@@ -58,6 +58,9 @@
 
         .diag-step {
             margin-bottom: var(--space-2xl);
+            /* Offset scrollIntoView({block:'start'}) by the fixed nav height
+               so the step heading lands just below the nav, not under it. */
+            scroll-margin-top: calc(var(--nav-height) + var(--space-md));
         }
         .diag-step[hidden] { display: none; }
 
