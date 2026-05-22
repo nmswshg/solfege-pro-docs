@@ -227,8 +227,12 @@
     line-height: 1;
 }
 
-/* Narrow viewports: stack vertically, flip arrows to ↓. */
-@media (max-width: 760px) {
+/* Narrow viewports: stack vertically, flip arrows to ↓.
+   Breakpoint matches the global responsive @media (max-width: 768px)
+   block further down — keep them in sync so 760-768px doesn't fall
+   into a gap where flex-direction is column but the arrow CSS still
+   thinks the layout is horizontal. */
+@media (max-width: 768px) {
     .cycle-diagram {
         flex-direction: column;
         align-items: stretch;
@@ -750,19 +754,10 @@
         font-size: 15px;
     }
 
-    .cycle-diagram {
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .cycle-arrow {
-        transform: rotate(90deg);
-    }
-
-    .cycle-step {
-        width: 100%;
-        max-width: 240px;
-    }
+    /* (.cycle-diagram column-mode rules now live with the cycle-diagram
+       definition further up so they stay in sync with the arrow CSS;
+       previously a duplicate rule here only flipped flex-direction and
+       left the 761-768px range broken.) */
 
     .density-item {
         flex-direction: column;
