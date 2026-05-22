@@ -1,6 +1,11 @@
 /* =============================================
    Mobile drawer toggle (shared across all pages)
    Used by hamburger-btn + .drawer + .drawer-overlay
+
+   Source HTML ships <aside class="drawer" aria-hidden="true" inert>
+   so screen readers and search engines skip the duplicate-of-nav
+   links while the drawer is closed. open()/close() below flip those
+   flags in sync with the visual state.
    ============================================= */
 (function () {
     'use strict';
@@ -16,6 +21,8 @@
         overlay.classList.add('active');
         hamburger.classList.add('active');
         hamburger.setAttribute('aria-expanded', 'true');
+        drawer.setAttribute('aria-hidden', 'false');
+        drawer.removeAttribute('inert');
         document.body.style.overflow = 'hidden';
     }
     function close() {
@@ -23,6 +30,8 @@
         overlay.classList.remove('active');
         hamburger.classList.remove('active');
         hamburger.setAttribute('aria-expanded', 'false');
+        drawer.setAttribute('aria-hidden', 'true');
+        drawer.setAttribute('inert', '');
         document.body.style.overflow = '';
     }
 

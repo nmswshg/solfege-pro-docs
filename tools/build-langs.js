@@ -28,6 +28,10 @@ const path = require('path');
 
 const LANGS = ['en', 'fr', 'de'];
 const OG_LOCALE = { ja: 'ja_JP', en: 'en_US', fr: 'fr_FR', de: 'de_DE' };
+// App Store storefront locales — must match the URL's user lang so the
+// pricing the reviewer lands on is in their currency, not whatever
+// Apple's geo-redirect happens to pick.
+const APP_STORE_LOCALE = { ja: 'jp', en: 'us', fr: 'fr', de: 'de' };
 
 // Where to look for source files (relative to repo root).
 const SOURCE_DIRS = ['.', 'guides', 'practice', 'practice/training-menu'];
@@ -170,6 +174,12 @@ function transformToLang(html, targetLang) {
             `<meta name="twitter:title" content="${bare}">`,
         );
     }
+
+    // 8a. App Store URL locale: /jp/ → /<target locale>/.
+    out = out.replace(
+        /apps\.apple\.com\/jp\//g,
+        `apps.apple.com/${APP_STORE_LOCALE[targetLang]}/`,
+    );
 
     // 8. Strip <span lang="Y">...</span> blocks where Y ≠ targetLang.
     //    Then unwrap the target lang's spans (keep inner content).

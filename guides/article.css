@@ -281,6 +281,55 @@
 /* =============================================
    7. Mid-Article CTA (subtle)
    ============================================= */
+/* Top-of-article CTA. Inserted between <header> and <main class="article-body">
+   on every guide so the read → try-the-app handoff happens before the user
+   commits to reading the whole article. */
+.article-top-cta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-md);
+    max-width: 720px;
+    margin: var(--space-lg) auto 0;
+    padding: var(--space-md) var(--space-lg);
+    background: linear-gradient(135deg, rgba(212, 175, 55, 0.12), rgba(212, 175, 55, 0.05));
+    border: 1px solid rgba(212, 175, 55, 0.3);
+    border-radius: var(--radius-lg);
+}
+.article-top-cta__title {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin: 0 0 2px;
+}
+.article-top-cta__sub {
+    font-size: 12px;
+    color: var(--text-secondary);
+    margin: 0;
+}
+.article-top-cta__button {
+    flex-shrink: 0;
+    padding: 8px 16px;
+    background: var(--primary);
+    color: var(--background) !important;
+    border-radius: var(--radius-sm);
+    font-size: 13px;
+    font-weight: 700;
+    text-decoration: none;
+    white-space: nowrap;
+    transition: transform 0.15s ease;
+}
+.article-top-cta__button:hover {
+    transform: translateY(-1px);
+}
+@media (max-width: 600px) {
+    .article-top-cta {
+        flex-direction: column;
+        align-items: stretch;
+        text-align: center;
+    }
+}
+
 .article-cta-subtle {
     background: var(--surface);
     border: 1px solid var(--surface-light);

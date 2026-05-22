@@ -210,7 +210,7 @@
     </nav>
         <!-- Mobile drawer (hidden on desktop) -->
         <div class="drawer-overlay" id="drawer-overlay"></div>
-        <aside class="drawer" id="drawer" aria-label="Mobile menu">
+        <aside class="drawer" id="drawer" aria-label="Mobile menu" aria-hidden="true" inert>
             <div class="drawer__header">
                 <span class="drawer__title">Menu</span>
                 <button class="drawer__close" id="drawer-close" aria-label="Close menu">×</button>
@@ -229,6 +229,63 @@
     </header>
 
     <main class="diag-main">
+
+        <noscript>
+            <style>
+                /* When JS is disabled, the interactive diagnostic can't
+                   advance through steps; hide it and surface a static
+                   recommended-path list instead so the page is still
+                   useful for crawlers / no-JS visitors. */
+                .diag-progress,
+                .diag-step,
+                .diag-bottom-cta { display: none !important; }
+                .diag-noscript {
+                    background: var(--surface);
+                    border: 1px solid var(--surface-light);
+                    border-radius: var(--radius-xl);
+                    padding: var(--space-xl);
+                    margin: var(--space-xl) 0;
+                }
+                .diag-noscript__heading {
+                    font-size: 18px;
+                    font-weight: 700;
+                    color: var(--primary);
+                    margin-bottom: var(--space-md);
+                }
+                .diag-noscript ol { padding-left: var(--space-lg); margin-bottom: var(--space-lg); }
+                .diag-noscript li { margin-bottom: var(--space-sm); line-height: 1.7; }
+                .diag-noscript a {
+                    color: var(--primary);
+                    text-decoration: none;
+                    font-weight: 600;
+                }
+                .diag-noscript a:hover { text-decoration: underline; }
+            </style>
+            <section class="diag-noscript" aria-label="Static guide recommendations">
+                <p class="diag-noscript__heading">
+                    
+                    
+                    Guides recommandés (sans JavaScript)
+                    
+                </p>
+                <p>
+                    
+                    
+                    Le diagnostic interactif nécessite JavaScript. Si vous ne savez pas par où commencer, voici l'ordre de lecture suggéré :
+                    
+                </p>
+                <ol>
+                    <li><a href="/solfege-pro-docs/guides/interval-training.html">1. Reconnaissance d'intervalles</a> &mdash; La base de l'oreille — commencez ici</li>
+                    <li><a href="/solfege-pro-docs/guides/ear-training-chords.html">2. Reconnaissance d'accords</a> &mdash; Distinguer Majeur/Mineur par la 3ce</li>
+                    <li><a href="/solfege-pro-docs/guides/ear-training-progressions.html">3. Progressions d'accords</a> &mdash; Lire les progressions via T/SD/D</li>
+                    <li><a href="/solfege-pro-docs/guides/rhythm-training.html">4. Rythme</a> &mdash; À mener en parallèle</li>
+                </ol>
+                <p>
+                    <a href="/solfege-pro-docs/guides/">→ Voir tous les guides</a>
+                </p>
+            </section>
+        </noscript>
+
 
         <!-- Progress bar (4-step funnel indicator) -->
         <div class="diag-progress" role="progressbar" aria-valuemin="0" aria-valuemax="4" aria-valuenow="1" aria-label="Diagnostic progress">
@@ -386,7 +443,7 @@
             980 JPY/mois (1 semaine d'essai gratuite)
             
         </p>
-        <a href="https://apps.apple.com/app/id6756626617" class="app-store-link" aria-label="Download on the App Store">
+        <a href="https://apps.apple.com/fr/app/id6756626617" class="app-store-link" aria-label="Download on the App Store">
             
             
             <img class="app-store-link__img" src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/fr-fr" alt="Télécharger dans l'App Store">
@@ -395,7 +452,7 @@
     </section>
 
     <footer class="diag-footer">
-        <p class="diag-footer__text">&copy; 2026 Solfege PRO &mdash; <a href="https://apps.apple.com/app/id6756626617" class="diag-footer__link">App Store</a></p>
+        <p class="diag-footer__text">&copy; 2026 Solfege PRO &mdash; <a href="https://apps.apple.com/fr/app/id6756626617" class="diag-footer__link">App Store</a></p>
     </footer>
 
     <!-- Sticky bottom CTA (mobile) -->
@@ -405,7 +462,7 @@
             <strong>Solfege PRO</strong>
             Diagnostiquer &amp; s'entraîner, par instrument
         </div>
-        <a href="https://apps.apple.com/app/id6756626617" class="sticky-cta__button">Obtenir</a>
+        <a href="https://apps.apple.com/fr/app/id6756626617" class="sticky-cta__button">Obtenir</a>
     </div>
 
     <script>
@@ -1397,7 +1454,7 @@
                 '<div class="diag-result__title">' + title + '</div>' +
                 '<div class="diag-result__desc">' + desc + '</div>' +
                 '<a href="' + p.guide + '" class="diag-result__cta" data-cta-type="guide">' + ctaText + '</a>' +
-                '<a href="https://apps.apple.com/app/id6756626617" class="diag-result__cta diag-result__cta--secondary" data-cta-type="app">' + appText + '</a>';
+                '<a href="https://apps.apple.com/fr/app/id6756626617" class="diag-result__cta diag-result__cta--secondary" data-cta-type="app">' + appText + '</a>';
 
             // Attach click handlers to the freshly-rendered result CTAs.
             // (innerHTML resets, so we re-bind each render.)
