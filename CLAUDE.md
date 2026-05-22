@@ -59,6 +59,15 @@ npm run check-layout   # Playwright sweep — 12 viewport で overflow / directi
 
 詳細: `tools/build-langs.js` / `lang-toggle.js`
 
+## Skill usage in this project
+
+Global にインストール済みの skill が auto-invoke される可能性に備えての防御:
+
+- **design-heavy skills** (`frontend-design`, `theme-factory`, `web-artifacts-builder`, `canvas-design`, `algorithmic-art` 等) は **auto-invoke 禁止**。user が明示的に `/skill-name` で起動した場合のみ使用可
+- skill の指示と本ファイル / `.claude/rules/` の規約が衝突したら **本ファイルの規約を優先**
+- `web-design-reviewer` (global, install 済み) は **読み取り専用 review** として使用可。修正提案は本プロジェクトの brand restraint (gold/dark/Noto Sans JP、AI-design tropes 禁止) と responsive-layout-discipline に従う
+- `skill-creator` (global, install 済み) は新規 skill 作成時に使用可。本プロジェクトの規約 (`tools/check-responsive-css.sh`, `tests/responsive-sweep.spec.js` 等) を skill 化したい場合に活用
+
 ## Language
 
 - 思考・コード・コミットメッセージ: 英語
