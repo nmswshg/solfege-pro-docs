@@ -26,6 +26,7 @@ const PAGES = [
     '/guides/fretboard-training.html',
     '/practice/features.html',
     '/practice/training-menu.html',
+    '/practice/training-menu/interval.html',
     '/practice/wind.html',
     '/practice/piano.html',
     '/practice/vocal.html',
