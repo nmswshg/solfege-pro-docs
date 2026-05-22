@@ -53,26 +53,24 @@
 
     <!-- Page-specific styles for interval diagrams -->
     <style>
-        /* Semitone Chart */
+        /* Semitone Chart (responsive — 12 cells via grid) */
         .semitone-chart {
             background: var(--surface);
             border-radius: var(--radius-xl);
-            padding: var(--space-xl);
+            padding: var(--space-lg);
             margin: var(--space-xl) 0;
             border: 1px solid var(--surface-light);
-            overflow-x: auto;
         }
 
         .semitone-track {
-            display: flex;
+            display: grid;
+            grid-template-columns: repeat(12, minmax(0, 1fr));
             gap: 3px;
             margin-top: var(--space-md);
-            min-width: 600px;
         }
 
         .semitone-block {
-            flex: 1;
-            min-width: 44px;
+            min-width: 0;
             background: var(--surface-light);
             border-radius: var(--radius-sm);
             padding: var(--space-sm) 2px;
@@ -268,14 +266,13 @@
         }
 
         @media (max-width: 768px) {
+            /* Narrow viewports: 12 semitones in 2 rows of 6 (avoids the
+               tiny single-row cells that would result at 375px). */
             .semitone-track {
-                min-width: 100%;
-                flex-wrap: wrap;
+                grid-template-columns: repeat(6, minmax(0, 1fr));
             }
-
             .semitone-block {
-                min-width: 60px;
-                flex: 0 0 calc(25% - 3px);
+                padding: 6px 2px;
             }
 
             .difficulty-row {

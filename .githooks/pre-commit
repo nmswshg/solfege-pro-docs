@@ -1,0 +1,31 @@
+#!/usr/bin/env bash
+#
+# Pre-commit hook: run the static responsive-CSS linter when any *.css or
+# *.html file is staged. Blocks the commit on failure.
+#
+# Install once per clone:
+#   git config core.hooksPath .githooks
+#
+# Emergency override (use only after manual verification):
+#   SKIP_LAYOUT_CHECK=1 git commit ...
+
+set -euo pipefail
+
+# Only run if any HTML/CSS file is staged.
+STAGED=$(git diff --cached --name-only --diff-filter=ACMR \
+    | grep -E '\.(css|html)$' || true)
+
+if [ -z "$STAGED" ]; then
+    exit 0
+fi
+
+REPO_ROOT=$(git rev-parse --show-toplevel)
+SCRIPT="${REPO_ROOT}/tools/check-responsive-css.sh"
+
+if [ ! -x "$SCRIPT" ]; then
+    echo "[pre-commit] WARNING: $SCRIPT not executable — skipping"
+    exit 0
+fi
+
+echo "[pre-commit] CSS/HTML files staged — running responsive-layout linter..."
+bash "$SCRIPT"

@@ -7,7 +7,10 @@
     "test": "playwright test",
     "test:nav": "playwright test tests/nav.spec.js",
     "test:report": "playwright show-report",
-    "serve": "python3 -m http.server 8888"
+    "serve": "python3 -m http.server 8888",
+    "check-css": "bash tools/check-responsive-css.sh",
+    "check-layout": "playwright test tests/responsive-sweep.spec.js --project=desktop",
+    "check-all": "npm run check-css && npm run check-layout"
   },
   "repository": {
     "type": "git",

@@ -457,18 +457,18 @@
     letter-spacing: 1px;
 }
 
-/* Beat Timeline */
+/* Beat Timeline (responsive — track shrinks with container) */
 .beat-timeline {
     background: var(--surface);
     border-radius: var(--radius-xl);
-    padding: var(--space-xl);
+    padding: var(--space-lg);
     margin: var(--space-xl) 0;
     border: 1px solid var(--surface-light);
-    overflow-x: auto;
 }
 
 .beat-timeline__row {
-    display: flex;
+    display: grid;
+    grid-template-columns: 100px 1fr;
     align-items: center;
     margin-bottom: var(--space-lg);
     gap: var(--space-md);
@@ -479,20 +479,17 @@
 }
 
 .beat-timeline__label {
-    min-width: 100px;
     font-size: 13px;
     font-weight: 700;
     color: var(--text-secondary);
-    flex-shrink: 0;
 }
 
 .beat-timeline__track {
-    flex: 1;
     height: 40px;
     background: var(--surface-light);
     border-radius: var(--radius-md);
     position: relative;
-    min-width: 300px;
+    min-width: 0;
 }
 
 .beat-mark {
@@ -676,7 +673,7 @@
     padding: var(--space-xl);
     margin: var(--space-xl) 0;
     border: 1px solid var(--surface-light);
-    overflow-x: auto;
+    overflow-x: auto; /* lint-skip: Mermaid SVG is fixed-size and may exceed column width */
 }
 
 .mermaid {
