@@ -94,7 +94,10 @@
     // an article body. Disabled for short pages where there's nothing
     // to scroll through.
     function initReadingProgress() {
-        var article = document.querySelector('.article-body');
+        // Match the same long-form-content selector that analytics.js uses
+        // for scroll_depth so the bar appears on every page where read-
+        // through is being tracked (guides + practice + menu-detail).
+        var article = document.querySelector('.article-body, .practice-body, .menu-hub, .menu-detail');
         if (!article) return;
         // Only show on pages tall enough to actually scroll the article.
         if (article.offsetHeight < window.innerHeight * 1.5) return;
