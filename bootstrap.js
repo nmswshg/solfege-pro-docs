@@ -28,19 +28,20 @@
         'animations.js?v=1'
     ];
 
-    function computePrefix() {
-        var segments = location.pathname.split('/').filter(Boolean);
-        // If the last segment looks like a file (has an extension), drop it.
-        if (segments.length && /\.[^/]+$/.test(segments[segments.length - 1])) {
-            segments.pop();
-        }
-        return segments.length ? '../'.repeat(segments.length) : '';
-    }
+    // Resolve each shared script RELATIVE TO bootstrap.js itself, not to
+    // the document. This is the only way the loader works both on the
+    // GitHub Pages origin and when the same file is opened locally via
+    // `file://` (where location.pathname is a full filesystem path).
+    // `document.currentScript` is the <script> tag currently executing,
+    // which is bootstrap.js's own tag during this synchronous IIFE.
+    var self = document.currentScript;
+    var baseHref = self && self.src
+        ? self.src.substring(0, self.src.lastIndexOf('/') + 1)
+        : '';
 
-    var prefix = computePrefix();
     SCRIPTS.forEach(function(src) {
         var s = document.createElement('script');
-        s.src = prefix + src;
+        s.src = baseHref + src;
         document.head.appendChild(s);
     });
 })();
