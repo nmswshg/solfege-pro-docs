@@ -1714,6 +1714,27 @@ body {
     to   { opacity: 1; transform: scale(1) translateY(0); }
 }
 
+/* --- Reading progress bar (E: auto-injected on .article-body pages) --- */
+.reading-progress {
+    position: fixed;
+    top: var(--nav-height);
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: rgba(255, 255, 255, 0.04);
+    z-index: 50;
+    pointer-events: none;
+}
+.reading-progress__fill {
+    height: 100%;
+    width: 100%;
+    background: linear-gradient(90deg, var(--primary), var(--accent));
+    transform: scaleX(0);
+    transform-origin: left center;
+    transition: transform 120ms linear;
+    will-change: transform;
+}
+
 /* --- Respect user's motion preferences --- */
 @media (prefers-reduced-motion: reduce) {
     .reveal,
@@ -1744,5 +1765,11 @@ body {
     .diag-option.is-confirming,
     .diag-result.is-entering {
         animation: none;
+    }
+    .reading-progress__fill {
+        transition: none;
+    }
+    [data-count-up] {
+        /* skip the JS count-up; the static final number is left in place */
     }
 }
