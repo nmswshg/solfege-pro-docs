@@ -127,9 +127,13 @@
         });
     }
 
-    // ---- Scroll depth on long-form articles ----
+    // ---- Scroll depth on long-form content pages ----
+    // Originally guides/.article-body only; broadened to cover practice/*
+    // (.practice-body, .menu-hub) and the new menu detail pages
+    // (.menu-detail) so we can see read-through on those long Q&A and
+    // reference articles too.
     function setupScrollDepth() {
-        if (!document.querySelector('.article-body')) return;
+        if (!document.querySelector('.article-body, .practice-body, .menu-hub, .menu-detail')) return;
         var depths = [25, 50, 75, 100];
         var hit = {};
         var rafScheduled = false;
@@ -151,11 +155,64 @@
         }, { passive: true });
     }
 
+    // ---- App Store badge impression tracking ----
+    // Pairs with app_store_click so we can compute CTR (% of visitors who
+    // saw the badge and clicked through). Fires once per badge per session
+    // when at least 50% of the badge is visible.
+    function setupAppStoreViewTracking() {
+        if (!('IntersectionObserver' in window)) return;
+        var links = document.querySelectorAll('a[href*="apps.apple.com"]');
+        if (links.length === 0) return;
+        var observer = new IntersectionObserver(function(entries) {
+            entries.forEach(function(entry) {
+                if (entry.isIntersecting) {
+                    track('app_store_view', {
+                        cta_position: detectCtaPosition(entry.target),
+                        source_page: location.pathname
+                    });
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.5 });
+        links.forEach(function(link) { observer.observe(link); });
+    }
+
+    // ---- Canonical pricing-line impression tracking ----
+    // Detects the "月額 980 円" / "JPY 980/month" disclosure paragraphs
+    // (added across the site as the canonical subscription wording) and
+    // fires a pricing_view event when one becomes ~50% visible. Lets us
+    // measure how often the price is actually seen before App Store
+    // click-through. Content-based detection (no markup change required).
+    function setupPricingViewTracking() {
+        if (!('IntersectionObserver' in window)) return;
+        var matcher = /(?:980\s*円|JPY\s*980|980\s*JPY)/;
+        var candidates = [];
+        document.querySelectorAll('p').forEach(function(p) {
+            var text = (p.textContent || '');
+            if (text.length > 0 && matcher.test(text)) candidates.push(p);
+        });
+        if (candidates.length === 0) return;
+        var observer = new IntersectionObserver(function(entries) {
+            entries.forEach(function(entry) {
+                if (entry.isIntersecting) {
+                    track('pricing_view', {
+                        cta_position: detectCtaPosition(entry.target),
+                        source_page: location.pathname
+                    });
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.5 });
+        candidates.forEach(function(el) { observer.observe(el); });
+    }
+
     function init() {
         bindAppStoreClicks();
         bindExternalLinks();
         setupLangChangeTracking();
         setupScrollDepth();
+        setupAppStoreViewTracking();
+        setupPricingViewTracking();
     }
 
     if (document.readyState === 'loading') {
