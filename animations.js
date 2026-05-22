@@ -1,7 +1,11 @@
 (function() {
     'use strict';
 
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    // Reduced-motion handling is per-feature (informational features like the
+    // reading-progress bar stay on; decorative reveals + count-ups are
+    // skipped). Avoid a blanket early return.
+    var REDUCED_MOTION = window.matchMedia &&
+        window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
     var REVEAL_SELECTORS = [
         '.hero',
@@ -27,6 +31,7 @@
     });
 
     function initRevealOnScroll() {
+        if (REDUCED_MOTION) return; // decorative
         if (!('IntersectionObserver' in window)) return;
 
         var observer = new IntersectionObserver(function(entries) {
@@ -57,6 +62,7 @@
     // D: Count-up on hero stats — only on elements explicitly tagged with
     // data-count-up. Triggers once when the element enters the viewport.
     function initCountUp() {
+        if (REDUCED_MOTION) return; // decorative — static number stays visible
         if (!('IntersectionObserver' in window)) return;
         var observer = new IntersectionObserver(function(entries) {
             entries.forEach(function(entry) {
@@ -97,10 +103,7 @@
         // Match the same long-form-content selector that analytics.js uses
         // for scroll_depth so the bar appears on every page where read-
         // through is being tracked (guides + practice + menu-detail).
-        var article = document.querySelector('.article-body, .practice-body, .menu-hub, .menu-detail');
-        if (!article) return;
-        // Only show on pages tall enough to actually scroll the article.
-        if (article.offsetHeight < window.innerHeight * 1.5) return;
+        if (!document.querySelector('.article-body, .practice-body, .menu-hub, .menu-detail')) return;
 
         var bar = document.createElement('div');
         bar.className = 'reading-progress';
@@ -113,9 +116,18 @@
         var ticking = false;
         function update() {
             var max = document.documentElement.scrollHeight - window.innerHeight;
-            var ratio = max > 0
-                ? Math.min(1, Math.max(0, window.scrollY / max))
-                : 0;
+            // Hide the bar if the page is too short to scroll (e.g., a
+            // practice page where the user hasn't expanded any accordion
+            // items yet). The bar reappears automatically once max > 0,
+            // which happens after expansion thanks to the resize listener.
+            if (max <= 0) {
+                bar.style.opacity = '0';
+                fill.style.transform = 'scaleX(0)';
+                ticking = false;
+                return;
+            }
+            bar.style.opacity = '';
+            var ratio = Math.min(1, Math.max(0, window.scrollY / max));
             fill.style.transform = 'scaleX(' + ratio + ')';
             ticking = false;
         }
@@ -127,6 +139,9 @@
         }
         window.addEventListener('scroll', onScroll, { passive: true });
         window.addEventListener('resize', onScroll, { passive: true });
+        // Re-evaluate height after accordion expansion or other DOM mutations
+        // by hooking into the click handlers practice-features.js wires up.
+        document.addEventListener('click', function() { onScroll(); }, { passive: true });
         update();
     }
 

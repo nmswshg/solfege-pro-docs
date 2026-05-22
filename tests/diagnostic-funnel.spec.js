@@ -31,12 +31,20 @@ async function installEventCapture(page) {
     });
 }
 
-async function completeFunnel(page, { persona = 'dtm', instrument = 'guitar' } = {}) {
+async function completeFunnel(page, { persona = 'plateau', instrument = 'guitar' } = {}) {
     await page.goto('/start-here.html');
     await page.waitForSelector('#step-persona .diag-option');
     await page.click(`[data-persona="${persona}"]`);
-    await page.waitForSelector('#step-instrument:not([hidden]) .diag-option');
-    await page.click(`#step-instrument [data-instrument="${instrument}"]`);
+    // Instrument-agnostic personas (dtm / exam / no-instrument / skip)
+    // bypass Step 2 entirely — detect that and skip the click. Phase
+    // 2-fix on 2026-05-21 changed the funnel behavior for these personas.
+    const stepInstrumentHidden = await page.locator('#step-instrument').evaluate(
+        el => el.hidden
+    );
+    if (!stepInstrumentHidden) {
+        await page.waitForSelector('#step-instrument:not([hidden]) .diag-option');
+        await page.click(`#step-instrument [data-instrument="${instrument}"]`);
+    }
     await page.waitForSelector('#step-pain:not([hidden]) .diag-option');
     await page.click('#step-pain .diag-option:first-child');
     await page.waitForSelector('#step-result:not([hidden]) .diag-result__cta');
@@ -45,7 +53,9 @@ async function completeFunnel(page, { persona = 'dtm', instrument = 'guitar' } =
 test.describe('Diagnostic funnel GA4 events', () => {
     test('happy path fires persona → instrument → pain → complete in order', async ({ page }) => {
         await installEventCapture(page);
-        await completeFunnel(page, { persona: 'dtm', instrument: 'guitar' });
+        // Use a non-instrument-agnostic persona so Step 2 fires the
+        // diagnostic_instrument_select event the order assertions below need.
+        await completeFunnel(page, { persona: 'plateau', instrument: 'guitar' });
 
         const events = await page.evaluate(() => window.__events__);
         const names = events.map(e => e.name);
@@ -124,7 +134,10 @@ test.describe('Diagnostic funnel GA4 events', () => {
 
         expect(guideClick).toBeDefined();
         expect(guideClick.params.guide_path).toBeTruthy();
-        expect(guideClick.params.persona).toBe('dtm');
+        // Default persona/instrument for completeFunnel() above are
+        // 'plateau' / 'guitar' (non-instrument-agnostic so all four steps
+        // fire normally).
+        expect(guideClick.params.persona).toBe('plateau');
         expect(guideClick.params.instrument).toBe('guitar');
     });
 
@@ -162,7 +175,10 @@ test.describe('Diagnostic funnel GA4 events', () => {
 
         await page.goto('/start-here.html');
         await page.waitForSelector('#step-persona .diag-option');
-        await page.click('[data-persona="exam"]');
+        // Use 'parent' (non-instrument-agnostic) so Step 2 stays visible.
+        // The earlier 'exam' choice here was instrument-agnostic and bypasses
+        // Step 2 after Phase 2-fix (2026-05-21).
+        await page.click('[data-persona="parent"]');
         await page.waitForSelector('#step-instrument:not([hidden])');
         await page.click('#step-instrument [data-instrument="vocal"]');
         await page.waitForSelector('#step-pain:not([hidden])');
@@ -173,8 +189,8 @@ test.describe('Diagnostic funnel GA4 events', () => {
         await page.click('#restart-btn');
         await page.waitForFunction(() => document.getElementById('step-instrument').hidden === true);
 
-        // Second pass with a different persona
-        await page.click('[data-persona="dtm"]');
+        // Second pass with a different (also non-agnostic) persona.
+        await page.click('[data-persona="beginner"]');
         await page.waitForSelector('#step-instrument:not([hidden])');
         await page.click('#step-instrument [data-instrument="other"]');
         await page.waitForSelector('#step-pain:not([hidden])');
@@ -183,22 +199,22 @@ test.describe('Diagnostic funnel GA4 events', () => {
 
         const events = await page.evaluate(() => window.__events__);
 
-        // diagnostic_restart fires with the last persona ('exam')
+        // diagnostic_restart fires with the last persona ('parent')
         const restartEvent = events.find(e => e.name === 'diagnostic_restart');
         expect(restartEvent).toBeDefined();
-        expect(restartEvent.params.persona_at_restart).toBe('exam');
+        expect(restartEvent.params.persona_at_restart).toBe('parent');
 
         // Two complete cycles fired
         const completes = events.filter(e => e.name === 'diagnostic_complete');
         expect(completes.length).toBe(2);
-        expect(completes[0].params.persona).toBe('exam');
-        expect(completes[1].params.persona).toBe('dtm');
+        expect(completes[0].params.persona).toBe('parent');
+        expect(completes[1].params.persona).toBe('beginner');
 
         // After restart, instrument event in 2nd cycle should NOT carry the
         // old persona — that would mean selectedPersona wasn't reset.
         const instrumentEvents = events.filter(e => e.name === 'diagnostic_instrument_select');
         expect(instrumentEvents.length).toBe(2);
-        expect(instrumentEvents[1].params.persona).toBe('dtm');
+        expect(instrumentEvents[1].params.persona).toBe('beginner');
     });
 
     test('changing instrument re-fires diagnostic_instrument_select', async ({ page }) => {
@@ -655,11 +671,11 @@ test.describe('Diagnostic funnel GA4 events', () => {
         await page.waitForFunction(() => document.getElementById('step-instrument').hidden === true);
 
         await page.click('[data-persona="dtm"]');
-        await page.waitForSelector('#step-instrument:not([hidden])');
-        await page.click('#step-instrument [data-instrument="guitar"]');
+        // dtm is instrument-agnostic (Phase 2-fix 2026-05-21): Step 2 is
+        // bypassed and showPainStep('any') is invoked directly.
         await page.waitForSelector('#step-pain:not([hidden])');
-        const dtmGuitar = await getPainTitles(page);
+        const dtmPains = await getPainTitles(page);
 
-        expect(parentGuitar.sort()).not.toEqual(dtmGuitar.sort());
+        expect(parentGuitar.sort()).not.toEqual(dtmPains.sort());
     });
 });
