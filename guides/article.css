@@ -184,6 +184,7 @@
 }
 
 .cycle-step {
+    position: relative;
     background: var(--surface-light);
     border-radius: var(--radius-lg);
     padding: var(--space-md) var(--space-lg);
@@ -203,11 +204,22 @@
     color: var(--text-secondary);
 }
 
-.cycle-arrow {
-    display: flex;
-    align-items: center;
+/* The explicit .cycle-arrow elements wrap awkwardly to a new line on
+   narrow viewports (leaving a dangling "→" at the end of the prior row).
+   Hide them and draw the arrow as a pseudo-element on each step instead;
+   that way the arrow always belongs to its step's box and the last step
+   never has one. */
+.cycle-arrow { display: none; }
+
+.cycle-step:not(:last-child)::after {
+    content: "→";
+    position: absolute;
+    top: 50%;
+    right: calc(var(--space-sm) * -1 - 6px);
+    transform: translateY(-50%);
     color: var(--text-secondary);
-    font-size: 18px;
+    font-size: 16px;
+    pointer-events: none;
 }
 
 /* =============================================

@@ -53,43 +53,35 @@
 
     <!-- Fretboard diagram styles -->
     <style>
-        /* Fretboard Grid Diagram */
+        /* Fretboard Grid Diagram (responsive — never horizontally scrolls) */
         .fretboard-diagram {
             background: var(--surface);
             border-radius: var(--radius-xl);
-            padding: var(--space-xl);
+            padding: var(--space-lg);
             margin: var(--space-xl) 0;
             border: 1px solid var(--surface-light);
-            overflow-x: auto;
         }
 
-        .fretboard-grid {
-            display: flex;
-            flex-direction: column;
-            gap: 0;
-            min-width: 460px;
+        /* Shared 12-column template: string label (32px) + 11 fret cells. */
+        .fretboard-grid__header,
+        .fretboard-grid__row {
+            display: grid;
+            grid-template-columns: 32px repeat(11, minmax(0, 1fr));
         }
 
         .fretboard-grid__header {
-            display: flex;
             margin-bottom: var(--space-sm);
         }
 
         .fretboard-grid__header-cell {
-            width: 60px;
             text-align: center;
             font-size: 11px;
             font-weight: 700;
             color: var(--text-secondary);
-            flex-shrink: 0;
-        }
-
-        .fretboard-grid__header-cell:first-child {
-            width: 40px;
+            min-width: 0;
         }
 
         .fretboard-grid__row {
-            display: flex;
             align-items: center;
             border-bottom: 2px solid var(--surface-light);
         }
@@ -99,16 +91,13 @@
         }
 
         .fretboard-grid__string-label {
-            width: 40px;
             font-size: 13px;
             font-weight: 700;
             color: var(--primary);
             text-align: center;
-            flex-shrink: 0;
         }
 
         .fretboard-grid__cell {
-            width: 60px;
             height: 36px;
             display: flex;
             align-items: center;
@@ -117,7 +106,7 @@
             font-weight: 600;
             color: var(--text-secondary);
             position: relative;
-            flex-shrink: 0;
+            min-width: 0;
         }
 
         .fretboard-grid__cell--note {
@@ -127,8 +116,9 @@
         .fretboard-grid__cell--note::after {
             content: "";
             position: absolute;
-            width: 28px;
-            height: 28px;
+            /* Scale with the cell — never exceed 28px, never below 20px. */
+            width: clamp(20px, 80%, 28px);
+            aspect-ratio: 1;
             border-radius: 50%;
             background: rgba(212, 175, 55, 0.15);
             border: 1px solid rgba(212, 175, 55, 0.4);
@@ -163,15 +153,20 @@
             overflow-x: auto;
         }
 
-        .octave-grid {
-            display: flex;
-            flex-direction: column;
-            gap: 0;
-            min-width: 400px;
+        /* Octave shape: 1 label + 6 fret columns (overrides the fretboard
+           template since the diagram only spans 6 frets). */
+        .octave-grid > .fretboard-grid__header,
+        .octave-grid__row {
+            display: grid;
+            grid-template-columns: 32px repeat(6, minmax(0, 1fr));
+        }
+        .octave-grid > .fretboard-grid__header > .fretboard-grid__header-cell {
+            /* Override the inline width attributes the HTML still ships
+               for backwards-compatibility — let the grid track govern. */
+            width: auto !important;
         }
 
         .octave-grid__row {
-            display: flex;
             align-items: center;
             border-bottom: 2px solid var(--surface-light);
         }
@@ -181,16 +176,13 @@
         }
 
         .octave-grid__label {
-            width: 40px;
             font-size: 12px;
             font-weight: 700;
             color: var(--text-secondary);
             text-align: center;
-            flex-shrink: 0;
         }
 
         .octave-grid__cell {
-            width: 50px;
             height: 34px;
             display: flex;
             align-items: center;
@@ -198,7 +190,7 @@
             font-size: 11px;
             color: var(--text-secondary);
             position: relative;
-            flex-shrink: 0;
+            min-width: 0;
         }
 
         .octave-grid__cell--root {
@@ -209,8 +201,8 @@
         .octave-grid__cell--root::after {
             content: "";
             position: absolute;
-            width: 26px;
-            height: 26px;
+            width: clamp(18px, 80%, 26px);
+            aspect-ratio: 1;
             border-radius: 50%;
             background: rgba(212, 175, 55, 0.3);
             border: 2px solid var(--primary);
@@ -225,8 +217,8 @@
         .octave-grid__cell--octave::after {
             content: "";
             position: absolute;
-            width: 26px;
-            height: 26px;
+            width: clamp(18px, 80%, 26px);
+            aspect-ratio: 1;
             border-radius: 50%;
             background: rgba(74, 222, 128, 0.2);
             border: 2px solid #4ADE80;

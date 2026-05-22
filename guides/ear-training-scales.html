@@ -52,36 +52,35 @@
     <link rel="stylesheet" href="article.css?v=8">
 
     <style>
-        /* Mode Comparison Grid */
+        /* Mode Comparison Grid (responsive — never horizontally scrolls) */
         .mode-grid {
             background: var(--surface);
             border-radius: var(--radius-xl);
-            padding: var(--space-xl);
+            padding: var(--space-lg);
             margin: var(--space-xl) 0;
             border: 1px solid var(--surface-light);
-            overflow-x: auto;
         }
         .mode-grid__row {
-            display: flex;
+            display: grid;
+            grid-template-columns: 110px 1fr 90px;
             align-items: center;
             margin-bottom: var(--space-sm);
             gap: var(--space-sm);
         }
         .mode-grid__name {
-            min-width: 120px;
             font-size: 14px;
             font-weight: 700;
             color: var(--text-primary);
-            flex-shrink: 0;
         }
         .mode-grid__degrees {
-            display: flex;
+            display: grid;
+            grid-template-columns: repeat(7, minmax(0, 1fr));
             gap: 3px;
-            flex: 1;
+            min-width: 0;
         }
         .mode-grid__degree {
-            width: 36px;
-            height: 32px;
+            height: 30px;
+            min-width: 0;
             border-radius: var(--radius-sm);
             font-size: 12px;
             font-weight: 600;
@@ -94,10 +93,8 @@
         .degree--sharp { background: rgba(251, 191, 36, 0.25); color: #FBBF24; }
         .degree--characteristic { background: rgba(248, 113, 113, 0.3); color: #F87171; border: 1px solid rgba(248, 113, 113, 0.5); }
         .mode-grid__char {
-            min-width: 100px;
             font-size: 12px;
             color: var(--text-secondary);
-            flex-shrink: 0;
         }
         .mode-grid__section-title {
             font-size: 14px;
@@ -130,10 +127,12 @@
 
         @media (max-width: 768px) {
             .mode-grid { padding: var(--space-md); }
-            .mode-grid__row { flex-direction: column; align-items: flex-start; gap: var(--space-xs); }
-            .mode-grid__name { min-width: auto; }
-            .mode-grid__degree { width: 32px; height: 28px; font-size: 11px; }
-            .mode-grid__char { min-width: auto; }
+            .mode-grid__row {
+                /* Stack: name → degrees → char on separate rows. */
+                grid-template-columns: 1fr;
+                gap: 6px;
+            }
+            .mode-grid__degree { height: 26px; font-size: 11px; }
             .mode-grid__legend { flex-wrap: wrap; gap: var(--space-sm); }
         }
     </style>
