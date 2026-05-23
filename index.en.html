@@ -63,15 +63,23 @@
         }
 
         .hub-section-title {
-            font-size: 20px;
+            font-size: 22px;
             font-weight: 700;
             color: var(--text-primary);
-            margin-bottom: var(--space-lg);
+            /* Generous top margin so subsequent sections (after a long card
+               grid above) get a clear visual reset and don't bleed into
+               the previous section's content. First instance after the
+               hero suppresses the top margin via :first-of-type below. */
+            margin: var(--space-3xl) 0 var(--space-lg);
             padding-bottom: var(--space-md);
             border-bottom: 2px solid var(--primary);
             display: flex;
             align-items: center;
             gap: var(--space-sm);
+        }
+
+        .hub-section-title:first-of-type {
+            margin-top: 0;
         }
 
         /* Instrument Card Grid */
@@ -527,7 +535,7 @@
             </p>
             <p style="font-size: 14px; color: var(--text-secondary); margin-bottom: var(--space-md); text-align: center;">
                 
-                JPY 980/month (1-week free trial)
+                ¥980/month (1-week free trial)
                 
                 
             </p>

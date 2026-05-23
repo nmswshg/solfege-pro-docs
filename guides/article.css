@@ -228,11 +228,14 @@
 }
 
 /* Narrow viewports: stack vertically, flip arrows to ↓.
-   Breakpoint matches the global responsive @media (max-width: 768px)
-   block further down — keep them in sync so 760-768px doesn't fall
-   into a gap where flex-direction is column but the arrow CSS still
-   thinks the layout is horizontal. */
-@media (max-width: 768px) {
+   Breakpoint at 600px (not 768) so tablet-portrait keeps the more
+   meaningful horizontal "cycle" visual; below 600 the steps would be
+   too cramped (4 × ~100px min + 3 × 32px gap + padding ≈ 560 px).
+   Hard rule 5 invariant maintained: direction flip + arrow flip live
+   inside the SAME media query so 601-768 stays row + → without dead
+   zones. The unrelated 768 article body block has no cycle-diagram
+   rules, so there is no shadowing. */
+@media (max-width: 600px) {
     .cycle-diagram {
         flex-direction: column;
         align-items: stretch;

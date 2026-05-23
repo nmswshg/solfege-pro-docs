@@ -63,15 +63,23 @@
         }
 
         .hub-section-title {
-            font-size: 20px;
+            font-size: 22px;
             font-weight: 700;
             color: var(--text-primary);
-            margin-bottom: var(--space-lg);
+            /* Generous top margin so subsequent sections (after a long card
+               grid above) get a clear visual reset and don't bleed into
+               the previous section's content. First instance after the
+               hero suppresses the top margin via :first-of-type below. */
+            margin: var(--space-3xl) 0 var(--space-lg);
             padding-bottom: var(--space-md);
             border-bottom: 2px solid var(--primary);
             display: flex;
             align-items: center;
             gap: var(--space-sm);
+        }
+
+        .hub-section-title:first-of-type {
+            margin-top: 0;
         }
 
         /* Instrument Card Grid */
@@ -527,9 +535,9 @@
             </p>
             <p style="font-size: 14px; color: var(--text-secondary); margin-bottom: var(--space-md); text-align: center;">
                 <span lang="ja">月額 980 円 (1 週間無料トライアル)</span>
-                <span lang="en">JPY 980/month (1-week free trial)</span>
-                <span lang="fr">980 JPY/mois (1 semaine d'essai gratuite)</span>
-                <span lang="de">980 JPY/Monat (1 Woche Gratistestphase)</span>
+                <span lang="en">¥980/month (1-week free trial)</span>
+                <span lang="fr">¥980/mois (1 semaine d'essai gratuite)</span>
+                <span lang="de">¥980/Monat (1 Woche Gratistestphase)</span>
             </p>
             <a href="https://apps.apple.com/jp/app/id6756626617" class="app-store-link" aria-label="Download on the App Store">
                 <span lang="ja"><img class="app-store-link__img" src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/ja-jp" alt="App Storeで入手"></span>
