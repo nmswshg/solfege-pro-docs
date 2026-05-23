@@ -173,6 +173,152 @@ function writeSnapshot(currentPrices) {
     fs.writeFileSync(PRICES_PREV, JSON.stringify(out, null, 2) + '\n', 'utf8');
 }
 
+// -----------------------------------------------------------------
+// Training-name normalisation.
+//
+// data/training-names.json holds the canonical training/feature/setting
+// names sourced from the actual app's Localizable.strings, plus the list
+// of legacy aliases that should normalise to canonical. The build walks
+// every <span lang="X">...</span> in source HTML and replaces any alias
+// with canonical[X], so a JA span no longer contains "Interval Training"
+// (it becomes "インターバル認識"), and EN/FR/DE spans converge on the
+// single canonical form per language.
+//
+// Algorithm:
+//   1. Load training-names.json (fallback to training-names.fallback.json).
+//   2. Build a flat alias list, sorted by length DESC, so longer aliases
+//      match first ("Interval Training" before "Interval").
+//   3. For each source HTML, regex-find every <span lang="X">...</span>,
+//      and within the body, word-boundary find/replace each alias with
+//      canonical[X] for that lang.
+//   4. Idempotent — running again after normalisation is a no-op.
+// -----------------------------------------------------------------
+
+const TRAINING_PATH     = 'data/training-names.json';
+const TRAINING_FALLBACK = 'data/training-names.fallback.json';
+
+function loadTrainingNames() {
+    try {
+        const data = JSON.parse(fs.readFileSync(TRAINING_PATH, 'utf8'));
+        sanityCheckTrainingNames(data, TRAINING_PATH);
+        return data;
+    } catch (e) {
+        console.warn(`[training-names] WARNING: ${TRAINING_PATH} unusable (${e.message}). Using fallback.`);
+    }
+    const data = JSON.parse(fs.readFileSync(TRAINING_FALLBACK, 'utf8'));
+    sanityCheckTrainingNames(data, TRAINING_FALLBACK);
+    return data;
+}
+
+function sanityCheckTrainingNames(data, source) {
+    for (const [key, entry] of Object.entries(data)) {
+        if (key.startsWith('_')) continue;
+        if (!entry.canonical || !entry.aliases) {
+            throw new Error(`${source}: ${key} missing canonical/aliases`);
+        }
+        for (const lang of ['ja', 'en', 'fr', 'de']) {
+            if (typeof entry.canonical[lang] !== 'string' || !entry.canonical[lang].trim()) {
+                throw new Error(`${source}: ${key}.canonical.${lang} missing/empty`);
+            }
+        }
+        if (!Array.isArray(entry.aliases) || entry.aliases.length === 0) {
+            throw new Error(`${source}: ${key}.aliases must be non-empty array`);
+        }
+    }
+    return data;
+}
+
+/**
+ * Escape regex metacharacters in a literal alias.
+ */
+function escapeRegex(s) {
+    return s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+}
+
+function buildAliasIndex(trainingNames) {
+    // Flatten to a single list with alias → canonical mapping, sorted by
+    // alias length DESC so longer phrases match first.
+    const list = [];
+    for (const [key, entry] of Object.entries(trainingNames)) {
+        if (key.startsWith('_')) continue;
+        for (const alias of entry.aliases) {
+            list.push({
+                alias,
+                key,
+                canonical: entry.canonical,
+                regex: new RegExp(`\\b${escapeRegex(alias)}\\b`, 'g'),
+            });
+        }
+    }
+    list.sort((a, b) => b.alias.length - a.alias.length);
+    return list;
+}
+
+function normalizeSpanBody(body, lang, aliasIndex) {
+    let out = body;
+    for (const entry of aliasIndex) {
+        out = out.replace(entry.regex, entry.canonical[lang]);
+    }
+    if (lang === 'fr') {
+        out = fixFrenchArticleAgreement(out);
+    }
+    return out;
+}
+
+/**
+ * French article agreement: when an alias-substitution drops a feminine
+ * noun (Reconnaissance, Formation, Lecture) after a masculine article
+ * (Le/Du) or naive elision (L'), fix the article to match. Mechanical
+ * substitution doesn't know noun gender; this post-step corrects the
+ * most common cases. Conservative — only fixes patterns we generate.
+ */
+function fixFrenchArticleAgreement(text) {
+    // Feminine training nouns we know we substitute.
+    const FEM_WORDS = ['Reconnaissance', 'Formation', 'Lecture'];
+    let out = text;
+    for (const w of FEM_WORDS) {
+        // Le Reconnaissance → La Reconnaissance
+        out = out.replace(new RegExp(`\\bLe\\s+${w}\\b`, 'g'), `La ${w}`);
+        // L'Reconnaissance → La Reconnaissance (no elision before consonant)
+        out = out.replace(new RegExp(`\\bL'${w}\\b`, 'g'), `La ${w}`);
+        // du Reconnaissance → de la Reconnaissance
+        out = out.replace(new RegExp(`\\bdu\\s+${w}\\b`, 'g'), `de la ${w}`);
+        // au Reconnaissance → à la Reconnaissance
+        out = out.replace(new RegExp(`\\bau\\s+${w}\\b`, 'g'), `à la ${w}`);
+    }
+    return out;
+}
+
+function syncTrainingNamesInSources(allSources) {
+    let trainingNames;
+    try {
+        trainingNames = loadTrainingNames();
+    } catch (e) {
+        console.error(`[training-names] ERROR: ${e.message}. Skipping normalisation.`);
+        return [];
+    }
+    const aliasIndex = buildAliasIndex(trainingNames);
+    if (aliasIndex.length === 0) return [];
+
+    const spanRe = /(<span\s+lang="(ja|en|fr|de)">)([\s\S]*?)(<\/span>)/g;
+    const modified = [];
+    for (const src of allSources) {
+        const raw = fs.readFileSync(src, 'utf8');
+        const out = raw.replace(spanRe, (m, open, lang, body, close) => {
+            const newBody = normalizeSpanBody(body, lang, aliasIndex);
+            return open + newBody + close;
+        });
+        if (out !== raw) {
+            fs.writeFileSync(src, out, 'utf8');
+            modified.push(src);
+        }
+    }
+    if (modified.length > 0) {
+        console.log(`[training-names] normalised ${modified.length} source file(s)`);
+    }
+    return modified;
+}
+
 // Where to look for source files (relative to repo root).
 const SOURCE_DIRS = ['.', 'guides', 'practice', 'practice/training-menu'];
 const GENERATED_RE = /\.(en|fr|de)\.html$/;
@@ -461,7 +607,7 @@ function main() {
         : allSources;
 
     if (!onlySitemap) {
-        // Phase 1: sync price strings from data/prices.json into ALL source HTML
+        // Phase 1a: sync price strings from data/prices.json into ALL source HTML
         // (not just the staged subset) so the ja URL — which serves source —
         // also reflects the latest prices. Variants get them automatically
         // because they're regenerated from the (now-updated) source.
@@ -470,6 +616,16 @@ function main() {
             syncPriceStringsToSources(allSources, currentPrices);
         } catch (e) {
             console.error(`[prices] ERROR: ${e.message}. Skipping price sync; HTML keeps existing values.`);
+        }
+
+        // Phase 1b: normalise training/feature/setting names per <span lang="X">
+        // context, using data/training-names.json. Replaces legacy aliases like
+        // "Interval Training" with the lang-appropriate canonical (e.g.
+        // "インターバル認識" inside a ja span).
+        try {
+            syncTrainingNamesInSources(allSources);
+        } catch (e) {
+            console.error(`[training-names] ERROR: ${e.message}. Skipping normalisation.`);
         }
 
         console.log(`Building ${sources.length} source files × 3 langs = ${sources.length * 3} variants.`);
