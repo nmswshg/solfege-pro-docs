@@ -37,6 +37,29 @@ npm run check-layout   # Playwright sweep — 12 viewport で overflow / directi
 
 ---
 
+## Pricing source-of-truth (since 2026-05-23)
+
+価格表記は **`data/prices.json` が単一の source of truth**。HTML に直書きしない。
+
+- `data/prices.json` — 編集対象。各言語の `price` / `trial` 文字列を保持
+- `data/prices.fallback.json` — 不変。`data/prices.json` が破損/欠落/不正値の時の最終 fallback
+- `data/prices.previous.json` — build 自動管理。**手で触らない**
+
+**価格変更ワークフロー**:
+1. `data/prices.json` の該当 lang を編集 (例: `"price": "月額 1280 円"`)
+2. `npm run build` (または commit すれば pre-commit hook が走る)
+3. build が previous.json と diff して、source HTML 全 31 ファイル + 93 variants を literal find/replace で更新
+4. sitemap.xml も自動更新
+
+**fallback 動作**:
+- `prices.json` パース失敗 / 必須 field 欠落 / 異常に長い値 (>80 char) → 警告ログ + `prices.fallback.json` で続行
+- ビルドは絶対にブロックしない
+
+**将来の App Store Connect API 統合**:
+- 別 script (`tools/fetch-prices.js`) で App Store Connect API → `data/prices.json` を上書きするだけで全自動化可能
+- API キー (`.p8` / `KEY_ID` / `ISSUER_ID`) は **GitHub Actions Secrets** に置き、static HTML / git には絶対露出させない
+- `.gitignore` に `*.p8`、`.env` を追加 (現在は未追加なので追加要)
+
 ## URL & content language convention (since 2026-05-23)
 
 各記事は **path-based URL** で言語分離:

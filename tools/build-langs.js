@@ -33,6 +33,146 @@ const OG_LOCALE = { ja: 'ja_JP', en: 'en_US', fr: 'fr_FR', de: 'de_DE' };
 // Apple's geo-redirect happens to pick.
 const APP_STORE_LOCALE = { ja: 'jp', en: 'us', fr: 'fr', de: 'de' };
 
+// -----------------------------------------------------------------
+// Price string synchronisation.
+//
+// data/prices.json is the user-edited source of truth for subscription
+// pricing per locale (4 langs × { price, trial }).
+// data/prices.fallback.json is the immutable last-resort safety net.
+// data/prices.previous.json is build-managed: it records what literal
+// strings are currently substituted into source HTML, so the build can
+// do find/replace when prices.json changes.
+//
+// On each build:
+//   1. Load prices.json (or fall back to prices.fallback.json).
+//   2. Sanity-check (non-empty strings per lang).
+//   3. Diff against prices.previous.json. For each changed field,
+//      literal-replace the old value with the new value in EVERY source
+//      HTML file. Source then has current values; variants get them
+//      automatically because they're regenerated from source.
+//   4. Save prices.previous.json = prices.json.
+//
+// Security note: nothing in this pipeline contacts external services or
+// reads secrets. Future automation (App Store Connect API) would write
+// prices.json BEFORE invoking this build — secrets stay in CI env.
+// -----------------------------------------------------------------
+
+const PRICES_PATH    = 'data/prices.json';
+const PRICES_FALLBACK = 'data/prices.fallback.json';
+const PRICES_PREV    = 'data/prices.previous.json';
+
+function loadPrices() {
+    // Try the authoritative file first.
+    try {
+        const raw = JSON.parse(fs.readFileSync(PRICES_PATH, 'utf8'));
+        sanityCheckPrices(raw, PRICES_PATH);
+        return raw;
+    } catch (e) {
+        console.warn(`[prices] WARNING: ${PRICES_PATH} unusable (${e.message}). Using fallback.`);
+    }
+    // Last-resort fallback (hardcoded original values).
+    const raw = JSON.parse(fs.readFileSync(PRICES_FALLBACK, 'utf8'));
+    sanityCheckPrices(raw, PRICES_FALLBACK);
+    return raw;
+}
+
+function sanityCheckPrices(data, source) {
+    for (const lang of ['ja', 'en', 'fr', 'de']) {
+        const entry = data[lang];
+        if (!entry || typeof entry.price !== 'string' || !entry.price.trim()) {
+            throw new Error(`${source}: missing/empty ${lang}.price`);
+        }
+        if (typeof entry.trial !== 'string' || !entry.trial.trim()) {
+            throw new Error(`${source}: missing/empty ${lang}.trial`);
+        }
+        // Bounds-ish check: reject suspiciously long strings (> 80 chars)
+        // — guards against API returning HTML / error payload.
+        if (entry.price.length > 80 || entry.trial.length > 80) {
+            throw new Error(`${source}: ${lang} field suspiciously long`);
+        }
+    }
+    return data;
+}
+
+function loadPrev() {
+    try {
+        return JSON.parse(fs.readFileSync(PRICES_PREV, 'utf8'));
+    } catch (e) {
+        // First run with no previous snapshot — treat as identical so we
+        // don't accidentally find/replace anything.
+        console.warn(`[prices] no previous snapshot; skipping find/replace this run`);
+        return null;
+    }
+}
+
+/**
+ * Update price/trial strings in every source HTML by literal find/replace
+ * from the previous snapshot to the current values. Returns the list of
+ * source files that were modified.
+ */
+function syncPriceStringsToSources(allSources, currentPrices) {
+    const prev = loadPrev();
+    if (!prev) {
+        // First run — write snapshot but don't replace anything in HTML.
+        writeSnapshot(currentPrices);
+        return [];
+    }
+
+    const replacements = [];
+    for (const lang of ['ja', 'en', 'fr', 'de']) {
+        const fromPrice = prev[lang]?.price;
+        const toPrice   = currentPrices[lang].price;
+        const fromTrial = prev[lang]?.trial;
+        const toTrial   = currentPrices[lang].trial;
+        if (fromPrice && fromPrice !== toPrice) {
+            replacements.push({ from: fromPrice, to: toPrice, lang, kind: 'price' });
+        }
+        if (fromTrial && fromTrial !== toTrial) {
+            replacements.push({ from: fromTrial, to: toTrial, lang, kind: 'trial' });
+        }
+    }
+
+    if (replacements.length === 0) {
+        // No price change; nothing to do.
+        return [];
+    }
+
+    console.log(`[prices] ${replacements.length} field(s) changed; updating source HTML:`);
+    for (const r of replacements) {
+        console.log(`  ${r.lang}.${r.kind}: "${r.from}" → "${r.to}"`);
+    }
+
+    const modified = [];
+    for (const src of allSources) {
+        const raw = fs.readFileSync(src, 'utf8');
+        let out = raw;
+        for (const r of replacements) {
+            // Literal replace (split/join — safe with any special characters).
+            out = out.split(r.from).join(r.to);
+        }
+        if (out !== raw) {
+            fs.writeFileSync(src, out, 'utf8');
+            modified.push(src);
+        }
+    }
+    console.log(`[prices] rewrote ${modified.length} source file(s).`);
+
+    writeSnapshot(currentPrices);
+    return modified;
+}
+
+function writeSnapshot(currentPrices) {
+    // Preserve the _comment_ field if present.
+    const out = {
+        _comment_: 'Build-managed snapshot of what\'s currently substituted into source HTML. Updated automatically by tools/build-langs.js after each successful build. Compares against prices.json to know what literal strings to find/replace in source HTML when prices change. DO NOT edit by hand.',
+        ja: currentPrices.ja,
+        en: currentPrices.en,
+        fr: currentPrices.fr,
+        de: currentPrices.de,
+    };
+    fs.writeFileSync(PRICES_PREV, JSON.stringify(out, null, 2) + '\n', 'utf8');
+}
+
 // Where to look for source files (relative to repo root).
 const SOURCE_DIRS = ['.', 'guides', 'practice', 'practice/training-menu'];
 const GENERATED_RE = /\.(en|fr|de)\.html$/;
@@ -321,6 +461,17 @@ function main() {
         : allSources;
 
     if (!onlySitemap) {
+        // Phase 1: sync price strings from data/prices.json into ALL source HTML
+        // (not just the staged subset) so the ja URL — which serves source —
+        // also reflects the latest prices. Variants get them automatically
+        // because they're regenerated from the (now-updated) source.
+        try {
+            const currentPrices = loadPrices();
+            syncPriceStringsToSources(allSources, currentPrices);
+        } catch (e) {
+            console.error(`[prices] ERROR: ${e.message}. Skipping price sync; HTML keeps existing values.`);
+        }
+
         console.log(`Building ${sources.length} source files × 3 langs = ${sources.length * 3} variants.`);
         for (const src of sources) {
             processSource(src);
