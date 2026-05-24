@@ -715,7 +715,7 @@ function main() {
     const filtered = argv.filter((a) => !a.startsWith('--'));
     const allSources = listSources();
     const sources = filtered.length > 0
-        ? filtered.filter((f) => fs.existsSync(f) && !GENERATED_RE.test(f))
+        ? filtered.filter((f) => fs.existsSync(f) && !GENERATED_RE.test(f) && !SKIP_FILES.has(f))
         : allSources;
 
     if (!onlySitemap) {
