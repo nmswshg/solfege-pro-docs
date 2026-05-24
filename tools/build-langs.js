@@ -289,6 +289,103 @@ function fixFrenchArticleAgreement(text) {
     return out;
 }
 
+// -----------------------------------------------------------------
+// Page-metadata substitution (SEO).
+//
+// data/page-metadata.json holds short, SERP-friendly title + meta
+// description per page per language. This pass is part of the variant-
+// generation step (transformToLang): when generating foo.en.html, look
+// up that page's en title/description and inject into <title>,
+// data-title-en, <meta name=description>, og:title, og:description,
+// twitter:title, twitter:description. ja URL (source HTML) is also
+// updated so the bare /foo.html serves the right ja metadata.
+//
+// Falls back to existing HTML values when the page or lang is missing
+// from the JSON (graceful degradation).
+// -----------------------------------------------------------------
+
+const PAGEMETA_PATH     = 'data/page-metadata.json';
+const PAGEMETA_FALLBACK = 'data/page-metadata.fallback.json';
+
+let _pageMetaCache = null;
+function loadPageMetadata() {
+    if (_pageMetaCache) return _pageMetaCache;
+    try {
+        const data = JSON.parse(fs.readFileSync(PAGEMETA_PATH, 'utf8'));
+        _pageMetaCache = data;
+        return data;
+    } catch (e) {
+        console.warn(`[page-metadata] WARNING: ${PAGEMETA_PATH} unusable (${e.message}). Using fallback.`);
+    }
+    _pageMetaCache = JSON.parse(fs.readFileSync(PAGEMETA_FALLBACK, 'utf8'));
+    return _pageMetaCache;
+}
+
+function escapeHtml(s) {
+    return s.replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+}
+
+/**
+ * Strip a "<title> | suffix" trailing part to get the bare title
+ * (used for og:title / twitter:title where the site name is implicit).
+ */
+function stripSiteSuffix(title) {
+    const idx = title.lastIndexOf(' | ');
+    return idx === -1 ? title : title.slice(0, idx);
+}
+
+/**
+ * Apply page-metadata overrides for a specific lang. Mutates the HTML
+ * string by replacing title/description/og/twitter fields.
+ */
+function applyPageMetadata(html, sourcePath, lang) {
+    const meta = loadPageMetadata();
+    const entry = meta[sourcePath];
+    if (!entry || !entry.title || !entry.description) return html;
+    const newTitle = entry.title[lang];
+    const newDesc  = entry.description[lang];
+    if (!newTitle || !newDesc) return html;
+
+    let out = html;
+    const titleEsc = escapeHtml(newTitle);
+    const descEsc  = escapeHtml(newDesc);
+    const bareTitleEsc = escapeHtml(stripSiteSuffix(newTitle));
+
+    // <title>
+    out = out.replace(/<title>[^<]*<\/title>/, `<title>${titleEsc}</title>`);
+    // data-title-<lang> attr on <html>
+    out = out.replace(
+        new RegExp(`data-title-${lang}="[^"]*"`),
+        `data-title-${lang}="${titleEsc}"`,
+    );
+    // <meta name="description">
+    out = out.replace(
+        /<meta name="description" content="[^"]*">/,
+        `<meta name="description" content="${descEsc}">`,
+    );
+    // <meta property="og:title">
+    out = out.replace(
+        /<meta property="og:title" content="[^"]*">/,
+        `<meta property="og:title" content="${bareTitleEsc}">`,
+    );
+    // <meta property="og:description">
+    out = out.replace(
+        /<meta property="og:description" content="[^"]*">/,
+        `<meta property="og:description" content="${descEsc}">`,
+    );
+    // <meta name="twitter:title">
+    out = out.replace(
+        /<meta name="twitter:title" content="[^"]*">/,
+        `<meta name="twitter:title" content="${bareTitleEsc}">`,
+    );
+    // <meta name="twitter:description">
+    out = out.replace(
+        /<meta name="twitter:description" content="[^"]*">/,
+        `<meta name="twitter:description" content="${descEsc}">`,
+    );
+    return out;
+}
+
 function syncTrainingNamesInSources(allSources) {
     let trainingNames;
     try {
@@ -322,8 +419,11 @@ function syncTrainingNamesInSources(allSources) {
 // Where to look for source files (relative to repo root).
 const SOURCE_DIRS = ['.', 'guides', 'practice', 'practice/training-menu'];
 const GENERATED_RE = /\.(en|fr|de)\.html$/;
-// Skip these (no lang content — pure assets / redirects).
-const SKIP_FILES = new Set();
+// Skip these (no lang content / no variant should be generated).
+// 404.html is served as-is by GitHub Pages for any 404 across the whole
+// site — language variants would never be served, and the multi-lang
+// spans inside it already do the job.
+const SKIP_FILES = new Set(['404.html']);
 
 function listSources() {
     const files = [];
@@ -487,19 +587,31 @@ function transformToLang(html, targetLang) {
 }
 
 function processSource(sourcePath) {
-    const raw = fs.readFileSync(sourcePath, 'utf8');
+    let raw = fs.readFileSync(sourcePath, 'utf8');
 
     // Migrate hreflang format in source (idempotent).
     const migrated = migrateHreflang(raw);
     if (migrated !== raw) {
-        fs.writeFileSync(sourcePath, migrated, 'utf8');
+        raw = migrated;
         console.log(`  [migrated source hreflang] ${sourcePath}`);
     }
 
-    // Generate per-lang variants from the (now-migrated) source.
+    // Apply page-metadata overrides for the ja URL (source serves as ja).
+    const jaUpdated = applyPageMetadata(raw, sourcePath, 'ja');
+    if (jaUpdated !== raw) {
+        raw = jaUpdated;
+    }
+
+    if (raw !== fs.readFileSync(sourcePath, 'utf8')) {
+        fs.writeFileSync(sourcePath, raw, 'utf8');
+    }
+
+    // Generate per-lang variants from the (now-updated) source.
     for (const lang of LANGS) {
         const variantPath = sourcePath.replace(/\.html$/, `.${lang}.html`);
-        const variant = transformToLang(migrated, lang);
+        let variant = transformToLang(raw, lang);
+        // Apply page-metadata overrides for this variant's lang.
+        variant = applyPageMetadata(variant, sourcePath, lang);
         fs.writeFileSync(variantPath, variant, 'utf8');
     }
 }
