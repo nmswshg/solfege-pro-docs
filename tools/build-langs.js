@@ -621,7 +621,7 @@ function processSource(sourcePath) {
 // with xhtml:link hreflang annotations.
 // -----------------------------------------------------------------
 
-const SITE_ORIGIN = 'https://nmswshg.github.io/solfege-pro-docs';
+const SITE_ORIGIN = 'https://solfegepro.com';
 
 /**
  * Map a source path → SITE_ORIGIN URL for ja.
