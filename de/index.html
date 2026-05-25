@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="de"
+      data-title-ja="ソルフェージュPRO 練習ガイド"
+      data-title-en="Solfege PRO - Practice Guide"
+      data-title-fr="Solfege PRO - Guide d'entraînement"
+      data-title-de="Übungsleitfäden Solfege PRO">
+<head>
+    <meta charset="UTF-8">
+    <meta name="robots" content="index, follow">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#1A1A1E">
+    <title>Übungsleitfäden Solfege PRO</title>
+    <meta name="description" content="Übungsleitfäden für Gitarre, Schlagzeug, Klavier, Gesang und Bläser. Rhythmus, Blattlesen, relatives Gehör, Akkorde, Griffbrett — stufenweise und forschungsbasiert.">
+
+    <link rel="canonical" href="https://solfegepro.com/de/">
+    <link rel="alternate" hreflang="ja" href="https://solfegepro.com/">
+    <link rel="alternate" hreflang="en" href="https://solfegepro.com/en/">
+    <link rel="alternate" hreflang="fr" href="https://solfegepro.com/fr/">
+    <link rel="alternate" hreflang="de" href="https://solfegepro.com/de/">
+    <link rel="alternate" hreflang="x-default" href="https://solfegepro.com/">
+<link rel="icon" href="/AppIcon.png" type="image/png">
+    <link rel="apple-touch-icon" href="/AppIcon.png">
+
+    <meta property="og:title" content="Übungsleitfäden Solfege PRO">
+    <meta property="og:description" content="Übungsleitfäden für Gitarre, Schlagzeug, Klavier, Gesang und Bläser. Rhythmus, Blattlesen, relatives Gehör, Akkorde, Griffbrett — stufenweise und forschungsbasiert.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://solfegepro.com/de/">
+    <meta property="og:site_name" content="ソルフェージュPRO">
+    <meta property="og:image" content="https://solfegepro.com/og-image.png">
+    <meta property="og:locale" content="de_DE">
+    <meta property="og:locale:alternate" content="ja_JP">
+    <meta property="og:locale:alternate" content="en_US">
+    <meta property="og:locale:alternate" content="fr_FR">
+
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Übungsleitfäden Solfege PRO">
+    <meta name="twitter:description" content="Übungsleitfäden für Gitarre, Schlagzeug, Klavier, Gesang und Bläser. Rhythmus, Blattlesen, relatives Gehör, Akkorde, Griffbrett — stufenweise und forschungsbasiert.">
+    <meta name="twitter:image" content="https://solfegepro.com/og-image.png">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="/style.css?v=15">
+
+    <style>
+        /* Hub-specific styles */
+
+        /* hub-nav uses values byte-identical to global .nav (style.css §4) */
+
+
+
+
+
+
+
+
+
+
+        .hub-main {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: var(--space-2xl) var(--space-lg);
+        }
+
+        .hub-section-title {
+            font-size: 22px;
+            font-weight: 700;
+            color: var(--text-primary);
+            /* Generous top margin so subsequent sections (after a long card
+               grid above) get a clear visual reset and don't bleed into
+               the previous section's content. First instance after the
+               hero suppresses the top margin via :first-of-type below. */
+            margin: var(--space-3xl) 0 var(--space-lg);
+            padding-bottom: var(--space-md);
+            border-bottom: 2px solid var(--primary);
+            display: flex;
+            align-items: center;
+            gap: var(--space-sm);
+        }
+
+        .hub-section-title:first-of-type {
+            margin-top: 0;
+        }
+
+        /* Instrument Card Grid */
+        .instrument-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: var(--space-lg);
+            margin-bottom: var(--space-3xl);
+            align-items: stretch;
+        }
+
+        .instrument-card {
+            display: flex;
+            flex-direction: column;
+            background: var(--surface);
+            border: 1px solid var(--surface-light);
+            border-radius: var(--radius-xl);
+            padding: var(--space-xl);
+            text-decoration: none;
+            transition: all 0.25s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .instrument-card:hover {
+            border-color: var(--primary);
+            transform: translateY(-4px);
+            box-shadow: 0 12px 32px rgba(0, 0, 0, 0.3);
+        }
+
+        .instrument-card__icon {
+            font-size: 40px;
+            margin-bottom: var(--space-md);
+        }
+
+        .instrument-card__title {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: var(--space-sm);
+            line-height: 1.3;
+        }
+
+        .instrument-card__desc {
+            font-size: 14px;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-bottom: var(--space-md);
+            flex: 1;
+        }
+
+        .instrument-card__meta {
+            display: flex;
+            align-items: center;
+            gap: var(--space-sm);
+            flex-wrap: wrap;
+        }
+
+        .instrument-card__badge {
+            display: inline-block;
+            font-size: 12px;
+            font-weight: 500;
+            padding: 2px 10px;
+            border-radius: var(--radius-sm);
+            background: rgba(212, 175, 55, 0.15);
+            color: var(--primary);
+        }
+
+        .instrument-card__arrow {
+            margin-left: auto;
+            color: var(--text-secondary);
+            font-size: 18px;
+            transition: transform 0.2s ease;
+        }
+
+        .instrument-card:hover .instrument-card__arrow {
+            transform: translateX(4px);
+            color: var(--primary);
+        }
+
+        /* Guide Card Grid */
+        .guide-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            gap: var(--space-md);
+            margin-bottom: var(--space-2xl);
+        }
+
+        .guide-grid {
+            align-items: stretch;
+        }
+
+        .guide-card {
+            display: flex;
+            flex-direction: column;
+            background: var(--surface);
+            border: 1px solid var(--surface-light);
+            border-radius: var(--radius-lg);
+            padding: var(--space-lg);
+            text-decoration: none;
+            transition: all 0.2s ease;
+        }
+
+        .guide-card:hover {
+            border-color: var(--primary);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+        }
+
+        .guide-card__icon { font-size: 32px; margin-bottom: var(--space-md); }
+
+        .guide-card__title {
+            font-size: 15px;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: var(--space-sm);
+            line-height: 1.4;
+        }
+
+        .guide-card__desc {
+            font-size: 13px;
+            color: var(--text-secondary);
+            line-height: 1.6;
+            flex: 1;
+        }
+
+        .guide-card__tags {
+            display: flex;
+            gap: 6px;
+            flex-wrap: wrap;
+            margin-top: var(--space-sm);
+        }
+
+        .guide-card__tag {
+            display: inline-block;
+            font-size: 12px;
+            font-weight: 500;
+            color: var(--primary);
+            background: rgba(212, 175, 55, 0.15);
+            padding: 2px 10px;
+            border-radius: var(--radius-sm);
+            align-self: flex-start;
+        }
+
+        .guide-card__tag--deep-dive {
+            color: #60A5FA;
+            background: rgba(96, 165, 250, 0.15);
+            margin-left: 6px;
+        }
+
+        /* CTA */
+        .hub-cta {
+            background: linear-gradient(135deg, var(--surface) 0%, var(--background) 100%);
+            border: 1px solid var(--primary);
+            border-radius: var(--radius-xl);
+            padding: var(--space-2xl);
+            text-align: center;
+            margin-bottom: var(--space-2xl);
+        }
+
+        .hub-cta__title { font-size: 22px; font-weight: 700; margin-bottom: var(--space-md); }
+        .hub-cta__text { color: var(--text-secondary); margin-bottom: var(--space-lg); font-size: 15px; }
+        .hub-cta__button {
+            display: inline-block;
+            background: var(--primary);
+            color: var(--background);
+            padding: var(--space-md) var(--space-xl);
+            border-radius: var(--radius-lg);
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 15px;
+            transition: all 0.2s ease;
+        }
+        .hub-cta__button:hover {
+            transform: scale(1.03);
+            box-shadow: 0 4px 20px rgba(212, 175, 55, 0.3);
+        }
+
+        .hub-footer {
+            background: var(--surface);
+            padding: var(--space-xl) var(--space-lg);
+            text-align: center;
+            border-top: 1px solid var(--surface-light);
+        }
+        .hub-footer__text { color: var(--text-secondary); font-size: 14px; }
+        .hub-footer__link { color: var(--primary); text-decoration: none; }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .instrument-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+
+        @media (max-width: 768px) {
+            .hub-main { padding: var(--space-lg) var(--space-md); }
+            .instrument-grid { grid-template-columns: 1fr; gap: var(--space-md); }
+            .instrument-card { padding: var(--space-lg); }
+            .instrument-card__icon { font-size: 32px; }
+            .instrument-card__title { font-size: 16px; }
+            .guide-grid { grid-template-columns: 1fr 1fr; }
+            .hub-cta { padding: var(--space-xl); }
+            .hub-cta__title { font-size: 19px; }
+            .hub-cta__button { display: block; text-align: center; }
+        }
+
+        @media (max-width: 480px) {
+            .guide-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="nav__container">
+            <a href="#" class="nav__logo">
+                <img src="/AppIcon.png" alt="Solfege PRO" class="nav__logo-icon">
+                <span class="nav__logo-text">Solfege PRO</span>
+            </a>
+            <ul class="nav__list">
+                <li><a href="/" class="nav__link active">Übungsleitfaden</a></li>
+                <li><a href="/guides/" class="nav__link">Leitfäden</a></li>
+                            <li><a href="/start-here/" class="nav__link">Wo anfangen?</a></li>
+            </ul>
+            <div class="nav__settings">
+                <button class="settings-btn" id="lang-toggle" title="Toggle language">
+                    <span id="lang-text">EN</span>
+                </button>
+                <button class="hamburger-btn" id="hamburger-btn" aria-label="Menu" aria-expanded="false" aria-controls="drawer">
+                    <span class="hamburger-btn__line"></span>
+                    <span class="hamburger-btn__line"></span>
+                    <span class="hamburger-btn__line"></span>
+                </button>
+            </div>
+        </div>
+    </nav>
+        <!-- Mobile drawer (hidden on desktop) -->
+        <div class="drawer-overlay" id="drawer-overlay"></div>
+        <aside class="drawer" id="drawer" aria-label="Mobile menu" aria-hidden="true" inert>
+            <div class="drawer__header">
+                <span class="drawer__title">Menü</span>
+                <button class="drawer__close" id="drawer-close" aria-label="Close menu">×</button>
+            </div>
+            <ul class="drawer__list">
+                    <li><a href="/" class="drawer__link active">Übungsleitfaden</a></li>
+                    <li><a href="/guides/" class="drawer__link">Leitfäden</a></li>
+                    <li><a href="/start-here/" class="drawer__link">Wo anfangen?</a></li>
+            </ul>
+        </aside>
+
+
+    <!-- Hero -->
+    <header class="page-header">
+        <h1 class="page-header__title">Übungsleitfaden</h1>
+        <p class="page-header__subtitle">
+            
+            
+            
+            Die Grundlagen sitzen — aber bei Sessions stockt es, das Notenlesen ist langsam, der Rhythmus wirkt steif.<br>Eine forschungsbasierte Diagnose, die je nach Instrument zeigt, was als Nächstes zu üben ist.
+        </p>
+        <div class="hero-cta-group">
+            <a href="https://apps.apple.com/de/app/id6756626617" class="app-store-link" aria-label="Download on the App Store">
+                
+                
+                
+                <img class="app-store-link__img" src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/de-de" alt="Laden im App Store">
+            </a>
+            <a href="/start-here/" class="app-store-badge app-store-badge--secondary">
+                Wo anfangen?
+            </a>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="hub-main">
+
+        <!-- Differentiation / Social proof -->
+        <section class="social-proof">
+            <h3 class="social-proof__title">Warum Solfege PRO?</h3>
+            <ul class="social-proof__list">
+                <li class="social-proof__item">
+                    <span class="social-proof__icon"><svg class="icon" aria-hidden="true"><use href="/assets/icons.svg#icon-library"></use></svg></span>
+                    <span>本</strong>の深掘りガイド + 楽器別 Q&amp;A</span> in-depth guides</strong> + instrument-specific Q&amp;A</span> guides approfondis</strong> + Q&amp;R par instrument</span><strong><span data-count-up="9">9 vertiefte Leitfäden</strong> + Q&amp;A je Instrument</span></span>
+                </li>
+                <li class="social-proof__item">
+                    <span class="social-proof__icon"><svg class="icon" aria-hidden="true"><use href="/assets/icons.svg#icon-flask"></use></svg></span>
+                    <span><strong>Forschungsbasiertes</strong> Curriculum</span>
+                </li>
+                <li class="social-proof__item">
+                    <span class="social-proof__icon"><svg class="icon" aria-hidden="true"><use href="/assets/icons.svg#icon-chart-bar"></use></svg></span>
+                    <span><strong>Messbare</strong> Kriterien (Timing-SD / Reaktionszeit / Trefferquote)</span>
+                </li>
+            </ul>
+            <!-- TODO: App Store rating widget when reviews accumulate -->
+        </section>
+
+        <!-- Instrument Cards -->
+        <h2 class="hub-section-title">Nach Instrument wählen</h2>
+
+        <div class="instrument-grid">
+
+            <a href="/practice/guitar-bass/" class="instrument-card">
+                <div class="instrument-card__icon"><svg class="icon" aria-hidden="true"><use href="/assets/icons.svg#icon-guitar"></use></svg></div>
+                <div class="instrument-card__title">Gitarre & Bass</div>
+                <div class="instrument-card__desc">Aussetzer bei Sessions, langsames Heraushören, immer dieselben Phrasen, Akkordfolgen nicht erkennbar</div>
+                <div class="instrument-card__meta">
+                    <span class="instrument-card__badge">4 Q&A</span>
+                    <span class="instrument-card__badge">Fretboard / Interval</span>
+                    <span class="instrument-card__arrow">&rarr;</span>
+                </div>
+            </a>
+
+            <a href="/practice/drums/" class="instrument-card">
+                <div class="instrument-card__icon"><svg class="icon" aria-hidden="true"><use href="/assets/icons.svg#icon-drum"></use></svg></div>
+                <div class="instrument-card__title">Schlagzeug</div>
+                <div class="instrument-card__desc">Instabiler Rhythmus, Timing rutscht nach Fills, Probleme bei langsamen Tempi</div>
+                <div class="instrument-card__meta">
+                    <span class="instrument-card__badge">3 Q&A</span>
+                    <span class="instrument-card__badge">Rhythm Training</span>
+                    <span class="instrument-card__arrow">&rarr;</span>
+                </div>
+            </a>
+
+            <a href="/practice/piano/" class="instrument-card">
+                <div class="instrument-card__icon"><svg class="icon" aria-hidden="true"><use href="/assets/icons.svg#icon-piano"></use></svg></div>
+                <div class="instrument-card__title">Klavier</div>
+                <div class="instrument-card__desc">Spielen nur mit Noten, Probleme mit Akkordsymbol-Charts, immer dieselben Voicings</div>
+                <div class="instrument-card__meta">
+                    <span class="instrument-card__badge">3 Q&A</span>
+                    <span class="instrument-card__badge">Interval / Chord</span>
+                    <span class="instrument-card__arrow">&rarr;</span>
+                </div>
+            </a>
+
+            <a href="/practice/vocal/" class="instrument-card">
+                <div class="instrument-card__icon"><svg class="icon" aria-hidden="true"><use href="/assets/icons.svg#icon-microphone"></use></svg></div>
+                <div class="instrument-card__title">Gesang</div>
+                <div class="instrument-card__desc">Instabile Intonation, kein Singen in anderen Tonarten, Harmoniestimmen bleiben nicht hängen</div>
+                <div class="instrument-card__meta">
+                    <span class="instrument-card__badge">3 Q&A</span>
+                    <span class="instrument-card__badge">Interval / Scale</span>
+                    <span class="instrument-card__arrow">&rarr;</span>
+                </div>
+            </a>
+
+            <a href="/practice/wind/" class="instrument-card">
+                <div class="instrument-card__icon"><svg class="icon" aria-hidden="true"><use href="/assets/icons.svg#icon-music-generic"></use></svg></div>
+                <div class="instrument-card__title">Blas- & Streichinstrumente</div>
+                <div class="instrument-card__desc">Intonation passt nicht, Blockade beim Vom-Blatt-Spielen</div>
+                <div class="instrument-card__meta">
+                    <span class="instrument-card__badge">2 Q&A</span>
+                    <span class="instrument-card__badge">Interval / Sight Reading</span>
+                    <span class="instrument-card__arrow">&rarr;</span>
+                </div>
+            </a>
+
+            <a href="/practice/features/" class="instrument-card">
+                <div class="instrument-card__icon"><svg class="icon" aria-hidden="true"><use href="/assets/icons.svg#icon-app-window"></use></svg></div>
+                <div class="instrument-card__title">App-Funktionen</div>
+                <div class="instrument-card__desc">Griffbrett, Intervalle, Akkorde, Skalen, Akkordfolgen, Rhythmus, Notenlesen — detaillierter Funktionsleitfaden</div>
+                <div class="instrument-card__meta">
+                    <span class="instrument-card__badge">7 Features</span>
+                    <span class="instrument-card__arrow">&rarr;</span>
+                </div>
+            </a>
+
+        </div>
+
+        <!-- Training Guides -->
+        <h2 class="hub-section-title">Vertiefung — 9 ausgewählte (von 20)</h2>
+
+        <div class="guide-grid">
+            <a href="/guides/rhythm-training/" class="guide-card">
+                <div class="guide-card__icon"><svg class="icon" aria-hidden="true"><use href="/assets/icons.svg#icon-drum"></use></svg></div>
+                <div class="guide-card__title">Rhythmus-Leitfaden</div>
+                <div class="guide-card__desc">Vorlauf, Nachlauf, Streuung und Pocket aufschlüsseln</div>
+                <div class="guide-card__tags"><span class="guide-card__tag">Rhythm</span></div>
+            </a>
+
+            <a href="/guides/groove-training/" class="guide-card">
+                <div class="guide-card__icon"><svg class="icon" aria-hidden="true"><use href="/assets/icons.svg#icon-audio-lines"></use></svg></div>
+                <div class="guide-card__title">Das Wesen des Grooves</div>
+                <div class="guide-card__desc">Jenseits von „präzise, aber steif" — Average-Phase und SD trennen</div>
+                <div class="guide-card__tags"><span class="guide-card__tag">Rhythm</span><span class="guide-card__tag guide-card__tag--deep-dive">Vertiefung</span></div>
+            </a>
+
+            <a href="/guides/interval-training/" class="guide-card">
+                <div class="guide-card__icon"><svg class="icon" aria-hidden="true"><use href="/assets/icons.svg#icon-music-note"></use></svg></div>
+                <div class="guide-card__title">Intervalltraining</div>
+                <div class="guide-card__desc">Relatives Gehör trainieren und alle 13 Intervalle Schritt für Schritt meistern</div>
+                <div class="guide-card__tags"><span class="guide-card__tag">Interval</span></div>
+            </a>
+
+            <a href="/guides/ear-training-chords/" class="guide-card">
+                <div class="guide-card__icon"><svg class="icon" aria-hidden="true"><use href="/assets/icons.svg#icon-piano"></use></svg></div>
+                <div class="guide-card__title">Akkord-Erkennung</div>
+                <div class="guide-card__desc">Akkordqualitäten hören — Dreiklänge → Septakkorde → Optionstöne</div>
+                <div class="guide-card__tags"><span class="guide-card__tag">Chord</span></div>
+            </a>
+
+            <a href="/guides/ear-training-scales/" class="guide-card">
+                <div class="guide-card__icon"><svg class="icon" aria-hidden="true"><use href="/assets/icons.svg#icon-music-staff"></use></svg></div>
+                <div class="guide-card__title">Skalen-Erkennung</div>
+                <div class="guide-card__desc">Skalen und Modi hören — Kirchentonarten und charakteristische Töne</div>
+                <div class="guide-card__tags"><span class="guide-card__tag">Scale</span></div>
+            </a>
+
+            <a href="/guides/ear-training-progressions/" class="guide-card">
+                <div class="guide-card__icon"><svg class="icon" aria-hidden="true"><use href="/assets/icons.svg#icon-music-notes"></use></svg></div>
+                <div class="guide-card__title">Akkordfolgen</div>
+                <div class="guide-card__desc">Funktionsharmonische Bewegung (T/SD/D) heraushören</div>
+                <div class="guide-card__tags"><span class="guide-card__tag">Progression</span></div>
+            </a>
+
+            <a href="/guides/chord-function-curriculum/" class="guide-card">
+                <div class="guide-card__icon"><svg class="icon" aria-hidden="true"><use href="/assets/icons.svg#icon-music-notes"></use></svg></div>
+                <div class="guide-card__title">Akkordfunktions-Training</div>
+                <div class="guide-card__desc">Vier-Stufen-Praxisplan: T/SD/D durchs Gefühl hören</div>
+                <div class="guide-card__tags"><span class="guide-card__tag">Progression</span><span class="guide-card__tag guide-card__tag--deep-dive">Praxisplan</span></div>
+            </a>
+
+            <a href="/guides/sight-reading/" class="guide-card">
+                <div class="guide-card__icon"><svg class="icon" aria-hidden="true"><use href="/assets/icons.svg#icon-book-open"></use></svg></div>
+                <div class="guide-card__title">Notenlesen</div>
+                <div class="guide-card__desc">5-Landmark-Methode für schnelles Erkennen von Notenpositionen</div>
+                <div class="guide-card__tags"><span class="guide-card__tag">Reading</span></div>
+            </a>
+
+            <a href="/guides/fretboard-training/" class="guide-card">
+                <div class="guide-card__icon"><svg class="icon" aria-hidden="true"><use href="/assets/icons.svg#icon-guitar"></use></svg></div>
+                <div class="guide-card__title">Griffbrett-Training</div>
+                <div class="guide-card__desc">Das Gitarrengriffbrett lernen — Oktavformen und bundbereichsweiser Aufbau</div>
+                <div class="guide-card__tags"><span class="guide-card__tag">Fretboard</span></div>
+            </a>
+        </div>
+
+        <!-- Mid-page CTA: bridge to start-here -->
+        <div class="article-cta-mid" style="max-width:760px;margin-left:auto;margin-right:auto;">
+            <div class="article-cta-mid__icon"><svg class="icon" aria-hidden="true"><use href="/assets/icons.svg#icon-compass"></use></svg></div>
+            <div class="article-cta-mid__body">
+                <div class="article-cta-mid__title">Unsicher, wo du anfangen sollst?</div>
+                <div class="article-cta-mid__text">Eine 30-Sekunden-Diagnose verknüpft dein Instrument und Problem mit dem passenden Leitfaden.</div>
+            </div>
+            <a href="/start-here/" class="article-cta-mid__button">Starten</a>
+        </div>
+
+        <!-- CTA -->
+        <div class="hub-cta">
+            <h2 class="hub-cta__title">Heute loslegen</h2>
+            <p class="hub-cta__text">
+                
+                
+                
+                15 Minuten tägliches Üben — dranbleiben — bauen Fortschritt schrittweise auf.<br>Effizient üben mit Solfege PRO.
+            </p>
+            <p style="font-size: 14px; color: var(--text-secondary); margin-bottom: var(--space-md); text-align: center;">
+                
+                
+                
+                ¥980/Monat (1 Woche Gratistestphase)
+            </p>
+            <a href="https://apps.apple.com/de/app/id6756626617" class="app-store-link" aria-label="Download on the App Store">
+                
+                
+                
+                <img class="app-store-link__img" src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/de-de" alt="Laden im App Store">
+            </a>
+        </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="hub-footer">
+        <p class="hub-footer__text">
+            &copy; 2026 Solfege PRO &mdash;
+            <a href="https://apps.apple.com/de/app/id6756626617" class="hub-footer__link">App Store</a>
+        </p>
+    </footer>
+
+    <!-- Sticky bottom CTA (mobile) -->
+    <div class="sticky-cta">
+        <img class="sticky-cta__icon" src="/AppIcon.png" alt="Solfege PRO">
+        <div class="sticky-cta__text">
+            <strong>Solfege PRO</strong>
+            Diagnose &amp; Training, nach Instrument
+        </div>
+        <a href="https://apps.apple.com/de/app/id6756626617" class="sticky-cta__button">Holen</a>
+    </div>
+    <script src="/bootstrap.js?v=1" defer></script>
+</body>
+</html>

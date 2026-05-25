@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="fr"
+      data-title-ja="アプリ機能解説 | ソルフェージュPRO"
+      data-title-en="App Features Guide | Solfege PRO"
+      data-title-fr="Fonctionnalités de l'app | Solfege PRO"
+      data-title-de="App-Funktionen | Solfege PRO">
+<head>
+    <meta charset="UTF-8">
+    <meta name="robots" content="index, follow">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#1A1A1E">
+    <title>Fonctionnalités de l'app | Solfege PRO</title>
+    <meta name="description" content="Toutes les fonctions Solfege PRO — Métronome, Reconnaissance d'intervalles/accords/gammes/progressions, Rythme, Lecture, Manche, Plans.">
+
+    <link rel="canonical" href="https://solfegepro.com/fr/practice/features/">
+    <link rel="alternate" hreflang="ja" href="https://solfegepro.com/practice/features/">
+    <link rel="alternate" hreflang="en" href="https://solfegepro.com/en/practice/features/">
+    <link rel="alternate" hreflang="fr" href="https://solfegepro.com/fr/practice/features/">
+    <link rel="alternate" hreflang="de" href="https://solfegepro.com/de/practice/features/">
+    <link rel="alternate" hreflang="x-default" href="https://solfegepro.com/practice/features/">
+<link rel="icon" href="/AppIcon.png" type="image/png">
+    <link rel="apple-touch-icon" href="/AppIcon.png">
+
+    <meta property="og:title" content="Fonctionnalités de l'app">
+    <meta property="og:description" content="Toutes les fonctions Solfege PRO — Métronome, Reconnaissance d'intervalles/accords/gammes/progressions, Rythme, Lecture, Manche, Plans.">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://solfegepro.com/fr/practice/features/">
+    <meta property="og:site_name" content="ソルフェージュPRO">
+    <meta property="og:image" content="https://solfegepro.com/og-image.png">
+    <meta property="og:locale" content="fr_FR">
+    <meta property="og:locale:alternate" content="ja_JP">
+    <meta property="og:locale:alternate" content="en_US">
+    <meta property="og:locale:alternate" content="de_DE">
+
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Fonctionnalités de l'app">
+    <meta name="twitter:description" content="Toutes les fonctions Solfege PRO — Métronome, Reconnaissance d'intervalles/accords/gammes/progressions, Rythme, Lecture, Manche, Plans.">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="/style.css?v=15">
+
+    <style>
+        .practice-body {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 var(--space-lg) var(--space-2xl);
+        }
+        .practice-body .section__header {
+            justify-content: center;
+        }
+        .practice-footer {
+            background: var(--surface);
+            padding: var(--space-xl) var(--space-lg);
+            text-align: center;
+            border-top: 1px solid var(--surface-light);
+        }
+        .practice-footer__text {
+            color: var(--text-secondary);
+            font-size: 14px;
+        }
+        .practice-footer__link {
+            color: var(--primary);
+            text-decoration: none;
+        }
+        @media (max-width: 768px) {
+            .practice-body { padding: 0 var(--space-md) var(--space-xl); }
+        }
+        @media (max-width: 480px) {
+        }
+    </style>
+</head>
+<body>
+    <nav class="nav">
+        <div class="nav__container">
+            <a href="/" class="nav__logo">
+                <img src="/AppIcon.png" alt="Solfege PRO" class="nav__logo-icon">
+                <span class="nav__logo-text">Solfege PRO</span>
+            </a>
+            <ul class="nav__list">
+                <li><a href="/" class="nav__link active">Guide d'entraînement</a></li>
+                <li><a href="/guides/" class="nav__link">Guides</a></li>
+                            <li><a href="/start-here/" class="nav__link">Par où commencer ?</a></li>
+            </ul>
+            <div class="nav__settings">
+                <button class="settings-btn" id="lang-toggle" title="Toggle language">
+                    <span id="lang-text">EN</span>
+                </button>
+                <button class="hamburger-btn" id="hamburger-btn" aria-label="Menu" aria-expanded="false" aria-controls="drawer">
+                    <span class="hamburger-btn__line"></span>
+                    <span class="hamburger-btn__line"></span>
+                    <span class="hamburger-btn__line"></span>
+                </button>
+            </div>
+        </div>
+    </nav>
+        <!-- Mobile drawer (hidden on desktop) -->
+        <div class="drawer-overlay" id="drawer-overlay"></div>
+        <aside class="drawer" id="drawer" aria-label="Mobile menu" aria-hidden="true" inert>
+            <div class="drawer__header">
+                <span class="drawer__title">Menu</span>
+                <button class="drawer__close" id="drawer-close" aria-label="Close menu">×</button>
+            </div>
+            <ul class="drawer__list">
+                    <li><a href="/" class="drawer__link active">Guide d'entraînement</a></li>
+                    <li><a href="/guides/" class="drawer__link">Guides</a></li>
+                    <li><a href="/start-here/" class="drawer__link">Par où commencer ?</a></li>
+            </ul>
+        </aside>
+
+
+    <header class="page-header">
+        <div class="page-header__icon"><svg class="icon" aria-hidden="true"><use href="/assets/icons.svg#icon-app-window"></use></svg></div>
+        <h1 class="page-header__title">Fonctionnalités de l'app</h1>
+        <p class="page-header__subtitle">Manche, intervalles, accords, gammes, progressions, rythme, lecture — guide complet des fonctionnalités</p>
+        <div class="page-header__meta">
+            <span class="page-header__badge"><span data-count-up="7">7</span> Features</span>
+        </div>
+    </header>
+
+    <main class="practice-body">
+            <div class="section__header">
+                <span class="section__icon"><svg class="icon" aria-hidden="true"><use href="/assets/icons.svg#icon-app-window"></use></svg></span>
+                <h2 class="section__title">Fonctionnalités</h2>
+                <div class="section__header-actions">
+                    <button class="expand-all-btn">Tout développer</button>
+                </div>
+            </div>
+
+            <!-- Section TOC -->
+            <nav class="section-toc">
+                <div class="section-toc__title">Sommaire</div>
+                <ul class="section-toc__list">
+                    <li class="section-toc__item" data-target="features-fretboard">Manche</li>
+                    <li class="section-toc__item" data-target="features-interval">Intervalles</li>
+                    <li class="section-toc__item" data-target="features-chord">Reconnaissance d'accords</li>
+                    <li class="section-toc__item" data-target="features-scale">Reconnaissance de gammes</li>
+                    <li class="section-toc__item" data-target="features-progression">Progressions d'accords</li>
+                    <li class="section-toc__item" data-target="features-rhythm">Rythme</li>
+                    <li class="section-toc__item" data-target="features-sightreading">Lecture à vue</li>
+                </ul>
+            </nav>
+
+            <!-- Fretboard Training -->
+            <article class="question-card" id="features-fretboard">
+                <div class="question-card__header">
+                    <span class="question-card__q"><svg class="icon" aria-hidden="true"><use href="/assets/icons.svg#icon-guitar"></use></svg></span>
+                    <h3 class="question-card__title">Entraînement Manche (manche)</h3>
+                </div>
+                <div class="question-card__content">
+                    <div class="content-block">
+                        <p>Entraînement à localiser rapidement la position d'une note demandée sur le manche de la guitare/basse.</p>
+                        <ul class="content-list">
+                            <li><strong>Plages</strong> : personnalisez finement les cordes et les cases</li>
+                            <li><strong>Temps de réponse</strong> : enregistre le temps mis pour répondre correctement</li>
+                            <li><strong>Analyse des points faibles</strong> : affiche des statistiques sur les positions difficiles</li>
+                            <li><strong>Préréglages</strong> : enregistrez et réutilisez vos réglages</li>
+                            <li><strong>Accordages multiples</strong> : standard, Drop D, Open G et accordages alternés</li>
+                            <li><strong>Filtrage par corde</strong> : travailler uniquement les cordes ciblées</li>
+                            <li><strong>Mode des notes</strong> : dans les deux sens — nom de note à position, position à nom de note</li>
+                        </ul>
+                        <p style="margin-top: var(--space-md);"><a href="/guides/fretboard-training/" style="color: var(--primary); font-weight: 700;">→ Aller plus loin : octave shapes et progression par zones de cases</a></p>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Interval Training -->
+            <article class="question-card" id="features-interval">
+                <div class="question-card__header">
+                    <span class="question-card__q"><svg class="icon" aria-hidden="true"><use href="/assets/icons.svg#icon-music-note"></use></svg></span>
+                    <h3 class="question-card__title">Reconnaissance d'intervalles (intervalles)</h3>
+                </div>
+                <div class="question-card__content">
+                    <div class="content-block">
+                        <p>Entraînement à identifier à l'oreille l'intervalle entre deux notes.</p>
+                        <ul class="content-list">
+                            <li><strong>Choix des intervalles</strong> : choisissez les intervalles à travailler</li>
+                            <li><strong>Ascendant/descendant</strong> : ascendant, descendant ou les deux</li>
+                            <li><strong>Note de base aléatoire</strong> : questions dans une tonalité différente à chaque fois</li>
+                            <li><strong>Son de piano</strong> : échantillons de piano de haute qualité</li>
+                            <li><strong>13 types d'intervalles</strong> : couvre l'unisson à l'octave juste, par étapes</li>
+                            <li><strong>4 modes de lecture</strong> : ascendant / descendant / simultané / harmonique</li>
+                            <li><strong>Pondération des intervalles faibles</strong> : ajuste la fréquence selon les intervalles ratés</li>
+                        </ul>
+                        <p style="margin-top: var(--space-md);"><a href="/guides/interval-training/" style="color: var(--primary); font-weight: 700;">→ Aller plus loin : construire l'oreille relative et prioriser les 13 intervalles</a></p>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Chord Recognition -->
+            <article class="question-card" id="features-chord">
+                <div class="question-card__header">
+                    <span class="question-card__q"><svg class="icon" aria-hidden="true"><use href="/assets/icons.svg#icon-piano"></use></svg></span>
+                    <h3 class="question-card__title">Reconnaissance d'accords (accords)</h3>
+                </div>
+                <div class="question-card__content">
+                    <div class="content-block">
+                        <p>Entraînement à identifier le type d'accord à l'oreille.</p>
+                        <ul class="content-list">
+                            <li><strong>Triades</strong> : majeur, mineur, dim, aug</li>
+                            <li><strong>Accords de 7e</strong> : 7, maj7, m7, m7(♭5)</li>
+                            <li><strong>Autres</strong> : sus4, add9, etc.</li>
+                            <li><strong>Renversements</strong> : renversements en plus de la position fondamentale</li>
+                            <li><strong>Plus de 20 types d'accords</strong> : triades, 7e, tensions, famille sus, intégralement couvertes</li>
+                            <li><strong>5 niveaux de difficulté</strong> : du choix majeur/mineur jusqu'au pool complet de 20+ types</li>
+                            <li><strong>Lecture bloc / arpégée</strong> : arpège pour analyser, bloc pour gagner en vitesse</li>
+                            <li><strong>Lecture comparative</strong> : comparer les accords candidats en A/B</li>
+                            <li><strong>Mode point faible</strong> : oriente les questions vers les accords ratés</li>
+                        </ul>
+                        <p style="margin-top: var(--space-md);"><a href="/guides/ear-training-chords/" style="color: var(--primary); font-weight: 700;">→ Aller plus loin : entendre la tierce et construire la reconnaissance d'accords par étapes</a></p>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Scale Recognition -->
+            <article class="question-card" id="features-scale">
+                <div class="question-card__header">
+                    <span class="question-card__q"><svg class="icon" aria-hidden="true"><use href="/assets/icons.svg#icon-music-staff"></use></svg></span>
+                    <h3 class="question-card__title">Reconnaissance de gammes (gammes)</h3>
+                </div>
+                <div class="question-card__content">
+                    <div class="content-block">
+                        <p>Entraînement à identifier les gammes à l'oreille, y compris les modes ecclésiastiques et leurs notes caractéristiques.</p>
+                        <ul class="content-list">
+                            <li><strong>Majeur / mineur</strong> : démarrer par les deux gammes de base</li>
+                            <li><strong>Modes ecclésiastiques</strong> : ajouter pas à pas Ionien, Dorien, Phrygien, Lydien, Mixolydien, Éolien, Locrien</li>
+                            <li><strong>Focus sur les notes caractéristiques</strong> : entraîner l'oreille sur la note unique qui définit chaque mode</li>
+                            <li><strong>Difficulté progressive</strong> : élargir le pool de choix de 2 à 3 puis à 7</li>
+                        </ul>
+                        <p style="margin-top: var(--space-md);"><a href="/guides/ear-training-scales/" style="color: var(--primary); font-weight: 700;">→ Aller plus loin : entendre les notes caractéristiques modales et le bon ordre d'apprentissage</a></p>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Progression Training -->
+            <article class="question-card" id="features-progression">
+                <div class="question-card__header">
+                    <span class="question-card__q"><svg class="icon" aria-hidden="true"><use href="/assets/icons.svg#icon-music-notes"></use></svg></span>
+                    <h3 class="question-card__title">Entraînement aux progressions (progressions d'accords)</h3>
+                </div>
+                <div class="question-card__content">
+                    <div class="content-block">
+                        <p>Écouter une progression d'accords et étiqueter chaque accord par fonction (T/SD/D), chiffrage romain ou nom d'accord.</p>
+                        <ul class="content-list">
+                            <li><strong>Plus de 15 schémas de progression</strong> : standards pop/jazz comme I-V-vi-IV, ii-V-I, I-IV-V-I</li>
+                            <li><strong>3 formats de réponse</strong> : fonction (T/SD/D), chiffrage romain (I/IV/V…), chiffrage d'accord (C/F/G…)</li>
+                            <li><strong>Longueurs de 2 à 4 accords</strong> : courtes pour les bases, longues pour le ressenti réel</li>
+                            <li><strong>Aperçu de tonique</strong> : entendre I avant la question pour fixer la tonalité (activable)</li>
+                            <li><strong>Catégories Pop / Jazz</strong> : filtrer les questions par genre</li>
+                            <li><strong>Statistiques par schéma</strong> : précision par schéma en un coup d'œil</li>
+                        </ul>
+                        <p style="margin-top: var(--space-md);"><a href="/guides/ear-training-progressions/" style="color: var(--primary); font-weight: 700;">→ Guide des progressions : concepts d'harmonie fonctionnelle et écoute par étapes</a></p>
+                        <p style="margin-top: var(--space-sm);"><a href="/guides/chord-function-curriculum/" style="color: var(--primary); font-weight: 700;">→ Entraînement aux fonctions d'accord : plan en 4 étapes, du ressenti de résolution aux progressions de 4 mesures</a></p>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Rhythm Training -->
+            <article class="question-card" id="features-rhythm">
+                <div class="question-card__header">
+                    <span class="question-card__q"><svg class="icon" aria-hidden="true"><use href="/assets/icons.svg#icon-drum"></use></svg></span>
+                    <h3 class="question-card__title">Formation rythmique (rythme)</h3>
+                </div>
+                <div class="question-card__content">
+                    <div class="content-block">
+                        <p>Mesurez votre précision rythmique en tapant ou frappant des mains sur le clic.</p>
+                        <ul class="content-list">
+                            <li><strong>Mode tap</strong> : mesure en tapant à l'écran (environnements calmes)</li>
+                            <li><strong>Mode clap</strong> : détection des claps par micro (groove avec tout le corps)</li>
+                            <li><strong>Réglage BPM</strong> : de 40 à 200 BPM</li>
+                            <li><strong>Statistiques</strong> : erreur moyenne, tendances rushing/dragging chiffrées</li>
+                            <li><strong>Calibration</strong> : compense automatiquement la latence de l'appareil</li>
+                        </ul>
+                        <div class="warning-box">
+                            <div class="warning-box__title">⚠️ Écouteurs Bluetooth déconseillés</div>
+                            <div class="warning-box__content">
+                                Les écouteurs Bluetooth comme les AirPods peuvent introduire de quelques dizaines à plus de 100 ms de latence selon le codec et l'appareil. Pour une mesure précise, utilisez des écouteurs filaires ou le haut-parleur intégré.
+                            </div>
+                        </div>
+                        <p style="margin-top: var(--space-md);"><a href="/guides/rhythm-training/" style="color: var(--primary); font-weight: 700;">→ Aller plus loin : comprendre rushing, dragging et pocket</a></p>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Sight Reading -->
+            <article class="question-card" id="features-sightreading">
+                <div class="question-card__header">
+                    <span class="question-card__q"><svg class="icon" aria-hidden="true"><use href="/assets/icons.svg#icon-book-open"></use></svg></span>
+                    <h3 class="question-card__title">Lecture à vue (lecture à vue)</h3>
+                </div>
+                <div class="question-card__content">
+                    <div class="content-block">
+                        <p>Entraînement à identifier rapidement les notes sur la portée.</p>
+                        <ul class="content-list">
+                            <li><strong>Clé de sol / clé de fa</strong> : prise en charge des deux clés</li>
+                            <li><strong>Plage</strong> : personnalisez la plage d'octaves</li>
+                            <li><strong>Altérations</strong> : avec ou sans dièses/bémols</li>
+                            <li><strong>Temps de réponse</strong> : mesure la vitesse de lecture</li>
+                            <li><strong>Les 12 tonalités</strong> : filtrer par tonalité spécifique</li>
+                            <li><strong>Activer/désactiver les lignes supplémentaires</strong> : inclure ou exclure la zone des lignes supplémentaires</li>
+                            <li><strong>Mode point faible et analyse d'erreurs</strong> : entraîner les notes ratées, faire ressortir les schémas d'erreur</li>
+                        </ul>
+                        <p style="margin-top: var(--space-md);"><a href="/guides/sight-reading/" style="color: var(--primary); font-weight: 700;">→ Aller plus loin : la méthode des 5 notes repères et l'extension progressive</a></p>
+                    </div>
+                </div>
+            </article>
+
+
+        <div class="cta" style="margin-top: var(--space-2xl);">
+            <h2 class="cta__title">Commencez aujourd'hui</h2>
+            <p class="cta__text">
+                
+                
+                Entraînez-vous efficacement avec Solfege PRO.
+                
+            </p>
+            <a href="https://apps.apple.com/fr/app/id6756626617" class="cta__button">Télécharger sur l'App Store</a>
+        </div>
+    </main>
+
+    <footer class="practice-footer">
+        <p class="practice-footer__text">
+            &copy; 2026 Solfege PRO &mdash;
+            <a href="https://apps.apple.com/fr/app/id6756626617" class="practice-footer__link">App Store</a>
+        </p>
+    </footer>
+
+    <!-- Sticky bottom CTA (mobile) -->
+    <div class="sticky-cta">
+        <img class="sticky-cta__icon" src="/AppIcon.png" alt="Solfege PRO">
+        <div class="sticky-cta__text">
+            <strong>7 fonctionnalités, 1 app</strong>
+            Manche / Intervalles / Accords / Gammes / Progressions / Rythme / Lecture
+        </div>
+        <a href="https://apps.apple.com/fr/app/id6756626617" class="sticky-cta__button">Obtenir</a>
+    </div>
+
+    <script src="/practice/practice-features.js?v=1"></script>
+    <script src="/bootstrap.js?v=1" defer></script>
+</body>
+</html>

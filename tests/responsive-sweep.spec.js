@@ -19,26 +19,26 @@ const { test, expect } = require('@playwright/test');
 
 const PAGES = [
     // guides/ — long-form articles with diagrams
-    '/guides/interval-training.html',
-    '/guides/fretboard-training.html',
-    '/guides/ear-training-chords.html',
-    '/guides/ear-training-progressions.html',
-    '/guides/ear-training-scales.html',
-    '/guides/rhythm-training.html',
-    '/guides/groove-training.html',
-    '/guides/sight-reading.html',
-    '/guides/chord-function-curriculum.html',
-    '/guides/index.html',
+    '/guides/interval-training/',
+    '/guides/fretboard-training/',
+    '/guides/ear-training-chords/',
+    '/guides/ear-training-progressions/',
+    '/guides/ear-training-scales/',
+    '/guides/rhythm-training/',
+    '/guides/groove-training/',
+    '/guides/sight-reading/',
+    '/guides/chord-function-curriculum/',
+    '/guides/',
     // practice/ — menu hubs
-    '/practice/drums.html',
-    '/practice/guitar-bass.html',
-    '/practice/piano.html',
-    '/practice/training-menu.html',
-    '/practice/training-menu/interval.html',
-    '/practice/features.html',
+    '/practice/drums/',
+    '/practice/guitar-bass/',
+    '/practice/piano/',
+    '/practice/training-menu/',
+    '/practice/training-menu/interval/',
+    '/practice/features/',
     // entry / top
     '/',
-    '/start-here.html',
+    '/start-here/',
 ];
 
 // Boundary widths matter — 720/740/760/765/768/770/780 catch dead zones

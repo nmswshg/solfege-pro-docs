@@ -1,0 +1,735 @@
+<!DOCTYPE html>
+<html lang="en"
+      data-title-ja="コード機能の練習プラン — T/SD/D を 4 段階で習得 | ソルフェージュPRO"
+      data-title-en="Chord Function Curriculum — T/SD/D in 4 Stages | Solfege PRO"
+      data-title-fr="Entraînement aux fonctions d'accord — De la résolution aux progressions de 4 mesures | Solfege PRO"
+      data-title-de="Akkordfunktions-Training — Vom Auflösungsgefühl zur Vier-Takt-Akkordfolge | Solfege PRO">
+<head>
+    <meta charset="UTF-8">
+    <meta name="robots" content="index, follow">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#1A1A1E">
+    <title>Chord Function Curriculum — T/SD/D in 4 Stages | Solfege PRO</title>
+    <meta name="description" content="Four-stage plan for understanding progressions by function (T/SD/D): Lv1 basic triads, Lv2 Roman numerals, Lv3 borrowed chords, Lv4 modulation.">
+
+    <!-- Canonical -->
+    <link rel="canonical" href="https://solfegepro.com/en/guides/chord-function-curriculum/">
+    <link rel="alternate" hreflang="ja" href="https://solfegepro.com/guides/chord-function-curriculum/">
+    <link rel="alternate" hreflang="en" href="https://solfegepro.com/en/guides/chord-function-curriculum/">
+    <link rel="alternate" hreflang="fr" href="https://solfegepro.com/fr/guides/chord-function-curriculum/">
+    <link rel="alternate" hreflang="de" href="https://solfegepro.com/de/guides/chord-function-curriculum/">
+    <link rel="alternate" hreflang="x-default" href="https://solfegepro.com/guides/chord-function-curriculum/">
+<!-- OGP -->
+    <meta property="og:title" content="Chord Function Curriculum — T/SD/D in 4 Stages">
+    <meta property="og:description" content="Four-stage plan for understanding progressions by function (T/SD/D): Lv1 basic triads, Lv2 Roman numerals, Lv3 borrowed chords, Lv4 modulation.">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://solfegepro.com/en/guides/chord-function-curriculum/">
+    <meta property="og:site_name" content="ソルフェージュPRO">
+    <meta property="og:image" content="https://solfegepro.com/og-image.png">
+    <meta property="og:locale" content="en_US">
+    <meta property="og:locale:alternate" content="ja_JP">
+    <meta property="og:locale:alternate" content="fr_FR">
+    <meta property="og:locale:alternate" content="de_DE">
+    <meta property="article:published_time" content="2026-05-22">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Chord Function Curriculum — T/SD/D in 4 Stages">
+    <meta name="twitter:description" content="Four-stage plan for understanding progressions by function (T/SD/D): Lv1 basic triads, Lv2 Roman numerals, Lv3 borrowed chords, Lv4 modulation.">
+    <meta name="twitter:image" content="https://solfegepro.com/og-image.png">
+
+    <!-- Favicon -->
+    <link rel="icon" href="/AppIcon.png" type="image/png">
+    <link rel="apple-touch-icon" href="/AppIcon.png">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="/style.css?v=15">
+    <link rel="stylesheet" href="/guides/article.css?v=9">
+
+    <style>
+        /* Level cards (Lv1-Lv4) */
+        .level {
+            background: var(--surface);
+            border: 1px solid var(--surface-light);
+            border-left: 3px solid var(--primary);
+            border-radius: var(--radius-md);
+            padding: var(--space-lg);
+            margin: var(--space-lg) 0;
+        }
+        .level__head {
+            display: flex;
+            align-items: baseline;
+            gap: var(--space-md);
+            margin-bottom: var(--space-sm);
+            flex-wrap: wrap;
+        }
+        .level__badge {
+            display: inline-block;
+            padding: 2px 10px;
+            border-radius: var(--radius-sm);
+            font-size: 12px;
+            font-weight: 700;
+            background: rgba(212, 175, 55, 0.15);
+            color: var(--primary);
+            letter-spacing: 0.5px;
+            flex-shrink: 0;
+        }
+        .level__title {
+            font-size: 17px;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin: 0;
+        }
+        .level__goal {
+            font-size: 13px;
+            color: var(--text-secondary);
+            margin-bottom: var(--space-md);
+        }
+
+        /* Dual-label mapping table */
+        .dual-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: var(--space-md) 0;
+        }
+        .dual-table th,
+        .dual-table td {
+            padding: var(--space-sm) var(--space-md);
+            text-align: left;
+            font-size: 14px;
+            border-bottom: 1px solid var(--surface-light);
+        }
+        .dual-table th {
+            color: var(--text-secondary);
+            font-weight: 700;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .dual-table__tag {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: var(--radius-sm);
+            font-size: 12px;
+            font-weight: 600;
+        }
+        .dual-table__tag--t { background: rgba(74, 222, 128, 0.15); color: #4ADE80; }
+        .dual-table__tag--sd { background: rgba(251, 191, 36, 0.15); color: #FBBF24; }
+        .dual-table__tag--d { background: rgba(248, 113, 113, 0.15); color: #F87171; }
+        .dual-table__feel { color: var(--text-primary); font-weight: 500; }
+
+        /* 4-bar progression line */
+        .bars {
+            font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+            font-size: 15px;
+            background: var(--background);
+            border: 1px solid var(--surface-light);
+            border-radius: var(--radius-sm);
+            padding: var(--space-sm) var(--space-md);
+            margin: var(--space-sm) 0;
+            color: var(--text-primary);
+            overflow-x: auto; /* lint-skip: monospace ASCII bars + white-space:nowrap; intrinsic */
+            white-space: nowrap;
+        }
+        .bars__label {
+            display: inline-block;
+            min-width: 64px;
+            font-size: 11px;
+            color: var(--text-secondary);
+            font-family: var(--font-base, inherit);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-right: var(--space-sm);
+        }
+        .bars__answer {
+            color: var(--primary);
+            font-weight: 700;
+        }
+
+        @media (max-width: 768px) {
+            .level { padding: var(--space-md); }
+            .bars { font-size: 13px; }
+            .dual-table th, .dual-table td { padding: var(--space-xs) var(--space-sm); font-size: 13px; }
+        }
+    </style>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"コード機能トレーニング — 解決感から4小節進行まで","description":"T/SD/D を体感から学ぶ 4 段階の実践カリキュラム。","author":{"@type":"Organization","name":"ソルフェージュPRO"},"publisher":{"@type":"Organization","name":"ソルフェージュPRO","logo":{"@type":"ImageObject","url":"https://solfegepro.com/AppIcon.png"}},"datePublished":"2026-05-22","mainEntityOfPage":{"@type":"WebPage","@id":"https://solfegepro.com/guides/chord-function-curriculum.html"}}</script>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="nav__container">
+            <a href="/" class="nav__logo">
+                <img src="/AppIcon.png" alt="Solfege PRO" class="nav__logo-icon">
+                <span class="nav__logo-text">Solfege PRO</span>
+            </a>
+            <ul class="nav__list">
+                <li><a href="/" class="nav__link">Practice Guide</a></li>
+                <li><a href="/guides/" class="nav__link active">Guides</a></li>
+                <li><a href="/start-here/" class="nav__link">Where to Start?</a></li>
+            </ul>
+            <div class="nav__settings">
+                <button class="settings-btn" id="lang-toggle" title="Toggle language">
+                    <span id="lang-text">EN</span>
+                </button>
+                <button class="hamburger-btn" id="hamburger-btn" aria-label="Menu" aria-expanded="false" aria-controls="drawer">
+                    <span class="hamburger-btn__line"></span>
+                    <span class="hamburger-btn__line"></span>
+                    <span class="hamburger-btn__line"></span>
+                </button>
+            </div>
+        </div>
+    </nav>
+    <!-- Mobile drawer -->
+    <div class="drawer-overlay" id="drawer-overlay"></div>
+    <aside class="drawer" id="drawer" aria-label="Mobile menu" aria-hidden="true" inert>
+        <div class="drawer__header">
+            <span class="drawer__title">Menu</span>
+            <button class="drawer__close" id="drawer-close" aria-label="Close menu">×</button>
+        </div>
+        <ul class="drawer__list">
+            <li><a href="/" class="drawer__link">Practice Guide</a></li>
+            <li><a href="/guides/" class="drawer__link active">Guides</a></li>
+            <li><a href="/start-here/" class="drawer__link">Where to Start?</a></li>
+        </ul>
+    </aside>
+
+    <!-- Article Header -->
+    <header class="page-header">
+        <div class="page-header__meta">
+            <span class="page-header__tag">Function Curriculum</span>
+            <span>10 min read</span>
+        </div>
+        <h1 class="page-header__title">
+            
+            Chord Function Training<br>From Resolution Feel to 4-Bar Progressions
+            
+            
+        </h1>
+        <p class="page-header__subtitle">
+            
+            A 4-stage practical plan that builds your ear from "stable / opening / wanting to return" to identifying T / SD / D. The goal is to make chord function a felt sound, not a theoretical label.
+            
+            
+        </p>
+    </header>
+
+    <!-- Top-of-article CTA -->
+    <aside class="article-top-cta" aria-label="App promotion">
+        <div class="article-top-cta__body">
+            <p class="article-top-cta__title">
+                
+                Try this in Solfege PRO
+                
+                
+            </p>
+            <p class="article-top-cta__sub">
+                
+                ¥980/month · 1-week free trial
+                
+                
+            </p>
+        </div>
+        <a href="https://apps.apple.com/us/app/id6756626617" class="article-top-cta__button" data-cta-position="article_top">
+            
+            App Store →
+            
+            
+        </a>
+    </aside>
+
+    <!-- Article Body -->
+    <main class="article-body">
+
+        <!-- Section 1: Why curriculum -->
+        <h2 id="why-curriculum">Why a Curriculum?</h2>
+
+        <p>
+            
+            Most music learners have come across T / SD / D (Tonic, Subdominant, Dominant) at some point. Yet very few can listen to a song and instantly say "this is SD, this is D." The reason is simple: knowing the labels and being able to hear them are two completely different skills.
+            
+            
+        </p>
+
+        <p>
+            
+            This article is not a conceptual overview of functional harmony — it is a curriculum for actually building the ear. Required background is minimal: working through Lv1 to Lv4 in order takes you to reading 4-bar progressions by function.
+            
+            
+        </p>
+
+        <div class="article-note">
+            <div class="article-note__title">Related Background</div>
+            <p>The conceptual side (what T / SD / D are and why they are classified that way) is covered in <em>What Is Progression Training?</em>. This article is the practical follow-up.</p>
+        </div>
+
+        <!-- Section 2: Dual labels -->
+        <h2 id="dual-labels">Design Principle: Two Layers of Labels</h2>
+
+        <p>
+            
+            Leading with "T / SD / D" alone causes most learners to drop out. The labels carry no meaning yet. Answering "Dominant" without knowing what it feels like is just symbol manipulation — you either guess right or wrong, with no learning underneath.
+            
+            
+        </p>
+
+        <p>
+            
+            This curriculum therefore pairs <strong>felt labels</strong> (stable / opening / wanting to return) with <strong>function labels</strong> (T / SD / D) at every step. You start with felt labels only, and switch to function labels once recognition is stable.
+            
+            
+        </p>
+
+        <table class="dual-table">
+            <thead>
+                <tr>
+                    <th>Function</th>
+                    <th>Felt label</th>
+                    <th>Chords (Key of C)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><span class="dual-table__tag dual-table__tag--t">T</span></td>
+                    <td class="dual-table__feel">Stable / "I'm home"</td>
+                    <td>C, Am, Em</td>
+                </tr>
+                <tr>
+                    <td><span class="dual-table__tag dual-table__tag--sd">SD</span></td>
+                    <td class="dual-table__feel">Opening / stepping outside</td>
+                    <td>F, Dm</td>
+                </tr>
+                <tr>
+                    <td><span class="dual-table__tag dual-table__tag--d">D</span></td>
+                    <td class="dual-table__feel">Wanting to return / pulled back</td>
+                    <td>G, G7</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <p>
+            
+            The mapping is fixed, so the theory label later snaps into place naturally: "ah, that 'wanting to return' feeling was the Dominant." Going the other way around — theory first — usually doesn't stick.
+            
+            
+        </p>
+
+        <!-- Section 3: Why 4 bars -->
+        <h2 id="why-4-bars">Why 4 Bars Is the Right Unit</h2>
+
+        <p>
+            
+            The point of learning to hear function is, ultimately, to follow the flow of real music by ear. So the practice unit should resemble real songs as closely as possible.
+            
+            
+        </p>
+
+        <p>
+            
+            Three reasons to choose 4 bars:
+            
+            
+        </p>
+
+        <ol>
+            <li><strong>The T → SD → D → T cycle fits naturally</strong>. One function per bar across 4 bars = 16 beats. Long enough to develop, short enough to hold in memory.</li>
+            <li><strong>Same unit as pop progressions</strong>. Standards like I-V-vi-IV, I-IV-V-I, and ii-V-I-I are 4-bar (or 4-chord) units. Practice maps directly to real songs.</li>
+            <li><strong>The minimum unit that "feels like music"</strong>. Single chords or 2-chord pairs feel like drills; 4 bars suddenly sound like a fragment of a song. That feeling sustains motivation.</li>
+        </ol>
+
+        <!-- Section 4: 4 levels -->
+        <h2 id="four-levels">The 4-Stage Plan</h2>
+
+        <p>
+            
+            Jumping straight to 4-bar progressions is inefficient. Build the felt sense one at a time. Move to the next level when each Lv's goal is met — there is no fixed schedule.
+            
+            
+        </p>
+
+        <!-- Lv1 -->
+        <div class="level">
+            <div class="level__head">
+                <span class="level__badge">Lv 1</span>
+                <h3 class="level__title">"Resolved? Or still going?" — Build the D → T feel</h3>
+            </div>
+            <p class="level__goal"><strong>Goal</strong>: Tell "resolved" from "still going" at 8/10 accuracy.</p>
+
+            <p>
+                
+                Play just two chords. The listener answers a simple binary: "did the last chord feel like an ending?" The words "Dominant" and "Tonic" are not used at this stage.
+                
+                
+            </p>
+
+            <div class="bars"><span class="bars__label">Example</span>G → C &nbsp;&nbsp; / &nbsp;&nbsp; D → G &nbsp;&nbsp; / &nbsp;&nbsp; A → D &nbsp;&nbsp; <span class="bars__answer">→ 「解決した」</span></div>
+            <div class="bars"><span class="bars__label">Example</span>C → G &nbsp;&nbsp; / &nbsp;&nbsp; G → D &nbsp;&nbsp; / &nbsp;&nbsp; D → A &nbsp;&nbsp; <span class="bars__answer">→ 「まだ続きそう」</span></div>
+
+            <p>
+                
+                Mix the two patterns equally. Internally these are D → T and T → D, but the labels can wait until the next level. Skip this level and every later answer becomes symbol manipulation.
+                
+                
+            </p>
+        </div>
+
+        <!-- Lv2 -->
+        <div class="level">
+            <div class="level__head">
+                <span class="level__badge">Lv 2</span>
+                <h3 class="level__title">"Stable" vs "Wanting to Return" — T vs D</h3>
+            </div>
+            <p class="level__goal"><strong>Goal</strong>: Hear one chord right after the tonic and tell T (stable) from D (wanting to return) at 8/10 accuracy.</p>
+
+            <p>
+                
+                The crucial rule: <strong>never present chords in isolation</strong>. Playing a G on its own and asking "is this D?" is meaningless — G is T or D depending on context. Always anchor with the tonic first, then the test chord: C → G.
+                
+                
+            </p>
+
+            <p>
+                
+                In the key of C, use: <strong>C = T</strong>, <strong>G = D</strong>, <strong>G7 = D</strong>. Treat G and G7 as the same function — the learner registers functional sameness over tonal difference.
+                
+                
+            </p>
+
+            <div class="bars"><span class="bars__label">Example</span>C → G &nbsp;&nbsp; <span class="bars__answer">→ 安定 → 戻りたい (T → D)</span></div>
+            <div class="bars"><span class="bars__label">Example</span>C → G7 &nbsp;&nbsp; <span class="bars__answer">→ 安定 → 戻りたい (T → D)</span></div>
+            <div class="bars"><span class="bars__label">Example</span>C → C &nbsp;&nbsp; <span class="bars__answer">→ 安定 → 安定 (T → T)</span></div>
+
+            <p>
+                
+                The answer UI can be either "stable / wanting to return" or "T / D" — pick whichever fits the learner's current state.
+                
+                
+            </p>
+        </div>
+
+        <!-- Lv3 -->
+        <div class="level">
+            <div class="level__head">
+                <span class="level__badge">Lv 3</span>
+                <h3 class="level__title">Add "Opening" — Introduce SD</h3>
+            </div>
+            <p class="level__goal"><strong>Goal</strong>: Pick from "stable / opening / wanting to return" for one chord after the tonic at 8/10 accuracy.</p>
+
+            <p>
+                
+                SD lacks the clear identity of D. So it is most efficient to teach it <strong>by contrast with D</strong>: not "wanting to return" — instead "stepping outside" or "opening up."
+                
+                
+            </p>
+
+            <p>
+                
+                SD chords in C: <strong>F = SD</strong>, <strong>Dm = SD</strong>. Add these to Lv2's C / G / G7 to make the choice a 3-way.
+                
+                
+            </p>
+
+            <div class="bars"><span class="bars__label">Compare</span>C → F &nbsp;&nbsp; <span class="bars__answer">→ 安定 → 広がる (T → SD)</span></div>
+            <div class="bars"><span class="bars__label">Compare</span>C → G &nbsp;&nbsp; <span class="bars__answer">→ 安定 → 戻りたい (T → D)</span></div>
+            <div class="bars"><span class="bars__label">Compare</span>C → Dm &nbsp;&nbsp; <span class="bars__answer">→ 安定 → 広がる (T → SD)</span></div>
+
+            <p>
+                
+                F and Dm sound different but share the SD function. <strong>What you are tracking is function, not color</strong>. Beginners often get distracted by "F is bright, Dm is dark" — at this level, that distinction is noise.
+                
+                
+            </p>
+        </div>
+
+        <!-- Lv4 -->
+        <div class="level">
+            <div class="level__head">
+                <span class="level__badge">Lv 4</span>
+                <h3 class="level__title">4-Bar Progression Labeling — The Real Goal</h3>
+            </div>
+            <p class="level__goal"><strong>Goal</strong>: Hear a 4-bar progression once and label every bar's function (T / SD / D).</p>
+
+            <p>
+                
+                Format is simple: listen to a 4-bar progression, then label each bar with one of the three functions.
+                
+                
+            </p>
+
+            <p><strong>Beginner (T and D only)</strong></p>
+            <div class="bars">| C | G | C | C | &nbsp;&nbsp; <span class="bars__answer">T → D → T → T</span></div>
+            <div class="bars">| C | F | C | C | &nbsp;&nbsp; <span class="bars__answer">T → SD → T → T</span></div>
+            <div class="bars">| C | F | G | C | &nbsp;&nbsp; <span class="bars__answer">T → SD → D → T</span></div>
+
+            <p><strong>Intermediate (with substitutes)</strong></p>
+            <div class="bars">| C | Dm | G | C | &nbsp;&nbsp; <span class="bars__answer">T → SD → D → T</span></div>
+            <div class="bars">| Am | Dm | G | C | &nbsp;&nbsp; <span class="bars__answer">T → SD → D → T</span></div>
+            <div class="bars">| C | G | Am | F | &nbsp;&nbsp; <span class="bars__answer">T → D → T → SD</span></div>
+
+            <p><strong>Advanced (non-standard ordering)</strong></p>
+            <div class="bars">| F | G | Em | Am | &nbsp;&nbsp; <span class="bars__answer">SD → D → T → T</span></div>
+            <div class="bars">| Dm | G | C | Am | &nbsp;&nbsp; <span class="bars__answer">SD → D → T → T</span></div>
+
+            <div class="article-note">
+                <div class="article-note__title">Out of scope for the MVP</div>
+                <p>Secondary dominants (V/V, etc.) and borrowed chords are out of scope at Lv4. For instance, the E7 in "| C | E7 | Am | G |" is a secondary dominant — including it now breaks the clean 3-function choice. Stay strictly diatonic in the MVP.</p>
+            </div>
+        </div>
+
+        <!-- Section 5: Spec -->
+        <h2 id="spec">Question Spec</h2>
+
+        <p>
+            
+            To keep the listener focused on function and nothing else, the audio spec is intentionally simple and fixed.
+            
+            
+        </p>
+
+        <table class="dual-table">
+            <thead>
+                <tr>
+                    <th>Parameter</th>
+                    <th>Recommended</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Tempo</td>
+                    <td>BPM 70–90</td>
+                </tr>
+                <tr>
+                    <td>Time signature</td>
+                    <td>4/4</td>
+                </tr>
+                <tr>
+                    <td>Per bar</td>
+                    <td>1 chord</td>
+                </tr>
+                <tr>
+                    <td>Voicing pattern</td>
+                    <td>Block chords (whole notes)</td>
+                </tr>
+                <tr>
+                    <td>Sound</td>
+                    <td>Piano</td>
+                </tr>
+                <tr>
+                    <td>Tonic preview</td>
+                    <td>ON for Lv1–Lv3; toggle at Lv4</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <p>
+            
+            Arpeggios or rhythmic accompaniments (brushed, bossa, shuffle, etc.) sound richer but pull attention away from function and onto rhythm, color, and texture. Lock voicing to plain block piano chords first; expand timbre only once function recognition is stable.
+            
+            
+        </p>
+
+        <!-- Section 6: Dual UI -->
+        <h2 id="dual-ui">Designing the Answer UI in Two Layers</h2>
+
+        <p>
+            
+            For the same correct answer, offer two presentation modes. Learners choose the one that matches their current level.
+            
+            
+        </p>
+
+        <table class="dual-table">
+            <thead>
+                <tr>
+                    <th>Mode</th>
+                    <th>Choice labels</th>
+                    <th>Recommended for</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Beginner mode</td>
+                    <td>stable / opening / wanting to return</td>
+                    <td>Lv1–Lv3</td>
+                </tr>
+                <tr>
+                    <td>Theory mode</td>
+                    <td>T / SD / D</td>
+                    <td>Lv4 late stage onwards</td>
+                </tr>
+                <tr>
+                    <td>Dual mode</td>
+                    <td>stable (T) / opening (SD) / wanting to return (D)</td>
+                    <td>transitional stage</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <p>
+            
+            Switching to theory mode is never forced. The essential learning is reaching the point where you can answer by feel — labels are a byproduct. That said, talking to other musicians requires the labels, so encourage the move deliberately.
+            
+            
+        </p>
+
+        <!-- Section 7: Beyond -->
+        <h2 id="beyond">Beyond the Curriculum</h2>
+
+        <p>
+            
+            Once Lv4 is stable, the next themes layer in. A suggested order:
+            
+            
+        </p>
+
+        <ol>
+            <li><strong>Substitute chord recognition</strong> — distinguish vi / iii / ii from I / V / IV at the function level.</li>
+            <li><strong>Change keys</strong> — verify the same skill in keys other than C.</li>
+            <li><strong>Take on song-style progressions</strong> — identify standards like I-V-vi-IV, ii-V-I, and turnaround patterns by ear.</li>
+            <li><strong>Secondary dominants &amp; borrowed chords</strong> — sounds that step outside the three-function frame. From here, separate articles take over.</li>
+        </ol>
+
+        <!-- Section 8: In Solfege PRO -->
+        <h2 id="in-app">Doing This in Solfege PRO</h2>
+
+        <p>
+            
+            Solfege PRO's Progression Training can reproduce Lv2 onwards. Mapping between curriculum and app settings:
+            
+            
+        </p>
+
+        <table class="dual-table">
+            <thead>
+                <tr>
+                    <th>Lv</th>
+                    <th>App settings</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Lv 1</td>
+                    <td>2-chord length + Function mode + tonic preview ON. Ideally reskin the answer chips to "stable / wanting to return."</td>
+                </tr>
+                <tr>
+                    <td>Lv 2</td>
+                    <td>2-chord length + Function mode + tonic preview ON. Two-way T / D choice.</td>
+                </tr>
+                <tr>
+                    <td>Lv 3</td>
+                    <td>2-chord length + Function mode + tonic preview ON. Three-way T / SD / D choice.</td>
+                </tr>
+                <tr>
+                    <td>Lv 4</td>
+                    <td>4-chord length + Function mode. Tonic preview ON early, OFF later.</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <!-- Section 9: Honest limitations -->
+        <h2 id="limitations">What Solfege PRO Alone Cannot Cover</h2>
+
+        <p>
+            
+            Let's be honest.
+            
+            
+        </p>
+
+        <div class="article-honest">
+            <div class="article-honest__title">Areas the app alone cannot fully handle</div>
+            <p>
+                <strong>Lv1 binary (resolved / still going)</strong> — the standard answer UI uses T / SD / D labels. For Lv1's binary, you mentally translate "resolved" = T and "still going" = D while practicing.
+            </p>
+            <p>
+                <strong>Automatic felt-label mode</strong> — there is no built-in toggle that swaps the function chips for felt labels. Use the mapping table in this article and translate as you go.
+            </p>
+            <p>
+                <strong>Secondary dominants &amp; modulation</strong> — this curriculum stays fully diatonic. They matter later but lie outside the app's current scope.
+            </p>
+        </div>
+
+        <!-- Mid-article CTA -->
+        <div class="article-cta-subtle">
+            <p class="article-cta-subtle__text">Try Lv1 for 5 minutes and check your baseline</p>
+            <a href="https://apps.apple.com/us/app/id6756626617" class="article-cta-subtle__button">View on App Store</a>
+        </div>
+
+        <!-- Section 10: Recommended path -->
+        <h2 id="how-to-use">Recommended Path</h2>
+
+        <ol>
+            <li><strong>Try Lv1 for one session</strong> — establish your baseline. Can you tell "resolved" from "still going" instantly? Five minutes is enough.</li>
+            <li><strong>10–15 min/day, 5 days/week</strong> — short, frequent. Spacing is the learning.</li>
+            <li><strong>Don't advance until you score 8/10</strong> — stay on each level until its goal is met. Skipping ahead breaks Lv4 every time.</li>
+            <li><strong>Lv4: tonic preview ON early, OFF late</strong> — once OFF works, this skill maps directly to transcribing real songs.</li>
+            <li><strong>Verify with songs you love</strong> — write out the function labels for a 4-bar chorus you already know. If you can, the curriculum is done.</li>
+        </ol>
+
+        <div class="article-note">
+            <div class="article-note__title">A Note on Sticking With It</div>
+            <p>The right mindset is "move on when the goal is met," not "move on when I understand everything." Perfectionism is the single biggest reason people quit. 8/10 is enough.</p>
+        </div>
+
+    </main>
+
+    <!-- Final CTA -->
+    <section class="article-cta">
+        <h2 class="article-cta__title">Start with 5 Minutes of Lv1</h2>
+        <p class="article-cta__text">
+            
+            Start with "resolved / still going" and the body learns functional harmony before the theory ever lands.<br>Work through the four stages in order to read 4-bar progressions by ear.<br>Open Solfege PRO's Progression Training and begin at Lv1.
+            
+            
+        </p>
+                <p style="font-size: 14px; color: var(--text-secondary); margin-bottom: var(--space-md); text-align: center;">
+            
+            ¥980/month (1-week free trial)
+            
+            
+        </p>
+        <a href="https://apps.apple.com/us/app/id6756626617" class="app-store-link" aria-label="Download on the App Store">
+            
+            <img class="app-store-link__img" src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/en-us" alt="Download on the App Store">
+            
+            
+        </a>
+    </section>
+
+    <!-- Related Content -->
+    <div class="article-related">
+        <div class="article-related__title">Related Content</div>
+        <a href="/guides/ear-training-progressions/" class="article-related__link">
+            <div class="article-related__link-title">What Is Progression Training?</div>
+            <div class="article-related__link-desc">Conceptual overview of functional harmony and progression recognition — the background to this curriculum.</div>
+        </a>
+        <a href="/guides/ear-training-chords/" class="article-related__link">
+            <div class="article-related__link-title">Chord Recognition Guide</div>
+            <div class="article-related__link-desc">Training for single-chord recognition (Major / Minor / 7th). Progresses well in parallel.</div>
+        </a>
+    </div>
+
+    <!-- Article Note -->
+    <aside class="article-endnote">
+        <p class="article-endnote__text">
+            
+            This curriculum is organized as a stage-based ear-training design example, drawing on general functional harmony theory and music-education practice. The labels "stable / opening / wanting to return" are pedagogical conveniences to evoke felt experience, not formal music theory terms. The article is not aligned with any specific exam or syllabus — it is an independently designed practical plan.
+            
+            
+        </p>
+    </aside>
+
+    <!-- Footer -->
+    <footer class="article-footer">
+        <p class="article-footer__text">
+            &copy; 2026 Solfege PRO &mdash;
+            <a href="https://apps.apple.com/us/app/id6756626617" class="article-footer__link">App Store</a>
+        </p>
+    </footer>
+    <script src="/bootstrap.js?v=1" defer></script>
+</body>
+</html>

@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="ja"
+      data-title-ja="ピアノ練習ガイド | ソルフェージュPRO"
+      data-title-en="Piano Practice Guide | Solfege PRO"
+      data-title-fr="Guide d'entraînement piano | Solfege PRO"
+      data-title-de="Übungsleitfaden Klavier | Solfege PRO">
+<head>
+    <meta charset="UTF-8">
+    <meta name="robots" content="index, follow">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#1A1A1E">
+    <title>ピアノ練習ガイド | ソルフェージュPRO</title>
+    <meta name="description" content="ピアノ奏者向け Q&amp;A — 譜面なしで弾けない、コード譜で困る、同じボイシングばかり、即興がきかない、といった具体的な悩みに対する練習プランを、Solfege PRO の機能と組み合わせて解説します。">
+
+    <link rel="canonical" href="https://solfegepro.com/practice/piano/">
+    <link rel="alternate" hreflang="ja" href="https://solfegepro.com/practice/piano/">
+    <link rel="alternate" hreflang="en" href="https://solfegepro.com/en/practice/piano/">
+    <link rel="alternate" hreflang="fr" href="https://solfegepro.com/fr/practice/piano/">
+    <link rel="alternate" hreflang="de" href="https://solfegepro.com/de/practice/piano/">
+    <link rel="alternate" hreflang="x-default" href="https://solfegepro.com/practice/piano/">
+<link rel="icon" href="/AppIcon.png" type="image/png">
+    <link rel="apple-touch-icon" href="/AppIcon.png">
+
+    <meta property="og:title" content="ピアノ練習ガイド">
+    <meta property="og:description" content="ピアノ奏者向け Q&amp;A — 譜面なしで弾けない、コード譜で困る、同じボイシングばかり、即興がきかない、といった具体的な悩みに対する練習プランを、Solfege PRO の機能と組み合わせて解説します。">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://solfegepro.com/practice/piano/">
+    <meta property="og:site_name" content="ソルフェージュPRO">
+    <meta property="og:image" content="https://solfegepro.com/og-image.png">
+    <meta property="og:locale" content="ja_JP">
+    <meta property="og:locale:alternate" content="en_US">
+    <meta property="og:locale:alternate" content="fr_FR">
+    <meta property="og:locale:alternate" content="de_DE">
+
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="ピアノ練習ガイド">
+    <meta name="twitter:description" content="ピアノ奏者向け Q&amp;A — 譜面なしで弾けない、コード譜で困る、同じボイシングばかり、即興がきかない、といった具体的な悩みに対する練習プランを、Solfege PRO の機能と組み合わせて解説します。">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="/style.css?v=15">
+
+    <style>
+        .practice-body {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 var(--space-lg) var(--space-2xl);
+        }
+        .practice-body .section__header {
+            justify-content: center;
+        }
+        .practice-footer {
+            background: var(--surface);
+            padding: var(--space-xl) var(--space-lg);
+            text-align: center;
+            border-top: 1px solid var(--surface-light);
+        }
+        .practice-footer__text {
+            color: var(--text-secondary);
+            font-size: 14px;
+        }
+        .practice-footer__link {
+            color: var(--primary);
+            text-decoration: none;
+        }
+        @media (max-width: 768px) {
+            .practice-body { padding: 0 var(--space-md) var(--space-xl); }
+        }
+        @media (max-width: 480px) {
+        }
+    </style>
+</head>
+<body>
+    <nav class="nav">
+        <div class="nav__container">
+            <a href="/" class="nav__logo">
+                <img src="/AppIcon.png" alt="Solfege PRO" class="nav__logo-icon">
+                <span class="nav__logo-text">ソルフェージュPRO</span>
+            </a>
+            <ul class="nav__list">
+                <li><a href="/" class="nav__link active">練習ガイド</a></li>
+                <li><a href="/guides/" class="nav__link">ガイド一覧</a></li>
+                            <li><a href="/start-here/" class="nav__link">どこから始める？</a></li>
+            </ul>
+            <div class="nav__settings">
+                <button class="settings-btn" id="lang-toggle" title="Toggle language">
+                    <span id="lang-text">EN</span>
+                </button>
+                <button class="hamburger-btn" id="hamburger-btn" aria-label="Menu" aria-expanded="false" aria-controls="drawer">
+                    <span class="hamburger-btn__line"></span>
+                    <span class="hamburger-btn__line"></span>
+                    <span class="hamburger-btn__line"></span>
+                </button>
+            </div>
+        </div>
+    </nav>
+        <!-- Mobile drawer (hidden on desktop) -->
+        <div class="drawer-overlay" id="drawer-overlay"></div>
+        <aside class="drawer" id="drawer" aria-label="Mobile menu" aria-hidden="true" inert>
+            <div class="drawer__header">
+                <span class="drawer__title">メニュー</span>
+                <button class="drawer__close" id="drawer-close" aria-label="Close menu">×</button>
+            </div>
+            <ul class="drawer__list">
+                    <li><a href="/" class="drawer__link active">練習ガイド</a></li>
+                    <li><a href="/guides/" class="drawer__link">ガイド一覧</a></li>
+                    <li><a href="/start-here/" class="drawer__link">どこから始める？</a></li>
+            </ul>
+        </aside>
+
+
+    <header class="page-header">
+        <div class="page-header__icon"><svg class="icon" aria-hidden="true"><use href="/assets/icons.svg#icon-piano"></use></svg></div>
+        <h1 class="page-header__title">ピアノ 練習ガイド</h1>
+        <p class="page-header__subtitle">譜面依存、コード譜、ボイシング — ピアニストの課題を解決する練習メニュー</p>
+        <div class="page-header__meta">
+            <span class="page-header__badge">3 Q&amp;A</span>
+        </div>
+    </header>
+
+    <main class="practice-body">
+            <div class="section__header">
+                <span class="section__icon"><svg class="icon" aria-hidden="true"><use href="/assets/icons.svg#icon-piano"></use></svg></span>
+                <h2 class="section__title">ピアノ・キーボード</h2>
+                <div class="section__header-actions">
+                    <button class="expand-all-btn">すべて開く</button>
+                </div>
+            </div>
+
+            <!-- Section TOC -->
+            <nav class="section-toc">
+                <div class="section-toc__title">目次</div>
+                <ul class="section-toc__list">
+                    <li class="section-toc__item" data-target="piano-q1">譜面がないと弾けない</li>
+                    <li class="section-toc__item" data-target="piano-q2">コード譜で困る</li>
+                    <li class="section-toc__item" data-target="piano-q3">同じボイシング</li>
+                </ul>
+            </nav>
+
+            <!-- Q1: 譜面がないと弾けない / Can't play without sheet music -->
+            <article class="question-card" id="piano-q1">
+                <div class="question-card__header">
+                    <span class="question-card__q">Q</span>
+                    <h3 class="question-card__title">
+                        譜面がないと何も弾けない
+                        
+                        
+                        
+                    </h3>
+                </div>
+                <div class="question-card__content">
+                    <div class="content-block">
+                        <h4 class="content-block__title">💡 推奨する練習方法</h4>
+                        <div class="tips-box">
+                            <div class="tips-box__content">
+                                <p><strong>インターバル認識 + コード認識で「聴覚→指」の回路を構築。</strong></p>
+                                <p>音を聴いて「これは長3度」と分かる→鍵盤上の位置が見える、という変換を訓練する。</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="content-block">
+                        <h4 class="content-block__title">なぜこの練習が必要か</h4>
+                        <p>クラシック訓練を受けたピアニストに多い悩み。譜面は読めるが、<span class="highlight">「音を聴いて弾く」経験が少ない。</span></span>.</span>.</span></p>
+                        <p>譜面は「視覚情報→指の動き」の変換。一方、セッションやアドリブでは「聴覚情報→指の動き」が必要。この回路が育っていない。</p>
+                    </div>
+
+                    <div class="content-block">
+                        <h4 class="content-block__title">科学的根拠</h4>
+                        <div class="science-box">
+                            <div class="science-box__title">視覚依存と聴覚処理</div>
+                            <div class="science-box__content">
+                                <p>譜読みは「視覚野→運動野」の神経回路を使う。一方、耳コピや即興は「聴覚野→運動野」の別の回路を使う。</p>
+                                <p><strong>片方の回路だけ発達していても、もう片方は自動的には発達しない。</strong>視覚依存の演奏者が聴覚処理を鍛えるには、意識的に「聴いて弾く」訓練が必要。</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="content-block">
+                        <h4 class="content-block__title">この練習が解決する課題</h4>
+                        <ul class="content-list">
+                            <li>コードネームだけ渡されると固まる</li>
+                            <li>「自由に弾いて」と言われると何も出てこない</li>
+                            <li>暗譜しても、少し間違えると立て直せない</li>
+                            <li>セッションに参加できない</li>
+                        </ul>
+                    </div>
+
+                    <div class="content-block">
+                        <h4 class="content-block__title">推奨する練習方法</h4>
+                        <p><strong>使用機能：インターバル認識 → コード認識</strong></p>
+                        <div class="tips-box">
+                            <div class="tips-box__title">💡 段階的アプローチ</div>
+                            <div class="tips-box__content">
+                                <ol class="content-list content-list--numbered">
+                                    <li>まず音程認識（インターバル認識）で「聴覚→音名」の回路を作る</li>
+                                    <li>次にコード認識（コード認識）で「響き→コード名」を学ぶ</li>
+                                    <li>最後に実際の鍵盤で「聴いた音を弾く」練習をする</li>
+                                </ol>
+                                <p>いきなりセッションに参加するのではなく、段階を踏むことで「聴覚→運動」の回路を育てる。</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Mid-article CTA -->
+            <div class="article-cta-mid">
+                <div class="article-cta-mid__icon"><svg class="icon" aria-hidden="true"><use href="/assets/icons.svg#icon-piano"></use></svg></div>
+                <div class="article-cta-mid__body">
+                    <div class="article-cta-mid__title">耳と鍵盤を結ぶ訓練</div>
+                    <div class="article-cta-mid__text">Interval / コード認識 で「聴いた音 → 鍵盤位置」の自動化を計測。</div>
+                </div>
+                <a href="https://apps.apple.com/jp/app/id6756626617" class="article-cta-mid__button">アプリで試す</a>
+            </div>
+
+            <!-- Q2: コード譜だけで弾けない / Don't know what to play with just chord charts -->
+            <article class="question-card" id="piano-q2">
+                <div class="question-card__header">
+                    <span class="question-card__q">Q</span>
+                    <h3 class="question-card__title">
+                        コード譜だけ渡されても、何を弾けばいいか分からない
+                        
+                        
+                        
+                    </h3>
+                </div>
+                <div class="question-card__content">
+                    <div class="content-block">
+                        <h4 class="content-block__title">💡 推奨する練習方法</h4>
+                        <div class="tips-box">
+                            <div class="tips-box__content">
+                                <p><strong>コード認識（コード認識）で「響き」と「構成音」を結びつける。</strong></p>
+                                <p>Major/minor/7thなど基本コードの響きを聴き分ける訓練から始め、徐々にテンションコードへ拡張。</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="content-block">
+                        <h4 class="content-block__title">なぜこの練習が必要か</h4>
+                        <p>「Cmaj7」という記号は見たことがある。でも、それが<span class="highlight">どんな響きで、鍵盤上でどう押さえるかが結びついていない。</span>.</span> manque.</span> fehlt.</span></p>
+                        <p>コードの「理論的知識」と「音としての認識」が分離している状態。両者を統合する訓練が必要。</p>
+                    </div>
+
+                    <div class="content-block">
+                        <h4 class="content-block__title">この練習が解決する課題</h4>
+                        <ul class="content-list">
+                            <li>コードネームは知っているが、響きが想像できない</li>
+                            <li>ボイシングのバリエーションがない</li>
+                            <li>コード進行を見ても、どうつなげていいか分からない</li>
+                            <li>右手で何を弾くか決められない</li>
+                        </ul>
+                    </div>
+
+                    <div class="content-block">
+                        <h4 class="content-block__title">どのような状態になれば卒業か</h4>
+                        <div class="level-cards">
+                            <div class="level-card level-card--beginner">
+                                <h5 class="level-card__title">初心者の卒業基準</h5>
+                                <div class="level-card__content">
+                                    <p>3和音のコードを聴いて識別</p>
+                                    <p>正答率 <strong>80%</strong></p>
+                                    <p><em>Major/minor/dimが聴き分けられる</em></p>
+                                </div>
+                            </div>
+                            <div class="level-card level-card--intermediate">
+                                <h5 class="level-card__title">中級者の卒業基準</h5>
+                                <div class="level-card__content">
+                                    <p>4和音のコードを聴いて識別</p>
+                                    <p>正答率 <strong>80%</strong></p>
+                                    <p><em>7th系コードが聴き分けられる</em></p>
+                                </div>
+                            </div>
+                            <div class="level-card level-card--advanced">
+                                <h5 class="level-card__title">上級者の卒業基準</h5>
+                                <div class="level-card__content">
+                                    <p>テンションコードを聴いて識別</p>
+                                    <p>正答率 <strong>75%</strong></p>
+                                    <p><em>9th/11th/13thが聴き分けられる</em></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="content-block">
+                        <h4 class="content-block__title">推奨する練習方法</h4>
+                        <p><strong>使用機能：コード認識</strong></p>
+                        <div class="tips-box">
+                            <div class="tips-box__title">💡 「響きから入る」アプローチ</div>
+                            <div class="tips-box__content">
+                                <p>理論から入ると「C-E-G-BだからCmaj7」という知識になる。響きから入ると「このキラキラした感じがmaj7」という感覚になる。</p>
+                                <p>まずコード認識で響きを覚え、その後に理論を紐づける。逆順で学ぶことで「聴覚→理解」の回路ができる。</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Q3: ボイシングのバリエーションがない -->
+            <article class="question-card" id="piano-q3">
+                <div class="question-card__header">
+                    <span class="question-card__q">Q</span>
+                    <h3 class="question-card__title">いつも同じボイシングで弾いてしまう</h3>
+                </div>
+                <div class="question-card__content">
+                    <div class="content-block">
+                        <h4 class="content-block__title">💡 推奨する練習方法</h4>
+                        <div class="tips-box">
+                            <div class="tips-box__content">
+                                <p><strong>コード認識 + インターバル認識の併用でトップノートを聴き分ける。</strong></p>
+                                <p>同じコードでも「トップがソの場合」「トップがシの場合」で響きが違うことを耳で認識できるようにする。</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="content-block">
+                        <h4 class="content-block__title">なぜこの練習が必要か</h4>
+                        <p>Cmaj7をいつも「ド-ミ-ソ-シ」で弾いていませんか？同じコードでも、<span class="highlight">どの音をトップに持ってくるかで響きが変わる。</span>.</span>.</span>.</span></p>
+                        <p>プロはメロディとの関係、前後のコードとのつながりを考えてボイシングを選ぶ。そのためには「トップノートを聴き分ける」訓練が必要。</p>
+                    </div>
+
+                    <div class="content-block">
+                        <h4 class="content-block__title">科学的根拠</h4>
+                        <div class="science-box">
+                            <div class="science-box__title">トップノートの心理的影響</div>
+                            <div class="science-box__content">
+                                <p>人間の聴覚は<strong>最も高い音（トップノート）に最も注意を向ける</strong>。同じコードでもトップノートが違えば、印象が大きく変わる。</p>
+                                <p>メロディがEのとき、伴奏のCmaj7もEをトップに持ってくると調和する。逆にBをトップにすると緊張感が出る。この使い分けがボイシングの技術。</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="content-block">
+                        <h4 class="content-block__title">推奨する練習方法</h4>
+                        <div class="tips-box">
+                            <div class="tips-box__title">💡 「トップノート指定練習」</div>
+                            <div class="tips-box__content">
+                                <p>同じコード進行を、トップノートを変えて弾く練習。</p>
+                                <ul class="content-list">
+                                    <li>1回目：全てルートをトップに</li>
+                                    <li>2回目：全て3rdをトップに</li>
+                                    <li>3回目：全て7thをトップに</li>
+                                </ul>
+                                <p>響きの違いを耳で確認しながら、ボイシングの選択肢を増やす。</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+
+        <div class="cta" style="margin-top: var(--space-2xl);">
+            <h2 class="cta__title">今日から始めよう</h2>
+            <p class="cta__text">
+                ソルフェージュPROで、効率的なトレーニングを。
+                
+                
+                
+            </p>
+            <a href="https://apps.apple.com/jp/app/id6756626617" class="cta__button">App Storeでダウンロード</a>
+        </div>
+    </main>
+
+    <footer class="practice-footer">
+        <p class="practice-footer__text">
+            &copy; 2026 ソルフェージュPRO &mdash;
+            <a href="https://apps.apple.com/jp/app/id6756626617" class="practice-footer__link">App Store</a>
+        </p>
+    </footer>
+
+    <!-- Sticky bottom CTA (mobile) -->
+    <div class="sticky-cta">
+        <img class="sticky-cta__icon" src="/AppIcon.png" alt="Solfege PRO">
+        <div class="sticky-cta__text">
+            <strong>譜面なしで弾ける耳に</strong>
+            音程・コード認識を体系的に
+        </div>
+        <a href="https://apps.apple.com/jp/app/id6756626617" class="sticky-cta__button">入手</a>
+    </div>
+
+    <script src="/practice/practice-features.js?v=1"></script>
+    <script src="/bootstrap.js?v=1" defer></script>
+</body>
+</html>

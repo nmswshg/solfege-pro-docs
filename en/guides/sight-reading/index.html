@@ -1,0 +1,843 @@
+<!DOCTYPE html>
+<html lang="en"
+      data-title-ja="譜読みの基礎 — 音名認識から先読みまで | ソルフェージュPRO"
+      data-title-en="Sight-Reading Fundamentals — Notes to Look-Ahead | Solfege PRO"
+      data-title-fr="Qu'est-ce que la lecture à vue ? — Bases et entraînement pour lire la portée rapidement | Solfege PRO"
+      data-title-de="Was ist Vom-Blatt-Lesen? — Grundlagen und Übungen zum schnellen Notenlesen | Solfege PRO">
+<head>
+    <meta charset="UTF-8">
+    <meta name="robots" content="index, follow">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#1A1A1E">
+    <title>Sight-Reading Fundamentals — Notes to Look-Ahead | Solfege PRO</title>
+    <meta name="description" content="From treble and bass clef note names to ledger lines, key signatures, and eye-hand span — a step-by-step plan to speed up your sight-reading.">
+
+    <!-- Canonical -->
+    <link rel="canonical" href="https://solfegepro.com/en/guides/sight-reading/">
+    <link rel="alternate" hreflang="ja" href="https://solfegepro.com/guides/sight-reading/">
+    <link rel="alternate" hreflang="en" href="https://solfegepro.com/en/guides/sight-reading/">
+    <link rel="alternate" hreflang="fr" href="https://solfegepro.com/fr/guides/sight-reading/">
+    <link rel="alternate" hreflang="de" href="https://solfegepro.com/de/guides/sight-reading/">
+    <link rel="alternate" hreflang="x-default" href="https://solfegepro.com/guides/sight-reading/">
+<!-- OGP -->
+    <meta property="og:title" content="Sight-Reading Fundamentals — Notes to Look-Ahead">
+    <meta property="og:description" content="From treble and bass clef note names to ledger lines, key signatures, and eye-hand span — a step-by-step plan to speed up your sight-reading.">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://solfegepro.com/en/guides/sight-reading/">
+    <meta property="og:site_name" content="ソルフェージュPRO">
+    <meta property="og:image" content="https://solfegepro.com/og-image.png">
+    <meta property="og:locale" content="en_US">
+    <meta property="og:locale:alternate" content="ja_JP">
+    <meta property="og:locale:alternate" content="fr_FR">
+    <meta property="og:locale:alternate" content="de_DE">
+    <meta property="article:published_time" content="2026-03-31">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Sight-Reading Fundamentals — Notes to Look-Ahead">
+    <meta name="twitter:description" content="From treble and bass clef note names to ledger lines, key signatures, and eye-hand span — a step-by-step plan to speed up your sight-reading.">
+    <meta name="twitter:image" content="https://solfegepro.com/og-image.png">
+
+    <!-- Favicon -->
+    <link rel="icon" href="/AppIcon.png" type="image/png">
+    <link rel="apple-touch-icon" href="/AppIcon.png">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="/style.css?v=15">
+    <link rel="stylesheet" href="/guides/article.css?v=9">
+
+    <!-- Staff diagram styles -->
+    <style>
+        /* Staff Diagram */
+        .staff-diagram {
+            background: var(--surface);
+            border: 1px solid var(--surface-light);
+            border-radius: 12px;
+            padding: var(--space-xl) var(--space-lg);
+            margin: var(--space-xl) 0;
+            overflow-x: auto; /* lint-skip: musical staff notation is fixed-size visual */
+        }
+        .staff-diagram__title {
+            font-size: 13px;
+            color: var(--text-secondary);
+            text-align: center;
+            margin-bottom: var(--space-lg);
+            font-weight: 500;
+        }
+        .staff-container {
+            position: relative;
+            width: 100%;
+            max-width: 500px;
+            margin: 0 auto;
+            height: 160px;
+        }
+        .staff-line {
+            position: absolute;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: var(--text-secondary);
+            opacity: 0.4;
+        }
+        .staff-line:nth-child(1) { top: 20px; }
+        .staff-line:nth-child(2) { top: 40px; }
+        .staff-line:nth-child(3) { top: 60px; }
+        .staff-line:nth-child(4) { top: 80px; }
+        .staff-line:nth-child(5) { top: 100px; }
+        .staff-label {
+            position: absolute;
+            font-size: 10px;
+            color: var(--primary);
+            font-weight: 500;
+            white-space: nowrap;
+        }
+        .staff-note {
+            position: absolute;
+            width: 14px;
+            height: 10px;
+            background: var(--primary);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+        }
+        .staff-note-label {
+            position: absolute;
+            font-size: 11px;
+            color: var(--text-primary);
+            font-weight: 500;
+            transform: translateX(-50%);
+            white-space: nowrap;
+        }
+        .staff-clef {
+            position: absolute;
+            left: 8px;
+            font-size: 48px;
+            color: var(--text-secondary);
+            opacity: 0.7;
+            line-height: 1;
+        }
+        .staff-clef--treble { top: 18px; }
+        .staff-clef--bass { top: 10px; }
+        .staff-brace {
+            position: absolute;
+            left: 0;
+            top: 20px;
+            height: 80px;
+            width: 3px;
+            background: var(--text-secondary);
+            opacity: 0.4;
+            border-radius: 2px;
+        }
+        .ledger-line {
+            position: absolute;
+            width: 24px;
+            height: 1px;
+            background: var(--text-secondary);
+            opacity: 0.5;
+            transform: translateX(-50%);
+        }
+
+        /* Landmark Notes Diagram */
+        .landmark-diagram {
+            background: var(--surface);
+            border: 1px solid var(--surface-light);
+            border-radius: 12px;
+            padding: var(--space-xl) var(--space-lg);
+            margin: var(--space-xl) 0;
+        }
+        .landmark-diagram__title {
+            font-size: 13px;
+            color: var(--text-secondary);
+            text-align: center;
+            margin-bottom: var(--space-lg);
+            font-weight: 500;
+        }
+        .landmark-container {
+            position: relative;
+            width: 100%;
+            max-width: 500px;
+            margin: 0 auto;
+            height: 240px;
+        }
+        .landmark-note {
+            position: absolute;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+        }
+        .landmark-note__dot {
+            width: 16px;
+            height: 12px;
+            background: var(--primary);
+            border-radius: 50%;
+        }
+        .landmark-note__name {
+            font-size: 12px;
+            font-weight: 700;
+            color: var(--primary);
+        }
+        .landmark-note__desc {
+            font-size: 10px;
+            color: var(--text-secondary);
+            white-space: nowrap;
+        }
+
+        /* Skill Component List */
+        .skill-list {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--space-md);
+            margin: var(--space-lg) 0;
+        }
+        @media (max-width: 520px) {
+            .skill-list { grid-template-columns: 1fr; }
+        }
+        .skill-item {
+            background: var(--surface);
+            border: 1px solid var(--surface-light);
+            border-radius: 10px;
+            padding: var(--space-md) var(--space-lg);
+        }
+        .skill-item__name {
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 4px;
+        }
+        .skill-item__desc {
+            font-size: 12px;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        /* Difficulty Steps */
+        .difficulty-steps {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-sm);
+            margin: var(--space-lg) 0;
+        }
+        .difficulty-step {
+            display: flex;
+            align-items: center;
+            gap: var(--space-md);
+            background: var(--surface);
+            border: 1px solid var(--surface-light);
+            border-radius: 10px;
+            padding: var(--space-md) var(--space-lg);
+        }
+        .difficulty-step__number {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            background: var(--primary);
+            color: var(--background);
+            font-size: 13px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+        .difficulty-step__text {
+            font-size: 13px;
+            color: var(--text-primary);
+            line-height: 1.5;
+        }
+
+        /* Wall Item */
+        .wall-list {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-md);
+            margin: var(--space-lg) 0;
+        }
+        .wall-item {
+            background: var(--surface);
+            border-left: 3px solid var(--primary);
+            border-radius: 0 10px 10px 0;
+            padding: var(--space-md) var(--space-lg);
+        }
+        .wall-item__title {
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 4px;
+        }
+        .wall-item__desc {
+            font-size: 13px;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+    </style>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"譜読みとは何か — 五線譜を素早く読むための基礎と練習法","description":"五線譜を素早く正確に読むための基礎と段階的な練習法を紹介します。","author":{"@type":"Organization","name":"ソルフェージュPRO"},"publisher":{"@type":"Organization","name":"ソルフェージュPRO","logo":{"@type":"ImageObject","url":"https://solfegepro.com/AppIcon.png"}},"datePublished":"2026-04-05","mainEntityOfPage":{"@type":"WebPage","@id":"https://solfegepro.com/guides/sight-reading.html"}}</script>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="nav__container">
+            <a href="/" class="nav__logo">
+                <img src="/AppIcon.png" alt="Solfege PRO" class="nav__logo-icon">
+                <span class="nav__logo-text">Solfege PRO</span>
+            </a>
+            <ul class="nav__list">
+                <li><a href="/" class="nav__link">Practice Guide</a></li>
+                <li><a href="/guides/" class="nav__link active">Guides</a></li>
+                            <li><a href="/start-here/" class="nav__link">Where to Start?</a></li>
+            </ul>
+            <div class="nav__settings">
+                <button class="settings-btn" id="lang-toggle" title="Toggle language">
+                    <span id="lang-text">EN</span>
+                </button>
+                <button class="hamburger-btn" id="hamburger-btn" aria-label="Menu" aria-expanded="false" aria-controls="drawer">
+                    <span class="hamburger-btn__line"></span>
+                    <span class="hamburger-btn__line"></span>
+                    <span class="hamburger-btn__line"></span>
+                </button>
+            </div>
+        </div>
+    </nav>
+        <!-- Mobile drawer (hidden on desktop) -->
+        <div class="drawer-overlay" id="drawer-overlay"></div>
+        <aside class="drawer" id="drawer" aria-label="Mobile menu" aria-hidden="true" inert>
+            <div class="drawer__header">
+                <span class="drawer__title">Menu</span>
+                <button class="drawer__close" id="drawer-close" aria-label="Close menu">×</button>
+            </div>
+            <ul class="drawer__list">
+                    <li><a href="/" class="drawer__link">Practice Guide</a></li>
+                    <li><a href="/guides/" class="drawer__link active">Guides</a></li>
+                    <li><a href="/start-here/" class="drawer__link">Where to Start?</a></li>
+            </ul>
+        </aside>
+
+
+    <!-- Article Header -->
+    <header class="page-header">
+        <div class="page-header__meta">
+            <span class="page-header__tag">Sight Reading</span>
+            <span>10 min read</span>
+        </div>
+        <h1 class="page-header__title">
+            
+            What Is Sight Reading?<br>Foundations and Practice for<br>Reading Music Notation
+            
+            
+        </h1>
+        <p class="page-header__subtitle">
+            
+            Don't stop at "I'm bad at reading music." Knowing exactly where you stumble on the staff is the first step to improving your notation literacy.
+            
+            
+        </p>
+    </header>
+
+    <!-- Top-of-article CTA -->
+    <aside class="article-top-cta" aria-label="App promotion">
+        <div class="article-top-cta__body">
+            <p class="article-top-cta__title">
+                
+                Try this in Solfege PRO
+                
+                
+            </p>
+            <p class="article-top-cta__sub">
+                
+                ¥980/month · 1-week free trial
+                
+                
+            </p>
+        </div>
+        <a href="https://apps.apple.com/us/app/id6756626617" class="article-top-cta__button" data-cta-position="article_top">
+            
+            App Store →
+            
+            
+        </a>
+    </aside>
+
+    <!-- Article Body -->
+    <main class="article-body">
+
+        <!-- Section 1 -->
+        <h2 id="what-is-sight-reading">What Is "Sight Reading"?</h2>
+
+        <p>
+            
+            Sight reading, in its full sense, refers to performing from notation in real time (Lehmann &amp; Ericsson, 1996). Its <strong>foundational layer</strong>, however, is the rapid identification of pitch names from staff positions — and that is what this article and Solfege PRO's Sight Reading feature focus on. True performance-based sight reading additionally integrates motor execution, fingering, and look-ahead reading.
+            
+            
+        </p>
+
+        <p>
+            
+            Yet many musicians say "I can't read music" or "my mind goes blank when I see a score." Even people who have played piano or guitar for years may find themselves counting each note one by one on the staff.
+            
+            
+        </p>
+
+        <p>
+            
+            Sight reading is a distinct skill from ear training or rhythmic feel. It's closer to visual pattern recognition, and with the right practice, steady improvement is achievable. To practice effectively, you first need to understand what components make up the skill of reading notation.
+            
+            
+        </p>
+
+        <!-- Section 2 -->
+        <h2 id="breakdown">Breaking Down Sight Reading</h2>
+
+        <p>
+            
+            "I can't read music" can mean very different things depending on the person. Sight reading is a combination of several distinct sub-skills.
+            
+            
+        </p>
+
+        <div class="skill-list">
+            <div class="skill-item">
+                <div class="skill-item__name">Line vs. Space</div>
+                <div class="skill-item__desc">Instantly distinguishing whether a note sits on a line or in a space. The starting point of all notation reading.</div>
+            </div>
+            <div class="skill-item">
+                <div class="skill-item__name">Clef Recognition</div>
+                <div class="skill-item__desc">The same staff position means different notes in treble vs. bass clef. Can you switch between them fluently?</div>
+            </div>
+            <div class="skill-item">
+                <div class="skill-item__name">Accidentals</div>
+                <div class="skill-item__desc">Correctly reading sharps (♯), flats (♭), and naturals (♮). A frequent source of misreading.</div>
+            </div>
+            <div class="skill-item">
+                <div class="skill-item__name">Key Signatures</div>
+                <div class="skill-item__desc">Applying the sharps or flats specified by the key signature throughout the piece. Reading with key awareness.</div>
+            </div>
+            <div class="skill-item">
+                <div class="skill-item__name">Ledger Lines</div>
+                <div class="skill-item__desc">Notes that extend above or below the five-line staff. Common in high and low registers, and a major speed bottleneck.</div>
+            </div>
+            <div class="skill-item">
+                <div class="skill-item__name">Position Patterns</div>
+                <div class="skill-item__desc">Can you reflexively know "2nd line = G (treble clef)" without consciously counting? Pattern recognition over memorization.</div>
+            </div>
+        </div>
+
+        <!-- Staff Diagram -->
+        <div class="staff-diagram">
+            <div class="staff-diagram__title">Treble Clef Staff — Note Names on Lines and Spaces</div>
+            <div class="staff-container">
+                <!-- Brace -->
+                <div class="staff-brace"></div>
+                <!-- Clef symbol -->
+                <div class="staff-clef staff-clef--treble">&#119070;</div>
+                <!-- Five staff lines -->
+                <div class="staff-line" style="top:20px"></div>
+                <div class="staff-line" style="top:40px"></div>
+                <div class="staff-line" style="top:60px"></div>
+                <div class="staff-line" style="top:80px"></div>
+                <div class="staff-line" style="top:100px"></div>
+
+                <!-- Line notes (E, G, B, D, F) -->
+                <div class="staff-note" style="left:25%;top:100px"></div>
+                <div class="staff-note-label" style="left:25%;top:118px">E4</div>
+
+                <div class="staff-note" style="left:35%;top:80px"></div>
+                <div class="staff-note-label" style="left:35%;top:118px">G4</div>
+
+                <div class="staff-note" style="left:45%;top:60px"></div>
+                <div class="staff-note-label" style="left:45%;top:118px">B4</div>
+
+                <div class="staff-note" style="left:55%;top:40px"></div>
+                <div class="staff-note-label" style="left:55%;top:118px">D5</div>
+
+                <div class="staff-note" style="left:65%;top:20px"></div>
+                <div class="staff-note-label" style="left:65%;top:118px">F5</div>
+
+                <!-- Labels -->
+                <div class="staff-label" style="right:-40px;top:14px">5th line</div>
+                <div class="staff-label" style="right:-40px;top:94px">1st line</div>
+
+                <!-- Space note labels below -->
+                <div style="position:absolute;bottom:10px;left:0;right:0;text-align:center;font-size:11px;color:var(--text-secondary);">
+                    
+                    Notes on lines: E - G - B - D - F (bottom to top)
+                    
+                    
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 3 -->
+        <h2 id="common-walls">Common Walls</h2>
+
+        <p>
+            
+            When you start practicing sight reading, most people stumble at the same points. Knowing which wall you're hitting is the shortcut to efficient practice.
+            
+            
+        </p>
+
+        <div class="wall-list">
+            <div class="wall-item">
+                <div class="wall-item__title">Bass Clef Confusion</div>
+                <div class="wall-item__desc">Your treble clef muscle memory interferes. In bass clef, the 2nd line is B, but your brain reads it as G from treble clef. You need a mental "switch" between the two systems. Especially noticeable in two-handed piano playing.</div>
+            </div>
+            <div class="wall-item">
+                <div class="wall-item__title">Accidental Misreading</div>
+                <div class="wall-item__desc">Reading sharps or flats as natural notes. Especially common in flat keys (B♭, E♭, etc.). When you read music on autopilot, accidentals are the first thing to get missed.</div>
+            </div>
+            <div class="wall-item">
+                <div class="wall-item__title">Ledger Line Hesitation</div>
+                <div class="wall-item__desc">Speed drops dramatically when notes go beyond the five lines. You start counting one ledger line at a time. Especially common above the treble staff (A5+) or below the bass staff (C2 and lower).</div>
+            </div>
+            <div class="wall-item">
+                <div class="wall-item__title">Key Signature Forgetting</div>
+                <div class="wall-item__desc">You check the key signature at the start but forget it mid-performance. Especially common in keys with 3+ sharps or flats. Playing F when you should play F♯ is a classic key signature lapse.</div>
+            </div>
+        </div>
+
+        <div class="article-note">
+            <div class="article-note__title">Key Point</div>
+            <p>These walls are not about talent — they're about familiarity. Identify which wall you're hitting, focus your practice there, and your reading speed will reliably improve.</p>
+        </div>
+
+        <!-- Section 4 -->
+        <h2 id="effective-practice">Effective Practice Methods</h2>
+
+        <p>
+            
+            Improving at sight reading follows certain principles. Rather than randomly reading through scores, it's important to control the difficulty in stages.
+            
+            
+        </p>
+
+        <h3 id="one-clef">Start with One Clef</h3>
+        <p>
+            
+            Practicing treble and bass clef simultaneously can cause mental interference. Start by focusing on treble clef only, building reflexive recognition of line and space positions. Once treble clef is stable, add bass clef as a separate practice track.
+            
+            
+        </p>
+
+        <h3 id="landmark-notes">Learn Landmark Notes First</h3>
+        <p>
+            
+            Trying to memorize every note on the staff at once is inefficient. Instead, start with "landmark notes" — a few reference points you know with certainty — and determine other notes by their distance from these landmarks.
+            
+            
+        </p>
+
+        <!-- Landmark Notes Visual -->
+        <div class="landmark-diagram">
+            <div class="landmark-diagram__title">Landmark Notes — Start with These Five</div>
+            <div class="landmark-container">
+                <!-- Treble Staff -->
+                <div style="position:absolute;top:0;left:0;right:0;height:110px;">
+                    <div style="position:absolute;left:5%;top:8px;font-size:11px;color:var(--text-secondary);font-weight:500;">Treble Clef</div>
+                    <div class="staff-line" style="top:20px"></div>
+                    <div class="staff-line" style="top:32px"></div>
+                    <div class="staff-line" style="top:44px"></div>
+                    <div class="staff-line" style="top:56px"></div>
+                    <div class="staff-line" style="top:68px"></div>
+                    <!-- Middle C (ledger line below) -->
+                    <div class="ledger-line" style="left:25%;top:80px"></div>
+                    <div class="staff-note" style="left:25%;top:80px"></div>
+                    <div style="position:absolute;left:25%;top:92px;transform:translateX(-50%);text-align:center;">
+                        <div style="font-size:13px;font-weight:700;color:var(--primary);">C4</div>
+                        <div style="font-size:10px;color:var(--text-secondary);">Middle C (ledger)</div>
+                    </div>
+                    <!-- G on 2nd line -->
+                    <div class="staff-note" style="left:55%;top:56px"></div>
+                    <div style="position:absolute;left:55%;top:78px;transform:translateX(-50%);text-align:center;">
+                        <div style="font-size:13px;font-weight:700;color:var(--primary);">G4</div>
+                        <div style="font-size:10px;color:var(--text-secondary);">2nd line</div>
+                    </div>
+                    <!-- F on top (5th) line -->
+                    <div class="staff-note" style="left:85%;top:20px"></div>
+                    <div style="position:absolute;left:85%;top:78px;transform:translateX(-50%);text-align:center;">
+                        <div style="font-size:13px;font-weight:700;color:var(--primary);">F5</div>
+                        <div style="font-size:10px;color:var(--text-secondary);">Top line</div>
+                    </div>
+                </div>
+                <!-- Bass Staff -->
+                <div style="position:absolute;top:130px;left:0;right:0;height:110px;">
+                    <div style="position:absolute;left:5%;top:8px;font-size:11px;color:var(--text-secondary);font-weight:500;">Bass Clef</div>
+                    <div class="staff-line" style="top:20px"></div>
+                    <div class="staff-line" style="top:32px"></div>
+                    <div class="staff-line" style="top:44px"></div>
+                    <div class="staff-line" style="top:56px"></div>
+                    <div class="staff-line" style="top:68px"></div>
+                    <!-- G on bottom (1st) line -->
+                    <div class="staff-note" style="left:25%;top:68px"></div>
+                    <div style="position:absolute;left:25%;top:78px;transform:translateX(-50%);text-align:center;">
+                        <div style="font-size:13px;font-weight:700;color:var(--primary);">G2</div>
+                        <div style="font-size:10px;color:var(--text-secondary);">Bottom line</div>
+                    </div>
+                    <!-- F on 4th line -->
+                    <div class="staff-note" style="left:55%;top:32px"></div>
+                    <div style="position:absolute;left:55%;top:78px;transform:translateX(-50%);text-align:center;">
+                        <div style="font-size:13px;font-weight:700;color:var(--primary);">F3</div>
+                        <div style="font-size:10px;color:var(--text-secondary);">4th line</div>
+                    </div>
+                    <!-- Middle C (ledger line above) -->
+                    <div class="ledger-line" style="left:85%;top:8px"></div>
+                    <div class="staff-note" style="left:85%;top:8px"></div>
+                    <div style="position:absolute;left:85%;top:78px;transform:translateX(-50%);text-align:center;">
+                        <div style="font-size:13px;font-weight:700;color:var(--primary);">C4</div>
+                        <div style="font-size:10px;color:var(--text-secondary);">Middle C (ledger)</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <h3 id="no-accidentals-first">Practice Without Accidentals First</h3>
+        <p>
+            
+            Notes with accidentals (♯, ♭) should come after you're solid on natural notes (C, D, E, F, G, A, B). Adding accidentals before you can reflexively read naturals doubles the confusion. Get solid in C major with 7 natural notes first, then progress to other keys.
+            
+            
+        </p>
+
+        <h3 id="add-key-signatures">Gradually Add Key Signatures</h3>
+        <p>
+            
+            After C major, start with one sharp (G major) or one flat (F major). Don't add multiple sharps/flats at once — increase one at a time and let each new pattern settle. In each key, consciously notice which notes are altered.
+            
+            
+        </p>
+
+        <div class="difficulty-steps">
+            <div class="difficulty-step">
+                <div class="difficulty-step__number">1</div>
+                <div class="difficulty-step__text">Treble clef, C major, naturals only — build reflexive position-to-name mapping</div>
+            </div>
+            <div class="difficulty-step">
+                <div class="difficulty-step__number">2</div>
+                <div class="difficulty-step__text">Add one sharp/flat at a time (G, F, D, B♭...) — build key signature awareness</div>
+            </div>
+            <div class="difficulty-step">
+                <div class="difficulty-step__number">3</div>
+                <div class="difficulty-step__text">Add bass clef — start practicing it as a separate system</div>
+            </div>
+            <div class="difficulty-step">
+                <div class="difficulty-step__number">4</div>
+                <div class="difficulty-step__text">Extend to ledger line ranges — become comfortable beyond the five lines</div>
+            </div>
+            <div class="difficulty-step">
+                <div class="difficulty-step__number">5</div>
+                <div class="difficulty-step__text">All-note mode (with accidentals) — respond instantly to any sharp or flat</div>
+            </div>
+        </div>
+
+        <!-- Section 5 -->
+        <h2 id="what-app-can-do">What Solfege PRO Can Do</h2>
+
+        <p>
+            
+            Solfege PRO's Sight Reading presents a note on the staff and asks you to name it. The "gradually increase difficulty" approach described above can be flexibly controlled through the app's settings.
+            
+            
+        </p>
+
+        <h3>All 12 Keys</h3>
+        <p>
+            
+            Practice in all 12 keys from C major to B♭ major, with correct sharp/flat notation. Learn which notes change in each key through actual visual and interactive practice.
+            
+            
+        </p>
+
+        <h3>Treble and Bass Clef Support</h3>
+        <p>
+            
+            Choose which clef to practice. Start with treble clef only, then add bass clef when ready — supporting the staged approach.
+            
+            
+        </p>
+
+        <h3>Accidental Mode Toggle</h3>
+        <p>
+            
+            Toggle between "scale tones only" (notes within the key signature) and "all notes" (with accidentals). Start with scale tones to solidify natural notes, then switch to all-note mode to build accidental reading skills.
+            
+            
+        </p>
+
+        <h3>Ledger Line Toggle</h3>
+        <p>
+            
+            Toggle ledger line notes on or off. Keep them off until you're solid within the five-line staff, letting you focus on the core range.
+            
+            
+        </p>
+
+        <h3>Weak Point Focus Mode</h3>
+        <p>
+            
+            A mode that automatically increases the frequency of notes you've gotten wrong. Target weak spots you might not notice on your own. "I always confuse D5 and B4" or "I mix up F and A in bass clef" — this mode efficiently corrects such habits.
+            
+            
+        </p>
+
+        <h3>Key-Specific Practice</h3>
+        <p>
+            
+            Focus on a specific key. Intensively train the keys you find difficult (e.g., flat-heavy keys) to gradually build reading ability across all keys.
+            
+            
+        </p>
+
+        <h3>Error Analysis</h3>
+        <p>
+            
+            Analyzes your error patterns: "position confusion" (reading an adjacent line/space), "octave mistakes" (correct note name but wrong octave), "accidental misreading" (missing a sharp or flat). Understanding your error tendencies guides where to focus.
+            
+            
+        </p>
+
+        <!-- Mid-article CTA -->
+        <div class="article-cta-subtle">
+            <p class="article-cta-subtle__text">Start free and check your notation reading ability</p>
+            <a href="https://apps.apple.com/us/app/id6756626617" class="article-cta-subtle__button">View on App Store</a>
+        </div>
+
+        <!-- Section 6 -->
+        <h2 id="limitations">What Solfege PRO Does Not Directly Cover</h2>
+
+        <p>
+            
+            Let's be honest.
+            
+            
+        </p>
+
+        <div class="article-honest">
+            <div class="article-honest__title">Areas Beyond the App's Scope</div>
+            <p>
+                <strong>Rhythm reading (note durations)</strong> — The current Sight Reading focuses on pitch name identification. It does not cover reading note values (whole notes, quarter notes, eighth notes, etc.). Rhythm notation reading is a separate skill, under consideration for future development.
+            </p>
+            <p>
+                <strong>Chord reading (multiple simultaneous notes)</strong> — Notes are presented one at a time. Reading chord voicings at a glance requires practice with actual sheet music.
+            </p>
+            <p>
+                <strong>Alto and tenor clef</strong> — Only treble and bass clefs are supported. The C clefs needed by viola and cello players are not available.
+            </p>
+            <p>
+                <strong>Minor key signatures</strong> — Practice is based on major key signatures. There is no dedicated feature for practicing minor key-specific patterns (harmonic minor, melodic minor accidental patterns, etc.).
+            </p>
+            <p>
+                <strong>Solfege naming (Do-Re-Mi)</strong> — Answers use letter names (C, D, E...). Fixed-do or moveable-do solfege syllables are not supported.
+            </p>
+            <p>
+                <strong>Real-time sight reading under tempo pressure</strong> — Notes are presented one at a time without tempo. You cannot practice reading a flowing score in real time as in actual sight reading performance. The app is designed to build pitch name recognition reflexes that you then apply to real score reading.
+            </p>
+        </div>
+
+        <p>
+            
+            What Solfege PRO's Sight Reading directly supports is improving the speed and accuracy of pitch name identification on the staff. It's a tool for solidifying the foundation of "seeing a note and knowing its name" — not for completing real-world sight reading performance ability.
+            
+            
+        </p>
+
+        <!-- Section 7 -->
+        <h2 id="how-to-use">Recommended Usage</h2>
+
+        <p>
+            
+            Solfege PRO's Sight Reading is designed to be used in the following progressive order.
+            
+            
+        </p>
+
+        <ol>
+            <li><strong>Treble clef + C major + naturals only</strong> — Build reflexive line/space reading. This is the foundation for everything.</li>
+            <li><strong>Add keys one at a time</strong> — Start with G major (1 sharp), F major (1 flat). Notice which notes change in each key.</li>
+            <li><strong>Add bass clef</strong> — Start in C major. Practice it as a separate system from treble clef.</li>
+            <li><strong>Turn on ledger lines</strong> — Repeat until you're comfortable with notes beyond the staff.</li>
+            <li><strong>Use weak point focus mode</strong> — Review your error patterns and target your weak spots.</li>
+            <li><strong>Return to real sheet music</strong> — Take the reflexes built in the app back to actual performance.</li>
+        </ol>
+
+        <div class="article-note">
+            <div class="article-note__title">Usage Tip</div>
+            <p>Sessions can be short. Just 5 minutes a day at the same settings, and your note recognition speed will steadily improve. The shift from "thinking to answer" to "knowing instantly" happens naturally through repetition.</p>
+        </div>
+
+        <!-- Visual: Good vs Bad Comparison -->
+        <div class="comparison-visual">
+            <div class="comparison-card comparison-card--bad">
+                <div class="comparison-card__header">Less Effective</div>
+                <div class="comparison-card__body">
+                    <p>Starting with all keys, both clefs, ledger lines, and accidentals from the beginning. Too hard, gets frustrating. Closing the result screen without reviewing.</p>
+                </div>
+            </div>
+            <div class="comparison-card comparison-card--good">
+                <div class="comparison-card__header">More Effective</div>
+                <div class="comparison-card__body">
+                    <p>Start with C major, treble clef → Add one key when accuracy is stable → Check error analysis for weak spots → Use weak point focus mode → Gradually increase difficulty.</p>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Final CTA -->
+    <section class="article-cta">
+        <h2 class="article-cta__title">Start by Checking Your Sight Reading Ability</h2>
+        <p class="article-cta__text">
+            
+            Sight reading isn't something you simply "can" or "can't" do.<br>Which clef, which range, which key trips you up? Break it down and find your weak spots.<br>That's the first step to reading music fluently.<br>Try checking your reading ability with Solfege PRO's Sight Reading.
+            
+            
+        </p>
+                <p style="font-size: 14px; color: var(--text-secondary); margin-bottom: var(--space-md); text-align: center;">
+            
+            ¥980/month (1-week free trial)
+            
+            
+        </p>
+        <a href="https://apps.apple.com/us/app/id6756626617" class="app-store-link" aria-label="Download on the App Store">
+            
+            <img class="app-store-link__img" src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/en-us" alt="Download on the App Store">
+            
+            
+        </a>
+    </section>
+
+    <!-- Related Content -->
+    <div class="article-related">
+        <div class="article-related__title">Related Content</div>
+        <a href="/guides/rhythm-training/" class="article-related__link">
+            <div class="article-related__link-title">What Is Rhythmic Feel? — Breaking Down Rushing, Dragging, Inconsistency, and Pocket</div>
+            <div class="article-related__link-desc">Five elements of rhythmic feel and practice methods to improve timing accuracy</div>
+        </a>
+        <a href="/" class="article-related__link">
+            <div class="article-related__link-title">Solfege PRO Practice Guide</div>
+            <div class="article-related__link-desc">Challenge-based practice menus for guitar, bass, drums, piano, and vocals</div>
+        </a>
+    </div>
+
+    <!-- Article Note -->
+    <aside class="article-endnote">
+        <p class="article-endnote__text">
+            
+            This article is organized based on widely used foundational concepts in music notation education and the feature design of Solfege PRO. There are many approaches to learning sight reading, and the methods presented here may not be optimal for every learner. The in-app Sight Reading supports improving the speed and accuracy of pitch name identification, and does not guarantee completion of comprehensive sight reading ability in real performance.
+            
+            
+        </p>
+    </aside>
+
+    <!-- Footer -->
+    <footer class="article-footer">
+        <p class="article-footer__text">
+            &copy; 2026 Solfege PRO &mdash;
+            <a href="https://apps.apple.com/us/app/id6756626617" class="article-footer__link">App Store</a>
+        </p>
+    </footer>
+    <script src="/bootstrap.js?v=1" defer></script>
+</body>
+</html>

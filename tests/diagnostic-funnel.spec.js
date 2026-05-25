@@ -32,7 +32,7 @@ async function installEventCapture(page) {
 }
 
 async function completeFunnel(page, { persona = 'plateau', instrument = 'guitar' } = {}) {
-    await page.goto('/start-here.html');
+    await page.goto('/start-here/');
     await page.waitForSelector('#step-persona .diag-option');
     await page.click(`[data-persona="${persona}"]`);
     // Instrument-agnostic personas (dtm / exam / no-instrument / skip)
@@ -173,7 +173,7 @@ test.describe('Diagnostic funnel GA4 events', () => {
     test('restart clears persona and the next funnel starts fresh', async ({ page }) => {
         await installEventCapture(page);
 
-        await page.goto('/start-here.html');
+        await page.goto('/start-here/');
         await page.waitForSelector('#step-persona .diag-option');
         // Use 'parent' (non-instrument-agnostic) so Step 2 stays visible.
         // The earlier 'exam' choice here was instrument-agnostic and bypasses
@@ -220,7 +220,7 @@ test.describe('Diagnostic funnel GA4 events', () => {
     test('changing instrument re-fires diagnostic_instrument_select', async ({ page }) => {
         await installEventCapture(page);
 
-        await page.goto('/start-here.html');
+        await page.goto('/start-here/');
         await page.waitForSelector('#step-persona .diag-option');
         await page.click('[data-persona="plateau"]');
         await page.waitForSelector('#step-instrument:not([hidden])');
@@ -252,7 +252,7 @@ test.describe('Diagnostic funnel GA4 events', () => {
 
         // analytics.js track() auto-attaches these. Verify the chain still applies.
         expect(completeEvent.params.site_language).toMatch(/^(ja|en|fr|de)$/);
-        expect(completeEvent.params.page_path).toBe('/start-here.html');
+        expect(completeEvent.params.page_path).toBe('/start-here/');
     });
 
     test('pain_select event includes pain_index AND pain_ja for analysis', async ({ page }) => {
@@ -280,7 +280,7 @@ test.describe('Diagnostic funnel GA4 events', () => {
 
     test('plateau persona falls through to PAINS[instrument] (Phase 1)', async ({ page }) => {
         await installEventCapture(page);
-        await page.goto('/start-here.html');
+        await page.goto('/start-here/');
         await page.click('[data-persona="plateau"]');
         await page.waitForSelector('#step-instrument:not([hidden])');
         await page.click('#step-instrument [data-instrument="piano"]');
@@ -288,20 +288,20 @@ test.describe('Diagnostic funnel GA4 events', () => {
 
         // Compare the rendered first pain to PAINS.piano[0].ja (from start-here.html
         // around line 410: '譜面がないと弾けない').
-        const firstPainText = await page.locator('#step-pain .diag-option:first-child .diag-option__title span[lang="ja"]').textContent();
+        const firstPainText = await page.locator('#step-pain .diag-option:first-child .diag-option__title').textContent();
         expect(firstPainText).toBe('譜面がないと弾けない');
     });
 
     test('skip persona falls through to PAINS[instrument] (Phase 1)', async ({ page }) => {
         await installEventCapture(page);
-        await page.goto('/start-here.html');
+        await page.goto('/start-here/');
         await page.click('[data-persona="skip"]');
         await page.waitForSelector('#step-instrument:not([hidden])');
         await page.click('#step-instrument [data-instrument="guitar"]');
         await page.waitForSelector('#step-pain:not([hidden]) .diag-option');
 
         // PAINS.guitar[0].ja = 'セッションで頭が真っ白になる'
-        const firstPainText = await page.locator('#step-pain .diag-option:first-child .diag-option__title span[lang="ja"]').textContent();
+        const firstPainText = await page.locator('#step-pain .diag-option:first-child .diag-option__title').textContent();
         expect(firstPainText).toBe('セッションで頭が真っ白になる');
     });
 
@@ -311,7 +311,7 @@ test.describe('Diagnostic funnel GA4 events', () => {
         // compatible with both phases. After Phase 2 content lands, all sets
         // should be 4.
         await installEventCapture(page);
-        await page.goto('/start-here.html');
+        await page.goto('/start-here/');
         await page.click('[data-persona="plateau"]');
         await page.waitForSelector('#step-instrument:not([hidden])');
         await page.click('#step-instrument [data-instrument="other"]');
@@ -328,7 +328,7 @@ test.describe('Diagnostic funnel GA4 events', () => {
     // not just the analytics tag.
 
     async function selectPersonaAndInstrument(page, persona, instrument) {
-        await page.goto('/start-here.html');
+        await page.goto('/start-here/');
         await page.click(`[data-persona="${persona}"]`);
         // After persona click, either Step 2 (normal personas) becomes visible,
         // or Step 3 appears directly (instrument-agnostic personas like dtm /
@@ -342,7 +342,7 @@ test.describe('Diagnostic funnel GA4 events', () => {
     }
 
     async function getPainTitles(page) {
-        return await page.locator('#step-pain .diag-option .diag-option__title span[lang="ja"]').allTextContents();
+        return await page.locator('#step-pain .diag-option .diag-option__title').allTextContents();
     }
 
     test('parent persona × piano shows parent-specific pains (not the plateau set)', async ({ page }) => {
@@ -433,7 +433,7 @@ test.describe('Diagnostic funnel GA4 events', () => {
         await selectPersonaAndInstrument(page, 'parent', 'piano');
 
         // Capture the parent-specific pain_ja shown at Step 3 (first option).
-        const step3Title = await page.locator('#step-pain .diag-option:first-child .diag-option__title span[lang="ja"]').textContent();
+        const step3Title = await page.locator('#step-pain .diag-option:first-child .diag-option__title').textContent();
 
         await page.click('#step-pain .diag-option:first-child');
         await page.waitForSelector('#step-result:not([hidden])');
@@ -460,7 +460,7 @@ test.describe('Diagnostic funnel GA4 events', () => {
 
     test('dtm persona bypasses Step 2 — Step 3 appears directly', async ({ page }) => {
         await installEventCapture(page);
-        await page.goto('/start-here.html');
+        await page.goto('/start-here/');
         await page.click('[data-persona="dtm"]');
         await page.waitForSelector('#step-pain:not([hidden]) .diag-option');
 
@@ -477,7 +477,7 @@ test.describe('Diagnostic funnel GA4 events', () => {
 
     test('exam persona bypasses Step 2', async ({ page }) => {
         await installEventCapture(page);
-        await page.goto('/start-here.html');
+        await page.goto('/start-here/');
         await page.click('[data-persona="exam"]');
         await page.waitForSelector('#step-pain:not([hidden]) .diag-option');
 
@@ -487,7 +487,7 @@ test.describe('Diagnostic funnel GA4 events', () => {
 
     test('no-instrument persona bypasses Step 2', async ({ page }) => {
         await installEventCapture(page);
-        await page.goto('/start-here.html');
+        await page.goto('/start-here/');
         await page.click('[data-persona="no-instrument"]');
         await page.waitForSelector('#step-pain:not([hidden]) .diag-option');
 
@@ -497,7 +497,7 @@ test.describe('Diagnostic funnel GA4 events', () => {
 
     test('parent persona does NOT bypass Step 2 (instrument-specific)', async ({ page }) => {
         await installEventCapture(page);
-        await page.goto('/start-here.html');
+        await page.goto('/start-here/');
         await page.click('[data-persona="parent"]');
         await page.waitForSelector('#step-instrument:not([hidden]) .diag-option');
 
@@ -513,7 +513,7 @@ test.describe('Diagnostic funnel GA4 events', () => {
 
     test('plateau persona does NOT bypass Step 2 (falls through to PAINS)', async ({ page }) => {
         await installEventCapture(page);
-        await page.goto('/start-here.html');
+        await page.goto('/start-here/');
         await page.click('[data-persona="plateau"]');
         await page.waitForSelector('#step-instrument:not([hidden]) .diag-option');
 
@@ -523,7 +523,7 @@ test.describe('Diagnostic funnel GA4 events', () => {
 
     test('dtm bypass flow still fires diagnostic_complete with instrument=any', async ({ page }) => {
         await installEventCapture(page);
-        await page.goto('/start-here.html');
+        await page.goto('/start-here/');
         await page.click('[data-persona="dtm"]');
         await page.waitForSelector('#step-pain:not([hidden]) .diag-option');
         await page.click('#step-pain .diag-option:first-child');
@@ -543,12 +543,12 @@ test.describe('Diagnostic funnel GA4 events', () => {
 
     test('parent persona shows "お子様の楽器を選ぶ" at Step 2', async ({ page }) => {
         await installEventCapture(page);
-        await page.goto('/start-here.html');
+        await page.goto('/start-here/');
         await page.click('[data-persona="parent"]');
         await page.waitForSelector('#step-instrument:not([hidden])');
 
         // parent variant should be visible, default variant hidden
-        const parentVariantVisible = await page.locator('.step2-title-variant[data-variant="parent"]:not([hidden]) span[lang="ja"]').textContent();
+        const parentVariantVisible = await page.locator('.step2-title-variant[data-variant="parent"]:not([hidden])').textContent();
         expect(parentVariantVisible).toBe('お子様の楽器を選ぶ');
 
         const defaultHidden = await page.locator('.step2-title-variant[data-variant="default"][hidden]').count();
@@ -557,11 +557,11 @@ test.describe('Diagnostic funnel GA4 events', () => {
 
     test('non-parent personas show default "楽器を選ぶ" at Step 2', async ({ page }) => {
         await installEventCapture(page);
-        await page.goto('/start-here.html');
+        await page.goto('/start-here/');
         await page.click('[data-persona="plateau"]');
         await page.waitForSelector('#step-instrument:not([hidden])');
 
-        const defaultVisible = await page.locator('.step2-title-variant[data-variant="default"]:not([hidden]) span[lang="ja"]').textContent();
+        const defaultVisible = await page.locator('.step2-title-variant[data-variant="default"]:not([hidden])').textContent();
         expect(defaultVisible).toBe('楽器を選ぶ');
 
         const parentHidden = await page.locator('.step2-title-variant[data-variant="parent"][hidden]').count();
@@ -575,11 +575,11 @@ test.describe('Diagnostic funnel GA4 events', () => {
         await selectPersonaAndInstrument(page, 'parent', 'piano');
 
         // Persona chip visible with the JA label "子供のサポート"
-        const personaText = await page.locator('#pain-context-persona span[lang="ja"]').first().textContent();
+        const personaText = await page.locator('#pain-context-persona').first().textContent();
         expect(personaText).toContain('子供のサポート');
 
         // Instrument chip visible with "ピアノ"
-        const instrumentText = await page.locator('#pain-context-instrument span[lang="ja"]').first().textContent();
+        const instrumentText = await page.locator('#pain-context-instrument').first().textContent();
         expect(instrumentText).toContain('ピアノ');
 
         // The context container is not hidden
@@ -590,11 +590,11 @@ test.describe('Diagnostic funnel GA4 events', () => {
     test('Step 3 breadcrumb hides the instrument chip for instrument-agnostic personas', async ({ page }) => {
         // dtm bypasses Step 2; instrument=='any' should drop the instrument chip
         await installEventCapture(page);
-        await page.goto('/start-here.html');
+        await page.goto('/start-here/');
         await page.click('[data-persona="dtm"]');
         await page.waitForSelector('#step-pain:not([hidden]) .diag-option');
 
-        const personaText = await page.locator('#pain-context-persona span[lang="ja"]').first().textContent();
+        const personaText = await page.locator('#pain-context-persona').first().textContent();
         expect(personaText).toContain('DTM');
 
         const instrumentChipHidden = await page.locator('#pain-context-instrument[hidden]').count();
@@ -607,20 +607,20 @@ test.describe('Diagnostic funnel GA4 events', () => {
         await page.click('#step-pain .diag-option:first-child');
         await page.waitForSelector('#step-result:not([hidden]) .diag-result__intro');
 
-        const introJa = await page.locator('.diag-result__intro span[lang="ja"]').textContent();
+        const introJa = await page.locator('.diag-result__intro').textContent();
         expect(introJa).toContain('子供のサポート');
         expect(introJa).toContain('ピアノ');
     });
 
     test('Step 4 intro line for instrument-agnostic persona shows only persona', async ({ page }) => {
         await installEventCapture(page);
-        await page.goto('/start-here.html');
+        await page.goto('/start-here/');
         await page.click('[data-persona="dtm"]');
         await page.waitForSelector('#step-pain:not([hidden]) .diag-option');
         await page.click('#step-pain .diag-option:first-child');
         await page.waitForSelector('#step-result:not([hidden]) .diag-result__intro');
 
-        const introJa = await page.locator('.diag-result__intro span[lang="ja"]').textContent();
+        const introJa = await page.locator('.diag-result__intro').textContent();
         expect(introJa).toContain('DTM');
         // No instrument name should appear (Step 2 was skipped)
         expect(introJa).not.toContain('ピアノ');
@@ -629,7 +629,7 @@ test.describe('Diagnostic funnel GA4 events', () => {
 
     test('switching parent → plateau swaps title back to default', async ({ page }) => {
         await installEventCapture(page);
-        await page.goto('/start-here.html');
+        await page.goto('/start-here/');
         await page.click('[data-persona="parent"]');
         await page.waitForSelector('.step2-title-variant[data-variant="parent"]:not([hidden])');
 
@@ -645,7 +645,7 @@ test.describe('Diagnostic funnel GA4 events', () => {
         // Without restarting, the user picks parent then re-picks dtm.
         // Step 2 should hide when dtm is selected.
         await installEventCapture(page);
-        await page.goto('/start-here.html');
+        await page.goto('/start-here/');
         await page.click('[data-persona="parent"]');
         await page.waitForSelector('#step-instrument:not([hidden])');
 

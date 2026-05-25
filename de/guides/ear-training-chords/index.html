@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html lang="de"
+      data-title-ja="コードを聴き分ける — 3 度で Major/Minor を判別 | ソルフェージュPRO"
+      data-title-en="What Is Chord Recognition? — Understanding Harmonic Sounds | Solfege PRO"
+      data-title-fr="Qu'est-ce que la reconnaissance d'accords ? — Comprendre la sonorité des accords | Solfege PRO"
+      data-title-de="Akkorderkennung — Dur vs Moll an der Terz | Solfege PRO">
+<head>
+    <meta charset="UTF-8">
+    <meta name="robots" content="index, follow">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#1A1A1E">
+    <title>Akkorderkennung — Dur vs Moll an der Terz | Solfege PRO</title>
+    <meta name="description" content="Akkorderkennung beginnt mit der Terz, die Dur und Moll unterscheidet. Folge dem Plan: Basis-Dreiklänge → Alle Dreiklänge → 7-Akkorde → Erweitert.">
+
+    <!-- Canonical -->
+    <link rel="canonical" href="https://solfegepro.com/de/guides/ear-training-chords/">
+    <link rel="alternate" hreflang="ja" href="https://solfegepro.com/guides/ear-training-chords/">
+    <link rel="alternate" hreflang="en" href="https://solfegepro.com/en/guides/ear-training-chords/">
+    <link rel="alternate" hreflang="fr" href="https://solfegepro.com/fr/guides/ear-training-chords/">
+    <link rel="alternate" hreflang="de" href="https://solfegepro.com/de/guides/ear-training-chords/">
+    <link rel="alternate" hreflang="x-default" href="https://solfegepro.com/guides/ear-training-chords/">
+<!-- OGP -->
+    <meta property="og:title" content="Akkorderkennung — Dur vs Moll an der Terz">
+    <meta property="og:description" content="Akkorderkennung beginnt mit der Terz, die Dur und Moll unterscheidet. Folge dem Plan: Basis-Dreiklänge → Alle Dreiklänge → 7-Akkorde → Erweitert.">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://solfegepro.com/de/guides/ear-training-chords/">
+    <meta property="og:site_name" content="ソルフェージュPRO">
+    <meta property="og:image" content="https://solfegepro.com/og-image.png">
+    <meta property="og:locale" content="de_DE">
+    <meta property="og:locale:alternate" content="ja_JP">
+    <meta property="og:locale:alternate" content="en_US">
+    <meta property="og:locale:alternate" content="fr_FR">
+    <meta property="article:published_time" content="2026-03-31">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Akkorderkennung — Dur vs Moll an der Terz">
+    <meta name="twitter:description" content="Akkorderkennung beginnt mit der Terz, die Dur und Moll unterscheidet. Folge dem Plan: Basis-Dreiklänge → Alle Dreiklänge → 7-Akkorde → Erweitert.">
+    <meta name="twitter:image" content="https://solfegepro.com/og-image.png">
+
+    <!-- Favicon -->
+    <link rel="icon" href="/AppIcon.png" type="image/png">
+    <link rel="apple-touch-icon" href="/AppIcon.png">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="/style.css?v=15">
+    <link rel="stylesheet" href="/guides/article.css?v=9">
+
+    <style>
+        /* Chord Type Grid (intervals per chord ≤ ~7, fits in column) */
+        .chord-grid {
+            background: var(--surface);
+            border-radius: var(--radius-xl);
+            padding: var(--space-lg);
+            margin: var(--space-xl) 0;
+            border: 1px solid var(--surface-light);
+        }
+        .chord-grid__section-title {
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: var(--space-md);
+            margin-top: var(--space-lg);
+        }
+        .chord-grid__section-title:first-of-type {
+            margin-top: 0;
+        }
+        .chord-grid__row {
+            display: flex;
+            align-items: center;
+            margin-bottom: var(--space-sm);
+            gap: var(--space-sm);
+        }
+        .chord-grid__name {
+            min-width: 100px;
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--text-primary);
+            flex-shrink: 0;
+        }
+        .chord-grid__intervals {
+            display: flex;
+            gap: 3px;
+            flex: 1;
+        }
+        .chord-grid__interval {
+            padding: 4px 10px;
+            border-radius: var(--radius-sm);
+            font-size: 12px;
+            font-weight: 600;
+            text-align: center;
+            min-width: 44px;
+        }
+        .interval--root { background: var(--primary); color: var(--background); }
+        .interval--major { background: rgba(74, 222, 128, 0.25); color: #4ADE80; }
+        .interval--minor { background: rgba(96, 165, 250, 0.25); color: #60A5FA; }
+        .interval--perfect { background: rgba(251, 191, 36, 0.25); color: #FBBF24; }
+        .interval--dim { background: rgba(248, 113, 113, 0.25); color: #F87171; }
+        .interval--aug { background: rgba(192, 132, 252, 0.25); color: #C084FC; }
+
+        @media (max-width: 768px) {
+            .chord-grid { padding: var(--space-md); }
+            .chord-grid__row { flex-direction: column; align-items: flex-start; gap: var(--space-xs); }
+            .chord-grid__name { min-width: auto; }
+            .chord-grid__interval { min-width: 36px; padding: 3px 8px; font-size: 11px; }
+        }
+    </style>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"コードを聴き分ける力とは何か — 和音の響きを理解する","description":"和音の響きを聴き分ける力を理解し、段階的に鍛えるための練習法を紹介します。","author":{"@type":"Organization","name":"ソルフェージュPRO"},"publisher":{"@type":"Organization","name":"ソルフェージュPRO","logo":{"@type":"ImageObject","url":"https://solfegepro.com/AppIcon.png"}},"datePublished":"2026-04-05","mainEntityOfPage":{"@type":"WebPage","@id":"https://solfegepro.com/guides/ear-training-chords.html"}}</script>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="nav__container">
+            <a href="/" class="nav__logo">
+                <img src="/AppIcon.png" alt="Solfege PRO" class="nav__logo-icon">
+                <span class="nav__logo-text">Solfege PRO</span>
+            </a>
+            <ul class="nav__list">
+                <li><a href="/" class="nav__link">Übungsleitfaden</a></li>
+                <li><a href="/guides/" class="nav__link active">Leitfäden</a></li>
+                            <li><a href="/start-here/" class="nav__link">Wo anfangen?</a></li>
+            </ul>
+            <div class="nav__settings">
+                <button class="settings-btn" id="lang-toggle" title="Toggle language">
+                    <span id="lang-text">EN</span>
+                </button>
+                <button class="hamburger-btn" id="hamburger-btn" aria-label="Menu" aria-expanded="false" aria-controls="drawer">
+                    <span class="hamburger-btn__line"></span>
+                    <span class="hamburger-btn__line"></span>
+                    <span class="hamburger-btn__line"></span>
+                </button>
+            </div>
+        </div>
+    </nav>
+        <!-- Mobile drawer (hidden on desktop) -->
+        <div class="drawer-overlay" id="drawer-overlay"></div>
+        <aside class="drawer" id="drawer" aria-label="Mobile menu" aria-hidden="true" inert>
+            <div class="drawer__header">
+                <span class="drawer__title">Menü</span>
+                <button class="drawer__close" id="drawer-close" aria-label="Close menu">×</button>
+            </div>
+            <ul class="drawer__list">
+                    <li><a href="/" class="drawer__link">Übungsleitfaden</a></li>
+                    <li><a href="/guides/" class="drawer__link active">Leitfäden</a></li>
+                    <li><a href="/start-here/" class="drawer__link">Wo anfangen?</a></li>
+            </ul>
+        </aside>
+
+
+    <!-- Article Header -->
+    <header class="page-header">
+        <div class="page-header__meta">
+            <span class="page-header__tag">Akkorderkennung</span>
+            <span>Lesezeit: ca. 8 Min.</span>
+        </div>
+        <h1 class="page-header__title">
+            
+            
+            
+            Was ist Akkorderkennung?<br>Den Klang von Harmonien verstehen
+        </h1>
+        <p class="page-header__subtitle">
+            
+            
+            
+            Bleib nicht bei „klingt irgendwie hell oder dunkel" stehen. Lerne die Unterschiede der Akkordtöne kennen und steigere deine Erkennungsgenauigkeit Schritt für Schritt.
+        </p>
+    </header>
+
+    <!-- Top-of-article CTA -->
+    <aside class="article-top-cta" aria-label="App promotion">
+        <div class="article-top-cta__body">
+            <p class="article-top-cta__title">
+                
+                
+                
+                In Solfege PRO üben
+            </p>
+            <p class="article-top-cta__sub">
+                
+                
+                
+                ¥980/Monat · 1 Woche Gratistestphase
+            </p>
+        </div>
+        <a href="https://apps.apple.com/de/app/id6756626617" class="article-top-cta__button" data-cta-position="article_top">
+            
+            
+            
+            App Store →
+        </a>
+    </aside>
+
+    <!-- Article Body -->
+    <main class="article-body">
+
+        <!-- Section 1 -->
+        <h2 id="what-is-chord-recognition">Was ist Akkorderkennung?</h2>
+
+        <p>
+            
+            
+            
+            Akkorderkennung ist die Fähigkeit, gleichzeitig erklingende Töne zu hören und die Qualität des Akkords zu bestimmen. Wenn eine Gitarre oder ein Klavier einen Akkord anschlägt: Kannst du erkennen, ob er Dur oder Moll ist? Enthält er eine Septime? Es geht darum, das allein mit dem Ohr zu beurteilen.
+        </p>
+
+        <p>
+            
+            
+            
+            Das ist eine Grundkompetenz fürs Komponieren, Arrangieren, Heraushören und für Sessions. Wenn du Akkorde ohne Noten verstehen kannst, verändert sich, wie du Musik überhaupt hörst.
+        </p>
+
+        <p>
+            
+            
+            
+            Allerdings entwickelt sich Akkorderkennung nicht über Nacht. Das Intervallhören bildet die Grundlage, auf der das Verständnis der Akkordqualität aufbaut.
+        </p>
+
+        <!-- Section 2 -->
+        <h2 id="chord-types">Akkordtypen verstehen</h2>
+
+        <p>
+            
+            
+            
+            Die Qualität eines Akkords ergibt sich aus den Intervallen, die über dem Grundton geschichtet werden. Der natürliche Lernweg beginnt bei Dreiklängen, geht weiter zu Septakkorden und mündet schließlich in Optionstöne.
+        </p>
+
+        <!-- Chord Type Grid Visual -->
+        <div class="chord-grid">
+            <div class="diagram-title">Akkordtypen und ihre Intervalle</div>
+
+            <div class="chord-grid__section-title">Dreiklänge</div>
+
+            <div class="chord-grid__row">
+                <div class="chord-grid__name">Major</div>
+                <div class="chord-grid__intervals">
+                    <div class="chord-grid__interval interval--root">R</div>
+                    <div class="chord-grid__interval interval--major">M3</div>
+                    <div class="chord-grid__interval interval--perfect">P5</div>
+                </div>
+            </div>
+            <div class="chord-grid__row">
+                <div class="chord-grid__name">Minor</div>
+                <div class="chord-grid__intervals">
+                    <div class="chord-grid__interval interval--root">R</div>
+                    <div class="chord-grid__interval interval--minor">m3</div>
+                    <div class="chord-grid__interval interval--perfect">P5</div>
+                </div>
+            </div>
+            <div class="chord-grid__row">
+                <div class="chord-grid__name">Diminished</div>
+                <div class="chord-grid__intervals">
+                    <div class="chord-grid__interval interval--root">R</div>
+                    <div class="chord-grid__interval interval--minor">m3</div>
+                    <div class="chord-grid__interval interval--dim">dim5</div>
+                </div>
+            </div>
+            <div class="chord-grid__row">
+                <div class="chord-grid__name">Augmented</div>
+                <div class="chord-grid__intervals">
+                    <div class="chord-grid__interval interval--root">R</div>
+                    <div class="chord-grid__interval interval--major">M3</div>
+                    <div class="chord-grid__interval interval--aug">aug5</div>
+                </div>
+            </div>
+
+            <div class="chord-grid__section-title">Septakkorde</div>
+
+            <div class="chord-grid__row">
+                <div class="chord-grid__name">Maj7</div>
+                <div class="chord-grid__intervals">
+                    <div class="chord-grid__interval interval--root">R</div>
+                    <div class="chord-grid__interval interval--major">M3</div>
+                    <div class="chord-grid__interval interval--perfect">P5</div>
+                    <div class="chord-grid__interval interval--major">M7</div>
+                </div>
+            </div>
+            <div class="chord-grid__row">
+                <div class="chord-grid__name">m7</div>
+                <div class="chord-grid__intervals">
+                    <div class="chord-grid__interval interval--root">R</div>
+                    <div class="chord-grid__interval interval--minor">m3</div>
+                    <div class="chord-grid__interval interval--perfect">P5</div>
+                    <div class="chord-grid__interval interval--minor">m7</div>
+                </div>
+            </div>
+            <div class="chord-grid__row">
+                <div class="chord-grid__name">7 (dom)</div>
+                <div class="chord-grid__intervals">
+                    <div class="chord-grid__interval interval--root">R</div>
+                    <div class="chord-grid__interval interval--major">M3</div>
+                    <div class="chord-grid__interval interval--perfect">P5</div>
+                    <div class="chord-grid__interval interval--minor">m7</div>
+                </div>
+            </div>
+            <div class="chord-grid__row">
+                <div class="chord-grid__name">m7(b5)</div>
+                <div class="chord-grid__intervals">
+                    <div class="chord-grid__interval interval--root">R</div>
+                    <div class="chord-grid__interval interval--minor">m3</div>
+                    <div class="chord-grid__interval interval--dim">dim5</div>
+                    <div class="chord-grid__interval interval--minor">m7</div>
+                </div>
+            </div>
+            <div class="chord-grid__row">
+                <div class="chord-grid__name">dim7</div>
+                <div class="chord-grid__intervals">
+                    <div class="chord-grid__interval interval--root">R</div>
+                    <div class="chord-grid__interval interval--minor">m3</div>
+                    <div class="chord-grid__interval interval--dim">dim5</div>
+                    <div class="chord-grid__interval interval--dim">dim7</div>
+                </div>
+            </div>
+
+            <div class="chord-grid__section-title">Erweiterte Akkorde (mit Optionstönen)</div>
+
+            <div class="chord-grid__row">
+                <div class="chord-grid__name">9th</div>
+                <div class="chord-grid__intervals">
+                    <div class="chord-grid__interval interval--root">R</div>
+                    <div class="chord-grid__interval interval--major">M3</div>
+                    <div class="chord-grid__interval interval--perfect">P5</div>
+                    <div class="chord-grid__interval interval--minor">m7</div>
+                    <div class="chord-grid__interval interval--major">M9</div>
+                </div>
+            </div>
+            <div class="chord-grid__row">
+                <div class="chord-grid__name">11th</div>
+                <div class="chord-grid__intervals">
+                    <div class="chord-grid__interval interval--root">R</div>
+                    <div class="chord-grid__interval interval--major">M3</div>
+                    <div class="chord-grid__interval interval--perfect">P5</div>
+                    <div class="chord-grid__interval interval--minor">m7</div>
+                    <div class="chord-grid__interval interval--perfect">P11</div>
+                </div>
+            </div>
+            <div class="chord-grid__row">
+                <div class="chord-grid__name">13th</div>
+                <div class="chord-grid__intervals">
+                    <div class="chord-grid__interval interval--root">R</div>
+                    <div class="chord-grid__interval interval--major">M3</div>
+                    <div class="chord-grid__interval interval--perfect">P5</div>
+                    <div class="chord-grid__interval interval--minor">m7</div>
+                    <div class="chord-grid__interval interval--major">M13</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="article-note">
+            <div class="article-note__title">Kernpunkt</div>
+            <p>Der einzige Unterschied zwischen Dur und Moll liegt in der Terz: M3 (große Terz) oder m3 (kleine Terz). Diese „Qualität der Terz" zu hören ist der grundlegendste Ausgangspunkt der Akkorderkennung.</p>
+        </div>
+
+        <!-- Section 3 -->
+        <h2 id="common-walls">Häufige Hürden</h2>
+
+        <h3 id="major-minor">Verwechslung von Dur und Moll</h3>
+        <p>
+            
+            
+            
+            Es ist die grundlegendste und zugleich häufigste Stolperstelle. Die Faustregel „hell = Dur, dunkel = Moll" weist in die richtige Richtung, doch in der Praxis hängt der Eindruck von Helligkeit oder Dunkelheit von Tempo, Lage und Klangfarbe ab. Entscheidend ist, die Qualität der Terz direkt heraushören zu können.
+        </p>
+
+        <h3 id="seventh-confusion">Septakkorde klingen ähnlich</h3>
+        <p>
+            
+            
+            
+            Maj7, m7, Dominantseptakkord. Die Septime macht den Klang reicher, die Unterschiede sind aber fein. Die „Transparenz" des Maj7, die „Weichheit" des m7, die „Spannung" des Dominantseptakkords. Diese Nuancen lassen sich am besten angehen, wenn du Dreiklänge zuverlässig unterscheidest.
+        </p>
+
+        <h3 id="inversions">Umkehrungen verändern den Charakter</h3>
+        <p>
+            
+            
+            
+            Selbst derselbe C-Dur-Akkord klingt in Grundstellung (C-E-G) anders als in erster Umkehrung (E-G-C). Wenn der Basston wechselt, verschiebt sich der gesamte harmonische Schwerpunkt, und solange du Umkehrungen nicht gewohnt bist, klingt derselbe Akkord nicht gleich.
+        </p>
+
+        <h3 id="block-vs-arpeggiated">Block- vs. Arpeggio-Wiedergabe</h3>
+        <p>
+            
+            
+            
+            Block-Wiedergabe (alle Töne gleichzeitig) und Arpeggio-Wiedergabe (ein Ton nach dem anderen) haben unterschiedliche Schwierigkeitsgrade. Beim Arpeggio kannst du jeden Ton einzeln verfolgen, was die Analyse erleichtert. Blockakkorde verlangen dagegen, die „Klangmasse" sofort zu beurteilen. Echte Musik braucht beide Hörmodi.
+        </p>
+
+        <!-- Section 4 -->
+        <h2 id="effective-practice">Wirksame Übungsmethoden</h2>
+
+        <h3 id="start-major-minor">Nur mit Dur und Moll beginnen</h3>
+        <p>
+            
+            
+            
+            Sich gleich auf viele Akkordtypen zu stürzen, ist ineffizient. Erreiche zuerst stabile 90 % oder mehr beim Zweier-Auswahl Dur vs. Moll — in jeder Lage und bei jedem Tempo. Ohne dieses Fundament führt der Schritt zu Septakkorden nur zu Verwirrung.
+        </p>
+
+        <h3 id="hear-the-third">Lerne, die Terz zu hören</h3>
+        <p>
+            
+            
+            
+            Die Terz entscheidet über die „Helligkeit" eines Akkords. Wenn du einen Akkord hörst, richte deine Aufmerksamkeit auf das Verhältnis von Grundton und Terz. Nutze den Arpeggio-Modus und bestimme die Lage des zweiten Tons (der Terz). Dieses „Ohr für die Terz" ist der Kern der Akkorderkennung.
+        </p>
+
+        <h3 id="add-seventh">Septakkorde schrittweise hinzunehmen</h3>
+        <p>
+            
+            
+            
+            Sobald die Dreiklänge sitzen, kommt zunächst der Maj7 dazu. Dann m7, dann Dominantseptakkord. Schalte nicht alles auf einmal frei. Nimm jeweils einen Typ hinzu und geh erst weiter, wenn du ihn zuverlässig unterscheidest.
+        </p>
+
+        <h3 id="arpeggiated-then-block">Arpeggio zum Analysieren, Block für Tempo</h3>
+        <p>
+            
+            
+            
+            Beim Lernen eines neuen Akkordtyps zuerst mit Arpeggio-Wiedergabe jeden Ton überprüfen. Wenn der Klangcharakter sitzt, auf Block-Wiedergabe wechseln und das blitzschnelle Erkennen trainieren. Dieses zweistufige Vorgehen wirkt.
+        </p>
+
+        <!-- Section 5 -->
+        <h2 id="what-app-can-do">Was Solfege PRO leistet</h2>
+
+        <p>
+            
+            
+            
+            Das Akkorderkennung-Modul von Solfege PRO ist ein Trainingstool, mit dem du Schritt für Schritt lernst, Akkordqualitäten zu unterscheiden.
+        </p>
+
+        <h3>Über 20 Akkordtypen</h3>
+        <p>
+            
+            
+            
+            Deckt über 20 Akkordtypen ab — von Basis-Dreiklängen (Dur, Moll, vermindert, übermäßig) über Septakkorde bis zu Erweiterungen. Du musst nicht alles auf einmal aktivieren — wähle, was zu deinem Niveau passt.
+        </p>
+
+        <h3>5 Schwierigkeitsstufen</h3>
+        <p>
+            
+            
+            
+            An der schrittweisen Methodik der Musikpädagogik orientiert, leiten fünf Schwierigkeitsstufen deinen Fortschritt: Basis-Dreiklänge, Erweitert, 7th Chords, Advanced 7ths, Tensions. Schritt für Schritt erweiterst du dein Akkordvokabular, ohne überfordert zu werden.
+        </p>
+
+        <h3>Block- / Arpeggio-Wiedergabe</h3>
+        <p>
+            
+            
+            
+            Höre denselben Akkord in Block- (gleichzeitig) und Arpeggio-Wiedergabe (gebrochen). Nutze das Arpeggio als Analyse-Modus und den Block als Praxis-Modus.
+        </p>
+
+        <h3>Vergleichswiedergabe</h3>
+        <p>
+            
+            
+            
+            Bei einer Fehlantwort kannst du deinen Akkord und den richtigen Akkord direkt nacheinander hören. Den Klangunterschied zu erfahren vertieft das Verständnis für die Unterschiede.
+        </p>
+
+        <h3>Schwachpunkt-Modus</h3>
+        <p>
+            
+            
+            
+            Erhöht automatisch die Häufigkeit der Akkordtypen, mit denen du dich schwertust. Konzentriere deine Zeit auf Schwachstellen, statt sie für längst Beherrschtes zu verbrauchen.
+        </p>
+
+        <div class="cycle-diagram">
+            <div class="cycle-step">
+                <div class="cycle-step__label">Hören</div>
+                <div class="cycle-step__desc">Akkord anhören</div>
+            </div>
+            <div class="cycle-arrow">&rarr;</div>
+            <div class="cycle-step">
+                <div class="cycle-step__label">Antworten</div>
+                <div class="cycle-step__desc">Akkordtyp wählen</div>
+            </div>
+            <div class="cycle-arrow">&rarr;</div>
+            <div class="cycle-step">
+                <div class="cycle-step__label">Vergleichen</div>
+                <div class="cycle-step__desc">Mit der Lösung vergleichen</div>
+            </div>
+            <div class="cycle-arrow">&rarr;</div>
+            <div class="cycle-step">
+                <div class="cycle-step__label">Erfassen</div>
+                <div class="cycle-step__desc">Trefferquote &amp; Schwachstellen</div>
+            </div>
+        </div>
+
+        <!-- Section 6 -->
+        <h2 id="limitations">Was Solfege PRO nicht direkt abdeckt</h2>
+
+        <p>
+            
+            
+            
+            Ehrlich gesagt:
+        </p>
+
+        <div class="article-honest">
+            <div class="article-honest__title">Bereiche außerhalb des App-Umfangs</div>
+            <p>
+                <strong>Akkordsymbole tippen</strong> — Antworten erfolgen ausschließlich per Multiple Choice. Akkordnamen selbst eintippen wird nicht unterstützt.
+            </p>
+            <p>
+                <strong>Klänge echter Instrumente</strong> — Die App nutzt Klaviertöne. Training mit Gitarren-, Orgel- oder anderen realen Instrumentenklängen ist nicht verfügbar.
+            </p>
+            <p>
+                <strong>Gezieltes Training für Umkehrungen</strong> — Grundlegende Einstellungen für Umkehrungen und Erkennungsfragen zu Umkehrungen werden unterstützt, jedoch gibt es kein eigenes, ausschließlich auf Umkehrungen ausgerichtetes, schrittweises Curriculum. Der Schwerpunkt liegt auf der Erkennung der Akkordqualität.
+            </p>
+            <p>
+                <strong>Slash-Akkorde</strong> — Die Slash-Schreibweise wie C/E wird nicht unterstützt.
+            </p>
+            <p>
+                <strong>Harmonischer Kontext</strong> — Akkorde werden isoliert präsentiert. „Wie dieser Akkord innerhalb einer Akkordfolge funktioniert" deckt Akkorderkennung allein nicht ab (Akkordfolgen-Training ist separat verfügbar).
+            </p>
+            <p>
+                <strong>Funktionales (Stufen-)Hören</strong> — Akkorde nach ihrer <em>Funktion</em> innerhalb einer Tonart zu hören (z. B. ist derselbe Cmaj7 in C-Dur die I, in F-Dur dagegen V/V) — also römische Stufen / Funktionshören T-SD-D, wie es in der movable-do-Solfège-Tradition (Karpinski, Edlund u. a.) gelehrt wird — liegt außerhalb des qualitätsbezogenen Designs von Akkorderkennung. Kombiniere Akkordfolgen-Training mit movable-do-Singpraxis, um diese ergänzende Fähigkeit zu entwickeln.
+            </p>
+        </div>
+
+        <p>
+            
+            
+            
+            Was Solfege PRO unmittelbar unterstützt, ist der schrittweise Aufbau der Fähigkeit, Akkordqualitäten zu unterscheiden. Akkorde im harmonischen Kontext zu verstehen erfordert ergänzende Arbeit — über Akkordfolgen-Training oder das Heraushören echter Stücke.
+        </p>
+
+        <!-- Mid-article CTA -->
+        <div class="article-cta-subtle">
+            <p class="article-cta-subtle__text">¥980/Monat (1 Woche Gratistestphase) — prüfe deine Akkorderkennung</p>
+            <a href="https://apps.apple.com/de/app/id6756626617" class="article-cta-subtle__button">Im App Store ansehen</a>
+        </div>
+
+        <!-- Section 7 -->
+        <h2 id="how-to-use">Empfohlene Nutzung</h2>
+
+        <p>
+            
+            
+            
+            Das Akkorderkennung von Solfege PRO ist für die folgende Reihenfolge ausgelegt.
+        </p>
+
+        <ol>
+            <li><strong>Mit Basis-Dreiklänge beginnen</strong> — Strebe stabile 80 % oder mehr bei der Zweier-Auswahl Dur vs. Moll an</li>
+            <li><strong>Mit Arpeggio die Struktur erfassen</strong> — Bei einem neuen Akkordtyp zuerst per Arpeggio jeden Ton überprüfen</li>
+            <li><strong>Bei über 80 % zur nächsten Stufe</strong> — Wenn du auf der aktuellen Stufe konstant 80 % oder mehr erreichst, geh zur nächsten weiter</li>
+            <li><strong>Schwachpunkt-Modus nutzen</strong> — Hilfreich, wenn die Trefferquote bei bestimmten Akkordtypen stagniert</li>
+            <li><strong>Mit echter Musik prüfen</strong> — Setze das trainierte Ohr beim Heraushören deiner Lieblingsstücke ein. Das ist das eigentliche Ziel</li>
+        </ol>
+
+        <div class="article-note">
+            <div class="article-note__title">Nutzungstipp</div>
+            <p>Akkorderkennung gemeinsam mit Intervalltraining zu üben ist wirkungsvoll. Da das Intervallhören die Grundlage der Akkorderkennung bildet, vertieft das Abwechseln zwischen beidem dein Verständnis.</p>
+        </div>
+
+    </main>
+
+    <!-- Final CTA -->
+    <section class="article-cta">
+        <h2 class="article-cta__title">Beginne damit, deine Akkorderkennung zu prüfen</h2>
+        <p class="article-cta__text">
+            
+            
+            
+            Akkorderkennung stößt an eine Decke, wenn du dich allein auf den Eindruck „hell vs. dunkel" verlässt.<br>Verstehe die Unterschiede der Akkordtöne und erweitere dein Vokabular Schritt für Schritt.<br>Bestimme deinen Standort mit dem Akkorderkennung von Solfege PRO.
+        </p>
+        <a href="https://apps.apple.com/de/app/id6756626617" class="app-store-link" aria-label="Download on the App Store">
+            
+            
+            
+            <img class="app-store-link__img" src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/de-de" alt="Laden im App Store">
+        </a>
+    </section>
+
+    <!-- Related Content -->
+    <div class="article-related">
+        <div class="article-related__title">Verwandte Inhalte</div>
+        <a href="/" class="article-related__link">
+            <div class="article-related__link-title">Solfege PRO Übungsleitfaden</div>
+            <div class="article-related__link-desc">Problem­bezogene Übungsmenüs für Gitarre, Bass, Schlagzeug, Klavier und Gesang</div>
+        </a>
+    </div>
+
+    <!-- Article Note -->
+    <aside class="article-endnote">
+        <p class="article-endnote__text">
+            
+            
+            
+            Dieser Artikel orientiert sich an gebräuchlicher Ear-Training-Methodik und allgemeinem musiktheoretischen Wissen. Die Wahrnehmung von Akkordqualitäten ist individuell und vom musikalischen Hintergrund abhängig; die hier vorgestellten Kategorien gelten nicht für jeden Fall. Das App-Training unterstützt die Verbesserung der Erkennung von Akkordqualitäten, garantiert aber kein umfassendes harmonisches Verständnis.
+        </p>
+    </aside>
+
+    <!-- Footer -->
+    <footer class="article-footer">
+        <p class="article-footer__text">
+            &copy; 2026 Solfege PRO &mdash;
+            <a href="https://apps.apple.com/de/app/id6756626617" class="article-footer__link">App Store</a>
+        </p>
+    </footer>
+    <script src="/bootstrap.js?v=1" defer></script>
+</body>
+</html>

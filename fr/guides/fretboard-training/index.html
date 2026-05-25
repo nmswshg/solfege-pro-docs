@@ -1,0 +1,1079 @@
+<!DOCTYPE html>
+<html lang="fr"
+      data-title-ja="指板トレーニング — ギターの音名を暗記する | ソルフェージュPRO"
+      data-title-en="Mastering the Fretboard — How to Efficiently Learn Guitar Note Positions | Solfege PRO"
+      data-title-fr="Maîtrise du manche — Notes sur la guitare | Solfege PRO"
+      data-title-de="Das Griffbrett beherrschen — Gitarrennoten effizient lernen | Solfege PRO">
+<head>
+    <meta charset="UTF-8">
+    <meta name="robots" content="index, follow">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#1A1A1E">
+    <title>Maîtrise du manche — Notes sur la guitare | Solfege PRO</title>
+    <meta name="description" content="Mémorisez le manche par étapes — cordes à vide, repère 5e case, formes d'octave, et 12e case comme point de repère.">
+
+    <!-- Canonical -->
+    <link rel="canonical" href="https://solfegepro.com/fr/guides/fretboard-training/">
+    <link rel="alternate" hreflang="ja" href="https://solfegepro.com/guides/fretboard-training/">
+    <link rel="alternate" hreflang="en" href="https://solfegepro.com/en/guides/fretboard-training/">
+    <link rel="alternate" hreflang="fr" href="https://solfegepro.com/fr/guides/fretboard-training/">
+    <link rel="alternate" hreflang="de" href="https://solfegepro.com/de/guides/fretboard-training/">
+    <link rel="alternate" hreflang="x-default" href="https://solfegepro.com/guides/fretboard-training/">
+<!-- OGP -->
+    <meta property="og:title" content="Maîtrise du manche — Notes sur la guitare">
+    <meta property="og:description" content="Mémorisez le manche par étapes — cordes à vide, repère 5e case, formes d'octave, et 12e case comme point de repère.">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://solfegepro.com/fr/guides/fretboard-training/">
+    <meta property="og:site_name" content="ソルフェージュPRO">
+    <meta property="og:image" content="https://solfegepro.com/og-image.png">
+    <meta property="og:locale" content="fr_FR">
+    <meta property="og:locale:alternate" content="ja_JP">
+    <meta property="og:locale:alternate" content="en_US">
+    <meta property="og:locale:alternate" content="de_DE">
+    <meta property="article:published_time" content="2026-03-31">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Maîtrise du manche — Notes sur la guitare">
+    <meta name="twitter:description" content="Mémorisez le manche par étapes — cordes à vide, repère 5e case, formes d'octave, et 12e case comme point de repère.">
+    <meta name="twitter:image" content="https://solfegepro.com/og-image.png">
+
+    <!-- Favicon -->
+    <link rel="icon" href="/AppIcon.png" type="image/png">
+    <link rel="apple-touch-icon" href="/AppIcon.png">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="/style.css?v=15">
+    <link rel="stylesheet" href="/guides/article.css?v=9">
+
+    <!-- Fretboard diagram styles -->
+    <style>
+        /* Fretboard Grid Diagram (responsive — never horizontally scrolls) */
+        .fretboard-diagram {
+            background: var(--surface);
+            border-radius: var(--radius-xl);
+            padding: var(--space-lg);
+            margin: var(--space-xl) 0;
+            border: 1px solid var(--surface-light);
+        }
+
+        /* Shared 12-column template: string label (32px) + 11 fret cells. */
+        .fretboard-grid__header,
+        .fretboard-grid__row {
+            display: grid;
+            grid-template-columns: 32px repeat(11, minmax(0, 1fr));
+        }
+
+        .fretboard-grid__header {
+            margin-bottom: var(--space-sm);
+        }
+
+        .fretboard-grid__header-cell {
+            text-align: center;
+            font-size: 11px;
+            font-weight: 700;
+            color: var(--text-secondary);
+            min-width: 0;
+        }
+
+        .fretboard-grid__row {
+            align-items: center;
+            border-bottom: 2px solid var(--surface-light);
+        }
+
+        .fretboard-grid__row:last-child {
+            border-bottom: none;
+        }
+
+        .fretboard-grid__string-label {
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--primary);
+            text-align: center;
+        }
+
+        .fretboard-grid__cell {
+            height: 36px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--text-secondary);
+            position: relative;
+            min-width: 0;
+        }
+
+        .fretboard-grid__cell--note {
+            color: var(--text-primary);
+        }
+
+        .fretboard-grid__cell--note::after {
+            content: "";
+            position: absolute;
+            /* Scale with the cell — never exceed 28px, never below 20px. */
+            width: clamp(20px, 80%, 28px);
+            aspect-ratio: 1;
+            border-radius: 50%;
+            background: rgba(212, 175, 55, 0.15);
+            border: 1px solid rgba(212, 175, 55, 0.4);
+            z-index: 0;
+        }
+
+        .fretboard-grid__cell--highlight {
+            color: var(--primary);
+            font-weight: 700;
+        }
+
+        .fretboard-grid__cell--highlight::after {
+            background: rgba(212, 175, 55, 0.25);
+            border-color: var(--primary);
+        }
+
+        .fretboard-grid__nut {
+            width: 4px;
+            height: 36px;
+            background: var(--text-secondary);
+            flex-shrink: 0;
+            border-radius: 2px;
+        }
+
+        /* Octave Shape Diagram (inner .octave-grid handles responsiveness) */
+        .octave-diagram {
+            background: var(--surface);
+            border-radius: var(--radius-xl);
+            padding: var(--space-lg);
+            margin: var(--space-xl) 0;
+            border: 1px solid var(--surface-light);
+        }
+
+        /* Octave shape: 1 label + 6 fret columns (overrides the fretboard
+           template since the diagram only spans 6 frets). */
+        .octave-grid > .fretboard-grid__header,
+        .octave-grid__row {
+            display: grid;
+            grid-template-columns: 32px repeat(6, minmax(0, 1fr));
+        }
+        .octave-grid > .fretboard-grid__header > .fretboard-grid__header-cell {
+            /* Override the inline width attributes the HTML still ships
+               for backwards-compatibility — let the grid track govern. */
+            width: auto !important;
+        }
+
+        .octave-grid__row {
+            align-items: center;
+            border-bottom: 2px solid var(--surface-light);
+        }
+
+        .octave-grid__row:last-child {
+            border-bottom: none;
+        }
+
+        .octave-grid__label {
+            font-size: 12px;
+            font-weight: 700;
+            color: var(--text-secondary);
+            text-align: center;
+        }
+
+        .octave-grid__cell {
+            height: 34px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 11px;
+            color: var(--text-secondary);
+            position: relative;
+            min-width: 0;
+        }
+
+        .octave-grid__cell--root {
+            color: var(--primary);
+            font-weight: 700;
+        }
+
+        .octave-grid__cell--root::after {
+            content: "";
+            position: absolute;
+            width: clamp(18px, 80%, 26px);
+            aspect-ratio: 1;
+            border-radius: 50%;
+            background: rgba(212, 175, 55, 0.3);
+            border: 2px solid var(--primary);
+            z-index: 0;
+        }
+
+        .octave-grid__cell--octave {
+            color: #4ADE80;
+            font-weight: 700;
+        }
+
+        .octave-grid__cell--octave::after {
+            content: "";
+            position: absolute;
+            width: clamp(18px, 80%, 26px);
+            aspect-ratio: 1;
+            border-radius: 50%;
+            background: rgba(74, 222, 128, 0.2);
+            border: 2px solid #4ADE80;
+            z-index: 0;
+        }
+
+        .octave-arrow {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: var(--space-sm);
+            margin-top: var(--space-md);
+            font-size: 13px;
+            color: var(--text-secondary);
+        }
+
+        .octave-arrow__badge {
+            display: inline-flex;
+            align-items: center;
+            gap: var(--space-xs);
+            padding: 3px 10px;
+            border-radius: var(--radius-sm);
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .octave-arrow__badge--root {
+            background: rgba(212, 175, 55, 0.15);
+            color: var(--primary);
+            border: 1px solid rgba(212, 175, 55, 0.3);
+        }
+
+        .octave-arrow__badge--octave {
+            background: rgba(74, 222, 128, 0.15);
+            color: #4ADE80;
+            border: 1px solid rgba(74, 222, 128, 0.3);
+        }
+
+        /* Feature list for app section */
+        .feature-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--space-md);
+            margin: var(--space-lg) 0;
+        }
+
+        .feature-card {
+            background: var(--surface);
+            border: 1px solid var(--surface-light);
+            border-radius: var(--radius-lg);
+            padding: var(--space-md) var(--space-lg);
+        }
+
+        .feature-card__title {
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: var(--space-xs);
+        }
+
+        .feature-card__desc {
+            font-size: 13px;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        /* Progression steps */
+        .progression-steps {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-md);
+            margin: var(--space-lg) 0;
+        }
+
+        .progression-step {
+            display: flex;
+            align-items: flex-start;
+            gap: var(--space-md);
+            background: var(--surface);
+            border: 1px solid var(--surface-light);
+            border-radius: var(--radius-lg);
+            padding: var(--space-md) var(--space-lg);
+        }
+
+        .progression-step__number {
+            width: 28px;
+            height: 28px;
+            min-width: 28px;
+            background: var(--primary);
+            color: var(--background);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 13px;
+            font-weight: 700;
+            margin-top: 2px;
+        }
+
+        .progression-step__content {
+            flex: 1;
+        }
+
+        .progression-step__title {
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 2px;
+        }
+
+        .progression-step__desc {
+            font-size: 13px;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        @media (max-width: 768px) {
+            .feature-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .fretboard-grid__header-cell,
+            .fretboard-grid__cell {
+                width: 48px;
+            }
+
+            .octave-grid__cell {
+                width: 42px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .fretboard-grid__header-cell,
+            .fretboard-grid__cell {
+                width: 42px;
+                font-size: 10px;
+            }
+
+            .fretboard-grid__string-label {
+                width: 32px;
+                font-size: 11px;
+            }
+
+            .fretboard-grid__cell--note::after,
+            .fretboard-grid__cell--highlight::after {
+                width: 24px;
+                height: 24px;
+            }
+        }
+    </style>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"指板を覚えるとは何か — ギターのフレットボードを効率的に習得する","description":"ギターのフレットボードを効率的に習得するための方法と練習ステップを紹介します。","author":{"@type":"Organization","name":"ソルフェージュPRO"},"publisher":{"@type":"Organization","name":"ソルフェージュPRO","logo":{"@type":"ImageObject","url":"https://solfegepro.com/AppIcon.png"}},"datePublished":"2026-04-05","mainEntityOfPage":{"@type":"WebPage","@id":"https://solfegepro.com/guides/fretboard-training.html"}}</script>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="nav__container">
+            <a href="/" class="nav__logo">
+                <img src="/AppIcon.png" alt="Solfege PRO" class="nav__logo-icon">
+                <span class="nav__logo-text">Solfege PRO</span>
+            </a>
+            <ul class="nav__list">
+                <li><a href="/" class="nav__link">Guide de pratique</a></li>
+                <li><a href="/guides/" class="nav__link active">Guides</a></li>
+                            <li><a href="/start-here/" class="nav__link">Par où commencer ?</a></li>
+            </ul>
+            <div class="nav__settings">
+                <button class="settings-btn" id="lang-toggle" title="Toggle language">
+                    <span id="lang-text">EN</span>
+                </button>
+                <button class="hamburger-btn" id="hamburger-btn" aria-label="Menu" aria-expanded="false" aria-controls="drawer">
+                    <span class="hamburger-btn__line"></span>
+                    <span class="hamburger-btn__line"></span>
+                    <span class="hamburger-btn__line"></span>
+                </button>
+            </div>
+        </div>
+    </nav>
+        <!-- Mobile drawer (hidden on desktop) -->
+        <div class="drawer-overlay" id="drawer-overlay"></div>
+        <aside class="drawer" id="drawer" aria-label="Mobile menu" aria-hidden="true" inert>
+            <div class="drawer__header">
+                <span class="drawer__title">Menu</span>
+                <button class="drawer__close" id="drawer-close" aria-label="Close menu">×</button>
+            </div>
+            <ul class="drawer__list">
+                    <li><a href="/" class="drawer__link">Guide de pratique</a></li>
+                    <li><a href="/guides/" class="drawer__link active">Guides</a></li>
+                    <li><a href="/start-here/" class="drawer__link">Par où commencer ?</a></li>
+            </ul>
+        </aside>
+
+
+    <!-- Article Header -->
+    <header class="page-header">
+        <div class="page-header__meta">
+            <span class="page-header__tag">Entraînement Manche</span>
+            <span>Lecture : 10 min</span>
+        </div>
+        <h1 class="page-header__title">
+            
+            
+            Maîtriser le manche<br>Apprendre efficacement<br>les notes de la guitare
+            
+        </h1>
+        <p class="page-header__subtitle">
+            
+            
+            Le manche d'une guitare comporte plus de 100 positions de notes. Au lieu d'une mémorisation aveugle, découvrez comment la compréhension de sa structure rend l'apprentissage bien plus efficace.
+            
+        </p>
+    </header>
+
+    <!-- Top-of-article CTA -->
+    <aside class="article-top-cta" aria-label="App promotion">
+        <div class="article-top-cta__body">
+            <p class="article-top-cta__title">
+                
+                
+                Pratiquer dans Solfege PRO
+                
+            </p>
+            <p class="article-top-cta__sub">
+                
+                
+                ¥980/mois · 1 semaine d'essai gratuite
+                
+            </p>
+        </div>
+        <a href="https://apps.apple.com/fr/app/id6756626617" class="article-top-cta__button" data-cta-position="article_top">
+            
+            
+            App Store →
+            
+        </a>
+    </aside>
+
+    <!-- Article Body -->
+    <main class="article-body">
+
+        <!-- Section 1: Why Learn the Fretboard -->
+        <h2 id="why-learn">Pourquoi apprendre le manche ?</h2>
+
+        <p>
+            
+            
+            La guitare présente une difficulté propre que le piano n'a pas. Au piano, il n'y a qu'une seule touche « do » par octave. À la guitare, la même note « do » se trouve à plusieurs endroits sur le manche.
+            
+        </p>
+
+        <p>
+            
+            
+            Avec 6 cordes et 24 cases, on obtient théoriquement 144 positions. Même en ne comptant que les positions musicalement pertinentes, le nombre dépasse 100. Vu comme « apprendre par cœur », cela peut sembler insurmontable.
+            
+        </p>
+
+        <p>
+            
+            
+            Mais les bénéfices à connaître le manche sont considérables.
+            
+        </p>
+
+        <ul>
+            <li><strong>Improvisation</strong> — Jouer sans réfléchir où placer les doigts ensuite</li>
+            <li><strong>Voicing d'accords</strong> — Jouer le même accord dans plusieurs positions et voicings</li>
+            <li><strong>Transposition</strong> — S'adapter instantanément lors d'un changement de tonalité</li>
+            <li><strong>Relevé à l'oreille</strong> — Trouver rapidement sur le manche les notes que vous entendez</li>
+            <li><strong>Communication</strong> — Quand on vous dit « joue un Sib ici », vous réagissez immédiatement</li>
+        </ul>
+
+        <p>
+            
+            
+            Un guitariste qui ne connaît pas le manche est comme quelqu'un qui tâtonne dans une pièce sombre. Un guitariste qui le connaît avance avec une carte en main.
+            
+        </p>
+
+        <!-- Section 2: Fretboard Structure -->
+        <h2 id="structure">Comprendre la structure du manche</h2>
+
+        <p>
+            
+            
+            Avant de mémoriser le manche, commencez par en comprendre la structure. Une fois les motifs identifiés, vous n'aurez plus besoin de retenir 144 positions comme 144 faits distincts.
+            
+        </p>
+
+        <h3 id="tuning">Accordage standard</h3>
+        <p>
+            
+            
+            L'accordage standard de la guitare, de la corde la plus grave à la plus aiguë, est <strong>Mi - La - Ré - Sol - Si - Mi</strong> (E - A - D - G - B - E). Chaque corde à vide (case 0) produit ces notes.
+            
+        </p>
+
+        <h3 id="fret-semitone">Une case = un demi-ton</h3>
+        <p>
+            
+            
+            Chaque case monte la hauteur d'un demi-ton. Ainsi, si la 1re corde à vide est Mi, la case 1 est Fa, la case 2 est Fa#/Solb, la case 3 est Sol, et ainsi de suite de manière régulière.
+            
+        </p>
+
+        <h3 id="12th-fret">Case 12 = une octave au-dessus</h3>
+        <p>
+            
+            
+            La case 12 est exactement une octave au-dessus de la corde à vide. Autrement dit, le motif des notes des cases 0 à 11 se répète à partir de la case 12. Apprenez jusqu'à la 12e case, et le reste suit automatiquement.
+            
+        </p>
+
+        <!-- Fretboard Diagram -->
+        <div class="fretboard-diagram">
+            <div class="diagram-title">Disposition des notes sur le manche (positions clés)</div>
+            <div class="fretboard-grid">
+                <div class="fretboard-grid__header">
+                    <div class="fretboard-grid__header-cell"></div>
+                    <div class="fretboard-grid__header-cell">Vide</div>
+                    <div class="fretboard-grid__header-cell">1</div>
+                    <div class="fretboard-grid__header-cell">2</div>
+                    <div class="fretboard-grid__header-cell">3</div>
+                    <div class="fretboard-grid__header-cell">4</div>
+                    <div class="fretboard-grid__header-cell">5</div>
+                    <div class="fretboard-grid__header-cell">7</div>
+                    <div class="fretboard-grid__header-cell">8</div>
+                    <div class="fretboard-grid__header-cell">9</div>
+                    <div class="fretboard-grid__header-cell">10</div>
+                    <div class="fretboard-grid__header-cell">12</div>
+                </div>
+                <!-- 1st string (high E) -->
+                <div class="fretboard-grid__row">
+                    <div class="fretboard-grid__string-label">1</div>
+                    <div class="fretboard-grid__cell fretboard-grid__cell--note fretboard-grid__cell--highlight">E</div>
+                    <div class="fretboard-grid__cell fretboard-grid__cell--note">F</div>
+                    <div class="fretboard-grid__cell"></div>
+                    <div class="fretboard-grid__cell fretboard-grid__cell--note">G</div>
+                    <div class="fretboard-grid__cell"></div>
+                    <div class="fretboard-grid__cell fretboard-grid__cell--note">A</div>
+                    <div class="fretboard-grid__cell fretboard-grid__cell--note">B</div>
+                    <div class="fretboard-grid__cell fretboard-grid__cell--note">C</div>
+                    <div class="fretboard-grid__cell"></div>
+                    <div class="fretboard-grid__cell fretboard-grid__cell--note">D</div>
+                    <div class="fretboard-grid__cell fretboard-grid__cell--note fretboard-grid__cell--highlight">E</div>
+                </div>
+                <!-- 2nd string (B) -->
+                <div class="fretboard-grid__row">
+                    <div class="fretboard-grid__string-label">2</div>
+                    <div class="fretboard-grid__cell fretboard-grid__cell--note fretboard-grid__cell--highlight">B</div>
+                    <div class="fretboard-grid__cell fretboard-grid__cell--note">C</div>
+                    <div class="fretboard-grid__cell"></div>
+                    <div class="fretboard-grid__cell fretboard-grid__cell--note">D</div>
+                    <div class="fretboard-grid__cell"></div>
+                    <div class="fretboard-grid__cell fretboard-grid__cell--note">E</div>
+                    <div class="fretboard-grid__cell fretboard-grid__cell--note">F#</div>
+                    <div class="fretboard-grid__cell fretboard-grid__cell--note">G</div>
+                    <div class="fretboard-grid__cell"></div>
+                    <div class="fretboard-grid__cell fretboard-grid__cell--note">A</div>
+                    <div class="fretboard-grid__cell fretboard-grid__cell--note fretboard-grid__cell--highlight">B</div>
+                </div>
+                <!-- 3rd string (G) -->
+                <div class="fretboard-grid__row">
+                    <div class="fretboard-grid__string-label">3</div>
+                    <div class="fretboard-grid__cell fretboard-grid__cell--note fretboard-grid__cell--highlight">G</div>
+                    <div class="fretboard-grid__cell"></div>
+                    <div class="fretboard-grid__cell fretboard-grid__cell--note">A</div>
+                    <div class="fretboard-grid__cell"></div>
+                    <div class="fretboard-grid__cell fretboard-grid__cell--note">B</div>
+                    <div class="fretboard-grid__cell fretboard-grid__cell--note">C</div>
+                    <div class="fretboard-grid__cell fretboard-grid__cell--note">D</div>
+                    <div class="fretboard-grid__cell"></div>
+                    <div class="fretboard-grid__cell fretboard-grid__cell--note">E</div>
+                    <div class="fretboard-grid__cell fretboard-grid__cell--note">F</div>
+                    <div class="fretboard-grid__cell fretboard-grid__cell--note fretboard-grid__cell--highlight">G</div>
+                </div>
+                <!-- 4th string (D) -->
+                <div class="fretboard-grid__row">
+                    <div class="fretboard-grid__string-label">4</div>
+                    <div class="fretboard-grid__cell fretboard-grid__cell--note fretboard-grid__cell--highlight">D</div>
+                    <div class="fretboard-grid__cell"></div>
+                    <div class="fretboard-grid__cell fretboard-grid__cell--note">E</div>
+                    <div class="fretboard-grid__cell fretboard-grid__cell--note">F</div>
+                    <div class="fretboard-grid__cell"></div>
+                    <div class="fretboard-grid__cell fretboard-grid__cell--note">G</div>
+                    <div class="fretboard-grid__cell fretboard-grid__cell--note">A</div>
+                    <div class="fretboard-grid__cell"></div>
+                    <div class="fretboard-grid__cell fretboard-grid__cell--note">B</div>
+                    <div class="fretboard-grid__cell fretboard-grid__cell--note">C</div>
+                    <div class="fretboard-grid__cell fretboard-grid__cell--note fretboard-grid__cell--highlight">D</div>
+                </div>
+                <!-- 5th string (A) -->
+                <div class="fretboard-grid__row">
+                    <div class="fretboard-grid__string-label">5</div>
+                    <div class="fretboard-grid__cell fretboard-grid__cell--note fretboard-grid__cell--highlight">A</div>
+                    <div class="fretboard-grid__cell"></div>
+                    <div class="fretboard-grid__cell fretboard-grid__cell--note">B</div>
+                    <div class="fretboard-grid__cell fretboard-grid__cell--note">C</div>
+                    <div class="fretboard-grid__cell"></div>
+                    <div class="fretboard-grid__cell fretboard-grid__cell--note">D</div>
+                    <div class="fretboard-grid__cell fretboard-grid__cell--note">E</div>
+                    <div class="fretboard-grid__cell fretboard-grid__cell--note">F</div>
+                    <div class="fretboard-grid__cell"></div>
+                    <div class="fretboard-grid__cell fretboard-grid__cell--note">G</div>
+                    <div class="fretboard-grid__cell fretboard-grid__cell--note fretboard-grid__cell--highlight">A</div>
+                </div>
+                <!-- 6th string (low E) -->
+                <div class="fretboard-grid__row">
+                    <div class="fretboard-grid__string-label">6</div>
+                    <div class="fretboard-grid__cell fretboard-grid__cell--note fretboard-grid__cell--highlight">E</div>
+                    <div class="fretboard-grid__cell fretboard-grid__cell--note">F</div>
+                    <div class="fretboard-grid__cell"></div>
+                    <div class="fretboard-grid__cell fretboard-grid__cell--note">G</div>
+                    <div class="fretboard-grid__cell"></div>
+                    <div class="fretboard-grid__cell fretboard-grid__cell--note">A</div>
+                    <div class="fretboard-grid__cell fretboard-grid__cell--note">B</div>
+                    <div class="fretboard-grid__cell fretboard-grid__cell--note">C</div>
+                    <div class="fretboard-grid__cell"></div>
+                    <div class="fretboard-grid__cell fretboard-grid__cell--note">D</div>
+                    <div class="fretboard-grid__cell fretboard-grid__cell--note fretboard-grid__cell--highlight">E</div>
+                </div>
+            </div>
+            <p style="font-size:12px;color:var(--text-secondary);margin-top:var(--space-md);text-align:center;">
+                
+                
+                Cercles dorés = cordes à vide / 12e case (octave). Les cases vides correspondent aux notes # / b.
+                
+            </p>
+        </div>
+
+        <h3 id="same-note">La même note à plusieurs endroits</h3>
+        <p>
+            
+            
+            Sur le schéma ci-dessus, la note « do » apparaît sur la 1re corde case 8, la 2e corde case 1, la 3e corde case 5, la 4e corde case 10, la 5e corde case 3, et ailleurs encore. C'est à la fois la raison principale pour laquelle le manche paraît complexe et celle qui lui confère autant de liberté.
+            
+        </p>
+
+        <div class="article-note">
+            <div class="article-note__title">Point clé</div>
+            <p>Le manche n'est pas « 144 positions indépendantes », mais « un motif répétitif de 12 notes sur 6 cordes ». Comprendre cette structure réduit considérablement ce qu'il faut mémoriser.</p>
+        </div>
+
+        <!-- Section 3: Common Struggles -->
+        <h2 id="common-struggles">Obstacles fréquents</h2>
+
+        <p>
+            
+            
+            En essayant d'apprendre le manche, la plupart des guitaristes se heurtent aux mêmes obstacles.
+            
+        </p>
+
+        <h3 id="unknown-territory">Au-delà des cases 5-7, terra incognita</h3>
+        <p>
+            
+            
+            Beaucoup de guitaristes connaissent les cases 0 à 5 parce qu'ils ont appris les positions d'accords ouverts. Mais au-delà de la case 7, à la question « quelle note est-ce ? », ils ne savent plus répondre. Tout ce qui se trouve après la case 12 reste souvent totalement inexploré.
+            
+        </p>
+
+        <h3 id="sharps-flats">Impossible de retenir les # et b</h3>
+        <p>
+            
+            
+            Vous connaissez peut-être à peu près les notes naturelles (do, ré, mi, fa, sol, la, si), mais les dièses et bémols restent flous. Il est facile d'oublier la règle de base : il n'y a pas de #/b entre mi et fa, ni entre si et do.
+            
+        </p>
+
+        <h3 id="cross-string">Confusion en changeant de corde</h3>
+        <p>
+            
+            
+            Le long d'une seule corde, c'est simple : chaque case monte d'un demi-ton. Mais en passant à la corde voisine, l'accordage différent de chaque corde fait perdre vos repères. L'écart entre les cordes 2 et 3 est particulièrement délicat car l'intervalle y est une tierce majeure (et non une quarte comme entre les autres), ce qui rompt le motif autrement régulier.
+            
+        </p>
+
+        <h3 id="open-fret-disconnect">Le lien entre cordes à vide et notes frettées reste invisible</h3>
+        <p>
+            
+            
+            Vous savez peut-être que « la 5e corde à vide est La » et que « la 6e corde case 5 est aussi La », mais le sentiment qu'il s'agit de la même note est faible. Si vous traitez cordes à vide et notes frettées comme des choses distinctes, les connexions à travers le manche deviennent invisibles.
+            
+        </p>
+
+        <!-- Section 4: Effective Learning Methods -->
+        <h2 id="effective-methods">Méthodes d'apprentissage efficaces</h2>
+
+        <p>
+            
+            
+            Quelques principes permettent d'apprendre le manche efficacement.
+            
+        </p>
+
+        <h3 id="naturals-first">Commencer uniquement par les notes naturelles</h3>
+        <p>
+            
+            
+            N'essayez pas d'apprendre les 12 notes d'un coup. Concentrez-vous d'abord sur les 7 notes naturelles : do, ré, mi, fa, sol, la, si. Une fois leurs positions connues, les # et b se trouvent automatiquement « à côté ». Par exemple : « si c'est un fa et que la suivante est un sol, alors la case entre les deux est forcément fa#/solb ».
+            
+        </p>
+
+        <h3 id="one-string">Maîtriser une corde à la fois</h3>
+        <p>
+            
+            
+            Vouloir apprendre les 6 cordes en même temps mène à la confusion. Commencez par la 6e corde (Mi grave), maîtrisez-la complètement, puis passez à la 5e (La), et ainsi de suite. Comme les 1re et 6e cordes partagent les mêmes noms de notes, maîtriser la 6e vous offre la 1re gratuitement.
+            
+        </p>
+
+        <h3 id="octave-shapes">Utiliser les formes d'octave</h3>
+        <p>
+            
+            
+            La guitare présente un motif où « la même note réapparaît à 2 cordes de distance et 2 cases plus haut » (sauf entre les cordes 2 et 3). Apprendre cette forme d'octave permet de retrouver en chaîne d'autres positions à partir d'une seule note connue.
+            
+        </p>
+
+        <!-- Octave Shape Diagram -->
+        <div class="octave-diagram">
+            <div class="diagram-title">Forme d'octave : 6e→4e corde / 5e→3e corde</div>
+            <div class="octave-grid">
+                <div class="fretboard-grid__header">
+                    <div class="fretboard-grid__header-cell" style="width:40px;"></div>
+                    <div class="fretboard-grid__header-cell" style="width:50px;">3</div>
+                    <div class="fretboard-grid__header-cell" style="width:50px;">4</div>
+                    <div class="fretboard-grid__header-cell" style="width:50px;">5</div>
+                    <div class="fretboard-grid__header-cell" style="width:50px;">6</div>
+                    <div class="fretboard-grid__header-cell" style="width:50px;">7</div>
+                    <div class="fretboard-grid__header-cell" style="width:50px;">8</div>
+                </div>
+                <div class="octave-grid__row">
+                    <div class="octave-grid__label">3</div>
+                    <div class="octave-grid__cell"></div>
+                    <div class="octave-grid__cell"></div>
+                    <div class="octave-grid__cell octave-grid__cell--octave">C</div>
+                    <div class="octave-grid__cell"></div>
+                    <div class="octave-grid__cell"></div>
+                    <div class="octave-grid__cell"></div>
+                </div>
+                <div class="octave-grid__row">
+                    <div class="octave-grid__label">4</div>
+                    <div class="octave-grid__cell"></div>
+                    <div class="octave-grid__cell"></div>
+                    <div class="octave-grid__cell octave-grid__cell--octave">G</div>
+                    <div class="octave-grid__cell"></div>
+                    <div class="octave-grid__cell"></div>
+                    <div class="octave-grid__cell"></div>
+                </div>
+                <div class="octave-grid__row">
+                    <div class="octave-grid__label">5</div>
+                    <div class="octave-grid__cell octave-grid__cell--root">C</div>
+                    <div class="octave-grid__cell"></div>
+                    <div class="octave-grid__cell"></div>
+                    <div class="octave-grid__cell"></div>
+                    <div class="octave-grid__cell"></div>
+                    <div class="octave-grid__cell"></div>
+                </div>
+                <div class="octave-grid__row">
+                    <div class="octave-grid__label">6</div>
+                    <div class="octave-grid__cell octave-grid__cell--root">G</div>
+                    <div class="octave-grid__cell"></div>
+                    <div class="octave-grid__cell"></div>
+                    <div class="octave-grid__cell"></div>
+                    <div class="octave-grid__cell"></div>
+                    <div class="octave-grid__cell"></div>
+                </div>
+            </div>
+            <div class="octave-arrow">
+                <span class="octave-arrow__badge octave-arrow__badge--root">Fondamentale</span>
+                &rarr;
+                2 cordes plus haut + 2 cases plus haut
+                &rarr;
+                <span class="octave-arrow__badge octave-arrow__badge--octave">Octave</span>
+            </div>
+            <p style="font-size:12px;color:var(--text-secondary);margin-top:var(--space-md);text-align:center;">
+                
+                
+                Entre les 2e et 3e cordes, décalez de +3 cases (à cause de l'accord en tierce majeure)
+                
+            </p>
+        </div>
+
+        <h3 id="fret-ranges">S'entraîner par plages de cases</h3>
+        <p>
+            
+            
+            Au lieu d'apprendre tout le manche d'un coup, divisez-le en plages et élargissez progressivement.
+            
+        </p>
+
+        <div class="progression-steps">
+            <div class="progression-step">
+                <div class="progression-step__number">1</div>
+                <div class="progression-step__content">
+                    <div class="progression-step__title">Cases 0-5</div>
+                    <div class="progression-step__desc">La plage la plus familière, incluant les cordes à vide. Commencez ici pour gagner en assurance.</div>
+                </div>
+            </div>
+            <div class="progression-step">
+                <div class="progression-step__number">2</div>
+                <div class="progression-step__content">
+                    <div class="progression-step__title">Cases 5-12</div>
+                    <div class="progression-step__desc">La zone médiane où la plupart des guitaristes peinent. La maîtriser fait toute la différence.</div>
+                </div>
+            </div>
+            <div class="progression-step">
+                <div class="progression-step__number">3</div>
+                <div class="progression-step__content">
+                    <div class="progression-step__title">Cases 0-12 (intégration complète)</div>
+                    <div class="progression-step__desc">Intégrez les deux plages. Vérifiez si vous passez d'une position à l'autre de façon fluide.</div>
+                </div>
+            </div>
+            <div class="progression-step">
+                <div class="progression-step__number">4</div>
+                <div class="progression-step__content">
+                    <div class="progression-step__title">Cases 0-24 (plage complète)</div>
+                    <div class="progression-step__desc">Les cases au-delà de la 12 répètent le motif : arrivé là, vous êtes en phase de finition.</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="article-note">
+            <div class="article-note__title">Point clé</div>
+            <p>« Notes naturelles uniquement, plage étroite, expansion progressive » est l'approche la plus efficace. Vouloir tout apprendre d'un coup, c'est souvent ne rien fixer correctement.</p>
+        </div>
+
+        <!-- Section 5: What the App Can Do -->
+        <h2 id="what-app-can-do">Ce que permet Solfege PRO</h2>
+
+        <p>
+            
+            
+            Le Entraînement Manche de Solfege PRO est un outil qui soutient les méthodes ci-dessus via un <strong>cycle « question → réponse → repérage des faiblesses → pratique ciblée »</strong>.
+            
+        </p>
+
+        <h3>Prise en charge de plusieurs accordages</h3>
+        <p>
+            
+            
+            Au-delà de l'accordage standard, l'application prend en charge Drop D, Half Step Down, Open G et DADGAD. Les joueurs en accordage alternatif peuvent s'entraîner avec leur propre configuration.
+            
+        </p>
+
+        <h3>Sélection de la plage de cases</h3>
+        <p>
+            
+            
+            Choisissez votre plage de cases d'entraînement : 0-5 / 5-12 / 0-12 / 0-24. Cela soutient directement l'approche « élargir progressivement » décrite plus haut.
+            
+        </p>
+
+        <h3>Filtrage des cordes</h3>
+        <p>
+            
+            
+            Choisissez entre toutes les cordes, les cordes aiguës (1-3), les cordes graves (4-6) ou une corde précise. Cela permet directement la méthode « une corde à la fois ».
+            
+        </p>
+
+        <h3>Mode des notes</h3>
+        <p>
+            
+            
+            Choisissez les notes interrogées : naturelles uniquement, dièses, bémols, ou toutes. Commencez par les naturelles, puis ajoutez #/b à mesure que vous progressez.
+            
+        </p>
+
+        <div class="feature-grid">
+            <div class="feature-card">
+                <div class="feature-card__title">Affichage gaucher</div>
+                <div class="feature-card__desc">Inversez l'affichage du manche pour les gauchers. Entraînez-vous dans une orientation naturelle.</div>
+            </div>
+            <div class="feature-card">
+                <div class="feature-card__title">Surlignage des octaves</div>
+                <div class="feature-card__desc">Met en évidence les positions partageant le même nom de note. Soutient visuellement la compréhension des formes d'octave.</div>
+            </div>
+            <div class="feature-card">
+                <div class="feature-card__title">Mode « toutes les positions »</div>
+                <div class="feature-card__desc">« Trouvez cette note à toutes ses positions sur le manche. » Renforce le lien entre nom de note et emplacement sur le manche.</div>
+            </div>
+            <div class="feature-card">
+                <div class="feature-card__title">Suivi des points faibles</div>
+                <div class="feature-card__desc">Suit le taux de réussite par note, corde et plage de cases. Voyez précisément où sont vos points faibles.</div>
+            </div>
+            <div class="feature-card">
+                <div class="feature-card__title">Préréglages personnalisés</div>
+                <div class="feature-card__desc">Enregistrez vos configurations d'entraînement préférées. Gérez votre plan d'apprentissage progressif sous forme de préréglages.</div>
+            </div>
+            <div class="feature-card">
+                <div class="feature-card__title">Réponse en un seul appui</div>
+                <div class="feature-card__desc">Appuyez sur la bonne position du manche pour répondre. Entraînez-vous jusqu'à répondre par réflexe.</div>
+            </div>
+        </div>
+
+        <!-- Cycle Diagram -->
+        <div class="cycle-diagram">
+            <div class="cycle-step">
+                <div class="cycle-step__label">Question</div>
+                <div class="cycle-step__desc">Affiche une note</div>
+            </div>
+            <div class="cycle-arrow">&rarr;</div>
+            <div class="cycle-step">
+                <div class="cycle-step__label">Réponse</div>
+                <div class="cycle-step__desc">Touchez le manche</div>
+            </div>
+            <div class="cycle-arrow">&rarr;</div>
+            <div class="cycle-step">
+                <div class="cycle-step__label">Faiblesse</div>
+                <div class="cycle-step__desc">Repérer les lacunes</div>
+            </div>
+            <div class="cycle-arrow">&rarr;</div>
+            <div class="cycle-step">
+                <div class="cycle-step__label">Cibler</div>
+                <div class="cycle-step__desc">Réduire les réglages et réessayer</div>
+            </div>
+        </div>
+
+        <!-- Mid-article CTA -->
+        <div class="article-cta-subtle">
+            <p class="article-cta-subtle__text">Et si vous commenciez par identifier vos points faibles sur le manche ?</p>
+            <a href="https://apps.apple.com/fr/app/id6756626617" class="article-cta-subtle__button">Voir sur l'App Store</a>
+        </div>
+
+        <!-- Section 6: Limitations (Honest) -->
+        <h2 id="limitations">Ce que Solfege PRO ne couvre pas directement</h2>
+
+        <p>
+            
+            
+            Soyons honnêtes.
+            
+        </p>
+
+        <div class="article-honest">
+            <div class="article-honest__title">Domaines hors du périmètre de l'application</div>
+            <p>
+                <strong>Système CAGED</strong> — L'application ne couvre pas le système CAGED, qui structure le manche à partir de 5 formes d'accord. Pour le CAGED, combinez l'app avec des méthodes papier ou des ressources d'harmonie.
+            </p>
+            <p>
+                <strong>Visualisation des motifs de gammes</strong> — L'application n'affiche pas les motifs de gammes (positions pentatoniques, formes de gamme majeure, etc.) sur le manche. La pratique des gammes doit se faire à part.
+            </p>
+            <p>
+                <strong>Apprentissage des formes d'accord</strong> — Mémoriser les formes d'accord et apprendre les voicings dans différentes positions sort du périmètre.
+            </p>
+            <p>
+                <strong>Techniques de jeu</strong> — Les bends, slides, hammer-ons, pull-offs et autres techniques de jeu ne sont pas traités. Ce sont des compétences distinctes de « connaître la position des notes ».
+            </p>
+            <p>
+                <strong>Contexte musical</strong> — L'entraînement en contexte concret, comme jouer sur des morceaux ou sur des backing tracks, n'est pas pris en charge.
+            </p>
+            <p>
+                <strong>Création d'accordages personnalisés</strong> — Seuls 5 accordages préréglés sont disponibles. Aucune fonction ne permet de définir librement un accordage personnalisé.
+            </p>
+        </div>
+
+        <p>
+            
+            
+            Ce que Solfege PRO soutient directement, c'est <strong>la capacité à identifier vite et précisément où se trouve chaque note sur le manche</strong>. C'est un outil pour bâtir la « carte » mentale du manche — ce que vous jouez sur cette carte dépend de votre musicalité et de votre pratique.
+            
+        </p>
+
+        <!-- Section 7: Recommended Usage -->
+        <h2 id="recommended-usage">Utilisation recommandée</h2>
+
+        <p>
+            
+            
+            Voici une progression d'entraînement efficace.
+            
+        </p>
+
+        <ol>
+            <li><strong>Notes naturelles + cases 0-5 + toutes les cordes</strong> — Commencez ici. Ancrez les 7 notes naturelles dans la plage de base, cordes à vide incluses.</li>
+            <li><strong>Notes naturelles + cases 5-12 + toutes les cordes</strong> — Attaquez la zone médiane difficile. C'est là que vous progresserez le plus.</li>
+            <li><strong>Notes naturelles + cases 0-12 + toutes les cordes</strong> — Intégrez les deux plages. Vérifiez que vous répondez d'un seul tenant sur les 12 premières cases.</li>
+            <li><strong>Ajouter # et b</strong> — Une fois les naturelles solides, passez le mode des notes sur « toutes » pour couvrir les 12 notes.</li>
+            <li><strong>Finir avec le mode « toutes les positions »</strong> — Mettez-vous au défi de retrouver instantanément toutes les positions d'une note donnée sur le manche.</li>
+        </ol>
+
+        <!-- Good vs Bad Comparison -->
+        <div class="comparison-visual">
+            <div class="comparison-card comparison-card--bad">
+                <div class="comparison-card__header">Peu efficace</div>
+                <div class="comparison-card__body">
+                    <p>Questions aléatoires sur toutes les cases et toutes les notes dès le départ. Le taux de réussite est trop bas pour fixer quoi que ce soit. On a l'impression de tout recommencer à chaque fois.</p>
+                </div>
+            </div>
+            <div class="comparison-card comparison-card--good">
+                <div class="comparison-card__header">Plus efficace</div>
+                <div class="comparison-card__body">
+                    <p>Commencez par les naturelles sur une plage étroite jusqu'à plus de 90 % de réussite, élargissez la plage, puis ajoutez les # et b. Consultez le suivi des points faibles et concentrez-vous sur les notes et cordes difficiles.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="article-note">
+            <div class="article-note__title">Astuce d'utilisation</div>
+            <p>Chaque séance peut être courte. Même 5 minutes par jour suffisent pour fixer en une semaine les notes naturelles des cordes à vide à la case 5. « Court, quotidien, progressif » est l'approche la plus efficace.</p>
+        </div>
+
+    </main>
+
+    <!-- Final CTA -->
+    <section class="article-cta">
+        <h2 class="article-cta__title">Commencez par repérer vos points faibles sur le manche</h2>
+        <p class="article-cta__text">
+            
+            
+            La mémorisation à l'aveugle du manche n'est pas efficace.<br>Savoir quelles cordes et quelles plages de cases sont vos points faibles, c'est le point de départ d'un apprentissage efficace.<br>Essayez le Entraînement Manche de Solfege PRO et commencez par identifier vos faiblesses.
+            
+        </p>
+                <p style="font-size: 14px; color: var(--text-secondary); margin-bottom: var(--space-md); text-align: center;">
+            
+            
+            ¥980/mois (1 semaine d'essai gratuite)
+            
+        </p>
+        <a href="https://apps.apple.com/fr/app/id6756626617" class="app-store-link" aria-label="Download on the App Store">
+            
+            
+            <img class="app-store-link__img" src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/fr-fr" alt="Télécharger dans l'App Store">
+            
+        </a>
+    </section>
+
+    <!-- Related Content -->
+    <div class="article-related">
+        <div class="article-related__title">Contenus liés</div>
+        <a href="/" class="article-related__link">
+            <div class="article-related__link-title">Guide de pratique Solfege PRO</div>
+            <div class="article-related__link-desc">Menus d'entraînement par objectif pour guitare, basse, batterie, piano et chant</div>
+        </a>
+    </div>
+
+    <!-- Article End Note -->
+    <aside class="article-endnote">
+        <p class="article-endnote__text">
+            
+            
+            Cet article s'appuie sur des méthodologies d'apprentissage du manche largement répandues et sur la conception de Solfege PRO. L'ordre et l'approche optimaux varient selon l'expérience et le style de chacun. L'entraînement dans l'application soutient la mémorisation et le rappel des positions de notes, mais ne garantit pas la maîtrise de la technique de jeu ni de la théorie des gammes et accords.
+            
+        </p>
+    </aside>
+
+    <!-- Footer -->
+    <footer class="article-footer">
+        <p class="article-footer__text">
+            &copy; 2026 Solfege PRO &mdash;
+            <a href="https://apps.apple.com/fr/app/id6756626617" class="article-footer__link">App Store</a>
+        </p>
+    </footer>
+
+    <!-- Language Toggle Script -->
+    <script src="/bootstrap.js?v=1" defer></script>
+</body>
+</html>

@@ -4,10 +4,10 @@ const { test, expect } = require('@playwright/test');
 const PAGES_WITH_ICONS = [
     { path: '/',                                expected: { 'guide-card': 8, 'instrument-card': 6 } },
     { path: '/guides/',                         expected: { 'guide-card': 8 } },
-    { path: '/start-here.html',                 expected: { 'diag-option': 14 } },
-    { path: '/practice/drums.html',             expected: { 'page-header': 1 } },
-    { path: '/practice/piano.html',             expected: { 'page-header': 1 } },
-    { path: '/guides/groove-training.html',     expected: {} },
+    { path: '/start-here/',                 expected: { 'diag-option': 14 } },
+    { path: '/practice/drums/',             expected: { 'page-header': 1 } },
+    { path: '/practice/piano/',             expected: { 'page-header': 1 } },
+    { path: '/guides/groove-training/',     expected: {} },
 ];
 
 test('SVG sprite loads', async ({ page: p }) => {

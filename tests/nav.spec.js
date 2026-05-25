@@ -3,10 +3,10 @@ const { test, expect } = require('@playwright/test');
 
 const PAGES = [
     { path: '/',                                    activeIdx: 0, name: 'TOP' },
-    { path: '/start-here.html',                     activeIdx: 2, name: 'start-here' },
+    { path: '/start-here/',                     activeIdx: 2, name: 'start-here' },
     { path: '/guides/',                             activeIdx: 1, name: 'guides-index' },
-    { path: '/guides/groove-training.html',         activeIdx: 1, name: 'guide-article' },
-    { path: '/practice/drums.html',                 activeIdx: 0, name: 'practice' },
+    { path: '/guides/groove-training/',         activeIdx: 1, name: 'guide-article' },
+    { path: '/practice/drums/',                 activeIdx: 0, name: 'practice' },
 ];
 const NAV_LABELS_JA = ['練習ガイド', 'ガイド一覧', 'どこから始める？'];
 

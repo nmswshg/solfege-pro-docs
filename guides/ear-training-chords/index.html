@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html lang="ja"
+      data-title-ja="コードを聴き分ける — 3 度で Major/Minor を判別 | ソルフェージュPRO"
+      data-title-en="What Is Chord Recognition? — Understanding Harmonic Sounds | Solfege PRO"
+      data-title-fr="Qu'est-ce que la reconnaissance d'accords ? — Comprendre la sonorité des accords | Solfege PRO"
+      data-title-de="Was ist Akkorderkennung? — Den Klang von Harmonien verstehen | Solfege PRO">
+<head>
+    <meta charset="UTF-8">
+    <meta name="robots" content="index, follow">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#1A1A1E">
+    <title>コードを聴き分ける — 3 度で Major/Minor を判別 | ソルフェージュPRO</title>
+    <meta name="description" content="コードの「明暗」を決める 3 度の聴き分けを中心に、Major/Minor → 全トライアド → 7th → テンションまで、段階的にコード認識力を鍛える練習プランを解説します。">
+
+    <!-- Canonical -->
+    <link rel="canonical" href="https://solfegepro.com/guides/ear-training-chords/">
+    <link rel="alternate" hreflang="ja" href="https://solfegepro.com/guides/ear-training-chords/">
+    <link rel="alternate" hreflang="en" href="https://solfegepro.com/en/guides/ear-training-chords/">
+    <link rel="alternate" hreflang="fr" href="https://solfegepro.com/fr/guides/ear-training-chords/">
+    <link rel="alternate" hreflang="de" href="https://solfegepro.com/de/guides/ear-training-chords/">
+    <link rel="alternate" hreflang="x-default" href="https://solfegepro.com/guides/ear-training-chords/">
+<!-- OGP -->
+    <meta property="og:title" content="コードを聴き分ける — 3 度で Major/Minor を判別">
+    <meta property="og:description" content="コードの「明暗」を決める 3 度の聴き分けを中心に、Major/Minor → 全トライアド → 7th → テンションまで、段階的にコード認識力を鍛える練習プランを解説します。">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://solfegepro.com/guides/ear-training-chords/">
+    <meta property="og:site_name" content="ソルフェージュPRO">
+    <meta property="og:image" content="https://solfegepro.com/og-image.png">
+    <meta property="og:locale" content="ja_JP">
+    <meta property="og:locale:alternate" content="en_US">
+    <meta property="og:locale:alternate" content="fr_FR">
+    <meta property="og:locale:alternate" content="de_DE">
+    <meta property="article:published_time" content="2026-03-31">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="コードを聴き分ける — 3 度で Major/Minor を判別">
+    <meta name="twitter:description" content="コードの「明暗」を決める 3 度の聴き分けを中心に、Major/Minor → 全トライアド → 7th → テンションまで、段階的にコード認識力を鍛える練習プランを解説します。">
+    <meta name="twitter:image" content="https://solfegepro.com/og-image.png">
+
+    <!-- Favicon -->
+    <link rel="icon" href="/AppIcon.png" type="image/png">
+    <link rel="apple-touch-icon" href="/AppIcon.png">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="/style.css?v=15">
+    <link rel="stylesheet" href="/guides/article.css?v=9">
+
+    <style>
+        /* Chord Type Grid (intervals per chord ≤ ~7, fits in column) */
+        .chord-grid {
+            background: var(--surface);
+            border-radius: var(--radius-xl);
+            padding: var(--space-lg);
+            margin: var(--space-xl) 0;
+            border: 1px solid var(--surface-light);
+        }
+        .chord-grid__section-title {
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: var(--space-md);
+            margin-top: var(--space-lg);
+        }
+        .chord-grid__section-title:first-of-type {
+            margin-top: 0;
+        }
+        .chord-grid__row {
+            display: flex;
+            align-items: center;
+            margin-bottom: var(--space-sm);
+            gap: var(--space-sm);
+        }
+        .chord-grid__name {
+            min-width: 100px;
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--text-primary);
+            flex-shrink: 0;
+        }
+        .chord-grid__intervals {
+            display: flex;
+            gap: 3px;
+            flex: 1;
+        }
+        .chord-grid__interval {
+            padding: 4px 10px;
+            border-radius: var(--radius-sm);
+            font-size: 12px;
+            font-weight: 600;
+            text-align: center;
+            min-width: 44px;
+        }
+        .interval--root { background: var(--primary); color: var(--background); }
+        .interval--major { background: rgba(74, 222, 128, 0.25); color: #4ADE80; }
+        .interval--minor { background: rgba(96, 165, 250, 0.25); color: #60A5FA; }
+        .interval--perfect { background: rgba(251, 191, 36, 0.25); color: #FBBF24; }
+        .interval--dim { background: rgba(248, 113, 113, 0.25); color: #F87171; }
+        .interval--aug { background: rgba(192, 132, 252, 0.25); color: #C084FC; }
+
+        @media (max-width: 768px) {
+            .chord-grid { padding: var(--space-md); }
+            .chord-grid__row { flex-direction: column; align-items: flex-start; gap: var(--space-xs); }
+            .chord-grid__name { min-width: auto; }
+            .chord-grid__interval { min-width: 36px; padding: 3px 8px; font-size: 11px; }
+        }
+    </style>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"コードを聴き分ける力とは何か — 和音の響きを理解する","description":"和音の響きを聴き分ける力を理解し、段階的に鍛えるための練習法を紹介します。","author":{"@type":"Organization","name":"ソルフェージュPRO"},"publisher":{"@type":"Organization","name":"ソルフェージュPRO","logo":{"@type":"ImageObject","url":"https://solfegepro.com/AppIcon.png"}},"datePublished":"2026-04-05","mainEntityOfPage":{"@type":"WebPage","@id":"https://solfegepro.com/guides/ear-training-chords.html"}}</script>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="nav__container">
+            <a href="/" class="nav__logo">
+                <img src="/AppIcon.png" alt="Solfege PRO" class="nav__logo-icon">
+                <span class="nav__logo-text">ソルフェージュPRO</span>
+            </a>
+            <ul class="nav__list">
+                <li><a href="/" class="nav__link">練習ガイド</a></li>
+                <li><a href="/guides/" class="nav__link active">ガイド一覧</a></li>
+                            <li><a href="/start-here/" class="nav__link">どこから始める？</a></li>
+            </ul>
+            <div class="nav__settings">
+                <button class="settings-btn" id="lang-toggle" title="Toggle language">
+                    <span id="lang-text">EN</span>
+                </button>
+                <button class="hamburger-btn" id="hamburger-btn" aria-label="Menu" aria-expanded="false" aria-controls="drawer">
+                    <span class="hamburger-btn__line"></span>
+                    <span class="hamburger-btn__line"></span>
+                    <span class="hamburger-btn__line"></span>
+                </button>
+            </div>
+        </div>
+    </nav>
+        <!-- Mobile drawer (hidden on desktop) -->
+        <div class="drawer-overlay" id="drawer-overlay"></div>
+        <aside class="drawer" id="drawer" aria-label="Mobile menu" aria-hidden="true" inert>
+            <div class="drawer__header">
+                <span class="drawer__title">メニュー</span>
+                <button class="drawer__close" id="drawer-close" aria-label="Close menu">×</button>
+            </div>
+            <ul class="drawer__list">
+                    <li><a href="/" class="drawer__link">練習ガイド</a></li>
+                    <li><a href="/guides/" class="drawer__link active">ガイド一覧</a></li>
+                    <li><a href="/start-here/" class="drawer__link">どこから始める？</a></li>
+            </ul>
+        </aside>
+
+
+    <!-- Article Header -->
+    <header class="page-header">
+        <div class="page-header__meta">
+            <span class="page-header__tag">コード認識</span>
+            <span>読了: 約8分</span>
+        </div>
+        <h1 class="page-header__title">
+            コードを聴き分ける力とは何か<br>和音の響きを理解する
+            
+            
+            
+        </h1>
+        <p class="page-header__subtitle">
+            コードの響きを「なんとなく明るい・暗い」で終わらせない。構成音の違いを知り、聴き分けの精度を段階的に上げていく方法を解説します。
+            
+            
+            
+        </p>
+    </header>
+
+    <!-- Top-of-article CTA -->
+    <aside class="article-top-cta" aria-label="App promotion">
+        <div class="article-top-cta__body">
+            <p class="article-top-cta__title">
+                ソルフェージュPRO でこの練習を試す
+                
+                
+                
+            </p>
+            <p class="article-top-cta__sub">
+                月額 980 円 · 1 週間無料トライアル
+                
+                
+                
+            </p>
+        </div>
+        <a href="https://apps.apple.com/jp/app/id6756626617" class="article-top-cta__button" data-cta-position="article_top">
+            App Store →
+            
+            
+            
+        </a>
+    </aside>
+
+    <!-- Article Body -->
+    <main class="article-body">
+
+        <!-- Section 1 -->
+        <h2 id="what-is-chord-recognition">コードを聴き分けるとは</h2>
+
+        <p>
+            コード認識とは、同時に鳴る複数の音を聴いて、そのコードの種類（クオリティ）を特定する力です。ギターやピアノで「ジャーン」と鳴ったとき、それがMajorなのかMinorなのか、7thが含まれているのか。耳だけで判断できる力。
+            
+            
+            
+        </p>
+
+        <p>
+            これは作曲、編曲、耳コピ、セッションなど、あらゆる音楽活動の土台になる力です。楽譜がなくても、聴こえた和音を理解できる。その力があれば、音楽の聴き方そのものが変わります。
+            
+            
+            
+        </p>
+
+        <p>
+            ただし、コード認識は一朝一夕で身につくものではありません。音程（インターバル）の聴き取りが土台にあり、その上にコードの響きの理解が積み上がっていきます。
+            
+            
+            
+        </p>
+
+        <!-- Section 2 -->
+        <h2 id="chord-types">コードの種類を理解する</h2>
+
+        <p>
+            コードは、ルート（根音）の上にどの音程を積み重ねるかで種類が決まります。まずは3和音（トライアド）から始めて、4和音（7thコード）、さらにテンション（拡張コード）へと進むのが自然な学習順序です。
+            
+            
+            
+        </p>
+
+        <!-- Chord Type Grid Visual -->
+        <div class="chord-grid">
+            <div class="diagram-title">コードタイプと構成音程</div>
+
+            <div class="chord-grid__section-title">トライアド（3和音）</div>
+
+            <div class="chord-grid__row">
+                <div class="chord-grid__name">Major</div>
+                <div class="chord-grid__intervals">
+                    <div class="chord-grid__interval interval--root">R</div>
+                    <div class="chord-grid__interval interval--major">M3</div>
+                    <div class="chord-grid__interval interval--perfect">P5</div>
+                </div>
+            </div>
+            <div class="chord-grid__row">
+                <div class="chord-grid__name">Minor</div>
+                <div class="chord-grid__intervals">
+                    <div class="chord-grid__interval interval--root">R</div>
+                    <div class="chord-grid__interval interval--minor">m3</div>
+                    <div class="chord-grid__interval interval--perfect">P5</div>
+                </div>
+            </div>
+            <div class="chord-grid__row">
+                <div class="chord-grid__name">Diminished</div>
+                <div class="chord-grid__intervals">
+                    <div class="chord-grid__interval interval--root">R</div>
+                    <div class="chord-grid__interval interval--minor">m3</div>
+                    <div class="chord-grid__interval interval--dim">dim5</div>
+                </div>
+            </div>
+            <div class="chord-grid__row">
+                <div class="chord-grid__name">Augmented</div>
+                <div class="chord-grid__intervals">
+                    <div class="chord-grid__interval interval--root">R</div>
+                    <div class="chord-grid__interval interval--major">M3</div>
+                    <div class="chord-grid__interval interval--aug">aug5</div>
+                </div>
+            </div>
+
+            <div class="chord-grid__section-title">7thコード（4和音）</div>
+
+            <div class="chord-grid__row">
+                <div class="chord-grid__name">Maj7</div>
+                <div class="chord-grid__intervals">
+                    <div class="chord-grid__interval interval--root">R</div>
+                    <div class="chord-grid__interval interval--major">M3</div>
+                    <div class="chord-grid__interval interval--perfect">P5</div>
+                    <div class="chord-grid__interval interval--major">M7</div>
+                </div>
+            </div>
+            <div class="chord-grid__row">
+                <div class="chord-grid__name">m7</div>
+                <div class="chord-grid__intervals">
+                    <div class="chord-grid__interval interval--root">R</div>
+                    <div class="chord-grid__interval interval--minor">m3</div>
+                    <div class="chord-grid__interval interval--perfect">P5</div>
+                    <div class="chord-grid__interval interval--minor">m7</div>
+                </div>
+            </div>
+            <div class="chord-grid__row">
+                <div class="chord-grid__name">7 (dom)</div>
+                <div class="chord-grid__intervals">
+                    <div class="chord-grid__interval interval--root">R</div>
+                    <div class="chord-grid__interval interval--major">M3</div>
+                    <div class="chord-grid__interval interval--perfect">P5</div>
+                    <div class="chord-grid__interval interval--minor">m7</div>
+                </div>
+            </div>
+            <div class="chord-grid__row">
+                <div class="chord-grid__name">m7(b5)</div>
+                <div class="chord-grid__intervals">
+                    <div class="chord-grid__interval interval--root">R</div>
+                    <div class="chord-grid__interval interval--minor">m3</div>
+                    <div class="chord-grid__interval interval--dim">dim5</div>
+                    <div class="chord-grid__interval interval--minor">m7</div>
+                </div>
+            </div>
+            <div class="chord-grid__row">
+                <div class="chord-grid__name">dim7</div>
+                <div class="chord-grid__intervals">
+                    <div class="chord-grid__interval interval--root">R</div>
+                    <div class="chord-grid__interval interval--minor">m3</div>
+                    <div class="chord-grid__interval interval--dim">dim5</div>
+                    <div class="chord-grid__interval interval--dim">dim7</div>
+                </div>
+            </div>
+
+            <div class="chord-grid__section-title">テンションコード（拡張）</div>
+
+            <div class="chord-grid__row">
+                <div class="chord-grid__name">9th</div>
+                <div class="chord-grid__intervals">
+                    <div class="chord-grid__interval interval--root">R</div>
+                    <div class="chord-grid__interval interval--major">M3</div>
+                    <div class="chord-grid__interval interval--perfect">P5</div>
+                    <div class="chord-grid__interval interval--minor">m7</div>
+                    <div class="chord-grid__interval interval--major">M9</div>
+                </div>
+            </div>
+            <div class="chord-grid__row">
+                <div class="chord-grid__name">11th</div>
+                <div class="chord-grid__intervals">
+                    <div class="chord-grid__interval interval--root">R</div>
+                    <div class="chord-grid__interval interval--major">M3</div>
+                    <div class="chord-grid__interval interval--perfect">P5</div>
+                    <div class="chord-grid__interval interval--minor">m7</div>
+                    <div class="chord-grid__interval interval--perfect">P11</div>
+                </div>
+            </div>
+            <div class="chord-grid__row">
+                <div class="chord-grid__name">13th</div>
+                <div class="chord-grid__intervals">
+                    <div class="chord-grid__interval interval--root">R</div>
+                    <div class="chord-grid__interval interval--major">M3</div>
+                    <div class="chord-grid__interval interval--perfect">P5</div>
+                    <div class="chord-grid__interval interval--minor">m7</div>
+                    <div class="chord-grid__interval interval--major">M13</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="article-note">
+            <div class="article-note__title">ポイント</div>
+            <p>MajorとMinorの違いは、3度の音程がM3（長3度）かm3（短3度）かだけです。この「3度の響き」を聴き分けることが、コード認識の最も基本的な出発点になります。</p>
+        </div>
+
+        <!-- Section 3 -->
+        <h2 id="common-walls">よくある壁</h2>
+
+        <h3 id="major-minor">MajorとMinorの混同</h3>
+        <p>
+            最も基本的でありながら、最も多くの人がつまずくポイントです。「明るい＝Major、暗い＝Minor」という説明は方向としては合っていますが、実際にコードを聴くと、テンポや音域、楽器の音色によって「明暗」の印象が変わります。大事なのは「3度の音程の響き」を直接聴き取る力を鍛えることです。
+            
+            
+            
+        </p>
+
+        <h3 id="seventh-confusion">7thコードの種類が似て聴こえる</h3>
+        <p>
+            Maj7、m7、7（ドミナント7th）。7th音が加わるとコードの響きは豊かになりますが、それぞれの違いは微妙です。Maj7の「透明感」、m7の「柔らかさ」、ドミナント7thの「緊張感」。これらの違いは、トライアドを十分に聴き分けられるようになってから取り組むのが効果的です。
+            
+            
+            
+        </p>
+
+        <h3 id="inversions">転回形で印象が変わる</h3>
+        <p>
+            同じCメジャーでも、ルートポジション（C-E-G）と第1転回形（E-G-C）では響きの印象が変わります。特にベース音が変わると、コード全体の重心が移動するため、慣れないうちは同じコードに聴こえないことがあります。
+            
+            
+            
+        </p>
+
+        <h3 id="block-vs-arpeggiated">ブロック再生とアルペジオ再生の差</h3>
+        <p>
+            全音を同時に鳴らすブロック再生と、一音ずつ順に鳴らすアルペジオ再生では、認識の難易度が異なります。アルペジオでは各音を個別に追えるため分析しやすいですが、ブロックでは和音全体の「塊の響き」を一瞬で判断する必要があります。実際の演奏では両方の聴き方が必要です。
+            
+            
+            
+        </p>
+
+        <!-- Section 4 -->
+        <h2 id="effective-practice">効果的な練習法</h2>
+
+        <h3 id="start-major-minor">MajorとMinorだけから始める</h3>
+        <p>
+            いきなり多くのコードタイプに挑戦するのは非効率です。まずMajorとMinorの2択を、どの音域・どのテンポでも安定して90%以上正解できるようになること。この土台がないと、7thコードに進んでも混乱するだけです。
+            
+            
+            
+        </p>
+
+        <h3 id="hear-the-third">3度の音を意識して聴く</h3>
+        <p>
+            コードの「明暗」を決定づけるのは3度の音程です。コードを聴いたとき、ルートと3度の関係に意識を集中させる。アルペジオモードで聴いて、2番目に鳴る音（3度）の位置を確認する。この「3度を聴く耳」が、コード認識の核になります。
+            
+            
+            
+        </p>
+
+        <h3 id="add-seventh">7thコードは段階的に追加する</h3>
+        <p>
+            トライアドが安定してきたら、まずMaj7を追加。次にm7、そしてドミナント7th。一度に全部を解禁するのではなく、1種類ずつ追加して、その違いが安定して聴き分けられるようになってから次に進みましょう。
+            
+            
+            
+        </p>
+
+        <h3 id="arpeggiated-then-block">アルペジオで分析、ブロックで速度を上げる</h3>
+        <p>
+            新しいコードタイプを学ぶときは、まずアルペジオ再生で構成音を1つずつ確認する。響きの特徴をつかめたら、ブロック再生に切り替えて瞬時の判断力を鍛える。この2段階のアプローチが効果的です。
+            
+            
+            
+        </p>
+
+        <!-- Section 5 -->
+        <h2 id="what-app-can-do">ソルフェージュPROでできること</h2>
+
+        <p>
+            ソルフェージュPROの コード認識 は、コードの響きを段階的に聴き分ける力を鍛えるトレーニングツールです。
+            
+            
+            
+        </p>
+
+        <h3>20種類以上のコードタイプ</h3>
+        <p>
+            基本トライアド（Major, Minor, Dim, Aug）から7thコード、テンションコードまで、20種類以上のコードタイプをカバーしています。すべてを一度に有効にする必要はなく、自分のレベルに合わせて選択できます。
+            
+            
+            
+        </p>
+
+        <h3>5段階の難易度設定</h3>
+        <p>
+            音楽教育で広く用いられる段階的アプローチを参考に、5段階の難易度を設定しています。基本トライアド → テンション → 7th Chords → Advanced 7ths → Tensionsと、段階的に進むことで無理なくコードの語彙を広げられます。
+            
+            
+            
+        </p>
+
+        <h3>ブロック / アルペジオ再生</h3>
+        <p>
+            同じコードをブロック（同時再生）とアルペジオ（分散再生）の両方で聴けます。分析モードとしてアルペジオを使い、実践モードとしてブロックを使う、という切り替えが可能です。
+            
+            
+            
+        </p>
+
+        <h3>比較再生</h3>
+        <p>
+            間違えたとき、自分の回答のコードと正解のコードを続けて再生できます。「どこが違ったのか」を音で確認することで、響きの違いの理解が深まります。
+            
+            
+            
+        </p>
+
+        <h3>苦手克服モード</h3>
+        <p>
+            正答率の低いコードタイプを自動的に多く出題します。得意なコードに時間を使いすぎず、弱点に集中できます。
+            
+            
+            
+        </p>
+
+        <div class="cycle-diagram">
+            <div class="cycle-step">
+                <div class="cycle-step__label">聴く</div>
+                <div class="cycle-step__desc">コード再生</div>
+            </div>
+            <div class="cycle-arrow">&rarr;</div>
+            <div class="cycle-step">
+                <div class="cycle-step__label">答える</div>
+                <div class="cycle-step__desc">コードタイプ選択</div>
+            </div>
+            <div class="cycle-arrow">&rarr;</div>
+            <div class="cycle-step">
+                <div class="cycle-step__label">比較</div>
+                <div class="cycle-step__desc">正解と比較再生</div>
+            </div>
+            <div class="cycle-arrow">&rarr;</div>
+            <div class="cycle-step">
+                <div class="cycle-step__label">記録</div>
+                <div class="cycle-step__desc">正答率・苦手分析</div>
+            </div>
+        </div>
+
+        <!-- Section 6 -->
+        <h2 id="limitations">ソルフェージュPROだけでは直接扱いきれないこと</h2>
+
+        <p>
+            正直に書きます。
+            
+            
+            
+        </p>
+
+        <div class="article-honest">
+            <div class="article-honest__title">アプリでカバーできない領域</div>
+            <p>
+                <strong>コードシンボル入力</strong> — 回答は選択式（Multiple Choice）のみです。コードネームを自分でタイプする形式には対応していません。
+            </p>
+            <p>
+                <strong>実楽器の音色</strong> — 音源はピアノ音源を使用しています。ギターやオルガンなど、実楽器の音色でのトレーニングはできません。
+            </p>
+            <p>
+                <strong>転回形の特定トレーニング</strong> — 転回形を含む設定や転回形の判定問題に基本的に対応していますが、転回形に特化した段階的カリキュラムはありません。コードクオリティの判定がメインの設計です。
+            </p>
+            <p>
+                <strong>分数コード（スラッシュコード）</strong> — C/Eのような分数コード表記への対応はありません。
+            </p>
+            <p>
+                <strong>和声的な文脈</strong> — コードは単体で出題されます。「コード進行の中でこのコードがどう機能するか」は、コード認識単体では扱いません（コード進行トレーニングが別途あります）。
+            </p>
+            <p>
+                <strong>機能的（functional / scale-degree）聴取</strong> — 「同じ Cmaj7 でも C のキーでは I、F のキーでは V/V」のように、調の中での役割（ローマ数字 / 機能 T-SD-D）として聴き分ける方法は、コード認識 の出題形式（quality 判定）の範囲外です。Karpinski / Edlund などが扱う movable-do ソルフェージュ系のこの聴取は、コード進行トレーニング と組み合わせ、また movable-do での歌唱練習を併用することで補完できます。
+            </p>
+        </div>
+
+        <p>
+            ソルフェージュPROが直接支援できるのは、コードの響き（クオリティ）を聴き分ける力の段階的な構築です。和声的な文脈の中でコードを理解する力は、コード進行トレーニングや実際の曲の耳コピなど、別の練習で補完する必要があります。
+            
+            
+            
+        </p>
+
+        <!-- Mid-article CTA -->
+        <div class="article-cta-subtle">
+            <p class="article-cta-subtle__text">月額 980 円 (1 週間無料トライアル) で、自分のコード認識力を確認できます</p>
+            <a href="https://apps.apple.com/jp/app/id6756626617" class="article-cta-subtle__button">App Storeで見る</a>
+        </div>
+
+        <!-- Section 7 -->
+        <h2 id="how-to-use">おすすめの使い方</h2>
+
+        <p>
+            ソルフェージュPROの コード認識 は、以下の順序で進めることを想定しています。
+            
+            
+            
+        </p>
+
+        <ol>
+            <li><strong>基本トライアド から始める</strong> — Major と Minor の2択で、安定して80%以上の正答率を目指す</li>
+            <li><strong>アルペジオで構造を理解する</strong> — 新しいコードタイプに挑戦するときは、まずアルペジオ再生で各音を確認する</li>
+            <li><strong>80%を超えたら次の難易度へ</strong> — 現在の難易度で80%以上を安定して出せるようになったら、次の段階に進む</li>
+            <li><strong>苦手克服モードを活用する</strong> — 特定のコードタイプの正答率が低いまま止まっている場合に有効</li>
+            <li><strong>実際の曲で確認する</strong> — アプリで鍛えた耳を、好きな曲の耳コピで試す。それが最終的なゴールです</li>
+        </ol>
+
+        <div class="article-note">
+            <div class="article-note__title">使い方のコツ</div>
+            <p>コード認識の練習は、音程（インターバル）トレーニングと並行して行うのが効果的です。インターバルの聴き分けがコード認識の基礎になるため、両方を交互に行うことで理解が深まります。</p>
+        </div>
+
+    </main>
+
+    <!-- Final CTA -->
+    <section class="article-cta">
+        <h2 class="article-cta__title">まず、自分のコード認識力を確認しよう</h2>
+        <p class="article-cta__text">
+            コードの聴き分けは、「明るい・暗い」の感覚だけでは頭打ちになります。<br>構成音の違いを理解し、段階的に語彙を広げていくこと。<br>ソルフェージュPROの コード認識 で、まず自分の現在地を確認してみてください。
+            
+            
+            
+        </p>
+        <a href="https://apps.apple.com/jp/app/id6756626617" class="app-store-link" aria-label="Download on the App Store">
+            <img class="app-store-link__img" src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/ja-jp" alt="App Storeで入手">
+            
+            
+            
+        </a>
+    </section>
+
+    <!-- Related Content -->
+    <div class="article-related">
+        <div class="article-related__title">関連コンテンツ</div>
+        <a href="/" class="article-related__link">
+            <div class="article-related__link-title">ソルフェージュPRO 練習ガイド</div>
+            <div class="article-related__link-desc">ギター・ベース・ドラム・ピアノ・ボーカル向けの課題別練習メニュー</div>
+        </a>
+    </div>
+
+    <!-- Article Note -->
+    <aside class="article-endnote">
+        <p class="article-endnote__text">
+            この記事は、音楽教育で広く用いられるイヤートレーニングの方法論および一般的な音楽理論の知見をもとに整理しています。コードの響きの感じ方には個人差や音楽的背景による違いがあり、ここで紹介した分類がすべてのケースに当てはまるわけではありません。アプリ内のトレーニングはコードクオリティの認識力向上を支援するものであり、和声の総合的な理解を保証するものではありません。
+            
+            
+            
+        </p>
+    </aside>
+
+    <!-- Footer -->
+    <footer class="article-footer">
+        <p class="article-footer__text">
+            &copy; 2026 ソルフェージュPRO &mdash;
+            <a href="https://apps.apple.com/jp/app/id6756626617" class="article-footer__link">App Store</a>
+        </p>
+    </footer>
+    <script src="/bootstrap.js?v=1" defer></script>
+</body>
+</html>

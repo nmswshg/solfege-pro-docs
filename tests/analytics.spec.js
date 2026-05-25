@@ -64,7 +64,7 @@ test('app_store_click fires on App Store link click', async ({ page, viewport })
 
 test('app_store_click detects cta_position from ancestor class', async ({ page, viewport }) => {
     test.skip(!viewport || viewport.width <= 768, 'desktop only');
-    await page.goto('/guides/practice-spacing.html');
+    await page.goto('/guides/practice-spacing/');
     await page.waitForFunction(() => window.SolfegeAnalytics != null);
 
     // Defuse navigation

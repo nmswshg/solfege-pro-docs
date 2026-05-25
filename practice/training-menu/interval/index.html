@@ -1,0 +1,950 @@
+<!DOCTYPE html>
+<html lang="ja" data-title-ja="インターバルトレーニング 設定ガイド | ソルフェージュPRO" data-title-en="Interval Training Detailed Reference | Solfege PRO" data-title-fr="Entraînement aux intervalles — Guide détaillé | Solfege PRO" data-title-de="Intervalltraining — Ausführlicher Leitfaden | Solfege PRO">
+<head>
+    <meta charset="UTF-8">
+    <meta name="robots" content="index, follow">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#1A1A1E">
+    <title>インターバルトレーニング 設定ガイド | ソルフェージュPRO</title>
+    <meta name="description" content="インターバルトレーニングの設定 (出題範囲、上行/下行/和音、再生モード、難易度) を目的別に最適化する具体的な方法を、初心者から上級者まで段階別に解説します。">
+
+    <link rel="canonical" href="https://solfegepro.com/practice/training-menu/interval/">
+    <link rel="alternate" hreflang="ja" href="https://solfegepro.com/practice/training-menu/interval/">
+    <link rel="alternate" hreflang="en" href="https://solfegepro.com/en/practice/training-menu/interval/">
+    <link rel="alternate" hreflang="fr" href="https://solfegepro.com/fr/practice/training-menu/interval/">
+    <link rel="alternate" hreflang="de" href="https://solfegepro.com/de/practice/training-menu/interval/">
+    <link rel="alternate" hreflang="x-default" href="https://solfegepro.com/practice/training-menu/interval/">
+<link rel="icon" href="/AppIcon.png" type="image/png">
+    <link rel="apple-touch-icon" href="/AppIcon.png">
+
+    <meta property="og:title" content="インターバルトレーニング 設定ガイド">
+    <meta property="og:description" content="インターバルトレーニングの設定 (出題範囲、上行/下行/和音、再生モード、難易度) を目的別に最適化する具体的な方法を、初心者から上級者まで段階別に解説します。">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://solfegepro.com/practice/training-menu/interval/">
+    <meta property="og:site_name" content="ソルフェージュPRO">
+    <meta property="og:image" content="https://solfegepro.com/og-image.png">
+    <meta property="og:locale" content="ja_JP">
+    <meta property="og:locale:alternate" content="en_US">
+    <meta property="og:locale:alternate" content="fr_FR">
+    <meta property="og:locale:alternate" content="de_DE">
+
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="インターバルトレーニング 設定ガイド">
+    <meta name="twitter:description" content="インターバルトレーニングの設定 (出題範囲、上行/下行/和音、再生モード、難易度) を目的別に最適化する具体的な方法を、初心者から上級者まで段階別に解説します。">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="/style.css?v=15">
+    <style>
+        .menu-detail {
+            max-width: 880px;
+            margin: 0 auto;
+            padding: 0 var(--space-lg) var(--space-2xl);
+        }
+        @media (max-width: 768px) {
+            .menu-detail { padding: 0 var(--space-md) var(--space-xl); }
+        }
+
+        /* Breadcrumb back */
+        .crumb {
+            display: inline-flex; align-items: center; gap: 4px;
+            font-size: 13px;
+            color: var(--text-secondary);
+            text-decoration: none;
+            margin-top: var(--space-md);
+            padding: 4px 8px;
+            border-radius: var(--radius-sm);
+        }
+        .crumb:hover { color: var(--primary); background: var(--surface-light); }
+
+        /* Section header (numbered, sticky-ish feel) */
+        .sect {
+            margin-top: var(--space-2xl);
+        }
+        .sect__h {
+            display: flex; align-items: center; gap: var(--space-sm);
+            font-size: 20px; font-weight: 700;
+            color: var(--text-primary);
+            padding-bottom: var(--space-sm);
+            border-bottom: 2px solid var(--primary);
+            margin-bottom: var(--space-md);
+        }
+        .sect__num {
+            display: inline-flex; align-items: center; justify-content: center;
+            width: 32px; height: 32px;
+            background: var(--primary);
+            color: var(--background);
+            border-radius: 50%;
+            font-size: 15px; font-weight: 700;
+            flex-shrink: 0;
+        }
+        .sect__lead {
+            font-size: 15px;
+            color: var(--text-secondary);
+            line-height: 1.8;
+            margin-bottom: var(--space-md);
+        }
+
+        /* Connection bullets */
+        .conn-list {
+            list-style: none;
+            padding: 0;
+            margin: var(--space-md) 0;
+            display: grid;
+            gap: 6px;
+        }
+        .conn-list li {
+            position: relative;
+            padding: 4px 0 4px 1.6em;
+            font-size: 14px;
+            color: var(--text-primary);
+            line-height: 1.7;
+        }
+        .conn-list li::before {
+            content: "▸";
+            position: absolute;
+            left: 0; top: 4px;
+            color: var(--primary);
+            font-weight: 700;
+        }
+
+        /* Self-check */
+        .self-check {
+            background: var(--surface);
+            border: 1px solid var(--primary);
+            border-radius: var(--radius-lg);
+            padding: var(--space-lg);
+            margin: var(--space-md) 0;
+        }
+        .self-check__q {
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: var(--space-md);
+        }
+        .self-check__opts {
+            display: flex; flex-direction: column; gap: 6px;
+        }
+        .self-check__opt {
+            display: flex; align-items: flex-start; gap: var(--space-sm);
+            padding: var(--space-sm) var(--space-md);
+            background: var(--background);
+            border: 1px solid var(--surface-light);
+            border-radius: var(--radius-md);
+            font-size: 13px;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+        .self-check__verdict {
+            margin-top: 4px;
+            font-size: 12px;
+            color: var(--primary);
+            font-weight: 600;
+        }
+        .self-check__verdict::before { content: "→ "; }
+
+        /* Preset card (Week 1) */
+        .preset-card {
+            background: linear-gradient(135deg, rgba(212,175,55,0.08) 0%, var(--surface) 100%);
+            border: 1px solid var(--primary);
+            border-radius: var(--radius-lg);
+            padding: var(--space-lg);
+            margin: var(--space-md) 0;
+        }
+        .preset-card__title {
+            font-size: 12px;
+            font-weight: 700;
+            color: var(--primary);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 6px;
+        }
+        .preset-card__lead {
+            font-size: 14px;
+            color: var(--text-primary);
+            margin-bottom: var(--space-md);
+        }
+        .preset-rows {
+            display: grid;
+            grid-template-columns: max-content 1fr;
+            gap: 6px var(--space-md);
+            font-size: 13px;
+        }
+        .preset-rows dt {
+            color: var(--text-secondary);
+            font-weight: 600;
+        }
+        .preset-rows dd {
+            margin: 0;
+            color: var(--text-primary);
+        }
+        .preset-rows dd .chip {
+            display: inline-block;
+            background: rgba(212,175,55,0.18);
+            color: var(--primary);
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: 600;
+            margin-right: 4px;
+        }
+
+        /* Practice protocol calendar */
+        .protocol-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 4px;
+            margin: var(--space-md) 0 var(--space-sm);
+        }
+        .day-cell {
+            background: var(--surface);
+            border: 1px solid var(--surface-light);
+            border-radius: var(--radius-sm);
+            display: flex; flex-direction: column;
+            align-items: center; justify-content: center;
+            gap: 2px;
+            min-height: 56px;
+            padding: 4px;
+        }
+        @media (min-width: 480px) {
+            .day-cell { aspect-ratio: 1; }
+        }
+        .day-cell__name {
+            font-size: 10px;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .day-cell__load {
+            font-size: 11px;
+            font-weight: 700;
+            color: var(--text-primary);
+            line-height: 1.1;
+            text-align: center;
+        }
+        .day-cell--main { background: rgba(212,175,55,0.18); border-color: var(--primary); }
+        .day-cell--main .day-cell__load { color: var(--primary); }
+        .day-cell--light { background: rgba(96,165,250,0.10); border-color: rgba(96,165,250,0.3); }
+        .day-cell--rest { opacity: 0.5; }
+        .day-cell--rest .day-cell__load { color: var(--text-secondary); font-weight: 400; }
+
+        .protocol-meta {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+            gap: var(--space-sm);
+            margin: var(--space-md) 0;
+        }
+        .protocol-meta__item {
+            background: var(--surface);
+            border: 1px solid var(--surface-light);
+            border-radius: var(--radius-md);
+            padding: var(--space-sm) var(--space-md);
+        }
+        .protocol-meta__label {
+            font-size: 11px;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 2px;
+        }
+        .protocol-meta__value {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--primary);
+            line-height: 1.2;
+        }
+        .protocol-meta__sub {
+            font-size: 11px;
+            color: var(--text-secondary);
+            margin-top: 2px;
+        }
+
+        /* Mastery / milestones table */
+        .milestone-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: var(--space-md) 0;
+            font-size: 13px;
+        }
+        .milestone-table th, .milestone-table td {
+            padding: var(--space-sm);
+            text-align: left;
+            border-bottom: 1px solid var(--surface-light);
+            vertical-align: top;
+        }
+        .milestone-table thead th {
+            background: var(--surface);
+            color: var(--primary);
+            font-weight: 700;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .milestone-table tbody td:first-child { font-weight: 600; color: var(--text-primary); }
+        .milestone-table .ms-target {
+            font-family: 'SF Mono', 'Menlo', monospace;
+            font-size: 12px;
+            color: var(--primary);
+        }
+        @media (max-width: 600px) {
+            .milestone-table, .milestone-table thead, .milestone-table tbody, .milestone-table tr, .milestone-table th, .milestone-table td {
+                display: block;
+            }
+            .milestone-table thead { display: none; }
+            .milestone-table tr {
+                background: var(--surface);
+                border: 1px solid var(--surface-light);
+                border-radius: var(--radius-md);
+                padding: var(--space-sm);
+                margin-bottom: var(--space-sm);
+            }
+            .milestone-table td {
+                border: none;
+                padding: 4px 0;
+            }
+            .milestone-table td::before {
+                content: attr(data-label) " — ";
+                color: var(--text-secondary);
+                font-size: 11px;
+                text-transform: uppercase;
+                font-weight: 600;
+                margin-right: 4px;
+            }
+        }
+
+        /* TIPS items */
+        .tip-item {
+            background: var(--surface);
+            border-left: 3px solid var(--primary);
+            border-radius: 0 var(--radius-md) var(--radius-md) 0;
+            padding: var(--space-md);
+            margin: var(--space-sm) 0;
+        }
+        .tip-item__head {
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 4px;
+        }
+        .tip-item__body {
+            font-size: 13px;
+            color: var(--text-secondary);
+            line-height: 1.7;
+        }
+        .tip-item__body strong { color: var(--text-primary); }
+
+        /* Settings reference (collapsible) */
+        details.settings-ref {
+            margin-top: var(--space-md);
+            background: var(--surface);
+            border: 1px solid var(--surface-light);
+            border-radius: var(--radius-md);
+            padding: 0;
+        }
+        details.settings-ref > summary {
+            padding: var(--space-md);
+            cursor: pointer;
+            font-weight: 700;
+            font-size: 14px;
+            color: var(--text-primary);
+            list-style: none;
+            display: flex; align-items: center; gap: var(--space-sm);
+        }
+        details.settings-ref > summary::-webkit-details-marker { display: none; }
+        details.settings-ref > summary::after {
+            content: "▼";
+            margin-left: auto;
+            font-size: 11px;
+            color: var(--text-secondary);
+            transition: transform 0.2s ease;
+        }
+        details.settings-ref[open] > summary::after { transform: rotate(180deg); }
+        details.settings-ref > .settings-ref__content {
+            padding: 0 var(--space-md) var(--space-md);
+        }
+
+        /* Reuse the visual blocks from earlier design */
+        .diff-cascade {
+            display: grid; grid-template-columns: repeat(3, 1fr);
+            gap: var(--space-sm); margin: var(--space-md) 0;
+        }
+        .diff-tier {
+            background: var(--background);
+            border: 1px solid var(--surface-light);
+            border-radius: var(--radius-md);
+            padding: var(--space-sm) var(--space-md);
+            position: relative;
+        }
+        .diff-tier::after {
+            content: "→"; position: absolute;
+            right: -12px; top: 50%; transform: translateY(-50%);
+            color: var(--primary); font-size: 16px; z-index: 2;
+        }
+        .diff-tier:last-child::after { content: none; }
+        .diff-tier__head { display: flex; align-items: center; gap: 6px; margin-bottom: 4px; }
+        .diff-tier__num {
+            display: inline-flex; align-items: center; justify-content: center;
+            width: 18px; height: 18px; border-radius: 50%;
+            background: var(--primary); color: var(--background);
+            font-size: 10px; font-weight: 700;
+        }
+        .diff-tier__name { font-size: 13px; font-weight: 700; color: var(--text-primary); }
+        .diff-tier__count { font-size: 11px; color: var(--primary); font-weight: 600; margin-bottom: 4px; }
+        .diff-tier__items { font-size: 11px; color: var(--text-secondary); line-height: 1.6; font-family: 'SF Mono', 'Menlo', monospace; letter-spacing: 0.3px; }
+
+        .mode-grid {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(135px, 1fr));
+            gap: var(--space-sm); margin: var(--space-md) 0;
+        }
+        .mode-card {
+            background: var(--background);
+            border: 1px solid var(--surface-light);
+            border-radius: var(--radius-md);
+            padding: var(--space-md) var(--space-sm);
+            text-align: center;
+        }
+        .mode-card__visual { font-size: 24px; color: var(--primary); margin-bottom: 4px; height: 32px; display:flex; justify-content:center; align-items:center; line-height: 1; }
+        .mode-card__name { font-size: 13px; font-weight: 700; color: var(--text-primary); margin-bottom: 2px; }
+        .mode-card__desc { font-size: 11px; color: var(--text-secondary); line-height: 1.4; }
+
+        .compare-pair {
+            display: grid; grid-template-columns: 1fr 1fr;
+            gap: var(--space-sm); margin: var(--space-md) 0;
+        }
+        .compare-side {
+            background: var(--background);
+            border: 1px solid var(--surface-light);
+            border-radius: var(--radius-md);
+            padding: var(--space-md);
+        }
+        .compare-side--bad  { border-color: rgba(248,113,113,0.35); }
+        .compare-side--good { border-color: rgba(74,222,128,0.4); }
+        .compare-side__verdict { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 4px; }
+        .compare-side--bad  .compare-side__verdict { color: #F87171; }
+        .compare-side--good .compare-side__verdict { color: #4ADE80; }
+        .compare-side__title { font-size: 14px; font-weight: 700; color: var(--text-primary); margin-bottom: 6px; }
+        .compare-side__body { font-size: 12px; color: var(--text-secondary); line-height: 1.6; }
+
+        .menu-note {
+            font-size: 12px; color: var(--text-secondary); line-height: 1.6;
+            margin-top: var(--space-sm);
+            padding: var(--space-sm) var(--space-md);
+            background: rgba(212, 175, 55, 0.05);
+            border-left: 2px solid var(--primary);
+            border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+        }
+
+        @media (max-width: 600px) {
+            .diff-cascade { grid-template-columns: 1fr; }
+            .diff-tier::after { content: "↓"; right: 50%; top: auto; bottom: -16px; transform: translateX(50%); }
+            .compare-pair { grid-template-columns: 1fr; }
+            .mode-grid { grid-template-columns: repeat(2, 1fr); }
+            .preset-rows { grid-template-columns: 1fr; gap: 2px; }
+            .preset-rows dt { margin-top: var(--space-sm); }
+        }
+    </style>
+</head>
+<body>
+    <nav class="nav">
+        <div class="nav__container">
+            <a href="/" class="nav__logo">
+                <img src="/AppIcon.png" alt="Solfege PRO" class="nav__logo-icon">
+                <span class="nav__logo-text">ソルフェージュPRO</span>
+            </a>
+            <ul class="nav__list">
+                <li><a href="/" class="nav__link active">練習ガイド</a></li>
+                <li><a href="/guides/" class="nav__link">ガイド一覧</a></li>
+                <li><a href="/start-here/" class="nav__link">どこから始める？</a></li>
+            </ul>
+            <div class="nav__settings">
+                <button class="settings-btn" id="lang-toggle" title="Toggle language">
+                    <span id="lang-text">EN</span>
+                </button>
+                <button class="hamburger-btn" id="hamburger-btn" aria-label="Menu" aria-expanded="false" aria-controls="drawer">
+                    <span class="hamburger-btn__line"></span>
+                    <span class="hamburger-btn__line"></span>
+                    <span class="hamburger-btn__line"></span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <div class="drawer-overlay" id="drawer-overlay"></div>
+    <aside class="drawer" id="drawer" aria-label="Mobile menu" aria-hidden="true" inert>
+        <div class="drawer__header">
+            <span class="drawer__title">メニュー</span>
+            <button class="drawer__close" id="drawer-close" aria-label="Close menu">×</button>
+        </div>
+        <ul class="drawer__list">
+            <li><a href="/" class="drawer__link active">練習ガイド</a></li>
+            <li><a href="/guides/" class="drawer__link">ガイド一覧</a></li>
+            <li><a href="/start-here/" class="drawer__link">どこから始める？</a></li>
+        </ul>
+    </aside>
+
+    <header class="page-header">
+        <div class="page-header__icon"><svg class="icon" aria-hidden="true"><use href="/assets/icons.svg#icon-music-note"></use></svg></div>
+        <h1 class="page-header__title">音程トレーニング 詳細手引き</h1>
+        <p class="page-header__subtitle">
+            読む順 = 練習する順。7 ステップに沿って進めれば、迷わずに「次に何をすべきか」が分かります。
+            
+            
+            
+        </p>
+    </header>
+
+    <main class="menu-detail">
+
+        <a href="/practice/training-menu/" class="crumb">← 練習メニュー一覧に戻る</a>
+
+        <!-- ========== 1. 目的 ========== -->
+        <section class="sect" id="purpose">
+            <h2 class="sect__h"><span class="sect__num">1</span>目的</h2>
+            <p class="sect__lead">
+                <strong>2 つの音の隔たり（音程）を、聴いただけで名前で呼べるようになる</strong>こと。これは絶対音感とは無関係で、<strong>相対音感</strong> — ある音を基準にした他の音を聞き分ける知覚スキル — の中核です。
+                
+                
+                
+            </p>
+            <p style="font-size:14px; color:var(--text-primary); font-weight:700; margin-top:var(--space-md); margin-bottom:6px;">
+                実演奏での接続点
+            </p>
+            <ul class="conn-list">
+                <li><strong>耳コピ</strong>: メロディの音と音の動きを「3 度上がった」「5 度下がった」と認識できる</li>
+                <li><strong>即興 / アドリブ</strong>: 自分の出したい音までの距離を計算して指に落とせる</li>
+                <li><strong>ハモリ / コーラス</strong>: 主旋律から 3 度・6 度上下の音を即座に取れる</li>
+                <li><strong>移調</strong>: キーが変わっても音と音の関係は変わらないため、相対音感があれば瞬時に対応</li>
+            </ul>
+        </section>
+
+        <!-- ========== 2. 開始前チェック ========== -->
+        <section class="sect" id="self-check">
+            <h2 class="sect__h"><span class="sect__num">2</span>開始前チェック</h2>
+            <p class="sect__lead">
+                いきなり中級から始めると混乱が積み上がります。<strong>60 秒で現在地を診断</strong>し、自分に合った入口を選んでください。
+                
+                
+                
+            </p>
+
+            <div class="self-check">
+                <div class="self-check__q">Q1. 完全 5 度（例: ドとソ）と完全 4 度（例: ドとファ）を、音だけで聞き分けられる？</div>
+                <div class="self-check__opts">
+                    <div class="self-check__opt">
+                        <strong style="color:var(--text-primary); flex-shrink:0;">A.</strong>
+                        <div>
+                            毎回正解できる
+                            <div class="self-check__verdict">Q2 へ進む</div>
+                        </div>
+                    </div>
+                    <div class="self-check__opt">
+                        <strong style="color:var(--text-primary); flex-shrink:0;">B.</strong>
+                        <div>
+                            時々混ざる / 自信がない
+                            <div class="self-check__verdict"><strong>Beginner</strong> から開始</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="self-check">
+                <div class="self-check__q">Q2. 短 3 度・長 3 度・短 6 度・長 6 度の 4 つを混ぜて出題されても、80% 以上正解できる？</div>
+                <div class="self-check__opts">
+                    <div class="self-check__opt">
+                        <strong style="color:var(--text-primary); flex-shrink:0;">A.</strong>
+                        <div>
+                            できる
+                            <div class="self-check__verdict">Q3 へ進む</div>
+                        </div>
+                    </div>
+                    <div class="self-check__opt">
+                        <strong style="color:var(--text-primary); flex-shrink:0;">B.</strong>
+                        <div>
+                            怪しい / 短⇔長を混同する
+                            <div class="self-check__verdict"><strong>Intermediate</strong> から開始</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="self-check">
+                <div class="self-check__q">Q3. 短 2 度・長 7 度・増 4 度（トライトーン）を聞いて、即座に区別できる？</div>
+                <div class="self-check__opts">
+                    <div class="self-check__opt">
+                        <strong style="color:var(--text-primary); flex-shrink:0;">A.</strong>
+                        <div>
+                            できる
+                            <div class="self-check__verdict"><strong>Advanced</strong> から開始</div>
+                        </div>
+                    </div>
+                    <div class="self-check__opt">
+                        <strong style="color:var(--text-primary); flex-shrink:0;">B.</strong>
+                        <div>
+                            どれかが怪しい
+                            <div class="self-check__verdict"><strong>Intermediate</strong> から開始（穴を埋める）</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========== 3. Week 1 推奨設定 ========== -->
+        <section class="sect" id="week1">
+            <h2 class="sect__h"><span class="sect__num">3</span>Week 1 推奨初期設定</h2>
+            <p class="sect__lead">
+                最初の 1 週間は、設定で迷わないように <strong>このプリセット</strong> をそのまま使ってください。Q1 〜 Q3 の結果に対応する 3 つから選びます。
+                
+                
+                
+            </p>
+
+            <div class="preset-card">
+                <div class="preset-card__title">プリセット A — Beginner 入口</div>
+                <div class="preset-card__lead">Q1 で B を選んだ人。完全 5 度・8 度から音への耳慣れを作ります。</div>
+                <dl class="preset-rows">
+                    <dt>Difficulty</dt>             <dd><span class="chip">Beginner</span></dd>
+                    <dt>Playback Mode</dt>          <dd><span class="chip">Ascending</span></dd>
+                    <dt>Root Note Mode</dt>         <dd><span class="chip">Fixed</span></dd>
+                    <dt>Root Note Pitch</dt>        <dd><span class="chip">C4</span></dd>
+                    <dt>Training Mode</dt>          <dd><span class="chip">Normal</span></dd>
+                    <dt>Playback Speed</dt>         <dd><span class="chip">Slow</span></dd>
+                    <dt>Answer Flow</dt>            <dd><span class="chip">Manual</span></dd>
+                </dl>
+            </div>
+
+            <div class="preset-card">
+                <div class="preset-card__title">プリセット B — Intermediate 入口</div>
+                <div class="preset-card__lead">Q2 で B を選んだ人。短 3 度・短 6 度・長 6 度を加え、ランダムキーで実戦的に。</div>
+                <dl class="preset-rows">
+                    <dt>Difficulty</dt>             <dd><span class="chip">Intermediate</span></dd>
+                    <dt>Playback Mode</dt>          <dd><span class="chip">Ascending</span></dd>
+                    <dt>Root Note Mode</dt>         <dd><span class="chip">Moving</span></dd>
+                    <dt>Root Note Pitch</dt>        <dd><span class="chip">C4</span></dd>
+                    <dt>Training Mode</dt>          <dd><span class="chip">Normal</span></dd>
+                    <dt>Playback Speed</dt>         <dd><span class="chip">Normal</span></dd>
+                    <dt>Answer Flow</dt>            <dd><span class="chip">Auto</span></dd>
+                </dl>
+            </div>
+
+            <div class="preset-card">
+                <div class="preset-card__title">プリセット C — Advanced 入口</div>
+                <div class="preset-card__lead">Q3 で A を選んだ人。全 13 音程をランダムキーで。</div>
+                <dl class="preset-rows">
+                    <dt>Difficulty</dt>             <dd><span class="chip">Advanced</span></dd>
+                    <dt>Playback Mode</dt>          <dd><span class="chip">Ascending</span></dd>
+                    <dt>Root Note Mode</dt>         <dd><span class="chip">Moving</span></dd>
+                    <dt>Root Note Pitch</dt>        <dd><span class="chip">C4</span></dd>
+                    <dt>Training Mode</dt>          <dd><span class="chip">Normal</span></dd>
+                    <dt>Playback Speed</dt>         <dd><span class="chip">Normal</span></dd>
+                    <dt>Answer Flow</dt>            <dd><span class="chip">Auto</span></dd>
+                </dl>
+            </div>
+
+            <div class="menu-note">
+                <strong>変更ルール</strong>: Week 1 中は <strong>1 度に 1 項目だけ</strong> 変える。複数同時に変えると、何が効いたかが分からず、調整が利かなくなります。
+                
+                
+                
+            </div>
+        </section>
+
+        <!-- ========== 4. 練習プロトコル ========== -->
+        <section class="sect" id="protocol">
+            <h2 class="sect__h"><span class="sect__num">4</span>練習プロトコル</h2>
+            <p class="sect__lead">
+                耳のトレーニングは <strong>長時間より頻度</strong>。短く集中、頻繁に、休息日を意図的に挟む。これが定着の最短経路です。
+                
+                
+                
+            </p>
+
+            <div class="protocol-meta">
+                <div class="protocol-meta__item">
+                    <div class="protocol-meta__label">1 セッション</div>
+                    <div class="protocol-meta__value">15-25 <span style="font-size:13px;">min</span></div>
+                    <div class="protocol-meta__sub">5 分ごとに 30 秒のミニ休止</div>
+                </div>
+                <div class="protocol-meta__item">
+                    <div class="protocol-meta__label">頻度</div>
+                    <div class="protocol-meta__value">4-6 <span style="font-size:13px;">days/wk</span></div>
+                    <div class="protocol-meta__sub">毎日でなくて良い</div>
+                </div>
+                <div class="protocol-meta__item">
+                    <div class="protocol-meta__label">休息</div>
+                    <div class="protocol-meta__value">1 <span style="font-size:13px;">day off / wk</span></div>
+                    <div class="protocol-meta__sub">+ 連続 3 日後は軽い日</div>
+                </div>
+            </div>
+
+            <p style="font-size:14px; color:var(--text-primary); font-weight:700; margin-top:var(--space-lg); margin-bottom:6px;">
+                週次サイクルの例
+            </p>
+            <div class="protocol-grid">
+                <div class="day-cell day-cell--main"><div class="day-cell__name">月</div><div class="day-cell__load">20m</div></div>
+                <div class="day-cell day-cell--main"><div class="day-cell__name">火</div><div class="day-cell__load">20m</div></div>
+                <div class="day-cell day-cell--light"><div class="day-cell__name">水</div><div class="day-cell__load">10m<br><span style="font-weight:400;font-size:9px;">軽め</span></div></div>
+                <div class="day-cell day-cell--main"><div class="day-cell__name">木</div><div class="day-cell__load">20m</div></div>
+                <div class="day-cell day-cell--main"><div class="day-cell__name">金</div><div class="day-cell__load">25m<br><span style="font-weight:400;font-size:9px;">弱点</span></div></div>
+                <div class="day-cell day-cell--rest"><div class="day-cell__name">土</div><div class="day-cell__load">休</div></div>
+                <div class="day-cell day-cell--light"><div class="day-cell__name">日</div><div class="day-cell__load">15m<br><span style="font-weight:400;font-size:9px;">復習</span></div></div>
+            </div>
+
+            <ul class="conn-list" style="margin-top:var(--space-md);">
+                <li><strong>連続 3 日 高負荷</strong>の翌日は必ず軽い日（または休息）。脳の統合（特に睡眠中）に時間が要る。</li>
+                <li><strong>金曜は弱点セッション</strong>: Weak Point Focus + Manual + Slow。週末を挟むと定着が進む。</li>
+                <li><strong>就寝 30 分前に 5 分の軽復習</strong>を入れると、睡眠中の記憶定着が強まる（ただし 25 分ものハードな練習は逆効果）。</li>
+            </ul>
+        </section>
+
+        <!-- ========== 5. 到達基準 + 期待効果 ========== -->
+        <section class="sect" id="milestones">
+            <h2 class="sect__h"><span class="sect__num">5</span>到達基準と期待効果</h2>
+            <p class="sect__lead">
+                <strong>「できた感」では進級しない。</strong>下記 3 指標すべてを満たして初めて次レベルへ。基準を持つことで、停滞を「足りない」のか「単に焦っている」のかを切り分けられます。
+                
+                
+                
+            </p>
+
+            <table class="milestone-table">
+                <thead>
+                    <tr>
+                        <th>レベル</th>
+                        <th>正答率</th>
+                        <th>反応時間</th>
+                        <th>安定性</th>
+                        <th>期間目安</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td data-label="Level">Beginner クリア</td>
+                        <td data-label="Accuracy" class="ms-target">≥ 90%</td>
+                        <td data-label="Response time" class="ms-target">≤ 5s</td>
+                        <td data-label="Stability">3 セッション連続</td>
+                        <td data-label="Timeframe">2-3 週</td>
+                    </tr>
+                    <tr>
+                        <td data-label="Level">Intermediate クリア</td>
+                        <td data-label="Accuracy" class="ms-target">≥ 90%</td>
+                        <td data-label="Response time" class="ms-target">≤ 4s</td>
+                        <td data-label="Stability">3 セッション連続 + 異なる Root</td>
+                        <td data-label="Timeframe">3-5 週</td>
+                    </tr>
+                    <tr>
+                        <td data-label="Level">Advanced クリア</td>
+                        <td data-label="Accuracy" class="ms-target">≥ 85%</td>
+                        <td data-label="Response time" class="ms-target">≤ 3s</td>
+                        <td data-label="Stability">5 セッション連続 + 上昇/下降両方</td>
+                        <td data-label="Timeframe">2-3 ヶ月</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <p style="font-size:14px; color:var(--text-primary); font-weight:700; margin-top:var(--space-lg); margin-bottom:6px;">
+                転移条件 — 「実曲で使える」目安
+            </p>
+            <ul class="conn-list">
+                <li><strong>耳コピ転移</strong>: Advanced + Random + Moving で 80%+ → 簡単な歌メロを実際に耳コピし始める</li>
+                <li><strong>ハモリ転移</strong>: Custom (3rds + 6ths) を Harmonic で 85%+ → 既知の曲のサビにハモリをつけてみる</li>
+                <li><strong>即興転移</strong>: Advanced + Harmonic + Moving で 75%+ → 単純なバッキングに合わせてアドリブを試す</li>
+            </ul>
+        </section>
+
+        <!-- ========== 6. TIPS ========== -->
+        <section class="sect" id="tips">
+            <h2 class="sect__h"><span class="sect__num">6</span>TIPS — 詰まったら読む</h2>
+
+            <div class="tip-item">
+                <div class="tip-item__head">スコアが落ちたら、まず 1 段戻す</div>
+                <div class="tip-item__body">
+                    難易度を 1 段下げる、または Speed を Slow に。<strong>「同じ難易度で粘る」より、1 段下げて 90% を取り戻す方が結果的に早い</strong>。停滞時の鉄則。
+                    
+                    
+                    
+                </div>
+            </div>
+
+            <div class="tip-item">
+                <div class="tip-item__head">注意焦点は「音名」より「2 音間の距離感」</div>
+                <div class="tip-item__body">
+                    「ドとソ」と覚えるのではなく「<strong>完全 5 度の張り感</strong>」「<strong>長 6 度の空間感</strong>」と <strong>距離の質感</strong> で記憶する。これが Moving モード（毎回キーが変わる）でも崩れない記憶の作り方。
+                    
+                    
+                    
+                </div>
+            </div>
+
+            <div class="tip-item">
+                <div class="tip-item__head">同じ問題ばかり解かない（インターリービング）</div>
+                <div class="tip-item__body">
+                    「短 3 度を 50 回連続」より、「短 3 度・短 6 度・長 2 度を交互に各 15 回」の方が <strong>長期定着が強い</strong>（ブロック練習より交互練習の優位）。Spaced Repetition / Random モードはこの原理に乗っている。
+                    
+                    
+                    
+                </div>
+            </div>
+
+            <div class="tip-item">
+                <div class="tip-item__head">類似音程は <strong>リファレンス曲を 1 つ</strong> 結びつける</div>
+                <div class="tip-item__body">
+                    m6 ↔ M6、A4 ↔ d5、M2 ↔ m7（転回）など、混同しやすいペアには <strong>固定リファレンス曲</strong> を頭に焼き付ける（例: P4 = 結婚行進曲冒頭、トライトーン = "ザ・シンプソンズ" 主題曲冒頭）。複数のリファレンスを使うと混乱する。
+                    
+                    
+                    
+                </div>
+            </div>
+
+            <div class="tip-item">
+                <div class="tip-item__head">下降と和音は「別物」と覚悟して別枠で練習</div>
+                <div class="tip-item__body">
+                    上昇 95% でも下降は 60% 台、これが普通。<strong>転移しないので別途練習時間を確保</strong>。和音モードも同様で、旋律で完璧でも和音では別物。
+                    
+                    
+                    
+                </div>
+            </div>
+        </section>
+
+        <!-- ========== 7. 設定詳細リファレンス ========== -->
+        <section class="sect" id="settings">
+            <h2 class="sect__h"><span class="sect__num">7</span>設定詳細リファレンス</h2>
+            <p class="sect__lead">
+                基本は Week 1 プリセットで十分です。下記は <strong>各設定の詳細を後から確認したい時</strong> の参照用。クリックで展開します。
+                
+                
+                
+            </p>
+
+            <details class="settings-ref">
+                <summary>Difficulty <span style="color:var(--text-secondary); font-weight:400; font-size:12px;">— 難易度（出題範囲）</span></summary>
+                <div class="settings-ref__content">
+                    <div class="diff-cascade">
+                        <div class="diff-tier">
+                            <div class="diff-tier__head"><span class="diff-tier__num">1</span><span class="diff-tier__name">Beginner</span></div>
+                            <div class="diff-tier__count">5 音程</div>
+                            <div class="diff-tier__items">M2  M3  P4  P5  P8</div>
+                        </div>
+                        <div class="diff-tier">
+                            <div class="diff-tier__head"><span class="diff-tier__num">2</span><span class="diff-tier__name">Intermediate</span></div>
+                            <div class="diff-tier__count">+3 → 8 音程</div>
+                            <div class="diff-tier__items">+ m3  m6  M6</div>
+                        </div>
+                        <div class="diff-tier">
+                            <div class="diff-tier__head"><span class="diff-tier__num">3</span><span class="diff-tier__name">Advanced</span></div>
+                            <div class="diff-tier__count">+5 → 全 13 音程</div>
+                            <div class="diff-tier__items">+ m2  A4/d5  m7  M7</div>
+                        </div>
+                    </div>
+                    <div class="menu-note">
+                        各段階で 90% を安定 → 次へ。早送り厳禁。
+                        
+                        
+                        
+                    </div>
+                </div>
+            </details>
+
+            <details class="settings-ref">
+                <summary>Playback Mode <span style="color:var(--text-secondary); font-weight:400; font-size:12px;">— 再生方法</span></summary>
+                <div class="settings-ref__content">
+                    <div class="mode-grid">
+                        <div class="mode-card"><div class="mode-card__visual">↗</div><div class="mode-card__name">Ascending</div><div class="mode-card__desc">低 → 高 順次</div></div>
+                        <div class="mode-card"><div class="mode-card__visual">↘</div><div class="mode-card__name">Descending</div><div class="mode-card__desc">高 → 低 順次</div></div>
+                        <div class="mode-card"><div class="mode-card__visual">⇊</div><div class="mode-card__name">Harmonic</div><div class="mode-card__desc">2 音同時</div></div>
+                        <div class="mode-card"><div class="mode-card__visual">⚄</div><div class="mode-card__name">Random</div><div class="mode-card__desc">毎回ランダム</div></div>
+                    </div>
+                    <div class="menu-note">
+                        <strong>Asc → Desc → Harmonic → Random</strong> の順。Random から始めない。
+                        
+                        
+                        
+                    </div>
+                </div>
+            </details>
+
+            <details class="settings-ref">
+                <summary>Root Note Mode <span style="color:var(--text-secondary); font-weight:400; font-size:12px;">— 基準音の固定 / 移動</span></summary>
+                <div class="settings-ref__content">
+                    <div class="compare-pair">
+                        <div class="compare-side compare-side--bad">
+                            <div class="compare-side__verdict">Fixed</div>
+                            <div class="compare-side__title">固定（初日のみ）</div>
+                            <div class="compare-side__body">特定ピッチを覚えるクセがつき、耳コピで機能しない。</div>
+                        </div>
+                        <div class="compare-side compare-side--good">
+                            <div class="compare-side__verdict">Moving</div>
+                            <div class="compare-side__title">移動（常用）</div>
+                            <div class="compare-side__body">本物の相対音感を鍛える唯一の方法。</div>
+                        </div>
+                    </div>
+                </div>
+            </details>
+
+            <details class="settings-ref">
+                <summary>Root Note Pitch <span style="color:var(--text-secondary); font-weight:400; font-size:12px;">— 基準音の高さ</span></summary>
+                <div class="settings-ref__content">
+                    <p style="font-size:13px; color:var(--text-secondary); line-height:1.7;">
+                        C4 / E4 / A4 から選択。自分の <strong>声域・楽器音域</strong> に近い方が「歌って検証」できる。<strong>標準は C4</strong>。低声/ベース → C4、高声/ボーカル → A4 を試す。
+                        
+                        
+                        
+                    </p>
+                </div>
+            </details>
+
+            <details class="settings-ref">
+                <summary>Training Mode <span style="color:var(--text-secondary); font-weight:400; font-size:12px;">— 学習モード</span></summary>
+                <div class="settings-ref__content">
+                    <p style="font-size:13px; color:var(--text-secondary); line-height:1.7;">
+                        <strong>Normal</strong> ランダム / <strong>Spaced Repetition</strong> 弱点を時間を空けて再出題 / <strong>Weak Point Focus</strong> 70% 未満のみ / <strong>Custom</strong> 自分で出題対象を選択。<br>普段は Normal、週 1〜2 回別セッションで Weak Point Focus。
+                        
+                        
+                        
+                    </p>
+                </div>
+            </details>
+
+            <details class="settings-ref">
+                <summary>Playback Speed / Answer Flow <span style="color:var(--text-secondary); font-weight:400; font-size:12px;">— 再生速度・自動進行</span></summary>
+                <div class="settings-ref__content">
+                    <p style="font-size:13px; color:var(--text-secondary); line-height:1.7;">
+                        <strong>Speed</strong>: Slow（新規習得）→ Normal（定着）→ Fast（本番想定）。<br><strong>Answer Flow</strong>: 普段は Auto（フルエンシー）。Weak Point Focus と組み合わせる時のみ Manual。
+                        
+                        
+                        
+                    </p>
+                </div>
+            </details>
+        </section>
+
+        <a href="/practice/training-menu/" class="crumb" style="margin-top:var(--space-2xl);">← 練習メニュー一覧に戻る</a>
+
+        <div class="cta" style="margin-top: var(--space-2xl);">
+            <h2 class="cta__title">音程トレーニングを始めよう</h2>
+            <p class="cta__text">
+                Week 1 プリセットを設定して、最初の 1 セッションを今日中に。
+                
+                
+                
+            </p>
+            <a href="https://apps.apple.com/jp/app/id6756626617" class="app-store-link" aria-label="Download on the App Store">
+                <img class="app-store-link__img" src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/ja-jp" alt="App Storeで入手">
+                
+                
+                
+            </a>
+        </div>
+    </main>
+
+    <footer style="background: var(--surface); padding: var(--space-xl) var(--space-lg); text-align: center; border-top: 1px solid var(--surface-light);">
+        <p style="color: var(--text-secondary); font-size: 14px;">
+            &copy; 2026 ソルフェージュPRO &mdash;
+            <a href="https://apps.apple.com/jp/app/id6756626617" style="color: var(--primary); text-decoration: none;">App Store</a>
+        </p>
+    </footer>
+    <script src="/bootstrap.js?v=1" defer></script>
+</body>
+</html>

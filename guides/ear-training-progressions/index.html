@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html lang="ja"
+      data-title-ja="コード進行を聴き取る — T/SD/D 機能で判別 | ソルフェージュPRO"
+      data-title-en="What Is Progression Training? — Understanding Harmonic Movement | Solfege PRO"
+      data-title-fr="Qu'est-ce que l'écoute des progressions d'accords ? — Comprendre le mouvement harmonique | Solfege PRO"
+      data-title-de="Was ist Akkordfolgen-Hörtraining? — Harmonische Bewegung verstehen | Solfege PRO">
+<head>
+    <meta charset="UTF-8">
+    <meta name="robots" content="index, follow">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#1A1A1E">
+    <title>コード進行を聴き取る — T/SD/D 機能で判別 | ソルフェージュPRO</title>
+    <meta name="description" content="コード進行の聴き取りを、機能 (T/SD/D)、ローマ数字、コードシンボルの 3 段階で訓練。ダイアトニックから始める実践プランと、movable-do 歌唱との関係を解説します。">
+
+    <!-- Canonical -->
+    <link rel="canonical" href="https://solfegepro.com/guides/ear-training-progressions/">
+    <link rel="alternate" hreflang="ja" href="https://solfegepro.com/guides/ear-training-progressions/">
+    <link rel="alternate" hreflang="en" href="https://solfegepro.com/en/guides/ear-training-progressions/">
+    <link rel="alternate" hreflang="fr" href="https://solfegepro.com/fr/guides/ear-training-progressions/">
+    <link rel="alternate" hreflang="de" href="https://solfegepro.com/de/guides/ear-training-progressions/">
+    <link rel="alternate" hreflang="x-default" href="https://solfegepro.com/guides/ear-training-progressions/">
+<!-- OGP -->
+    <meta property="og:title" content="コード進行を聴き取る — T/SD/D 機能で判別">
+    <meta property="og:description" content="コード進行の聴き取りを、機能 (T/SD/D)、ローマ数字、コードシンボルの 3 段階で訓練。ダイアトニックから始める実践プランと、movable-do 歌唱との関係を解説します。">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://solfegepro.com/guides/ear-training-progressions/">
+    <meta property="og:site_name" content="ソルフェージュPRO">
+    <meta property="og:image" content="https://solfegepro.com/og-image.png">
+    <meta property="og:locale" content="ja_JP">
+    <meta property="og:locale:alternate" content="en_US">
+    <meta property="og:locale:alternate" content="fr_FR">
+    <meta property="og:locale:alternate" content="de_DE">
+    <meta property="article:published_time" content="2026-03-31">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="コード進行を聴き取る — T/SD/D 機能で判別">
+    <meta name="twitter:description" content="コード進行の聴き取りを、機能 (T/SD/D)、ローマ数字、コードシンボルの 3 段階で訓練。ダイアトニックから始める実践プランと、movable-do 歌唱との関係を解説します。">
+    <meta name="twitter:image" content="https://solfegepro.com/og-image.png">
+
+    <!-- Favicon -->
+    <link rel="icon" href="/AppIcon.png" type="image/png">
+    <link rel="apple-touch-icon" href="/AppIcon.png">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="/style.css?v=15">
+    <link rel="stylesheet" href="/guides/article.css?v=9">
+
+    <style>
+        /* Harmonic Function Cycle */
+        .function-cycle {
+            background: var(--surface);
+            border-radius: var(--radius-xl);
+            padding: var(--space-xl);
+            margin: var(--space-xl) 0;
+            border: 1px solid var(--surface-light);
+        }
+        /* Wide: 4 nodes in one row with → arrows. Below 600 px the row
+           would wrap awkwardly (3 + 1 with an orphan arrow trailing on
+           row 1 and leading row 2), so we flip to a vertical column and
+           swap the arrow content to ↓ inside the same media query —
+           same Hard rule #5 pattern as the global .cycle-diagram. */
+        .function-cycle__diagram {
+            display: flex;
+            flex-wrap: nowrap;
+            justify-content: center;
+            align-items: center;
+            gap: var(--space-sm);
+            margin-bottom: var(--space-xl);
+        }
+        .function-cycle__node {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid;
+            text-align: center;
+            flex-shrink: 0;
+        }
+        @media (max-width: 600px) {
+            .function-cycle__diagram {
+                flex-direction: column;
+                gap: var(--space-xs);
+            }
+            .function-cycle__node {
+                width: 84px;
+                height: 84px;
+            }
+            .function-cycle__arrow {
+                transform: rotate(90deg);
+            }
+        }
+        .function-cycle__node--t {
+            border-color: #4ADE80;
+            background: rgba(74, 222, 128, 0.1);
+        }
+        .function-cycle__node--sd {
+            border-color: #FBBF24;
+            background: rgba(251, 191, 36, 0.1);
+        }
+        .function-cycle__node--d {
+            border-color: #F87171;
+            background: rgba(248, 113, 113, 0.1);
+        }
+        .function-cycle__node-label {
+            font-size: 18px;
+            font-weight: 700;
+        }
+        .function-cycle__node--t .function-cycle__node-label { color: #4ADE80; }
+        .function-cycle__node--sd .function-cycle__node-label { color: #FBBF24; }
+        .function-cycle__node--d .function-cycle__node-label { color: #F87171; }
+        .function-cycle__node-desc {
+            font-size: 11px;
+            color: var(--text-secondary);
+            margin-top: 2px;
+        }
+        .function-cycle__arrow {
+            font-size: 24px;
+            color: var(--text-secondary);
+        }
+        .function-cycle__arrow--return {
+            font-size: 18px;
+            color: var(--text-secondary);
+            text-align: center;
+            margin-top: var(--space-sm);
+        }
+
+        /* Function Table */
+        .function-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: var(--space-lg);
+        }
+        .function-table th,
+        .function-table td {
+            padding: var(--space-sm) var(--space-md);
+            text-align: left;
+            font-size: 14px;
+            border-bottom: 1px solid var(--surface-light);
+        }
+        .function-table th {
+            color: var(--text-secondary);
+            font-weight: 700;
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .function-table td {
+            color: var(--text-primary);
+        }
+        .function-table__tag {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: var(--radius-sm);
+            font-size: 12px;
+            font-weight: 600;
+        }
+        .function-table__tag--t { background: rgba(74, 222, 128, 0.15); color: #4ADE80; }
+        .function-table__tag--sd { background: rgba(251, 191, 36, 0.15); color: #FBBF24; }
+        .function-table__tag--d { background: rgba(248, 113, 113, 0.15); color: #F87171; }
+
+        @media (max-width: 768px) {
+            .function-cycle { padding: var(--space-md); }
+            .function-cycle__node { width: 80px; height: 80px; }
+            .function-cycle__node-label { font-size: 16px; }
+            .function-cycle__node-desc { font-size: 10px; }
+            .function-table th, .function-table td { padding: var(--space-xs) var(--space-sm); font-size: 13px; }
+        }
+    </style>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"コード進行を聴き取る力とは何か — 和声の流れを理解する","description":"コード進行を聴き取る力を理解し、機能和声の考え方に基づく練習法を紹介します。","author":{"@type":"Organization","name":"ソルフェージュPRO"},"publisher":{"@type":"Organization","name":"ソルフェージュPRO","logo":{"@type":"ImageObject","url":"https://solfegepro.com/AppIcon.png"}},"datePublished":"2026-04-05","mainEntityOfPage":{"@type":"WebPage","@id":"https://solfegepro.com/guides/ear-training-progressions.html"}}</script>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="nav__container">
+            <a href="/" class="nav__logo">
+                <img src="/AppIcon.png" alt="Solfege PRO" class="nav__logo-icon">
+                <span class="nav__logo-text">ソルフェージュPRO</span>
+            </a>
+            <ul class="nav__list">
+                <li><a href="/" class="nav__link">練習ガイド</a></li>
+                <li><a href="/guides/" class="nav__link active">ガイド一覧</a></li>
+                            <li><a href="/start-here/" class="nav__link">どこから始める？</a></li>
+            </ul>
+            <div class="nav__settings">
+                <button class="settings-btn" id="lang-toggle" title="Toggle language">
+                    <span id="lang-text">EN</span>
+                </button>
+                <button class="hamburger-btn" id="hamburger-btn" aria-label="Menu" aria-expanded="false" aria-controls="drawer">
+                    <span class="hamburger-btn__line"></span>
+                    <span class="hamburger-btn__line"></span>
+                    <span class="hamburger-btn__line"></span>
+                </button>
+            </div>
+        </div>
+    </nav>
+        <!-- Mobile drawer (hidden on desktop) -->
+        <div class="drawer-overlay" id="drawer-overlay"></div>
+        <aside class="drawer" id="drawer" aria-label="Mobile menu" aria-hidden="true" inert>
+            <div class="drawer__header">
+                <span class="drawer__title">メニュー</span>
+                <button class="drawer__close" id="drawer-close" aria-label="Close menu">×</button>
+            </div>
+            <ul class="drawer__list">
+                    <li><a href="/" class="drawer__link">練習ガイド</a></li>
+                    <li><a href="/guides/" class="drawer__link active">ガイド一覧</a></li>
+                    <li><a href="/start-here/" class="drawer__link">どこから始める？</a></li>
+            </ul>
+        </aside>
+
+
+    <!-- Article Header -->
+    <header class="page-header">
+        <div class="page-header__meta">
+            <span class="page-header__tag">コード進行トレーニング</span>
+            <span>読了: 約8分</span>
+        </div>
+        <h1 class="page-header__title">
+            コード進行を聴き取る力とは何か<br>和声の流れを理解する
+            
+            
+            
+        </h1>
+        <p class="page-header__subtitle">
+            コードを1つずつ聴き分けることと、進行の「流れ」を聴き取ることは別のスキルです。和声の動きを耳で追う力を、機能和声の考え方から段階的に鍛える方法を解説します。
+            
+            
+            
+        </p>
+    </header>
+
+    <!-- Top-of-article CTA -->
+    <aside class="article-top-cta" aria-label="App promotion">
+        <div class="article-top-cta__body">
+            <p class="article-top-cta__title">
+                ソルフェージュPRO でこの練習を試す
+                
+                
+                
+            </p>
+            <p class="article-top-cta__sub">
+                月額 980 円 · 1 週間無料トライアル
+                
+                
+                
+            </p>
+        </div>
+        <a href="https://apps.apple.com/jp/app/id6756626617" class="article-top-cta__button" data-cta-position="article_top">
+            App Store →
+            
+            
+            
+        </a>
+    </aside>
+
+    <!-- Article Body -->
+    <main class="article-body">
+
+        <!-- Section 1 -->
+        <h2 id="what-is-progression-training">コード進行を聴き取るとは</h2>
+
+        <p>
+            コード進行の認識とは、連続して鳴るコードの流れを耳で追い、それぞれのコードがキーの中でどんな役割（機能）を果たしているかを理解する力です。
+            
+            
+            
+        </p>
+
+        <p>
+            単体のコードを聴き分けるコード認識とは異なり、進行トレーニングでは「コード同士の関係性」が焦点になります。あるコードの後に別のコードが来ると、なぜ「解決した」と感じるのか。なぜ「次に行きたくなる」と感じるのか。その感覚の正体が、和声の機能です。
+            
+            
+            
+        </p>
+
+        <p>
+            この力は、作曲、編曲、耳コピ、ジャズのセッション、バンドアレンジなど、音楽のほぼすべての領域で活きるスキルです。
+            
+            
+            
+        </p>
+
+        <!-- Section 2 -->
+        <h2 id="harmonic-basics">和声の基礎を理解する</h2>
+
+        <p>
+            西洋音楽の和声は、大きく3つの機能に分類されます。音楽教育で広く教えられている機能和声（Functional Harmony）の考え方に基づくこの枠組みは、コード進行を理解する上での基本的な地図になります。
+            
+            
+            
+        </p>
+
+        <!-- Harmonic Function Cycle Visual -->
+        <div class="function-cycle">
+            <div class="diagram-title">和声機能のサイクル</div>
+
+            <div class="function-cycle__diagram">
+                <div class="function-cycle__node function-cycle__node--t">
+                    <div class="function-cycle__node-label">T</div>
+                    <div class="function-cycle__node-desc">Tonic</div>
+                </div>
+                <div class="function-cycle__arrow">&rarr;</div>
+                <div class="function-cycle__node function-cycle__node--sd">
+                    <div class="function-cycle__node-label">SD</div>
+                    <div class="function-cycle__node-desc">Subdominant</div>
+                </div>
+                <div class="function-cycle__arrow">&rarr;</div>
+                <div class="function-cycle__node function-cycle__node--d">
+                    <div class="function-cycle__node-label">D</div>
+                    <div class="function-cycle__node-desc">Dominant</div>
+                </div>
+                <div class="function-cycle__arrow">&rarr;</div>
+                <div class="function-cycle__node function-cycle__node--t">
+                    <div class="function-cycle__node-label">T</div>
+                    <div class="function-cycle__node-desc">Tonic</div>
+                </div>
+            </div>
+
+            <table class="function-table">
+                <thead>
+                    <tr>
+                        <th>機能</th>
+                        <th>役割</th>
+                        <th>該当コード</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><span class="function-table__tag function-table__tag--t">T (Tonic)</span></td>
+                        <td>安定・解決・「家」</td>
+                        <td>I, vi, iii</td>
+                    </tr>
+                    <tr>
+                        <td><span class="function-table__tag function-table__tag--sd">SD (Subdominant)</span></td>
+                        <td>動き出し・展開</td>
+                        <td>IV, ii</td>
+                    </tr>
+                    <tr>
+                        <td><span class="function-table__tag function-table__tag--d">D (Dominant)</span></td>
+                        <td>緊張・解決への欲求</td>
+                        <td>V, vii&deg;</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <p>
+            T → SD → D → T というサイクルが、コード進行の最も基本的な流れです。ポップスの I-IV-V-I も、ジャズの ii-V-I も、この機能の流れに沿っています。まず「どの機能に属するコードか」を聴き取ることが、進行認識の第一歩です。
+            
+            
+            
+        </p>
+
+        <div class="article-note">
+            <div class="article-note__title">ポイント</div>
+            <p>コード進行の聴き取りでは、個々のコードの種類（MajorかMinorか）よりも先に、その機能（安定なのか、緊張なのか、動き出しなのか）を感じ取ることが重要です。機能がわかれば、具体的なコードの特定はその後にできます。</p>
+        </div>
+
+        <!-- Section 3 -->
+        <h2 id="common-walls">よくある壁</h2>
+
+        <h3 id="iv-vs-v">IVとVの混同</h3>
+        <p>
+            IV（サブドミナント）とV（ドミナント）は、どちらも「Iから離れた場所」にあるコードですが、響きの方向性が異なります。IVは「広がり」や「展開」の感覚、Vは「引っ張り」や「解決したい」という緊張感を持ちます。この違いを感じ取るには、I-IV-I と I-V-I を繰り返し比較して聴くことが効果的です。
+            
+            
+            
+        </p>
+
+        <h3 id="minor-function">マイナーコードの機能が掴みにくい</h3>
+        <p>
+            viはトニック機能、iiはサブドミナント機能、iiiはトニック機能。しかし、マイナーコードは「暗い」という印象が先に来るため、機能を聴き分けることが難しく感じられます。ダイアトニックコードの機能を理論的に理解した上で、繰り返し聴くことが重要です。
+            
+            
+            
+        </p>
+
+        <h3 id="longer-progressions">長い進行でキー感覚を見失う</h3>
+        <p>
+            2コードの進行なら追えるのに、4コードになると途中でキーの感覚がぼやける。特に、vi や iii のようなトニック代理コードが入ると、「今どこにいるのか」がわからなくなることがあります。トニックプレビュー（最初にIを聴く）を活用することで、キーの基準点を明確にできます。
+            
+            
+            
+        </p>
+
+        <h3 id="function-vs-chord">機能と具体的なコードの識別</h3>
+        <p>
+            「これはドミナント機能だ」とわかっても、それがVなのかvii°なのかを特定するのは別の難しさがあります。まずは機能レベルでの認識を安定させ、その後に具体的なコードの特定に進むのが効果的な順序です。
+            
+            
+            
+        </p>
+
+        <!-- Section 4 -->
+        <h2 id="effective-practice">効果的な練習法</h2>
+
+        <h3 id="start-two-chords">2コード進行から始める</h3>
+        <p>
+            I-V、I-IV のような最小単位の進行から始めましょう。2つのコードの関係だけに集中できるため、機能の違いを体感しやすくなります。いきなり4コード進行に挑戦すると、情報量に圧倒される可能性があります。
+            
+            
+            
+        </p>
+
+        <h3 id="tonic-preview">トニックプレビューを活用する</h3>
+        <p>
+            出題前にI（トニック）を聴くことで、キーの基準点を耳に設定します。「ここがホームだ」という感覚を持った状態で進行を聴くと、各コードの機能が感じ取りやすくなります。慣れてきたらトニックプレビューをOFFにして、キー感覚を自分で探る練習に進みましょう。
+            
+            
+            
+        </p>
+
+        <h3 id="function-first">機能から入り、ローマ数字へ</h3>
+        <p>
+            最初は「T-SD-D-T」のように機能レベルで答える練習をしましょう。安定・展開・緊張・解決の流れを感じ取れるようになったら、「I-IV-V-I」のようにローマ数字で具体的なコードを特定する練習に進みます。この順序で進めると、理論と耳の両方が噛み合います。
+            
+            
+            
+        </p>
+
+        <h3 id="common-patterns">よく出るパターンを覚える</h3>
+        <p>
+            多くの曲はいくつかの定番パターンで成り立っています。I-V-vi-IV（ポップス定番）、ii-V-I（ジャズ定番）、I-IV-I-V（フォーク・ロック定番）。これらのパターンを「音」として覚えると、初めて聴く曲でも「あ、これはii-V-Iだ」と瞬時に判断できるようになります。
+            
+            
+            
+        </p>
+
+        <!-- Section 5 -->
+        <h2 id="what-app-can-do">ソルフェージュPROでできること</h2>
+
+        <p>
+            ソルフェージュPROの コード進行トレーニング は、コード進行の流れを聴き取る力を段階的に鍛えるトレーニングツールです。
+            
+            
+            
+        </p>
+
+        <h3>15種類以上のコード進行パターン</h3>
+        <p>
+            ポップスやジャズの定番パターンを中心に、15種類以上のコード進行をカバーしています。I-V-vi-IV、ii-V-I、I-IV-V-Iなど、実際の曲で頻出するパターンを練習できます。
+            
+            
+            
+        </p>
+
+        <h3>3つの回答形式</h3>
+        <p>
+            Function（T/SD/D）、ローマ数字（I/IV/V/vi等）、Chord Symbol（C/F/G/Am等）の3つの回答形式を選べます。機能レベルの理解から始めて、具体的なコード表記へと段階的にステップアップできます。
+            
+            
+            
+        </p>
+
+        <h3>2〜4コードの進行長</h3>
+        <p>
+            出題されるコード進行の長さを2コードから4コードまで選択できます。短い進行で基礎を固め、徐々に長い進行に挑戦できます。
+            
+            
+            
+        </p>
+
+        <h3>トニックプレビュー</h3>
+        <p>
+            出題前にトニック（I）を再生し、キーの基準点を提示する機能です。ONにすればキー感覚が明確になり、OFFにすれば自分でキーを探る練習ができます。
+            
+            
+            
+        </p>
+
+        <h3>Pop / Jazz カテゴリ</h3>
+        <p>
+            自分が練習したいジャンルのパターンに集中できます。ポップスの定番パターン（I-V-vi-IV等）やジャズのii-V-I系パターンなど、カテゴリ別に出題を絞れます。
+            
+            
+            
+        </p>
+
+        <h3>パターン別統計</h3>
+        <p>
+            各パターンごとの正答率を記録します。どの進行パターンが得意で、どれが苦手かが一目でわかります。
+            
+            
+            
+        </p>
+
+        <div class="cycle-diagram">
+            <div class="cycle-step">
+                <div class="cycle-step__label">キー設定</div>
+                <div class="cycle-step__desc">トニックプレビュー</div>
+            </div>
+            <div class="cycle-arrow">&rarr;</div>
+            <div class="cycle-step">
+                <div class="cycle-step__label">聴く</div>
+                <div class="cycle-step__desc">進行を再生</div>
+            </div>
+            <div class="cycle-arrow">&rarr;</div>
+            <div class="cycle-step">
+                <div class="cycle-step__label">答える</div>
+                <div class="cycle-step__desc">機能 / 数字 / コード名</div>
+            </div>
+            <div class="cycle-arrow">&rarr;</div>
+            <div class="cycle-step">
+                <div class="cycle-step__label">確認</div>
+                <div class="cycle-step__desc">正解と比較</div>
+            </div>
+        </div>
+
+        <!-- Section 6 -->
+        <h2 id="limitations">ソルフェージュPROだけでは直接扱いきれないこと</h2>
+
+        <p>
+            正直に書きます。
+            
+            
+            
+        </p>
+
+        <div class="article-honest">
+            <div class="article-honest__title">アプリでカバーできない領域</div>
+            <p>
+                <strong>セカンダリードミナント</strong> — V/V、V/ii などのセカンダリードミナントは現在のトレーニングの範囲外です。ダイアトニックコードの機能認識が中心です。
+            </p>
+            <p>
+                <strong>転調の検出</strong> — 曲の途中でキーが変わるケースを検出するトレーニングには対応していません。各進行は1つのキー内で出題されます。
+            </p>
+            <p>
+                <strong>マイナーキーの進行（部分的）</strong> — メジャーキーの進行が中心です。マイナーキーの進行は一部カバーしていますが、包括的ではありません。
+            </p>
+            <p>
+                <strong>カスタム進行の作成</strong> — プリセットされたパターンのみで、ユーザーが独自の進行を作成する機能はありません。
+            </p>
+            <p>
+                <strong>進行上のアドリブ演奏</strong> — コード進行を聴き取ることと、その進行の上で即興演奏することは別のスキルです。アプリは認識の訓練であり、演奏の訓練ではありません。
+            </p>
+            <p>
+                <strong>ベースライン主導 / 度数歌唱（movable-do）での聴取</strong> — Karpinski（<em>Manual for Ear Training and Sight Singing</em>）や Edlund（<em>Modus Novus</em>）の伝統では、進行を聴くときに(1)ベースラインの動きを度数で歌い、(2)各和音を I, ii, IV, V のローマ数字で内的にラベルする、というアプローチが標準です。本機能はコード全体の機能（T / SD / D）を選択肢から選ぶ形式で、movable-do 歌唱や独立したベースライン聴取の訓練までは含みません。アプリの聴取と並行して、紙とピアノ（あるいは声）で度数歌唱を行うと、機能感覚の内面化が早まります。
+            </p>
+        </div>
+
+        <p>
+            ソルフェージュPROが直接支援できるのは、ダイアトニックなコード進行の機能認識と、パターン認識力の構築です。セカンダリードミナントや転調を含む高度な和声分析は、理論書の学習や実際の曲の分析と併用することで効果が高まります。
+            
+            
+            
+        </p>
+
+        <!-- Mid-article CTA -->
+        <div class="article-cta-subtle">
+            <p class="article-cta-subtle__text">月額 980 円 (1 週間無料トライアル) で、自分のコード進行認識力を確認できます</p>
+            <a href="https://apps.apple.com/jp/app/id6756626617" class="article-cta-subtle__button">App Storeで見る</a>
+        </div>
+
+        <!-- Section 7 -->
+        <h2 id="how-to-use">おすすめの使い方</h2>
+
+        <p>
+            ソルフェージュPROの コード進行トレーニング は、以下の順序で進めることを想定しています。
+            
+            
+            
+        </p>
+
+        <ol>
+            <li><strong>Function モードで2コードから始める</strong> — トニックプレビューをONにし、T/SD/D の機能レベルで答える練習をする。I-V（T-D）、I-IV（T-SD）の違いを体感することが最初のゴール</li>
+            <li><strong>ローマ数字モードへ移行</strong> — 機能が安定して聴き取れるようになったら、具体的なコード（I/IV/V/vi/ii）を特定する練習へ進む</li>
+            <li><strong>3〜4コードに拡張する</strong> — 2コードで安定したら、徐々にコード数を増やしていく。I-V-vi-IV のような定番4コード進行に挑戦</li>
+            <li><strong>トニックプレビューをOFFにする</strong> — 自分の耳でキーを探す練習。これができると、実際の曲の耳コピに直結する</li>
+            <li><strong>実際の曲で確認する</strong> — 好きな曲を聴いて「この進行はI-V-vi-IVだ」と判断できるか試す。それが最終的なゴール</li>
+        </ol>
+
+        <div class="comparison-visual">
+            <div class="comparison-card comparison-card--bad">
+                <div class="comparison-card__header">効果が出にくい</div>
+                <div class="comparison-card__body">
+                    <p>いきなりローマ数字で4コード進行に挑戦。トニックプレビューなし。毎回違うパターンに振り回される。</p>
+                </div>
+            </div>
+            <div class="comparison-card comparison-card--good">
+                <div class="comparison-card__header">効果が出やすい</div>
+                <div class="comparison-card__body">
+                    <p>Functionモード・2コード・トニックプレビューONから開始。機能の違いを体感してから、段階的にコード数と回答形式を上げていく。</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="article-note">
+            <div class="article-note__title">使い方のコツ</div>
+            <p>コード進行の練習は、コード認識（個別のコードの聴き分け）と並行して行うのが効果的です。個別のコードの種類がわかる耳があると、進行の中での各コードの役割も掴みやすくなります。</p>
+        </div>
+
+    </main>
+
+    <!-- Final CTA -->
+    <section class="article-cta">
+        <h2 class="article-cta__title">まず、自分のコード進行認識力を確認しよう</h2>
+        <p class="article-cta__text">
+            コード進行の聴き取りは、和声の「流れ」を感じ取る力です。<br>個別のコードではなく、コード同士の関係性を聴く。それが、音楽の構造を耳で理解する第一歩です。<br>ソルフェージュPROの コード進行トレーニング で、まず2コードの進行から始めてみてください。
+            
+            
+            
+        </p>
+        <a href="https://apps.apple.com/jp/app/id6756626617" class="app-store-link" aria-label="Download on the App Store">
+            <img class="app-store-link__img" src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/ja-jp" alt="App Storeで入手">
+            
+            
+            
+        </a>
+    </section>
+
+    <!-- Related Content -->
+    <div class="article-related">
+        <div class="article-related__title">関連コンテンツ</div>
+        <a href="/" class="article-related__link">
+            <div class="article-related__link-title">ソルフェージュPRO 練習ガイド</div>
+            <div class="article-related__link-desc">ギター・ベース・ドラム・ピアノ・ボーカル向けの課題別練習メニュー</div>
+        </a>
+    </div>
+
+    <!-- Article Note -->
+    <aside class="article-endnote">
+        <p class="article-endnote__text">
+            この記事は、音楽教育で広く教えられている機能和声の理論および一般的な和声学の知見をもとに整理しています。和声の分類や機能の感じ方にはジャンルや音楽的文脈による違いがあり、ここで紹介した枠組みがすべてのケースに当てはまるわけではありません。アプリ内のトレーニングはダイアトニックなコード進行の認識力向上を支援するものであり、和声分析の全領域をカバーするものではありません。
+            
+            
+            
+        </p>
+    </aside>
+
+    <!-- Footer -->
+    <footer class="article-footer">
+        <p class="article-footer__text">
+            &copy; 2026 ソルフェージュPRO &mdash;
+            <a href="https://apps.apple.com/jp/app/id6756626617" class="article-footer__link">App Store</a>
+        </p>
+    </footer>
+    <script src="/bootstrap.js?v=1" defer></script>
+</body>
+</html>

@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="ja"
+      data-title-ja="アプリ機能解説 | ソルフェージュPRO"
+      data-title-en="App Features Guide | Solfege PRO"
+      data-title-fr="Fonctionnalités de l'app | Solfege PRO"
+      data-title-de="App-Funktionen | Solfege PRO">
+<head>
+    <meta charset="UTF-8">
+    <meta name="robots" content="index, follow">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#1A1A1E">
+    <title>アプリ機能解説 | ソルフェージュPRO</title>
+    <meta name="description" content="Solfege PRO の全機能を一覧で解説 — メトロノーム、インターバル/コード/スケール/進行認識、リズム、譜読み、指板トレーニング、練習プラン、診断機能まで。">
+
+    <link rel="canonical" href="https://solfegepro.com/practice/features/">
+    <link rel="alternate" hreflang="ja" href="https://solfegepro.com/practice/features/">
+    <link rel="alternate" hreflang="en" href="https://solfegepro.com/en/practice/features/">
+    <link rel="alternate" hreflang="fr" href="https://solfegepro.com/fr/practice/features/">
+    <link rel="alternate" hreflang="de" href="https://solfegepro.com/de/practice/features/">
+    <link rel="alternate" hreflang="x-default" href="https://solfegepro.com/practice/features/">
+<link rel="icon" href="/AppIcon.png" type="image/png">
+    <link rel="apple-touch-icon" href="/AppIcon.png">
+
+    <meta property="og:title" content="アプリ機能解説">
+    <meta property="og:description" content="Solfege PRO の全機能を一覧で解説 — メトロノーム、インターバル/コード/スケール/進行認識、リズム、譜読み、指板トレーニング、練習プラン、診断機能まで。">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://solfegepro.com/practice/features/">
+    <meta property="og:site_name" content="ソルフェージュPRO">
+    <meta property="og:image" content="https://solfegepro.com/og-image.png">
+    <meta property="og:locale" content="ja_JP">
+    <meta property="og:locale:alternate" content="en_US">
+    <meta property="og:locale:alternate" content="fr_FR">
+    <meta property="og:locale:alternate" content="de_DE">
+
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="アプリ機能解説">
+    <meta name="twitter:description" content="Solfege PRO の全機能を一覧で解説 — メトロノーム、インターバル/コード/スケール/進行認識、リズム、譜読み、指板トレーニング、練習プラン、診断機能まで。">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="/style.css?v=15">
+
+    <style>
+        .practice-body {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 var(--space-lg) var(--space-2xl);
+        }
+        .practice-body .section__header {
+            justify-content: center;
+        }
+        .practice-footer {
+            background: var(--surface);
+            padding: var(--space-xl) var(--space-lg);
+            text-align: center;
+            border-top: 1px solid var(--surface-light);
+        }
+        .practice-footer__text {
+            color: var(--text-secondary);
+            font-size: 14px;
+        }
+        .practice-footer__link {
+            color: var(--primary);
+            text-decoration: none;
+        }
+        @media (max-width: 768px) {
+            .practice-body { padding: 0 var(--space-md) var(--space-xl); }
+        }
+        @media (max-width: 480px) {
+        }
+    </style>
+</head>
+<body>
+    <nav class="nav">
+        <div class="nav__container">
+            <a href="/" class="nav__logo">
+                <img src="/AppIcon.png" alt="Solfege PRO" class="nav__logo-icon">
+                <span class="nav__logo-text">ソルフェージュPRO</span>
+            </a>
+            <ul class="nav__list">
+                <li><a href="/" class="nav__link active">練習ガイド</a></li>
+                <li><a href="/guides/" class="nav__link">ガイド一覧</a></li>
+                            <li><a href="/start-here/" class="nav__link">どこから始める？</a></li>
+            </ul>
+            <div class="nav__settings">
+                <button class="settings-btn" id="lang-toggle" title="Toggle language">
+                    <span id="lang-text">EN</span>
+                </button>
+                <button class="hamburger-btn" id="hamburger-btn" aria-label="Menu" aria-expanded="false" aria-controls="drawer">
+                    <span class="hamburger-btn__line"></span>
+                    <span class="hamburger-btn__line"></span>
+                    <span class="hamburger-btn__line"></span>
+                </button>
+            </div>
+        </div>
+    </nav>
+        <!-- Mobile drawer (hidden on desktop) -->
+        <div class="drawer-overlay" id="drawer-overlay"></div>
+        <aside class="drawer" id="drawer" aria-label="Mobile menu" aria-hidden="true" inert>
+            <div class="drawer__header">
+                <span class="drawer__title">メニュー</span>
+                <button class="drawer__close" id="drawer-close" aria-label="Close menu">×</button>
+            </div>
+            <ul class="drawer__list">
+                    <li><a href="/" class="drawer__link active">練習ガイド</a></li>
+                    <li><a href="/guides/" class="drawer__link">ガイド一覧</a></li>
+                    <li><a href="/start-here/" class="drawer__link">どこから始める？</a></li>
+            </ul>
+        </aside>
+
+
+    <header class="page-header">
+        <div class="page-header__icon"><svg class="icon" aria-hidden="true"><use href="/assets/icons.svg#icon-app-window"></use></svg></div>
+        <h1 class="page-header__title">アプリ機能解説</h1>
+        <p class="page-header__subtitle">指板、音程、コード認識、スケール認識、コード進行、リズム、譜読み — ソルフェージュPROの全機能解説</p>
+        <div class="page-header__meta">
+            <span class="page-header__badge"><span data-count-up="7">7</span> Features</span>
+        </div>
+    </header>
+
+    <main class="practice-body">
+            <div class="section__header">
+                <span class="section__icon"><svg class="icon" aria-hidden="true"><use href="/assets/icons.svg#icon-app-window"></use></svg></span>
+                <h2 class="section__title">アプリ機能解説</h2>
+                <div class="section__header-actions">
+                    <button class="expand-all-btn">すべて開く</button>
+                </div>
+            </div>
+
+            <!-- Section TOC -->
+            <nav class="section-toc">
+                <div class="section-toc__title">目次</div>
+                <ul class="section-toc__list">
+                    <li class="section-toc__item" data-target="features-fretboard">指板トレーニング</li>
+                    <li class="section-toc__item" data-target="features-interval">音程トレーニング</li>
+                    <li class="section-toc__item" data-target="features-chord">コード認識</li>
+                    <li class="section-toc__item" data-target="features-scale">スケール認識</li>
+                    <li class="section-toc__item" data-target="features-progression">コード進行トレーニング</li>
+                    <li class="section-toc__item" data-target="features-rhythm">リズムトレーニング</li>
+                    <li class="section-toc__item" data-target="features-sightreading">譜読みトレーニング</li>
+                </ul>
+            </nav>
+
+            <!-- Fretboard Training -->
+            <article class="question-card" id="features-fretboard">
+                <div class="question-card__header">
+                    <span class="question-card__q"><svg class="icon" aria-hidden="true"><use href="/assets/icons.svg#icon-guitar"></use></svg></span>
+                    <h3 class="question-card__title">指板トレーニング（指板トレーニング）</h3>
+                </div>
+                <div class="question-card__content">
+                    <div class="content-block">
+                        <p>ギター/ベースの指板上で、指定された音名の位置を素早く特定するトレーニング。</p>
+                        <ul class="content-list">
+                            <li><strong>範囲設定</strong>：弦・フレット範囲を細かく設定可能</li>
+                            <li><strong>応答時間測定</strong>：正解までの時間を記録</li>
+                            <li><strong>弱点分析</strong>：苦手なポジションを統計で表示</li>
+                            <li><strong>プリセット保存</strong>：練習設定を保存して再利用</li>
+                            <li><strong>マルチチューニング対応</strong>：標準、Drop D、Open G、変則チューニングまで切替可能</li>
+                            <li><strong>弦の絞り込み</strong>：苦手な弦だけを集中練習</li>
+                            <li><strong>ノートモード</strong>：「音名 → 位置」「位置 → 音名」の双方向</li>
+                        </ul>
+                        <p style="margin-top: var(--space-md);"><a href="/guides/fretboard-training/" style="color: var(--primary); font-weight: 700;">→ ガイドで深掘り：オクターブシェイプとフレット範囲ごとの攻略</a></p>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Interval Training -->
+            <article class="question-card" id="features-interval">
+                <div class="question-card__header">
+                    <span class="question-card__q"><svg class="icon" aria-hidden="true"><use href="/assets/icons.svg#icon-music-note"></use></svg></span>
+                    <h3 class="question-card__title">インターバル認識（音程トレーニング）</h3>
+                </div>
+                <div class="question-card__content">
+                    <div class="content-block">
+                        <p>2つの音を聴いて、その音程（インターバル）を当てるトレーニング。</p>
+                        <ul class="content-list">
+                            <li><strong>音程選択</strong>：練習したい音程だけを選択可能</li>
+                            <li><strong>上昇/下降</strong>：上昇音程、下降音程、両方から選択</li>
+                            <li><strong>ランダム基準音</strong>：毎回違うキーで出題</li>
+                            <li><strong>ピアノ音源</strong>：高品質なピアノサウンド</li>
+                            <li><strong>13 種類のインターバル</strong>：1 度から完全 8 度までを段階的にカバー</li>
+                            <li><strong>4 つの再生モード</strong>：上昇 / 下降 / 同時 / ハーモニックを切替</li>
+                            <li><strong>苦手音程の重点出題</strong>：間違えやすい音程の出題頻度を自動で上げる</li>
+                        </ul>
+                        <p style="margin-top: var(--space-md);"><a href="/guides/interval-training/" style="color: var(--primary); font-weight: 700;">→ ガイドで深掘り：相対音感の作り方と 13 インターバルの優先順位</a></p>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Chord Recognition -->
+            <article class="question-card" id="features-chord">
+                <div class="question-card__header">
+                    <span class="question-card__q"><svg class="icon" aria-hidden="true"><use href="/assets/icons.svg#icon-piano"></use></svg></span>
+                    <h3 class="question-card__title">コード認識（コード認識）</h3>
+                </div>
+                <div class="question-card__content">
+                    <div class="content-block">
+                        <p>コードを聴いて、そのコードタイプを当てるトレーニング。</p>
+                        <ul class="content-list">
+                            <li><strong>3和音</strong>：Major, minor, dim, aug</li>
+                            <li><strong>4和音</strong>：7th, maj7, m7, m7(♭5)</li>
+                            <li><strong>その他</strong>：sus4, add9 など</li>
+                            <li><strong>転回形</strong>：ルートポジション以外の転回形にも対応</li>
+                            <li><strong>20 種類以上のコードタイプ</strong>：トライアド・7th・テンション・sus 系まで網羅</li>
+                            <li><strong>5 段階の難易度設定</strong>：Major/minor の 2 択から、20+ 種類全部までを段階的に</li>
+                            <li><strong>ブロック / アルペジオ再生</strong>：分析にはアルペジオ、スピード向上にはブロック</li>
+                            <li><strong>比較再生</strong>：候補コードを並べて聴き比べられる</li>
+                            <li><strong>苦手克服モード</strong>：間違えやすいコードに出題を寄せる</li>
+                        </ul>
+                        <p style="margin-top: var(--space-md);"><a href="/guides/ear-training-chords/" style="color: var(--primary); font-weight: 700;">→ ガイドで深掘り：3 度の聴き方と段階的なコード認識の積み上げ</a></p>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Scale Recognition -->
+            <article class="question-card" id="features-scale">
+                <div class="question-card__header">
+                    <span class="question-card__q"><svg class="icon" aria-hidden="true"><use href="/assets/icons.svg#icon-music-staff"></use></svg></span>
+                    <h3 class="question-card__title">スケール認識（スケール認識）</h3>
+                </div>
+                <div class="question-card__content">
+                    <div class="content-block">
+                        <p>スケールを聴いて、そのスケール名を当てるトレーニング。チャーチモードと特性音の聴き取りに対応。</p>
+                        <ul class="content-list">
+                            <li><strong>Major / minor</strong>：基礎の 2 種から開始</li>
+                            <li><strong>チャーチモード</strong>：Ionian / Dorian / Phrygian / Lydian / Mixolydian / Aeolian / Locrian の 7 モードを段階的に追加</li>
+                            <li><strong>特性音にフォーカス</strong>：モードを決定づける 1 音を意識して聴く</li>
+                            <li><strong>段階的難易度</strong>：選択肢を 2 → 3 → 7 と増やしていける</li>
+                        </ul>
+                        <p style="margin-top: var(--space-md);"><a href="/guides/ear-training-scales/" style="color: var(--primary); font-weight: 700;">→ ガイドで深掘り：モード特性音の聴き方と段階的な学習順序</a></p>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Progression Training -->
+            <article class="question-card" id="features-progression">
+                <div class="question-card__header">
+                    <span class="question-card__q"><svg class="icon" aria-hidden="true"><use href="/assets/icons.svg#icon-music-notes"></use></svg></span>
+                    <h3 class="question-card__title">コード進行トレーニング（コード進行トレーニング）</h3>
+                </div>
+                <div class="question-card__content">
+                    <div class="content-block">
+                        <p>コード進行を聴いて、各コードの機能 (T/SD/D)・度数・コード名のいずれかを答えるトレーニング。</p>
+                        <ul class="content-list">
+                            <li><strong>15 種類以上の進行パターン</strong>：I-V-vi-IV, ii-V-I, I-IV-V-I などポップス／ジャズの定番</li>
+                            <li><strong>3 つの回答形式</strong>：Function (T/SD/D)、ローマ数字 (I/IV/V…)、Chord Symbol (C/F/G…)</li>
+                            <li><strong>2〜4 コードの進行長</strong>：短い進行で基礎、長い進行で実戦感</li>
+                            <li><strong>トニックプレビュー</strong>：出題前に I を聴いてキー感覚を設定 (ON/OFF 切替)</li>
+                            <li><strong>Pop / Jazz カテゴリ</strong>：ジャンルで出題を絞り込める</li>
+                            <li><strong>パターン別統計</strong>：進行ごとの正答率を可視化</li>
+                        </ul>
+                        <p style="margin-top: var(--space-md);"><a href="/guides/ear-training-progressions/" style="color: var(--primary); font-weight: 700;">→ コード進行ガイド：機能和声の概念と段階的な聴き方</a></p>
+                        <p style="margin-top: var(--space-sm);"><a href="/guides/chord-function-curriculum/" style="color: var(--primary); font-weight: 700;">→ コード機能トレーニング：解決感から 4 小節進行までの 4 段階実践プラン</a></p>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Rhythm Training -->
+            <article class="question-card" id="features-rhythm">
+                <div class="question-card__header">
+                    <span class="question-card__q"><svg class="icon" aria-hidden="true"><use href="/assets/icons.svg#icon-drum"></use></svg></span>
+                    <h3 class="question-card__title">リズムトレーニング（リズムトレーニング）</h3>
+                </div>
+                <div class="question-card__content">
+                    <div class="content-block">
+                        <p>クリック音に合わせてタップ/クラップし、リズム精度を測定。</p>
+                        <ul class="content-list">
+                            <li><strong>タップモード</strong>：画面タップで測定（静かな環境向け）</li>
+                            <li><strong>クラップモード</strong>：マイクで手拍子を検出（体全体のグルーヴ向け）</li>
+                            <li><strong>BPM設定</strong>：40〜200BPMまで対応</li>
+                            <li><strong>統計表示</strong>：平均誤差、走り/モタり傾向を数値化</li>
+                            <li><strong>キャリブレーション</strong>：デバイスの遅延を自動補正</li>
+                        </ul>
+                        <div class="warning-box">
+                            <div class="warning-box__title">⚠️ Bluetoothイヤホン非推奨</div>
+                            <div class="warning-box__content">
+                                AirPodsなどのBluetoothイヤホンはコーデックや機種により数十〜100 ms 以上の遅延が出ることがあります。正確な測定のため、有線イヤホンまたは内蔵スピーカーをご使用ください。
+                            </div>
+                        </div>
+                        <p style="margin-top: var(--space-md);"><a href="/guides/rhythm-training/" style="color: var(--primary); font-weight: 700;">→ リズム感を深く理解する：前乗り・後乗り・ポケットのガイド</a></p>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Sight Reading -->
+            <article class="question-card" id="features-sightreading">
+                <div class="question-card__header">
+                    <span class="question-card__q"><svg class="icon" aria-hidden="true"><use href="/assets/icons.svg#icon-book-open"></use></svg></span>
+                    <h3 class="question-card__title">譜読みトレーニング（譜読みトレーニング）</h3>
+                </div>
+                <div class="question-card__content">
+                    <div class="content-block">
+                        <p>五線譜上の音符を見て、音名を素早く答えるトレーニング。</p>
+                        <ul class="content-list">
+                            <li><strong>ト音記号/ヘ音記号</strong>：両方に対応</li>
+                            <li><strong>範囲設定</strong>：オクターブ範囲を設定可能</li>
+                            <li><strong>臨時記号</strong>：シャープ・フラットの有無を選択</li>
+                            <li><strong>応答時間測定</strong>：読譜速度を記録</li>
+                            <li><strong>全 12 キー対応</strong>：キー別に出題範囲を絞れる</li>
+                            <li><strong>加線の ON / OFF</strong>：加線エリアの出題を切替</li>
+                            <li><strong>苦手克服モード / エラー分析</strong>：間違いやすい音を集中出題、エラー傾向を可視化</li>
+                        </ul>
+                        <p style="margin-top: var(--space-md);"><a href="/guides/sight-reading/" style="color: var(--primary); font-weight: 700;">→ ガイドで深掘り：ランドマーク 5 音法と段階的な拡張</a></p>
+                    </div>
+                </div>
+            </article>
+
+
+        <div class="cta" style="margin-top: var(--space-2xl);">
+            <h2 class="cta__title">今日から始めよう</h2>
+            <p class="cta__text">
+                ソルフェージュPROで、効率的なトレーニングを。
+                
+                
+                
+            </p>
+            <a href="https://apps.apple.com/jp/app/id6756626617" class="cta__button">App Storeでダウンロード</a>
+        </div>
+    </main>
+
+    <footer class="practice-footer">
+        <p class="practice-footer__text">
+            &copy; 2026 ソルフェージュPRO &mdash;
+            <a href="https://apps.apple.com/jp/app/id6756626617" class="practice-footer__link">App Store</a>
+        </p>
+    </footer>
+
+    <!-- Sticky bottom CTA (mobile) -->
+    <div class="sticky-cta">
+        <img class="sticky-cta__icon" src="/AppIcon.png" alt="Solfege PRO">
+        <div class="sticky-cta__text">
+            <strong>7 機能を 1 つのアプリで</strong>
+            指板・音程・コード・スケール・進行・リズム・譜読み
+        </div>
+        <a href="https://apps.apple.com/jp/app/id6756626617" class="sticky-cta__button">入手</a>
+    </div>
+
+    <script src="/practice/practice-features.js?v=1"></script>
+    <script src="/bootstrap.js?v=1" defer></script>
+</body>
+</html>

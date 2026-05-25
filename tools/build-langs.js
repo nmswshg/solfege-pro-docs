@@ -1,68 +1,153 @@
 #!/usr/bin/env node
 /**
- * Generate single-language HTML variants from multi-language source files.
+ * Generate language-suffixed directory output from multi-language source.
  *
- * For each source `foo.html` (multi-lang, containing <span lang="ja|en|fr|de">
- * blocks), writes three new files alongside it:
+ * Source files live under src/. For each source `src/<path>.html`, this
+ * script generates four output files under the repo root:
  *
- *   foo.en.html   — only English content, <html lang="en">, English title, etc.
- *   foo.fr.html   — French
- *   foo.de.html   — German
+ *   <path>/index.html          ← Japanese (e.g. guides/interval-training/index.html)
+ *   en/<path>/index.html       ← English
+ *   fr/<path>/index.html       ← French
+ *   de/<path>/index.html       ← German
  *
- * The source `foo.html` is left as-is and serves as the Japanese URL
- * (project policy: 日本語だけ従来通り — ja URL stays at its current path).
+ * Special cases:
+ *   - src/index.html             → index.html  (root TOP for ja)
+ *                                  en/index.html, fr/index.html, de/index.html
+ *   - src/guides/index.html      → guides/index.html  (ja guides listing)
+ *                                  en/guides/index.html, etc.
  *
- * Side effect: source file's hreflang block is migrated from `?lang=X` query
- * format to `.X.html` suffix format once (idempotent on subsequent runs).
+ * URLs (always end in /):
+ *   src/index.html                       → /  + /en/  + /fr/  + /de/
+ *   src/start-here.html                  → /start-here/  + /en/start-here/  + ...
+ *   src/guides/index.html                → /guides/  + /en/guides/  + ...
+ *   src/guides/interval-training.html    → /guides/interval-training/ + /en/...
+ *   src/practice/training-menu/interval.html
+ *                                        → /practice/training-menu/interval/
+ *                                          + /en/practice/training-menu/interval/
  *
- * Usage:
- *   node tools/build-langs.js          # build all sources
- *   node tools/build-langs.js path1 ..  # build only the named source files
+ * Plus a redirect stub layer: every OLD URL from the previous .X.html scheme
+ * (foo.html / foo.en.html / foo.fr.html / foo.de.html) gets a meta-refresh
+ * stub pointing to the new directory URL, so any inbound links / Google's
+ * indexed pages don't 404.
  *
- * Re-running is safe: variant files are overwritten each time, source
- * hreflang migration is idempotent.
+ * The script also keeps the existing data/ JSON pipelines intact:
+ *   - data/prices.json          → in-place price string sync in src/
+ *   - data/training-names.json  → in-place training-name normalisation in src/
+ *   - data/page-metadata.json   → per-page title + description override
+ *
+ * Re-running is fully idempotent.
  */
 
 const fs = require('fs');
 const path = require('path');
 
-const LANGS = ['en', 'fr', 'de'];
+// --------------------------------------------------------------------
+// Constants
+// --------------------------------------------------------------------
+
+const SITE_ORIGIN = 'https://solfegepro.com';
+const LANGS_ALL = ['ja', 'en', 'fr', 'de'];
+const LANGS_VARIANT = ['en', 'fr', 'de'];          // ja is the source-language baseline
 const OG_LOCALE = { ja: 'ja_JP', en: 'en_US', fr: 'fr_FR', de: 'de_DE' };
-// App Store storefront locales — must match the URL's user lang so the
-// pricing the reviewer lands on is in their currency, not whatever
-// Apple's geo-redirect happens to pick.
 const APP_STORE_LOCALE = { ja: 'jp', en: 'us', fr: 'fr', de: 'de' };
 
-// -----------------------------------------------------------------
-// Price string synchronisation.
-//
-// data/prices.json is the user-edited source of truth for subscription
-// pricing per locale (4 langs × { price, trial }).
-// data/prices.fallback.json is the immutable last-resort safety net.
-// data/prices.previous.json is build-managed: it records what literal
-// strings are currently substituted into source HTML, so the build can
-// do find/replace when prices.json changes.
-//
-// On each build:
-//   1. Load prices.json (or fall back to prices.fallback.json).
-//   2. Sanity-check (non-empty strings per lang).
-//   3. Diff against prices.previous.json. For each changed field,
-//      literal-replace the old value with the new value in EVERY source
-//      HTML file. Source then has current values; variants get them
-//      automatically because they're regenerated from source.
-//   4. Save prices.previous.json = prices.json.
-//
-// Security note: nothing in this pipeline contacts external services or
-// reads secrets. Future automation (App Store Connect API) would write
-// prices.json BEFORE invoking this build — secrets stay in CI env.
-// -----------------------------------------------------------------
-
-const PRICES_PATH    = 'data/prices.json';
+const SRC_DIR = 'src';
+const PRICES_PATH = 'data/prices.json';
 const PRICES_FALLBACK = 'data/prices.fallback.json';
-const PRICES_PREV    = 'data/prices.previous.json';
+const PRICES_PREV = 'data/prices.previous.json';
+const TRAINING_PATH = 'data/training-names.json';
+const TRAINING_FALLBACK = 'data/training-names.fallback.json';
+const PAGEMETA_PATH = 'data/page-metadata.json';
+const PAGEMETA_FALLBACK = 'data/page-metadata.fallback.json';
+
+// --------------------------------------------------------------------
+// Source discovery
+// --------------------------------------------------------------------
+
+/**
+ * List every source HTML file under src/, returning relative paths
+ * (e.g. 'index.html', 'guides/foo.html', 'practice/training-menu/interval.html').
+ */
+function listSources() {
+    const files = [];
+    function walk(dir, rel) {
+        if (!fs.existsSync(dir)) return;
+        for (const name of fs.readdirSync(dir)) {
+            const full = path.join(dir, name);
+            const stat = fs.statSync(full);
+            if (stat.isDirectory()) {
+                walk(full, rel ? path.join(rel, name) : name);
+            } else if (name.endsWith('.html')) {
+                files.push(rel ? path.join(rel, name) : name);
+            }
+        }
+    }
+    walk(SRC_DIR, '');
+    return files.sort();
+}
+
+// --------------------------------------------------------------------
+// URL / path mapping (the heart of the new scheme)
+// --------------------------------------------------------------------
+
+/**
+ * Map a source-relative path (e.g. 'guides/foo.html') to the public URL
+ * that serves it for the given language.
+ *
+ * Examples:
+ *   'index.html', 'ja'                              → '/'
+ *   'index.html', 'en'                              → '/en/'
+ *   'start-here.html', 'ja'                         → '/start-here/'
+ *   'start-here.html', 'fr'                         → '/fr/start-here/'
+ *   'guides/index.html', 'ja'                       → '/guides/'
+ *   'guides/index.html', 'en'                       → '/en/guides/'
+ *   'guides/interval-training.html', 'ja'           → '/guides/interval-training/'
+ *   'guides/interval-training.html', 'de'           → '/de/guides/interval-training/'
+ *   'practice/training-menu/interval.html', 'ja'    → '/practice/training-menu/interval/'
+ */
+function srcPathToUrlPath(srcPath, lang) {
+    let p = srcPath;
+    p = p.replace(/\.html$/, '');                // drop extension
+    p = p.replace(/(^|\/)index$/, '$1');         // drop trailing /index
+    // Now p is '' (was 'index.html') or 'start-here' or 'guides' or 'guides/foo' etc.
+    const langPrefix = lang === 'ja' ? '' : `/${lang}`;
+    if (p === '') return `${langPrefix}/`;
+    return `${langPrefix}/${p}/`;
+}
+
+/**
+ * Map a source-relative path to the output FS path (relative to repo root)
+ * where the variant for the given language should be written.
+ *
+ * Examples:
+ *   'index.html', 'ja'                              → 'index.html'
+ *   'index.html', 'en'                              → 'en/index.html'
+ *   'start-here.html', 'ja'                         → 'start-here/index.html'
+ *   'guides/index.html', 'ja'                       → 'guides/index.html'
+ *   'guides/foo.html', 'ja'                         → 'guides/foo/index.html'
+ *   'practice/training-menu/interval.html', 'en'    → 'en/practice/training-menu/interval/index.html'
+ */
+function srcPathToOutputPath(srcPath, lang) {
+    let outPath;
+    if (srcPath === 'index.html') {
+        outPath = 'index.html';
+    } else if (srcPath.endsWith('/index.html')) {
+        outPath = srcPath; // keep guides/index.html as-is
+    } else {
+        outPath = srcPath.replace(/\.html$/, '/index.html');
+    }
+    return lang === 'ja' ? outPath : `${lang}/${outPath}`;
+}
+
+function ensureDir(filePath) {
+    fs.mkdirSync(path.dirname(filePath), { recursive: true });
+}
+
+// --------------------------------------------------------------------
+// Prices sync (unchanged behaviour, but now operates on src/)
+// --------------------------------------------------------------------
 
 function loadPrices() {
-    // Try the authoritative file first.
     try {
         const raw = JSON.parse(fs.readFileSync(PRICES_PATH, 'utf8'));
         sanityCheckPrices(raw, PRICES_PATH);
@@ -70,14 +155,13 @@ function loadPrices() {
     } catch (e) {
         console.warn(`[prices] WARNING: ${PRICES_PATH} unusable (${e.message}). Using fallback.`);
     }
-    // Last-resort fallback (hardcoded original values).
     const raw = JSON.parse(fs.readFileSync(PRICES_FALLBACK, 'utf8'));
     sanityCheckPrices(raw, PRICES_FALLBACK);
     return raw;
 }
 
 function sanityCheckPrices(data, source) {
-    for (const lang of ['ja', 'en', 'fr', 'de']) {
+    for (const lang of LANGS_ALL) {
         const entry = data[lang];
         if (!entry || typeof entry.price !== 'string' || !entry.price.trim()) {
             throw new Error(`${source}: missing/empty ${lang}.price`);
@@ -85,8 +169,6 @@ function sanityCheckPrices(data, source) {
         if (typeof entry.trial !== 'string' || !entry.trial.trim()) {
             throw new Error(`${source}: missing/empty ${lang}.trial`);
         }
-        // Bounds-ish check: reject suspiciously long strings (> 80 chars)
-        // — guards against API returning HTML / error payload.
         if (entry.price.length > 80 || entry.trial.length > 80) {
             throw new Error(`${source}: ${lang} field suspiciously long`);
         }
@@ -94,108 +176,46 @@ function sanityCheckPrices(data, source) {
     return data;
 }
 
-function loadPrev() {
+function loadPricesPrev() {
     try {
         return JSON.parse(fs.readFileSync(PRICES_PREV, 'utf8'));
     } catch (e) {
-        // First run with no previous snapshot — treat as identical so we
-        // don't accidentally find/replace anything.
-        console.warn(`[prices] no previous snapshot; skipping find/replace this run`);
         return null;
     }
 }
 
-/**
- * Update price/trial strings in every source HTML by literal find/replace
- * from the previous snapshot to the current values. Returns the list of
- * source files that were modified.
- */
-function syncPriceStringsToSources(allSources, currentPrices) {
-    const prev = loadPrev();
-    if (!prev) {
-        // First run — write snapshot but don't replace anything in HTML.
-        writeSnapshot(currentPrices);
-        return [];
-    }
-
-    const replacements = [];
-    for (const lang of ['ja', 'en', 'fr', 'de']) {
-        const fromPrice = prev[lang]?.price;
-        const toPrice   = currentPrices[lang].price;
-        const fromTrial = prev[lang]?.trial;
-        const toTrial   = currentPrices[lang].trial;
-        if (fromPrice && fromPrice !== toPrice) {
-            replacements.push({ from: fromPrice, to: toPrice, lang, kind: 'price' });
-        }
-        if (fromTrial && fromTrial !== toTrial) {
-            replacements.push({ from: fromTrial, to: toTrial, lang, kind: 'trial' });
-        }
-    }
-
-    if (replacements.length === 0) {
-        // No price change; nothing to do.
-        return [];
-    }
-
-    console.log(`[prices] ${replacements.length} field(s) changed; updating source HTML:`);
-    for (const r of replacements) {
-        console.log(`  ${r.lang}.${r.kind}: "${r.from}" → "${r.to}"`);
-    }
-
-    const modified = [];
-    for (const src of allSources) {
-        const raw = fs.readFileSync(src, 'utf8');
-        let out = raw;
-        for (const r of replacements) {
-            // Literal replace (split/join — safe with any special characters).
-            out = out.split(r.from).join(r.to);
-        }
-        if (out !== raw) {
-            fs.writeFileSync(src, out, 'utf8');
-            modified.push(src);
-        }
-    }
-    console.log(`[prices] rewrote ${modified.length} source file(s).`);
-
-    writeSnapshot(currentPrices);
-    return modified;
-}
-
-function writeSnapshot(currentPrices) {
-    // Preserve the _comment_ field if present.
+function writePricesSnapshot(currentPrices) {
     const out = {
-        _comment_: 'Build-managed snapshot of what\'s currently substituted into source HTML. Updated automatically by tools/build-langs.js after each successful build. Compares against prices.json to know what literal strings to find/replace in source HTML when prices change. DO NOT edit by hand.',
-        ja: currentPrices.ja,
-        en: currentPrices.en,
-        fr: currentPrices.fr,
-        de: currentPrices.de,
+        _comment_: "Build-managed snapshot of what's currently substituted into src/ HTML. DO NOT edit by hand.",
+        ja: currentPrices.ja, en: currentPrices.en, fr: currentPrices.fr, de: currentPrices.de,
     };
     fs.writeFileSync(PRICES_PREV, JSON.stringify(out, null, 2) + '\n', 'utf8');
 }
 
-// -----------------------------------------------------------------
-// Training-name normalisation.
-//
-// data/training-names.json holds the canonical training/feature/setting
-// names sourced from the actual app's Localizable.strings, plus the list
-// of legacy aliases that should normalise to canonical. The build walks
-// every <span lang="X">...</span> in source HTML and replaces any alias
-// with canonical[X], so a JA span no longer contains "Interval Training"
-// (it becomes "インターバル認識"), and EN/FR/DE spans converge on the
-// single canonical form per language.
-//
-// Algorithm:
-//   1. Load training-names.json (fallback to training-names.fallback.json).
-//   2. Build a flat alias list, sorted by length DESC, so longer aliases
-//      match first ("Interval Training" before "Interval").
-//   3. For each source HTML, regex-find every <span lang="X">...</span>,
-//      and within the body, word-boundary find/replace each alias with
-//      canonical[X] for that lang.
-//   4. Idempotent — running again after normalisation is a no-op.
-// -----------------------------------------------------------------
+function syncPriceStringsToSources(sourceFsPaths, currentPrices) {
+    const prev = loadPricesPrev();
+    if (!prev) { writePricesSnapshot(currentPrices); return; }
+    const replacements = [];
+    for (const lang of LANGS_ALL) {
+        const fromP = prev[lang]?.price, toP = currentPrices[lang].price;
+        const fromT = prev[lang]?.trial, toT = currentPrices[lang].trial;
+        if (fromP && fromP !== toP) replacements.push({ from: fromP, to: toP });
+        if (fromT && fromT !== toT) replacements.push({ from: fromT, to: toT });
+    }
+    if (replacements.length === 0) return;
+    console.log(`[prices] ${replacements.length} string(s) changed; updating src/ HTML`);
+    for (const src of sourceFsPaths) {
+        const raw = fs.readFileSync(src, 'utf8');
+        let out = raw;
+        for (const r of replacements) out = out.split(r.from).join(r.to);
+        if (out !== raw) fs.writeFileSync(src, out, 'utf8');
+    }
+    writePricesSnapshot(currentPrices);
+}
 
-const TRAINING_PATH     = 'data/training-names.json';
-const TRAINING_FALLBACK = 'data/training-names.fallback.json';
+// --------------------------------------------------------------------
+// Training-name normalisation
+// --------------------------------------------------------------------
 
 function loadTrainingNames() {
     try {
@@ -213,10 +233,8 @@ function loadTrainingNames() {
 function sanityCheckTrainingNames(data, source) {
     for (const [key, entry] of Object.entries(data)) {
         if (key.startsWith('_')) continue;
-        if (!entry.canonical || !entry.aliases) {
-            throw new Error(`${source}: ${key} missing canonical/aliases`);
-        }
-        for (const lang of ['ja', 'en', 'fr', 'de']) {
+        if (!entry.canonical || !entry.aliases) throw new Error(`${source}: ${key} missing canonical/aliases`);
+        for (const lang of LANGS_ALL) {
             if (typeof entry.canonical[lang] !== 'string' || !entry.canonical[lang].trim()) {
                 throw new Error(`${source}: ${key}.canonical.${lang} missing/empty`);
             }
@@ -228,430 +246,296 @@ function sanityCheckTrainingNames(data, source) {
     return data;
 }
 
-/**
- * Escape regex metacharacters in a literal alias.
- */
-function escapeRegex(s) {
-    return s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-}
+function escapeRegex(s) { return s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'); }
 
 function buildAliasIndex(trainingNames) {
-    // Flatten to a single list with alias → canonical mapping, sorted by
-    // alias length DESC so longer phrases match first.
     const list = [];
     for (const [key, entry] of Object.entries(trainingNames)) {
         if (key.startsWith('_')) continue;
         for (const alias of entry.aliases) {
-            list.push({
-                alias,
-                key,
-                canonical: entry.canonical,
-                regex: new RegExp(`\\b${escapeRegex(alias)}\\b`, 'g'),
-            });
+            list.push({ alias, canonical: entry.canonical, regex: new RegExp(`\\b${escapeRegex(alias)}\\b`, 'g') });
         }
     }
     list.sort((a, b) => b.alias.length - a.alias.length);
     return list;
 }
 
-function normalizeSpanBody(body, lang, aliasIndex) {
-    let out = body;
-    for (const entry of aliasIndex) {
-        out = out.replace(entry.regex, entry.canonical[lang]);
-    }
-    if (lang === 'fr') {
-        out = fixFrenchArticleAgreement(out);
-    }
-    return out;
-}
-
-/**
- * French article agreement: when an alias-substitution drops a feminine
- * noun (Reconnaissance, Formation, Lecture) after a masculine article
- * (Le/Du) or naive elision (L'), fix the article to match. Mechanical
- * substitution doesn't know noun gender; this post-step corrects the
- * most common cases. Conservative — only fixes patterns we generate.
- */
 function fixFrenchArticleAgreement(text) {
-    // Feminine training nouns we know we substitute.
-    const FEM_WORDS = ['Reconnaissance', 'Formation', 'Lecture'];
+    const FEM = ['Reconnaissance', 'Formation', 'Lecture'];
     let out = text;
-    for (const w of FEM_WORDS) {
-        // Le Reconnaissance → La Reconnaissance
+    for (const w of FEM) {
         out = out.replace(new RegExp(`\\bLe\\s+${w}\\b`, 'g'), `La ${w}`);
-        // L'Reconnaissance → La Reconnaissance (no elision before consonant)
         out = out.replace(new RegExp(`\\bL'${w}\\b`, 'g'), `La ${w}`);
-        // du Reconnaissance → de la Reconnaissance
         out = out.replace(new RegExp(`\\bdu\\s+${w}\\b`, 'g'), `de la ${w}`);
-        // au Reconnaissance → à la Reconnaissance
         out = out.replace(new RegExp(`\\bau\\s+${w}\\b`, 'g'), `à la ${w}`);
     }
     return out;
 }
 
-// -----------------------------------------------------------------
-// Page-metadata substitution (SEO).
-//
-// data/page-metadata.json holds short, SERP-friendly title + meta
-// description per page per language. This pass is part of the variant-
-// generation step (transformToLang): when generating foo.en.html, look
-// up that page's en title/description and inject into <title>,
-// data-title-en, <meta name=description>, og:title, og:description,
-// twitter:title, twitter:description. ja URL (source HTML) is also
-// updated so the bare /foo.html serves the right ja metadata.
-//
-// Falls back to existing HTML values when the page or lang is missing
-// from the JSON (graceful degradation).
-// -----------------------------------------------------------------
+function normalizeSpanBody(body, lang, aliasIndex) {
+    let out = body;
+    for (const entry of aliasIndex) out = out.replace(entry.regex, entry.canonical[lang]);
+    if (lang === 'fr') out = fixFrenchArticleAgreement(out);
+    return out;
+}
 
-const PAGEMETA_PATH     = 'data/page-metadata.json';
-const PAGEMETA_FALLBACK = 'data/page-metadata.fallback.json';
+function syncTrainingNamesInSources(sourceFsPaths) {
+    let trainingNames;
+    try { trainingNames = loadTrainingNames(); }
+    catch (e) { console.error(`[training-names] ERROR: ${e.message}`); return; }
+    const aliasIndex = buildAliasIndex(trainingNames);
+    if (aliasIndex.length === 0) return;
+    const spanRe = /(<span\s+lang="(ja|en|fr|de)">)([\s\S]*?)(<\/span>)/g;
+    let modified = 0;
+    for (const src of sourceFsPaths) {
+        const raw = fs.readFileSync(src, 'utf8');
+        const out = raw.replace(spanRe, (m, open, lang, body, close) => open + normalizeSpanBody(body, lang, aliasIndex) + close);
+        if (out !== raw) { fs.writeFileSync(src, out, 'utf8'); modified++; }
+    }
+    if (modified > 0) console.log(`[training-names] normalised ${modified} source file(s)`);
+}
+
+// --------------------------------------------------------------------
+// Page metadata (title + description override)
+// --------------------------------------------------------------------
 
 let _pageMetaCache = null;
 function loadPageMetadata() {
     if (_pageMetaCache) return _pageMetaCache;
     try {
-        const data = JSON.parse(fs.readFileSync(PAGEMETA_PATH, 'utf8'));
-        _pageMetaCache = data;
-        return data;
+        _pageMetaCache = JSON.parse(fs.readFileSync(PAGEMETA_PATH, 'utf8'));
+        return _pageMetaCache;
     } catch (e) {
-        console.warn(`[page-metadata] WARNING: ${PAGEMETA_PATH} unusable (${e.message}). Using fallback.`);
+        console.warn(`[page-metadata] WARNING: ${PAGEMETA_PATH} unusable. Using fallback.`);
     }
     _pageMetaCache = JSON.parse(fs.readFileSync(PAGEMETA_FALLBACK, 'utf8'));
     return _pageMetaCache;
 }
 
-function escapeHtml(s) {
-    return s.replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
-}
+function escapeHtml(s) { return s.replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;').replace(/>/g, '&gt;'); }
+function stripSiteSuffix(t) { const i = t.lastIndexOf(' | '); return i === -1 ? t : t.slice(0, i); }
 
-/**
- * Strip a "<title> | suffix" trailing part to get the bare title
- * (used for og:title / twitter:title where the site name is implicit).
- */
-function stripSiteSuffix(title) {
-    const idx = title.lastIndexOf(' | ');
-    return idx === -1 ? title : title.slice(0, idx);
-}
-
-/**
- * Apply page-metadata overrides for a specific lang. Mutates the HTML
- * string by replacing title/description/og/twitter fields.
- */
-function applyPageMetadata(html, sourcePath, lang) {
+function applyPageMetadata(html, srcPath, lang) {
     const meta = loadPageMetadata();
-    const entry = meta[sourcePath];
+    const entry = meta[srcPath];
     if (!entry || !entry.title || !entry.description) return html;
-    const newTitle = entry.title[lang];
-    const newDesc  = entry.description[lang];
+    const newTitle = entry.title[lang], newDesc = entry.description[lang];
     if (!newTitle || !newDesc) return html;
-
     let out = html;
     const titleEsc = escapeHtml(newTitle);
-    const descEsc  = escapeHtml(newDesc);
+    const descEsc = escapeHtml(newDesc);
     const bareTitleEsc = escapeHtml(stripSiteSuffix(newTitle));
-
-    // <title>
     out = out.replace(/<title>[^<]*<\/title>/, `<title>${titleEsc}</title>`);
-    // data-title-<lang> attr on <html>
-    out = out.replace(
-        new RegExp(`data-title-${lang}="[^"]*"`),
-        `data-title-${lang}="${titleEsc}"`,
-    );
-    // <meta name="description">
-    out = out.replace(
-        /<meta name="description" content="[^"]*">/,
-        `<meta name="description" content="${descEsc}">`,
-    );
-    // <meta property="og:title">
-    out = out.replace(
-        /<meta property="og:title" content="[^"]*">/,
-        `<meta property="og:title" content="${bareTitleEsc}">`,
-    );
-    // <meta property="og:description">
-    out = out.replace(
-        /<meta property="og:description" content="[^"]*">/,
-        `<meta property="og:description" content="${descEsc}">`,
-    );
-    // <meta name="twitter:title">
-    out = out.replace(
-        /<meta name="twitter:title" content="[^"]*">/,
-        `<meta name="twitter:title" content="${bareTitleEsc}">`,
-    );
-    // <meta name="twitter:description">
-    out = out.replace(
-        /<meta name="twitter:description" content="[^"]*">/,
-        `<meta name="twitter:description" content="${descEsc}">`,
-    );
+    out = out.replace(new RegExp(`data-title-${lang}="[^"]*"`), `data-title-${lang}="${titleEsc}"`);
+    out = out.replace(/<meta name="description" content="[^"]*">/, `<meta name="description" content="${descEsc}">`);
+    out = out.replace(/<meta property="og:title" content="[^"]*">/, `<meta property="og:title" content="${bareTitleEsc}">`);
+    out = out.replace(/<meta property="og:description" content="[^"]*">/, `<meta property="og:description" content="${descEsc}">`);
+    out = out.replace(/<meta name="twitter:title" content="[^"]*">/, `<meta name="twitter:title" content="${bareTitleEsc}">`);
+    out = out.replace(/<meta name="twitter:description" content="[^"]*">/, `<meta name="twitter:description" content="${descEsc}">`);
     return out;
 }
 
-function syncTrainingNamesInSources(allSources) {
-    let trainingNames;
-    try {
-        trainingNames = loadTrainingNames();
-    } catch (e) {
-        console.error(`[training-names] ERROR: ${e.message}. Skipping normalisation.`);
-        return [];
-    }
-    const aliasIndex = buildAliasIndex(trainingNames);
-    if (aliasIndex.length === 0) return [];
+// --------------------------------------------------------------------
+// Core: transform multi-lang source → single-lang output for new URL scheme
+// --------------------------------------------------------------------
 
-    const spanRe = /(<span\s+lang="(ja|en|fr|de)">)([\s\S]*?)(<\/span>)/g;
-    const modified = [];
-    for (const src of allSources) {
-        const raw = fs.readFileSync(src, 'utf8');
-        const out = raw.replace(spanRe, (m, open, lang, body, close) => {
-            const newBody = normalizeSpanBody(body, lang, aliasIndex);
-            return open + newBody + close;
-        });
-        if (out !== raw) {
-            fs.writeFileSync(src, out, 'utf8');
-            modified.push(src);
-        }
-    }
-    if (modified.length > 0) {
-        console.log(`[training-names] normalised ${modified.length} source file(s)`);
-    }
-    return modified;
+function buildHreflangBlock(srcPath, currentLang) {
+    const url = (l) => SITE_ORIGIN + srcPathToUrlPath(srcPath, l);
+    return [
+        `    <link rel="canonical" href="${url(currentLang)}">`,
+        `    <link rel="alternate" hreflang="ja" href="${url('ja')}">`,
+        `    <link rel="alternate" hreflang="en" href="${url('en')}">`,
+        `    <link rel="alternate" hreflang="fr" href="${url('fr')}">`,
+        `    <link rel="alternate" hreflang="de" href="${url('de')}">`,
+        `    <link rel="alternate" hreflang="x-default" href="${url('ja')}">`,
+    ].join('\n');
 }
 
-// Where to look for source files (relative to repo root).
-const SOURCE_DIRS = ['.', 'guides', 'practice', 'practice/training-menu'];
-const GENERATED_RE = /\.(en|fr|de)\.html$/;
-// Skip these (no lang content / no variant should be generated).
-// 404.html is served as-is by GitHub Pages for any 404 across the whole
-// site — language variants would never be served, and the multi-lang
-// spans inside it already do the job.
-const SKIP_FILES = new Set(['404.html']);
-
-function listSources() {
-    const files = [];
-    for (const dir of SOURCE_DIRS) {
-        if (!fs.existsSync(dir)) continue;
-        for (const name of fs.readdirSync(dir)) {
-            if (!name.endsWith('.html')) continue;
-            if (GENERATED_RE.test(name)) continue;
-            const full = path.join(dir, name);
-            if (SKIP_FILES.has(full)) continue;
-            const stat = fs.statSync(full);
-            if (!stat.isFile()) continue;
-            files.push(full);
-        }
-    }
-    return files;
-}
-
-/**
- * Migrate hreflang URLs from `?lang=X` to `.X.html` suffix. Idempotent.
- * Applies to both the source file (in place) and to lang variants (in output).
- */
-function migrateHreflang(html) {
+function transformToLang(html, srcPath, lang) {
     let out = html;
 
-    // Case 1: page URLs ending in .html
-    //   hreflang="X" href="...foo.html?lang=X"
-    //     → ja: hreflang="ja" href="...foo.html"
-    //     → en/fr/de: hreflang="X" href="...foo.X.html"
-    out = out.replace(
-        /<link rel="alternate" hreflang="(ja|en|fr|de)" href="([^"]+?)\.html\?lang=\1">/g,
-        (_, lang, base) =>
-            lang === 'ja'
-                ? `<link rel="alternate" hreflang="ja" href="${base}.html">`
-                : `<link rel="alternate" hreflang="${lang}" href="${base}.${lang}.html">`,
-    );
-
-    // Case 2: directory URLs ending in /
-    //   hreflang="X" href="...guides/?lang=X"
-    //     → ja: hreflang="ja" href="...guides/"
-    //     → en/fr/de: hreflang="X" href="...guides/index.X.html"
-    out = out.replace(
-        /<link rel="alternate" hreflang="(ja|en|fr|de)" href="([^"]+?\/)\?lang=\1">/g,
-        (_, lang, base) =>
-            lang === 'ja'
-                ? `<link rel="alternate" hreflang="ja" href="${base}">`
-                : `<link rel="alternate" hreflang="${lang}" href="${base}index.${lang}.html">`,
-    );
-
-    // x-default → bare URL (ja). Handles both .html and / endings.
-    out = out.replace(
-        /<link rel="alternate" hreflang="x-default" href="([^"]+?)(\.html|\/)(?:\?lang=[a-z]{2})?">/g,
-        '<link rel="alternate" hreflang="x-default" href="$1$2">',
-    );
-
-    return out;
-}
-
-/**
- * Strip a "<title> | suffix" trailing part to get the bare title.
- * Used for og:title / twitter:title where the site name is implied.
- */
-function stripTitleSuffix(title) {
-    const idx = title.lastIndexOf(' | ');
-    return idx === -1 ? title : title.slice(0, idx);
-}
-
-/**
- * Rewrite a multi-lang HTML into a single-lang variant for `targetLang`.
- */
-function transformToLang(html, targetLang) {
-    let out = html;
-
-    // 1. <html lang="ja" ...> → <html lang="en" ...>
-    out = out.replace(/<html\s+lang="ja"/, `<html lang="${targetLang}"`);
+    // 1. <html lang="ja" ...> → <html lang="X" ...>
+    out = out.replace(/<html\s+lang="ja"/, `<html lang="${lang}"`);
 
     // 2. <title> ← data-title-<lang>
-    const titleMatch = out.match(new RegExp(`data-title-${targetLang}="([^"]*)"`));
-    let langTitle = null;
+    const titleMatch = out.match(new RegExp(`data-title-${lang}="([^"]*)"`));
     if (titleMatch) {
-        langTitle = titleMatch[1];
-        out = out.replace(/<title>[^<]*<\/title>/, `<title>${langTitle}</title>`);
+        out = out.replace(/<title>[^<]*<\/title>/, `<title>${titleMatch[1]}</title>`);
     }
 
-    // 3. canonical: /foo.html → /foo.<lang>.html
-    //                /guides/  → /guides/index.<lang>.html
-    out = out.replace(
-        /<link rel="canonical" href="([^"]+?)\.html">/,
-        `<link rel="canonical" href="$1.${targetLang}.html">`,
-    );
-    out = out.replace(
-        /<link rel="canonical" href="([^"]+?\/)">/,
-        `<link rel="canonical" href="$1index.${targetLang}.html">`,
-    );
+    // 3. Replace the canonical + hreflang block with the new directory URLs.
+    const newBlock = buildHreflangBlock(srcPath, lang);
+    // Match canonical line + any contiguous hreflang lines that follow.
+    const canonHrefRe = /[ \t]*<link rel="canonical"[^>]+>[\s\n]*(?:[ \t]*<link rel="alternate" hreflang="[^"]+"[^>]+>[\s\n]*)+/;
+    if (canonHrefRe.test(out)) {
+        out = out.replace(canonHrefRe, newBlock + '\n');
+    }
 
-    // 4. og:url: same treatment
-    out = out.replace(
-        /<meta property="og:url" content="([^"]+?)\.html">/,
-        `<meta property="og:url" content="$1.${targetLang}.html">`,
-    );
-    out = out.replace(
-        /<meta property="og:url" content="([^"]+?\/)">/,
-        `<meta property="og:url" content="$1index.${targetLang}.html">`,
-    );
+    // 4. og:url → new URL
+    const currentUrl = SITE_ORIGIN + srcPathToUrlPath(srcPath, lang);
+    out = out.replace(/<meta property="og:url" content="[^"]+">/, `<meta property="og:url" content="${currentUrl}">`);
 
-    // 5. og:locale: ja_JP → <target>
-    out = out.replace(
-        /<meta property="og:locale" content="ja_JP">/,
-        `<meta property="og:locale" content="${OG_LOCALE[targetLang]}">`,
-    );
+    // 5. og:locale
+    out = out.replace(/<meta property="og:locale" content="ja_JP">/, `<meta property="og:locale" content="${OG_LOCALE[lang]}">`);
 
-    // 6. og:locale:alternate — rebuild so it lists the 3 OTHER locales.
-    //    Match the entire alternate block and replace.
-    const alternates = ['ja', 'en', 'fr', 'de']
-        .filter((l) => l !== targetLang)
+    // 6. og:locale:alternate block — rebuild with the OTHER three locales.
+    const alternates = LANGS_ALL.filter((l) => l !== lang)
         .map((l) => `    <meta property="og:locale:alternate" content="${OG_LOCALE[l]}">`)
         .join('\n');
-    // Replace any contiguous block of og:locale:alternate lines.
-    // (Use [a-zA-Z_]+ because locale codes are like "en_US", "fr_FR".)
     out = out.replace(
         /(?:[ \t]*<meta property="og:locale:alternate" content="[a-zA-Z_]+">[ \t]*\r?\n)+/,
         alternates + '\n',
     );
 
-    // 7. og:title / twitter:title ← bare title (no " | site" suffix) if we have it
-    if (langTitle) {
-        const bare = stripTitleSuffix(langTitle).replace(/"/g, '&quot;');
-        out = out.replace(
-            /<meta property="og:title" content="[^"]*">/,
-            `<meta property="og:title" content="${bare}">`,
-        );
-        out = out.replace(
-            /<meta name="twitter:title" content="[^"]*">/,
-            `<meta name="twitter:title" content="${bare}">`,
-        );
+    // 7. og:title / twitter:title — strip the " | Solfege PRO" suffix
+    if (titleMatch) {
+        const bare = stripSiteSuffix(titleMatch[1]).replace(/"/g, '&quot;');
+        out = out.replace(/<meta property="og:title" content="[^"]*">/, `<meta property="og:title" content="${bare}">`);
+        out = out.replace(/<meta name="twitter:title" content="[^"]*">/, `<meta name="twitter:title" content="${bare}">`);
     }
 
-    // 8a. App Store URL locale: /jp/ → /<target locale>/.
-    out = out.replace(
-        /apps\.apple\.com\/jp\//g,
-        `apps.apple.com/${APP_STORE_LOCALE[targetLang]}/`,
-    );
+    // 8. App Store URL locale
+    out = out.replace(/apps\.apple\.com\/jp\//g, `apps.apple.com/${APP_STORE_LOCALE[lang]}/`);
 
-    // 8. Strip <span lang="Y">...</span> blocks where Y ≠ targetLang.
-    //    Then unwrap the target lang's spans (keep inner content).
-    for (const otherLang of ['ja', 'en', 'fr', 'de']) {
-        if (otherLang === targetLang) continue;
-        const stripRe = new RegExp(
-            `<span\\s+lang="${otherLang}">[\\s\\S]*?<\\/span>`,
-            'g',
-        );
-        out = out.replace(stripRe, '');
+    // 9. Strip non-target <span lang="Y">...</span> blocks, unwrap target.
+    for (const other of LANGS_ALL) {
+        if (other === lang) continue;
+        const re = new RegExp(`<span\\s+lang="${other}">[\\s\\S]*?<\\/span>`, 'g');
+        out = out.replace(re, '');
     }
-    const unwrapRe = new RegExp(
-        `<span\\s+lang="${targetLang}">([\\s\\S]*?)<\\/span>`,
-        'g',
-    );
+    const unwrapRe = new RegExp(`<span\\s+lang="${lang}">([\\s\\S]*?)<\\/span>`, 'g');
     out = out.replace(unwrapRe, '$1');
 
     return out;
 }
 
-function processSource(sourcePath) {
-    let raw = fs.readFileSync(sourcePath, 'utf8');
+// --------------------------------------------------------------------
+// Old URL → new URL redirect stub generation
+// --------------------------------------------------------------------
 
-    // Migrate hreflang format in source (idempotent).
-    const migrated = migrateHreflang(raw);
-    if (migrated !== raw) {
-        raw = migrated;
-        console.log(`  [migrated source hreflang] ${sourcePath}`);
+/**
+ * Map an OLD URL path (e.g. 'guides/foo.html' or 'guides/foo.en.html')
+ * to its NEW URL path (e.g. '/guides/foo/' or '/en/guides/foo/').
+ *
+ * Returns null if the path doesn't fit the OLD scheme.
+ */
+function oldPathToNewUrlPath(oldRelPath) {
+    // Handle the suffix forms first.
+    let m = oldRelPath.match(/^(.+?)\.(en|fr|de)\.html$/);
+    if (m) {
+        const base = m[1];           // e.g. 'guides/foo' or 'index'
+        const lang = m[2];
+        const srcPath = base === 'index' ? 'index.html' : `${base}.html`;
+        // index files (foo/index.html) → already handled correctly because base wouldn't end with /index
+        if (base.endsWith('/index')) {
+            return srcPathToUrlPath(base + '.html', lang);
+        }
+        return srcPathToUrlPath(srcPath, lang);
+    }
+    // Bare .html — ja version.
+    if (oldRelPath.endsWith('.html') && oldRelPath !== '404.html') {
+        return srcPathToUrlPath(oldRelPath, 'ja');
+    }
+    return null;
+}
+
+function buildRedirectStub(newUrlPath) {
+    const fullUrl = SITE_ORIGIN + newUrlPath;
+    return `<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="robots" content="noindex, follow">
+    <meta http-equiv="refresh" content="0; url=${fullUrl}">
+    <link rel="canonical" href="${fullUrl}">
+    <title>Redirecting…</title>
+</head>
+<body>
+    <p>This page has moved to <a href="${fullUrl}">${fullUrl}</a>.</p>
+    <script>window.location.replace(${JSON.stringify(fullUrl)});</script>
+</body>
+</html>
+`;
+}
+
+/**
+ * For every source file, write redirect stubs at the OLD URL paths that
+ * Google may have indexed (the .X.html scheme used before this refactor):
+ *
+ *   src/guides/foo.html →
+ *     guides/foo.html       (ja stub → /guides/foo/)
+ *     guides/foo.en.html    (en stub → /en/guides/foo/)
+ *     guides/foo.fr.html    (fr stub → /fr/guides/foo/)
+ *     guides/foo.de.html    (de stub → /de/guides/foo/)
+ *
+ * Skip writing a stub when the OLD path collides with a NEW output path
+ * (e.g. index.html and guides/index.html stay as real content for both
+ * the new and old URL — they were already at the same path).
+ *
+ * Idempotent.
+ */
+function generateRedirectStubs(allSources) {
+    // The set of NEW output paths — collision check.
+    const newOutputs = new Set();
+    for (const src of allSources) {
+        for (const lang of LANGS_ALL) {
+            newOutputs.add(srcPathToOutputPath(src, lang));
+        }
     }
 
-    // Apply page-metadata overrides for the ja URL (source serves as ja).
-    const jaUpdated = applyPageMetadata(raw, sourcePath, 'ja');
+    let stubCount = 0;
+    for (const src of allSources) {
+        // ja old path = the source-relative path itself (e.g. 'guides/foo.html')
+        // en/fr/de old paths = '.X.html' suffix form
+        const base = src.replace(/\.html$/, '');
+        const oldPaths = {
+            ja: src,                          // 'guides/foo.html'
+            en: `${base}.en.html`,            // 'guides/foo.en.html'
+            fr: `${base}.fr.html`,
+            de: `${base}.de.html`,
+        };
+        for (const lang of LANGS_ALL) {
+            const oldRel = oldPaths[lang];
+            if (newOutputs.has(oldRel)) continue;  // index.html collision, skip
+            const newUrl = srcPathToUrlPath(src, lang);
+            ensureDir(oldRel);
+            fs.writeFileSync(oldRel, buildRedirectStub(newUrl), 'utf8');
+            stubCount++;
+        }
+    }
+    if (stubCount > 0) console.log(`[redirects] wrote ${stubCount} stub(s) at old URL paths`);
+}
+
+// --------------------------------------------------------------------
+// Per-source processing
+// --------------------------------------------------------------------
+
+function processSource(srcRelPath) {
+    const srcFsPath = path.join(SRC_DIR, srcRelPath);
+    let raw = fs.readFileSync(srcFsPath, 'utf8');
+
+    // Apply page metadata to source itself so the source <title> reflects
+    // current JSON values (for consistency when editing the source by hand).
+    const jaUpdated = applyPageMetadata(raw, srcRelPath, 'ja');
     if (jaUpdated !== raw) {
         raw = jaUpdated;
+        fs.writeFileSync(srcFsPath, raw, 'utf8');
     }
 
-    if (raw !== fs.readFileSync(sourcePath, 'utf8')) {
-        fs.writeFileSync(sourcePath, raw, 'utf8');
-    }
-
-    // Generate per-lang variants from the (now-updated) source.
-    for (const lang of LANGS) {
-        const variantPath = sourcePath.replace(/\.html$/, `.${lang}.html`);
-        let variant = transformToLang(raw, lang);
-        // Apply page-metadata overrides for this variant's lang.
-        variant = applyPageMetadata(variant, sourcePath, lang);
-        fs.writeFileSync(variantPath, variant, 'utf8');
+    // Generate all four language outputs.
+    for (const lang of LANGS_ALL) {
+        let out = transformToLang(raw, srcRelPath, lang);
+        out = applyPageMetadata(out, srcRelPath, lang);
+        const outPath = srcPathToOutputPath(srcRelPath, lang);
+        ensureDir(outPath);
+        fs.writeFileSync(outPath, out, 'utf8');
     }
 }
 
-// -----------------------------------------------------------------
-// Sitemap generation — emit ja URL + 3 lang variants per source page
-// with xhtml:link hreflang annotations.
-// -----------------------------------------------------------------
+// --------------------------------------------------------------------
+// Sitemap generation (new URL format)
+// --------------------------------------------------------------------
 
-const SITE_ORIGIN = 'https://solfegepro.com';
-
-/**
- * Map a source path → SITE_ORIGIN URL for ja.
- * Returns the bare URL with no lang suffix.
- * (Index files are normalised to their directory.)
- */
-function sourceToJaUrl(sourcePath) {
-    let rel = sourcePath.replace(/^\.\//, '');
-    // /index.html → /
-    rel = rel.replace(/(^|\/)index\.html$/, '$1');
-    return SITE_ORIGIN + (rel === '' ? '/' : '/' + rel);
-}
-
-function jaUrlToVariantUrl(jaUrl, lang) {
-    if (lang === 'ja') return jaUrl;
-    // /foo.html → /foo.<lang>.html
-    if (/\.html$/.test(jaUrl)) {
-        return jaUrl.replace(/\.html$/, '.' + lang + '.html');
-    }
-    // Directory → /index.<lang>.html
-    if (jaUrl.endsWith('/')) {
-        return jaUrl + 'index.' + lang + '.html';
-    }
-    return jaUrl;
-}
-
-/**
- * Parse the existing sitemap (if any) to preserve <lastmod>/<priority>
- * per URL. Returns { 'url': { lastmod, priority } }.
- */
 function loadExistingSitemapMeta() {
     const meta = {};
     if (!fs.existsSync('sitemap.xml')) return meta;
@@ -669,7 +553,7 @@ function loadExistingSitemapMeta() {
     return meta;
 }
 
-function generateSitemap(sources) {
+function generateSitemap(allSources) {
     const meta = loadExistingSitemapMeta();
     const today = new Date().toISOString().slice(0, 10);
     const lines = [
@@ -677,35 +561,32 @@ function generateSitemap(sources) {
         '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"',
         '        xmlns:xhtml="http://www.w3.org/1999/xhtml">',
     ];
-
-    for (const src of sources) {
-        const jaUrl = sourceToJaUrl(src);
-        const entry = meta[jaUrl] || {};
-        const lastmod = entry.lastmod || today;
-        const priority = entry.priority || '0.7';
-
-        for (const lang of ['ja', 'en', 'fr', 'de']) {
-            const url = jaUrlToVariantUrl(jaUrl, lang);
+    for (const src of allSources) {
+        const jaUrl = SITE_ORIGIN + srcPathToUrlPath(src, 'ja');
+        const existing = meta[jaUrl] || {};
+        const lastmod = existing.lastmod || today;
+        const priority = existing.priority || '0.7';
+        for (const lang of LANGS_ALL) {
+            const url = SITE_ORIGIN + srcPathToUrlPath(src, lang);
             lines.push('  <url>');
             lines.push(`    <loc>${url}</loc>`);
             lines.push(`    <lastmod>${lastmod}</lastmod>`);
             lines.push(`    <priority>${priority}</priority>`);
-            for (const altLang of ['ja', 'en', 'fr', 'de']) {
-                const altUrl = jaUrlToVariantUrl(jaUrl, altLang);
-                lines.push(
-                    `    <xhtml:link rel="alternate" hreflang="${altLang}" href="${altUrl}"/>`,
-                );
+            for (const altLang of LANGS_ALL) {
+                const altUrl = SITE_ORIGIN + srcPathToUrlPath(src, altLang);
+                lines.push(`    <xhtml:link rel="alternate" hreflang="${altLang}" href="${altUrl}"/>`);
             }
-            lines.push(
-                `    <xhtml:link rel="alternate" hreflang="x-default" href="${jaUrl}"/>`,
-            );
+            lines.push(`    <xhtml:link rel="alternate" hreflang="x-default" href="${jaUrl}"/>`);
             lines.push('  </url>');
         }
     }
-
     lines.push('</urlset>');
     return lines.join('\n') + '\n';
 }
+
+// --------------------------------------------------------------------
+// Main
+// --------------------------------------------------------------------
 
 function main() {
     process.chdir(path.resolve(__dirname, '..'));
@@ -714,44 +595,48 @@ function main() {
     const onlySitemap = argv.includes('--sitemap-only');
     const filtered = argv.filter((a) => !a.startsWith('--'));
     const allSources = listSources();
-    const sources = filtered.length > 0
-        ? filtered.filter((f) => fs.existsSync(f) && !GENERATED_RE.test(f) && !SKIP_FILES.has(f))
-        : allSources;
 
-    if (!onlySitemap) {
-        // Phase 1a: sync price strings from data/prices.json into ALL source HTML
-        // (not just the staged subset) so the ja URL — which serves source —
-        // also reflects the latest prices. Variants get them automatically
-        // because they're regenerated from the (now-updated) source.
-        try {
-            const currentPrices = loadPrices();
-            syncPriceStringsToSources(allSources, currentPrices);
-        } catch (e) {
-            console.error(`[prices] ERROR: ${e.message}. Skipping price sync; HTML keeps existing values.`);
-        }
-
-        // Phase 1b: normalise training/feature/setting names per <span lang="X">
-        // context, using data/training-names.json. Replaces legacy aliases like
-        // "Interval Training" with the lang-appropriate canonical (e.g.
-        // "インターバル認識" inside a ja span).
-        try {
-            syncTrainingNamesInSources(allSources);
-        } catch (e) {
-            console.error(`[training-names] ERROR: ${e.message}. Skipping normalisation.`);
-        }
-
-        console.log(`Building ${sources.length} source files × 3 langs = ${sources.length * 3} variants.`);
-        for (const src of sources) {
-            processSource(src);
-        }
+    // When called with explicit args (pre-commit hook with staged file names),
+    // accept either src/foo.html or foo.html and normalize to src-relative.
+    let sources;
+    if (filtered.length > 0) {
+        sources = filtered.map((a) => a.startsWith('src/') ? a.slice(4) : a).filter((s) => allSources.includes(s));
+    } else {
+        sources = allSources;
     }
 
-    // Sitemap always rebuilt from the FULL source list to avoid losing
-    // entries when a partial build is requested.
+    if (!onlySitemap) {
+        // 1a. Price string sync (operates on src/ files only).
+        try {
+            const currentPrices = loadPrices();
+            const srcFsPaths = allSources.map((s) => path.join(SRC_DIR, s));
+            syncPriceStringsToSources(srcFsPaths, currentPrices);
+        } catch (e) {
+            console.error(`[prices] ERROR: ${e.message}`);
+        }
+
+        // 1b. Training-name normalisation (also src/).
+        try {
+            const srcFsPaths = allSources.map((s) => path.join(SRC_DIR, s));
+            syncTrainingNamesInSources(srcFsPaths);
+        } catch (e) {
+            console.error(`[training-names] ERROR: ${e.message}`);
+        }
+
+        // 2. Build the new directory structure.
+        console.log(`Building ${sources.length} source(s) × 4 langs = ${sources.length * 4} outputs.`);
+        for (const src of sources) processSource(src);
+
+        // 3. Wallpaper old URL paths with redirect stubs (idempotent).
+        generateRedirectStubs(allSources);
+    }
+
+    // 4. Sitemap.
     const sitemap = generateSitemap(allSources);
     fs.writeFileSync('sitemap.xml', sitemap, 'utf8');
     console.log(`Wrote sitemap.xml (${allSources.length * 4} URLs).`);
-    console.log(`Done.`);
+
+    console.log('Done.');
 }
 
 main();

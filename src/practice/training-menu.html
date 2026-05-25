@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html lang="ja"
+      data-title-ja="練習メニュー詳細解説 | ソルフェージュPRO"
+      data-title-en="Practice Menu Reference | Solfege PRO"
+      data-title-fr="Référence des programmes d'entraînement | Solfege PRO"
+      data-title-de="Referenz der Übungsmenüs | Solfege PRO">
+<head>
+    <meta charset="UTF-8">
+    <meta name="robots" content="index, follow">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#1A1A1E">
+    <title>練習メニュー詳細解説 | ソルフェージュPRO</title>
+    <meta name="description" content="目的別の最適設定が一目でわかる Solfege PRO 各トレーニングの設定マニュアル。インターバル/コード/スケール/進行/リズム/譜読み/指板の使い分けを解説します。">
+
+    <link rel="canonical" href="https://solfegepro.com/practice/training-menu.html">
+    <link rel="alternate" hreflang="ja" href="https://solfegepro.com/practice/training-menu.html">
+    <link rel="alternate" hreflang="en" href="https://solfegepro.com/practice/training-menu.en.html">
+    <link rel="alternate" hreflang="fr" href="https://solfegepro.com/practice/training-menu.fr.html">
+    <link rel="alternate" hreflang="de" href="https://solfegepro.com/practice/training-menu.de.html">
+    <link rel="alternate" hreflang="x-default" href="https://solfegepro.com/practice/training-menu.html">
+    <link rel="icon" href="/AppIcon.png" type="image/png">
+    <link rel="apple-touch-icon" href="/AppIcon.png">
+
+    <meta property="og:title" content="練習メニュー詳細解説">
+    <meta property="og:description" content="目的別の最適設定が一目でわかる Solfege PRO 各トレーニングの設定マニュアル。インターバル/コード/スケール/進行/リズム/譜読み/指板の使い分けを解説します。">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://solfegepro.com/practice/training-menu.html">
+    <meta property="og:site_name" content="ソルフェージュPRO">
+    <meta property="og:image" content="https://solfegepro.com/og-image.png">
+    <meta property="og:locale" content="ja_JP">
+    <meta property="og:locale:alternate" content="en_US">
+    <meta property="og:locale:alternate" content="fr_FR">
+    <meta property="og:locale:alternate" content="de_DE">
+
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="練習メニュー詳細解説">
+    <meta name="twitter:description" content="目的別の最適設定が一目でわかる Solfege PRO 各トレーニングの設定マニュアル。インターバル/コード/スケール/進行/リズム/譜読み/指板の使い分けを解説します。">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="/style.css?v=15">
+
+    <!-- Mermaid for cross-training dependency map -->
+    <script type="module">
+        import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+        mermaid.initialize({
+            startOnLoad: false, theme: 'dark',
+            themeVariables: {
+                primaryColor: '#2A2A30', primaryTextColor: '#F5F5F0',
+                primaryBorderColor: '#D4AF37', lineColor: '#D4AF37',
+                secondaryColor: '#3A3A42', tertiaryColor: '#1A1A1E',
+                fontFamily: 'Noto Sans JP, sans-serif', fontSize: '13px'
+            }
+        });
+        function renderActiveMermaid() {
+            const lang = document.documentElement.getAttribute('data-lang') || 'ja';
+            const nodes = Array.from(document.querySelectorAll(`.mermaid-lang[lang="${lang}"] .mermaid`))
+                .filter(n => !n.getAttribute('data-processed'));
+            if (nodes.length) mermaid.run({ nodes });
+        }
+        if (document.readyState === 'loading') {
+            window.addEventListener('DOMContentLoaded', renderActiveMermaid);
+        } else { renderActiveMermaid(); }
+        window.addEventListener('langchange', renderActiveMermaid);
+    </script>
+
+    <style>
+        .menu-hub {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 var(--space-lg) var(--space-2xl);
+        }
+        @media (max-width: 768px) {
+            .menu-hub { padding: 0 var(--space-md) var(--space-xl); }
+        }
+
+        /* Section heading */
+        .menu-hub__h2 {
+            font-size: 18px; font-weight: 700;
+            color: var(--text-primary);
+            margin: var(--space-2xl) 0 var(--space-md);
+            padding-bottom: var(--space-sm);
+            border-bottom: 2px solid var(--primary);
+            display: flex; align-items: center; gap: var(--space-sm);
+        }
+
+        /* Training cards (link to detail pages) */
+        .training-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            gap: var(--space-md);
+            align-items: stretch;
+        }
+        .training-card {
+            display: flex; flex-direction: column;
+            background: var(--surface);
+            border: 1px solid var(--surface-light);
+            border-radius: var(--radius-lg);
+            padding: var(--space-lg);
+            text-decoration: none;
+            transition: all 0.2s ease;
+        }
+        .training-card:hover {
+            border-color: var(--primary);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+            color: inherit;
+        }
+        .training-card__head {
+            display: flex; align-items: center; gap: var(--space-sm);
+            margin-bottom: var(--space-sm);
+        }
+        .training-card__icon {
+            color: var(--primary);
+            font-size: 28px;
+            flex-shrink: 0;
+        }
+        .training-card__title {
+            font-size: 15px;
+            font-weight: 700;
+            color: var(--text-primary);
+            line-height: 1.3;
+        }
+        .training-card__effect {
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--primary);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 4px;
+        }
+        .training-card__desc {
+            font-size: 13px;
+            color: var(--text-secondary);
+            line-height: 1.6;
+            flex: 1;
+            margin-bottom: var(--space-sm);
+        }
+        .training-card__cta {
+            font-size: 12px;
+            color: var(--primary);
+            font-weight: 600;
+            display: inline-flex; align-items: center; gap: 4px;
+        }
+        .training-card__status {
+            display: inline-block;
+            font-size: 10px;
+            background: rgba(154, 154, 154, 0.15);
+            color: var(--text-secondary);
+            padding: 1px 6px;
+            border-radius: 3px;
+            font-weight: 500;
+            margin-left: 6px;
+        }
+        .training-card__status--ready {
+            background: rgba(74, 222, 128, 0.15);
+            color: #4ADE80;
+        }
+
+        /* Cross-training dependency map */
+        .deps-wrap {
+            background: var(--surface);
+            border: 1px solid var(--surface-light);
+            border-radius: var(--radius-lg);
+            padding: var(--space-md);
+            margin-top: var(--space-md);
+            overflow-x: auto; /* lint-skip: Mermaid SVG diagram is fixed-size */
+        }
+        .deps-wrap .mermaid { display: flex; justify-content: center; }
+        .mermaid-lang { display: block; }
+        .mermaid-lang.mermaid-hidden { display: none; }
+        .deps-legend {
+            font-size: 12px;
+            color: var(--text-secondary);
+            margin-top: var(--space-sm);
+            line-height: 1.7;
+        }
+        .deps-legend strong { color: var(--text-primary); }
+
+        /* How-to-read */
+        .howto-list {
+            list-style: none;
+            padding: 0;
+            margin: var(--space-md) 0;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: var(--space-sm);
+        }
+        .howto-list li {
+            background: var(--surface);
+            border: 1px solid var(--surface-light);
+            border-radius: var(--radius-md);
+            padding: var(--space-md);
+        }
+        .howto-list__num {
+            display: inline-flex; align-items: center; justify-content: center;
+            width: 22px; height: 22px;
+            border-radius: 50%;
+            background: var(--primary);
+            color: var(--background);
+            font-size: 11px;
+            font-weight: 700;
+            margin-right: 6px;
+        }
+        .howto-list__title {
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 4px;
+        }
+        .howto-list__desc {
+            font-size: 12px;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+    </style>
+</head>
+<body>
+    <nav class="nav">
+        <div class="nav__container">
+            <a href="/" class="nav__logo">
+                <img src="/AppIcon.png" alt="Solfege PRO" class="nav__logo-icon">
+                <span class="nav__logo-text"><span lang="ja">ソルフェージュPRO</span><span lang="en">Solfege PRO</span><span lang="fr">Solfege PRO</span><span lang="de">Solfege PRO</span></span>
+            </a>
+            <ul class="nav__list">
+                <li><a href="/" class="nav__link active"><span lang="ja">練習ガイド</span><span lang="en">Practice Guide</span><span lang="fr">Guide d'entraînement</span><span lang="de">Übungsleitfaden</span></a></li>
+                <li><a href="/guides/" class="nav__link"><span lang="ja">ガイド一覧</span><span lang="en">Guides</span><span lang="fr">Guides</span><span lang="de">Leitfäden</span></a></li>
+                <li><a href="/start-here/" class="nav__link"><span lang="ja">どこから始める？</span><span lang="en">Where to Start?</span><span lang="fr">Par où commencer ?</span><span lang="de">Wo anfangen?</span></a></li>
+            </ul>
+            <div class="nav__settings">
+                <button class="settings-btn" id="lang-toggle" title="Toggle language">
+                    <span id="lang-text">EN</span>
+                </button>
+                <button class="hamburger-btn" id="hamburger-btn" aria-label="Menu" aria-expanded="false" aria-controls="drawer">
+                    <span class="hamburger-btn__line"></span>
+                    <span class="hamburger-btn__line"></span>
+                    <span class="hamburger-btn__line"></span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <div class="drawer-overlay" id="drawer-overlay"></div>
+    <aside class="drawer" id="drawer" aria-label="Mobile menu" aria-hidden="true" inert>
+        <div class="drawer__header">
+            <span class="drawer__title"><span lang="ja">メニュー</span><span lang="en">Menu</span><span lang="fr">Menu</span><span lang="de">Menü</span></span>
+            <button class="drawer__close" id="drawer-close" aria-label="Close menu">×</button>
+        </div>
+        <ul class="drawer__list">
+            <li><a href="/" class="drawer__link active"><span lang="ja">練習ガイド</span><span lang="en">Practice Guide</span><span lang="fr">Guide d'entraînement</span><span lang="de">Übungsleitfaden</span></a></li>
+            <li><a href="/guides/" class="drawer__link"><span lang="ja">ガイド一覧</span><span lang="en">Guides</span><span lang="fr">Guides</span><span lang="de">Leitfäden</span></a></li>
+            <li><a href="/start-here/" class="drawer__link"><span lang="ja">どこから始める？</span><span lang="en">Where to Start?</span><span lang="fr">Par où commencer ?</span><span lang="de">Wo anfangen?</span></a></li>
+        </ul>
+    </aside>
+
+    <header class="page-header">
+        <div class="page-header__icon"><svg class="icon" aria-hidden="true"><use href="/assets/icons.svg#icon-book-open"></use></svg></div>
+        <h1 class="page-header__title"><span lang="ja">練習メニュー詳細解説</span><span lang="en">Practice Menu Reference</span><span lang="fr">Référence des programmes</span><span lang="de">Referenz der Übungsmenüs</span></h1>
+        <p class="page-header__subtitle">
+            <span lang="ja">各トレーニングの目的・期待効果・実践プロトコルから、設定の選び方までを 1 冊にまとめた手引き。</span>
+            <span lang="en">A reference covering each training's purpose, expected outcomes, practice protocol, and setting choices — in one place.</span>
+            <span lang="fr">Une référence qui couvre l'objectif, les effets attendus, le protocole et le choix des réglages de chaque entraînement — en un seul endroit.</span>
+            <span lang="de">Eine Referenz mit Ziel, erwarteten Effekten, Übungsprotokoll und Einstellungsempfehlungen jeder Übung — alles an einem Ort.</span>
+        </p>
+        <div class="page-header__meta">
+            <span class="page-header__badge">7 Trainings</span>
+        </div>
+    </header>
+
+    <main class="menu-hub">
+
+        <!-- Section 1: How to read -->
+        <h2 class="menu-hub__h2">
+            <svg class="icon" aria-hidden="true" style="width:1em; height:1em; color:var(--primary);"><use href="/assets/icons.svg#icon-compass"></use></svg>
+            <span lang="ja">この資料の使い方</span><span lang="en">How to Use This Reference</span><span lang="fr">Comment utiliser ce document</span><span lang="de">So nutzt du diese Referenz</span>
+        </h2>
+        <p style="font-size:14px; color:var(--text-secondary); line-height:1.7;">
+            <span lang="ja">各トレーニングのページは、<strong>「読む順 = 実際に練習する順」</strong>に並んでいます。下の手順で進めば、迷うところで止まりません。</span>
+            <span lang="en">Each training page is structured so the <strong>reading order matches the practice order</strong>. Follow the steps below and you won't get stuck.</span>
+            <span lang="fr">Chaque page suit l'ordre <strong>« ordre de lecture = ordre de pratique »</strong>. Suivez les étapes ci-dessous, et vous ne bloquerez pas.</span>
+            <span lang="de">Jede Übungsseite folgt der Reihenfolge <strong>„Lesereihenfolge = Übungsreihenfolge"</strong>. Folge den Schritten unten, und du bleibst nicht stecken.</span>
+        </p>
+        <ol class="howto-list" style="counter-reset:none;">
+            <li>
+                <div class="howto-list__title"><span class="howto-list__num">1</span><span lang="ja">目的を確認</span><span lang="en">Check the purpose</span><span lang="fr">Vérifier l'objectif</span><span lang="de">Ziel prüfen</span></div>
+                <div class="howto-list__desc"><span lang="ja">このトレーニングが何のスキルを鍛えるか、自分のゴールに合うか。</span><span lang="en">What skill does this training build? Does it match your goal?</span><span lang="fr">Quelle compétence vise cet entraînement ? Correspond-elle à votre objectif ?</span><span lang="de">Welche Fähigkeit baut diese Übung auf? Passt sie zu deinem Ziel?</span></div>
+            </li>
+            <li>
+                <div class="howto-list__title"><span class="howto-list__num">2</span><span lang="ja">開始前チェック</span><span lang="en">Pre-start check</span><span lang="fr">Vérification de départ</span><span lang="de">Check vor dem Start</span></div>
+                <div class="howto-list__desc"><span lang="ja">いきなり中級から始めず、現在地を診断して入口を決める。</span><span lang="en">Don't jump into the deep end. Diagnose your starting level first.</span><span lang="fr">Ne commencez pas en plein milieu : diagnostiquez votre niveau.</span><span lang="de">Steig nicht in der Mitte ein — bestimme zuerst dein Niveau.</span></div>
+            </li>
+            <li>
+                <div class="howto-list__title"><span class="howto-list__num">3</span><span lang="ja">Week 1 推奨設定で開始</span><span lang="en">Start with the Week 1 preset</span><span lang="fr">Démarrer avec le préréglage semaine 1</span><span lang="de">Mit Voreinstellung Woche 1 starten</span></div>
+                <div class="howto-list__desc"><span lang="ja">迷わないため、最初の 1 週間の設定はそのまま使う。</span><span lang="en">Skip the configuration overhead — use the Week 1 preset as-is.</span><span lang="fr">Pas de réglages à choisir : reprenez tel quel le préréglage de semaine 1.</span><span lang="de">Keine Konfigurationsarbeit — übernimm die Voreinstellung der ersten Woche.</span></div>
+            </li>
+            <li>
+                <div class="howto-list__title"><span class="howto-list__num">4</span><span lang="ja">プロトコル通り練習</span><span lang="en">Practice on protocol</span><span lang="fr">Suivre le protocole</span><span lang="de">Nach Protokoll üben</span></div>
+                <div class="howto-list__desc"><span lang="ja">頻度・時間・休憩の指針を守る。連続高負荷は逆効果。</span><span lang="en">Honor frequency, duration, and rest. Sustained overload backfires.</span><span lang="fr">Respectez fréquence, durée et repos. Une surcharge continue est contre-productive.</span><span lang="de">Halte Frequenz, Dauer und Pausen ein. Dauer-Überlast schadet.</span></div>
+            </li>
+            <li>
+                <div class="howto-list__title"><span class="howto-list__num">5</span><span lang="ja">到達基準で次レベル判定</span><span lang="en">Use mastery criteria</span><span lang="fr">Passer de niveau au critère</span><span lang="de">Anhand der Kriterien aufsteigen</span></div>
+                <div class="howto-list__desc"><span lang="ja">「やった感」ではなく観測可能な基準で進級。</span><span lang="en">Promote yourself by measurable criteria, not by "feeling done."</span><span lang="fr">Avancez sur des critères mesurables, pas sur l'impression d'avoir « fait le tour ».</span><span lang="de">Steig nach messbaren Kriterien auf — nicht nach Gefühl.</span></div>
+            </li>
+            <li>
+                <div class="howto-list__title"><span class="howto-list__num">6</span><span lang="ja">詰まったら TIPS</span><span lang="en">When stuck → TIPS</span><span lang="fr">En cas de blocage → TIPS</span><span lang="de">Bei Stillstand → Tipps</span></div>
+                <div class="howto-list__desc"><span lang="ja">停滞時の修正手順を読む。設定詳細は最後の参照用。</span><span lang="en">Read the fix protocols. The full settings reference is for advanced tuning, last.</span><span lang="fr">Lisez les protocoles de correction. La référence complète des réglages est pour la fin.</span><span lang="de">Lies die Korrektur-Anleitungen. Die vollständige Einstellungs­referenz ist für später.</span></div>
+            </li>
+        </ol>
+
+        <!-- Section 2: Training Cards -->
+        <h2 class="menu-hub__h2">
+            <svg class="icon" aria-hidden="true" style="width:1em; height:1em; color:var(--primary);"><use href="/assets/icons.svg#icon-library"></use></svg>
+            <span lang="ja">トレーニング一覧</span><span lang="en">All Trainings</span><span lang="fr">Tous les entraînements</span><span lang="de">Alle Übungen</span>
+        </h2>
+
+        <div class="training-grid">
+
+            <a href="/practice/training-menu/interval/" class="training-card">
+                <div class="training-card__head">
+                    <span class="training-card__icon"><svg class="icon" aria-hidden="true"><use href="/assets/icons.svg#icon-music-note"></use></svg></span>
+                    <div>
+                        <div class="training-card__title"><span lang="ja">音程</span><span lang="en">Interval</span><span lang="fr">Intervalles</span><span lang="de">Intervalle</span></div>
+                    </div>
+                </div>
+                <div class="training-card__effect"><span lang="ja">相対音感の土台</span><span lang="en">Foundation of relative pitch</span><span lang="fr">Socle de l'oreille relative</span><span lang="de">Grundlage des relativen Gehörs</span></div>
+                <div class="training-card__desc"><span lang="ja">2 音の隔たりを名前で呼べる力。耳コピ・即興・ハモリすべての出発点。</span><span lang="en">Naming the distance between two notes — the starting point for ear-copying, improvisation, and harmonizing.</span><span lang="fr">Nommer la distance entre deux notes — point de départ du relevé, de l'impro et de l'harmonie.</span><span lang="de">Den Abstand zweier Töne benennen können — Ausgangspunkt für Heraushören, Improvisation und Harmonisierung.</span></div>
+                <div class="training-card__cta"><span lang="ja">詳細を読む →</span><span lang="en">Read full reference →</span><span lang="fr">Lire la référence →</span><span lang="de">Vollständige Referenz lesen →</span><span class="training-card__status training-card__status--ready"><span lang="ja">公開中</span><span lang="en">Live</span><span lang="fr">Publié</span><span lang="de">Verfügbar</span></span></div>
+            </a>
+
+            <div class="training-card training-card--coming" aria-disabled="true" style="opacity:0.6; pointer-events:none;">
+                <div class="training-card__head">
+                    <span class="training-card__icon"><svg class="icon" aria-hidden="true"><use href="/assets/icons.svg#icon-piano"></use></svg></span>
+                    <div>
+                        <div class="training-card__title"><span lang="ja">コード認識</span><span lang="en">Chord Recognition</span><span lang="fr">Reconnaissance d'accords</span><span lang="de">Akkord-Erkennung</span></div>
+                    </div>
+                </div>
+                <div class="training-card__effect"><span lang="ja">和声の聴き分け</span><span lang="en">Hearing harmony</span><span lang="fr">Entendre l'harmonie</span><span lang="de">Harmonie hören</span></div>
+                <div class="training-card__desc"><span lang="ja">3 和音から拡張和音まで、響きで判別する力。コード採譜・編曲の基礎。</span><span lang="en">Identifying chord qualities by ear, from triads to extensions — the basis for transcription and arrangement.</span><span lang="fr">Identifier les qualités d'accord à l'oreille, des triades aux extensions — base du relevé et de l'arrangement.</span><span lang="de">Akkordqualitäten nach Gehör erkennen, von Dreiklängen bis Erweiterungen — Basis für Transkription und Arrangement.</span></div>
+                <div class="training-card__cta"><span lang="ja">詳細を読む →</span><span lang="en">Read full reference →</span><span lang="fr">Lire la référence →</span><span lang="de">Vollständige Referenz lesen →</span><span class="training-card__status"><span lang="ja">準備中</span><span lang="en">Coming soon</span><span lang="fr">À venir</span><span lang="de">In Vorbereitung</span></span></div>
+            </div>
+
+            <div class="training-card training-card--coming" aria-disabled="true" style="opacity:0.6; pointer-events:none;">
+                <div class="training-card__head">
+                    <span class="training-card__icon"><svg class="icon" aria-hidden="true"><use href="/assets/icons.svg#icon-music-staff"></use></svg></span>
+                    <div>
+                        <div class="training-card__title"><span lang="ja">スケール認識</span><span lang="en">Scale Recognition</span><span lang="fr">Reconnaissance de gammes</span><span lang="de">Skalen-Erkennung</span></div>
+                    </div>
+                </div>
+                <div class="training-card__effect"><span lang="ja">調性・モードの感覚</span><span lang="en">Tonal & modal sense</span><span lang="fr">Sens tonal et modal</span><span lang="de">Sinn für Tonalität und Modi</span></div>
+                <div class="training-card__desc"><span lang="ja">メジャー / マイナー / 教会旋法 / ペンタトニックを聴き分ける。即興とアドリブの土台。</span><span lang="en">Distinguishing major / minor / church modes / pentatonic — foundational for improvisation.</span><span lang="fr">Distinguer majeur / mineur / modes ecclésiastiques / pentatonique — base de l'improvisation.</span><span lang="de">Dur / Moll / Kirchentonarten / Pentatonik unterscheiden — Grundlage der Improvisation.</span></div>
+                <div class="training-card__cta"><span lang="ja">詳細を読む →</span><span lang="en">Read full reference →</span><span lang="fr">Lire la référence →</span><span lang="de">Vollständige Referenz lesen →</span><span class="training-card__status"><span lang="ja">準備中</span><span lang="en">Coming soon</span><span lang="fr">À venir</span><span lang="de">In Vorbereitung</span></span></div>
+            </div>
+
+            <div class="training-card training-card--coming" aria-disabled="true" style="opacity:0.6; pointer-events:none;">
+                <div class="training-card__head">
+                    <span class="training-card__icon"><svg class="icon" aria-hidden="true"><use href="/assets/icons.svg#icon-music-notes"></use></svg></span>
+                    <div>
+                        <div class="training-card__title"><span lang="ja">コード進行</span><span lang="en">Progression</span><span lang="fr">Progressions</span><span lang="de">Akkordfolgen</span></div>
+                    </div>
+                </div>
+                <div class="training-card__effect"><span lang="ja">機能和声の流れ</span><span lang="en">Hearing harmonic motion</span><span lang="fr">Suivre le mouvement harmonique</span><span lang="de">Harmonische Bewegung hören</span></div>
+                <div class="training-card__desc"><span lang="ja">T / SD / D の動きを耳で追う力。曲全体の構造を聴き取れるようになる。</span><span lang="en">Tracking T / SD / D movement by ear — read the structure of a whole song.</span><span lang="fr">Suivre T / SD / D à l'oreille — lire la structure d'un morceau entier.</span><span lang="de">T / SD / D nach Gehör verfolgen — die Struktur eines ganzen Stücks lesen.</span></div>
+                <div class="training-card__cta"><span lang="ja">詳細を読む →</span><span lang="en">Read full reference →</span><span lang="fr">Lire la référence →</span><span lang="de">Vollständige Referenz lesen →</span><span class="training-card__status"><span lang="ja">準備中</span><span lang="en">Coming soon</span><span lang="fr">À venir</span><span lang="de">In Vorbereitung</span></span></div>
+            </div>
+
+            <div class="training-card training-card--coming" aria-disabled="true" style="opacity:0.6; pointer-events:none;">
+                <div class="training-card__head">
+                    <span class="training-card__icon"><svg class="icon" aria-hidden="true"><use href="/assets/icons.svg#icon-drum"></use></svg></span>
+                    <div>
+                        <div class="training-card__title"><span lang="ja">リズム</span><span lang="en">Rhythm</span><span lang="fr">Rythme</span><span lang="de">Rhythmus</span></div>
+                    </div>
+                </div>
+                <div class="training-card__effect"><span lang="ja">タイミング精度と安定性</span><span lang="en">Timing accuracy & consistency</span><span lang="fr">Précision et stabilité du timing</span><span lang="de">Timing-Genauigkeit & Konsistenz</span></div>
+                <div class="training-card__desc"><span lang="ja">ms 単位で打点を計測し、前乗り / 後乗り / ばらつきを可視化。アンサンブルの土台。</span><span lang="en">Per-millisecond hit measurement, surfacing rushing / dragging / inconsistency — the foundation of ensemble playing.</span><span lang="fr">Mesure à la milliseconde, mise en évidence du rushing / dragging / dispersion — base du jeu d'ensemble.</span><span lang="de">Millisekundengenaue Anschlagsmessung, sichtbarer Vorlauf/Nachlauf/Streuung — Basis des Ensemblespiels.</span></div>
+                <div class="training-card__cta"><span lang="ja">詳細を読む →</span><span lang="en">Read full reference →</span><span lang="fr">Lire la référence →</span><span lang="de">Vollständige Referenz lesen →</span><span class="training-card__status"><span lang="ja">準備中</span><span lang="en">Coming soon</span><span lang="fr">À venir</span><span lang="de">In Vorbereitung</span></span></div>
+            </div>
+
+            <div class="training-card training-card--coming" aria-disabled="true" style="opacity:0.6; pointer-events:none;">
+                <div class="training-card__head">
+                    <span class="training-card__icon"><svg class="icon" aria-hidden="true"><use href="/assets/icons.svg#icon-book-open"></use></svg></span>
+                    <div>
+                        <div class="training-card__title"><span lang="ja">譜読み</span><span lang="en">Sight Reading</span><span lang="fr">Lecture à vue</span><span lang="de">Notenlesen</span></div>
+                    </div>
+                </div>
+                <div class="training-card__effect"><span lang="ja">音名特定の高速化</span><span lang="en">Fast note identification</span><span lang="fr">Identification rapide des notes</span><span lang="de">Schnelle Notenerkennung</span></div>
+                <div class="training-card__desc"><span lang="ja">五線譜の音名を反射的に読む力。ランドマーク法で段階的に習得。</span><span lang="en">Reading staff notation reflexively — built up progressively via the landmark method.</span><span lang="fr">Lire la portée par réflexe — construit progressivement par la méthode des notes repères.</span><span lang="de">Notennamen reflexartig lesen — schrittweise über die Landmark-Methode aufgebaut.</span></div>
+                <div class="training-card__cta"><span lang="ja">詳細を読む →</span><span lang="en">Read full reference →</span><span lang="fr">Lire la référence →</span><span lang="de">Vollständige Referenz lesen →</span><span class="training-card__status"><span lang="ja">準備中</span><span lang="en">Coming soon</span><span lang="fr">À venir</span><span lang="de">In Vorbereitung</span></span></div>
+            </div>
+
+            <div class="training-card training-card--coming" aria-disabled="true" style="opacity:0.6; pointer-events:none;">
+                <div class="training-card__head">
+                    <span class="training-card__icon"><svg class="icon" aria-hidden="true"><use href="/assets/icons.svg#icon-guitar"></use></svg></span>
+                    <div>
+                        <div class="training-card__title"><span lang="ja">指板</span><span lang="en">Fretboard</span><span lang="fr">Manche</span><span lang="de">Griffbrett</span></div>
+                    </div>
+                </div>
+                <div class="training-card__effect"><span lang="ja">ギター/ベースの音名定着</span><span lang="en">Guitar/bass note mastery</span><span lang="fr">Maîtrise des notes guitare/basse</span><span lang="de">Notenbeherrschung Gitarre/Bass</span></div>
+                <div class="training-card__desc"><span lang="ja">弦・フレット位置から音名を即答、または音名から位置を即答。耳と楽器を繋ぐ。</span><span lang="en">Translating instantly between string/fret position and note name — bridges ear and instrument.</span><span lang="fr">Traduire instantanément position (corde/case) ↔ nom de note — relie l'oreille et l'instrument.</span><span lang="de">Sofort zwischen Saite/Bund-Position und Notennamen wechseln — verbindet Ohr und Instrument.</span></div>
+                <div class="training-card__cta"><span lang="ja">詳細を読む →</span><span lang="en">Read full reference →</span><span lang="fr">Lire la référence →</span><span lang="de">Vollständige Referenz lesen →</span><span class="training-card__status"><span lang="ja">準備中</span><span lang="en">Coming soon</span><span lang="fr">À venir</span><span lang="de">In Vorbereitung</span></span></div>
+            </div>
+
+        </div>
+
+        <!-- Section 3: Dependency map -->
+        <h2 class="menu-hub__h2">
+            <svg class="icon" aria-hidden="true" style="width:1em; height:1em; color:var(--primary);"><use href="/assets/icons.svg#icon-music-notes"></use></svg>
+            <span lang="ja">トレーニング間の関係</span><span lang="en">Cross-Training Relationships</span><span lang="fr">Relations entre entraînements</span><span lang="de">Beziehungen der Übungen</span>
+        </h2>
+        <p style="font-size:14px; color:var(--text-secondary); line-height:1.7;">
+            <span lang="ja">7 つのトレーニングは独立していません。<strong>下流のトレーニング</strong>は<strong>上流のスキル</strong>を前提にしています。流れを意識して進めると、転移（実演奏への応用）が起きやすくなります。</span>
+            <span lang="en">The seven trainings are not independent. <strong>Downstream trainings</strong> assume the skills built <strong>upstream</strong>. Following the flow improves transfer to real-world playing.</span>
+            <span lang="fr">Les 7 entraînements ne sont pas indépendants. Les <strong>entraînements en aval</strong> supposent les compétences <strong>en amont</strong>. Respecter ce flux favorise le transfert vers le jeu réel.</span>
+            <span lang="de">Die sieben Übungen sind nicht unabhängig. <strong>Nachgelagerte Übungen</strong> setzen <strong>vorgelagerte</strong> Fähigkeiten voraus. Den Fluss zu beachten erhöht den Transfer ins reale Spiel.</span>
+        </p>
+
+        <div class="deps-wrap">
+            <div class="mermaid-lang" lang="ja">
+                <pre class="mermaid">
+flowchart LR
+    Interval["音程<br/>(相対音感の土台)"]
+    Chord["コード認識"]
+    Scale["スケール認識"]
+    Progression["コード進行"]
+    Rhythm["リズム"]
+    SightRead["譜読み"]
+    Fretboard["指板"]
+
+    Interval --> Chord
+    Interval --> Scale
+    Chord --> Progression
+    Scale --> Progression
+    Rhythm --> SightRead
+    Fretboard <--> Interval
+    SightRead -.->|"応用先"| Progression
+
+    style Interval     fill:#2A2A30,stroke:#D4AF37,color:#F5F5F0
+    style Chord        fill:#2A2A30,stroke:#60A5FA,color:#F5F5F0
+    style Scale        fill:#2A2A30,stroke:#60A5FA,color:#F5F5F0
+    style Progression  fill:#2A2A30,stroke:#F87171,color:#F5F5F0
+    style Rhythm       fill:#2A2A30,stroke:#4ADE80,color:#F5F5F0
+    style SightRead    fill:#2A2A30,stroke:#FBBF24,color:#F5F5F0
+    style Fretboard    fill:#2A2A30,stroke:#D4AF37,color:#F5F5F0
+                </pre>
+            </div>
+            <div class="mermaid-lang" lang="en">
+                <pre class="mermaid">
+flowchart LR
+    Interval["Interval<br/>(relative pitch)"]
+    Chord["Chord<br/>Recognition"]
+    Scale["Scale<br/>Recognition"]
+    Progression["Progression"]
+    Rhythm["Rhythm"]
+    SightRead["Sight<br/>Reading"]
+    Fretboard["Fretboard"]
+
+    Interval --> Chord
+    Interval --> Scale
+    Chord --> Progression
+    Scale --> Progression
+    Rhythm --> SightRead
+    Fretboard <--> Interval
+    SightRead -.->|"applies to"| Progression
+
+    style Interval     fill:#2A2A30,stroke:#D4AF37,color:#F5F5F0
+    style Chord        fill:#2A2A30,stroke:#60A5FA,color:#F5F5F0
+    style Scale        fill:#2A2A30,stroke:#60A5FA,color:#F5F5F0
+    style Progression  fill:#2A2A30,stroke:#F87171,color:#F5F5F0
+    style Rhythm       fill:#2A2A30,stroke:#4ADE80,color:#F5F5F0
+    style SightRead    fill:#2A2A30,stroke:#FBBF24,color:#F5F5F0
+    style Fretboard    fill:#2A2A30,stroke:#D4AF37,color:#F5F5F0
+                </pre>
+            </div>
+            <div class="mermaid-lang" lang="fr">
+                <pre class="mermaid">
+flowchart LR
+    Interval["Intervalles<br/>(oreille relative)"]
+    Chord["Reconnaissance<br/>d'accords"]
+    Scale["Reconnaissance<br/>de gammes"]
+    Progression["Progressions"]
+    Rhythm["Rythme"]
+    SightRead["Lecture<br/>à vue"]
+    Fretboard["Manche"]
+
+    Interval --> Chord
+    Interval --> Scale
+    Chord --> Progression
+    Scale --> Progression
+    Rhythm --> SightRead
+    Fretboard <--> Interval
+    SightRead -.->|"s'applique à"| Progression
+
+    style Interval     fill:#2A2A30,stroke:#D4AF37,color:#F5F5F0
+    style Chord        fill:#2A2A30,stroke:#60A5FA,color:#F5F5F0
+    style Scale        fill:#2A2A30,stroke:#60A5FA,color:#F5F5F0
+    style Progression  fill:#2A2A30,stroke:#F87171,color:#F5F5F0
+    style Rhythm       fill:#2A2A30,stroke:#4ADE80,color:#F5F5F0
+    style SightRead    fill:#2A2A30,stroke:#FBBF24,color:#F5F5F0
+    style Fretboard    fill:#2A2A30,stroke:#D4AF37,color:#F5F5F0
+                </pre>
+            </div>
+            <div class="mermaid-lang" lang="de">
+                <pre class="mermaid">
+flowchart LR
+    Interval["Intervalle<br/>(rel. Gehör)"]
+    Chord["Akkord-<br/>Erkennung"]
+    Scale["Skalen-<br/>Erkennung"]
+    Progression["Akkordfolgen"]
+    Rhythm["Rhythmus"]
+    SightRead["Noten-<br/>lesen"]
+    Fretboard["Griffbrett"]
+
+    Interval --> Chord
+    Interval --> Scale
+    Chord --> Progression
+    Scale --> Progression
+    Rhythm --> SightRead
+    Fretboard <--> Interval
+    SightRead -.->|"angewandt auf"| Progression
+
+    style Interval     fill:#2A2A30,stroke:#D4AF37,color:#F5F5F0
+    style Chord        fill:#2A2A30,stroke:#60A5FA,color:#F5F5F0
+    style Scale        fill:#2A2A30,stroke:#60A5FA,color:#F5F5F0
+    style Progression  fill:#2A2A30,stroke:#F87171,color:#F5F5F0
+    style Rhythm       fill:#2A2A30,stroke:#4ADE80,color:#F5F5F0
+    style SightRead    fill:#2A2A30,stroke:#FBBF24,color:#F5F5F0
+    style Fretboard    fill:#2A2A30,stroke:#D4AF37,color:#F5F5F0
+                </pre>
+            </div>
+            <div class="deps-legend">
+                <span lang="ja">
+                    <strong>読み方</strong>: 矢印は「上流 → 下流」。例えば <strong>音程</strong>が安定する前に <strong>コード認識</strong>に進むと、和音の構成音を「2 音間隔の集合」として捉える土台が弱く、伸び悩みます。<strong>指板</strong>と<strong>音程</strong>はギター/ベース奏者にとって相互強化の関係（指板で音名が分かる ↔ 音程感が指板上で位置取りに転化）。<strong>譜読み</strong>は音名の機械的高速読み取りなので、リズム精度が低いと音価判断で詰まります。
+                </span>
+                <span lang="en">
+                    <strong>How to read</strong>: arrows point upstream → downstream. For example, jumping into <strong>Chord Recognition</strong> before <strong>Interval</strong> is stable leaves the harmonic foundation weak — chord notes need to be heard as "interval sets." <strong>Fretboard</strong> and <strong>Interval</strong> reinforce each other for guitarists/bassists. <strong>Sight Reading</strong> demands rhythmic accuracy because note duration parsing depends on it.
+                </span>
+                <span lang="fr">
+                    <strong>Lecture</strong> : les flèches vont de l'amont vers l'aval. Aborder la <strong>reconnaissance d'accords</strong> avant que les <strong>intervalles</strong> ne soient stables fragilise la base harmonique — les notes d'accord doivent s'entendre comme des « ensembles d'intervalles ». <strong>Manche</strong> et <strong>intervalles</strong> se renforcent pour les guitaristes/bassistes. La <strong>lecture à vue</strong> exige une bonne précision rythmique, sans quoi l'analyse des durées coince.
+                </span>
+                <span lang="de">
+                    <strong>Lesart</strong>: Pfeile zeigen vom Vorgelagerten zum Nachgelagerten. Wer <strong>Akkord-Erkennung</strong> startet, bevor <strong>Intervalle</strong> sitzen, lässt das harmonische Fundament schwach — Akkordtöne müssen als „Intervall-Sets" hörbar sein. <strong>Griffbrett</strong> und <strong>Intervalle</strong> verstärken sich bei Gitarristen/Bassisten gegenseitig. <strong>Notenlesen</strong> verlangt rhythmische Präzision, weil die Notenwert-Analyse darauf beruht.
+                </span>
+            </div>
+        </div>
+
+        <!-- Recommended starting order -->
+        <h2 class="menu-hub__h2">
+            <svg class="icon" aria-hidden="true" style="width:1em; height:1em; color:var(--primary);"><use href="/assets/icons.svg#icon-flask"></use></svg>
+            <span lang="ja">推奨スタート順</span><span lang="en">Recommended Start Order</span><span lang="fr">Ordre de démarrage recommandé</span><span lang="de">Empfohlene Startreihenfolge</span>
+        </h2>
+        <p style="font-size:14px; color:var(--text-secondary); line-height:1.7;">
+            <span lang="ja">どれから手を付けるか迷ったら、自分の役割で選んでください。並行ではなく <strong>1〜2 つに絞る</strong> のがコツ。</span>
+            <span lang="en">Pick by your role. Focus on <strong>one or two</strong> trainings at a time, not all seven in parallel.</span>
+            <span lang="fr">Choisissez selon votre rôle. Concentrez-vous sur <strong>1 ou 2</strong> entraînements à la fois, pas sur les sept en parallèle.</span>
+            <span lang="de">Wähle nach deiner Rolle. Konzentriere dich auf <strong>1–2</strong> Übungen — nicht alle sieben parallel.</span>
+        </p>
+        <div class="howto-list" style="grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));">
+            <div>
+                <div class="howto-list__title">🎤 <span lang="ja">ボーカル / コーラス</span><span lang="en">Vocal / Chorus</span><span lang="fr">Chant / chœur</span><span lang="de">Gesang / Chor</span></div>
+                <div class="howto-list__desc"><span lang="ja">音程 → コード認識（3度・6度中心）</span><span lang="en">Interval → Chord (focus on 3rds/6ths)</span><span lang="fr">Intervalles → accords (tierces et sixtes)</span><span lang="de">Intervalle → Akkorde (Terzen/Sexten)</span></div>
+            </div>
+            <div>
+                <div class="howto-list__title">🎸 <span lang="ja">ギター / ベース</span><span lang="en">Guitar / Bass</span><span lang="fr">Guitare / basse</span><span lang="de">Gitarre / Bass</span></div>
+                <div class="howto-list__desc"><span lang="ja">指板 + 音程 → コード認識</span><span lang="en">Fretboard + Interval → Chord</span><span lang="fr">Manche + intervalles → accords</span><span lang="de">Griffbrett + Intervalle → Akkorde</span></div>
+            </div>
+            <div>
+                <div class="howto-list__title">🎹 <span lang="ja">ピアノ / 鍵盤</span><span lang="en">Piano / Keyboard</span><span lang="fr">Piano / clavier</span><span lang="de">Klavier / Keyboard</span></div>
+                <div class="howto-list__desc"><span lang="ja">譜読み → コード認識 → コード進行</span><span lang="en">Sight Reading → Chord → Progression</span><span lang="fr">Lecture → accords → progressions</span><span lang="de">Notenlesen → Akkorde → Akkordfolgen</span></div>
+            </div>
+            <div>
+                <div class="howto-list__title">🥁 <span lang="ja">ドラム</span><span lang="en">Drums</span><span lang="fr">Batterie</span><span lang="de">Schlagzeug</span></div>
+                <div class="howto-list__desc"><span lang="ja">リズム一択（深く掘る）</span><span lang="en">Rhythm only (drill deeply)</span><span lang="fr">Rythme uniquement (creuser à fond)</span><span lang="de">Nur Rhythmus (tief bohren)</span></div>
+            </div>
+            <div>
+                <div class="howto-list__title">🎷 <span lang="ja">ジャズ志向</span><span lang="en">Jazz-oriented</span><span lang="fr">Orienté jazz</span><span lang="de">Jazz-orientiert</span></div>
+                <div class="howto-list__desc"><span lang="ja">音程（7th/♭9）→ スケール（モード）→ コード進行</span><span lang="en">Interval (7ths/b9) → Scale (modes) → Progression</span><span lang="fr">Intervalles (7e/♭9) → gammes (modes) → progressions</span><span lang="de">Intervalle (7/♭9) → Skalen (Modi) → Akkordfolgen</span></div>
+            </div>
+            <div>
+                <div class="howto-list__title">📖 <span lang="ja">譜面派が耳を鍛える</span><span lang="en">Reader → Ear training</span><span lang="fr">Lecteur → travail de l'oreille</span><span lang="de">Notenleser → Gehörbildung</span></div>
+                <div class="howto-list__desc"><span lang="ja">音程 → コード認識（譜読みは既に強い前提）</span><span lang="en">Interval → Chord (assumes reading is already strong)</span><span lang="fr">Intervalles → accords (la lecture est supposée acquise)</span><span lang="de">Intervalle → Akkorde (Lesen wird vorausgesetzt)</span></div>
+            </div>
+        </div>
+
+        <!-- CTA -->
+        <div class="cta" style="margin-top: var(--space-2xl);">
+            <h2 class="cta__title"><span lang="ja">今日から始めよう</span><span lang="en">Start Today</span><span lang="fr">Commencez aujourd'hui</span><span lang="de">Heute loslegen</span></h2>
+            <p class="cta__text">
+                <span lang="ja">ソルフェージュPROで、設計通りに練習する。</span>
+                <span lang="en">Train deliberately with Solfege PRO.</span>
+                <span lang="fr">Pratiquez délibérément avec Solfege PRO.</span>
+                <span lang="de">Mit Solfege PRO gezielt üben.</span>
+            </p>
+            <a href="https://apps.apple.com/jp/app/id6756626617" class="app-store-link" aria-label="Download on the App Store">
+                <span lang="ja"><img class="app-store-link__img" src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/ja-jp" alt="App Storeで入手"></span>
+                <span lang="en"><img class="app-store-link__img" src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/en-us" alt="Download on the App Store"></span>
+                <span lang="fr"><img class="app-store-link__img" src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/fr-fr" alt="Télécharger dans l'App Store"></span>
+                <span lang="de"><img class="app-store-link__img" src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/de-de" alt="Laden im App Store"></span>
+            </a>
+        </div>
+
+    </main>
+
+    <footer class="practice-footer" style="background: var(--surface); padding: var(--space-xl) var(--space-lg); text-align: center; border-top: 1px solid var(--surface-light);">
+        <p style="color: var(--text-secondary); font-size: 14px;">
+            &copy; 2026 <span lang="ja">ソルフェージュPRO</span><span lang="en">Solfege PRO</span><span lang="fr">Solfege PRO</span><span lang="de">Solfege PRO</span> &mdash;
+            <a href="https://apps.apple.com/jp/app/id6756626617" style="color: var(--primary); text-decoration: none;">App Store</a>
+        </p>
+    </footer>
+
+    <script src="/practice/practice-features.js?v=1"></script>
+    <!-- Re-render Mermaid on language toggle -->
+    <script>
+        (function() {
+            var t = document.getElementById('lang-toggle');
+            if (t) t.addEventListener('click', function() {
+                setTimeout(function() { window.dispatchEvent(new Event('langchange')); }, 10);
+            });
+        })();
+    </script>
+    <script src="/bootstrap.js?v=1" defer></script>
+</body>
+</html>

@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="ja"
+      data-title-ja="練習ガイド一覧 | ソルフェージュPRO"
+      data-title-en="Training Guides | Solfege PRO"
+      data-title-fr="Guides d'entraînement | Solfege PRO"
+      data-title-de="Übungsleitfäden | Solfege PRO">
+<head>
+    <meta charset="UTF-8">
+    <meta name="robots" content="index, follow">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#1A1A1E">
+    <title>練習ガイド一覧 | ソルフェージュPRO</title>
+    <meta name="description" content="リズム感、譜読み、相対音感、コード認識、指板攻略、メンタルプラクティスまで、Solfege PRO の 20 本以上の練習ガイドを目的別に一覧で見つけられます。">
+
+    <!-- Canonical -->
+    <link rel="canonical" href="https://solfegepro.com/guides/">
+    <link rel="alternate" hreflang="ja" href="https://solfegepro.com/guides/">
+    <link rel="alternate" hreflang="en" href="https://solfegepro.com/guides/index.en.html">
+    <link rel="alternate" hreflang="fr" href="https://solfegepro.com/guides/index.fr.html">
+    <link rel="alternate" hreflang="de" href="https://solfegepro.com/guides/index.de.html">
+    <link rel="alternate" hreflang="x-default" href="https://solfegepro.com/guides/">
+
+    <!-- Favicon -->
+    <link rel="icon" href="/AppIcon.png" type="image/png">
+    <link rel="apple-touch-icon" href="/AppIcon.png">
+
+    <!-- OGP -->
+    <meta property="og:title" content="練習ガイド一覧">
+    <meta property="og:description" content="リズム感、譜読み、相対音感、コード認識、指板攻略、メンタルプラクティスまで、Solfege PRO の 20 本以上の練習ガイドを目的別に一覧で見つけられます。">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://solfegepro.com/guides/">
+    <meta property="og:site_name" content="ソルフェージュPRO">
+    <meta property="og:image" content="https://solfegepro.com/og-image.png">
+    <meta property="og:locale" content="ja_JP">
+    <meta property="og:locale:alternate" content="en_US">
+    <meta property="og:locale:alternate" content="fr_FR">
+    <meta property="og:locale:alternate" content="de_DE">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="練習ガイド一覧">
+    <meta name="twitter:description" content="リズム感、譜読み、相対音感、コード認識、指板攻略、メンタルプラクティスまで、Solfege PRO の 20 本以上の練習ガイドを目的別に一覧で見つけられます。">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="/style.css?v=15">
+
+    <style>
+
+
+
+        .guides-main {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: var(--space-2xl) var(--space-lg);
+        }
+
+        .guides-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            gap: var(--space-lg);
+        }
+
+        .guide-card {
+            display: flex;
+            flex-direction: column;
+            background: var(--surface);
+            border: 1px solid var(--surface-light);
+            border-radius: var(--radius-lg);
+            padding: var(--space-lg);
+            text-decoration: none;
+            transition: all 0.2s ease;
+        }
+
+        .guide-card:hover {
+            border-color: var(--primary);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+        }
+
+        .guide-card__icon {
+            font-size: 32px;
+            margin-bottom: var(--space-md);
+        }
+
+        .guide-card__title {
+            font-size: 15px;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: var(--space-sm);
+            line-height: 1.4;
+        }
+
+        .guide-card__desc {
+            font-size: 13px;
+            color: var(--text-secondary);
+            line-height: 1.6;
+            flex: 1;
+        }
+
+        .guide-card__tag {
+            display: inline-block;
+            font-size: 12px;
+            font-weight: 500;
+            color: var(--primary);
+            background: rgba(212, 175, 55, 0.15);
+            padding: 2px 10px;
+            border-radius: var(--radius-sm);
+            margin-top: var(--space-md);
+            align-self: flex-start;
+        }
+
+        .guide-card__tag--deep-dive {
+            color: #60A5FA;
+            background: rgba(96, 165, 250, 0.15);
+            margin-left: 6px;
+        }
+
+        /* Multi-tag row */
+        .guide-card__tags {
+            display: flex;
+            gap: 6px;
+            flex-wrap: wrap;
+            margin-top: var(--space-md);
+        }
+        .guide-card__tags .guide-card__tag {
+            margin-top: 0;
+            margin-left: 0;
+        }
+
+        .guide-card__tag--science {
+            color: #A78BFA;
+            background: rgba(167, 139, 250, 0.15);
+            margin-left: 6px;
+        }
+
+        /* "Coming soon" cards: dimmed and non-clickable */
+        .guide-card--coming {
+            opacity: 0.65;
+            pointer-events: none;
+            position: relative;
+        }
+        .guide-card__status {
+            display: inline-block;
+            font-size: 11px;
+            font-weight: 600;
+            color: var(--text-secondary);
+            background: rgba(154, 154, 154, 0.18);
+            padding: 2px 8px;
+            border-radius: var(--radius-sm);
+            margin-top: var(--space-sm);
+            align-self: flex-start;
+            letter-spacing: 0.3px;
+        }
+
+        /* Subsection heading inside guides grid */
+        .guides-subhead {
+            grid-column: 1 / -1;
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin: var(--space-lg) 0 0;
+            padding-bottom: var(--space-sm);
+            border-bottom: 1px solid var(--surface-light);
+            display: flex;
+            align-items: center;
+            gap: var(--space-sm);
+        }
+        .guides-subhead:first-child { margin-top: 0; }
+        .guides-subhead__hint {
+            font-size: 12px;
+            font-weight: 400;
+            color: var(--text-secondary);
+            margin-left: auto;
+        }
+
+        .guides-footer {
+            background: var(--surface);
+            padding: var(--space-xl) var(--space-lg);
+            text-align: center;
+            border-top: 1px solid var(--surface-light);
+        }
+
+        .guides-footer__text {
+            color: var(--text-secondary);
+            font-size: 14px;
+        }
+
+        .guides-footer__link {
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        .guides-back {
+            text-align: center;
+            margin-top: var(--space-2xl);
+        }
+
+        .guides-back__link {
+            display: inline-block;
+            background: var(--primary);
+            color: var(--background);
+            padding: var(--space-md) var(--space-xl);
+            border-radius: var(--radius-lg);
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 15px;
+            transition: all 0.2s ease;
+        }
+
+        .guides-back__link:hover {
+            transform: scale(1.03);
+            box-shadow: 0 4px 20px rgba(212, 175, 55, 0.3);
+        }
+
+        @media (max-width: 768px) {
+            .guides-main { padding: var(--space-lg) var(--space-md); }
+            .guides-grid { grid-template-columns: 1fr; gap: var(--space-md); }
+            .guide-card { padding: var(--space-lg); }
+        }
+
+        @media (max-width: 480px) {
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="nav__container">
+            <a href="/" class="nav__logo">
+                <img src="/AppIcon.png" alt="Solfege PRO" class="nav__logo-icon">
+                <span class="nav__logo-text"><span lang="ja">ソルフェージュPRO</span><span lang="en">Solfege PRO</span><span lang="fr">Solfege PRO</span><span lang="de">Solfege PRO</span></span>
+            </a>
+            <ul class="nav__list">
+                <li><a href="/" class="nav__link"><span lang="ja">練習ガイド</span><span lang="en">Practice Guide</span><span lang="fr">Guide d'entraînement</span><span lang="de">Übungsleitfaden</span></a></li>
+                <li><a href="/guides/" class="nav__link active"><span lang="ja">ガイド一覧</span><span lang="en">Guides</span><span lang="fr">Guides</span><span lang="de">Leitfäden</span></a></li>
+                            <li><a href="/start-here/" class="nav__link"><span lang="ja">どこから始める？</span><span lang="en">Where to Start?</span><span lang="fr">Par où commencer ?</span><span lang="de">Wo anfangen?</span></a></li>
+            </ul>
+            <div class="nav__settings">
+                <button class="settings-btn" id="lang-toggle" title="Toggle language">
+                    <span id="lang-text">EN</span>
+                </button>
+                <button class="hamburger-btn" id="hamburger-btn" aria-label="Menu" aria-expanded="false" aria-controls="drawer">
+                    <span class="hamburger-btn__line"></span>
+                    <span class="hamburger-btn__line"></span>
+                    <span class="hamburger-btn__line"></span>
+                </button>
+            </div>
+        </div>
+    </nav>
+        <!-- Mobile drawer (hidden on desktop) -->
+        <div class="drawer-overlay" id="drawer-overlay"></div>
+        <aside class="drawer" id="drawer" aria-label="Mobile menu" aria-hidden="true" inert>
+            <div class="drawer__header">
+                <span class="drawer__title"><span lang="ja">メニュー</span><span lang="en">Menu</span><span lang="fr">Menu</span><span lang="de">Menü</span></span>
+                <button class="drawer__close" id="drawer-close" aria-label="Close menu">×</button>
+            </div>
+            <ul class="drawer__list">
+                    <li><a href="/" class="drawer__link"><span lang="ja">練習ガイド</span><span lang="en">Practice Guide</span><span lang="fr">Guide d'entraînement</span><span lang="de">Übungsleitfaden</span></a></li>
+                    <li><a href="/guides/" class="drawer__link active"><span lang="ja">ガイド一覧</span><span lang="en">Guides</span><span lang="fr">Guides</span><span lang="de">Leitfäden</span></a></li>
+                    <li><a href="/start-here/" class="drawer__link"><span lang="ja">どこから始める？</span><span lang="en">Where to Start?</span><span lang="fr">Par où commencer ?</span><span lang="de">Wo anfangen?</span></a></li>
+            </ul>
+        </aside>
+
+
+    <!-- Header -->
+    <header class="page-header">
+        <h1 class="page-header__title"><span lang="ja">トレーニングガイド</span><span lang="en">Training Guides</span><span lang="fr">Guides d'entraînement</span><span lang="de">Übungsleitfäden</span></h1>
+        <p class="page-header__subtitle">
+            <span lang="ja">各トレーニングの考え方、効果的な練習法、アプリでできること・できないことを正直に解説します。</span>
+            <span lang="en">Honest explanations of each training's concepts, effective practice methods, and what the app can and cannot do.</span>
+            <span lang="fr">Explications honnêtes des concepts de chaque entraînement, des méthodes de pratique efficaces et de ce que l'application peut et ne peut pas faire.</span>
+            <span lang="de">Ehrliche Erläuterungen zu den Konzepten jeder Übung, effektiven Übungsmethoden und dem, was die App leisten kann und was nicht.</span>
+        </p>
+    </header>
+
+    <!-- Guide Grid -->
+    <main class="guides-main">
+
+        <!-- Recommended reading order -->
+        <section style="background:var(--surface);border:1px solid var(--surface-light);border-left:4px solid var(--primary);border-radius:var(--radius-md);padding:var(--space-lg);margin-bottom:var(--space-xl);">
+            <div style="font-size:14px;font-weight:700;color:var(--text-primary);margin-bottom:var(--space-sm);"><span lang="ja">📍 おすすめの読み順</span><span lang="en">📍 Recommended Reading Order</span><span lang="fr">📍 Ordre de lecture recommandé</span><span lang="de">📍 Empfohlene Lesereihenfolge</span></div>
+            <p style="font-size:13px;color:var(--text-secondary);line-height:1.8;margin:0;"><span lang="ja"><strong style="color:var(--text-primary);">リズム系</strong>: ① リズム感ガイド → ⑧ グルーヴの正体（深掘り）<br><strong style="color:var(--text-primary);">音感系</strong>: ② 音程トレーニング → ③ コード認識 → ④ スケール認識 → ⑤ コード進行<br><strong style="color:var(--text-primary);">視覚・指板系</strong>: ⑥ 譜読み（音名特定）／⑦ 指板トレーニング（ギター）<br><br>はじめての方は、自分の楽器の <a href="/" style="color:var(--primary);">楽器別 Q&amp;A</a> でつまずきポイントを特定してから、関連ガイドへ進むと効率的です。迷ったら <a href="/start-here/" style="color:var(--primary);">どこから始める？</a> 診断へ。</span><span lang="en"><strong style="color:var(--text-primary);">Rhythm path</strong>: ① Rhythm Training → ⑧ Groove (deep dive)<br><strong style="color:var(--text-primary);">Pitch path</strong>: ② Interval → ③ Chord Recognition → ④ Scale Recognition → ⑤ Progression Training<br><strong style="color:var(--text-primary);">Visual / fretboard</strong>: ⑥ Note Reading / ⑦ Fretboard Training (guitar)<br><br>If you're new, start with the <a href="/" style="color:var(--primary);">instrument-specific Q&amp;A</a> on the hub to identify your pain points, then dive into the related guides. Or take the <a href="/start-here/" style="color:var(--primary);">"Where to start?"</a> diagnostic.</span><span lang="fr"><strong style="color:var(--text-primary);">Parcours rythme</strong> : ① Guide du rythme → ⑧ La nature du groove (approfondi)<br><strong style="color:var(--text-primary);">Parcours oreille</strong> : ② Intervalles → ③ Reconnaissance d'accords → ④ Reconnaissance de gammes → ⑤ Progressions<br><strong style="color:var(--text-primary);">Visuel / manche</strong> : ⑥ Lecture de partitions / ⑦ Manche de la guitare<br><br>Si vous débutez, commencez par les <a href="/" style="color:var(--primary);">Q&amp;R par instrument</a> sur la page d'accueil pour identifier vos points de blocage, puis enchaînez avec les guides correspondants. En cas d'hésitation, lancez le diagnostic <a href="/start-here/" style="color:var(--primary);">« Par où commencer ? »</a>.</span><span lang="de"><strong style="color:var(--text-primary);">Rhythmus-Pfad</strong>: ① Rhythmus-Leitfaden → ⑧ Das Wesen des Grooves (Vertiefung)<br><strong style="color:var(--text-primary);">Gehör-Pfad</strong>: ② Intervalle → ③ Akkord-Erkennung → ④ Skalen-Erkennung → ⑤ Akkordfolgen<br><strong style="color:var(--text-primary);">Visuell / Griffbrett</strong>: ⑥ Notenlesen / ⑦ Griffbrett-Training (Gitarre)<br><br>Wenn du neu bist, beginne mit den <a href="/" style="color:var(--primary);">instrumentenspezifischen Q&amp;A</a> auf der Startseite, um deine Schwachstellen zu identifizieren, und gehe dann zu den passenden Leitfäden über. Unsicher? Nutze die Diagnose <a href="/start-here/" style="color:var(--primary);">„Wo anfangen?"</a>.</span></p>
+        </section>
+
+        <div class="guides-grid">
+
+            <a href="/guides/rhythm-training/" class="guide-card">
+                <div class="guide-card__icon"><svg class="icon" aria-hidden="true"><use href="/assets/icons.svg#icon-drum"></use></svg></div>
+                <div class="guide-card__title"><span lang="ja">リズム感ガイド</span><span lang="en">Rhythm Training Guide</span><span lang="fr">Guide du rythme</span><span lang="de">Rhythmus-Leitfaden</span></div>
+                <div class="guide-card__desc"><span lang="ja">前乗り・後乗り・ばらつき・ポケットを分解して理解する。タイミング精度の計測と改善サイクル。</span><span lang="en">Breaking down rushing, dragging, inconsistency, and pocket. Timing measurement and improvement cycle.</span><span lang="fr">Décomposer le rushing, le dragging, l'instabilité et le pocket. Mesure et cycle d'amélioration de la précision rythmique.</span><span lang="de">Zerlegung von Vorlauf, Nachlauf, Streuung und Pocket. Messung der Timing-Genauigkeit und Verbesserungszyklus.</span></div>
+                <span class="guide-card__tag">Rhythm Training</span>
+            </a>
+
+            <a href="/guides/groove-training/" class="guide-card">
+                <div class="guide-card__icon"><svg class="icon" aria-hidden="true"><use href="/assets/icons.svg#icon-audio-lines"></use></svg></div>
+                <div class="guide-card__title"><span lang="ja">グルーヴの正体 — 「正確なのに硬い」を超える</span><span lang="en">The Nature of Groove — Beyond "Accurate but Stiff"</span><span lang="fr">La nature du groove — au-delà du « précis mais rigide »</span><span lang="de">Das Wesen des Grooves — jenseits von „präzise, aber steif"</span></div>
+                <div class="guide-card__desc"><span lang="ja">予測と張力のバランスがグルーヴを生む。研究知見をもとに、構成要素と段階的な鍛え方を解説。</span><span lang="en">Groove emerges from the balance of prediction and tension. Elements and step-by-step training based on research.</span><span lang="fr">Le groove naît de l'équilibre entre anticipation et tension. Éléments et entraînement progressif fondés sur la recherche.</span><span lang="de">Groove entsteht aus dem Gleichgewicht von Antizipation und Spannung. Bestandteile und schrittweises Training auf wissenschaftlicher Basis.</span></div>
+                <span class="guide-card__tag">Rhythm</span>
+                <span class="guide-card__tag guide-card__tag--deep-dive"><span lang="ja">深掘り</span><span lang="en">Deep Dive</span><span lang="fr">Approfondi</span><span lang="de">Vertiefung</span></span>
+            </a>
+
+            <a href="/guides/interval-training/" class="guide-card">
+                <div class="guide-card__icon"><svg class="icon" aria-hidden="true"><use href="/assets/icons.svg#icon-music-note"></use></svg></div>
+                <div class="guide-card__title"><span lang="ja">音程トレーニングガイド</span><span lang="en">Interval Recognition Guide</span><span lang="fr">Guide des intervalles</span><span lang="de">Intervall-Leitfaden</span></div>
+                <div class="guide-card__desc"><span lang="ja">13種類のインターバルを理解し、相対音感を鍛える。段階的な難易度と苦手克服。</span><span lang="en">Understanding 13 intervals and training relative pitch. Step-by-step difficulty and weak point focus.</span><span lang="fr">Comprendre les 13 intervalles et travailler l'oreille relative. Difficulté progressive et travail ciblé des points faibles.</span><span lang="de">Die 13 Intervalle verstehen und das relative Gehör trainieren. Schrittweise Steigerung und Fokus auf Schwachpunkte.</span></div>
+                <span class="guide-card__tag">Interval Training</span>
+            </a>
+
+            <a href="/guides/sight-reading/" class="guide-card">
+                <div class="guide-card__icon"><svg class="icon" aria-hidden="true"><use href="/assets/icons.svg#icon-book-open"></use></svg></div>
+                <div class="guide-card__title"><span lang="ja">譜読みガイド</span><span lang="en">Sight Reading Guide</span><span lang="fr">Guide de lecture à vue</span><span lang="de">Notenlese-Leitfaden</span></div>
+                <div class="guide-card__desc"><span lang="ja">五線譜を素早く正確に読むための基礎。ランドマークノート法と段階的な練習ステップ。</span><span lang="en">Foundations for reading music notation quickly. Landmark note method and progressive practice steps.</span><span lang="fr">Bases pour lire rapidement et avec précision la portée. Méthode des notes repères et progression par étapes.</span><span lang="de">Grundlagen für schnelles, präzises Notenlesen. Landmark-Noten-Methode und schrittweise Übungsprogression.</span></div>
+                <span class="guide-card__tag">Sight Reading</span>
+            </a>
+
+            <a href="/guides/fretboard-training/" class="guide-card">
+                <div class="guide-card__icon"><svg class="icon" aria-hidden="true"><use href="/assets/icons.svg#icon-guitar"></use></svg></div>
+                <div class="guide-card__title"><span lang="ja">指板トレーニングガイド</span><span lang="en">Fretboard Training Guide</span><span lang="fr">Guide du manche</span><span lang="de">Griffbrett-Leitfaden</span></div>
+                <div class="guide-card__desc"><span lang="ja">ギターのフレットボードを効率的に習得する。オクターブシェイプとフレット範囲ごとの攻略。</span><span lang="en">Efficiently learning guitar note positions. Octave shapes and range-based progression.</span><span lang="fr">Apprendre efficacement les positions sur le manche de la guitare. Octave shapes et progression par zones de cases.</span><span lang="de">Die Gitarrenpositionen effizient lernen. Oktavformen und bundbereichsbasierter Aufbau.</span></div>
+                <span class="guide-card__tag">Fretboard Training</span>
+            </a>
+
+            <a href="/guides/ear-training-chords/" class="guide-card">
+                <div class="guide-card__icon"><svg class="icon" aria-hidden="true"><use href="/assets/icons.svg#icon-piano"></use></svg></div>
+                <div class="guide-card__title"><span lang="ja">コード認識ガイド</span><span lang="en">Chord Recognition Guide</span><span lang="fr">Guide de reconnaissance des accords</span><span lang="de">Leitfaden zur Akkord-Erkennung</span></div>
+                <div class="guide-card__desc"><span lang="ja">和音の響きを聴き分ける力を理解する。トライアドから7thコード、テンションまで段階的に。</span><span lang="en">Understanding chord quality recognition. From triads to 7th chords and tensions, step by step.</span><span lang="fr">Comprendre la reconnaissance de la qualité des accords. Des triades aux septièmes et tensions, par étapes.</span><span lang="de">Akkordqualitäten erkennen lernen. Von Dreiklängen über Septakkorde bis zu Optionstönen — Schritt für Schritt.</span></div>
+                <span class="guide-card__tag">Chord Recognition</span>
+            </a>
+
+            <a href="/guides/ear-training-scales/" class="guide-card">
+                <div class="guide-card__icon"><svg class="icon" aria-hidden="true"><use href="/assets/icons.svg#icon-music-staff"></use></svg></div>
+                <div class="guide-card__title"><span lang="ja">スケール認識ガイド</span><span lang="en">Scale Recognition Guide</span><span lang="fr">Guide de reconnaissance des gammes</span><span lang="de">Leitfaden zur Skalen-Erkennung</span></div>
+                <div class="guide-card__desc"><span lang="ja">音階とモードを聴き分ける力を理解する。チャーチモードの特性音と段階的な練習。</span><span lang="en">Understanding scales and modes by ear. Church mode characteristics and progressive practice.</span><span lang="fr">Reconnaître les gammes et les modes à l'oreille. Notes caractéristiques des modes ecclésiastiques et progression.</span><span lang="de">Skalen und Modi nach Gehör erkennen. Charakteristische Töne der Kirchentonarten und progressives Üben.</span></div>
+                <span class="guide-card__tag">Scale Recognition</span>
+            </a>
+
+            <a href="/guides/ear-training-progressions/" class="guide-card">
+                <div class="guide-card__icon"><svg class="icon" aria-hidden="true"><use href="/assets/icons.svg#icon-music-notes"></use></svg></div>
+                <div class="guide-card__title"><span lang="ja">コード進行ガイド</span><span lang="en">Progression Training Guide</span><span lang="fr">Guide des progressions d'accords</span><span lang="de">Leitfaden zu Akkordfolgen</span></div>
+                <div class="guide-card__desc"><span lang="ja">和声の流れを聴き取る力を理解する。機能和声（T/SD/D）の考え方と段階的な練習。</span><span lang="en">Understanding harmonic movement. Functional harmony (T/SD/D) concepts and step-by-step practice.</span><span lang="fr">Comprendre le mouvement harmonique. Concepts de l'harmonie fonctionnelle (T/SD/D) et progression par étapes.</span><span lang="de">Harmonische Bewegung verstehen. Konzepte der Funktionsharmonik (T/SD/D) und schrittweises Üben.</span></div>
+                <span class="guide-card__tag">Progression Training</span>
+            </a>
+
+            <!-- Cognitive Science series (coming soon) -->
+            <div class="guides-subhead">
+                <svg class="icon" aria-hidden="true" style="width:1em; height:1em; color:#A78BFA;"><use href="/assets/icons.svg#icon-flask"></use></svg>
+                <span><span lang="ja">認知科学シリーズ</span><span lang="en">Cognitive Science Series</span><span lang="fr">Série Sciences cognitives</span><span lang="de">Kognitionswissenschaft-Serie</span></span>
+                <span class="guides-subhead__hint"><span lang="ja">研究知見ベースの読み物</span><span lang="en">Research-grounded reading</span><span lang="fr">Lectures fondées sur la recherche</span><span lang="de">Forschungsbasierte Lektüre</span></span>
+            </div>
+
+            <a href="/guides/practice-spacing/" class="guide-card">
+                <div class="guide-card__icon"><svg class="icon" aria-hidden="true"><use href="/assets/icons.svg#icon-flask"></use></svg></div>
+                <div class="guide-card__title"><span lang="ja">練習時間の最適配分</span><span lang="en">Optimal Practice Scheduling</span><span lang="fr">Répartition optimale du temps d'entraînement</span><span lang="de">Optimale Aufteilung der Übungszeit</span></div>
+                <div class="guide-card__desc"><span lang="ja">spacing・interleaving・testing effect — 同じ時間で 2〜3 倍の定着を得るスケジュール設計。</span><span lang="en">Spacing, interleaving, testing effect — schedule designs that yield 2–3× retention from the same hours.</span><span lang="fr">Spacing, interleaving, testing effect — des plannings qui multiplient par 2 à 3 la rétention à temps égal.</span><span lang="de">Spacing, Interleaving, Testing Effect — Pläne, die mit gleichem Zeitaufwand 2–3× mehr Behaltensleistung bringen.</span></div>
+                <div class="guide-card__tags"><span class="guide-card__tag">Cross-cutting</span><span class="guide-card__tag guide-card__tag--science"><span lang="ja">認知科学</span><span lang="en">Cognitive Science</span><span lang="fr">Sciences cognitives</span><span lang="de">Kognitionswissenschaft</span></span></div>
+            </a>
+
+            <a href="/guides/eye-hand-span/" class="guide-card">
+                <div class="guide-card__icon"><svg class="icon" aria-hidden="true"><use href="/assets/icons.svg#icon-book-open"></use></svg></div>
+                <div class="guide-card__title"><span lang="ja">初見の 3 秒先読み</span><span lang="en">The 3-Second Look-Ahead in Sight Reading</span><span lang="fr">Anticiper 3 secondes en lecture à vue</span><span lang="de">Drei Sekunden Vorausschau beim Vom-Blatt-Spielen</span></div>
+                <div class="guide-card__desc"><span lang="ja">eye-hand span 研究から、プロが「弾いている音の先」を見ている仕組みと訓練法。</span><span lang="en">Drawing on eye-hand-span research: how pros read ahead of what they play, and how to train it.</span><span lang="fr">À partir des recherches sur l'eye-hand span : comment les pros lisent en avance, et comment s'entraîner.</span><span lang="de">Auf Basis der Eye-Hand-Span-Forschung: wie Profis vorauslesen und wie man es trainiert.</span></div>
+                <div class="guide-card__tags"><span class="guide-card__tag">Reading</span><span class="guide-card__tag guide-card__tag--science"><span lang="ja">認知科学</span><span lang="en">Cognitive Science</span><span lang="fr">Sciences cognitives</span><span lang="de">Kognitionswissenschaft</span></span></div>
+            </a>
+
+            <a href="/guides/bpm-60-wall/" class="guide-card">
+                <div class="guide-card__icon"><svg class="icon" aria-hidden="true"><use href="/assets/icons.svg#icon-audio-lines"></use></svg></div>
+                <div class="guide-card__title"><span lang="ja">BPM 60 の壁</span><span lang="en">The BPM 60 Wall</span><span lang="fr">Le mur du 60 BPM</span><span lang="de">Die 60-BPM-Wand</span></div>
+                <div class="guide-card__desc"><span lang="ja">「遅いほど簡単」は誤り。preferred tempo と subdivision 戦略で長い拍を保つ方法。</span><span lang="en">"Slower is easier" is a myth. How to hold long beats using preferred-tempo research and subdivision strategy.</span><span lang="fr">« Plus lent est plus facile » est un mythe. Tenir les temps longs grâce au tempo préféré et aux subdivisions.</span><span lang="de">„Langsamer ist leichter" ist ein Mythos. Lange Schläge halten mit Preferred-Tempo-Forschung und Subdivisions-Strategie.</span></div>
+                <div class="guide-card__tags"><span class="guide-card__tag">Rhythm</span><span class="guide-card__tag guide-card__tag--science"><span lang="ja">認知科学</span><span lang="en">Cognitive Science</span><span lang="fr">Sciences cognitives</span><span lang="de">Kognitionswissenschaft</span></span></div>
+            </a>
+
+            <a href="/guides/mental-practice/" class="guide-card">
+                <div class="guide-card__icon"><svg class="icon" aria-hidden="true"><use href="/assets/icons.svg#icon-music-note"></use></svg></div>
+                <div class="guide-card__title"><span lang="ja">メンタルプラクティス</span><span lang="en">Mental Practice</span><span lang="fr">Pratique mentale</span><span lang="de">Mentales Üben</span></div>
+                <div class="guide-card__desc"><span lang="ja">楽器なしでも脳は学ぶ。Pascual-Leone の TMS 実験から見えてくる、移動中・通学中の効果的なイメトレ法。</span><span lang="en">The brain learns without the instrument. Effective mental imagery on the commute, from Pascual-Leone's TMS experiments.</span><span lang="fr">Le cerveau apprend sans l'instrument. Imagerie mentale efficace en déplacement, depuis les expériences TMS de Pascual-Leone.</span><span lang="de">Das Gehirn lernt auch ohne Instrument. Wirksame mentale Vorstellung unterwegs — aus Pascual-Leones TMS-Experimenten.</span></div>
+                <div class="guide-card__tags"><span class="guide-card__tag">Cross-cutting</span><span class="guide-card__tag guide-card__tag--science"><span lang="ja">認知科学</span><span lang="en">Cognitive Science</span><span lang="fr">Sciences cognitives</span><span lang="de">Kognitionswissenschaft</span></span></div>
+            </a>
+
+            <a href="/guides/absolute-pitch-adult/" class="guide-card">
+                <div class="guide-card__icon"><svg class="icon" aria-hidden="true"><use href="/assets/icons.svg#icon-piano"></use></svg></div>
+                <div class="guide-card__title"><span lang="ja">大人から絶対音感は獲得できるか</span><span lang="en">Can Adults Acquire Absolute Pitch?</span><span lang="fr">L'oreille absolue à l'âge adulte ?</span><span lang="de">Absolutes Gehör als Erwachsener?</span></div>
+                <div class="guide-card__desc"><span lang="ja">研究が示す「できること」と「できないこと」。Van Hedger / Wong の最新研究と「白鍵バイアス」の罠、相対音感との機会費用を比較する。</span><span lang="en">What the research shows you can and cannot train. Confronts the "white-key bias" trap and recent Van Hedger / Wong findings, weighed against relative-pitch ROI.</span><span lang="fr">Ce que la recherche démontre possible — et impossible. Affronte le piège du « biais des touches blanches » et les récentes recherches Van Hedger / Wong, face au ROI de l'oreille relative.</span><span lang="de">Was die Forschung als trainierbar und untrainierbar zeigt. Die „White-Key-Bias"-Falle und aktuelle Befunde (Van Hedger, Wong) — abgewogen gegen den ROI des relativen Gehörs.</span></div>
+                <div class="guide-card__tags"><span class="guide-card__tag">Interval / Pitch</span><span class="guide-card__tag guide-card__tag--science"><span lang="ja">認知科学</span><span lang="en">Cognitive Science</span><span lang="fr">Sciences cognitives</span><span lang="de">Kognitionswissenschaft</span></span></div>
+            </a>
+
+            <a href="/guides/relative-pitch-adult-3months/" class="guide-card">
+                <div class="guide-card__icon"><svg class="icon" aria-hidden="true"><use href="/assets/icons.svg#icon-music-note"></use></svg></div>
+                <div class="guide-card__title"><span lang="ja">大人から始める相対音感トレーニング — 3ヶ月で耳コピできる具体プラン</span><span lang="en">Relative Pitch Training for Adults — A 3-Month Plan to Start Ear-Copying</span><span lang="fr">Entraînement à l'oreille relative pour adultes — un plan de 3 mois pour relever à l'oreille</span><span lang="de">Relatives Gehör für Erwachsene — ein 3-Monats-Plan zum Heraushören</span></div>
+                <div class="guide-card__desc"><span lang="ja">音楽で本当に必要なのは絶対音感ではなく相対音感。Month 1 インターバル → Month 2 コード → Month 3 進行の週次プランで、3ヶ月で耳コピできる実用レベルへ。</span><span lang="en">Relative pitch — not absolute — is what music actually requires. Week-by-week plan (Month 1: intervals, Month 2: chords, Month 3: progressions) brings ear-copying within reach in 3 months.</span><span lang="fr">C'est l'oreille relative, pas absolue, dont la musique a vraiment besoin. Plan semaine par semaine (mois 1 : intervalles, mois 2 : accords, mois 3 : progressions) pour relever à l'oreille en 3 mois.</span><span lang="de">Was Musik wirklich braucht, ist relatives — nicht absolutes — Gehör. Wochenplan (Monat 1: Intervalle, Monat 2: Akkorde, Monat 3: Akkordfolgen) für praxistaugliches Heraushören in 3 Monaten.</span></div>
+                <div class="guide-card__tags"><span class="guide-card__tag">Interval / Pitch</span><span class="guide-card__tag guide-card__tag--deep-dive"><span lang="ja">実践プラン</span><span lang="en">Practice Plan</span><span lang="fr">Plan pratique</span><span lang="de">Praxisplan</span></span></div>
+            </a>
+
+            <a href="/guides/piano-parent-home-support/" class="guide-card">
+                <div class="guide-card__icon"><svg class="icon" aria-hidden="true"><use href="/assets/icons.svg#icon-piano"></use></svg></div>
+                <div class="guide-card__title"><span lang="ja">子供のピアノ、家で何をやらせるべきか — 親が音楽専門じゃなくてもできる支援</span><span lang="en">Piano Practice for Kids — What Non-Musician Parents Can Actually Do at Home</span><span lang="fr">Piano pour enfants — ce que les parents non-musiciens peuvent vraiment faire à la maison</span><span lang="de">Klavier für Kinder — was musikfremde Eltern zuhause wirklich tun können</span></div>
+                <div class="guide-card__desc"><span lang="ja">家庭学習が上達の大部分を決める。譜読み・リズム・音感の3軸を、楽器の外側の練習として日々入れる方法。レッスン外で何をやらせるか、優先順位付きで具体ガイド。</span><span lang="en">Home practice drives most of the progress. Build note-reading, rhythm, and ear training as "off-instrument" routines. A prioritized, concrete guide for non-musician parents.</span><span lang="fr">La pratique à la maison décide de l'essentiel des progrès. Construisez la lecture, le rythme et l'oreille comme routines « hors instrument ». Un guide concret et hiérarchisé pour parents non-musiciens.</span><span lang="de">Häusliches Üben bestimmt den größten Teil des Fortschritts. Notenlesen, Rhythmus und Gehör als „instrumentenfreie" Routinen. Konkrete, priorisierte Anleitung für musikfremde Eltern.</span></div>
+                <div class="guide-card__tags"><span class="guide-card__tag">Piano</span><span class="guide-card__tag guide-card__tag--deep-dive"><span lang="ja">実践プラン</span><span lang="en">Practice Plan</span><span lang="fr">Plan pratique</span><span lang="de">Praxisplan</span></span></div>
+            </a>
+
+            <a href="/guides/guitar-10years-cant-ear-copy/" class="guide-card">
+                <div class="guide-card__icon"><svg class="icon" aria-hidden="true"><use href="/assets/icons.svg#icon-guitar"></use></svg></div>
+                <div class="guide-card__title"><span lang="ja">ギター歴10年、耳コピが今もできない人へ — 才能ではなく順番の問題</span><span lang="en">Ten Years of Guitar, Still Can't Ear-Copy — It's the Order, Not Talent</span><span lang="fr">Dix ans de guitare, toujours incapable de relever à l'oreille — l'ordre, pas le talent</span><span lang="de">Zehn Jahre Gitarre, immer noch kein Heraushören — eine Frage der Reihenfolge, nicht des Talents</span></div>
+                <div class="guide-card__desc"><span lang="ja">弾けるのに耳コピできない原因は才能ではなく練習の順番。インターバル → 3和音 → 7thコード → コード進行 → 実曲、の5段階を守れば大人から3ヶ月で実用レベルへ。</span><span lang="en">Players who can perform but not transcribe are missing the ordered training: intervals → triads → 7ths → progressions → real songs. Adults reach practical level in 3 months.</span><span lang="fr">Savoir jouer sans relever à l'oreille n'est pas un problème de talent mais d'ordre d'entraînement : intervalles → triades → 7e → progressions → vrais morceaux. 3 mois suffisent à l'âge adulte.</span><span lang="de">Spielen können ohne Heraushören ist keine Talentfrage, sondern eine Reihenfolge: Intervalle → Dreiklänge → Septakkorde → Akkordfolgen → echte Songs. Erwachsene erreichen das Praxisniveau in 3 Monaten.</span></div>
+                <div class="guide-card__tags"><span class="guide-card__tag">Ear Training</span><span class="guide-card__tag guide-card__tag--deep-dive"><span lang="ja">実践プラン</span><span lang="en">Practice Plan</span><span lang="fr">Plan d'entraînement</span><span lang="de">Praxisplan</span></span></div>
+            </a>
+
+            <a href="/guides/dtm-chord-progression-variety/" class="guide-card">
+                <div class="guide-card__icon"><svg class="icon" aria-hidden="true"><use href="/assets/icons.svg#icon-music-note"></use></svg></div>
+                <div class="guide-card__title"><span lang="ja">DTMで作る曲が単調になる本当の理由 — 理論じゃなくて耳の引き出し</span><span lang="en">Why Your DTM Tracks Sound Monotonous — Not Theory, Ear Vocabulary</span><span lang="fr">Pourquoi vos morceaux MAO sonnent monotones — pas la théorie, le vocabulaire d'oreille</span><span lang="de">Warum deine DAW-Tracks monoton klingen — nicht Theorie, sondern Gehör-Vokabular</span></div>
+                <div class="guide-card__desc"><span lang="ja">DTMで作る曲が同じに聞こえる原因は理論不足ではなく「耳の語彙」不足。3つの耳トレ (ダイアトニック認識・ノンダイアトニック・実曲抽出) で3ヶ月で引き出しが増える。</span><span lang="en">DAW tracks all sounding the same? It's not theory you lack — it's an ear vocabulary. Three ear-training routines (diatonic recognition, non-diatonic, real-song extraction) expand the palette in 3 months.</span><span lang="fr">Vos morceaux MAO se ressemblent tous ? Ce n'est pas la théorie qui manque, c'est le vocabulaire d'oreille. Trois entraînements (reconnaissance diatonique, non-diatonique, extraction de morceaux) élargissent la palette en 3 mois.</span><span lang="de">Klingen alle DAW-Tracks gleich? Es fehlt nicht Theorie, sondern Gehör-Vokabular. Drei Gehörbildungsroutinen (diatonisch, nicht-diatonisch, echte Songs) erweitern die Palette in 3 Monaten.</span></div>
+                <div class="guide-card__tags"><span class="guide-card__tag"><span lang="ja">作曲・DTM</span><span lang="en">Composition / DTM</span><span lang="fr">Composition / MAO</span><span lang="de">Komposition / DAW</span></span><span class="guide-card__tag guide-card__tag--deep-dive"><span lang="ja">実践プラン</span><span lang="en">Practice Plan</span><span lang="fr">Plan d'entraînement</span><span lang="de">Praxisplan</span></span></div>
+            </a>
+
+            <a href="/guides/session-5min-checklist/" class="guide-card">
+                <div class="guide-card__icon"><svg class="icon" aria-hidden="true"><use href="/assets/icons.svg#icon-compass"></use></svg></div>
+                <div class="guide-card__title"><span lang="ja">ジャムセッション5分前 — 確認すべき7項目チェックリスト</span><span lang="en">Five Minutes Before a Jam Session — 7 Things to Check</span><span lang="fr">Cinq minutes avant une jam session — 7 vérifications à faire</span><span lang="de">Fünf Minuten vor der Jam-Session — 7 Dinge zum Checken</span></div>
+                <div class="guide-card__desc"><span lang="ja">セッションで頭が真っ白になる確率を大幅に下げる事前準備。キー確認、ローマ数字進行、コードトーン歌唱、失敗リカバリーの7項目チェックリスト。</span><span lang="en">A 7-item pre-flight checklist that sharply cuts the blank-mind-on-stage rate: key check, Roman-numeral progressions, chord-tone vocalization, recovery patterns, and more.</span><span lang="fr">Une checklist en 7 points qui réduit fortement le trou noir sur scène : vérification de tonalité, progressions en chiffres romains, vocalisation des notes d'accord, plans de récupération.</span><span lang="de">Eine 7-Punkte-Checkliste, die die „Aussetzer-auf-der-Bühne"-Quote deutlich senkt: Tonart-Check, Stufen-Progressionen, Akkordtöne singen, Recovery-Pläne, und mehr.</span></div>
+                <div class="guide-card__tags"><span class="guide-card__tag"><span lang="ja">セッション・即興</span><span lang="en">Session / Improv</span><span lang="fr">Session / Impro</span><span lang="de">Session / Improvisation</span></span><span class="guide-card__tag guide-card__tag--deep-dive"><span lang="ja">チェックリスト</span><span lang="en">Checklist</span><span lang="fr">Checklist</span><span lang="de">Checkliste</span></span></div>
+            </a>
+
+            <a href="/guides/exam-solfege-6week-plan/" class="guide-card">
+                <div class="guide-card__icon"><svg class="icon" aria-hidden="true"><use href="/assets/icons.svg#icon-book-open"></use></svg></div>
+                <div class="guide-card__title"><span lang="ja">音大・教員試験ソルフェージュ 6週間集中プラン</span><span lang="en">6-Week Solfege Prep — For Music College and Teacher Exams</span><span lang="fr">Solfège en 6 semaines — pour conservatoire et concours d'enseignant</span><span lang="de">Solfège in 6 Wochen — für Musikhochschule und Lehramtsprüfung</span></div>
+                <div class="guide-card__desc"><span lang="ja">音大入試・教員試験のソルフェージュを6週間で合格圏内へ。聴音・視唱・楽典の3軸を週次プランで体系化、模擬試験 × 3 と弱点補強まで含む。</span><span lang="en">Build up to conservatory or teacher-exam solfege in 6 weeks. Weekly plan covering listening, sight-singing, and theory — with 3 mock exams and weak-point follow-ups.</span><span lang="fr">Atteindre le niveau du conservatoire ou du concours en 6 semaines. Plan hebdomadaire pour la dictée, la lecture chantée et la théorie — incluant 3 examens blancs et renforcement ciblé.</span><span lang="de">In 6 Wochen zum Konservatoriums- oder Lehramtsprüfungs-Niveau. Wochenplan für Gehörbildung, Vom-Blatt-Singen und Theorie — mit 3 Probeklausuren und gezielter Schwachpunkt-Arbeit.</span></div>
+                <div class="guide-card__tags"><span class="guide-card__tag"><span lang="ja">受験対策</span><span lang="en">Exam Prep</span><span lang="fr">Préparation aux examens</span><span lang="de">Prüfungsvorbereitung</span></span><span class="guide-card__tag guide-card__tag--deep-dive"><span lang="ja">実践プラン</span><span lang="en">Practice Plan</span><span lang="fr">Plan d'entraînement</span><span lang="de">Praxisplan</span></span></div>
+            </a>
+
+        </div>
+
+        <div class="guides-back">
+            <a href="https://apps.apple.com/jp/app/id6756626617" class="app-store-link" aria-label="Download on the App Store">
+                <span lang="ja"><img class="app-store-link__img" src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/ja-jp" alt="App Storeで入手"></span>
+                <span lang="en"><img class="app-store-link__img" src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/en-us" alt="Download on the App Store"></span>
+                <span lang="fr"><img class="app-store-link__img" src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/fr-fr" alt="Télécharger dans l'App Store"></span>
+                <span lang="de"><img class="app-store-link__img" src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/de-de" alt="Laden im App Store"></span>
+            </a>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="guides-footer">
+        <p class="guides-footer__text">
+            &copy; 2026 <span lang="ja">ソルフェージュPRO</span><span lang="en">Solfege PRO</span><span lang="fr">Solfege PRO</span><span lang="de">Solfege PRO</span> &mdash;
+            <a href="https://apps.apple.com/jp/app/id6756626617" class="guides-footer__link">App Store</a>
+        </p>
+    </footer>
+    <script src="/bootstrap.js?v=1" defer></script>
+</body>
+</html>
