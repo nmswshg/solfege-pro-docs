@@ -61,13 +61,18 @@
             margin: var(--space-xl) 0;
             border: 1px solid var(--surface-light);
         }
+        /* Wide: 4 nodes in one row with → arrows. Below 600 px the row
+           would wrap awkwardly (3 + 1 with an orphan arrow trailing on
+           row 1 and leading row 2), so we flip to a vertical column and
+           swap the arrow content to ↓ inside the same media query —
+           same Hard rule #5 pattern as the global .cycle-diagram. */
         .function-cycle__diagram {
             display: flex;
+            flex-wrap: nowrap;
             justify-content: center;
             align-items: center;
-            gap: var(--space-md);
+            gap: var(--space-sm);
             margin-bottom: var(--space-xl);
-            flex-wrap: wrap;
         }
         .function-cycle__node {
             width: 100px;
@@ -79,6 +84,20 @@
             justify-content: center;
             border: 2px solid;
             text-align: center;
+            flex-shrink: 0;
+        }
+        @media (max-width: 600px) {
+            .function-cycle__diagram {
+                flex-direction: column;
+                gap: var(--space-xs);
+            }
+            .function-cycle__node {
+                width: 84px;
+                height: 84px;
+            }
+            .function-cycle__arrow {
+                transform: rotate(90deg);
+            }
         }
         .function-cycle__node--t {
             border-color: #4ADE80;
