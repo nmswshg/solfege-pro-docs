@@ -37,6 +37,27 @@ npm run check-layout   # Playwright sweep — 12 viewport で overflow / directi
 
 ---
 
+## CRITICAL: Language purity (since 2026-05-29)
+
+**出力 HTML には対象言語のテキストだけが含まれるよう、source / build / verify の三層で防御する。**
+
+```bash
+npm run check-lang     # python3 tools/lang-purity-check.py — 全 output HTML を audit
+```
+
+実質的な leak はゼロが前提。許容される finding は (a) References 内の英語論文タイトル、(b) `404.html` の 4-lang fallback のみ。
+
+### Hard rules
+
+1. **source の本文に bare text を書くな**: visible body 領域は常に `<span lang="ja"></span><span lang="en"></span><span lang="fr"></span><span lang="de"></span>` の 4 つで wrap。short label (chip, dt, table cell) も例外なし
+2. **build の depth-tracking parser を壊すな**: `stripOrUnwrapLangSpans()` / `stripOtherLangMermaid()` を lazy regex に戻すと、ネスト span / 4 言語 mermaid block が全 lang に漏洩する (2026-05-29 に発生)
+3. **mermaid 図は 4 言語分書いてよい**: build が `<div class="mermaid-lang" lang="X">` を target lang 以外 strip する
+4. **新規 label の翻訳は アプリの `Localizable.strings` を正準とする**
+
+詳細・経緯: `.claude/rules/lang-purity-discipline.md` / `.claude/docs/build-pipeline.md` / `.claude/docs/session-2026-05-29-lang-purity.md`
+
+---
+
 ## Pricing source-of-truth (since 2026-05-23)
 
 価格表記は **`data/prices.json` が単一の source of truth**。HTML に直書きしない。
