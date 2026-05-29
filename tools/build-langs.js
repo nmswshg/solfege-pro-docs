@@ -405,6 +405,13 @@ function transformToLang(html, srcPath, lang) {
     //    language variant. Use a depth-tracking parser instead.
     out = stripOrUnwrapLangSpans(out, lang);
 
+    // 10. Strip non-target <div class="mermaid-lang" lang="Y">...</div>
+    //     blocks. These contain Mermaid source for each language; without
+    //     stripping, the JA page's HTML includes the EN/FR/DE mermaid
+    //     definitions as visible text (CSS hides them at render time but
+    //     crawlers still see them).
+    out = stripOtherLangMermaid(out, lang);
+
     return out;
 }
 
@@ -473,6 +480,63 @@ function stripOrUnwrapLangSpans(html, targetLang) {
 
         cursor = blockEnd;
         langSpanRe.lastIndex = cursor;
+    }
+    return result;
+}
+
+/**
+ * Drop every <div class="mermaid-lang" lang="Y">...</div> whose Y is not
+ * targetLang. Uses depth-tracking on <div> tags to handle the nested
+ * <pre class="mermaid"> inside (Mermaid source itself contains no <div>,
+ * but pre tags and others may be present in the future).
+ */
+function stripOtherLangMermaid(html, targetLang) {
+    const containerRe = /<div\s+class="mermaid-lang"\s+lang="(ja|en|fr|de)">/g;
+    const openDivRe = /<div\b[^>]*>/g;
+    const closeDivRe = /<\/div>/g;
+    let result = '';
+    let cursor = 0;
+
+    while (true) {
+        containerRe.lastIndex = cursor;
+        const m = containerRe.exec(html);
+        if (!m) {
+            result += html.slice(cursor);
+            break;
+        }
+        const blockLang = m[1];
+        const innerStart = m.index + m[0].length;
+
+        let depth = 1;
+        let scan = innerStart;
+        let blockEnd = -1;
+        while (depth > 0) {
+            openDivRe.lastIndex = scan;
+            closeDivRe.lastIndex = scan;
+            const next_open = openDivRe.exec(html);
+            const next_close = closeDivRe.exec(html);
+            if (!next_close) {
+                throw new Error(`Unbalanced <div class="mermaid-lang" lang="${blockLang}"> — no matching </div>`);
+            }
+            if (next_open && next_open.index < next_close.index) {
+                depth++;
+                scan = next_open.index + next_open[0].length;
+            } else {
+                depth--;
+                if (depth === 0) {
+                    blockEnd = next_close.index + next_close[0].length;
+                } else {
+                    scan = next_close.index + next_close[0].length;
+                }
+            }
+        }
+
+        if (blockLang === targetLang) {
+            result += html.slice(cursor, blockEnd);
+        } else {
+            result += html.slice(cursor, m.index);
+        }
+        cursor = blockEnd;
     }
     return result;
 }
