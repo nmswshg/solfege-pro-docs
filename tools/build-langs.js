@@ -398,15 +398,83 @@ function transformToLang(html, srcPath, lang) {
     out = out.replace(/apps\.apple\.com\/jp\//g, `apps.apple.com/${APP_STORE_LOCALE[lang]}/`);
 
     // 9. Strip non-target <span lang="Y">...</span> blocks, unwrap target.
-    for (const other of LANGS_ALL) {
-        if (other === lang) continue;
-        const re = new RegExp(`<span\\s+lang="${other}">[\\s\\S]*?<\\/span>`, 'g');
-        out = out.replace(re, '');
-    }
-    const unwrapRe = new RegExp(`<span\\s+lang="${lang}">([\\s\\S]*?)<\\/span>`, 'g');
-    out = out.replace(unwrapRe, '$1');
+    //    CRITICAL: must handle NESTED <span> (e.g. <span lang="en">text
+    //    <span class="highlight">...</span> more text</span>). A lazy
+    //    regex `[\s\S]*?</span>` would stop at the FIRST </span> (the
+    //    highlight one) and leak the trailing content into every other
+    //    language variant. Use a depth-tracking parser instead.
+    out = stripOrUnwrapLangSpans(out, lang);
 
     return out;
+}
+
+/**
+ * Walk `html` and process every <span lang="X">...balanced spans...</span>
+ * block: drop the whole block if X != targetLang, otherwise unwrap (replace
+ * with inner content).
+ *
+ * Depth tracking handles arbitrary nested <span> tags inside the lang span.
+ */
+function stripOrUnwrapLangSpans(html, targetLang) {
+    const langSpanRe = /<span\s+lang="(ja|en|fr|de)">/g;
+    const openSpanRe = /<span\b[^>]*>/g;
+    const closeSpanRe = /<\/span>/g;
+    let result = '';
+    let cursor = 0;
+
+    while (true) {
+        langSpanRe.lastIndex = cursor;
+        const m = langSpanRe.exec(html);
+        if (!m) {
+            result += html.slice(cursor);
+            break;
+        }
+        // Append everything before this lang-span tag.
+        result += html.slice(cursor, m.index);
+        const spanLang = m[1];
+        const innerStart = m.index + m[0].length;
+
+        // Find matching </span> at depth 0, starting with depth = 1 (we
+        // just opened the lang-span itself).
+        let depth = 1;
+        let scan = innerStart;
+        let innerEnd = -1, blockEnd = -1;
+        while (depth > 0) {
+            openSpanRe.lastIndex = scan;
+            closeSpanRe.lastIndex = scan;
+            const next_open = openSpanRe.exec(html);
+            const next_close = closeSpanRe.exec(html);
+            if (!next_close) {
+                // Unbalanced — bail out, leave the rest as-is.
+                throw new Error(`Unbalanced <span lang="${spanLang}"> in source — no matching </span>`);
+            }
+            if (next_open && next_open.index < next_close.index) {
+                // Encountered a nested <span...>, deepen.
+                depth++;
+                scan = next_open.index + next_open[0].length;
+            } else {
+                // Encountered a </span>, pop one level.
+                depth--;
+                if (depth === 0) {
+                    innerEnd = next_close.index;
+                    blockEnd = next_close.index + next_close[0].length;
+                } else {
+                    scan = next_close.index + next_close[0].length;
+                }
+            }
+        }
+
+        const inner = html.slice(innerStart, innerEnd);
+        if (spanLang === targetLang) {
+            // Unwrap.
+            result += inner;
+        }
+        // else: drop the entire block.
+
+        cursor = blockEnd;
+        langSpanRe.lastIndex = cursor;
+    }
+    return result;
 }
 
 // --------------------------------------------------------------------
