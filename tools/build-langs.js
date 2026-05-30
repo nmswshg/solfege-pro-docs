@@ -335,6 +335,45 @@ function applyPageMetadata(html, srcPath, lang) {
     return out;
 }
 
+/**
+ * Localize the Article JSON-LD for the output language and repair @id.
+ * The source ships a single ja JSON-LD block per article; without this the
+ * en/fr/de builds emit Japanese headline/description/publisher and a dead
+ * legacy `.html` @id. Headline/description come from the per-lang
+ * page-metadata (same source as <title>/<meta description>); the publisher/
+ * author Organization name is romanized for non-ja; mainEntityOfPage.@id is
+ * rebuilt from the page's own canonical directory URL (fixes the stale .html
+ * for every language, ja included). JA headline/description are left as the
+ * hand-authored source values (they don't leak) — only @id + names change.
+ */
+function localizeJsonLd(html, srcPath, lang) {
+    const brand = lang === 'ja' ? 'ソルフェージュPRO' : 'Solfege PRO';
+    const entry = loadPageMetadata()[srcPath];
+    const canonicalId = SITE_ORIGIN + srcPathToUrlPath(srcPath, lang);
+    const ldRe = /<script type="application\/ld\+json">([\s\S]*?)<\/script>/g;
+    return html.replace(ldRe, (block, json) => {
+        let obj;
+        try { obj = JSON.parse(json); } catch (e) { return block; } // leave malformed alone
+        const visit = (node) => {
+            if (!node || typeof node !== 'object') return;
+            const type = node['@type'];
+            if (type === 'Article' || type === 'BlogPosting') {
+                if (lang !== 'ja' && entry && entry.title && entry.title[lang]) node.headline = stripSiteSuffix(entry.title[lang]);
+                if (lang !== 'ja' && entry && entry.description && entry.description[lang]) node.description = entry.description[lang];
+                if (node.mainEntityOfPage && typeof node.mainEntityOfPage === 'object') node.mainEntityOfPage['@id'] = canonicalId;
+            }
+            if (type === 'Organization' && typeof node.name === 'string') node.name = brand;
+            for (const k of Object.keys(node)) {
+                const v = node[k];
+                if (Array.isArray(v)) v.forEach(visit);
+                else if (v && typeof v === 'object') visit(v);
+            }
+        };
+        if (Array.isArray(obj)) obj.forEach(visit); else visit(obj);
+        return `<script type="application/ld+json">${JSON.stringify(obj)}</script>`;
+    });
+}
+
 // --------------------------------------------------------------------
 // Core: transform multi-lang source → single-lang output for new URL scheme
 // --------------------------------------------------------------------
@@ -378,6 +417,9 @@ function transformToLang(html, srcPath, lang) {
     // 5. og:locale
     out = out.replace(/<meta property="og:locale" content="ja_JP">/, `<meta property="og:locale" content="${OG_LOCALE[lang]}">`);
 
+    // 5b. og:site_name — romanize the brand for non-ja outputs.
+    out = out.replace(/<meta property="og:site_name" content="[^"]*">/, `<meta property="og:site_name" content="${lang === 'ja' ? 'ソルフェージュPRO' : 'Solfege PRO'}">`);
+
     // 6. og:locale:alternate block — rebuild with the OTHER three locales.
     const alternates = LANGS_ALL.filter((l) => l !== lang)
         .map((l) => `    <meta property="og:locale:alternate" content="${OG_LOCALE[l]}">`)
@@ -411,6 +453,10 @@ function transformToLang(html, srcPath, lang) {
     //     definitions as visible text (CSS hides them at render time but
     //     crawlers still see them).
     out = stripOtherLangMermaid(out, lang);
+
+    // 11. Localize the Article JSON-LD (headline/description/publisher) and
+    //     repair mainEntityOfPage.@id to this language's canonical dir URL.
+    out = localizeJsonLd(out, srcPath, lang);
 
     return out;
 }
