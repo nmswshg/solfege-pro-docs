@@ -47,11 +47,18 @@ const WIDTHS = [375, 480, 600, 720, 740, 760, 765, 768, 770, 800, 1024, 1440];
 
 test.describe.configure({ mode: 'parallel' });
 
+// Test every language variant (ja root + /en /fr /de). German's longer
+// compound words can overflow where Japanese fits — this is what caught
+// de /guides/chord-function-curriculum/ @375px. Do NOT trim to ja-only.
+const LANG_PREFIXES = ['', '/en', '/fr', '/de'];
+
+for (const prefix of LANG_PREFIXES) {
 for (const path of PAGES) {
     for (const w of WIDTHS) {
-        test(`responsive ${path} @${w}px`, async ({ page }) => {
+        const url = prefix + path;
+        test(`responsive ${url} @${w}px`, async ({ page }) => {
             await page.setViewportSize({ width: w, height: 900 });
-            await page.goto(path);
+            await page.goto(url);
             // Let lazy-loaded scripts settle (bootstrap.js inject).
             await page.waitForTimeout(150);
 
@@ -95,4 +102,5 @@ for (const path of PAGES) {
             }
         });
     }
+}
 }
