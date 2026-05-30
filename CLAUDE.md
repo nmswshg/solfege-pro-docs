@@ -10,10 +10,11 @@
 
 ```bash
 npm run check-css      # 静的リンタ (< 1s) — Hard rules 違反を検出
-npm run check-layout   # Playwright sweep — 12 viewport で overflow / direction を検証
+npm run check-layout   # Playwright sweep — 12 viewport × 4 lang で overflow / direction を検証
+npm run test:visual    # スクショ回帰 — 主要ページ × {mobile/tablet/desktop} × {ja, de} の視覚崩れを検出
 ```
 
-両方 PASS しない限り `git commit` してはならない。Hooks は `.githooks/pre-commit` に既に仕込んであり、`git config core.hooksPath .githooks` 済みのリポでは自動的に走る (未設定なら手動で `npm run check-css` だけは絶対に走らせる)。
+`check-layout` は ja/en/fr/de 全言語を sweep する（独語の長語が ja では出ない overflow を起こすため）。`test:visual` は計測不能な視覚崩れ（グリッドずれ・画像潰れ・CLS・装飾位置）を捕捉する。**意図した見た目変更のときだけ** `npm run test:visual:update` で baseline 更新。3つすべて PASS しない限り `git commit` してはならない。Hooks は `.githooks/pre-commit` に既に仕込んであり、`git config core.hooksPath .githooks` 済みのリポでは自動的に走る (未設定なら手動で `npm run check-css` だけは絶対に走らせる)。
 
 ### Hard rules（違反したら commit 禁止）
 
@@ -34,6 +35,19 @@ npm run check-layout   # Playwright sweep — 12 viewport で overflow / directi
 境界の **720 / 740 / 760 / 765 / 768 / 770 / 780** は省略禁止。375 と 1440 だけで OK 判定するな（過去に 761-768 dead zone を見逃した）。
 
 詳細・経緯: `.claude/rules/responsive-layout-discipline.md`
+
+---
+
+## CRITICAL: Content must be evidence-based (since 2026-05-30)
+
+**記事の実質的な主張は必ずエビデンス（研究・調査結果・確立した理論）に基づく。感情論・無出典の意見で書かない。信頼性が最優先。**
+
+- 主張は「研究が示す X（出典）」の形に。「X のはず／感覚的に X」で書かない
+- 新規・拡張いずれも References / 出典を付ける（既存記事は Repp 2005, Logan 1988, Roediger &amp; Karpicke 等を引用済み。同水準を維持）
+- エビデンスが薄い／無い箇所は **正直にそう書く**。誇張禁止（誇大表現はブランド規約違反でもある）
+- 数値（％・期間・効果量）は出典付き。恣意的な数字を置かない
+
+詳細・経緯: `.claude/rules/content-evidence-discipline.md`
 
 ---
 

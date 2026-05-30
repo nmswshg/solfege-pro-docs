@@ -24,6 +24,66 @@
             || 'ja';
     }
 
+    // ---- First-touch traffic-source classification ----------------------
+    // Answers "did this visitor arrive from search, from X, from the app,
+    // or direct?" GA4 has native channel grouping, but (a) in-app webviews
+    // and App Store browser hand-offs usually arrive with NO referrer and
+    // get bucketed as "direct" unless the link is UTM-tagged, and (b) we
+    // want the entry source stamped on every downstream event (esp.
+    // app_store_click) so installs can be attributed by acquisition source.
+    // NOTE: the search *query* is never available client-side (Google
+    // strips it) — that lives only in Google Search Console.
+    var SEARCH_ENGINES = /(^|\.)(google|bing|yahoo|duckduckgo|ecosia|naver|baidu|yandex|brave|kagi)\.[a-z.]+$/;
+    var SOCIAL_HOSTS = {
+        'x.com': 'x', 'twitter.com': 'x', 't.co': 'x', 'mobile.twitter.com': 'x',
+        'facebook.com': 'facebook', 'm.facebook.com': 'facebook', 'l.facebook.com': 'facebook',
+        'instagram.com': 'instagram', 'l.instagram.com': 'instagram',
+        'reddit.com': 'reddit', 'out.reddit.com': 'reddit',
+        'youtube.com': 'youtube', 'm.youtube.com': 'youtube',
+        'linkedin.com': 'linkedin', 'lnkd.in': 'linkedin',
+        'pinterest.com': 'pinterest', 'pinterest.jp': 'pinterest',
+        'note.com': 'note', 'b.hatena.ne.jp': 'hatena', 'line.me': 'line'
+    };
+    function getQueryParam(name) {
+        var m = location.search.match(new RegExp('[?&]' + name + '=([^&#]*)'));
+        return m ? decodeURIComponent(m[1].replace(/\+/g, ' ')) : '';
+    }
+    function classifyTrafficSource() {
+        var utmSource = getQueryParam('utm_source');
+        var utmMedium = getQueryParam('utm_medium');
+        var utmCampaign = getQueryParam('utm_campaign');
+        var ref = '';
+        try { ref = document.referrer ? new URL(document.referrer).hostname.replace(/^www\./, '') : ''; } catch (e) {}
+        var here = location.hostname.replace(/^www\./, '');
+        var seMatch = ref ? ref.match(SEARCH_ENGINES) : null;   // [2] = engine name, robust to search.* subdomains
+        var source, medium;
+        if (utmSource) {                                   // explicit tag wins (app / x / newsletter ...)
+            source = utmSource; medium = utmMedium || 'referral';
+        } else if (!ref) {
+            source = 'direct'; medium = 'none';            // app webviews land here unless UTM-tagged
+        } else if (ref === here) {
+            source = 'internal'; medium = 'internal';
+        } else if (seMatch) {
+            source = seMatch[2]; medium = 'organic';
+        } else if (SOCIAL_HOSTS[ref]) {
+            source = SOCIAL_HOSTS[ref]; medium = 'social';
+        } else {
+            source = ref; medium = 'referral';
+        }
+        return { traffic_source: source, traffic_medium: medium, traffic_campaign: utmCampaign, referrer_host: ref };
+    }
+    // First-touch is captured once per session and reused on later pages.
+    var FIRST_TOUCH_KEY = '_sp_first_touch';
+    function getFirstTouch() {
+        try {
+            var stored = sessionStorage.getItem(FIRST_TOUCH_KEY);
+            if (stored) return JSON.parse(stored);
+        } catch (e) {}
+        var c = classifyTrafficSource();
+        try { sessionStorage.setItem(FIRST_TOUCH_KEY, JSON.stringify(c)); } catch (e) {}
+        return c;
+    }
+
     if (!IS_LOCAL) {
         var s = document.createElement('script');
         s.async = true;
@@ -31,13 +91,23 @@
         document.head.appendChild(s);
     }
 
+    // Resolve first-touch before configuring GA so it rides on page_view and
+    // can be registered as a custom dimension. Detect whether THIS hit is the
+    // session's first, so traffic_entry fires exactly once per session.
+    var _hadFirstTouch = false;
+    try { _hadFirstTouch = !!sessionStorage.getItem(FIRST_TOUCH_KEY); } catch (e) {}
+    var FIRST_TOUCH = getFirstTouch();
+
     gtag('js', new Date());
     gtag('config', GA_ID, {
         allow_google_signals: false,
         allow_ad_personalization_signals: false,
         page_title: document.title,
         page_location: location.href,
-        site_language: getLang()
+        site_language: getLang(),
+        traffic_source: FIRST_TOUCH.traffic_source,
+        traffic_medium: FIRST_TOUCH.traffic_medium,
+        traffic_campaign: FIRST_TOUCH.traffic_campaign
     });
 
     // ---- Helper API ----
@@ -45,7 +115,23 @@
         params = params || {};
         if (params.site_language == null) params.site_language = getLang();
         if (params.page_path == null) params.page_path = location.pathname;
+        if (params.first_touch_source == null) {
+            var ft = getFirstTouch();
+            params.first_touch_source = ft.traffic_source;
+            params.first_touch_medium = ft.traffic_medium;
+        }
         gtag('event', eventName, params);
+    }
+
+    // Landing-page-only entry event (search vs X vs app vs direct breakdown).
+    if (!_hadFirstTouch) {
+        track('traffic_entry', {
+            traffic_source: FIRST_TOUCH.traffic_source,
+            traffic_medium: FIRST_TOUCH.traffic_medium,
+            traffic_campaign: FIRST_TOUCH.traffic_campaign,
+            referrer_host: FIRST_TOUCH.referrer_host,
+            landing_path: location.pathname
+        });
     }
 
     // ---- CTA position detection (semantic, based on ancestor class) ----
@@ -256,6 +342,8 @@
     window.SolfegeAnalytics = {
         track: track,
         gaId: GA_ID,
-        isLocal: IS_LOCAL
+        isLocal: IS_LOCAL,
+        firstTouch: FIRST_TOUCH,
+        classifyTrafficSource: classifyTrafficSource
     };
 })();

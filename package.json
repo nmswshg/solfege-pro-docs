@@ -13,7 +13,9 @@
     "check-css": "bash tools/check-responsive-css.sh",
     "check-layout": "playwright test tests/responsive-sweep.spec.js --project=desktop",
     "check-lang": "python3 tools/lang-purity-check.py",
-    "check-all": "npm run check-css && npm run check-layout"
+    "test:visual": "playwright test tests/visual-regression.spec.js --project=desktop",
+    "test:visual:update": "playwright test tests/visual-regression.spec.js --project=desktop --update-snapshots",
+    "check-all": "npm run check-css && npm run check-layout && npm run test:visual"
   },
   "repository": {
     "type": "git",
