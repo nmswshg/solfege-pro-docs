@@ -390,6 +390,26 @@ function buildHreflangBlock(srcPath, currentLang) {
     ].join('\n');
 }
 
+// Optional site-wide config (Search Console verification token, etc.).
+// Reads data/site-config.json if present; absent/empty → no-op (safe default).
+let _siteConfigCache;
+function loadSiteConfig() {
+    if (_siteConfigCache !== undefined) return _siteConfigCache;
+    try { _siteConfigCache = JSON.parse(fs.readFileSync('data/site-config.json', 'utf8')); }
+    catch (e) { _siteConfigCache = {}; }
+    return _siteConfigCache;
+}
+
+// Inject the Google Search Console verification meta tag into <head> if a
+// token is configured. Idempotent: never inserts twice.
+function injectVerificationMeta(html) {
+    const cfg = loadSiteConfig();
+    const token = cfg.googleSiteVerification;
+    if (!token || /name="google-site-verification"/.test(html)) return html;
+    const tag = `    <meta name="google-site-verification" content="${token}">`;
+    return html.replace(/(<meta name="theme-color"[^>]*>)/, `$1\n${tag}`);
+}
+
 function transformToLang(html, srcPath, lang) {
     let out = html;
 
@@ -419,6 +439,9 @@ function transformToLang(html, srcPath, lang) {
 
     // 5b. og:site_name — romanize the brand for non-ja outputs.
     out = out.replace(/<meta property="og:site_name" content="[^"]*">/, `<meta property="og:site_name" content="${lang === 'ja' ? 'ソルフェージュPRO' : 'Solfege PRO'}">`);
+
+    // 5c. Search Console verification meta (no-op unless a token is configured).
+    out = injectVerificationMeta(out);
 
     // 6. og:locale:alternate block — rebuild with the OTHER three locales.
     const alternates = LANGS_ALL.filter((l) => l !== lang)

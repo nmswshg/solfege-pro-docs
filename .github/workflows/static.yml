@@ -41,3 +41,9 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
+      # Notify IndexNow (Bing/Yandex/Seznam) of all URLs after deploy.
+      # Google does not use IndexNow — Google discovery is via Search Console.
+      # Non-fatal: a submission hiccup must not fail the deploy.
+      - name: Submit URLs to IndexNow
+        continue-on-error: true
+        run: node tools/indexnow-submit.js
