@@ -754,9 +754,28 @@ function loadExistingSitemapMeta() {
     return meta;
 }
 
+// Per-page sitemap <lastmod>: derive from the source file's last git commit
+// date — deterministic and checkout-stable. mtime is NOT usable: a fresh clone
+// / CI checkout resets every file's mtime to the checkout instant, collapsing
+// all <lastmod> to the build day (and re-stamping every URL on every CI build,
+// which Google reads as low-signal noise). A source with uncommitted changes
+// (being published in this build) gets today's date; a clean source gets its
+// last commit date. All 4 lang variants share the one source date by design.
+function sourceLastmod(src) {
+    const today = new Date().toISOString().slice(0, 10);
+    const rel = path.join(SRC_DIR, src);
+    try {
+        const dirty = execSync(`git status --porcelain -- "${rel}"`, { encoding: 'utf8' }).trim();
+        if (dirty) return today;
+        const committed = execSync(`git log -1 --format=%cs -- "${rel}"`, { encoding: 'utf8' }).trim();
+        return /^\d{4}-\d{2}-\d{2}$/.test(committed) ? committed : today;
+    } catch (e) {
+        return today;
+    }
+}
+
 function generateSitemap(allSources) {
     const meta = loadExistingSitemapMeta();
-    const today = new Date().toISOString().slice(0, 10);
     const lines = [
         '<?xml version="1.0" encoding="UTF-8"?>',
         '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"',
@@ -765,7 +784,7 @@ function generateSitemap(allSources) {
     for (const src of allSources) {
         const jaUrl = SITE_ORIGIN + srcPathToUrlPath(src, 'ja');
         const existing = meta[jaUrl] || {};
-        const lastmod = existing.lastmod || today;
+        const lastmod = sourceLastmod(src);
         const priority = existing.priority || '0.7';
         for (const lang of LANGS_ALL) {
             const url = SITE_ORIGIN + srcPathToUrlPath(src, lang);
