@@ -58,19 +58,45 @@ async function liveness(urls) {
 }
 
 // Best-effort public index-count probes (no API key). Heuristic only.
+//
+// CRITICAL: a HTTP 200 here does NOT mean we saw real search results. Google
+// serves a JS-gated interstitial ("enablejs") and both engines serve CAPTCHA
+// pages with status 200. We must distinguish three states, never conflating
+// "blocked/undeterminable" with "zero indexed":
+//   indexed      — results page that actually mentions our host
+//   none         — a real results page that says no results matched
+//   undetermined — bot wall (captcha / JS interstitial); tells us nothing
+// `mentionsSite` uses a bare-host match (results show "solfegepro.com/path"
+// AND bare "solfegepro.com", so requiring a trailing slash missed real hits).
+function classifySerp(body) {
+  const blocked = /enablejs|unusual traffic|\/sorry\/|captcha|recaptcha/i.test(body);
+  const noResults = /did not match any documents|no results found|没有找到|に一致する情報は見つかりません/i.test(body);
+  // The query "site:HOST" is echoed verbatim on every SERP, so a bare host
+  // match alone is NOT proof of indexation. Only trust mentionsSite as an
+  // "indexed" signal when the page is a REAL results page (no bot wall). When a
+  // captcha/JS interstitial is present, the host substring is just the echoed
+  // query — report undetermined and defer to Search Console (diagnosis-discipline:
+  // never present an unverifiable guess as a fact).
+  const mentionsSite = new RegExp(`\\b${HOST.replace(/\./g, '\\.')}\\b`).test(body);
+  let verdict;
+  if (blocked) verdict = 'undetermined';        // bot wall — host match is unreliable
+  else if (mentionsSite) verdict = 'indexed';   // real SERP that shows our host
+  else if (noResults) verdict = 'none';         // real SERP, explicitly empty
+  else verdict = 'undetermined';                // unrecognized layout
+  return { mentionsSite, blocked, noResults, verdict };
+}
+
 async function googleSiteCount() {
   const r = await get(`https://www.google.com/search?q=site:${HOST}&num=20`);
-  if (r.status !== 200) return { status: r.status, note: 'blocked/throttled (expected without API)' };
+  if (r.status !== 200) return { status: r.status, verdict: 'undetermined', note: 'non-200 (blocked/throttled, expected without API)' };
   const m = r.body.match(/約?\s*([\d,]+)\s*件/) || r.body.match(/About ([\d,]+) results/);
-  const hasOurUrl = r.body.includes(HOST + '/');
-  return { status: 200, approxResults: m ? m[1] : 'unknown', mentionsSite: hasOurUrl };
+  return { status: 200, approxResults: m ? m[1] : 'unknown', ...classifySerp(r.body) };
 }
 async function bingSiteCount() {
   const r = await get(`https://www.bing.com/search?q=site%3A${HOST}&count=20`);
-  if (r.status !== 200) return { status: r.status, note: 'blocked' };
+  if (r.status !== 200) return { status: r.status, verdict: 'undetermined', note: 'non-200 (blocked)' };
   const m = r.body.match(/([\d,]+)\s*件の結果/) || r.body.match(/([\d,]+) results/);
-  const hasOurUrl = r.body.includes(HOST + '/');
-  return { status: 200, approxResults: m ? m[1] : 'unknown', mentionsSite: hasOurUrl };
+  return { status: 200, approxResults: m ? m[1] : 'unknown', ...classifySerp(r.body) };
 }
 
 (async () => {
@@ -87,7 +113,7 @@ async function bingSiteCount() {
   console.log(`  sitemap URLs: ${urls.length}`);
   console.log(`  live & crawlable (HTTP 200): ${live.ok}/${live.total}`);
   if (live.bad.length) console.log(`  NOT 200 (${live.bad.length}): ${live.bad.slice(0, 10).join(', ')}${live.bad.length > 10 ? ' …' : ''}`);
-  if (google) console.log(`  Google site: ${JSON.stringify(google)}`);
-  if (bing) console.log(`  Bing site:   ${JSON.stringify(bing)}`);
+  if (google) console.log(`  Google site:: ${google.verdict}${google.verdict === 'undetermined' ? ' (bot wall — NOT a zero-index signal; use Search Console)' : ''} ${JSON.stringify(google)}`);
+  if (bing) console.log(`  Bing site::   ${bing.verdict} ${JSON.stringify(bing)}`);
   console.log(`  (appended to ${LOG})`);
 })();
