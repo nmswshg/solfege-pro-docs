@@ -108,7 +108,7 @@ function listSources() {
 function srcPathToUrlPath(srcPath, lang) {
     let p = srcPath;
     p = p.replace(/\.html$/, '');                // drop extension
-    p = p.replace(/(^|\/)index$/, '$1');         // drop trailing /index
+    p = p.replace(/\/index$/, '').replace(/^index$/, ''); // drop trailing /index AND its slash (guides/index -> guides; index -> '')
     // Now p is '' (was 'index.html') or 'start-here' or 'guides' or 'guides/foo' etc.
     const langPrefix = lang === 'ja' ? '' : `/${lang}`;
     if (p === '') return `${langPrefix}/`;
@@ -374,6 +374,46 @@ function localizeJsonLd(html, srcPath, lang) {
     });
 }
 
+// Per-language label for the "Guides" breadcrumb crumb (mirrors the guides
+// index <title>, suffix stripped). Source of truth is data-title on
+// src/guides/index.html; hard-coded here to avoid a second file read per page.
+const GUIDES_CRUMB = { ja: '練習ガイド一覧', en: 'Training Guides', fr: "Guides d'entraînement", de: 'Übungsleitfäden' };
+const HOME_CRUMB = { ja: 'ホーム', en: 'Home', fr: 'Accueil', de: 'Startseite' };
+
+// Inject a BreadcrumbList JSON-LD (Home > Guides > <article>) into guide article
+// pages. Only article pages under guides/ (NOT the guides index itself, NOT
+// practice pages which have a different hierarchy). The leaf name is the page's
+// already-localized <title> with the site suffix stripped, so it tracks
+// page-metadata.json automatically. Idempotent: keyed off the @type so a second
+// run replaces rather than duplicates. Returns html unchanged for non-targets.
+function injectBreadcrumbJsonLd(html, srcPath, lang) {
+    if (!srcPath.startsWith('guides/') || srcPath === 'guides/index.html') return html;
+    if (html.includes('"BreadcrumbList"')) return html; // already present (defensive)
+
+    const titleMatch = html.match(/<title>([^<]*)<\/title>/);
+    if (!titleMatch) return html;
+    const leaf = stripSiteSuffix(titleMatch[1]);
+
+    const homeUrl = SITE_ORIGIN + srcPathToUrlPath('index.html', lang);
+    const guidesUrl = SITE_ORIGIN + srcPathToUrlPath('guides/index.html', lang);
+    const selfUrl = SITE_ORIGIN + srcPathToUrlPath(srcPath, lang);
+
+    const breadcrumb = {
+        '@context': 'https://schema.org',
+        '@type': 'BreadcrumbList',
+        itemListElement: [
+            { '@type': 'ListItem', position: 1, name: HOME_CRUMB[lang], item: homeUrl },
+            { '@type': 'ListItem', position: 2, name: GUIDES_CRUMB[lang], item: guidesUrl },
+            { '@type': 'ListItem', position: 3, name: leaf, item: selfUrl },
+        ],
+    };
+    const script = `<script type="application/ld+json">${JSON.stringify(breadcrumb)}</script>`;
+
+    // Insert right before </head> so it sits with the other structured data.
+    if (html.includes('</head>')) return html.replace('</head>', `    ${script}\n</head>`);
+    return html;
+}
+
 // --------------------------------------------------------------------
 // Core: transform multi-lang source → single-lang output for new URL scheme
 // --------------------------------------------------------------------
@@ -480,6 +520,10 @@ function transformToLang(html, srcPath, lang) {
     // 11. Localize the Article JSON-LD (headline/description/publisher) and
     //     repair mainEntityOfPage.@id to this language's canonical dir URL.
     out = localizeJsonLd(out, srcPath, lang);
+
+    // 12. Inject BreadcrumbList JSON-LD on guide article pages (Home > Guides >
+    //     article). No-op for non-guide / index pages.
+    out = injectBreadcrumbJsonLd(out, srcPath, lang);
 
     return out;
 }
