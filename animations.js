@@ -12,7 +12,18 @@
         '.page-header',
         '.hub-section-title',
         '.section__header',
-        '.guides-subhead'
+        '.guides-subhead',
+        // Block-level reveals: the related/CTA blocks settle in as you reach
+        // them. (Deliberately NOT article-body h2 — revealing body headings on
+        // long mobile pages risks a heading sitting at opacity:0 if observed
+        // mid-scroll, which hurts readability; structural headings should never
+        // animate out.)
+        '.article-related',
+        '.article-cta',
+        '.article-cta-subtle',
+        // Card grids: reveal cards (staggered via --reveal-delay below).
+        '.guide-card',
+        '.article-related__link'
     ].join(', ');
 
     var ready = function(cb) {
@@ -47,6 +58,18 @@
         });
 
         document.querySelectorAll(REVEAL_SELECTORS).forEach(function(el) {
+            // Stagger cards within the same parent: each later sibling that is
+            // also a reveal target gets a small extra delay, so a grid "fans in"
+            // rather than popping all at once. Capped so it never feels slow.
+            if (el.matches('.guide-card, .article-related__link') && el.parentElement) {
+                var sibs = el.parentElement.children;
+                var idx = 0;
+                for (var i = 0; i < sibs.length; i++) {
+                    if (sibs[i] === el) break;
+                    if (sibs[i].matches && sibs[i].matches('.guide-card, .article-related__link')) idx++;
+                }
+                el.style.setProperty('--reveal-delay', Math.min(idx, 6) * 60 + 'ms');
+            }
             var rect = el.getBoundingClientRect();
             if (rect.top < window.innerHeight) {
                 // Already in initial viewport: show immediately, skip animation

@@ -25,7 +25,7 @@
         'analytics.js?v=1',
         'lang-toggle.js?v=2',
         'drawer.js?v=1',
-        'animations.js?v=1'
+        'animations.js?v=2'
     ];
 
     // Resolve each shared script RELATIVE TO bootstrap.js itself, not to
