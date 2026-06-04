@@ -370,20 +370,60 @@
    8. Final CTA (prominent)
    ============================================= */
 .article-cta {
-    background: linear-gradient(135deg, var(--surface) 0%, var(--background) 100%);
-    border: 1px solid var(--primary);
+    position: relative;
+    overflow: hidden;
+    background:
+        radial-gradient(120% 140% at 50% -20%, rgba(212, 175, 55, 0.16) 0%, rgba(212, 175, 55, 0) 60%),
+        linear-gradient(135deg, var(--surface) 0%, var(--background) 100%);
+    border: 1px solid rgba(212, 175, 55, 0.55);
     border-radius: var(--radius-xl);
     padding: var(--space-2xl);
     text-align: center;
     max-width: 760px;
     margin: 0 auto var(--space-3xl);
+    box-shadow:
+        0 1px 0 rgba(212, 175, 55, 0.2) inset,
+        0 18px 50px -24px rgba(212, 175, 55, 0.35),
+        0 12px 40px -20px rgba(0, 0, 0, 0.6);
+}
+
+/* Slow gold sheen sweeping across the final CTA — single-hue, decorative,
+   disabled for reduced motion. Pointer-events none so it never blocks the CTA. */
+.article-cta::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -60%;
+    width: 60%;
+    height: 100%;
+    pointer-events: none;
+    background: linear-gradient(100deg, transparent 0%, rgba(212, 175, 55, 0.10) 50%, transparent 100%);
+    animation: cta-sheen 7s ease-in-out infinite;
+}
+@keyframes cta-sheen {
+    0%   { left: -60%; }
+    55%, 100% { left: 130%; }
+}
+@media (prefers-reduced-motion: reduce) {
+    .article-cta::before { animation: none; display: none; }
 }
 
 .article-cta__title {
+    position: relative;
     font-size: 22px;
     font-weight: 700;
     margin-bottom: var(--space-md);
     color: var(--text-primary);
+}
+
+/* The App Store badge inside the FINAL CTA gets a touch more presence + a soft
+   gold halo so the primary download action reads as the focal point. */
+.article-cta .app-store-link__img {
+    height: 56px;
+    filter: drop-shadow(0 6px 18px rgba(212, 175, 55, 0.28));
+}
+@media (max-width: 600px) {
+    .article-cta .app-store-link__img { height: 50px; }
 }
 
 .article-cta__text {

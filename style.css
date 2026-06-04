@@ -1655,6 +1655,29 @@ body {
     filter: brightness(0.96);
 }
 
+/* --- Premium polish: deeper reveal + tactile card lift (brand-safe, gold/dark
+   only, layout-neutral via transform/shadow, all disabled for reduced motion).
+   The reveal distance/scale is a touch larger than the base .reveal so content
+   "arrives" with more presence without becoming a gimmick. --- */
+.reveal {
+    transform: translateY(18px) scale(0.985);
+}
+.reveal.is-revealed {
+    transform: translateY(0) scale(1);
+}
+
+/* Card lift: guide cards + related links rise and gain a gold-tinted shadow on
+   hover, signalling interactivity (helps funnel clicks toward the app). */
+.article-related__link {
+    transition: border-color 200ms ease, transform 200ms cubic-bezier(0.2, 0.8, 0.2, 1),
+                box-shadow 200ms ease;
+    will-change: transform;
+}
+.article-related__link:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 14px 34px -18px rgba(212, 175, 55, 0.45), 0 10px 30px -20px rgba(0, 0, 0, 0.6);
+}
+
 /* --- Sticky bottom CTA: hide above the fold, reveal after scroll --- */
 .sticky-cta {
     transition: transform 320ms cubic-bezier(0.2, 0.8, 0.2, 1),
@@ -1753,8 +1776,86 @@ body {
     will-change: transform;
 }
 
+/* --- Reading-completion download modal -------------------------------------
+   Shown once (localStorage-gated) when a reader reaches the end of a guide.
+   Brand: gold/dark only, restrained. Accessible: role=dialog, Esc to close,
+   focus trapped while open, backdrop click closes, × button. --- */
+.rc-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--space-lg);
+    background: rgba(10, 10, 12, 0.72);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 280ms ease, visibility 0s linear 280ms;
+}
+.rc-modal.is-open {
+    opacity: 1;
+    visibility: visible;
+    transition: opacity 280ms ease;
+}
+.rc-modal__dialog {
+    position: relative;
+    width: 100%;
+    max-width: 440px;
+    background:
+        radial-gradient(120% 130% at 50% -10%, rgba(212, 175, 55, 0.18) 0%, rgba(212, 175, 55, 0) 60%),
+        linear-gradient(160deg, var(--surface) 0%, var(--background) 100%);
+    border: 1px solid rgba(212, 175, 55, 0.55);
+    border-radius: var(--radius-xl);
+    padding: var(--space-2xl) var(--space-xl);
+    text-align: center;
+    box-shadow: 0 30px 80px -30px rgba(0, 0, 0, 0.8), 0 0 0 1px rgba(212, 175, 55, 0.12) inset;
+    transform: translateY(16px) scale(0.97);
+    transition: transform 320ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+.rc-modal.is-open .rc-modal__dialog {
+    transform: translateY(0) scale(1);
+}
+.rc-modal__close {
+    position: absolute;
+    top: 10px;
+    right: 12px;
+    width: 36px;
+    height: 36px;
+    border: none;
+    background: transparent;
+    color: var(--text-secondary);
+    font-size: 24px;
+    line-height: 1;
+    cursor: pointer;
+    border-radius: var(--radius-sm);
+    transition: color 0.2s ease, background 0.2s ease;
+}
+.rc-modal__close:hover { color: var(--text-primary); background: rgba(255, 255, 255, 0.06); }
+.rc-modal__title {
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: var(--space-sm);
+}
+.rc-modal__text {
+    font-size: 14px;
+    line-height: 1.8;
+    color: var(--text-secondary);
+    margin-bottom: var(--space-lg);
+}
+.rc-modal__price {
+    font-size: 13px;
+    color: var(--text-secondary);
+    margin-top: var(--space-md);
+}
+.rc-modal__badge { display: inline-flex; }
+.rc-modal__badge img { height: 52px; width: auto; display: block; filter: drop-shadow(0 6px 18px rgba(212, 175, 55, 0.3)); }
+
 /* --- Respect user's motion preferences --- */
 @media (prefers-reduced-motion: reduce) {
+    .rc-modal,
+    .rc-modal__dialog,
     .reveal,
     .reveal.is-revealed,
     .app-store-link,
@@ -1764,12 +1865,22 @@ body {
     .sticky-cta--hidden,
     .diag-progress__step,
     .diag-progress__labels > span,
-    .nav__logo-icon {
+    .nav__logo-icon,
+    .article-related__link,
+    .article-related__link:hover {
         transition: none !important;
         animation: none !important;
     }
     .reveal {
         opacity: 1;
+        transform: none;
+    }
+    .article-related__link:hover {
+        transform: none;
+        box-shadow: none;
+    }
+    .rc-modal__dialog,
+    .rc-modal.is-open .rc-modal__dialog {
         transform: none;
     }
     .app-store-link:hover,
