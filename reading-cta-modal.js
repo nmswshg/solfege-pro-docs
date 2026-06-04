@@ -1,18 +1,30 @@
 /* =============================================
    Reading-completion download modal.
 
-   Fires ONCE per visitor (localStorage-gated) when they reach the end of a
-   guide article — the moment of peak intent. Restrained, brand-styled, fully
-   keyboard-accessible. Never shown on non-article pages, never shown twice,
-   never shown if the user already dismissed it.
+   Fires when the reader reaches the end of a guide article — the moment of peak
+   intent. Restrained, brand-styled, fully keyboard-accessible.
+
+   Frequency policy (deliberately NOT "once forever", NOT "every time"):
+   - On dismiss (Esc/×/backdrop) we set a 30-DAY cooldown — long enough not to
+     nag a reader who's browsing several articles in one sitting, short enough to
+     re-surface for a returning visitor who still hasn't downloaded.
+   - On App Store badge CLICK we suppress PERMANENTLY — someone who acted on it
+     (likely downloaded) should never see it again.
+   Rationale: every-visit interstitials erode the premium feel and risk Google's
+   intrusive-interstitial penalty; once-forever throws away returning intent.
 
    Loaded site-wide by bootstrap.js; self-guards to guides only.
    ============================================= */
 (function () {
     'use strict';
 
-    var STORAGE_KEY = 'sp_reading_modal_shown_v1';
+    var COOLDOWN_KEY = 'sp_reading_modal_until_v2'; // timestamp: don't show before this
+    var SUPPRESS_KEY = 'sp_reading_modal_off_v2';   // '1' = permanently off (clicked through)
+    var COOLDOWN_DAYS = 30;
     var APP_URL = 'https://apps.apple.com/jp/app/id6756626617';
+
+    function lsGet(k) { try { return window.localStorage.getItem(k); } catch (e) { return null; } }
+    function lsSet(k, v) { try { window.localStorage.setItem(k, v); } catch (e) {} }
 
     // Only on guide articles. Trigger element = the end-of-article zone. Use the
     // methodology endnote: it is present on every guide (23/23), sits at the very
@@ -26,8 +38,11 @@
         || document.querySelector('.article-related');
     if (!body || !trigger) return;
 
-    // Already shown / dismissed? Never bother the reader again.
-    try { if (window.localStorage.getItem(STORAGE_KEY)) return; } catch (e) { /* private mode: just proceed, no persistence */ }
+    // Permanently suppressed (clicked through before)? Never show again.
+    if (lsGet(SUPPRESS_KEY) === '1') return;
+    // Within the dismiss cooldown window? Stay quiet until it expires.
+    var until = parseInt(lsGet(COOLDOWN_KEY) || '0', 10);
+    if (until && Date.now() < until) return;
 
     // Per-language copy. The page's active language is whatever the lang-toggle
     // logic exposes via <html lang> (build emits one lang per output file).
@@ -68,12 +83,16 @@
 
         modal.querySelector('.rc-modal__close').addEventListener('click', close);
         modal.addEventListener('mousedown', function (e) { if (e.target === modal) close(); });
+        // Clicking the App Store badge = intent acted on → suppress permanently.
+        modal.querySelector('.rc-modal__badge').addEventListener('click', function () {
+            lsSet(SUPPRESS_KEY, '1');
+            if (window.spTrack) { try { window.spTrack('reading_modal_click', { lang: lang }); } catch (e) {} }
+        });
         document.addEventListener('keydown', onKey);
     }
 
     function open() {
         if (modal) return;
-        try { window.localStorage.setItem(STORAGE_KEY, '1'); } catch (e) {}
         lastFocus = document.activeElement;
         build();
         // Force reflow so the open transition runs.
@@ -87,6 +106,10 @@
 
     function close() {
         if (!modal) return;
+        // Start the 30-day cooldown (unless a click already suppressed it).
+        if (lsGet(SUPPRESS_KEY) !== '1') {
+            lsSet(COOLDOWN_KEY, String(Date.now() + COOLDOWN_DAYS * 24 * 60 * 60 * 1000));
+        }
         modal.classList.remove('is-open');
         document.removeEventListener('keydown', onKey);
         var m = modal; modal = null;

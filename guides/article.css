@@ -417,13 +417,26 @@
 }
 
 /* The App Store badge inside the FINAL CTA gets a touch more presence + a soft
-   gold halo so the primary download action reads as the focal point. */
+   gold halo so the primary download action reads as the focal point. The halo
+   gently "breathes" to draw the eye to the download without being garish.
+   Single-hue (gold), no layout impact, disabled for reduced motion. */
+.article-cta .app-store-link {
+    border-radius: 12px;
+    animation: cta-badge-pulse 3.2s ease-in-out infinite;
+}
 .article-cta .app-store-link__img {
     height: 56px;
-    filter: drop-shadow(0 6px 18px rgba(212, 175, 55, 0.28));
+    filter: drop-shadow(0 6px 18px rgba(212, 175, 55, 0.3));
+}
+@keyframes cta-badge-pulse {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(212, 175, 55, 0.0); }
+    50%      { box-shadow: 0 0 0 6px rgba(212, 175, 55, 0.12); }
 }
 @media (max-width: 600px) {
     .article-cta .app-store-link__img { height: 50px; }
+}
+@media (prefers-reduced-motion: reduce) {
+    .article-cta .app-store-link { animation: none; }
 }
 
 .article-cta__text {
