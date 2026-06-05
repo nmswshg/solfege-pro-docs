@@ -73,7 +73,11 @@
 
         .manual-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(0, 1fr));
+            /* Mobile: a single full-width column. (The previous
+               repeat(auto-fill, minmax(0,1fr)) collapsed every card to ~0
+               width on phones — auto-fill with a 0 minimum packs unlimited
+               columns. Widen to 2/3 cols via the breakpoints below.) */
+            grid-template-columns: 1fr;
             gap: var(--space-lg);
         }
 
