@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="de"
+      data-title-ja="リズム譜読み 設定マニュアル — 各設定の選び方 | ソルフェージュPRO"
+      data-title-en="Rhythm Sight Reading Settings Manual — How to Choose Each Option | Solfege PRO"
+      data-title-fr="Manuel des réglages de lecture rythmique à vue — Comment choisir chaque option | Solfege PRO"
+      data-title-de="Handbuch der Einstellungen für Rhythmus-Blattlesen — So wählen Sie jede Option | Solfege PRO">
+<head>
+    <meta charset="UTF-8">
+    <meta name="robots" content="index, follow">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#1A1A1E">
+    <title>Handbuch der Einstellungen für Rhythmus-Blattlesen — So wählen Sie jede Option | Solfege PRO</title>
+    <meta name="description" content="Referenz zu den Rhythmus-Blattlesen-Einstellungen — Quelle, Muster, Wiederholungen, Tempo, Bewertungsstrenge, eigene Notenwerte: wie man jede Option wählt.">
+
+    <!-- Canonical -->
+    <link rel="canonical" href="https://solfegepro.com/de/manual/rhythm-sight-reading/">
+    <link rel="alternate" hreflang="ja" href="https://solfegepro.com/manual/rhythm-sight-reading/">
+    <link rel="alternate" hreflang="en" href="https://solfegepro.com/en/manual/rhythm-sight-reading/">
+    <link rel="alternate" hreflang="fr" href="https://solfegepro.com/fr/manual/rhythm-sight-reading/">
+    <link rel="alternate" hreflang="de" href="https://solfegepro.com/de/manual/rhythm-sight-reading/">
+    <link rel="alternate" hreflang="x-default" href="https://solfegepro.com/manual/rhythm-sight-reading/">
+<!-- OGP -->
+    <meta property="og:title" content="Handbuch der Einstellungen für Rhythmus-Blattlesen — So wählen Sie jede Option">
+    <meta property="og:description" content="Referenz zu den Rhythmus-Blattlesen-Einstellungen — Quelle, Muster, Wiederholungen, Tempo, Bewertungsstrenge, eigene Notenwerte: wie man jede Option wählt.">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://solfegepro.com/de/manual/rhythm-sight-reading/">
+    <meta property="og:site_name" content="Solfege PRO">
+    <meta property="og:image" content="https://solfegepro.com/og-image.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Solfege PRO">
+    <meta property="og:locale" content="de_DE">
+    <meta property="og:locale:alternate" content="ja_JP">
+    <meta property="og:locale:alternate" content="en_US">
+    <meta property="og:locale:alternate" content="fr_FR">
+    <meta property="article:published_time" content="2026-06-05">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Handbuch der Einstellungen für Rhythmus-Blattlesen — So wählen Sie jede Option">
+    <meta name="twitter:description" content="Referenz zu den Rhythmus-Blattlesen-Einstellungen — Quelle, Muster, Wiederholungen, Tempo, Bewertungsstrenge, eigene Notenwerte: wie man jede Option wählt.">
+    <meta name="twitter:image" content="https://solfegepro.com/og-image.png">
+
+    <!-- Favicon -->
+    <link rel="icon" href="/favicon.ico" sizes="any">
+    <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap"></noscript>
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="/style.css?v=17">
+    <link rel="stylesheet" href="/guides/article.css?v=11">
+
+    <style>
+        /* Manual option reference — responsive, no fixed px widths */
+        .manual-options {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr);
+            gap: var(--space-sm);
+            margin: var(--space-lg) 0;
+        }
+        .manual-option {
+            background: var(--surface);
+            border: 1px solid var(--surface-light);
+            border-radius: var(--radius-lg);
+            padding: var(--space-md);
+        }
+        .manual-option__name {
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: var(--space-xs);
+        }
+        .manual-option__desc {
+            font-size: 13px;
+            color: var(--text-secondary);
+        }
+        /* Bottom-line callout (conclusion first) */
+        .manual-lead {
+            font-size: 14px;
+            line-height: 1.75;
+            color: var(--text-primary);
+            border-left: 3px solid var(--primary);
+            background: rgba(212, 175, 55, 0.06);
+            padding: var(--space-sm) var(--space-md);
+            border-radius: 0 var(--radius-md) var(--radius-md) 0;
+            margin: var(--space-md) 0;
+        }
+        /* Per-setting evidence note — deliberately styled as an editorial
+           aside, NOT as a settings card (no surface fill, no gold label),
+           so it is never mistaken for an in-app option. */
+        .manual-rationale {
+            margin: var(--space-md) 0 var(--space-2xl);
+            padding: var(--space-sm) 0 var(--space-sm) var(--space-md);
+            border-left: 2px solid var(--surface-light);
+        }
+        .manual-rationale__label {
+            display: block;
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            color: var(--text-secondary);
+            margin-bottom: 4px;
+            opacity: 0.75;
+        }
+        .manual-rationale p {
+            font-size: 13px;
+            line-height: 1.75;
+            color: var(--text-secondary);
+            margin: 0;
+        }
+        .manual-rationale__ref {
+            font-size: 12px;
+            font-style: italic;
+            margin-top: var(--space-xs) !important;
+            opacity: 0.7;
+        }
+        /* Citation number linking to the reference list */
+        .manual-ref-num {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-style: normal;
+        }
+        .manual-ref-num:hover { color: var(--primary); }
+        /* Full reference list at page end */
+        .manual-refs {
+            margin: var(--space-2xl) 0 0;
+            padding-top: var(--space-lg);
+            border-top: 1px solid var(--surface-light);
+        }
+        .manual-refs__title {
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: var(--space-sm);
+        }
+        .manual-refs ol {
+            margin: 0;
+            padding-left: 1.25em;
+        }
+        .manual-refs li {
+            font-size: 12px;
+            line-height: 1.7;
+            color: var(--text-secondary);
+            margin-bottom: var(--space-xs);
+            scroll-margin-top: 84px;
+        }
+        .manual-refs li:target {
+            color: var(--text-primary);
+        }
+    </style>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Handbuch der Einstellungen für Rhythmus-Blattlesen — So wählen Sie jede Option","description":"Referenz zu den Rhythmus-Blattlesen-Einstellungen — Quelle, Muster, Wiederholungen, Tempo, Bewertungsstrenge, eigene Notenwerte: wie man jede Option wählt.","author":{"@type":"Organization","name":"Solfege PRO"},"publisher":{"@type":"Organization","name":"Solfege PRO","logo":{"@type":"ImageObject","url":"https://solfegepro.com/AppIcon.png"}},"datePublished":"2026-06-05","mainEntityOfPage":{"@type":"WebPage","@id":"https://solfegepro.com/de/manual/rhythm-sight-reading/"}}</script>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Startseite","item":"https://solfegepro.com/de/"},{"@type":"ListItem","position":2,"name":"Handbuch","item":"https://solfegepro.com/de/manual/"},{"@type":"ListItem","position":3,"name":"Handbuch der Einstellungen für Rhythmus-Blattlesen — So wählen Sie jede Option","item":"https://solfegepro.com/de/manual/rhythm-sight-reading/"}]}</script>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="nav__container">
+            <a href="/" class="nav__logo">
+                <img src="/AppIcon.png" alt="Solfege PRO" class="nav__logo-icon" width="32" height="32">
+                <span class="nav__logo-text">Solfege PRO</span>
+            </a>
+            <ul class="nav__list">
+                <li><a href="/" class="nav__link">Übungsleitfaden</a></li>
+                <li><a href="/guides/" class="nav__link">Leitfäden</a></li>
+                <li><a href="/manual/" class="nav__link active">Handbuch</a></li>
+                            <li><a href="/start-here/" class="nav__link">Wo anfangen?</a></li>
+            </ul>
+            <div class="nav__settings">
+                <button class="settings-btn" id="lang-toggle" title="Toggle language">
+                    <span id="lang-text">EN</span>
+                </button>
+                <button class="hamburger-btn" id="hamburger-btn" aria-label="Menu" aria-expanded="false" aria-controls="drawer">
+                    <span class="hamburger-btn__line"></span>
+                    <span class="hamburger-btn__line"></span>
+                    <span class="hamburger-btn__line"></span>
+                </button>
+            </div>
+        </div>
+    </nav>
+        <!-- Mobile drawer (hidden on desktop) -->
+        <div class="drawer-overlay" id="drawer-overlay"></div>
+        <aside class="drawer" id="drawer" aria-label="Mobile menu" aria-hidden="true" inert>
+            <div class="drawer__header">
+                <span class="drawer__title">Menü</span>
+                <button class="drawer__close" id="drawer-close" aria-label="Close menu">×</button>
+            </div>
+            <ul class="drawer__list">
+                    <li><a href="/" class="drawer__link">Übungsleitfaden</a></li>
+                    <li><a href="/guides/" class="drawer__link">Leitfäden</a></li>
+                    <li><a href="/manual/" class="drawer__link active">Handbuch</a></li>
+                    <li><a href="/start-here/" class="drawer__link">Wo anfangen?</a></li>
+            </ul>
+        </aside>
+
+
+    <!-- Article Header -->
+    <header class="page-header">
+        <div class="page-header__meta">
+            <span class="page-header__tag">Handbuch</span>
+            <span>Rhythmus-Blattlesen</span>
+        </div>
+        <h1 class="page-header__title">
+            
+            
+            
+            Einstellungshandbuch Rhythmus-Blattlesen<br>Was jede Option bedeutet und wie man sie wählt
+        </h1>
+        <p class="page-header__subtitle">
+            
+            
+            
+            Welche Option wann und warum gewählt werden sollte. Diese Seite geht jede Einstellung des Rhythmus-Blattlesen-Trainings einzeln durch. Wenn Sie über das „?“ im Einstellungsbildschirm hierhergekommen sind, scrollen Sie zur gewünschten Option.
+        </p>
+    </header>
+
+    <!-- Top-of-article CTA -->
+    <aside class="article-top-cta" aria-label="App promotion">
+        <div class="article-top-cta__body">
+            <p class="article-top-cta__title">
+                
+                
+                
+                Probieren Sie diese Übung in Solfege PRO
+            </p>
+            <p class="article-top-cta__sub">
+                
+                
+                
+                980 ¥/Monat · 1 Woche kostenlos testen
+            </p>
+        </div>
+        <a href="https://apps.apple.com/de/app/id6756626617" class="article-top-cta__button" data-cta-position="article_top">
+            
+            
+            
+            App Store →
+        </a>
+    </aside>
+
+    <!-- Article Body -->
+    <main class="article-body">
+
+        <!-- Intro -->
+        <p>
+            
+            
+            
+            Das Rhythmus-Blattlesen-Training entwickelt Ihre Fähigkeit, die auf dem Bildschirm angezeigte Notation (die Abfolge der Notenwerte) zu lesen und sie zum Metronom im richtigen Moment zu tippen. Da Sie sich nur auf das „Wann gespielt wird“ konzentrieren und nicht auf die Tonhöhe, isoliert es das Rhythmuslesen und das Halten des Tempos innerhalb des Blattlesens.
+        </p>
+        <p>
+            
+            
+            
+            Diese Seite ist ein Handbuch zur Auswahl der Einstellungen. Jede Einstellung ist auf der Grundlage etablierter Methoden der Musikpädagogik gestaltet. Für jede Einstellung, die eine Entscheidung erfordert, nennen wir <strong>die empfohlene Wahl, wozu sie dient und was sie trainiert — samt der dahinterstehenden Belege</strong>. Wenn Sie über das „?“ im Einstellungsbildschirm hierhergekommen sind, scrollen Sie zur gewünschten Option.
+        </p>
+
+        <!-- #patterns -->
+        <h2 id="patterns">Musterquelle / Muster</h2>
+
+        <p class="manual-lead">
+            
+            
+            
+            <strong>Beginnen Sie mit „Lehrplan“ auf der Anfängerstufe.</strong> Sobald Sie es durchlesen können und Abwechslung wünschen, wechseln Sie zu „Benutzerdefiniert“ und mischen Sie nur die Notenwerte hinzu, die Ihnen schwerfallen.
+        </p>
+
+        <p>
+            
+            
+            
+            Bestimmt, woher die Notation stammt, die Sie üben. Sie wählen zwischen „Lehrplan“ (kuratierte, feste Muster) und „Benutzerdefiniert“ (jedes Mal neu generiert aus den von Ihnen gewählten Notenwerten — den Notenlängen). Bei „Lehrplan“ erscheint eine Musterliste, gegliedert in Anfänger / Mittelstufe / Fortgeschritten, in der die Notenwerte schrittweise schwieriger werden (Anfänger: nur Viertelnoten; Mittelstufe: zusätzlich Achtel und punktierte Noten; Fortgeschritten: zusätzlich Sechzehntel und Triolen).
+        </p>
+
+        <div class="manual-options">
+            <div class="manual-option">
+                <div class="manual-option__name">Lehrplan</div>
+                <div class="manual-option__desc">Wählen Sie ein kuratiertes Muster aus der nach Stufen geordneten Liste und üben Sie es; „Beispiel anhören“ spielt vor, wie es klingt. Ideal für den Einstieg.</div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name">Benutzerdefiniert</div>
+                <div class="manual-option__desc">Wählen Sie die Notenwerte (Viertel / halbe / Achtel / Sechzehntel / punktierte Viertel / punktierte Achtel), Zusätze (Pausen / Achteltriolen) und die Anzahl der Takte pro Muster (2 oder 4); jede Session wird eine neue Notation generiert. Sie müssen mindestens einen Notenwert aktivieren, um zu starten.</div>
+            </div>
+        </div>
+
+        <p>
+            
+            
+            
+            Im Modus „Benutzerdefiniert“ schaltet das Aktivieren der punktierten Achtel automatisch die Sechzehntel ein, um das Ende des Schlags aufzufüllen (und das Ausschalten der Sechzehntel entfernt auch die punktierte Achtel). Eine punktierte Achtel braucht eine Sechzehntel, um den Schlag zu vervollständigen; so bleibt die Anzeige mit dem, was tatsächlich generiert wird, im Einklang.
+        </p>
+
+        <div class="manual-rationale">
+            <span class="manual-rationale__label">Die wissenschaftliche Grundlage</span>
+            <p>
+                
+                
+                
+                Die beiden Quellen ermöglichen den Wechsel zwischen Festigen und Erweitern. Nachdem die Wiederholung eines festen Musters die Zuordnung „diese Notenfolge = dieser Rhythmus“ verankert hat, prägt sich das Mischen ähnlicher Notenwerte über den Modus „Benutzerdefiniert“ langfristig besser ein als das bloße Üben eines einzelnen festen Musters. Der Nutzen des Mischens ähnlicher Elemente (verschränktes Lernen) ist durch eine Meta-Analyse belegt.
+            </p>
+            <p class="manual-rationale__ref">Quelle: Brunmair &amp; Richter (2019) <a class="manual-ref-num" href="#ref-1">[1]</a></p>
+        </div>
+
+        <!-- #repeats -->
+        <h2 id="repeats">Wiederholungen</h2>
+
+        <p class="manual-lead">
+            
+            
+            
+            <strong>Im Zweifel etwa 5.</strong> Mehr für ein ungewohntes Muster, weniger für eine schnelle Kontrolle eines bereits lesbaren Musters.
+        </p>
+
+        <p>
+            
+            
+            
+            Legt fest, wie oft dasselbe Muster in einer Session wiederholt wird (1 bis 20). Blattlesen verbessert sich durch „lesen → tippen → den Fehler korrigieren“ über mehrere Durchgänge; diese Anzahl bestimmt also die Länge der Session und wie gut sich das Muster einprägt. Zu wenige, und sie endet, bevor Ihre Hände es lernen; zu viele, und es zieht sich hin und reißt die Konzentration ab.
+        </p>
+
+        <div class="manual-rationale">
+            <span class="manual-rationale__label">Die wissenschaftliche Grundlage</span>
+            <p>
+                
+                
+                
+                Bei jedem Durchgang lesen und reproduzieren Sie die Notation selbst, sodass jede Wiederholung ein Akt des Abrufs ist (sich erinnern und es erneut hervorbringen). Abrufbasierte Wiederholung prägt sich weit besser ein als bloßes erneutes Ansehen; eine moderate Anzahl von Durchgängen lässt das Muster also haften.
+            </p>
+            <p class="manual-rationale__ref">Quelle: Roediger &amp; Karpicke (2006) <a class="manual-ref-num" href="#ref-2">[2]</a></p>
+        </div>
+
+        <!-- #bpm -->
+        <h2 id="bpm">Tempo</h2>
+
+        <p class="manual-lead">
+            
+            
+            
+            <strong>Im Zweifel bei etwa 80 BPM beginnen.</strong> Erhöhen Sie es erst, wenn Sie dieses Tempo fehlerfrei tippen können.
+        </p>
+
+        <p>
+            
+            
+            
+            Legt die Metronomgeschwindigkeit in BPM (Schläge pro Minute) fest, von 40 bis 180. Ein langsames Tempo lässt Sie die Notation lesen und zuverlässig tippen, was sich zum Erlernen eines neuen Musters eignet; ein schnelles Tempo verlangt reflexartiges Lesen und kommt dem echten Spiel näher. Doch es zu erhöhen, bevor die Grundlage steht, prägt unsaubere Taps ein.
+        </p>
+
+        <div class="manual-rationale">
+            <span class="manual-rationale__label">Die wissenschaftliche Grundlage</span>
+            <p>
+                
+                
+                
+                Das Tempo ist einstellbar, damit Sie die Synchronisation mit dem Metronom (das Einrasten in den Schlag) schrittweise aufbauen können. Sobald Sie sich bei langsamem Tempo genau ausrichten können und es dann erhöhen, halten Sie Ihre Abweichung vom Schlag auch bei hohem Tempo besser im Griff. Wie schwierig es ist, Taps an einen Schlag zu synchronisieren, hängt vom Tempo ab, wie die Synchronisationsforschung zeigt.
+            </p>
+            <p class="manual-rationale__ref">Quelle: Repp (2005) <a class="manual-ref-num" href="#ref-3">[3]</a></p>
+        </div>
+
+        <!-- #difficulty -->
+        <h2 id="difficulty">Strenge der Bewertung</h2>
+
+        <p class="manual-lead">
+            
+            
+            
+            <strong>Beginnen Sie mit „Locker“ oder „Standard“.</strong> Sobald durchgängig hohe Bewertungen kommen, verschärfen Sie es um jeweils eine Stufe, um die Genauigkeit zu verfeinern.
+        </p>
+
+        <p>
+            
+            
+            
+            Bestimmt, wie eng die Zeittoleranz ist, damit Ihr Tap als korrekt zählt. Ihre Bewertung (Perfekt, Großartig usw.) hängt davon ab, um wie viele Millisekunden Ihr Tap vom Schlag abweicht, und diese Bestehensgrenze verschiebt sich über vier Stufen. Es ändert den Bewertungsmaßstab für die zeitliche Genauigkeit, nicht die Schwierigkeit des Lesens selbst.
+        </p>
+
+        <div class="manual-options">
+            <div class="manual-option">
+                <div class="manual-option__name">Locker</div>
+                <div class="manual-option__desc">Großzügig — Taps innerhalb von ±150 ms zählen. Für Anfänger, die zunächst bestätigen wollen, dass sie in der richtigen Reihenfolge tippen.</div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name">Standard</div>
+                <div class="manual-option__desc">±90 ms für Perfekt, ±150 ms für Großartig. Eine ausgewogene Stufe, sobald Ihre Lesereihenfolge stabil ist und Sie beginnen, auf Genauigkeit zu achten.</div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name">Streng</div>
+                <div class="manual-option__desc">±50 ms für Perfekt, ±90 ms für Großartig. Für fortgeschrittene Spieler von der Mittelstufe an, die ihr feines Timing in Richtung ensembletauglicher Genauigkeit verschärfen.</div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name">Pro</div>
+                <div class="manual-option__desc">±25 ms für Perfekt, ±50 ms für Großartig. Die strengste Bewertung, um das gleichmäßige Zeitgefühl auf Profiniveau zu schärfen.</div>
+            </div>
+        </div>
+
+        <div class="manual-rationale">
+            <span class="manual-rationale__label">Die wissenschaftliche Grundlage</span>
+            <p>
+                
+                
+                
+                Die Toleranz ist gestuft, damit zu Beginn ein lockeres Urteil Sie auf das Lesen konzentrieren lässt und die Genauigkeitslast erst hinzukommt, wenn Sie sicher sind. Gleichzeitig enges Lesen und enges Timing zu fordern überlastet die Verarbeitung und lenkt die Aufmerksamkeit vom Lesen selbst ab. Der Entwurf folgt der Theorie der kognitiven Belastung: die Verarbeitungslast früh bei einer neuen Fähigkeit gering zu halten fördert das Lernen.
+            </p>
+            <p class="manual-rationale__ref">Quelle: Sweller (1988) <a class="manual-ref-num" href="#ref-4">[4]</a></p>
+        </div>
+
+        <!-- References -->
+        <section class="manual-refs">
+            <div class="manual-refs__title">Quellen</div>
+            <ol>
+                <li id="ref-1">Brunmair, M., &amp; Richter, T. (2019). Similarity matters: A meta-analysis of interleaved learning and its moderators. <em>Psychological Bulletin, 145</em>(11), 1029–1052.</li>
+                <li id="ref-2">Roediger, H. L., &amp; Karpicke, J. D. (2006). Test-enhanced learning: Taking memory tests improves long-term retention. <em>Psychological Science, 17</em>(3), 249–255.</li>
+                <li id="ref-3">Repp, B. H. (2005). Sensorimotor synchronization: A review of the tapping literature. <em>Psychonomic Bulletin &amp; Review, 12</em>(6), 969–992.</li>
+                <li id="ref-4">Sweller, J. (1988). Cognitive load during problem solving: Effects on learning. <em>Cognitive Science, 12</em>(2), 257–285.</li>
+            </ol>
+        </section>
+
+    </main>
+
+    <!-- Final CTA -->
+    <section class="article-cta">
+        <h2 class="article-cta__title">Einstellungen geklärt? Probieren Sie es aus</h2>
+        <p class="article-cta__text">
+            
+            
+            
+            Sobald Sie jede Einstellung verstanden haben, bleibt nur noch das praktische Üben.<br>Folgen Sie im Zweifel einfach den Zeilen „Im Zweifel…" auf dieser Seite.<br>Finden Sie die für Sie passenden Einstellungen im Rhythmus-Blattlesen von Solfege PRO.
+        </p>
+        <a href="https://apps.apple.com/de/app/id6756626617" class="app-store-link" aria-label="Download on the App Store">
+            
+            
+            
+            <img class="app-store-link__img" width="120" height="40" src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/de-de" alt="Laden im App Store">
+        </a>
+    </section>
+
+    <!-- Related Content -->
+    <div class="article-related">
+        <div class="article-related__title">Verwandte Inhalte</div>
+        <a href="/guides/how-to-count-rhythms/" class="article-related__link" style="margin-bottom: var(--space-md);">
+            <div class="article-related__link-title">Rhythmus zählen lernen — Notenwerte lesen und halten</div>
+            <div class="article-related__link-desc">Für alle, die verstehen möchten, wie man Notenwerte zählt, bevor sie die Einstellungen anpassen — ein Leitfaden zum Lesen von Vierteln, Achteln, punktierten Noten und Triolen.</div>
+        </a>
+        <a href="/" class="article-related__link">
+            <div class="article-related__link-title">Solfege PRO Übungsleitfaden</div>
+            <div class="article-related__link-desc">Problem­bezogene Übungsmenüs für Gitarre, Bass, Schlagzeug, Klavier und Gesang</div>
+        </a>
+    </div>
+
+    <!-- Article Note -->
+    <aside class="article-endnote">
+        <p class="article-endnote__text">
+            
+            
+            
+            Diese Seite ist eine Referenz, die die in der App enthaltenen Einstellungen erläutert. Die hier empfohlenen Abfolgen sind allgemeine Richtwerte, die auf einer weit verbreiteten Methodik des Blattlesens und Rhythmustrainings beruhen; die optimalen Einstellungen hängen von der individuellen Erfahrung und den Zielen ab. Die zitierten Studien berichten allgemeine Erkenntnisse zum Lernen und garantieren keine Ergebnisse innerhalb dieser App.
+        </p>
+    </aside>
+
+    <!-- Footer -->
+    <footer class="article-footer">
+        <p class="article-footer__text">
+            &copy; 2026 Solfege PRO &mdash;
+            <a href="https://apps.apple.com/de/app/id6756626617" class="article-footer__link">App Store</a>
+        </p>
+    </footer>
+    <script src="/bootstrap.js?v=3" defer></script>
+</body>
+</html>

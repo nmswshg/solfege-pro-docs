@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="ja"
+      data-title-ja="リズムトレーニング 設定マニュアル — 各設定の選び方 | ソルフェージュPRO"
+      data-title-en="Rhythm Training Settings Manual — How to Choose Each Option | Solfege PRO"
+      data-title-fr="Manuel des réglages de l'entraînement au rythme — Comment choisir chaque option | Solfege PRO"
+      data-title-de="Handbuch zu den Einstellungen des Rhythmustrainings — So wählst du jede Option | Solfege PRO">
+<head>
+    <meta charset="UTF-8">
+    <meta name="robots" content="index, follow">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#1A1A1E">
+    <title>リズムトレーニング 設定マニュアル — 各設定の選び方 | ソルフェージュPRO</title>
+    <meta name="description" content="リズムトレーニングの各設定（入力方式・テンポ・難易度・拍子・クリック密度）を、何のための設定で、誰が、どう選ぶべきかまで丁寧に解説するリファレンスマニュアルです。">
+
+    <!-- Canonical -->
+    <link rel="canonical" href="https://solfegepro.com/manual/rhythm/">
+    <link rel="alternate" hreflang="ja" href="https://solfegepro.com/manual/rhythm/">
+    <link rel="alternate" hreflang="en" href="https://solfegepro.com/en/manual/rhythm/">
+    <link rel="alternate" hreflang="fr" href="https://solfegepro.com/fr/manual/rhythm/">
+    <link rel="alternate" hreflang="de" href="https://solfegepro.com/de/manual/rhythm/">
+    <link rel="alternate" hreflang="x-default" href="https://solfegepro.com/manual/rhythm/">
+
+    <!-- OGP -->
+    <meta property="og:title" content="リズムトレーニング 設定マニュアル — 各設定の選び方">
+    <meta property="og:description" content="リズムトレーニングの各設定（入力方式・テンポ・難易度・拍子・クリック密度）を、何のための設定で、誰が、どう選ぶべきかまで丁寧に解説するリファレンスマニュアルです。">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://solfegepro.com/manual/rhythm/">
+    <meta property="og:site_name" content="ソルフェージュPRO">
+    <meta property="og:image" content="https://solfegepro.com/og-image.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Solfege PRO">
+    <meta property="og:locale" content="ja_JP">
+    <meta property="og:locale:alternate" content="en_US">
+    <meta property="og:locale:alternate" content="fr_FR">
+    <meta property="og:locale:alternate" content="de_DE">
+    <meta property="article:published_time" content="2026-06-05">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="リズムトレーニング 設定マニュアル — 各設定の選び方">
+    <meta name="twitter:description" content="リズムトレーニングの各設定（入力方式・テンポ・難易度・拍子・クリック密度）を、何のための設定で、誰が、どう選ぶべきかまで丁寧に解説するリファレンスマニュアルです。">
+    <meta name="twitter:image" content="https://solfegepro.com/og-image.png">
+
+    <!-- Favicon -->
+    <link rel="icon" href="/favicon.ico" sizes="any">
+    <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap"></noscript>
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="/style.css?v=17">
+    <link rel="stylesheet" href="/guides/article.css?v=11">
+
+    <style>
+        /* Manual option reference — responsive, no fixed px widths */
+        .manual-options {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr);
+            gap: var(--space-sm);
+            margin: var(--space-lg) 0;
+        }
+        .manual-option {
+            background: var(--surface);
+            border: 1px solid var(--surface-light);
+            border-radius: var(--radius-lg);
+            padding: var(--space-md);
+        }
+        .manual-option__name {
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: var(--space-xs);
+        }
+        .manual-option__desc {
+            font-size: 13px;
+            color: var(--text-secondary);
+        }
+        /* Bottom-line callout (conclusion first) */
+        .manual-lead {
+            font-size: 14px;
+            line-height: 1.75;
+            color: var(--text-primary);
+            border-left: 3px solid var(--primary);
+            background: rgba(212, 175, 55, 0.06);
+            padding: var(--space-sm) var(--space-md);
+            border-radius: 0 var(--radius-md) var(--radius-md) 0;
+            margin: var(--space-md) 0;
+        }
+        /* Per-setting evidence note — deliberately styled as an editorial
+           aside, NOT as a settings card (no surface fill, no gold label),
+           so it is never mistaken for an in-app option. */
+        .manual-rationale {
+            margin: var(--space-md) 0 var(--space-2xl);
+            padding: var(--space-sm) 0 var(--space-sm) var(--space-md);
+            border-left: 2px solid var(--surface-light);
+        }
+        .manual-rationale__label {
+            display: block;
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            color: var(--text-secondary);
+            margin-bottom: 4px;
+            opacity: 0.75;
+        }
+        .manual-rationale p {
+            font-size: 13px;
+            line-height: 1.75;
+            color: var(--text-secondary);
+            margin: 0;
+        }
+        .manual-rationale__ref {
+            font-size: 12px;
+            font-style: italic;
+            margin-top: var(--space-xs) !important;
+            opacity: 0.7;
+        }
+        /* Citation number linking to the reference list */
+        .manual-ref-num {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-style: normal;
+        }
+        .manual-ref-num:hover { color: var(--primary); }
+        /* Full reference list at page end */
+        .manual-refs {
+            margin: var(--space-2xl) 0 0;
+            padding-top: var(--space-lg);
+            border-top: 1px solid var(--surface-light);
+        }
+        .manual-refs__title {
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: var(--space-sm);
+        }
+        .manual-refs ol {
+            margin: 0;
+            padding-left: 1.25em;
+        }
+        .manual-refs li {
+            font-size: 12px;
+            line-height: 1.7;
+            color: var(--text-secondary);
+            margin-bottom: var(--space-xs);
+            scroll-margin-top: 84px;
+        }
+        .manual-refs li:target {
+            color: var(--text-primary);
+        }
+    </style>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"リズムトレーニング 設定マニュアル — 各設定の選び方","description":"リズムトレーニングの各設定を、何のための設定で、誰が、どう選ぶべきかまで解説するリファレンスマニュアルです。","author":{"@type":"Organization","name":"ソルフェージュPRO"},"publisher":{"@type":"Organization","name":"ソルフェージュPRO","logo":{"@type":"ImageObject","url":"https://solfegepro.com/AppIcon.png"}},"datePublished":"2026-06-05","mainEntityOfPage":{"@type":"WebPage","@id":"https://solfegepro.com/manual/rhythm/"}}</script>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="nav__container">
+            <a href="/" class="nav__logo">
+                <img src="/AppIcon.png" alt="Solfege PRO" class="nav__logo-icon" width="32" height="32">
+                <span class="nav__logo-text"><span lang="ja">ソルフェージュPRO</span><span lang="en">Solfege PRO</span><span lang="fr">Solfege PRO</span><span lang="de">Solfege PRO</span></span>
+            </a>
+            <ul class="nav__list">
+                <li><a href="/" class="nav__link"><span lang="ja">練習ガイド</span><span lang="en">Practice Guide</span><span lang="fr">Guide d'entraînement</span><span lang="de">Übungsleitfaden</span></a></li>
+                <li><a href="/guides/" class="nav__link"><span lang="ja">ガイド一覧</span><span lang="en">Guides</span><span lang="fr">Guides</span><span lang="de">Leitfäden</span></a></li>
+                <li><a href="/manual/" class="nav__link active"><span lang="ja">マニュアル</span><span lang="en">Manual</span><span lang="fr">Manuel</span><span lang="de">Handbuch</span></a></li>
+                            <li><a href="/start-here/" class="nav__link"><span lang="ja">どこから始める？</span><span lang="en">Where to Start?</span><span lang="fr">Par où commencer ?</span><span lang="de">Wo anfangen?</span></a></li>
+            </ul>
+            <div class="nav__settings">
+                <button class="settings-btn" id="lang-toggle" title="Toggle language">
+                    <span id="lang-text">EN</span>
+                </button>
+                <button class="hamburger-btn" id="hamburger-btn" aria-label="Menu" aria-expanded="false" aria-controls="drawer">
+                    <span class="hamburger-btn__line"></span>
+                    <span class="hamburger-btn__line"></span>
+                    <span class="hamburger-btn__line"></span>
+                </button>
+            </div>
+        </div>
+    </nav>
+        <!-- Mobile drawer (hidden on desktop) -->
+        <div class="drawer-overlay" id="drawer-overlay"></div>
+        <aside class="drawer" id="drawer" aria-label="Mobile menu" aria-hidden="true" inert>
+            <div class="drawer__header">
+                <span class="drawer__title"><span lang="ja">メニュー</span><span lang="en">Menu</span><span lang="fr">Menu</span><span lang="de">Menü</span></span>
+                <button class="drawer__close" id="drawer-close" aria-label="Close menu">×</button>
+            </div>
+            <ul class="drawer__list">
+                    <li><a href="/" class="drawer__link"><span lang="ja">練習ガイド</span><span lang="en">Practice Guide</span><span lang="fr">Guide d'entraînement</span><span lang="de">Übungsleitfaden</span></a></li>
+                    <li><a href="/guides/" class="drawer__link"><span lang="ja">ガイド一覧</span><span lang="en">Guides</span><span lang="fr">Guides</span><span lang="de">Leitfäden</span></a></li>
+                    <li><a href="/manual/" class="drawer__link active"><span lang="ja">マニュアル</span><span lang="en">Manual</span><span lang="fr">Manuel</span><span lang="de">Handbuch</span></a></li>
+                    <li><a href="/start-here/" class="drawer__link"><span lang="ja">どこから始める？</span><span lang="en">Where to Start?</span><span lang="fr">Par où commencer ?</span><span lang="de">Wo anfangen?</span></a></li>
+            </ul>
+        </aside>
+
+
+    <!-- Article Header -->
+    <header class="page-header">
+        <div class="page-header__meta">
+            <span class="page-header__tag"><span lang="ja">マニュアル</span><span lang="en">Manual</span><span lang="fr">Manuel</span><span lang="de">Handbuch</span></span>
+            <span><span lang="ja">リズムトレーニング</span><span lang="en">Rhythm Training</span><span lang="fr">Entraînement au rythme</span><span lang="de">Rhythmustraining</span></span>
+        </div>
+        <h1 class="page-header__title">
+            <span lang="ja">リズムトレーニング 設定マニュアル<br>各設定の意味と選び方</span>
+            <span lang="en">Rhythm Training Settings Manual<br>What Each Option Means and How to Choose</span>
+            <span lang="fr">Manuel des réglages de l'entraînement au rythme<br>Ce que signifie chaque option et comment choisir</span>
+            <span lang="de">Handbuch zu den Einstellungen des Rhythmustrainings<br>Was jede Option bedeutet und wie du wählst</span>
+        </h1>
+        <p class="page-header__subtitle">
+            <span lang="ja">どの項目を、どんなときに、どう選べばよいか。リズムトレーニングの各設定を 1 つずつ解説します。設定画面の「?」から飛んできた方は、目的の項目までスクロールしてください。</span>
+            <span lang="en">Which option to pick, when, and why. This page walks through each setting in rhythm training, one at a time. If you arrived from a "?" in the settings screen, scroll to the option you need.</span>
+            <span lang="fr">Quelle option choisir, quand et pourquoi. Cette page passe en revue chaque réglage de l'entraînement au rythme, un par un. Si vous arrivez depuis un « ? » de l'écran des réglages, faites défiler jusqu'à l'option recherchée.</span>
+            <span lang="de">Welche Option du wann und warum wählst. Diese Seite geht jede Einstellung des Rhythmustrainings einzeln durch. Wenn du über ein „?“ im Einstellungsbildschirm hierhergekommen bist, scrolle zur gesuchten Option.</span>
+        </p>
+    </header>
+
+    <!-- Top-of-article CTA -->
+    <aside class="article-top-cta" aria-label="App promotion">
+        <div class="article-top-cta__body">
+            <p class="article-top-cta__title">
+                <span lang="ja">ソルフェージュPRO でこの練習を試す</span>
+                <span lang="en">Try this in Solfege PRO</span>
+                <span lang="fr">Essayez cet exercice dans Solfege PRO</span>
+                <span lang="de">Probieren Sie diese Übung in Solfege PRO</span>
+            </p>
+            <p class="article-top-cta__sub">
+                <span lang="ja">月額 980 円 · 1 週間無料トライアル</span>
+                <span lang="en">¥980/month · 1-week free trial</span>
+                <span lang="fr">980 ¥/mois · essai gratuit d'une semaine</span>
+                <span lang="de">980 ¥/Monat · 1 Woche kostenlos testen</span>
+            </p>
+        </div>
+        <a href="https://apps.apple.com/jp/app/id6756626617" class="article-top-cta__button" data-cta-position="article_top">
+            <span lang="ja">App Store →</span>
+            <span lang="en">App Store →</span>
+            <span lang="fr">App Store →</span>
+            <span lang="de">App Store →</span>
+        </a>
+    </aside>
+
+    <!-- Article Body -->
+    <main class="article-body">
+
+        <!-- Intro -->
+        <p>
+            <span lang="ja">リズムトレーニングは、メトロノームのクリックに合わせて画面をタップ（または手拍子）し、自分のタイミングがどれだけ正確かを測って鍛える練習です。コードやスケールのように「何の音か」を答えるのではなく、ジャストのタイミングに対して何ミリ秒ずれているか（=タイミング精度）を磨きます。安定したリズム感は、合奏でも独奏でも演奏の土台になります。</span>
+            <span lang="en">Rhythm training has you tap the screen (or clap) along to a metronome click and measures how accurate your timing is. Unlike chord or scale training, you are not answering "which note is it?" — you sharpen how many milliseconds off the exact beat you are (your timing accuracy). A steady sense of rhythm is the foundation of playing, whether in an ensemble or alone.</span>
+            <span lang="fr">L'entraînement au rythme consiste à taper l'écran (ou à frapper dans les mains) en suivant le clic d'un métronome, et mesure la précision de votre timing. Contrairement à l'entraînement aux accords ou aux gammes, vous ne répondez pas à « quelle est cette note ? » : vous affinez de combien de millisecondes vous êtes décalé par rapport au temps exact (votre précision de timing). Un sens du rythme stable est le socle du jeu, en groupe comme en solo.</span>
+            <span lang="de">Beim Rhythmustraining tippst du den Bildschirm an (oder klatschst) im Takt eines Metronom-Klicks, und es misst, wie genau dein Timing ist. Anders als beim Akkord- oder Tonleitertraining beantwortest du nicht „welche Note ist das?“ – du schärfst, um wie viele Millisekunden du vom exakten Schlag abweichst (deine Timing-Genauigkeit). Ein stabiles Rhythmusgefühl ist die Grundlage des Spielens, im Ensemble wie allein.</span>
+        </p>
+        <p>
+            <span lang="ja">このページは設定の選び方をまとめたマニュアルです。各設定は音楽教育で確立された学習法にもとづいて設計しています。判断が要る設定について、<strong>おすすめの選び方・何のための設定か・鍛えられる力とその根拠</strong>を簡潔に示します。設定画面の「?」から来た方は、目的の項目までスクロールしてください。</span>
+            <span lang="en">This page is a manual for choosing the settings. Each setting is designed around established methods from music education. For each setting that calls for a decision, we give <strong>the recommended choice, what it is for, and what it trains — with the evidence behind it</strong>. If you arrived from a "?" in the settings screen, scroll to the option you need.</span>
+            <span lang="fr">Cette page est un manuel pour choisir les réglages. Chaque réglage est conçu à partir de méthodes éprouvées issues de l'éducation musicale. Pour chaque réglage qui appelle une décision, nous indiquons <strong>le choix recommandé, son utilité et ce qu'il développe — avec les éléments qui l'étayent</strong>. Si vous arrivez depuis un « ? » de l'écran des réglages, faites défiler jusqu'à l'option recherchée.</span>
+            <span lang="de">Diese Seite ist ein Handbuch zur Wahl der Einstellungen. Jede Einstellung ist auf etablierten Methoden der Musikpädagogik aufgebaut. Für jede Einstellung, die eine Entscheidung erfordert, nennen wir <strong>die empfohlene Wahl, wozu sie dient und was sie trainiert – mit den Belegen dahinter</strong>. Wenn du über ein „?“ im Einstellungsbildschirm hierhergekommen bist, scrolle zur gesuchten Option.</span>
+        </p>
+
+        <!-- #input-mode -->
+        <h2 id="input-mode"><span lang="ja">入力方式（タップ / クラップ）</span><span lang="en">Input Mode (Tap / Clap)</span><span lang="fr">Mode de saisie (taper / frapper)</span><span lang="de">Eingabemodus (Tippen / Klatschen)</span></h2>
+
+        <p class="manual-lead">
+            <span lang="ja"><strong>迷ったら「タップ」。</strong> 計測が最も安定します。体を動かして練習したい、実際の打楽器で確かめたいときだけ「クラップ（マイク）」へ。クラップではスピーカーより有線イヤホンが安定します。</span>
+            <span lang="en"><strong>When in doubt, choose Tap.</strong> It gives the most stable measurement. Switch to Clap (Mic) only when you want to move your body or check on a real percussion instrument; with Clap, wired headphones are steadier than the speaker.</span>
+            <span lang="fr"><strong>En cas de doute, choisissez « Taper ».</strong> C'est ce qui donne la mesure la plus stable. Passez à « Frapper (micro) » seulement si vous voulez bouger le corps ou vérifier sur un vrai instrument de percussion ; avec « Frapper », des écouteurs filaires sont plus stables que le haut-parleur.</span>
+            <span lang="de"><strong>Im Zweifel wähle „Tippen“.</strong> Das liefert die stabilste Messung. Wechsle nur zu „Klatschen (Mikro)“, wenn du dich körperlich bewegen oder es an einem echten Schlaginstrument prüfen willst; beim Klatschen sind kabelgebundene Kopfhörer stabiler als der Lautsprecher.</span>
+        </p>
+
+        <p>
+            <span lang="ja">リズムをどうやって入力するかを決める設定です。測定の正確さに直結する最も重要な選択で、タップ と クラップ（マイク） の 2 つから選びます。</span>
+            <span lang="en">This setting decides how you enter the rhythm. It is the most important choice because it directly affects measurement accuracy. You pick between Tap and Clap (Mic).</span>
+            <span lang="fr">Ce réglage détermine comment vous saisissez le rythme. C'est le choix le plus important, car il influe directement sur la précision de la mesure. Vous choisissez entre « Taper » et « Frapper (micro) ».</span>
+            <span lang="de">Diese Einstellung legt fest, wie du den Rhythmus eingibst. Es ist die wichtigste Wahl, da sie die Messgenauigkeit unmittelbar beeinflusst. Du wählst zwischen „Tippen“ und „Klatschen (Mikro)“.</span>
+        </p>
+
+        <div class="manual-options">
+            <div class="manual-option">
+                <div class="manual-option__name"><span lang="ja">タップ</span><span lang="en">Tap</span><span lang="fr">Taper</span><span lang="de">Tippen</span></div>
+                <div class="manual-option__desc"><span lang="ja">画面をタップしてリズムを入力します。タッチ検出はほぼ遅延なし（低レイテンシ）で計測のばらつきが小さく、イヤホンも不要。リズム感そのものを純粋に測りたいときの基本です。</span><span lang="en">Tap the screen to enter the rhythm. Touch detection is nearly delay-free (low latency), so measurement noise is small and no headphones are needed — the default for measuring your sense of timing cleanly.</span><span lang="fr">Tapez l'écran pour saisir le rythme. La détection tactile est quasiment sans latence (faible latence), donc la dispersion de la mesure est minime et aucun écouteur n'est requis — le mode par défaut pour mesurer purement votre sens du rythme.</span><span lang="de">Tippe den Bildschirm an, um den Rhythmus einzugeben. Die Berührungserkennung ist nahezu verzögerungsfrei (geringe Latenz), die Messstreuung ist gering und Kopfhörer sind nicht nötig — die Standardwahl, um dein Rhythmusgefühl rein zu messen.</span></div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name"><span lang="ja">クラップ（マイク）</span><span lang="en">Clap (Mic)</span><span lang="fr">Frapper (micro)</span><span lang="de">Klatschen (Mikro)</span></div>
+                <div class="manual-option__desc"><span lang="ja">拍手や打楽器の音をマイクで検出します（クラップ = 手拍子）。体で覚える練習に近い一方、マイク入力には機器ごとの遅延（レイテンシ）が乗り、状態に応じた注意表示や遅延補正の項目が現れます。</span><span lang="en">Detects the sound of claps or percussion through the mic (clap = hand clap). It is closer to embodied practice, but mic input carries device-dependent delay (latency), and reveals warnings and latency-compensation controls.</span><span lang="fr">Détecte le son des claps ou des percussions via le micro (frapper = taper dans les mains). C'est plus proche d'une pratique corporelle, mais l'entrée micro comporte un délai (latence) propre à chaque appareil, et fait apparaître des messages d'avertissement et des réglages de compensation de latence.</span><span lang="de">Erkennt das Geräusch von Klatschen oder Schlaginstrumenten über das Mikrofon (Klatschen = in die Hände klatschen). Das kommt einem körperlichen Üben näher, doch die Mikrofoneingabe bringt eine geräteabhängige Verzögerung (Latenz) mit sich und blendet Warnhinweise sowie Regler zur Latenzkompensation ein.</span></div>
+            </div>
+        </div>
+
+        <div class="manual-rationale">
+            <span class="manual-rationale__label"><span lang="ja">学習科学の裏づけ</span><span lang="en">The evidence behind it</span><span lang="fr">Les bases scientifiques</span><span lang="de">Die wissenschaftliche Grundlage</span></span>
+            <p>
+                <span lang="ja">どちらの入力でも、鍛えるのはクリックに動作を合わせる感覚運動の同期（聴いた拍に体の動きをそろえる力）です。タップは入力の遅延が小さいぶん、あなた自身のずれを正確に映し出します。タッピングの同期能力は系統的に測れることが、タッピング研究のレビューで広く示されています。</span>
+                <span lang="en">Either input trains sensorimotor synchronization — aligning your movement to the click you hear. Tap adds the least input delay, so it mirrors your own deviation accurately. Tapping synchronization can be measured systematically, as broadly shown in reviews of the tapping literature.</span>
+                <span lang="fr">Les deux modes de saisie entraînent la synchronisation sensorimotrice — aligner votre geste sur le clic que vous entendez. « Taper » ajoute le moins de délai d'entrée, ce qui reflète fidèlement votre propre décalage. La synchronisation par tapotement se mesure de façon systématique, comme le montrent largement les synthèses de la littérature sur le tapping.</span>
+                <span lang="de">Beide Eingaben trainieren die sensomotorische Synchronisation — das Anpassen deiner Bewegung an den gehörten Klick. „Tippen“ fügt die geringste Eingabeverzögerung hinzu und bildet deine eigene Abweichung daher genau ab. Die Synchronisation beim Tippen lässt sich systematisch messen, wie Übersichtsarbeiten zur Tapping-Forschung breit belegen.</span>
+            </p>
+            <p class="manual-rationale__ref"><span lang="ja">参考: </span><span lang="en">Ref.: </span><span lang="fr">Réf. : </span><span lang="de">Quelle: </span>Repp (2005) <a class="manual-ref-num" href="#ref-1">[1]</a></p>
+        </div>
+
+        <!-- #bpm -->
+        <h2 id="bpm"><span lang="ja">テンポ（BPM）</span><span lang="en">Tempo (BPM)</span><span lang="fr">Tempo (BPM)</span><span lang="de">Tempo (BPM)</span></h2>
+
+        <p class="manual-lead">
+            <span lang="ja"><strong>迷ったら 90〜100 BPM から。</strong> そこで安定したら、上げる前にまず下げて、遅いテンポでも揺れないかを確かめると地力が付きます。</span>
+            <span lang="en"><strong>When in doubt, start near 90–100 BPM.</strong> Once stable there, slow down before speeding up and check that you stay steady at a slower tempo — that builds real underlying control.</span>
+            <span lang="fr"><strong>En cas de doute, commencez autour de 90–100 BPM.</strong> Une fois stable à cette vitesse, ralentissez avant d'accélérer et vérifiez que vous restez régulier à un tempo plus lent — c'est ce qui forge un vrai contrôle de fond.</span>
+            <span lang="de"><strong>Im Zweifel beginne bei etwa 90–100 BPM.</strong> Bist du dort stabil, verlangsame zuerst, bevor du schneller wirst, und prüfe, ob du auch bei langsamerem Tempo gleichmäßig bleibst — das baut echte zugrunde liegende Kontrolle auf.</span>
+        </p>
+
+        <p>
+            <span lang="ja">メトロノームの速さを決める設定です。単位は BPM（beats per minute = 1 分間あたりの拍数）で、スライダーで 40〜200 を選べます。速いテンポ（150 以上）は反射的に反応できる反面「合っているように感じる」だけで雑になりがちで、遅いテンポ（60 前後）は拍間が長く、自分の内的パルス（自分の中で時を刻む感覚）を保つ力が問われます。中速（90〜120）が多くの楽曲で使われる実用的な帯域です。</span>
+            <span lang="en">Sets how fast the metronome runs. The unit is BPM (beats per minute), and the slider covers 40–200. Fast tempos (150+) let you react reflexively but can feel "on" while being sloppy; slow tempos (around 60) leave long gaps and test your internal pulse (your own sense of timekeeping). Mid tempos (90–120) are the practical band used in most music.</span>
+            <span lang="fr">Détermine la vitesse du métronome. L'unité est le BPM (battements par minute), et le curseur va de 40 à 200. Les tempos rapides (150+) permettent de réagir par réflexe, mais on peut « sembler en place » tout en restant approximatif ; les tempos lents (autour de 60) laissent de longs intervalles et mettent à l'épreuve votre pulsation interne (votre propre sens du temps). Les tempos moyens (90–120) constituent la plage pratique utilisée dans la plupart des musiques.</span>
+            <span lang="de">Legt fest, wie schnell das Metronom läuft. Die Einheit ist BPM (Schläge pro Minute), und der Regler reicht von 40 bis 200. Schnelle Tempi (150+) lassen dich reflexartig reagieren, können sich aber „passend“ anfühlen, obwohl sie schlampig sind; langsame Tempi (um 60) lassen lange Lücken und stellen deinen inneren Puls (dein eigenes Zeitgefühl) auf die Probe. Mittlere Tempi (90–120) sind der praktische Bereich, der in den meisten Stücken verwendet wird.</span>
+        </p>
+
+        <div class="manual-rationale">
+            <span class="manual-rationale__label"><span lang="ja">学習科学の裏づけ</span><span lang="en">The evidence behind it</span><span lang="fr">Les bases scientifiques</span><span lang="de">Die wissenschaftliche Grundlage</span></span>
+            <p>
+                <span lang="ja">テンポを変えられるのは、合わせる難しさが速さで変わるからです。遅いテンポほど拍間隔の変動が大きくなる（=ごまかしが効かず難しい）ことは、タッピング研究のレビューで繰り返し報告されています。だからこそ、遅いテンポで揺れないかを確かめると同期の地力が鍛えられます。</span>
+                <span lang="en">Tempo is adjustable because how hard it is to lock on changes with speed. Timing variability grows as the tempo slows (so slow is genuinely harder to fake), as repeatedly reported in reviews of the tapping literature. Checking that you stay steady at a slow tempo therefore builds the underlying ability to synchronize.</span>
+                <span lang="fr">Le tempo est réglable parce que la difficulté à se caler varie avec la vitesse. La variabilité temporelle augmente quand le tempo ralentit (le lent est donc réellement plus difficile à tricher), comme le rapportent à plusieurs reprises les synthèses de la littérature sur le tapping. Vérifier que vous restez régulier à tempo lent développe donc la capacité de fond à se synchroniser.</span>
+                <span lang="de">Das Tempo ist einstellbar, weil sich mit der Geschwindigkeit ändert, wie schwer das Einrasten fällt. Die zeitliche Streuung wächst, je langsamer das Tempo wird (langsam lässt sich also wirklich schwerer vortäuschen), wie Übersichtsarbeiten zur Tapping-Forschung wiederholt berichten. Zu prüfen, ob du bei langsamem Tempo gleichmäßig bleibst, baut daher die grundlegende Fähigkeit zur Synchronisation auf.</span>
+            </p>
+            <p class="manual-rationale__ref"><span lang="ja">参考: </span><span lang="en">Ref.: </span><span lang="fr">Réf. : </span><span lang="de">Quelle: </span>Repp (2005) <a class="manual-ref-num" href="#ref-1">[1]</a></p>
+        </div>
+
+        <!-- #difficulty -->
+        <h2 id="difficulty"><span lang="ja">難易度</span><span lang="en">Difficulty</span><span lang="fr">Difficulté</span><span lang="de">Schwierigkeit</span></h2>
+
+        <p class="manual-lead">
+            <span lang="ja"><strong>迷ったら「初級」から。</strong> 安定して高評価が出るようになったら 1 段ずつ上げます。とくにクラップ（マイク）は機器の遅延が乗るので、いきなり上級・プロにしないでください。</span>
+            <span lang="en"><strong>When unsure, start at Beginner.</strong> Step up one level once you reliably score high. Especially with Clap (Mic), device latency is added in, so don't jump straight to Advanced or Pro.</span>
+            <span lang="fr"><strong>En cas de doute, commencez par « Débutant ».</strong> Montez d'un niveau dès que vous obtenez de bons scores de façon fiable. Avec « Frapper (micro) » en particulier, la latence de l'appareil s'ajoute : ne passez pas directement à « Avancé » ou « Pro ».</span>
+            <span lang="de"><strong>Im Zweifel beginne bei „Anfänger“.</strong> Steige eine Stufe höher, sobald du zuverlässig hohe Wertungen erzielst. Besonders bei „Klatschen (Mikro)“ kommt die Latenz des Geräts hinzu — springe also nicht direkt auf „Fortgeschritten“ oder „Pro“.</span>
+        </p>
+
+        <p>
+            <span lang="ja">タイミングの「合格ライン」をどれだけ厳しくするかを決める設定です。ジャストからの許容ずれ（ミリ秒）が段階的に狭くなり、Perfect / Great / Good の判定基準も連動して厳しくなります。コードやスケールの難易度が出題の幅を変えるのに対し、リズムの難易度は採点の精度を変えます。</span>
+            <span lang="en">Decides how strict the "passing line" for timing is. The tolerated deviation from the exact beat (in milliseconds) narrows step by step, and the Perfect / Great / Good thresholds tighten with it. Where chord and scale difficulty change the breadth of questions, rhythm difficulty changes the precision of the scoring.</span>
+            <span lang="fr">Détermine la sévérité de la « ligne de réussite » pour le timing. L'écart toléré par rapport au temps exact (en millisecondes) se resserre par paliers, et les seuils Perfect / Great / Good se durcissent en conséquence. Là où la difficulté des accords et des gammes change l'étendue des questions, la difficulté du rythme change la précision de la notation.</span>
+            <span lang="de">Legt fest, wie streng die „Bestehensgrenze“ für das Timing ist. Die tolerierte Abweichung vom exakten Schlag (in Millisekunden) wird Schritt für Schritt enger, und die Schwellen Perfect / Great / Good werden entsprechend strenger. Während die Schwierigkeit bei Akkorden und Tonleitern die Bandbreite der Fragen ändert, ändert die Rhythmus-Schwierigkeit die Genauigkeit der Bewertung.</span>
+        </p>
+
+        <div class="manual-options">
+            <div class="manual-option">
+                <div class="manual-option__name"><span lang="ja">初級</span><span lang="en">Beginner</span><span lang="fr">Débutant</span><span lang="de">Anfänger</span></div>
+                <div class="manual-option__desc"><span lang="ja">±100ms - リズムの基礎。許容範囲が広く、まず「拍にだいたい合わせる」感覚をつかむための段階です。最初はここで構いません。</span><span lang="en">±100ms — basic timing. A wide tolerance for first getting the feel of roughly landing on the beat. Start here.</span><span lang="fr">±100 ms — timing de base. Une large tolérance pour saisir d'abord la sensation de « tomber à peu près sur le temps ». Commencez ici.</span><span lang="de">±100 ms — grundlegendes Timing. Eine weite Toleranz, um zunächst das Gefühl zu bekommen, ungefähr auf dem Schlag zu landen. Beginne hier.</span></div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name"><span lang="ja">中級</span><span lang="en">Intermediate</span><span lang="fr">Intermédiaire</span><span lang="de">Mittelstufe</span></div>
+                <div class="manual-option__desc"><span lang="ja">±60ms - 標準的な精度。多くの人にとって日常的な合奏に通用するレベルの判定です。</span><span lang="en">±60ms — standard accuracy. The level of judging that holds up in everyday ensemble playing for most people.</span><span lang="fr">±60 ms — précision standard. Le niveau d'évaluation qui tient la route dans le jeu d'ensemble au quotidien pour la plupart des gens.</span><span lang="de">±60 ms — Standardgenauigkeit. Das Bewertungsniveau, das für die meisten im alltäglichen Ensemblespiel standhält.</span></div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name"><span lang="ja">上級</span><span lang="en">Advanced</span><span lang="fr">Avancé</span><span lang="de">Fortgeschritten</span></div>
+                <div class="manual-option__desc"><span lang="ja">±40ms - 高い精度。人が「ずれ」として知覚し始める境界に近く、細かいムラまで見えてくる段階です。</span><span lang="en">±40ms — high accuracy. Near the threshold at which people begin to perceive timing as "off," surfacing fine unevenness.</span><span lang="fr">±40 ms — haute précision. Proche du seuil à partir duquel on commence à percevoir le timing comme « décalé », faisant apparaître les moindres irrégularités.</span><span lang="de">±40 ms — hohe Genauigkeit. Nahe der Schwelle, ab der man Timing als „daneben“ wahrnimmt, sodass feinste Unregelmäßigkeiten sichtbar werden.</span></div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name"><span lang="ja">プロ</span><span lang="en">Pro</span><span lang="fr">Pro</span><span lang="de">Pro</span></div>
+                <div class="manual-option__desc"><span lang="ja">±25ms - プロレベル。プロの演奏家でも常時は難しい厳格な基準。完成度を限界まで詰めたい人向けです。</span><span lang="en">±25ms — pro level. A strict standard that even professional players cannot hold all the time. For those who want to push precision to the limit.</span><span lang="fr">±25 ms — niveau pro. Un critère strict que même les musiciens professionnels ne tiennent pas en permanence. Pour ceux qui veulent pousser la précision jusqu'à la limite.</span><span lang="de">±25 ms — Profi-Niveau. Ein strenger Maßstab, den selbst Profis nicht durchgehend halten. Für alle, die die Präzision bis ans Limit treiben wollen.</span></div>
+            </div>
+        </div>
+
+        <div class="manual-rationale">
+            <span class="manual-rationale__label"><span lang="ja">学習科学の裏づけ</span><span lang="en">The evidence behind it</span><span lang="fr">Les bases scientifiques</span><span lang="de">Die wissenschaftliche Grundlage</span></span>
+            <p>
+                <span lang="ja">合格ラインを段階的に厳しくするのは、初期は判定をゆるめて処理の負荷を下げ、慣れてから精度を詰めるためです。新しい技能の初期ほど負荷を抑えるほど学習が進む、という認知負荷の考え方にもとづく段階設計です。広い許容範囲でまず「拍に合わせる感覚」を固めてから狭めるほうが、いきなり厳しい基準に挑むより速く上達します。</span>
+                <span lang="en">Tightening the passing line in stages lets you lower the processing load early — with a lenient judgment — then push precision once you are comfortable. The tiers follow cognitive-load theory: keeping demands low early in a new skill aids learning. Fixing the feel of landing on the beat under a wide tolerance before narrowing it gets you there faster than starting from a strict standard.</span>
+                <span lang="fr">Resserrer la ligne de réussite par paliers permet de réduire la charge de traitement au début — avec une évaluation indulgente — puis de pousser la précision une fois à l'aise. Ces paliers suivent la théorie de la charge cognitive : maintenir des exigences faibles au début d'une nouvelle compétence favorise l'apprentissage. Ancrer la sensation de tomber sur le temps sous une large tolérance avant de la resserrer vous y amène plus vite que de partir d'un critère strict.</span>
+                <span lang="de">Die Bestehensgrenze stufenweise enger zu ziehen, senkt anfangs die Verarbeitungslast — mit nachsichtiger Bewertung — und treibt die Präzision erst, wenn du sicher bist. Die Stufen folgen der Cognitive-Load-Theorie: Geringe Anforderungen früh bei einer neuen Fähigkeit fördern das Lernen. Das Gefühl, auf dem Schlag zu landen, erst unter weiter Toleranz zu festigen, bevor man sie verengt, bringt dich schneller ans Ziel, als gleich mit einem strengen Maßstab zu starten.</span>
+            </p>
+            <p class="manual-rationale__ref"><span lang="ja">参考: </span><span lang="en">Ref.: </span><span lang="fr">Réf. : </span><span lang="de">Quelle: </span>Sweller (1988) <a class="manual-ref-num" href="#ref-2">[2]</a></p>
+        </div>
+
+        <!-- #time-signature -->
+        <h2 id="time-signature"><span lang="ja">拍子</span><span lang="en">Time Signature</span><span lang="fr">Chiffrage de mesure</span><span lang="de">Taktart</span></h2>
+
+        <p class="manual-lead">
+            <span lang="ja"><strong>迷ったら 4/4 のままで構いません。</strong> まず 4/4 で安定したタイミングを作り、3/4・6/8 へ広げ、変拍子の 5/4・7/8 は最後の挑戦に取っておくのが扱いやすい順序です。</span>
+            <span lang="en"><strong>When in doubt, leave it on 4/4.</strong> Build steady timing in 4/4 first, expand to 3/4 and 6/8, and save the odd meters 5/4 and 7/8 for last — that order is the easiest to handle.</span>
+            <span lang="fr"><strong>En cas de doute, laissez sur 4/4.</strong> Construisez d'abord un timing régulier en 4/4, élargissez au 3/4 et au 6/8, et gardez les mesures asymétriques 5/4 et 7/8 pour la fin — c'est l'ordre le plus facile à gérer.</span>
+            <span lang="de"><strong>Im Zweifel lass es auf 4/4.</strong> Baue zuerst ein stabiles Timing im 4/4 auf, erweitere auf 3/4 und 6/8 und hebe dir die ungeraden Taktarten 5/4 und 7/8 für zuletzt auf — diese Reihenfolge ist am leichtesten zu bewältigen.</span>
+        </p>
+
+        <p>
+            <span lang="ja">1 小節に何拍入るか（と拍の単位）を決める設定です。たとえば 4/4 は 4 拍子、3/4 はワルツの 3 拍子で、小節の区切りと強拍の位置が変わります。選べるのは 4/4・3/4・6/8・2/4・5/4・7/8 の 6 種です。</span>
+            <span lang="en">Sets how many beats fit in a bar (and the beat unit). For example, 4/4 is four-beat time and 3/4 is the three-beat feel of a waltz; this changes where bars divide and where the strong beats fall. The six choices are 4/4, 3/4, 6/8, 2/4, 5/4, and 7/8.</span>
+            <span lang="fr">Détermine combien de temps tiennent dans une mesure (et l'unité de temps). Par exemple, le 4/4 est une mesure à quatre temps et le 3/4 le balancement à trois temps de la valse ; cela change où les mesures se découpent et où tombent les temps forts. Les six choix sont 4/4, 3/4, 6/8, 2/4, 5/4 et 7/8.</span>
+            <span lang="de">Legt fest, wie viele Schläge in einen Takt passen (und die Schlageinheit). Zum Beispiel ist 4/4 ein Vierertakt und 3/4 das Dreierschwingen eines Walzers; das ändert, wo sich Takte teilen und wo die betonten Schläge liegen. Die sechs Optionen sind 4/4, 3/4, 6/8, 2/4, 5/4 und 7/8.</span>
+        </p>
+
+        <div class="manual-options">
+            <div class="manual-option">
+                <div class="manual-option__name"><span lang="ja">4/4・2/4</span><span lang="en">4/4 and 2/4</span><span lang="fr">4/4 et 2/4</span><span lang="de">4/4 und 2/4</span></div>
+                <div class="manual-option__desc"><span lang="ja">最も一般的な拍子。ポップス・ロックの大半が 4/4 です。2/4 はマーチなどの軽快な 2 拍子。リズムの基礎を固めるならまずここから。</span><span lang="en">The most common meters. The vast majority of pop and rock is in 4/4. 2/4 is the light two-beat feel of marches. To build rhythm fundamentals, start here.</span><span lang="fr">Les mesures les plus courantes. La grande majorité de la pop et du rock est en 4/4. Le 2/4 est le 2 temps léger des marches. Pour asseoir les bases du rythme, commencez ici.</span><span lang="de">Die häufigsten Taktarten. Der Großteil von Pop und Rock steht im 4/4. Der 2/4 ist das leichte Zweiergefühl von Märschen. Um die Rhythmusgrundlagen zu festigen, beginne hier.</span></div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name"><span lang="ja">3/4・6/8</span><span lang="en">3/4 and 6/8</span><span lang="fr">3/4 et 6/8</span><span lang="de">3/4 und 6/8</span></div>
+                <div class="manual-option__desc"><span lang="ja">3 拍子系。3/4 はワルツ、6/8 は 2 拍を 3 連で割る揺れたグルーヴ（バラードやアイリッシュなど）。4 拍子に慣れた次の一歩に向きます。</span><span lang="en">Triple-feel meters. 3/4 is a waltz; 6/8 splits two beats into triplets for a rolling groove (ballads, Irish music). A good next step once four-beat time feels easy.</span><span lang="fr">Mesures à sensation ternaire. Le 3/4 est une valse ; le 6/8 divise deux temps en triolets pour un groove balancé (ballades, musique irlandaise). Une bonne étape suivante une fois le 4 temps maîtrisé.</span><span lang="de">Taktarten mit ternärem Gefühl. Der 3/4 ist ein Walzer; der 6/8 teilt zwei Schläge in Triolen für einen wiegenden Groove (Balladen, irische Musik). Ein guter nächster Schritt, sobald der Vierertakt leicht fällt.</span></div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name"><span lang="ja">5/4・7/8</span><span lang="en">5/4 and 7/8</span><span lang="fr">5/4 et 7/8</span><span lang="de">5/4 und 7/8</span></div>
+                <div class="manual-option__desc"><span lang="ja">変拍子。拍数が割り切れず、強拍の出る間隔が不規則になります。プログレやジャズ、民族音楽で使われる、上級者向けのチャレンジです。</span><span lang="en">Odd meters. The beat count does not divide evenly, so the strong beats arrive at irregular intervals. Used in prog, jazz, and folk traditions — an advanced challenge.</span><span lang="fr">Mesures asymétriques. Le nombre de temps ne se divise pas régulièrement, donc les temps forts surviennent à intervalles irréguliers. Employées dans le rock progressif, le jazz et les musiques traditionnelles — un défi pour les confirmés.</span><span lang="de">Ungerade Taktarten. Die Schlagzahl teilt sich nicht gleichmäßig, sodass die betonten Schläge in unregelmäßigen Abständen kommen. Verwendet im Progressive Rock, Jazz und in der Volksmusik — eine Herausforderung für Fortgeschrittene.</span></div>
+            </div>
+        </div>
+
+        <div class="manual-rationale">
+            <span class="manual-rationale__label"><span lang="ja">学習科学の裏づけ</span><span lang="en">The evidence behind it</span><span lang="fr">Les bases scientifiques</span><span lang="de">Die wissenschaftliche Grundlage</span></span>
+            <p>
+                <span lang="ja">拍子を選べるのは、強拍の並び（拍の階層構造）に体の動きを合わせる感覚運動の同期を、いろいろな枠組みで鍛えるためです。規則的な 4/4 から、強拍が不規則に並ぶ変拍子へ広げると、拍の構造を手がかりに同期する力が試されます。拍の構造が同期に影響することは、タッピング研究のレビューでも示されています。</span>
+                <span lang="en">You can choose the meter so that the sensorimotor synchronization of aligning your movement to the pattern of strong beats (the metrical hierarchy) is trained across different frameworks. Moving from regular 4/4 to odd meters, where strong beats fall irregularly, tests your ability to synchronize using that beat structure as a cue. That metrical structure shapes synchronization is shown in reviews of the tapping literature.</span>
+                <span lang="fr">Vous pouvez choisir la mesure afin d'entraîner, dans différents cadres, la synchronisation sensorimotrice qui consiste à aligner votre geste sur l'agencement des temps forts (la hiérarchie métrique). Passer du 4/4 régulier aux mesures asymétriques, où les temps forts tombent de façon irrégulière, met à l'épreuve votre capacité à vous synchroniser en vous appuyant sur cette structure des temps. Le fait que la structure métrique façonne la synchronisation est montré dans les synthèses de la littérature sur le tapping.</span>
+                <span lang="de">Du kannst die Taktart wählen, um die sensomotorische Synchronisation — das Anpassen deiner Bewegung an die Anordnung der betonten Schläge (die metrische Hierarchie) — in verschiedenen Rahmen zu trainieren. Der Wechsel vom regelmäßigen 4/4 zu ungeraden Taktarten, in denen die betonten Schläge unregelmäßig fallen, prüft deine Fähigkeit, dich anhand dieser Schlagstruktur als Anhaltspunkt zu synchronisieren. Dass die metrische Struktur die Synchronisation prägt, zeigen Übersichtsarbeiten zur Tapping-Forschung.</span>
+            </p>
+            <p class="manual-rationale__ref"><span lang="ja">参考: </span><span lang="en">Ref.: </span><span lang="fr">Réf. : </span><span lang="de">Quelle: </span>Repp (2005) <a class="manual-ref-num" href="#ref-1">[1]</a></p>
+        </div>
+
+        <!-- #click-density -->
+        <h2 id="click-density"><span lang="ja">クリック密度</span><span lang="en">Click Density</span><span lang="fr">Densité des clics</span><span lang="de">Klickdichte</span></h2>
+
+        <p class="manual-lead">
+            <span lang="ja"><strong>迷ったら「全拍」から。</strong> 正確に合わせられたら 2&amp;4拍目 でバックビートを覚え、安定したら 1拍目のみ → 2小節ごと → 4小節ごと と間引いて内的パルスを鍛えます。鳴らない拍は頭の中でカウントを続けるのがコツです。</span>
+            <span lang="en"><strong>When in doubt, start at Every Beat.</strong> Once you land accurately, pick up the backbeat with Beats 2 &amp; 4, and once steady, thin out — Beat 1 Only → Every 2 Bars → Every 4 Bars — to train your internal pulse. The trick is to keep counting in your head on the silent beats.</span>
+            <span lang="fr"><strong>En cas de doute, commencez par « Tous les temps ».</strong> Une fois que vous tombez juste, captez le contretemps avec « Temps 2 &amp; 4 », puis, une fois stable, allégez — « Temps 1 uniquement » → « Toutes les 2 mesures » → « Toutes les 4 mesures » — pour entraîner votre pulsation interne. L'astuce est de continuer à compter dans votre tête sur les temps silencieux.</span>
+            <span lang="de"><strong>Im Zweifel beginne bei „Jeder Schlag“.</strong> Sobald du genau triffst, nimm mit „Schlag 2 &amp; 4“ den Backbeat auf, und wenn du stabil bist, dünne aus — „Nur Schlag 1“ → „Alle 2 Takte“ → „Alle 4 Takte“ —, um deinen inneren Puls zu trainieren. Der Trick ist, auf den stillen Schlägen im Kopf weiterzuzählen.</span>
+        </p>
+
+        <p>
+            <span lang="ja">メトロノームをどれだけ「間引いて」鳴らすかを決める設定です。すべての拍で鳴らすと合わせやすく、鳴る拍を減らすほど、クリックのない拍を自分の内的パルスで埋める力が問われます。リズム感を鍛えるうえで効きめが大きく、難易度インジケーター（丸 1〜5 個）で目安の難しさが示されます。</span>
+            <span lang="en">Decides how much the metronome is "thinned out." Clicking on every beat is easy to follow; the fewer beats click, the more you must fill the silent beats with your internal pulse. It is one of the most effective settings for building rhythmic feel, and a difficulty indicator (1–5 dots) shows the rough level.</span>
+            <span lang="fr">Détermine à quel point le métronome est « allégé ». Cliquer sur tous les temps est facile à suivre ; moins il y a de temps qui cliquent, plus vous devez combler les temps silencieux avec votre pulsation interne. C'est l'un des réglages les plus efficaces pour développer le sens du rythme, et un indicateur de difficulté (1 à 5 points) montre le niveau approximatif.</span>
+            <span lang="de">Legt fest, wie stark das Metronom „ausgedünnt“ wird. Ein Klick auf jedem Schlag ist leicht zu verfolgen; je weniger Schläge klicken, desto mehr musst du die stillen Schläge mit deinem inneren Puls füllen. Es ist eine der wirksamsten Einstellungen, um das Rhythmusgefühl aufzubauen, und ein Schwierigkeitsindikator (1 bis 5 Punkte) zeigt das ungefähre Niveau.</span>
+        </p>
+
+        <div class="manual-options">
+            <div class="manual-option">
+                <div class="manual-option__name"><span lang="ja">全拍</span><span lang="en">Every Beat</span><span lang="fr">Tous les temps</span><span lang="de">Jeder Schlag</span></div>
+                <div class="manual-option__desc"><span lang="ja">初心者向け。すべての拍でクリックが鳴ります。外部のクリックに合わせる基礎練習で、最初の一歩です。</span><span lang="en">Beginner. The click sounds on every beat — basic practice syncing to an external click, and the first step.</span><span lang="fr">Pour débutants. Le clic retentit sur chaque temps — exercice de base pour se caler sur un clic externe, et la première étape.</span><span lang="de">Für Anfänger. Der Klick ertönt auf jedem Schlag — Grundübung, um sich an einen externen Klick anzupassen, und der erste Schritt.</span></div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name"><span lang="ja">1&amp;3拍目（ダウンビート）</span><span lang="en">Beats 1 &amp; 3 (Downbeat)</span><span lang="fr">Temps 1 &amp; 3 (temps forts)</span><span lang="de">Schlag 1 &amp; 3 (Downbeat)</span></div>
+                <div class="manual-option__desc"><span lang="ja">小節の頭にあたるダウンビート（1・3 拍目）でだけ鳴らします。ダウンビートを意識してリズムをキープする練習です。</span><span lang="en">Clicks only on the downbeats (beats 1 and 3) at the front of the measure. Practice focusing on the downbeats to maintain rhythm.</span><span lang="fr">Ne clique que sur les temps forts (temps 1 et 3) au début de la mesure. Un exercice pour garder le rythme en se concentrant sur les temps forts.</span><span lang="de">Klickt nur auf den betonten Schlägen (Schlag 1 und 3) am Taktanfang. Eine Übung, um den Rhythmus zu halten, indem du dich auf die betonten Schläge konzentrierst.</span></div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name"><span lang="ja">2&amp;4拍目（バックビート）</span><span lang="en">Beats 2 &amp; 4 (Backbeat)</span><span lang="fr">Temps 2 &amp; 4 (contretemps)</span><span lang="de">Schlag 2 &amp; 4 (Backbeat)</span></div>
+                <div class="manual-option__desc"><span lang="ja">裏拍にあたる 2・4 拍目で鳴らします（バックビート = ジャズやファンクのノリの核）。アクセントの重心が後ろにずれるので、グルーヴ感を鍛えるのに向きます。</span><span lang="en">Clicks on beats 2 and 4, the offbeats (backbeat — the core of jazz and funk feel). The accent's weight shifts back, making this ideal for training groove.</span><span lang="fr">Clique sur les temps 2 et 4, les contretemps (le backbeat — le cœur du groove du jazz et du funk). Le centre de gravité de l'accent se déplace vers l'arrière, ce qui en fait un excellent moyen de travailler le groove.</span><span lang="de">Klickt auf den Schlägen 2 und 4, dem Backbeat (dem Kern des Jazz- und Funk-Feelings). Der Schwerpunkt der Betonung verlagert sich nach hinten, was dies ideal macht, um den Groove zu trainieren.</span></div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name"><span lang="ja">1拍目のみ（内的パルス強化）</span><span lang="en">Beat 1 Only (Internal Pulse)</span><span lang="fr">Temps 1 uniquement (pulsation interne)</span><span lang="de">Nur Schlag 1 (innerer Puls)</span></div>
+                <div class="manual-option__desc"><span lang="ja">各小節の 1 拍目だけ鳴らします。残りの拍は自分で刻むため、内的パルスを鍛え、自立したリズム感を養います。</span><span lang="en">Clicks only on beat 1 of each measure. You keep the remaining beats yourself, developing internal pulse and self-reliant timing.</span><span lang="fr">Ne clique que sur le temps 1 de chaque mesure. Vous tenez les autres temps vous-même, ce qui développe la pulsation interne et un timing autonome.</span><span lang="de">Klickt nur auf Schlag 1 jedes Takts. Die übrigen Schläge hältst du selbst, was den inneren Puls und ein eigenständiges Timing entwickelt.</span></div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name"><span lang="ja">2小節ごと（フレーズ感覚）</span><span lang="en">Every 2 Bars (Phrase Feel)</span><span lang="fr">Toutes les 2 mesures (sens de la phrase)</span><span lang="de">Alle 2 Takte (Phrasengefühl)</span></div>
+                <div class="manual-option__desc"><span lang="ja">2 小節に 1 回だけ鳴らします。長い区間を自分のテンポで保つ必要があり、2 小節単位のフレーズ構成力を強化します。</span><span lang="en">Clicks once every 2 bars. You must hold your own tempo over a long stretch, strengthening 2-bar phrase awareness.</span><span lang="fr">Clique une fois toutes les 2 mesures. Vous devez tenir votre propre tempo sur une longue portée, ce qui renforce le sens de la phrase sur 2 mesures.</span><span lang="de">Klickt einmal alle 2 Takte. Du musst dein eigenes Tempo über eine lange Strecke halten, was das Phrasengefühl über 2 Takte stärkt.</span></div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name"><span lang="ja">4小節ごと（プロレベル）</span><span lang="en">Every 4 Bars (Pro Level)</span><span lang="fr">Toutes les 4 mesures (niveau pro)</span><span lang="de">Alle 4 Takte (Profi-Niveau)</span></div>
+                <div class="manual-option__desc"><span lang="ja">4 小節に 1 回だけ鳴らします。4 小節間テンポを維持する上級トレーニングで、もっとも厳しい設定です。</span><span lang="en">Clicks once every 4 bars. Advanced training that requires maintaining tempo across 4 bars — the most demanding setting.</span><span lang="fr">Clique une fois toutes les 4 mesures. Un entraînement avancé qui exige de maintenir le tempo sur 4 mesures — le réglage le plus exigeant.</span><span lang="de">Klickt einmal alle 4 Takte. Ein fortgeschrittenes Training, das verlangt, das Tempo über 4 Takte zu halten — die anspruchsvollste Einstellung.</span></div>
+            </div>
+        </div>
+
+        <div class="manual-rationale">
+            <span class="manual-rationale__label"><span lang="ja">学習科学の裏づけ</span><span lang="en">The evidence behind it</span><span lang="fr">Les bases scientifiques</span><span lang="de">Die wissenschaftliche Grundlage</span></span>
+            <p>
+                <span lang="ja">全拍のクリックは、合わせる手がかりを外から与える「足場（スキャフォールド）」として処理の負荷を下げます。慣れてきたら鳴る拍を減らして足場を外し、自分の内的パルスで埋める負荷を少しずつ上げていきます。初期は負荷を抑え、習熟に応じて足場を減らすこの段階設計は、認知負荷の考え方に沿ったものです。</span>
+                <span lang="en">Clicking on every beat acts as a scaffold — an external cue that lowers the processing load by handing you the alignment. As you get comfortable, fewer beats click, removing the scaffold and gradually raising the load of filling the gaps with your own internal pulse. Lowering the load early and reducing the scaffold with mastery follows cognitive-load theory.</span>
+                <span lang="fr">Cliquer sur tous les temps agit comme un étayage — un repère externe qui réduit la charge de traitement en vous fournissant le calage. À mesure que vous êtes à l'aise, moins de temps cliquent : l'étayage disparaît et la charge de combler les vides avec votre propre pulsation interne augmente peu à peu. Abaisser la charge au début et réduire l'étayage avec la maîtrise suit la théorie de la charge cognitive.</span>
+                <span lang="de">Ein Klick auf jedem Schlag wirkt als Gerüst — ein äußerer Anhaltspunkt, der die Verarbeitungslast senkt, indem er dir die Ausrichtung vorgibt. Sobald du sicher bist, klicken weniger Schläge: Das Gerüst fällt weg und die Last, die Lücken mit deinem eigenen inneren Puls zu füllen, steigt allmählich. Die Last früh zu senken und das Gerüst mit zunehmender Beherrschung abzubauen, folgt der Cognitive-Load-Theorie.</span>
+            </p>
+            <p class="manual-rationale__ref"><span lang="ja">参考: </span><span lang="en">Ref.: </span><span lang="fr">Réf. : </span><span lang="de">Quelle: </span>Sweller (1988) <a class="manual-ref-num" href="#ref-2">[2]</a></p>
+        </div>
+
+        <!-- References -->
+        <section class="manual-refs">
+            <div class="manual-refs__title"><span lang="ja">参考文献</span><span lang="en">References</span><span lang="fr">Références</span><span lang="de">Quellen</span></div>
+            <ol>
+                <li id="ref-1">Repp, B. H. (2005). Sensorimotor synchronization: A review of the tapping literature. <em>Psychonomic Bulletin &amp; Review, 12</em>(6), 969–992.</li>
+                <li id="ref-2">Sweller, J. (1988). Cognitive load during problem solving: Effects on learning. <em>Cognitive Science, 12</em>(2), 257–285.</li>
+            </ol>
+        </section>
+
+    </main>
+
+    <!-- Final CTA -->
+    <section class="article-cta">
+        <h2 class="article-cta__title"><span lang="ja">設定を決めたら、さっそく試してみよう</span><span lang="en">Settings Sorted? Give It a Try</span><span lang="fr">Réglages décidés ? Essayez sans attendre</span><span lang="de">Einstellungen geklärt? Probieren Sie es aus</span></h2>
+        <p class="article-cta__text">
+            <span lang="ja">各設定の意味がわかれば、あとは実際に手を動かすだけです。<br>迷ったら本ページの「迷ったら…」をなぞって始めてみてください。<br>ソルフェージュPRO の リズムトレーニング で、自分に合った設定を見つけましょう。</span>
+            <span lang="en">Once you understand each setting, the rest is hands-on practice.<br>When unsure, just follow the "when in doubt" lines on this page.<br>Find the settings that fit you in Solfege PRO's Rhythm Training.</span>
+            <span lang="fr">Une fois chaque réglage compris, il ne reste plus qu'à pratiquer.<br>En cas de doute, suivez simplement les lignes « En cas de doute… » de cette page.<br>Trouvez les réglages qui vous conviennent dans l'entraînement au rythme de Solfege PRO.</span>
+            <span lang="de">Sobald Sie jede Einstellung verstanden haben, bleibt nur noch das praktische Üben.<br>Folgen Sie im Zweifel einfach den Zeilen „Im Zweifel…" auf dieser Seite.<br>Finden Sie die für Sie passenden Einstellungen im Rhythmustraining von Solfege PRO.</span>
+        </p>
+        <a href="https://apps.apple.com/jp/app/id6756626617" class="app-store-link" aria-label="Download on the App Store">
+            <span lang="ja"><img class="app-store-link__img" width="109" height="40" src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/ja-jp" alt="App Storeで入手"></span>
+            <span lang="en"><img class="app-store-link__img" width="120" height="40" src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/en-us" alt="Download on the App Store"></span>
+            <span lang="fr"><img class="app-store-link__img" width="127" height="40" src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/fr-fr" alt="Télécharger dans l'App Store"></span>
+            <span lang="de"><img class="app-store-link__img" width="120" height="40" src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/de-de" alt="Laden im App Store"></span>
+        </a>
+    </section>
+
+    <!-- Related Content -->
+    <div class="article-related">
+        <div class="article-related__title"><span lang="ja">関連コンテンツ</span><span lang="en">Related Content</span><span lang="fr">Contenu associé</span><span lang="de">Verwandte Inhalte</span></div>
+        <a href="/guides/rhythm-training/" class="article-related__link" style="margin-bottom: var(--space-md);">
+            <div class="article-related__link-title"><span lang="ja">リズム感とは何か — 前乗り・後乗り・ポケットを分解する</span><span lang="en">What Is Rhythmic Feel? — Breaking Down Pushing, Laying Back, and the Pocket</span><span lang="fr">Qu'est-ce que le sens rythmique ? — Décomposer pousser, traîner et le pocket</span><span lang="de">Was ist rhythmisches Empfinden? — Vorlauf, Nachlauf und das Pocket aufschlüsseln</span></div>
+            <div class="article-related__link-desc"><span lang="ja">設定の前に、そもそもリズム感とは何かを知りたい方へ。タイミングのずれと、その鍛え方を解説したガイド。</span><span lang="en">For those who want to understand what rhythmic feel is before adjusting settings — a guide to timing offsets and how to train them.</span><span lang="fr">Pour celles et ceux qui veulent comprendre ce qu'est le sens rythmique avant d'ajuster les réglages — un guide sur les décalages de timing et la manière de les travailler.</span><span lang="de">Für alle, die verstehen möchten, was rhythmisches Empfinden ist, bevor sie die Einstellungen anpassen — ein Leitfaden zu Timing-Abweichungen und wie man sie trainiert.</span></div>
+        </a>
+        <a href="/" class="article-related__link">
+            <div class="article-related__link-title"><span lang="ja">ソルフェージュPRO 練習ガイド</span><span lang="en">Solfege PRO Practice Guide</span><span lang="fr">Guide d'entraînement Solfege PRO</span><span lang="de">Solfege PRO Übungsleitfaden</span></div>
+            <div class="article-related__link-desc"><span lang="ja">ギター・ベース・ドラム・ピアノ・ボーカル向けの課題別練習メニュー</span><span lang="en">Challenge-based practice menus for guitar, bass, drums, piano, and vocals</span><span lang="fr">Programmes d'entraînement par problématique pour guitare, basse, batterie, piano et chant</span><span lang="de">Problem­bezogene Übungsmenüs für Gitarre, Bass, Schlagzeug, Klavier und Gesang</span></div>
+        </a>
+    </div>
+
+    <!-- Article Note -->
+    <aside class="article-endnote">
+        <p class="article-endnote__text">
+            <span lang="ja">本ページはアプリ内の設定項目の解説を目的としたリファレンスです。記載した推奨の進め方は、音楽教育で広く用いられるリズムトレーニングの方法論をもとにした一般的な目安であり、最適な設定は個人の経験や目的によって異なります。クラップ（マイク）入力では機器のレイテンシにより測定値が変動する場合があります。引用した研究は学習一般の知見であり、本アプリでの効果を保証するものではありません。</span>
+            <span lang="en">This page is a reference explaining the app's in-app settings. The recommended progressions given here are general guidelines based on widely used rhythm-training methodology; the optimal settings vary with individual experience and goals. In Clap (Mic) input, device latency can make the measured values fluctuate. The cited studies report general learning findings and do not guarantee results within this app.</span>
+            <span lang="fr">Cette page est une référence expliquant les réglages internes de l'application. Les progressions recommandées ici sont des repères généraux fondés sur une méthodologie d'entraînement rythmique largement répandue ; les réglages optimaux varient selon l'expérience et les objectifs de chacun. Avec l'entrée par frappe (micro), la latence de l'appareil peut faire fluctuer les valeurs mesurées. Les études citées rapportent des résultats généraux sur l'apprentissage et ne garantissent pas de résultats au sein de cette application.</span>
+            <span lang="de">Diese Seite ist eine Referenz, die die in der App enthaltenen Einstellungen erläutert. Die hier empfohlenen Abfolgen sind allgemeine Richtwerte, die auf einer weit verbreiteten Methodik des Rhythmustrainings beruhen; die optimalen Einstellungen hängen von der individuellen Erfahrung und den Zielen ab. Bei der Eingabe per Klatschen (Mikrofon) kann die Latenz des Geräts die Messwerte schwanken lassen. Die zitierten Studien berichten allgemeine Erkenntnisse zum Lernen und garantieren keine Ergebnisse innerhalb dieser App.</span>
+        </p>
+    </aside>
+
+    <!-- Footer -->
+    <footer class="article-footer">
+        <p class="article-footer__text">
+            &copy; 2026 <span lang="ja">ソルフェージュPRO</span><span lang="en">Solfege PRO</span><span lang="fr">Solfege PRO</span><span lang="de">Solfege PRO</span> &mdash;
+            <a href="https://apps.apple.com/jp/app/id6756626617" class="article-footer__link">App Store</a>
+        </p>
+    </footer>
+    <script src="/bootstrap.js?v=3" defer></script>
+</body>
+</html>

@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html lang="de"
+      data-title-ja="コード認識 設定マニュアル — 各設定の選び方 | ソルフェージュPRO"
+      data-title-en="Chord Recognition Settings Manual — How to Choose Each Option | Solfege PRO"
+      data-title-fr="Manuel des réglages de reconnaissance d'accords — Comment choisir chaque option | Solfege PRO"
+      data-title-de="Handbuch der Akkorderkennung-Einstellungen — So wählen Sie jede Option | Solfege PRO">
+<head>
+    <meta charset="UTF-8">
+    <meta name="robots" content="index, follow">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#1A1A1E">
+    <title>Handbuch der Akkorderkennung-Einstellungen — So wählen Sie jede Option | Solfege PRO</title>
+    <meta name="description" content="Referenz zu den Akkorderkennung-Einstellungen — Modus, Schwierigkeit, Wiedergabe, Fragetyp, Grundton, Umkehrungen, Oktave: wer wählt was und warum.">
+
+    <!-- Canonical -->
+    <link rel="canonical" href="https://solfegepro.com/de/manual/chord/">
+    <link rel="alternate" hreflang="ja" href="https://solfegepro.com/manual/chord/">
+    <link rel="alternate" hreflang="en" href="https://solfegepro.com/en/manual/chord/">
+    <link rel="alternate" hreflang="fr" href="https://solfegepro.com/fr/manual/chord/">
+    <link rel="alternate" hreflang="de" href="https://solfegepro.com/de/manual/chord/">
+    <link rel="alternate" hreflang="x-default" href="https://solfegepro.com/manual/chord/">
+<!-- OGP -->
+    <meta property="og:title" content="Handbuch der Akkorderkennung-Einstellungen — So wählen Sie jede Option">
+    <meta property="og:description" content="Referenz zu den Akkorderkennung-Einstellungen — Modus, Schwierigkeit, Wiedergabe, Fragetyp, Grundton, Umkehrungen, Oktave: wer wählt was und warum.">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://solfegepro.com/de/manual/chord/">
+    <meta property="og:site_name" content="Solfege PRO">
+    <meta property="og:image" content="https://solfegepro.com/og-image.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Solfege PRO">
+    <meta property="og:locale" content="de_DE">
+    <meta property="og:locale:alternate" content="ja_JP">
+    <meta property="og:locale:alternate" content="en_US">
+    <meta property="og:locale:alternate" content="fr_FR">
+    <meta property="article:published_time" content="2026-06-05">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Handbuch der Akkorderkennung-Einstellungen — So wählen Sie jede Option">
+    <meta name="twitter:description" content="Referenz zu den Akkorderkennung-Einstellungen — Modus, Schwierigkeit, Wiedergabe, Fragetyp, Grundton, Umkehrungen, Oktave: wer wählt was und warum.">
+    <meta name="twitter:image" content="https://solfegepro.com/og-image.png">
+
+    <!-- Favicon -->
+    <link rel="icon" href="/favicon.ico" sizes="any">
+    <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap"></noscript>
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="/style.css?v=17">
+    <link rel="stylesheet" href="/guides/article.css?v=11">
+
+    <style>
+        /* Manual option reference — responsive, no fixed px widths */
+        .manual-options {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr);
+            gap: var(--space-sm);
+            margin: var(--space-lg) 0;
+        }
+        .manual-option {
+            background: var(--surface);
+            border: 1px solid var(--surface-light);
+            border-radius: var(--radius-lg);
+            padding: var(--space-md);
+        }
+        .manual-option__name {
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: var(--space-xs);
+        }
+        .manual-option__desc {
+            font-size: 13px;
+            color: var(--text-secondary);
+        }
+        /* Bottom-line callout (conclusion first) */
+        .manual-lead {
+            font-size: 14px;
+            line-height: 1.75;
+            color: var(--text-primary);
+            border-left: 3px solid var(--primary);
+            background: rgba(212, 175, 55, 0.06);
+            padding: var(--space-sm) var(--space-md);
+            border-radius: 0 var(--radius-md) var(--radius-md) 0;
+            margin: var(--space-md) 0;
+        }
+        /* Per-setting evidence note — deliberately styled as an editorial
+           aside, NOT as a settings card (no surface fill, no gold label),
+           so it is never mistaken for an in-app option. */
+        .manual-rationale {
+            margin: var(--space-md) 0 var(--space-2xl);
+            padding: var(--space-sm) 0 var(--space-sm) var(--space-md);
+            border-left: 2px solid var(--surface-light);
+        }
+        .manual-rationale__label {
+            display: block;
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            color: var(--text-secondary);
+            margin-bottom: 4px;
+            opacity: 0.75;
+        }
+        .manual-rationale p {
+            font-size: 13px;
+            line-height: 1.75;
+            color: var(--text-secondary);
+            margin: 0;
+        }
+        .manual-rationale__ref {
+            font-size: 12px;
+            font-style: italic;
+            margin-top: var(--space-xs) !important;
+            opacity: 0.7;
+        }
+        /* Citation number linking to the reference list */
+        .manual-ref-num {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-style: normal;
+        }
+        .manual-ref-num:hover { color: var(--primary); }
+        /* Full reference list at page end */
+        .manual-refs {
+            margin: var(--space-2xl) 0 0;
+            padding-top: var(--space-lg);
+            border-top: 1px solid var(--surface-light);
+        }
+        .manual-refs__title {
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: var(--space-sm);
+        }
+        .manual-refs ol {
+            margin: 0;
+            padding-left: 1.25em;
+        }
+        .manual-refs li {
+            font-size: 12px;
+            line-height: 1.7;
+            color: var(--text-secondary);
+            margin-bottom: var(--space-xs);
+            scroll-margin-top: 84px;
+        }
+        .manual-refs li:target {
+            color: var(--text-primary);
+        }
+    </style>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Handbuch der Akkorderkennung-Einstellungen — So wählen Sie jede Option","description":"Referenz zu den Akkorderkennung-Einstellungen — Modus, Schwierigkeit, Wiedergabe, Fragetyp, Grundton, Umkehrungen, Oktave: wer wählt was und warum.","author":{"@type":"Organization","name":"Solfege PRO"},"publisher":{"@type":"Organization","name":"Solfege PRO","logo":{"@type":"ImageObject","url":"https://solfegepro.com/AppIcon.png"}},"datePublished":"2026-06-05","mainEntityOfPage":{"@type":"WebPage","@id":"https://solfegepro.com/de/manual/chord/"}}</script>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Startseite","item":"https://solfegepro.com/de/"},{"@type":"ListItem","position":2,"name":"Handbuch","item":"https://solfegepro.com/de/manual/"},{"@type":"ListItem","position":3,"name":"Handbuch der Akkorderkennung-Einstellungen — So wählen Sie jede Option","item":"https://solfegepro.com/de/manual/chord/"}]}</script>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="nav__container">
+            <a href="/" class="nav__logo">
+                <img src="/AppIcon.png" alt="Solfege PRO" class="nav__logo-icon" width="32" height="32">
+                <span class="nav__logo-text">Solfege PRO</span>
+            </a>
+            <ul class="nav__list">
+                <li><a href="/" class="nav__link">Übungsleitfaden</a></li>
+                <li><a href="/guides/" class="nav__link">Leitfäden</a></li>
+                <li><a href="/manual/" class="nav__link active">Handbuch</a></li>
+                            <li><a href="/start-here/" class="nav__link">Wo anfangen?</a></li>
+            </ul>
+            <div class="nav__settings">
+                <button class="settings-btn" id="lang-toggle" title="Toggle language">
+                    <span id="lang-text">EN</span>
+                </button>
+                <button class="hamburger-btn" id="hamburger-btn" aria-label="Menu" aria-expanded="false" aria-controls="drawer">
+                    <span class="hamburger-btn__line"></span>
+                    <span class="hamburger-btn__line"></span>
+                    <span class="hamburger-btn__line"></span>
+                </button>
+            </div>
+        </div>
+    </nav>
+        <!-- Mobile drawer (hidden on desktop) -->
+        <div class="drawer-overlay" id="drawer-overlay"></div>
+        <aside class="drawer" id="drawer" aria-label="Mobile menu" aria-hidden="true" inert>
+            <div class="drawer__header">
+                <span class="drawer__title">Menü</span>
+                <button class="drawer__close" id="drawer-close" aria-label="Close menu">×</button>
+            </div>
+            <ul class="drawer__list">
+                    <li><a href="/" class="drawer__link">Übungsleitfaden</a></li>
+                    <li><a href="/guides/" class="drawer__link">Leitfäden</a></li>
+                    <li><a href="/manual/" class="drawer__link active">Handbuch</a></li>
+                    <li><a href="/start-here/" class="drawer__link">Wo anfangen?</a></li>
+            </ul>
+        </aside>
+
+
+    <!-- Article Header -->
+    <header class="page-header">
+        <div class="page-header__meta">
+            <span class="page-header__tag">Handbuch</span>
+            <span>Akkorderkennung</span>
+        </div>
+        <h1 class="page-header__title">
+            
+            
+            
+            Handbuch der Akkorderkennung-Einstellungen<br>Was jede Option bedeutet und wie man sie wählt
+        </h1>
+        <p class="page-header__subtitle">
+            
+            
+            
+            Welche Option du wann und warum wählst. Diese Seite geht jede Einstellung des Akkorderkennung-Trainings einzeln durch. Wenn du von einem „?" im Einstellungsbildschirm hierherkommst, scrolle zur gewünschten Option.
+        </p>
+    </header>
+
+    <!-- Top-of-article CTA -->
+    <aside class="article-top-cta" aria-label="App promotion">
+        <div class="article-top-cta__body">
+            <p class="article-top-cta__title">
+                
+                
+                
+                Probieren Sie diese Übung in Solfege PRO
+            </p>
+            <p class="article-top-cta__sub">
+                
+                
+                
+                980 ¥/Monat · 1 Woche kostenlos testen
+            </p>
+        </div>
+        <a href="https://apps.apple.com/de/app/id6756626617" class="article-top-cta__button" data-cta-position="article_top">
+            
+            
+            
+            App Store →
+        </a>
+    </aside>
+
+    <!-- Article Body -->
+    <main class="article-body">
+
+        <!-- Intro -->
+        <p>
+            
+            
+            
+            Beim Akkorderkennung-Training übst du, gleichzeitig erklingende Töne zu hören und die Qualität des Akkords (den Charakter des Akkords — Dur / Moll / Septime usw.) allein mit dem Ohr zu bestimmen. Akkorde zu hören ist die Grundlage für das Verständnis der Harmonie und die Basis fürs Heraushören, Komponieren und Zusammenspiel.
+        </p>
+        <p>
+            
+            
+            
+            Diese Seite ist ein Handbuch zur Wahl der Einstellungen. Jede Einstellung beruht auf bewährten Methoden der Musikpädagogik. Für jede Einstellung, die eine Entscheidung erfordert, nennen wir <strong>die empfohlene Wahl, wofür sie dient und was sie trainiert — mit der Evidenz dahinter</strong>. Wenn du von einem „?" im Einstellungsbildschirm hierherkommst, scrolle zur gewünschten Option.
+        </p>
+
+        <!-- #training-mode -->
+        <h2 id="training-mode">Trainingsmodus</h2>
+
+        <p class="manual-lead">
+            
+            
+            
+            <strong>„Normal" reicht für den Anfang.</strong> Nutze „Benutzerdefiniert" nur, um bestimmte Akkorde gezielt zu üben, und greife zu „Wiederholen vor dem Vergessen" und „Schwachstellen-Fokus", sobald sich deine Ergebnisse angesammelt haben.
+        </p>
+
+        <p>
+            
+            
+            
+            Diese Einstellung legt fest, nach welcher Logik dir Akkorde gestellt werden. Es gibt vier Modi.
+        </p>
+
+        <div class="manual-options">
+            <div class="manual-option">
+                <div class="manual-option__name">Normal</div>
+                <div class="manual-option__desc">Greift auf die Akkorde zurück, die zur gewählten Schwierigkeit passen. Ohne besondere Absicht ist das die richtige Wahl.</div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name">Benutzerdefiniert</div>
+                <div class="manual-option__desc">Du wählst jeden Akkordtyp einzeln selbst aus. Um eine gezielte Kombination zu üben (z. B. nur Maj7 und m7) — wähle mindestens einen aus.</div>
+            </div>
+        </div>
+
+        <p>
+            
+            
+            
+            Die anderen beiden — „Wiederholen vor dem Vergessen" und „Schwachstellen-Fokus" — zahlen sich aus, sobald sich deine Leistungsdaten angesammelt haben. Sie funktionieren in jedem Training gleich und werden daher unten eingebunden erklärt.
+        </p>
+
+        <!-- TODO i18n: fr/de spans are interim English; translate after ja voice approval -->
+<!-- Reusable mode partial. Training-agnostic: do NOT mention chord/scale/etc. -->
+<section class="article-mode" id="mode-spaced-repetition">
+    <h3 class="article-mode__title">Modus „Spaced Repetition" (spaced repetition)</h3>
+
+    <p>
+        
+        
+        
+        Spaced repetition means an item you have already studied comes back just as you are about to forget it. The more reliably you answer something, the longer the gap before it returns; the items you miss come back sooner. It rests on the idea that recall is more durable when you space the reviews out rather than cramming the same item back-to-back.
+    </p>
+
+    <p>
+        
+        
+        
+        This mode suits you once the pool of items has grown and you start noticing that things you once knew have slipped. The app handles the scheduling automatically, so you do not have to track what needs reviewing. It rewards short, daily sessions more than occasional long ones.
+    </p>
+
+    <p>
+        
+        
+        
+        When in doubt, reach for it in the "maintenance" phase, after you have worked through the items once. Use the normal mode to build the foundation when everything is new, then let spaced repetition move that knowledge into long-term memory — a comfortable two-step approach. <em>The benefit of spacing reviews for long-term retention was synthesized at scale by Cepeda et al. (2006), and the finding that the act of retrieval itself strengthens memory comes from Roediger &amp; Karpicke (2006).</em>
+    </p>
+</section>
+
+        <!-- TODO i18n: fr/de spans are interim English; translate after ja voice approval -->
+<!-- Reusable mode partial. Training-agnostic: do NOT mention chord/scale/etc. -->
+<section class="article-mode" id="mode-weak-point">
+    <h3 class="article-mode__title">Weak-Point Focus Mode</h3>
+
+    <p>
+        
+        
+        
+        Weak-point focus looks at your answer history, identifies the items with the lowest accuracy, and serves those to you more often. Instead of spending time on what you already answer reliably, it concentrates practice on exactly the places you keep missing. The app picks the targets automatically from your own results.
+    </p>
+
+    <p>
+        
+        
+        
+        This mode suits the stage where your overall accuracy is climbing but a specific few items still trip you up every time. Because it keeps returning to your weak spots, it feels harder — and that controlled extra effort is precisely where the learning happens (the principle of desirable difficulties). It needs enough answer history before candidates appear, so play the normal mode for a while first.
+    </p>
+
+    <p>
+        
+        
+        
+        When in doubt, drop in for a few concentrated sessions whenever you plateau at a given level and feel you "keep losing the same handful of items right before it would stabilize." Once the weak spots clear, return to the normal mode to keep your overall balance. <em>Deliberately making yourself retrieve the items you tend to miss — the "testing effect" — was shown by Roediger &amp; Karpicke (2006) to strongly benefit later retention.</em>
+    </p>
+</section>
+
+
+        <div class="manual-rationale">
+            <span class="manual-rationale__label">Die wissenschaftliche Grundlage</span>
+            <p>
+                
+                
+                
+                Die vier Modi gibt es, um das Üben auf die Akkorde zu konzentrieren, die du gerade brauchst. Das Quizformat selbst — die Antwort abzurufen, statt passiv zu hören — stärkt das Gedächtnis stärker als bloßes Wiederhören (der Testing-Effekt). „Wiederholen vor dem Vergessen" und „Schwachstellen-Fokus" automatisieren das anhand deiner Leistungsdaten.
+            </p>
+            <p class="manual-rationale__ref">Quelle: Roediger &amp; Karpicke (2006) <a class="manual-ref-num" href="#ref-1">[1]</a></p>
+        </div>
+
+        <!-- #difficulty -->
+        <h2 id="difficulty">Schwierigkeit</h2>
+
+        <p class="manual-lead">
+            
+            
+            
+            <strong>Im Zweifel mit „Basis-Dreiklänge" beginnen.</strong> Steige eine Stufe höher, sobald du auf der aktuellen Stufe zuverlässig 80 % oder mehr hältst.
+        </p>
+
+        <p>
+            
+            
+            
+            Legt den Umfang der Akkordtypen fest, die abgefragt werden (im Normal-Modus angezeigt). Einem Berklee-orientierten Lehrplan folgend, erweitert sich der Vorrat Schritt für Schritt: Dreiklänge → Septakkorde → Optionstöne.
+        </p>
+
+        <div class="manual-options">
+            <div class="manual-option">
+                <div class="manual-option__name">Basis-Dreiklänge</div>
+                <div class="manual-option__desc">Nur Dur und Moll. Der erste Schritt, der dir erlaubt, dich aufs Hören der Terz (der Note zwei Stufen über dem Grundton) zu konzentrieren, die über den hellen oder dunklen Charakter eines Akkords entscheidet.</div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name">Alle Dreiklänge</div>
+                <div class="manual-option__desc">Ergänzt verminderte und übermäßige Akkorde. Jetzt lernst du, die verengte Quinte (dim) und die erweiterte Quinte (aug) zu hören.</div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name">Basis-Septakkorde</div>
+                <div class="manual-option__desc">Maj7, m7 und 7 (Dominantseptakkord). Vierklänge mit einer Septime über dem Dreiklang. Die drei unterscheiden sich nur fein, geh also erst hierher, wenn die Dreiklänge sicher sitzen.</div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name">Alle Septakkorde</div>
+                <div class="manual-option__desc">Ergänzt m7b5, dim7 und mMaj7 — die spannungsreicheren Septakkorde, die im Jazz häufig vorkommen.</div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name">Tensions</div>
+                <div class="manual-option__desc">None-, Undezim- und Tredezimakkorde. Erweiterte Akkorde mit noch weiter darüber geschichteten Tönen — die höchste Stufe, die sich mit reichen, farbigen Klängen befasst.</div>
+            </div>
+        </div>
+
+        <div class="manual-rationale">
+            <span class="manual-rationale__label">Die wissenschaftliche Grundlage</span>
+            <p>
+                
+                
+                
+                Je weniger Akkordtypen du auf einmal bearbeitest, desto weniger muss dein Ohr verarbeiten, und desto zuverlässiger prägst du dir die Merkmale ein, an denen du sie unterscheidest. Einen engen Bereich zu sichern, bevor du ihn erweiterst, bringt dich schneller ans Ziel, als alles auf einmal anzugehen. Die Stufen folgen der Cognitive-Load-Theorie: eine geringe Verarbeitungslast zu Beginn einer neuen Fähigkeit fördert das Lernen.
+            </p>
+            <p class="manual-rationale__ref">Quelle: Sweller (1988) <a class="manual-ref-num" href="#ref-2">[2]</a></p>
+        </div>
+
+        <!-- #playback-mode -->
+        <h2 id="playback-mode">Wiedergabemodus</h2>
+
+        <p class="manual-lead">
+            
+            
+            
+            <strong>Lerne einen neuen Akkord im Modus „Arpeggiert", um seine Struktur zu erfassen, wechsle zu „Block", sobald du sicher bist, und schließe mit „Zufällig" ab.</strong>
+        </p>
+
+        <p>
+            
+            
+            
+            Legt fest, wie der Akkord erklingt. Derselbe Akkord lässt sich je nach Spielweise leichter oder schwerer erkennen.
+        </p>
+
+        <div class="manual-options">
+            <div class="manual-option">
+                <div class="manual-option__name">Block</div>
+                <div class="manual-option__desc">Alle Töne erklingen gleichzeitig. Du beurteilst in einem Augenblick die „Klangmasse" des gesamten Akkords — nah daran, wie echte Musik bei uns ankommt, und etwas schwerer.</div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name">Arpeggiert</div>
+                <div class="manual-option__desc">Die Töne erklingen nacheinander von unten nach oben (ein Arpeggio, d. h. ein gebrochener Akkord). Du kannst jeden Ton einzeln verfolgen, sodass sich die Struktur leicht analysieren lässt — ideal, um die Terz oder die Septime zu lokalisieren.</div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name">Zufällig</div>
+                <div class="manual-option__desc">Wechselt bei jeder Frage zwischen Block und Arpeggio, damit du Akkorde unabhängig von ihrer Spielweise erkennen kannst.</div>
+            </div>
+        </div>
+
+        <div class="manual-rationale">
+            <span class="manual-rationale__label">Die wissenschaftliche Grundlage</span>
+            <p>
+                
+                
+                
+                Das Ziel ist, den Akkord selbst zu hören, ohne sich auf eine einzige Darbietung zu stützen. Das Arpeggio erlaubt, die Struktur Ton für Ton zu analysieren, während der Block das blitzschnelle Urteil über die Klangmasse des Akkords trainiert, nah an echter Musik. Die Spielweise zu variieren hält dich davon ab, von einem einzigen Merkmal abhängig zu sein, und baut die Fähigkeit auf, Akkorde unabhängig von ihrer Spielweise zu erkennen.
+            </p>
+            <p class="manual-rationale__ref">Quelle: Brunmair &amp; Richter (2019) <a class="manual-ref-num" href="#ref-3">[3]</a>; Karpinski (2000) <a class="manual-ref-num" href="#ref-4">[4]</a></p>
+        </div>
+
+        <!-- #question-type -->
+        <h2 id="question-type">Fragetyp</h2>
+
+        <p class="manual-lead">
+            
+            
+            
+            <strong>Lass es zu Beginn auf „Akkordqualität".</strong> Sobald die Erkennung der Qualität stabil ist, gehe weiter zu „Basston" und dann zu „Umkehrung".
+        </p>
+
+        <p>
+            
+            
+            
+            Legt fest, was du beantworten sollst. Selbst beim gleichen Akkord ändert die Art der Frage, welches Gehör du schulst.
+        </p>
+
+        <div class="manual-options">
+            <div class="manual-option">
+                <div class="manual-option__name">Akkordqualität</div>
+                <div class="manual-option__desc">Bestimme den Typ des Akkords (Dur, Moll usw.). Das Herzstück der Akkorderkennung und der Standard-Fragetyp.</div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name">Basston</div>
+                <div class="manual-option__desc">Bestimme den tiefsten erklingenden Ton (den Basston). Schult das Gehör, das dem Hören von Umkehrungen (siehe unten) zugrunde liegt. Die Auswahl aktiviert die Umkehrungen automatisch.</div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name">Umkehrung</div>
+                <div class="manual-option__desc">Bestimme die Umkehrung (Grundstellung, erste, zweite — Formen, die durch Vertauschen des tiefsten Tons entstehen). Ein fortgeschritteneres Gehör, das die Verschiebung des Schwerpunkts desselben Akkords hört. Aktiviert die Umkehrungen automatisch.</div>
+            </div>
+        </div>
+
+        <div class="manual-rationale">
+            <span class="manual-rationale__label">Die wissenschaftliche Grundlage</span>
+            <p>
+                
+                
+                
+                Sich durch die Fragetypen vorzuarbeiten baut das Akkordgehör Element für Element auf. Zuerst die Qualität (hell/dunkel, Spannung) zu unterscheiden, dann den tiefsten Ton, dann die Umkehrung, entwickelt ein Gehör, das die Akkordstruktur aus mehreren Blickwinkeln hört. Das folgt der bewährten Gehörbildungsprogression, Qualität und Umkehrungen nacheinander zu lernen.
+            </p>
+            <p class="manual-rationale__ref">Quelle: Karpinski (2000) <a class="manual-ref-num" href="#ref-4">[4]</a></p>
+        </div>
+
+        <!-- #root-mode -->
+        <h2 id="root-mode">Grundton-Auswahl</h2>
+
+        <p class="manual-lead">
+            
+            
+            
+            <strong>Standardmäßig „Zufällig über alle Tonarten" (die Empfehlung der App).</strong> Fixiere den Grundton nur vorübergehend, als absoluter Anfänger, der den Unterschied zwischen den Akkordtypen isolieren möchte.
+        </p>
+
+        <p>
+            
+            
+            
+            Legt fest, wie der Grundton des Akkords (der tiefste Bezugston, der die Basis des Akkords bildet) jedes Mal gewählt wird. Du wählst „Zufällig über alle Tonarten" oder „Fester Grundton".
+        </p>
+
+        <div class="manual-options">
+            <div class="manual-option">
+                <div class="manual-option__name">Zufällig über alle Tonarten (empfohlen)</div>
+                <div class="manual-option__desc">Wählt den Grundton bei jeder Frage zufällig aus allen 12 Tonarten. Du hörst die „Form selbst" des Akkords, statt dich auf eine einzige Tonhöhe zu stützen — das realitätsnächste Training.</div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name">Fester Grundton</div>
+                <div class="manual-option__desc">Legt den Grundton auf eine einzige Tonhöhe fest (diese Wahl blendet eine Auswahl für den Ton ein). Ein konstanter Bezugspunkt macht Akkorde leicht vergleichbar — gut für die frühe Lernphase, wenn man den Unterschied zwischen den Akkordtypen isolieren möchte.</div>
+            </div>
+        </div>
+
+        <div class="manual-rationale">
+            <span class="manual-rationale__label">Die wissenschaftliche Grundlage</span>
+            <p>
+                
+                
+                
+                „Zufällig über alle Tonarten" ist die Voreinstellung, damit du die Fähigkeit aufbaust, die Form des Akkords selbst zu hören, ohne dich auf eine einzige Tonhöhe zu stützen. Verschiedene Tonarten zu mischen (verschachteltes Lernen) verankert besser, als bei einer gleichbleibenden Bedingung zu bleiben, wie die Meta-Analyse zeigt. Echte Musik kommt in jeder Tonart vor, was ein realitätsnahes Gehör formt.
+            </p>
+            <p class="manual-rationale__ref">Quelle: Brunmair &amp; Richter (2019) <a class="manual-ref-num" href="#ref-3">[3]</a></p>
+        </div>
+
+        <!-- #inversions -->
+        <h2 id="inversions">Umkehrungen</h2>
+
+        <p class="manual-lead">
+            
+            
+            
+            <strong>Lass sie anfangs ausgeschaltet.</strong> Füge Umkehrungen erst hinzu, wenn deine Qualitätserkennung stabil ist; sie zu früh einzumischen, bevor das Fundament steht, führt meist zu Verwirrung.
+        </p>
+
+        <p>
+            
+            
+            
+            Steuert, ob Umkehrungen — Formen mit verändertem tiefstem Ton — vorkommen. Zum Beispiel steht C-Dur (C-E-G) in Grundstellung; E-G-C (tiefster Ton E) ist die erste Umkehrung und G-C-E (tiefster Ton G) die zweite. Die Töne sind dieselben, aber welcher unten liegt, verschiebt den Schwerpunkt des Akkords. Die Wahl von „Basston" oder „Umkehrung" als Fragetyp aktiviert dies automatisch.
+        </p>
+
+        <div class="manual-rationale">
+            <span class="manual-rationale__label">Die wissenschaftliche Grundlage</span>
+            <p>
+                
+                
+                
+                Umkehrungen werden später hinzugefügt, damit du zuerst den Klang des Akkords in Grundstellung sicherst und dann das neue Merkmal eines veränderten tiefsten Tons einführst. Umkehrungen sind in echter Musik überall und unvermeidlich, aber sie prägen sich besser ein, wenn das Fundament steht. Erst die Qualität und dann die Umkehrungen zu lernen, ist eine bewährte Gehörbildungsprogression.
+            </p>
+            <p class="manual-rationale__ref">Quelle: Karpinski (2000) <a class="manual-ref-num" href="#ref-4">[4]</a></p>
+        </div>
+
+        <!-- #octave -->
+        <h2 id="octave">Oktave</h2>
+
+        <p class="manual-lead">
+            
+            
+            
+            <strong>Lass es auf „Mitte (C4)".</strong> Sobald es dort stabil ist, probiere auch die tiefe und hohe Lage aus, um ein Gehör zu formen, das sich von der Lage nicht beirren lässt.
+        </p>
+
+        <p>
+            
+            
+            
+            Legt die Lage (Tonhöhe) fest, in der die Akkorde gespielt werden: tief (C3), Mitte (C4) oder hoch (C5). In der tiefen Lage drängen sich die Akkordtöne zusammen und lassen sich schwerer trennen; in der hohen Lage spreizen sich die Töne und klingen klarer, aber dünner. Die Mitte (C4) liegt dazwischen und ist die am besten ausgewogene Lage für die Akkorderkennung.
+        </p>
+
+        <div class="manual-rationale">
+            <span class="manual-rationale__label">Die wissenschaftliche Grundlage</span>
+            <p>
+                
+                
+                
+                In der mittleren Lage zu beginnen, hält die Verarbeitungslast des Ohrs gering, indem der Bereich genutzt wird, in dem sich die Akkordtöne am leichtesten trennen lassen. Unnötige Schwierigkeit früh zu verringern, erlaubt dir, dich auf den Unterschied zwischen den Akkordtypen selbst zu konzentrieren; später erweiterst du auf andere Lagen, um Akkorde in jeder Höhe zu hören. Das folgt der Cognitive-Load-Theorie: eine geringere Last zu Beginn fördert das Lernen.
+            </p>
+            <p class="manual-rationale__ref">Quelle: Sweller (1988) <a class="manual-ref-num" href="#ref-2">[2]</a></p>
+        </div>
+
+        <!-- References -->
+        <section class="manual-refs">
+            <div class="manual-refs__title">Quellen</div>
+            <ol>
+                <li id="ref-1">Roediger, H. L., &amp; Karpicke, J. D. (2006). Test-enhanced learning: Taking memory tests improves long-term retention. <em>Psychological Science, 17</em>(3), 249–255.</li>
+                <li id="ref-2">Sweller, J. (1988). Cognitive load during problem solving: Effects on learning. <em>Cognitive Science, 12</em>(2), 257–285.</li>
+                <li id="ref-3">Brunmair, M., &amp; Richter, T. (2019). Similarity matters: A meta-analysis of interleaved learning and its moderators. <em>Psychological Bulletin, 145</em>(11), 1029–1052.</li>
+                <li id="ref-4">Karpinski, G. S. (2000). <em>Aural Skills Acquisition: The Development of Listening, Reading, and Performing Skills in College-Level Musicians.</em> Oxford University Press.</li>
+            </ol>
+        </section>
+
+    </main>
+
+    <!-- Final CTA -->
+    <section class="article-cta">
+        <h2 class="article-cta__title">Einstellungen geklärt? Probieren Sie es aus</h2>
+        <p class="article-cta__text">
+            
+            
+            
+            Sobald Sie jede Einstellung verstanden haben, bleibt nur noch das praktische Üben.<br>Folgen Sie im Zweifel einfach den Zeilen „Im Zweifel…" auf dieser Seite.<br>Finden Sie die für Sie passenden Einstellungen in der Akkorderkennung von Solfege PRO.
+        </p>
+        <a href="https://apps.apple.com/de/app/id6756626617" class="app-store-link" aria-label="Download on the App Store">
+            
+            
+            
+            <img class="app-store-link__img" width="120" height="40" src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/de-de" alt="Laden im App Store">
+        </a>
+    </section>
+
+    <!-- Related Content -->
+    <div class="article-related">
+        <div class="article-related__title">Verwandte Inhalte</div>
+        <a href="/guides/ear-training-chords/" class="article-related__link" style="margin-bottom: var(--space-md);">
+            <div class="article-related__link-title">Was ist Akkorderkennung? — Den Klang von Harmonien verstehen</div>
+            <div class="article-related__link-desc">Für alle, die verstehen möchten, was Akkorderkennung ist, bevor sie die Einstellungen anpassen — ein Leitfaden zu den Unterschieden der Akkordtöne und schrittweisem Üben.</div>
+        </a>
+        <a href="/" class="article-related__link">
+            <div class="article-related__link-title">Solfege PRO Übungsleitfaden</div>
+            <div class="article-related__link-desc">Problem­bezogene Übungsmenüs für Gitarre, Bass, Schlagzeug, Klavier und Gesang</div>
+        </a>
+    </div>
+
+    <!-- Article Note -->
+    <aside class="article-endnote">
+        <p class="article-endnote__text">
+            
+            
+            
+            Diese Seite ist eine Referenz, die die in der App enthaltenen Einstellungen erläutert. Die hier empfohlenen Abfolgen sind allgemeine Richtwerte, die auf einer weit verbreiteten Methodik des Gehörtrainings beruhen; die optimalen Einstellungen hängen von der individuellen Erfahrung und den Zielen ab. Die zitierten Studien berichten allgemeine Erkenntnisse zum Lernen und garantieren keine Ergebnisse innerhalb dieser App.
+        </p>
+    </aside>
+
+    <!-- Footer -->
+    <footer class="article-footer">
+        <p class="article-footer__text">
+            &copy; 2026 Solfege PRO &mdash;
+            <a href="https://apps.apple.com/de/app/id6756626617" class="article-footer__link">App Store</a>
+        </p>
+    </footer>
+    <script src="/bootstrap.js?v=3" defer></script>
+</body>
+</html>

@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html lang="en"
+      data-title-ja="コード認識 設定マニュアル — 各設定の選び方 | ソルフェージュPRO"
+      data-title-en="Chord Recognition Settings Manual — How to Choose Each Option | Solfege PRO"
+      data-title-fr="Manuel des réglages de reconnaissance d'accords — Comment choisir chaque option | Solfege PRO"
+      data-title-de="Handbuch der Akkorderkennung-Einstellungen — So wählen Sie jede Option | Solfege PRO">
+<head>
+    <meta charset="UTF-8">
+    <meta name="robots" content="index, follow">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#1A1A1E">
+    <title>Chord Recognition Settings Manual — How to Choose Each Option | Solfege PRO</title>
+    <meta name="description" content="Reference manual for Chord Recognition settings — training mode, difficulty, playback, question type, root note, inversions, octave: who picks what.">
+
+    <!-- Canonical -->
+    <link rel="canonical" href="https://solfegepro.com/en/manual/chord/">
+    <link rel="alternate" hreflang="ja" href="https://solfegepro.com/manual/chord/">
+    <link rel="alternate" hreflang="en" href="https://solfegepro.com/en/manual/chord/">
+    <link rel="alternate" hreflang="fr" href="https://solfegepro.com/fr/manual/chord/">
+    <link rel="alternate" hreflang="de" href="https://solfegepro.com/de/manual/chord/">
+    <link rel="alternate" hreflang="x-default" href="https://solfegepro.com/manual/chord/">
+<!-- OGP -->
+    <meta property="og:title" content="Chord Recognition Settings Manual — How to Choose Each Option">
+    <meta property="og:description" content="Reference manual for Chord Recognition settings — training mode, difficulty, playback, question type, root note, inversions, octave: who picks what.">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://solfegepro.com/en/manual/chord/">
+    <meta property="og:site_name" content="Solfege PRO">
+    <meta property="og:image" content="https://solfegepro.com/og-image.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Solfege PRO">
+    <meta property="og:locale" content="en_US">
+    <meta property="og:locale:alternate" content="ja_JP">
+    <meta property="og:locale:alternate" content="fr_FR">
+    <meta property="og:locale:alternate" content="de_DE">
+    <meta property="article:published_time" content="2026-06-05">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Chord Recognition Settings Manual — How to Choose Each Option">
+    <meta name="twitter:description" content="Reference manual for Chord Recognition settings — training mode, difficulty, playback, question type, root note, inversions, octave: who picks what.">
+    <meta name="twitter:image" content="https://solfegepro.com/og-image.png">
+
+    <!-- Favicon -->
+    <link rel="icon" href="/favicon.ico" sizes="any">
+    <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap"></noscript>
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="/style.css?v=17">
+    <link rel="stylesheet" href="/guides/article.css?v=11">
+
+    <style>
+        /* Manual option reference — responsive, no fixed px widths */
+        .manual-options {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr);
+            gap: var(--space-sm);
+            margin: var(--space-lg) 0;
+        }
+        .manual-option {
+            background: var(--surface);
+            border: 1px solid var(--surface-light);
+            border-radius: var(--radius-lg);
+            padding: var(--space-md);
+        }
+        .manual-option__name {
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: var(--space-xs);
+        }
+        .manual-option__desc {
+            font-size: 13px;
+            color: var(--text-secondary);
+        }
+        /* Bottom-line callout (conclusion first) */
+        .manual-lead {
+            font-size: 14px;
+            line-height: 1.75;
+            color: var(--text-primary);
+            border-left: 3px solid var(--primary);
+            background: rgba(212, 175, 55, 0.06);
+            padding: var(--space-sm) var(--space-md);
+            border-radius: 0 var(--radius-md) var(--radius-md) 0;
+            margin: var(--space-md) 0;
+        }
+        /* Per-setting evidence note — deliberately styled as an editorial
+           aside, NOT as a settings card (no surface fill, no gold label),
+           so it is never mistaken for an in-app option. */
+        .manual-rationale {
+            margin: var(--space-md) 0 var(--space-2xl);
+            padding: var(--space-sm) 0 var(--space-sm) var(--space-md);
+            border-left: 2px solid var(--surface-light);
+        }
+        .manual-rationale__label {
+            display: block;
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            color: var(--text-secondary);
+            margin-bottom: 4px;
+            opacity: 0.75;
+        }
+        .manual-rationale p {
+            font-size: 13px;
+            line-height: 1.75;
+            color: var(--text-secondary);
+            margin: 0;
+        }
+        .manual-rationale__ref {
+            font-size: 12px;
+            font-style: italic;
+            margin-top: var(--space-xs) !important;
+            opacity: 0.7;
+        }
+        /* Citation number linking to the reference list */
+        .manual-ref-num {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-style: normal;
+        }
+        .manual-ref-num:hover { color: var(--primary); }
+        /* Full reference list at page end */
+        .manual-refs {
+            margin: var(--space-2xl) 0 0;
+            padding-top: var(--space-lg);
+            border-top: 1px solid var(--surface-light);
+        }
+        .manual-refs__title {
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: var(--space-sm);
+        }
+        .manual-refs ol {
+            margin: 0;
+            padding-left: 1.25em;
+        }
+        .manual-refs li {
+            font-size: 12px;
+            line-height: 1.7;
+            color: var(--text-secondary);
+            margin-bottom: var(--space-xs);
+            scroll-margin-top: 84px;
+        }
+        .manual-refs li:target {
+            color: var(--text-primary);
+        }
+    </style>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Chord Recognition Settings Manual — How to Choose Each Option","description":"Reference manual for Chord Recognition settings — training mode, difficulty, playback, question type, root note, inversions, octave: who picks what.","author":{"@type":"Organization","name":"Solfege PRO"},"publisher":{"@type":"Organization","name":"Solfege PRO","logo":{"@type":"ImageObject","url":"https://solfegepro.com/AppIcon.png"}},"datePublished":"2026-06-05","mainEntityOfPage":{"@type":"WebPage","@id":"https://solfegepro.com/en/manual/chord/"}}</script>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://solfegepro.com/en/"},{"@type":"ListItem","position":2,"name":"Manual","item":"https://solfegepro.com/en/manual/"},{"@type":"ListItem","position":3,"name":"Chord Recognition Settings Manual — How to Choose Each Option","item":"https://solfegepro.com/en/manual/chord/"}]}</script>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="nav__container">
+            <a href="/" class="nav__logo">
+                <img src="/AppIcon.png" alt="Solfege PRO" class="nav__logo-icon" width="32" height="32">
+                <span class="nav__logo-text">Solfege PRO</span>
+            </a>
+            <ul class="nav__list">
+                <li><a href="/" class="nav__link">Practice Guide</a></li>
+                <li><a href="/guides/" class="nav__link">Guides</a></li>
+                <li><a href="/manual/" class="nav__link active">Manual</a></li>
+                            <li><a href="/start-here/" class="nav__link">Where to Start?</a></li>
+            </ul>
+            <div class="nav__settings">
+                <button class="settings-btn" id="lang-toggle" title="Toggle language">
+                    <span id="lang-text">EN</span>
+                </button>
+                <button class="hamburger-btn" id="hamburger-btn" aria-label="Menu" aria-expanded="false" aria-controls="drawer">
+                    <span class="hamburger-btn__line"></span>
+                    <span class="hamburger-btn__line"></span>
+                    <span class="hamburger-btn__line"></span>
+                </button>
+            </div>
+        </div>
+    </nav>
+        <!-- Mobile drawer (hidden on desktop) -->
+        <div class="drawer-overlay" id="drawer-overlay"></div>
+        <aside class="drawer" id="drawer" aria-label="Mobile menu" aria-hidden="true" inert>
+            <div class="drawer__header">
+                <span class="drawer__title">Menu</span>
+                <button class="drawer__close" id="drawer-close" aria-label="Close menu">×</button>
+            </div>
+            <ul class="drawer__list">
+                    <li><a href="/" class="drawer__link">Practice Guide</a></li>
+                    <li><a href="/guides/" class="drawer__link">Guides</a></li>
+                    <li><a href="/manual/" class="drawer__link active">Manual</a></li>
+                    <li><a href="/start-here/" class="drawer__link">Where to Start?</a></li>
+            </ul>
+        </aside>
+
+
+    <!-- Article Header -->
+    <header class="page-header">
+        <div class="page-header__meta">
+            <span class="page-header__tag">Manual</span>
+            <span>Chord Recognition</span>
+        </div>
+        <h1 class="page-header__title">
+            
+            Chord Recognition Settings Manual<br>What Each Option Means and How to Choose
+            
+            
+        </h1>
+        <p class="page-header__subtitle">
+            
+            Which option to pick, when, and why. This page walks through each setting in chord recognition training, one at a time. If you arrived from a "?" in the settings screen, scroll to the option you need.
+            
+            
+        </p>
+    </header>
+
+    <!-- Top-of-article CTA -->
+    <aside class="article-top-cta" aria-label="App promotion">
+        <div class="article-top-cta__body">
+            <p class="article-top-cta__title">
+                
+                Try this in Solfege PRO
+                
+                
+            </p>
+            <p class="article-top-cta__sub">
+                
+                ¥980/month · 1-week free trial
+                
+                
+            </p>
+        </div>
+        <a href="https://apps.apple.com/us/app/id6756626617" class="article-top-cta__button" data-cta-position="article_top">
+            
+            App Store →
+            
+            
+        </a>
+    </aside>
+
+    <!-- Article Body -->
+    <main class="article-body">
+
+        <!-- Intro -->
+        <p>
+            
+            Chord recognition training is practice at hearing several notes sounded at once and identifying the chord's quality (the chord's character — Major / Minor / 7th, and so on) by ear alone. Hearing chords is the foundation for understanding harmony, and the basis of ear-copying, composing, and ensemble playing.
+            
+            
+        </p>
+        <p>
+            
+            This page is a manual for choosing the settings. Each setting is designed around established methods from music education. For each setting that calls for a decision, we give <strong>the recommended choice, what it is for, and what it trains — with the evidence behind it</strong>. If you arrived from a "?" in the settings screen, scroll to the option you need.
+            
+            
+        </p>
+
+        <!-- #training-mode -->
+        <h2 id="training-mode">Training Mode</h2>
+
+        <p class="manual-lead">
+            
+            <strong>Normal is enough to start.</strong> Use Custom only to target specific chords, and reach for "Review When You Forget" and "Weak-Point Focus" once your results accumulate.
+            
+            
+        </p>
+
+        <p>
+            
+            This setting decides the policy by which chords are chosen for you. There are four modes.
+            
+            
+        </p>
+
+        <div class="manual-options">
+            <div class="manual-option">
+                <div class="manual-option__name">Normal</div>
+                <div class="manual-option__desc">Draws from the chords matching your chosen difficulty. With no special intent, this is the one.</div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name">Custom</div>
+                <div class="manual-option__desc">You hand-pick which chord types appear. For drilling a targeted combination (say, just Maj7 vs m7) — select at least one.</div>
+            </div>
+        </div>
+
+        <p>
+            
+            The other two — "Review When You Forget" and "Weak-Point Focus" — pay off once your performance data accumulates. They work the same way across every training, so they appear inline below.
+            
+            
+        </p>
+
+        <!-- TODO i18n: fr/de spans are interim English; translate after ja voice approval -->
+<!-- Reusable mode partial. Training-agnostic: do NOT mention chord/scale/etc. -->
+<section class="article-mode" id="mode-spaced-repetition">
+    <h3 class="article-mode__title">"Review When You Forget" mode (spaced repetition)</h3>
+
+    <p>
+        
+        Spaced repetition means an item you have already studied comes back just as you are about to forget it. The more reliably you answer something, the longer the gap before it returns; the items you miss come back sooner. It rests on the idea that recall is more durable when you space the reviews out rather than cramming the same item back-to-back.
+        
+        
+    </p>
+
+    <p>
+        
+        This mode suits you once the pool of items has grown and you start noticing that things you once knew have slipped. The app handles the scheduling automatically, so you do not have to track what needs reviewing. It rewards short, daily sessions more than occasional long ones.
+        
+        
+    </p>
+
+    <p>
+        
+        When in doubt, reach for it in the "maintenance" phase, after you have worked through the items once. Use the normal mode to build the foundation when everything is new, then let spaced repetition move that knowledge into long-term memory — a comfortable two-step approach. <em>The benefit of spacing reviews for long-term retention was synthesized at scale by Cepeda et al. (2006), and the finding that the act of retrieval itself strengthens memory comes from Roediger &amp; Karpicke (2006).</em>
+        
+        
+    </p>
+</section>
+
+        <!-- TODO i18n: fr/de spans are interim English; translate after ja voice approval -->
+<!-- Reusable mode partial. Training-agnostic: do NOT mention chord/scale/etc. -->
+<section class="article-mode" id="mode-weak-point">
+    <h3 class="article-mode__title">Weak-Point Focus Mode</h3>
+
+    <p>
+        
+        Weak-point focus looks at your answer history, identifies the items with the lowest accuracy, and serves those to you more often. Instead of spending time on what you already answer reliably, it concentrates practice on exactly the places you keep missing. The app picks the targets automatically from your own results.
+        
+        
+    </p>
+
+    <p>
+        
+        This mode suits the stage where your overall accuracy is climbing but a specific few items still trip you up every time. Because it keeps returning to your weak spots, it feels harder — and that controlled extra effort is precisely where the learning happens (the principle of desirable difficulties). It needs enough answer history before candidates appear, so play the normal mode for a while first.
+        
+        
+    </p>
+
+    <p>
+        
+        When in doubt, drop in for a few concentrated sessions whenever you plateau at a given level and feel you "keep losing the same handful of items right before it would stabilize." Once the weak spots clear, return to the normal mode to keep your overall balance. <em>Deliberately making yourself retrieve the items you tend to miss — the "testing effect" — was shown by Roediger &amp; Karpicke (2006) to strongly benefit later retention.</em>
+        
+        
+    </p>
+</section>
+
+
+        <div class="manual-rationale">
+            <span class="manual-rationale__label">The evidence behind it</span>
+            <p>
+                
+                The four modes exist to concentrate practice on the chords you currently need. The quiz format itself — recalling the answer rather than listening passively — strengthens memory more than re-listening (the testing effect). "Review When You Forget" and "Weak-Point Focus" automate this using your performance data.
+                
+                
+            </p>
+            <p class="manual-rationale__ref">Ref.: Roediger &amp; Karpicke (2006) <a class="manual-ref-num" href="#ref-1">[1]</a></p>
+        </div>
+
+        <!-- #difficulty -->
+        <h2 id="difficulty">Difficulty</h2>
+
+        <p class="manual-lead">
+            
+            <strong>When unsure, start at Basic Triads.</strong> Step up one level once you reliably hold 80%+ at the current one.
+            
+            
+        </p>
+
+        <p>
+            
+            Sets the range of chord types you'll be asked about (shown in Standard mode). Following a Berklee-style curriculum, the pool widens step by step: triads → 7th chords → tensions.
+            
+            
+        </p>
+
+        <div class="manual-options">
+            <div class="manual-option">
+                <div class="manual-option__name">Basic Triads</div>
+                <div class="manual-option__desc">Major and Minor only. The first step, letting you focus on hearing the 3rd (the note two steps above the root) that decides a chord's bright-or-dark quality.</div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name">All Triads</div>
+                <div class="manual-option__desc">Adds Diminished and Augmented. Now you learn to hear the narrowed 5th (dim) and widened 5th (aug).</div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name">Basic 7ths</div>
+                <div class="manual-option__desc">Maj7, m7, and 7 (dominant 7th). Four-note chords with a 7th stacked on the triad. The three are subtly different, so move here only after triads feel stable.</div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name">All 7ths</div>
+                <div class="manual-option__desc">Adds m7b5, dim7, and mMaj7 — the more tense 7th chords common in jazz.</div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name">Tensions</div>
+                <div class="manual-option__desc">9th, 11th, and 13th chords. Extended chords with further notes stacked on top — the top tier, dealing with rich, colorful sonorities.</div>
+            </div>
+        </div>
+
+        <div class="manual-rationale">
+            <span class="manual-rationale__label">The evidence behind it</span>
+            <p>
+                
+                The fewer chord types you handle at once, the less your ear must process, and the more reliably you fix the cues for telling them apart. Securing a narrow range before widening it gets you there faster than tackling everything at once. The tiers follow cognitive-load theory: keeping processing demands low early in a new skill aids learning.
+                
+                
+            </p>
+            <p class="manual-rationale__ref">Ref.: Sweller (1988) <a class="manual-ref-num" href="#ref-2">[2]</a></p>
+        </div>
+
+        <!-- #playback-mode -->
+        <h2 id="playback-mode">Playback Mode</h2>
+
+        <p class="manual-lead">
+            
+            <strong>Learn a new chord in Arpeggiated, switch to Block as you get comfortable, and finish with Random.</strong>
+            
+            
+        </p>
+
+        <p>
+            
+            Decides how the chord is sounded. The same chord can be easier or harder to identify depending on how it's played.
+            
+            
+        </p>
+
+        <div class="manual-options">
+            <div class="manual-option">
+                <div class="manual-option__name">Block</div>
+                <div class="manual-option__desc">All notes sound at once. You judge the whole chord's mass of sound in an instant — close to how real music arrives, and a bit harder.</div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name">Arpeggiated</div>
+                <div class="manual-option__desc">Notes play one at a time from the bottom up (an arpeggio, i.e. a broken chord). You can follow each note individually, so the structure is easy to analyze — ideal for locating the 3rd or 7th.</div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name">Random</div>
+                <div class="manual-option__desc">Switches between block and arpeggiated each question, so you can identify chords whichever way they're voiced.</div>
+            </div>
+        </div>
+
+        <div class="manual-rationale">
+            <span class="manual-rationale__label">The evidence behind it</span>
+            <p>
+                
+                The aim is to hear the chord itself without leaning on one presentation. Arpeggiated lets you analyze the structure note by note, while Block trains instant judgment on the chord's mass of sound, close to real music. Varying how it's played stops you depending on a single cue and builds the ability to identify chords however they're voiced.
+                
+                
+            </p>
+            <p class="manual-rationale__ref">Ref.: Brunmair &amp; Richter (2019) <a class="manual-ref-num" href="#ref-3">[3]</a>; Karpinski (2000) <a class="manual-ref-num" href="#ref-4">[4]</a></p>
+        </div>
+
+        <!-- #question-type -->
+        <h2 id="question-type">Question Type</h2>
+
+        <p class="manual-lead">
+            
+            <strong>Leave it on Chord Quality to start.</strong> Once quality recognition is stable, progress to Bass Note, then Inversion.
+            
+            
+        </p>
+
+        <p>
+            
+            Decides what you are asked to answer. Even for the same chord, what gets asked changes which listening skill you build.
+            
+            
+        </p>
+
+        <div class="manual-options">
+            <div class="manual-option">
+                <div class="manual-option__name">Chord Quality</div>
+                <div class="manual-option__desc">Identify the chord's type (Major, Minor, and so on). The heart of chord recognition and the default question type.</div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name">Bass Note</div>
+                <div class="manual-option__desc">Identify the lowest sounding note (the bass note). Trains the ear that underlies hearing inversions (below). Selecting it auto-enables inversions.</div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name">Inversion</div>
+                <div class="manual-option__desc">Identify the inversion (root position, 1st, 2nd — forms made by swapping which tone is lowest). A more advanced ear that hears the shifting center of gravity of the same chord. Auto-enables inversions.</div>
+            </div>
+        </div>
+
+        <div class="manual-rationale">
+            <span class="manual-rationale__label">The evidence behind it</span>
+            <p>
+                
+                Progressing through question types builds chord-hearing skill element by element. Telling quality (bright/dark, tension) apart first, then the lowest note, then the inversion, develops an ear that hears chord structure from several angles. This follows the established ear-training progression of learning quality and inversions in turn.
+                
+                
+            </p>
+            <p class="manual-rationale__ref">Ref.: Karpinski (2000) <a class="manual-ref-num" href="#ref-4">[4]</a></p>
+        </div>
+
+        <!-- #root-mode -->
+        <h2 id="root-mode">Root Mode</h2>
+
+        <p class="manual-lead">
+            
+            <strong>Default to "Random across all keys" (the app's recommendation).</strong> Fix the root only temporarily, as an absolute beginner who wants to isolate the chord-type difference.
+            
+            
+        </p>
+
+        <p>
+            
+            Decides how the chord's root (the foundational lowest reference note) is chosen each time. You pick "Random across all keys" or "Fixed root."
+            
+            
+        </p>
+
+        <div class="manual-options">
+            <div class="manual-option">
+                <div class="manual-option__name">Random across all keys (recommended)</div>
+                <div class="manual-option__desc">Picks the root at random from all 12 keys each question. You hear the chord's shape itself rather than leaning on one pitch — the most realistic practice.</div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name">Fixed root</div>
+                <div class="manual-option__desc">Locks the root to a single pitch (choosing this reveals a picker for which note). A constant reference makes chords easy to compare — good for early learning when you want to isolate the chord-type difference.</div>
+            </div>
+        </div>
+
+        <div class="manual-rationale">
+            <span class="manual-rationale__label">The evidence behind it</span>
+            <p>
+                
+                Random across all keys is the default so you build the ability to hear the chord's shape itself without leaning on one pitch height. Mixing different keys (interleaving) retains better than blocking the same condition, as meta-analysis shows. Real music appears in every key, so this builds a realistic ear.
+                
+                
+            </p>
+            <p class="manual-rationale__ref">Ref.: Brunmair &amp; Richter (2019) <a class="manual-ref-num" href="#ref-3">[3]</a></p>
+        </div>
+
+        <!-- #inversions -->
+        <h2 id="inversions">Inversions</h2>
+
+        <p class="manual-lead">
+            
+            <strong>Leave it off at first.</strong> Add inversions only once your quality recognition is stable; mixing them in before the foundation is set tends to cause confusion.
+            
+            
+        </p>
+
+        <p>
+            
+            Controls whether inversions — forms with a changed lowest note — appear. For example, C Major (C-E-G) is root position; E-G-C (lowest note E) is the first inversion and G-C-E (lowest note G) the second. The notes are the same, but which one sits at the bottom shifts the chord's center of gravity. Choosing Bass Note or Inversion as the question type enables this automatically.
+            
+            
+        </p>
+
+        <div class="manual-rationale">
+            <span class="manual-rationale__label">The evidence behind it</span>
+            <p>
+                
+                Inversions are added later so you first secure the chord's sound in root position, then bring in the new cue of a changed lowest note. Inversions are everywhere in real music and unavoidable, but they stick better once the foundation is set. Learning quality and then inversions in turn is an established ear-training progression.
+                
+                
+            </p>
+            <p class="manual-rationale__ref">Ref.: Karpinski (2000) <a class="manual-ref-num" href="#ref-4">[4]</a></p>
+        </div>
+
+        <!-- #octave -->
+        <h2 id="octave">Octave</h2>
+
+        <p class="manual-lead">
+            
+            <strong>Leave it on Middle (C4).</strong> Once stable there, try the low and high registers too, building an ear that isn't swayed by register.
+            
+            
+        </p>
+
+        <p>
+            
+            Sets the register (pitch height) at which chords are played: Low (C3), Middle (C4), or High (C5). In the low register chord tones bunch together and are harder to separate; in the high register the notes spread apart and sound clearer but thinner. Middle (C4) sits between them and is the best-balanced register for chord recognition.
+            
+            
+        </p>
+
+        <div class="manual-rationale">
+            <span class="manual-rationale__label">The evidence behind it</span>
+            <p>
+                
+                Starting in the middle register keeps the ear's processing load low by using the range where chord tones are easiest to separate. Reducing needless difficulty early lets you focus on the chord-type difference itself; you widen to other registers later to hear chords at any height. This follows cognitive-load theory: keeping the load lower early aids learning.
+                
+                
+            </p>
+            <p class="manual-rationale__ref">Ref.: Sweller (1988) <a class="manual-ref-num" href="#ref-2">[2]</a></p>
+        </div>
+
+        <!-- References -->
+        <section class="manual-refs">
+            <div class="manual-refs__title">References</div>
+            <ol>
+                <li id="ref-1">Roediger, H. L., &amp; Karpicke, J. D. (2006). Test-enhanced learning: Taking memory tests improves long-term retention. <em>Psychological Science, 17</em>(3), 249–255.</li>
+                <li id="ref-2">Sweller, J. (1988). Cognitive load during problem solving: Effects on learning. <em>Cognitive Science, 12</em>(2), 257–285.</li>
+                <li id="ref-3">Brunmair, M., &amp; Richter, T. (2019). Similarity matters: A meta-analysis of interleaved learning and its moderators. <em>Psychological Bulletin, 145</em>(11), 1029–1052.</li>
+                <li id="ref-4">Karpinski, G. S. (2000). <em>Aural Skills Acquisition: The Development of Listening, Reading, and Performing Skills in College-Level Musicians.</em> Oxford University Press.</li>
+            </ol>
+        </section>
+
+    </main>
+
+    <!-- Final CTA -->
+    <section class="article-cta">
+        <h2 class="article-cta__title">Settings Sorted? Give It a Try</h2>
+        <p class="article-cta__text">
+            
+            Once you understand each setting, the rest is hands-on practice.<br>When unsure, just follow the "when in doubt" lines on this page.<br>Find the settings that fit you in Solfege PRO's Chord Recognition.
+            
+            
+        </p>
+        <a href="https://apps.apple.com/us/app/id6756626617" class="app-store-link" aria-label="Download on the App Store">
+            
+            <img class="app-store-link__img" width="120" height="40" src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/en-us" alt="Download on the App Store">
+            
+            
+        </a>
+    </section>
+
+    <!-- Related Content -->
+    <div class="article-related">
+        <div class="article-related__title">Related Content</div>
+        <a href="/guides/ear-training-chords/" class="article-related__link" style="margin-bottom: var(--space-md);">
+            <div class="article-related__link-title">What Is Chord Recognition? — Understanding Harmonic Sounds</div>
+            <div class="article-related__link-desc">For those who want to understand what chord recognition is before adjusting settings — a guide to chord-tone differences and step-by-step practice.</div>
+        </a>
+        <a href="/" class="article-related__link">
+            <div class="article-related__link-title">Solfege PRO Practice Guide</div>
+            <div class="article-related__link-desc">Challenge-based practice menus for guitar, bass, drums, piano, and vocals</div>
+        </a>
+    </div>
+
+    <!-- Article Note -->
+    <aside class="article-endnote">
+        <p class="article-endnote__text">
+            
+            This page is a reference explaining the app's in-app settings. The recommended progressions given here are general guidelines based on widely used ear-training methodology; the optimal settings vary with individual experience and goals. The cited studies report general learning findings and do not guarantee results within this app.
+            
+            
+        </p>
+    </aside>
+
+    <!-- Footer -->
+    <footer class="article-footer">
+        <p class="article-footer__text">
+            &copy; 2026 Solfege PRO &mdash;
+            <a href="https://apps.apple.com/us/app/id6756626617" class="article-footer__link">App Store</a>
+        </p>
+    </footer>
+    <script src="/bootstrap.js?v=3" defer></script>
+</body>
+</html>

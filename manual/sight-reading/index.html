@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="ja"
+      data-title-ja="譜読み 設定マニュアル — 各設定の選び方 | ソルフェージュPRO"
+      data-title-en="Sight Reading Settings Manual — How to Choose Each Option | Solfege PRO"
+      data-title-fr="Manuel des réglages de Lecture à vue — Comment choisir chaque option | Solfege PRO"
+      data-title-de="Einstellungshandbuch Blattlesen — So wählen Sie jede Option | Solfege PRO">
+<head>
+    <meta charset="UTF-8">
+    <meta name="robots" content="index, follow">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#1A1A1E">
+    <title>譜読み 設定マニュアル — 各設定の選び方 | ソルフェージュPRO</title>
+    <meta name="description" content="譜読みトレーニングの各設定（難易度・練習モード・音部記号・調号・加線）を、何のための設定で、誰が、どう選ぶべきかまで丁寧に解説するリファレンスマニュアルです。">
+
+    <!-- Canonical -->
+    <link rel="canonical" href="https://solfegepro.com/manual/sight-reading/">
+    <link rel="alternate" hreflang="ja" href="https://solfegepro.com/manual/sight-reading/">
+    <link rel="alternate" hreflang="en" href="https://solfegepro.com/en/manual/sight-reading/">
+    <link rel="alternate" hreflang="fr" href="https://solfegepro.com/fr/manual/sight-reading/">
+    <link rel="alternate" hreflang="de" href="https://solfegepro.com/de/manual/sight-reading/">
+    <link rel="alternate" hreflang="x-default" href="https://solfegepro.com/manual/sight-reading/">
+<!-- OGP -->
+    <meta property="og:title" content="譜読み 設定マニュアル — 各設定の選び方">
+    <meta property="og:description" content="譜読みトレーニングの各設定（難易度・練習モード・音部記号・調号・加線）を、何のための設定で、誰が、どう選ぶべきかまで丁寧に解説するリファレンスマニュアルです。">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://solfegepro.com/manual/sight-reading/">
+    <meta property="og:site_name" content="ソルフェージュPRO">
+    <meta property="og:image" content="https://solfegepro.com/og-image.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Solfege PRO">
+    <meta property="og:locale" content="ja_JP">
+    <meta property="og:locale:alternate" content="en_US">
+    <meta property="og:locale:alternate" content="fr_FR">
+    <meta property="og:locale:alternate" content="de_DE">
+    <meta property="article:published_time" content="2026-06-05">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="譜読み 設定マニュアル — 各設定の選び方">
+    <meta name="twitter:description" content="譜読みトレーニングの各設定（難易度・練習モード・音部記号・調号・加線）を、何のための設定で、誰が、どう選ぶべきかまで丁寧に解説するリファレンスマニュアルです。">
+    <meta name="twitter:image" content="https://solfegepro.com/og-image.png">
+
+    <!-- Favicon -->
+    <link rel="icon" href="/favicon.ico" sizes="any">
+    <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap"></noscript>
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="/style.css?v=17">
+    <link rel="stylesheet" href="/guides/article.css?v=11">
+
+    <style>
+        /* Manual option reference — responsive, no fixed px widths */
+        .manual-options {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr);
+            gap: var(--space-sm);
+            margin: var(--space-lg) 0;
+        }
+        .manual-option {
+            background: var(--surface);
+            border: 1px solid var(--surface-light);
+            border-radius: var(--radius-lg);
+            padding: var(--space-md);
+        }
+        .manual-option__name {
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: var(--space-xs);
+        }
+        .manual-option__desc {
+            font-size: 13px;
+            color: var(--text-secondary);
+        }
+        /* Bottom-line callout (conclusion first) */
+        .manual-lead {
+            font-size: 14px;
+            line-height: 1.75;
+            color: var(--text-primary);
+            border-left: 3px solid var(--primary);
+            background: rgba(212, 175, 55, 0.06);
+            padding: var(--space-sm) var(--space-md);
+            border-radius: 0 var(--radius-md) var(--radius-md) 0;
+            margin: var(--space-md) 0;
+        }
+        /* Per-setting evidence note — deliberately styled as an editorial
+           aside, NOT as a settings card (no surface fill, no gold label),
+           so it is never mistaken for an in-app option. */
+        .manual-rationale {
+            margin: var(--space-md) 0 var(--space-2xl);
+            padding: var(--space-sm) 0 var(--space-sm) var(--space-md);
+            border-left: 2px solid var(--surface-light);
+        }
+        .manual-rationale__label {
+            display: block;
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            color: var(--text-secondary);
+            margin-bottom: 4px;
+            opacity: 0.75;
+        }
+        .manual-rationale p {
+            font-size: 13px;
+            line-height: 1.75;
+            color: var(--text-secondary);
+            margin: 0;
+        }
+        .manual-rationale__ref {
+            font-size: 12px;
+            font-style: italic;
+            margin-top: var(--space-xs) !important;
+            opacity: 0.7;
+        }
+        /* Citation number linking to the reference list */
+        .manual-ref-num {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-style: normal;
+        }
+        .manual-ref-num:hover { color: var(--primary); }
+        /* Full reference list at page end */
+        .manual-refs {
+            margin: var(--space-2xl) 0 0;
+            padding-top: var(--space-lg);
+            border-top: 1px solid var(--surface-light);
+        }
+        .manual-refs__title {
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: var(--space-sm);
+        }
+        .manual-refs ol {
+            margin: 0;
+            padding-left: 1.25em;
+        }
+        .manual-refs li {
+            font-size: 12px;
+            line-height: 1.7;
+            color: var(--text-secondary);
+            margin-bottom: var(--space-xs);
+            scroll-margin-top: 84px;
+        }
+        .manual-refs li:target {
+            color: var(--text-primary);
+        }
+    </style>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"譜読み 設定マニュアル — 各設定の選び方","description":"譜読みトレーニングの各設定を、何のための設定で、誰が、どう選ぶべきかまで解説するリファレンスマニュアルです。","author":{"@type":"Organization","name":"ソルフェージュPRO"},"publisher":{"@type":"Organization","name":"ソルフェージュPRO","logo":{"@type":"ImageObject","url":"https://solfegepro.com/AppIcon.png"}},"datePublished":"2026-06-05","mainEntityOfPage":{"@type":"WebPage","@id":"https://solfegepro.com/manual/sight-reading/"}}</script>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"ホーム","item":"https://solfegepro.com/"},{"@type":"ListItem","position":2,"name":"設定マニュアル","item":"https://solfegepro.com/manual/"},{"@type":"ListItem","position":3,"name":"譜読み 設定マニュアル — 各設定の選び方","item":"https://solfegepro.com/manual/sight-reading/"}]}</script>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="nav__container">
+            <a href="/" class="nav__logo">
+                <img src="/AppIcon.png" alt="Solfege PRO" class="nav__logo-icon" width="32" height="32">
+                <span class="nav__logo-text">ソルフェージュPRO</span>
+            </a>
+            <ul class="nav__list">
+                <li><a href="/" class="nav__link">練習ガイド</a></li>
+                <li><a href="/guides/" class="nav__link">ガイド一覧</a></li>
+                <li><a href="/manual/" class="nav__link active">マニュアル</a></li>
+                            <li><a href="/start-here/" class="nav__link">どこから始める？</a></li>
+            </ul>
+            <div class="nav__settings">
+                <button class="settings-btn" id="lang-toggle" title="Toggle language">
+                    <span id="lang-text">EN</span>
+                </button>
+                <button class="hamburger-btn" id="hamburger-btn" aria-label="Menu" aria-expanded="false" aria-controls="drawer">
+                    <span class="hamburger-btn__line"></span>
+                    <span class="hamburger-btn__line"></span>
+                    <span class="hamburger-btn__line"></span>
+                </button>
+            </div>
+        </div>
+    </nav>
+        <!-- Mobile drawer (hidden on desktop) -->
+        <div class="drawer-overlay" id="drawer-overlay"></div>
+        <aside class="drawer" id="drawer" aria-label="Mobile menu" aria-hidden="true" inert>
+            <div class="drawer__header">
+                <span class="drawer__title">メニュー</span>
+                <button class="drawer__close" id="drawer-close" aria-label="Close menu">×</button>
+            </div>
+            <ul class="drawer__list">
+                    <li><a href="/" class="drawer__link">練習ガイド</a></li>
+                    <li><a href="/guides/" class="drawer__link">ガイド一覧</a></li>
+                    <li><a href="/manual/" class="drawer__link active">マニュアル</a></li>
+                    <li><a href="/start-here/" class="drawer__link">どこから始める？</a></li>
+            </ul>
+        </aside>
+
+
+    <!-- Article Header -->
+    <header class="page-header">
+        <div class="page-header__meta">
+            <span class="page-header__tag">マニュアル</span>
+            <span>譜読み</span>
+        </div>
+        <h1 class="page-header__title">
+            譜読み 設定マニュアル<br>各設定の意味と選び方
+            
+            
+            
+        </h1>
+        <p class="page-header__subtitle">
+            設定画面のどの項目を、どんなときに、どう選べばよいか。譜読みトレーニングの各設定を 1 つずつ解説します。設定画面の「?」から飛んできた方は、目的の項目までスクロールしてください。
+            
+            
+            
+        </p>
+    </header>
+
+    <!-- Top-of-article CTA -->
+    <aside class="article-top-cta" aria-label="App promotion">
+        <div class="article-top-cta__body">
+            <p class="article-top-cta__title">
+                ソルフェージュPRO でこの練習を試す
+                
+                
+                
+            </p>
+            <p class="article-top-cta__sub">
+                月額 980 円 · 1 週間無料トライアル
+                
+                
+                
+            </p>
+        </div>
+        <a href="https://apps.apple.com/jp/app/id6756626617" class="article-top-cta__button" data-cta-position="article_top">
+            App Store →
+            
+            
+            
+        </a>
+    </aside>
+
+    <!-- Article Body -->
+    <main class="article-body">
+
+        <!-- Intro -->
+        <p>
+            譜読みトレーニングは、五線譜に書かれた音符を見て、その音名（ド・レ・ミ…）を素早く正確に読み取る力を鍛える練習です。譜読みは楽譜から音楽を再現するための土台で、どの楽器でも演奏の出発点になります。
+            
+            
+            
+        </p>
+        <p>
+            このページは設定の選び方をまとめたマニュアルです。各設定は音楽教育で確立された学習法にもとづいて設計しています。判断が要る設定について、<strong>おすすめの選び方・何のための設定か・鍛えられる力とその根拠</strong>を簡潔に示します。設定画面の「?」から来た方は、目的の項目までスクロールしてください。
+            
+            
+            
+        </p>
+
+        <!-- #difficulty -->
+        <h2 id="difficulty">難易度</h2>
+
+        <p class="manual-lead">
+            <strong>迷ったら「初級」から。</strong> 今の難易度で正答率 80% 以上が安定したら、1 段ずつ上げます。
+            
+            
+            
+        </p>
+
+        <p>
+            出題される音符の範囲（音域・調号・加線の有無）をまとめて決める設定です。音域が狭く記号が少ないほど読みやすく、広く多いほど難しくなります。
+            
+            
+            
+        </p>
+
+        <div class="manual-options">
+            <div class="manual-option">
+                <div class="manual-option__name">初級</div>
+                <div class="manual-option__desc">中央音域・幹音（変化記号のつかない白鍵の音）のみ。ト音記号の中心付近、調号もハ長調だけで、線と間の音名を体に入れる最初の一歩。</div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name">中級</div>
+                <div class="manual-option__desc">広い音域、臨時記号あり。ヘ音記号が加わり、シャープ・フラット 3 つまでの調号が出題され、読む範囲が一気に広がる段階。</div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name">上級</div>
+                <div class="manual-option__desc">全音域、加線を含む。すべての調号と、五線の外まで伸びる加線上の音符まで出題する、実際の楽譜に最も近い最上位の段階。</div>
+            </div>
+        </div>
+
+        <div class="manual-rationale">
+            <span class="manual-rationale__label">学習科学の裏づけ</span>
+            <p>
+                一度に扱う音符の範囲が狭いほど、目が処理する情報量が減り、線と間の音名を確実に覚えられます。譜読みは見た瞬間に答えられるかが鍵なので、狭い範囲を確実にしてから広げるほうが速く上達します。新しい技能の初期は処理の負荷を抑えるほど学習が進む、という認知負荷の考え方にもとづく段階設計です。
+                
+                
+                
+            </p>
+            <p class="manual-rationale__ref">参考: Sweller (1988) <a class="manual-ref-num" href="#ref-1">[1]</a></p>
+        </div>
+
+        <!-- #training-mode -->
+        <h2 id="training-mode">練習モード</h2>
+
+        <p class="manual-lead">
+            <strong>まずは「通常」で十分。</strong> 特定の調号を狙うときだけ「調号別」、成績がたまったら「苦手克服」を使います。
+            
+            
+            
+        </p>
+
+        <p>
+            出題する音符をどの方針で選ぶかを決める設定です。3 つのモードがあります。
+            
+            
+            
+        </p>
+
+        <div class="manual-options">
+            <div class="manual-option">
+                <div class="manual-option__name">通常</div>
+                <div class="manual-option__desc">選んだ難易度に対応するすべての音符から出題します。特に狙いがなければこれで構いません。</div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name">調号別（特定の調を練習）</div>
+                <div class="manual-option__desc">特定の 1 つの調に絞って出題します。苦手な調号を狙って慣らしたいときに（選ぶと「練習する調」の欄が現れます）。</div>
+            </div>
+        </div>
+
+        <p>
+            残りの 1 つ — 苦手克服 — は成績データがたまってから効くモードです。考え方はどのトレーニングでも共通なので、下に展開します。
+            
+            
+            
+        </p>
+
+        <!-- TODO i18n: fr/de spans are interim English; translate after ja voice approval -->
+<!-- Reusable mode partial. Training-agnostic: do NOT mention chord/scale/etc. -->
+<section class="article-mode" id="mode-weak-point">
+    <h3 class="article-mode__title">苦手克服（weak-point focus）モード</h3>
+
+    <p>
+        苦手克服モードは、これまでの回答記録から正答率の低い項目を見つけ出し、それらを優先的に多く出題するモードです。すでに安定して正解できる項目に時間を使わず、あなたが取りこぼしている部分だけに練習を集中させます。出題対象はあなたの成績に応じて自動で選ばれます。
+        
+        
+        
+    </p>
+
+    <p>
+        このモードが向くのは、全体の正答率は伸びているのに「特定のいくつかだけがいつも引っかかる」段階の人です。苦手な項目ばかりが続くので体感の難しさは上がりますが、その「少し難しい」状態こそが上達の効くポイントです（望ましい困難 / desirable difficulties）。十分な回答数がたまるまでは候補が出ないため、まず通常モードである程度プレイしてから使います。
+        
+        
+        
+    </p>
+
+    <p>
+        迷ったら、ある難易度で頭打ちになり「あと一歩で安定するのに、いつも同じところで落とす」と感じたときに数セッション集中投下するのが効果的です。苦手が解消したら通常モードに戻し、全体のバランスを保ちましょう。<em>間違えやすい項目をあえて繰り返し思い出させるこの「テスト効果」は、Roediger &amp; Karpicke (2006) が、後の保持に強く効くことを示しています。</em>
+        
+        
+        
+    </p>
+</section>
+
+
+        <div class="manual-rationale">
+            <span class="manual-rationale__label">学習科学の裏づけ</span>
+            <p>
+                3 つのモードは「今の自分に必要な音符へ練習を集中させる」ためにあります。自分で思い出して答える出題形式そのものが、ただ眺めるより記憶を強くします（テスト効果）。「苦手克服」は、この効果を成績データで自動化したモードです。
+                
+                
+                
+            </p>
+            <p class="manual-rationale__ref">参考: Roediger &amp; Karpicke (2006) <a class="manual-ref-num" href="#ref-2">[2]</a></p>
+        </div>
+
+        <!-- #clef -->
+        <h2 id="clef">音部記号（ト音記号 / ヘ音記号）</h2>
+
+        <p class="manual-lead">
+            <strong>まずは自分の楽器で使う記号から。</strong> ギター・ボーカルは「ト音記号」、ベースは「ヘ音記号」、ピアノは片方ずつ安定させてから「両方」。
+            
+            
+            
+        </p>
+
+        <p>
+            音部記号（=clef）は、五線の左端に置かれて「どの線がどの音か」を決める記号です。同じ位置でも、ト音記号かヘ音記号かで音名がまったく変わります。
+            
+            
+            
+        </p>
+
+        <div class="manual-options">
+            <div class="manual-option">
+                <div class="manual-option__name">ト音記号</div>
+                <div class="manual-option__desc">高音部の記号（𝄞）。第 2 線が「ソ（G）」。ギター・ボーカル・ピアノ右手・多くのメロディ楽器で使う、最も基本の音部記号。</div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name">ヘ音記号</div>
+                <div class="manual-option__desc">低音部の記号（𝄢）。第 4 線が「ファ（F）」。ベース・ピアノ左手・チェロなど低音域に必須で、ト音記号とは音名の対応が違うため別物として覚えます。</div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name">両方</div>
+                <div class="manual-option__desc">ト音記号とヘ音記号を混ぜて出題します。どちらが来るか分からないため、左端の音部記号をまず確認してから読む習慣が付き、ピアノなど両方を読む楽器に向きます。</div>
+            </div>
+        </div>
+
+        <div class="manual-rationale">
+            <span class="manual-rationale__label">学習科学の裏づけ</span>
+            <p>
+                音部記号ごとに音名の対応が違うため、ト音記号とヘ音記号は別の体系として身につける必要があります。まず一方を確実に読めるようにし、その後もう一方へ進むのが、譜読み指導で確立された段取りです。両方を扱うときは「先頭の記号を確認してから読む」という、実際の演奏で欠かせない手順が身につきます。
+                
+                
+                
+            </p>
+            <p class="manual-rationale__ref">参考: Karpinski (2000) <a class="manual-ref-num" href="#ref-3">[3]</a></p>
+        </div>
+
+        <!-- #key -->
+        <h2 id="key">練習する調（調号）</h2>
+
+        <p class="manual-lead">
+            <strong>特定の調号でつまずくと気づいたら、その 1 つに絞る。</strong> それ以外は「通常」モードで色々な調に触れて構いません。
+            
+            
+            
+        </p>
+
+        <p>
+            出題を 1 つの調に固定する設定で、練習モードで「調号別」を選んだときだけ表示されます。調号（=五線の左端に並ぶシャープ／フラットの数）は、どの音に変化記号が付くかを定めます（例：ト長調はシャープ 1 つ、変ホ長調はフラット 3 つ）。選べる調は難易度に連動し、初級はハ長調のみ、中級は 3 つまで、上級は全 12 調です。
+            
+            
+            
+        </p>
+
+        <div class="manual-rationale">
+            <span class="manual-rationale__label">学習科学の裏づけ</span>
+            <p>
+                1 つの調に絞ると、その調号特有の「いつもこの音にシャープが付く」というパターンに注意が集中し、体に入りやすくなります。調号を手がかりに読む練習は譜読み指導で確立された方法で、各調の音の並びを内面化するのに役立ちます。
+                
+                
+                
+            </p>
+            <p class="manual-rationale__ref">参考: Karpinski (2000) <a class="manual-ref-num" href="#ref-3">[3]</a></p>
+        </div>
+
+        <!-- #ledger -->
+        <h2 id="ledger">加線を含める（加線）</h2>
+
+        <p class="manual-lead">
+            <strong>最初はオフで五線内の音符を確実にし、安定してから加線を加えます。</strong> なお難易度「上級」では加線が自動的に含まれます。
+            
+            
+            
+        </p>
+
+        <p>
+            加線（かせん = 五線の上下に短く書き足す補助線）を含めるかどうかの設定です。五線に収まらない高い音・低い音は、線を 1 本ずつ足してその上や間に音符を置きます（例：中央のド C4 はト音記号の五線の下に加線 1 本を足した位置）。位置を数えるのに時間がかかり、つまずきやすい部分ですが、実際の楽譜では当たり前に出てくるため、いずれ避けて通れません。
+            
+            
+            
+        </p>
+
+        <div class="manual-rationale">
+            <span class="manual-rationale__label">学習科学の裏づけ</span>
+            <p>
+                最初に加線を外せるのは、扱う情報量を抑えて読みの負荷を下げるためです。土台ができる前に加線を混ぜると、位置を数える処理が重なって混乱しやすくなります。五線内を確実にしてから加線を加えるほうが、初期の負荷を抑えられて学習が進みます。新しい技能の初期は処理の負荷を低く保つほどよい、という認知負荷の考え方にもとづきます。
+                
+                
+                
+            </p>
+            <p class="manual-rationale__ref">参考: Sweller (1988) <a class="manual-ref-num" href="#ref-1">[1]</a></p>
+        </div>
+
+        <!-- References -->
+        <section class="manual-refs">
+            <div class="manual-refs__title">参考文献</div>
+            <ol>
+                <li id="ref-1">Sweller, J. (1988). Cognitive load during problem solving: Effects on learning. <em>Cognitive Science, 12</em>(2), 257–285.</li>
+                <li id="ref-2">Roediger, H. L., &amp; Karpicke, J. D. (2006). Test-enhanced learning: Taking memory tests improves long-term retention. <em>Psychological Science, 17</em>(3), 249–255.</li>
+                <li id="ref-3">Karpinski, G. S. (2000). <em>Aural Skills Acquisition: The Development of Listening, Reading, and Performing Skills in College-Level Musicians.</em> Oxford University Press.</li>
+            </ol>
+        </section>
+
+    </main>
+
+    <!-- Final CTA -->
+    <section class="article-cta">
+        <h2 class="article-cta__title">設定を決めたら、さっそく試してみよう</h2>
+        <p class="article-cta__text">
+            各設定の意味がわかれば、あとは実際に手を動かすだけです。<br>迷ったら本ページの「迷ったら…」をなぞって始めてみてください。<br>ソルフェージュPRO の 譜読み で、自分に合った設定を見つけましょう。
+            
+            
+            
+        </p>
+        <a href="https://apps.apple.com/jp/app/id6756626617" class="app-store-link" aria-label="Download on the App Store">
+            <img class="app-store-link__img" width="109" height="40" src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/ja-jp" alt="App Storeで入手">
+            
+            
+            
+        </a>
+    </section>
+
+    <!-- Related Content -->
+    <div class="article-related">
+        <div class="article-related__title">関連コンテンツ</div>
+        <a href="/guides/sight-reading/" class="article-related__link" style="margin-bottom: var(--space-md);">
+            <div class="article-related__link-title">譜読みが速くなる練習法 — 五線譜をスラスラ読む</div>
+            <div class="article-related__link-desc">設定の前に、そもそも譜読みをどう練習すればよいかを知りたい方へ。ランドマーク音と段階的な練習法を解説したガイド。</div>
+        </a>
+        <a href="/" class="article-related__link">
+            <div class="article-related__link-title">ソルフェージュPRO 練習ガイド</div>
+            <div class="article-related__link-desc">ギター・ベース・ドラム・ピアノ・ボーカル向けの課題別練習メニュー</div>
+        </a>
+    </div>
+
+    <!-- Article Note -->
+    <aside class="article-endnote">
+        <p class="article-endnote__text">
+            本ページはアプリ内の設定項目の解説を目的としたリファレンスです。記載した推奨の進め方は、音楽教育で広く用いられる譜読み指導の方法論をもとにした一般的な目安であり、最適な設定は個人の経験や目的によって異なります。引用した研究は学習一般の知見であり、本アプリでの効果を保証するものではありません。
+            
+            
+            
+        </p>
+    </aside>
+
+    <!-- Footer -->
+    <footer class="article-footer">
+        <p class="article-footer__text">
+            &copy; 2026 ソルフェージュPRO &mdash;
+            <a href="https://apps.apple.com/jp/app/id6756626617" class="article-footer__link">App Store</a>
+        </p>
+    </footer>
+    <script src="/bootstrap.js?v=3" defer></script>
+</body>
+</html>

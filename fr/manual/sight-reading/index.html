@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="fr"
+      data-title-ja="譜読み 設定マニュアル — 各設定の選び方 | ソルフェージュPRO"
+      data-title-en="Sight Reading Settings Manual — How to Choose Each Option | Solfege PRO"
+      data-title-fr="Manuel des réglages de Lecture à vue — Comment choisir chaque option | Solfege PRO"
+      data-title-de="Einstellungshandbuch Blattlesen — So wählen Sie jede Option | Solfege PRO">
+<head>
+    <meta charset="UTF-8">
+    <meta name="robots" content="index, follow">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#1A1A1E">
+    <title>Manuel des réglages de Lecture à vue — Comment choisir chaque option | Solfege PRO</title>
+    <meta name="description" content="Manuel de référence des réglages de lecture à vue — difficulté, mode, clé, armure, lignes supplémentaires : à quoi sert chaque réglage et comment choisir.">
+
+    <!-- Canonical -->
+    <link rel="canonical" href="https://solfegepro.com/fr/manual/sight-reading/">
+    <link rel="alternate" hreflang="ja" href="https://solfegepro.com/manual/sight-reading/">
+    <link rel="alternate" hreflang="en" href="https://solfegepro.com/en/manual/sight-reading/">
+    <link rel="alternate" hreflang="fr" href="https://solfegepro.com/fr/manual/sight-reading/">
+    <link rel="alternate" hreflang="de" href="https://solfegepro.com/de/manual/sight-reading/">
+    <link rel="alternate" hreflang="x-default" href="https://solfegepro.com/manual/sight-reading/">
+<!-- OGP -->
+    <meta property="og:title" content="Manuel des réglages de Lecture à vue — Comment choisir chaque option">
+    <meta property="og:description" content="Manuel de référence des réglages de lecture à vue — difficulté, mode, clé, armure, lignes supplémentaires : à quoi sert chaque réglage et comment choisir.">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://solfegepro.com/fr/manual/sight-reading/">
+    <meta property="og:site_name" content="Solfege PRO">
+    <meta property="og:image" content="https://solfegepro.com/og-image.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Solfege PRO">
+    <meta property="og:locale" content="fr_FR">
+    <meta property="og:locale:alternate" content="ja_JP">
+    <meta property="og:locale:alternate" content="en_US">
+    <meta property="og:locale:alternate" content="de_DE">
+    <meta property="article:published_time" content="2026-06-05">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Manuel des réglages de Lecture à vue — Comment choisir chaque option">
+    <meta name="twitter:description" content="Manuel de référence des réglages de lecture à vue — difficulté, mode, clé, armure, lignes supplémentaires : à quoi sert chaque réglage et comment choisir.">
+    <meta name="twitter:image" content="https://solfegepro.com/og-image.png">
+
+    <!-- Favicon -->
+    <link rel="icon" href="/favicon.ico" sizes="any">
+    <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap"></noscript>
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="/style.css?v=17">
+    <link rel="stylesheet" href="/guides/article.css?v=11">
+
+    <style>
+        /* Manual option reference — responsive, no fixed px widths */
+        .manual-options {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr);
+            gap: var(--space-sm);
+            margin: var(--space-lg) 0;
+        }
+        .manual-option {
+            background: var(--surface);
+            border: 1px solid var(--surface-light);
+            border-radius: var(--radius-lg);
+            padding: var(--space-md);
+        }
+        .manual-option__name {
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: var(--space-xs);
+        }
+        .manual-option__desc {
+            font-size: 13px;
+            color: var(--text-secondary);
+        }
+        /* Bottom-line callout (conclusion first) */
+        .manual-lead {
+            font-size: 14px;
+            line-height: 1.75;
+            color: var(--text-primary);
+            border-left: 3px solid var(--primary);
+            background: rgba(212, 175, 55, 0.06);
+            padding: var(--space-sm) var(--space-md);
+            border-radius: 0 var(--radius-md) var(--radius-md) 0;
+            margin: var(--space-md) 0;
+        }
+        /* Per-setting evidence note — deliberately styled as an editorial
+           aside, NOT as a settings card (no surface fill, no gold label),
+           so it is never mistaken for an in-app option. */
+        .manual-rationale {
+            margin: var(--space-md) 0 var(--space-2xl);
+            padding: var(--space-sm) 0 var(--space-sm) var(--space-md);
+            border-left: 2px solid var(--surface-light);
+        }
+        .manual-rationale__label {
+            display: block;
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            color: var(--text-secondary);
+            margin-bottom: 4px;
+            opacity: 0.75;
+        }
+        .manual-rationale p {
+            font-size: 13px;
+            line-height: 1.75;
+            color: var(--text-secondary);
+            margin: 0;
+        }
+        .manual-rationale__ref {
+            font-size: 12px;
+            font-style: italic;
+            margin-top: var(--space-xs) !important;
+            opacity: 0.7;
+        }
+        /* Citation number linking to the reference list */
+        .manual-ref-num {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-style: normal;
+        }
+        .manual-ref-num:hover { color: var(--primary); }
+        /* Full reference list at page end */
+        .manual-refs {
+            margin: var(--space-2xl) 0 0;
+            padding-top: var(--space-lg);
+            border-top: 1px solid var(--surface-light);
+        }
+        .manual-refs__title {
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: var(--space-sm);
+        }
+        .manual-refs ol {
+            margin: 0;
+            padding-left: 1.25em;
+        }
+        .manual-refs li {
+            font-size: 12px;
+            line-height: 1.7;
+            color: var(--text-secondary);
+            margin-bottom: var(--space-xs);
+            scroll-margin-top: 84px;
+        }
+        .manual-refs li:target {
+            color: var(--text-primary);
+        }
+    </style>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Manuel des réglages de Lecture à vue — Comment choisir chaque option","description":"Manuel de référence des réglages de lecture à vue — difficulté, mode, clé, armure, lignes supplémentaires : à quoi sert chaque réglage et comment choisir.","author":{"@type":"Organization","name":"Solfege PRO"},"publisher":{"@type":"Organization","name":"Solfege PRO","logo":{"@type":"ImageObject","url":"https://solfegepro.com/AppIcon.png"}},"datePublished":"2026-06-05","mainEntityOfPage":{"@type":"WebPage","@id":"https://solfegepro.com/fr/manual/sight-reading/"}}</script>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Accueil","item":"https://solfegepro.com/fr/"},{"@type":"ListItem","position":2,"name":"Manuel","item":"https://solfegepro.com/fr/manual/"},{"@type":"ListItem","position":3,"name":"Manuel des réglages de Lecture à vue — Comment choisir chaque option","item":"https://solfegepro.com/fr/manual/sight-reading/"}]}</script>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="nav__container">
+            <a href="/" class="nav__logo">
+                <img src="/AppIcon.png" alt="Solfege PRO" class="nav__logo-icon" width="32" height="32">
+                <span class="nav__logo-text">Solfege PRO</span>
+            </a>
+            <ul class="nav__list">
+                <li><a href="/" class="nav__link">Guide d'entraînement</a></li>
+                <li><a href="/guides/" class="nav__link">Guides</a></li>
+                <li><a href="/manual/" class="nav__link active">Manuel</a></li>
+                            <li><a href="/start-here/" class="nav__link">Par où commencer ?</a></li>
+            </ul>
+            <div class="nav__settings">
+                <button class="settings-btn" id="lang-toggle" title="Toggle language">
+                    <span id="lang-text">EN</span>
+                </button>
+                <button class="hamburger-btn" id="hamburger-btn" aria-label="Menu" aria-expanded="false" aria-controls="drawer">
+                    <span class="hamburger-btn__line"></span>
+                    <span class="hamburger-btn__line"></span>
+                    <span class="hamburger-btn__line"></span>
+                </button>
+            </div>
+        </div>
+    </nav>
+        <!-- Mobile drawer (hidden on desktop) -->
+        <div class="drawer-overlay" id="drawer-overlay"></div>
+        <aside class="drawer" id="drawer" aria-label="Mobile menu" aria-hidden="true" inert>
+            <div class="drawer__header">
+                <span class="drawer__title">Menu</span>
+                <button class="drawer__close" id="drawer-close" aria-label="Close menu">×</button>
+            </div>
+            <ul class="drawer__list">
+                    <li><a href="/" class="drawer__link">Guide d'entraînement</a></li>
+                    <li><a href="/guides/" class="drawer__link">Guides</a></li>
+                    <li><a href="/manual/" class="drawer__link active">Manuel</a></li>
+                    <li><a href="/start-here/" class="drawer__link">Par où commencer ?</a></li>
+            </ul>
+        </aside>
+
+
+    <!-- Article Header -->
+    <header class="page-header">
+        <div class="page-header__meta">
+            <span class="page-header__tag">Manuel</span>
+            <span>Lecture à vue</span>
+        </div>
+        <h1 class="page-header__title">
+            
+            
+            Manuel des réglages de Lecture à vue<br>Le sens de chaque option et comment la choisir
+            
+        </h1>
+        <p class="page-header__subtitle">
+            
+            
+            Quelle option choisir, quand et pourquoi. Cette page détaille chaque réglage de l'entraînement à la lecture à vue, un par un. Si vous arrivez depuis un « ? » de l'écran des réglages, faites défiler jusqu'à l'option recherchée.
+            
+        </p>
+    </header>
+
+    <!-- Top-of-article CTA -->
+    <aside class="article-top-cta" aria-label="App promotion">
+        <div class="article-top-cta__body">
+            <p class="article-top-cta__title">
+                
+                
+                Essayez cet exercice dans Solfege PRO
+                
+            </p>
+            <p class="article-top-cta__sub">
+                
+                
+                980 ¥/mois · essai gratuit d'une semaine
+                
+            </p>
+        </div>
+        <a href="https://apps.apple.com/fr/app/id6756626617" class="article-top-cta__button" data-cta-position="article_top">
+            
+            
+            App Store →
+            
+        </a>
+    </aside>
+
+    <!-- Article Body -->
+    <main class="article-body">
+
+        <!-- Intro -->
+        <p>
+            
+            
+            L'entraînement à la lecture à vue développe votre capacité à regarder une note sur la portée et à en lire le nom (do, ré, mi…) rapidement et avec précision. Lire la portée est la base pour transformer une partition en musique, et le point de départ pour jouer de n'importe quel instrument.
+            
+        </p>
+        <p>
+            
+            
+            Cette page est un manuel pour choisir les réglages. Chaque réglage s'appuie sur des méthodes établies de la pédagogie musicale. Pour chaque réglage qui demande une décision, nous indiquons <strong>le choix recommandé, à quoi il sert et ce qu'il développe — preuves à l'appui</strong>. Si vous arrivez depuis un « ? » de l'écran des réglages, faites défiler jusqu'à l'option recherchée.
+            
+        </p>
+
+        <!-- #difficulty -->
+        <h2 id="difficulty">Difficulté</h2>
+
+        <p class="manual-lead">
+            
+            
+            <strong>En cas de doute, commencez par « Débutant ».</strong> Montez d'un niveau une fois que vous tenez de façon stable 80 % ou plus au niveau actuel.
+            
+        </p>
+
+        <p>
+            
+            
+            Ce réglage fixe d'un coup l'étendue des notes qui vous seront demandées — le registre, les armures et la présence ou non de lignes supplémentaires. Un registre plus étroit avec moins de symboles est plus facile ; un registre plus large avec plus de symboles est plus difficile.
+            
+        </p>
+
+        <div class="manual-options">
+            <div class="manual-option">
+                <div class="manual-option__name">Débutant</div>
+                <div class="manual-option__desc">Registre médium, notes naturelles uniquement (les hauteurs des touches blanches, sans altération), près du centre de la portée en clé de sol et en do majeur — le premier pas pour ancrer quelle note se trouve sur chaque ligne et chaque interligne.</div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name">Intermédiaire</div>
+                <div class="manual-option__desc">Une étendue plus large avec des altérations accidentelles ; la clé de fa s'ajoute et des armures allant jusqu'à trois dièses ou bémols apparaissent, si bien que le champ de lecture s'élargit nettement.</div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name">Avancé</div>
+                <div class="manual-option__desc">Étendue complète, lignes supplémentaires comprises — toutes les armures ainsi que des notes qui dépassent la portée ; le niveau le plus élevé, le plus proche des partitions réelles.</div>
+            </div>
+        </div>
+
+        <div class="manual-rationale">
+            <span class="manual-rationale__label">Les preuves à l'appui</span>
+            <p>
+                
+                
+                Plus l'étendue traitée d'un coup est étroite, moins vos yeux ont à traiter, et plus vous fixez de façon fiable quelle note se trouve sur chaque ligne et chaque interligne. La lecture à vue repose sur la reconnaissance instantanée : sécuriser une étendue étroite avant de l'élargir vous y amène plus vite. Les niveaux suivent la théorie de la charge cognitive : maintenir une faible charge de traitement au début d'une nouvelle compétence facilite l'apprentissage.
+                
+            </p>
+            <p class="manual-rationale__ref">Réf. : Sweller (1988) <a class="manual-ref-num" href="#ref-1">[1]</a></p>
+        </div>
+
+        <!-- #training-mode -->
+        <h2 id="training-mode">Mode d'entraînement</h2>
+
+        <p class="manual-lead">
+            
+            
+            <strong>« Normal » suffit pour commencer.</strong> N'utilisez « Par armure » que pour cibler une armure précise, et passez à « Travail des points faibles » une fois vos résultats accumulés.
+            
+        </p>
+
+        <p>
+            
+            
+            Ce réglage détermine la logique selon laquelle les notes sont choisies pour vous. Il existe trois modes.
+            
+        </p>
+
+        <div class="manual-options">
+            <div class="manual-option">
+                <div class="manual-option__name">Normal</div>
+                <div class="manual-option__desc">Puise dans toutes les notes correspondant à la difficulté choisie. Sans objectif particulier, c'est celui-ci qu'il faut prendre.</div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name">Par armure</div>
+                <div class="manual-option__desc">Restreint les questions à une seule tonalité, pour travailler une armure que vous trouvez difficile (en la sélectionnant, le sélecteur « Tonalité à travailler » apparaît plus bas).</div>
+            </div>
+        </div>
+
+        <p>
+            
+            
+            Le dernier mode — « Travail des points faibles » — devient utile une fois vos données de performance accumulées. Il fonctionne de la même manière dans tous les entraînements, c'est pourquoi il est présenté ci-dessous.
+            
+        </p>
+
+        <!-- TODO i18n: fr/de spans are interim English; translate after ja voice approval -->
+<!-- Reusable mode partial. Training-agnostic: do NOT mention chord/scale/etc. -->
+<section class="article-mode" id="mode-weak-point">
+    <h3 class="article-mode__title">Weak-Point Focus Mode</h3>
+
+    <p>
+        
+        
+        Weak-point focus looks at your answer history, identifies the items with the lowest accuracy, and serves those to you more often. Instead of spending time on what you already answer reliably, it concentrates practice on exactly the places you keep missing. The app picks the targets automatically from your own results.
+        
+    </p>
+
+    <p>
+        
+        
+        This mode suits the stage where your overall accuracy is climbing but a specific few items still trip you up every time. Because it keeps returning to your weak spots, it feels harder — and that controlled extra effort is precisely where the learning happens (the principle of desirable difficulties). It needs enough answer history before candidates appear, so play the normal mode for a while first.
+        
+    </p>
+
+    <p>
+        
+        
+        When in doubt, drop in for a few concentrated sessions whenever you plateau at a given level and feel you "keep losing the same handful of items right before it would stabilize." Once the weak spots clear, return to the normal mode to keep your overall balance. <em>Deliberately making yourself retrieve the items you tend to miss — the "testing effect" — was shown by Roediger &amp; Karpicke (2006) to strongly benefit later retention.</em>
+        
+    </p>
+</section>
+
+
+        <div class="manual-rationale">
+            <span class="manual-rationale__label">Les preuves à l'appui</span>
+            <p>
+                
+                
+                Les trois modes servent à concentrer la pratique sur les notes dont vous avez besoin en ce moment. Le format de quiz lui-même — se rappeler la réponse plutôt que simplement regarder — renforce la mémoire plus que l'observation passive (l'effet de test). « Travail des points faibles » automatise ce principe à partir de vos données de performance.
+                
+            </p>
+            <p class="manual-rationale__ref">Réf. : Roediger &amp; Karpicke (2006) <a class="manual-ref-num" href="#ref-2">[2]</a></p>
+        </div>
+
+        <!-- #clef -->
+        <h2 id="clef">Clé (de sol / de fa)</h2>
+
+        <p class="manual-lead">
+            
+            
+            <strong>Commencez par la clé qu'utilise votre instrument.</strong> Clé de sol pour la guitare et la voix, clé de fa pour la basse ; les pianistes stabilisent chaque clé avant de passer à « Les deux ».
+            
+        </p>
+
+        <p>
+            
+            
+            La clé est le symbole placé à l'extrémité gauche de la portée qui fixe à quelle hauteur correspond chaque ligne. Un même emplacement nomme une note tout à fait différente selon que la clé est de sol ou de fa.
+            
+        </p>
+
+        <div class="manual-options">
+            <div class="manual-option">
+                <div class="manual-option__name">Clé de sol</div>
+                <div class="manual-option__desc">La clé du registre aigu (𝄞) ; sa deuxième ligne est le sol (G). La clé la plus fondamentale — pour la guitare, le chant, la main droite du piano et la plupart des instruments mélodiques.</div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name">Clé de fa</div>
+                <div class="manual-option__desc">La clé du registre grave (𝄢) ; sa quatrième ligne est le fa (F). Indispensable pour la basse, la main gauche du piano, le violoncelle et les autres registres graves ; sa correspondance diffère de celle de la clé de sol, il faut donc l'apprendre comme un système distinct.</div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name">Les deux</div>
+                <div class="manual-option__desc">Mélange les questions en clé de sol et en clé de fa ; comme vous ne pouvez pas prévoir laquelle apparaît, vous prenez l'habitude de vérifier la clé à l'extrémité gauche avant de lire — idéal pour le piano et les autres instruments qui lisent les deux.</div>
+            </div>
+        </div>
+
+        <div class="manual-rationale">
+            <span class="manual-rationale__label">Les preuves à l'appui</span>
+            <p>
+                
+                
+                Comme chaque clé fait correspondre les hauteurs différemment, la clé de sol et la clé de fa doivent s'acquérir comme deux systèmes distincts. Sécuriser une clé avant d'ajouter l'autre est la progression établie dans l'enseignement de la lecture à vue. Gérer les deux développe l'habitude essentielle, propre au jeu, de vérifier la clé en tête avant de lire.
+                
+            </p>
+            <p class="manual-rationale__ref">Réf. : Karpinski (2000) <a class="manual-ref-num" href="#ref-3">[3]</a></p>
+        </div>
+
+        <!-- #key -->
+        <h2 id="key">Tonalité à travailler (armure)</h2>
+
+        <p class="manual-lead">
+            
+            
+            <strong>Si vous remarquez qu'une armure précise vous fait trébucher, restreignez-vous à celle-là.</strong> Sinon, côtoyez une variété de tonalités en mode « Normal ».
+            
+        </p>
+
+        <p>
+            
+            
+            Fixe les questions sur une seule tonalité ; ce réglage n'apparaît que lorsque vous choisissez « Par armure » comme mode d'entraînement. Une armure — les dièses ou bémols à gauche de la portée — définit quelles notes sont altérées (par ex. sol majeur a un dièse, mi bémol majeur trois bémols). Les tonalités sélectionnables suivent votre difficulté : seulement do majeur en « Débutant », jusqu'à trois altérations en « Intermédiaire », les douze tonalités en « Avancé ».
+            
+        </p>
+
+        <div class="manual-rationale">
+            <span class="manual-rationale__label">Les preuves à l'appui</span>
+            <p>
+                
+                
+                Se restreindre à une seule tonalité concentre l'attention sur le motif récurrent de cette armure — « ici, cette note est toujours diésée » — de sorte qu'il s'ancre. Lire par le biais de l'armure est une approche établie dans l'enseignement de la lecture à vue, qui aide à intérioriser l'agencement des hauteurs de chaque tonalité.
+                
+            </p>
+            <p class="manual-rationale__ref">Réf. : Karpinski (2000) <a class="manual-ref-num" href="#ref-3">[3]</a></p>
+        </div>
+
+        <!-- #ledger -->
+        <h2 id="ledger">Inclure les lignes supplémentaires (lignes supplémentaires)</h2>
+
+        <p class="manual-lead">
+            
+            
+            <strong>Laissez d'abord ce réglage désactivé pour sécuriser les notes situées dans la portée, puis ajoutez les lignes supplémentaires une fois stable.</strong> À noter : la difficulté « Avancé » les inclut automatiquement.
+            
+        </p>
+
+        <p>
+            
+            
+            Détermine si les lignes supplémentaires — les courtes lignes auxiliaires ajoutées au-dessus ou en dessous de la portée — apparaissent. Les hauteurs trop aiguës ou trop graves pour les cinq lignes s'écrivent en ajoutant une ligne à la fois (par ex. le do central, C4, se place sur une ligne supplémentaire sous la portée en clé de sol). Compter ces positions prend du temps et constitue un écueil fréquent, mais les notes sur lignes supplémentaires sont partout dans les vraies partitions : on ne peut donc pas les éviter à long terme.
+            
+        </p>
+
+        <div class="manual-rationale">
+            <span class="manual-rationale__label">Les preuves à l'appui</span>
+            <p>
+                
+                
+                Désactiver d'abord les lignes supplémentaires réduit la charge de lecture en limitant ce que vous devez traiter à la fois. Les mélanger avant que les bases ne soient acquises ajoute le décompte des positions et tend à semer la confusion. Sécuriser les notes situées dans la portée avant d'ajouter les lignes supplémentaires maintient une faible charge au début et facilite l'apprentissage — conformément à la théorie de la charge cognitive, selon laquelle la charge de traitement doit rester faible au début d'une nouvelle compétence.
+                
+            </p>
+            <p class="manual-rationale__ref">Réf. : Sweller (1988) <a class="manual-ref-num" href="#ref-1">[1]</a></p>
+        </div>
+
+        <!-- References -->
+        <section class="manual-refs">
+            <div class="manual-refs__title">Références</div>
+            <ol>
+                <li id="ref-1">Sweller, J. (1988). Cognitive load during problem solving: Effects on learning. <em>Cognitive Science, 12</em>(2), 257–285.</li>
+                <li id="ref-2">Roediger, H. L., &amp; Karpicke, J. D. (2006). Test-enhanced learning: Taking memory tests improves long-term retention. <em>Psychological Science, 17</em>(3), 249–255.</li>
+                <li id="ref-3">Karpinski, G. S. (2000). <em>Aural Skills Acquisition: The Development of Listening, Reading, and Performing Skills in College-Level Musicians.</em> Oxford University Press.</li>
+            </ol>
+        </section>
+
+    </main>
+
+    <!-- Final CTA -->
+    <section class="article-cta">
+        <h2 class="article-cta__title">Réglages décidés ? Essayez sans attendre</h2>
+        <p class="article-cta__text">
+            
+            
+            Une fois chaque réglage compris, il ne reste plus qu'à pratiquer.<br>En cas de doute, suivez simplement les lignes « En cas de doute… » de cette page.<br>Trouvez les réglages qui vous conviennent dans la Lecture à vue de Solfege PRO.
+            
+        </p>
+        <a href="https://apps.apple.com/fr/app/id6756626617" class="app-store-link" aria-label="Download on the App Store">
+            
+            
+            <img class="app-store-link__img" width="127" height="40" src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/fr-fr" alt="Télécharger dans l'App Store">
+            
+        </a>
+    </section>
+
+    <!-- Related Content -->
+    <div class="article-related">
+        <div class="article-related__title">Contenu associé</div>
+        <a href="/guides/sight-reading/" class="article-related__link" style="margin-bottom: var(--space-md);">
+            <div class="article-related__link-title">Qu'est-ce que la lecture à vue ? — Bases et entraînement pour lire la portée rapidement</div>
+            <div class="article-related__link-desc">Pour celles et ceux qui veulent savoir comment travailler la lecture à vue avant d'ajuster les réglages — un guide sur les notes repères et une pratique progressive.</div>
+        </a>
+        <a href="/" class="article-related__link">
+            <div class="article-related__link-title">Guide d'entraînement Solfege PRO</div>
+            <div class="article-related__link-desc">Programmes d'entraînement par problématique pour guitare, basse, batterie, piano et chant</div>
+        </a>
+    </div>
+
+    <!-- Article Note -->
+    <aside class="article-endnote">
+        <p class="article-endnote__text">
+            
+            
+            Cette page est une référence expliquant les réglages internes de l'application. Les progressions recommandées ici sont des repères généraux fondés sur une méthodologie de lecture à vue largement répandue ; les réglages optimaux varient selon l'expérience et les objectifs de chacun. Les études citées rapportent des résultats généraux sur l'apprentissage et ne garantissent pas de résultats au sein de cette application.
+            
+        </p>
+    </aside>
+
+    <!-- Footer -->
+    <footer class="article-footer">
+        <p class="article-footer__text">
+            &copy; 2026 Solfege PRO &mdash;
+            <a href="https://apps.apple.com/fr/app/id6756626617" class="article-footer__link">App Store</a>
+        </p>
+    </footer>
+    <script src="/bootstrap.js?v=3" defer></script>
+</body>
+</html>

@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="fr"
+      data-title-ja="リズム譜読み 設定マニュアル — 各設定の選び方 | ソルフェージュPRO"
+      data-title-en="Rhythm Sight Reading Settings Manual — How to Choose Each Option | Solfege PRO"
+      data-title-fr="Manuel des réglages de lecture rythmique à vue — Comment choisir chaque option | Solfege PRO"
+      data-title-de="Handbuch der Einstellungen für Rhythmus-Blattlesen — So wählen Sie jede Option | Solfege PRO">
+<head>
+    <meta charset="UTF-8">
+    <meta name="robots" content="index, follow">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#1A1A1E">
+    <title>Manuel des réglages de lecture rythmique à vue — Comment choisir chaque option | Solfege PRO</title>
+    <meta name="description" content="Manuel de référence des réglages de lecture rythmique à vue — source, motif, répétitions, tempo, sévérité, valeurs personnalisées : comment choisir chacun.">
+
+    <!-- Canonical -->
+    <link rel="canonical" href="https://solfegepro.com/fr/manual/rhythm-sight-reading/">
+    <link rel="alternate" hreflang="ja" href="https://solfegepro.com/manual/rhythm-sight-reading/">
+    <link rel="alternate" hreflang="en" href="https://solfegepro.com/en/manual/rhythm-sight-reading/">
+    <link rel="alternate" hreflang="fr" href="https://solfegepro.com/fr/manual/rhythm-sight-reading/">
+    <link rel="alternate" hreflang="de" href="https://solfegepro.com/de/manual/rhythm-sight-reading/">
+    <link rel="alternate" hreflang="x-default" href="https://solfegepro.com/manual/rhythm-sight-reading/">
+<!-- OGP -->
+    <meta property="og:title" content="Manuel des réglages de lecture rythmique à vue — Comment choisir chaque option">
+    <meta property="og:description" content="Manuel de référence des réglages de lecture rythmique à vue — source, motif, répétitions, tempo, sévérité, valeurs personnalisées : comment choisir chacun.">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://solfegepro.com/fr/manual/rhythm-sight-reading/">
+    <meta property="og:site_name" content="Solfege PRO">
+    <meta property="og:image" content="https://solfegepro.com/og-image.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Solfege PRO">
+    <meta property="og:locale" content="fr_FR">
+    <meta property="og:locale:alternate" content="ja_JP">
+    <meta property="og:locale:alternate" content="en_US">
+    <meta property="og:locale:alternate" content="de_DE">
+    <meta property="article:published_time" content="2026-06-05">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Manuel des réglages de lecture rythmique à vue — Comment choisir chaque option">
+    <meta name="twitter:description" content="Manuel de référence des réglages de lecture rythmique à vue — source, motif, répétitions, tempo, sévérité, valeurs personnalisées : comment choisir chacun.">
+    <meta name="twitter:image" content="https://solfegepro.com/og-image.png">
+
+    <!-- Favicon -->
+    <link rel="icon" href="/favicon.ico" sizes="any">
+    <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap"></noscript>
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="/style.css?v=17">
+    <link rel="stylesheet" href="/guides/article.css?v=11">
+
+    <style>
+        /* Manual option reference — responsive, no fixed px widths */
+        .manual-options {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr);
+            gap: var(--space-sm);
+            margin: var(--space-lg) 0;
+        }
+        .manual-option {
+            background: var(--surface);
+            border: 1px solid var(--surface-light);
+            border-radius: var(--radius-lg);
+            padding: var(--space-md);
+        }
+        .manual-option__name {
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: var(--space-xs);
+        }
+        .manual-option__desc {
+            font-size: 13px;
+            color: var(--text-secondary);
+        }
+        /* Bottom-line callout (conclusion first) */
+        .manual-lead {
+            font-size: 14px;
+            line-height: 1.75;
+            color: var(--text-primary);
+            border-left: 3px solid var(--primary);
+            background: rgba(212, 175, 55, 0.06);
+            padding: var(--space-sm) var(--space-md);
+            border-radius: 0 var(--radius-md) var(--radius-md) 0;
+            margin: var(--space-md) 0;
+        }
+        /* Per-setting evidence note — deliberately styled as an editorial
+           aside, NOT as a settings card (no surface fill, no gold label),
+           so it is never mistaken for an in-app option. */
+        .manual-rationale {
+            margin: var(--space-md) 0 var(--space-2xl);
+            padding: var(--space-sm) 0 var(--space-sm) var(--space-md);
+            border-left: 2px solid var(--surface-light);
+        }
+        .manual-rationale__label {
+            display: block;
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            color: var(--text-secondary);
+            margin-bottom: 4px;
+            opacity: 0.75;
+        }
+        .manual-rationale p {
+            font-size: 13px;
+            line-height: 1.75;
+            color: var(--text-secondary);
+            margin: 0;
+        }
+        .manual-rationale__ref {
+            font-size: 12px;
+            font-style: italic;
+            margin-top: var(--space-xs) !important;
+            opacity: 0.7;
+        }
+        /* Citation number linking to the reference list */
+        .manual-ref-num {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-style: normal;
+        }
+        .manual-ref-num:hover { color: var(--primary); }
+        /* Full reference list at page end */
+        .manual-refs {
+            margin: var(--space-2xl) 0 0;
+            padding-top: var(--space-lg);
+            border-top: 1px solid var(--surface-light);
+        }
+        .manual-refs__title {
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: var(--space-sm);
+        }
+        .manual-refs ol {
+            margin: 0;
+            padding-left: 1.25em;
+        }
+        .manual-refs li {
+            font-size: 12px;
+            line-height: 1.7;
+            color: var(--text-secondary);
+            margin-bottom: var(--space-xs);
+            scroll-margin-top: 84px;
+        }
+        .manual-refs li:target {
+            color: var(--text-primary);
+        }
+    </style>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Manuel des réglages de lecture rythmique à vue — Comment choisir chaque option","description":"Manuel de référence des réglages de lecture rythmique à vue — source, motif, répétitions, tempo, sévérité, valeurs personnalisées : comment choisir chacun.","author":{"@type":"Organization","name":"Solfege PRO"},"publisher":{"@type":"Organization","name":"Solfege PRO","logo":{"@type":"ImageObject","url":"https://solfegepro.com/AppIcon.png"}},"datePublished":"2026-06-05","mainEntityOfPage":{"@type":"WebPage","@id":"https://solfegepro.com/fr/manual/rhythm-sight-reading/"}}</script>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Accueil","item":"https://solfegepro.com/fr/"},{"@type":"ListItem","position":2,"name":"Manuel","item":"https://solfegepro.com/fr/manual/"},{"@type":"ListItem","position":3,"name":"Manuel des réglages de lecture rythmique à vue — Comment choisir chaque option","item":"https://solfegepro.com/fr/manual/rhythm-sight-reading/"}]}</script>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="nav__container">
+            <a href="/" class="nav__logo">
+                <img src="/AppIcon.png" alt="Solfege PRO" class="nav__logo-icon" width="32" height="32">
+                <span class="nav__logo-text">Solfege PRO</span>
+            </a>
+            <ul class="nav__list">
+                <li><a href="/" class="nav__link">Guide d'entraînement</a></li>
+                <li><a href="/guides/" class="nav__link">Guides</a></li>
+                <li><a href="/manual/" class="nav__link active">Manuel</a></li>
+                            <li><a href="/start-here/" class="nav__link">Par où commencer ?</a></li>
+            </ul>
+            <div class="nav__settings">
+                <button class="settings-btn" id="lang-toggle" title="Toggle language">
+                    <span id="lang-text">EN</span>
+                </button>
+                <button class="hamburger-btn" id="hamburger-btn" aria-label="Menu" aria-expanded="false" aria-controls="drawer">
+                    <span class="hamburger-btn__line"></span>
+                    <span class="hamburger-btn__line"></span>
+                    <span class="hamburger-btn__line"></span>
+                </button>
+            </div>
+        </div>
+    </nav>
+        <!-- Mobile drawer (hidden on desktop) -->
+        <div class="drawer-overlay" id="drawer-overlay"></div>
+        <aside class="drawer" id="drawer" aria-label="Mobile menu" aria-hidden="true" inert>
+            <div class="drawer__header">
+                <span class="drawer__title">Menu</span>
+                <button class="drawer__close" id="drawer-close" aria-label="Close menu">×</button>
+            </div>
+            <ul class="drawer__list">
+                    <li><a href="/" class="drawer__link">Guide d'entraînement</a></li>
+                    <li><a href="/guides/" class="drawer__link">Guides</a></li>
+                    <li><a href="/manual/" class="drawer__link active">Manuel</a></li>
+                    <li><a href="/start-here/" class="drawer__link">Par où commencer ?</a></li>
+            </ul>
+        </aside>
+
+
+    <!-- Article Header -->
+    <header class="page-header">
+        <div class="page-header__meta">
+            <span class="page-header__tag">Manuel</span>
+            <span>Lecture rythmique à vue</span>
+        </div>
+        <h1 class="page-header__title">
+            
+            
+            Manuel des réglages de lecture rythmique à vue<br>Le sens de chaque option et comment la choisir
+            
+        </h1>
+        <p class="page-header__subtitle">
+            
+            
+            Quelle option choisir, quand et pourquoi. Cette page passe en revue, un à un, chaque réglage de l'entraînement de lecture rythmique à vue. Si vous êtes arrivé depuis le « ? » de l'écran des réglages, faites défiler jusqu'à l'option recherchée.
+            
+        </p>
+    </header>
+
+    <!-- Top-of-article CTA -->
+    <aside class="article-top-cta" aria-label="App promotion">
+        <div class="article-top-cta__body">
+            <p class="article-top-cta__title">
+                
+                
+                Essayez cet exercice dans Solfege PRO
+                
+            </p>
+            <p class="article-top-cta__sub">
+                
+                
+                980 ¥/mois · essai gratuit d'une semaine
+                
+            </p>
+        </div>
+        <a href="https://apps.apple.com/fr/app/id6756626617" class="article-top-cta__button" data-cta-position="article_top">
+            
+            
+            App Store →
+            
+        </a>
+    </aside>
+
+    <!-- Article Body -->
+    <main class="article-body">
+
+        <!-- Intro -->
+        <p>
+            
+            
+            L'entraînement de lecture rythmique à vue développe votre capacité à lire la notation affichée à l'écran (la suite des durées de notes) et à la taper au bon moment sur un métronome. Comme vous vous concentrez uniquement sur le « quand jouer », et non sur la hauteur, il isole la lecture du rythme et la tenue du temps au sein de la lecture à vue.
+            
+        </p>
+        <p>
+            
+            
+            Cette page est un manuel d'aide au choix des réglages. Chaque réglage est conçu à partir de méthodes éprouvées issues de la pédagogie musicale. Pour chaque réglage qui demande une décision, nous indiquons <strong>le choix recommandé, à quoi il sert et ce qu'il fait travailler — avec les fondements qui l'appuient</strong>. Si vous êtes arrivé depuis le « ? » de l'écran des réglages, faites défiler jusqu'à l'option recherchée.
+            
+        </p>
+
+        <!-- #patterns -->
+        <h2 id="patterns">Source des motifs / Motif</h2>
+
+        <p class="manual-lead">
+            
+            
+            <strong>Commencez par « Cursus », au niveau débutant.</strong> Une fois que vous le lisez d'un bout à l'autre et que vous souhaitez de la variété, passez à « Personnalisé » et n'y mélangez que les valeurs de notes qui vous posent problème.
+            
+        </p>
+
+        <p>
+            
+            
+            Détermine d'où provient la notation que vous travaillez. Vous choisissez entre « Cursus » (motifs fixes et sélectionnés) et « Personnalisé » (généré à neuf chaque fois à partir des valeurs de notes — les durées de notes — que vous choisissez). En choisissant « Cursus », une liste de motifs apparaît, répartie en débutant / intermédiaire / avancé, où les valeurs de notes deviennent progressivement plus difficiles (débutant : noires seules ; intermédiaire : ajout de croches et de notes pointées ; avancé : ajout de doubles-croches et de triolets).
+            
+        </p>
+
+        <div class="manual-options">
+            <div class="manual-option">
+                <div class="manual-option__name">Cursus</div>
+                <div class="manual-option__desc">Choisissez un motif sélectionné dans la liste par niveau et travaillez-le en boucle ; « Écouter un exemple » vous fait entendre son rendu. Idéal pour débuter.</div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name">Personnalisé</div>
+                <div class="manual-option__desc">Choisissez les valeurs de notes (noire / blanche / croche / double-croche / noire pointée / croche pointée), les éléments supplémentaires (silences / triolets de croches) et le nombre de mesures par motif (2 ou 4) ; une nouvelle notation est générée à chaque session. Vous devez activer au moins une valeur de note pour commencer.</div>
+            </div>
+        </div>
+
+        <p>
+            
+            
+            En mode « Personnalisé », activer la croche pointée active automatiquement la double-croche pour combler la fin du temps (et désactiver la double-croche retire aussi la croche pointée). Une croche pointée a besoin d'une double-croche pour compléter le temps : ce mécanisme maintient l'affichage cohérent avec ce qui est réellement généré.
+            
+        </p>
+
+        <div class="manual-rationale">
+            <span class="manual-rationale__label">Les fondements scientifiques</span>
+            <p>
+                
+                
+                Les deux sources permettent d'alterner entre consolider et élargir. Une fois que la répétition d'un motif fixe a ancré l'association « cette suite de notes = ce rythme », mélanger des valeurs de notes proches via le mode « Personnalisé » se retient mieux à long terme que de répéter un seul motif fixe. Le bénéfice du mélange d'éléments proches (entrelacement) est démontré par une méta-analyse.
+                
+            </p>
+            <p class="manual-rationale__ref">Réf. : Brunmair &amp; Richter (2019) <a class="manual-ref-num" href="#ref-1">[1]</a></p>
+        </div>
+
+        <!-- #repeats -->
+        <h2 id="repeats">Répétitions</h2>
+
+        <p class="manual-lead">
+            
+            
+            <strong>En cas de doute, visez environ 5.</strong> Plus pour un motif inhabituel, moins pour une vérification rapide d'un motif que vous savez déjà lire.
+            
+        </p>
+
+        <p>
+            
+            
+            Définit combien de fois le même motif est répété au cours d'une session (de 1 à 20). La lecture à vue progresse en enchaînant « lire → taper → corriger l'écart » sur plusieurs passages : ce nombre détermine donc la durée de la session et le degré d'ancrage du motif. Trop peu, et la session se termine avant que vos mains ne l'aient appris ; trop, et cela traîne en longueur et rompt la concentration.
+            
+        </p>
+
+        <div class="manual-rationale">
+            <span class="manual-rationale__label">Les fondements scientifiques</span>
+            <p>
+                
+                
+                À chaque passage, vous lisez et reproduisez vous-même la notation : chaque répétition est donc un acte de récupération (se rappeler puis reproduire). La répétition fondée sur la récupération se retient bien mieux que le simple fait de regarder à nouveau ; un nombre modéré de passages ancre donc le motif.
+                
+            </p>
+            <p class="manual-rationale__ref">Réf. : Roediger &amp; Karpicke (2006) <a class="manual-ref-num" href="#ref-2">[2]</a></p>
+        </div>
+
+        <!-- #bpm -->
+        <h2 id="bpm">Tempo</h2>
+
+        <p class="manual-lead">
+            
+            
+            <strong>En cas de doute, commencez autour de 80 BPM.</strong> Ne l'augmentez qu'une fois capable de taper ce tempo sans fautes.
+            
+        </p>
+
+        <p>
+            
+            
+            Définit la vitesse du métronome en BPM (battements par minute), de 40 à 180. Un tempo lent vous permet de lire la notation et de taper de façon fiable, ce qui convient à l'apprentissage d'un nouveau motif ; un tempo rapide exige une lecture réflexe et se rapproche davantage du jeu réel. Mais l'augmenter avant d'avoir posé les bases ancre des frappes approximatives.
+            
+        </p>
+
+        <div class="manual-rationale">
+            <span class="manual-rationale__label">Les fondements scientifiques</span>
+            <p>
+                
+                
+                Le tempo est réglable afin de développer par étapes la synchronisation avec le métronome (se caler sur le temps). Une fois que vous parvenez à vous aligner avec précision à un tempo lent, puis que vous l'augmentez, vous maîtrisez mieux votre écart par rapport au temps à grande vitesse. La difficulté à synchroniser ses frappes sur un temps varie selon le tempo, comme le montre la littérature sur la synchronisation.
+                
+            </p>
+            <p class="manual-rationale__ref">Réf. : Repp (2005) <a class="manual-ref-num" href="#ref-3">[3]</a></p>
+        </div>
+
+        <!-- #difficulty -->
+        <h2 id="difficulty">Sévérité du jugement</h2>
+
+        <p class="manual-lead">
+            
+            
+            <strong>Commencez par « Décontracté » ou « Standard ».</strong> Une fois que vous obtenez régulièrement de bonnes évaluations, durcissez d'un cran à la fois pour affiner la précision.
+            
+        </p>
+
+        <p>
+            
+            
+            Détermine la sévérité de la tolérance temporelle pour que votre frappe soit considérée comme correcte. Votre évaluation (Parfait, Excellent, etc.) dépend du nombre de millisecondes d'écart de votre frappe par rapport au temps, et ce seuil de réussite varie sur quatre niveaux. Ce réglage modifie le barème de notation de la précision temporelle, et non la difficulté de la lecture elle-même.
+            
+        </p>
+
+        <div class="manual-options">
+            <div class="manual-option">
+                <div class="manual-option__name">Décontracté</div>
+                <div class="manual-option__desc">Tolérant — les frappes dans une marge de ±150 ms sont validées. Pour les débutants qui veulent d'abord vérifier qu'ils tapent dans le bon ordre.</div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name">Standard</div>
+                <div class="manual-option__desc">±90 ms pour Parfait, ±150 ms pour Excellent. Un niveau équilibré une fois que votre ordre de lecture est stable et que vous commencez à vous soucier de la précision.</div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name">Strict</div>
+                <div class="manual-option__desc">±50 ms pour Parfait, ±90 ms pour Excellent. Pour les joueurs de niveau intermédiaire à avancé qui resserrent leur timing fin vers une précision adaptée au jeu d'ensemble.</div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name">Pro</div>
+                <div class="manual-option__desc">±25 ms pour Parfait, ±50 ms pour Excellent. La notation la plus sévère, pour affiner une régularité temporelle de niveau professionnel.</div>
+            </div>
+        </div>
+
+        <div class="manual-rationale">
+            <span class="manual-rationale__label">Les fondements scientifiques</span>
+            <p>
+                
+                
+                La tolérance est échelonnée pour qu'au début un jugement souple vous laisse vous concentrer sur la lecture, la charge de précision n'étant ajoutée qu'une fois à l'aise. Exiger en même temps une lecture serrée et un timing serré surcharge le traitement et détourne l'attention de la lecture elle-même. Cette conception suit la théorie de la charge cognitive : maintenir une faible charge de traitement au début d'une nouvelle compétence favorise l'apprentissage.
+                
+            </p>
+            <p class="manual-rationale__ref">Réf. : Sweller (1988) <a class="manual-ref-num" href="#ref-4">[4]</a></p>
+        </div>
+
+        <!-- References -->
+        <section class="manual-refs">
+            <div class="manual-refs__title">Références</div>
+            <ol>
+                <li id="ref-1">Brunmair, M., &amp; Richter, T. (2019). Similarity matters: A meta-analysis of interleaved learning and its moderators. <em>Psychological Bulletin, 145</em>(11), 1029–1052.</li>
+                <li id="ref-2">Roediger, H. L., &amp; Karpicke, J. D. (2006). Test-enhanced learning: Taking memory tests improves long-term retention. <em>Psychological Science, 17</em>(3), 249–255.</li>
+                <li id="ref-3">Repp, B. H. (2005). Sensorimotor synchronization: A review of the tapping literature. <em>Psychonomic Bulletin &amp; Review, 12</em>(6), 969–992.</li>
+                <li id="ref-4">Sweller, J. (1988). Cognitive load during problem solving: Effects on learning. <em>Cognitive Science, 12</em>(2), 257–285.</li>
+            </ol>
+        </section>
+
+    </main>
+
+    <!-- Final CTA -->
+    <section class="article-cta">
+        <h2 class="article-cta__title">Réglages décidés ? Essayez sans attendre</h2>
+        <p class="article-cta__text">
+            
+            
+            Une fois chaque réglage compris, il ne reste plus qu'à pratiquer.<br>En cas de doute, suivez simplement les lignes « En cas de doute… » de cette page.<br>Trouvez les réglages qui vous conviennent dans la Lecture rythmique à vue de Solfege PRO.
+            
+        </p>
+        <a href="https://apps.apple.com/fr/app/id6756626617" class="app-store-link" aria-label="Download on the App Store">
+            
+            
+            <img class="app-store-link__img" width="127" height="40" src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/fr-fr" alt="Télécharger dans l'App Store">
+            
+        </a>
+    </section>
+
+    <!-- Related Content -->
+    <div class="article-related">
+        <div class="article-related__title">Contenu associé</div>
+        <a href="/guides/how-to-count-rhythms/" class="article-related__link" style="margin-bottom: var(--space-md);">
+            <div class="article-related__link-title">Comment compter le rythme — Lire et tenir les valeurs des notes</div>
+            <div class="article-related__link-desc">Pour celles et ceux qui veulent comprendre comment compter la durée des notes avant d'ajuster les réglages — un guide pour lire les noires, les croches, les notes pointées et les triolets.</div>
+        </a>
+        <a href="/" class="article-related__link">
+            <div class="article-related__link-title">Guide d'entraînement Solfege PRO</div>
+            <div class="article-related__link-desc">Programmes d'entraînement par problématique pour guitare, basse, batterie, piano et chant</div>
+        </a>
+    </div>
+
+    <!-- Article Note -->
+    <aside class="article-endnote">
+        <p class="article-endnote__text">
+            
+            
+            Cette page est une référence expliquant les réglages internes de l'application. Les progressions recommandées ici sont des repères généraux fondés sur une méthodologie de lecture à vue et d'entraînement rythmique largement répandue ; les réglages optimaux varient selon l'expérience et les objectifs de chacun. Les études citées rapportent des résultats généraux sur l'apprentissage et ne garantissent pas de résultats au sein de cette application.
+            
+        </p>
+    </aside>
+
+    <!-- Footer -->
+    <footer class="article-footer">
+        <p class="article-footer__text">
+            &copy; 2026 Solfege PRO &mdash;
+            <a href="https://apps.apple.com/fr/app/id6756626617" class="article-footer__link">App Store</a>
+        </p>
+    </footer>
+    <script src="/bootstrap.js?v=3" defer></script>
+</body>
+</html>

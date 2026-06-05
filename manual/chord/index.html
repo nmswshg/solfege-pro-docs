@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html lang="ja"
+      data-title-ja="コード認識 設定マニュアル — 各設定の選び方 | ソルフェージュPRO"
+      data-title-en="Chord Recognition Settings Manual — How to Choose Each Option | Solfege PRO"
+      data-title-fr="Manuel des réglages de reconnaissance d'accords — Comment choisir chaque option | Solfege PRO"
+      data-title-de="Handbuch der Akkorderkennung-Einstellungen — So wählen Sie jede Option | Solfege PRO">
+<head>
+    <meta charset="UTF-8">
+    <meta name="robots" content="index, follow">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#1A1A1E">
+    <title>コード認識 設定マニュアル — 各設定の選び方 | ソルフェージュPRO</title>
+    <meta name="description" content="コード認識トレーニングの各設定（トレーニングモード・難易度・再生モード・問題タイプ・ルート音の出題・転回形・オクターブ）を、何のための設定で、誰が、どう選ぶべきかまで丁寧に解説するリファレンスマニュアルです。">
+
+    <!-- Canonical -->
+    <link rel="canonical" href="https://solfegepro.com/manual/chord/">
+    <link rel="alternate" hreflang="ja" href="https://solfegepro.com/manual/chord/">
+    <link rel="alternate" hreflang="en" href="https://solfegepro.com/en/manual/chord/">
+    <link rel="alternate" hreflang="fr" href="https://solfegepro.com/fr/manual/chord/">
+    <link rel="alternate" hreflang="de" href="https://solfegepro.com/de/manual/chord/">
+    <link rel="alternate" hreflang="x-default" href="https://solfegepro.com/manual/chord/">
+<!-- OGP -->
+    <meta property="og:title" content="コード認識 設定マニュアル — 各設定の選び方">
+    <meta property="og:description" content="コード認識トレーニングの各設定（トレーニングモード・難易度・再生モード・問題タイプ・ルート音の出題・転回形・オクターブ）を、何のための設定で、誰が、どう選ぶべきかまで丁寧に解説するリファレンスマニュアルです。">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://solfegepro.com/manual/chord/">
+    <meta property="og:site_name" content="ソルフェージュPRO">
+    <meta property="og:image" content="https://solfegepro.com/og-image.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Solfege PRO">
+    <meta property="og:locale" content="ja_JP">
+    <meta property="og:locale:alternate" content="en_US">
+    <meta property="og:locale:alternate" content="fr_FR">
+    <meta property="og:locale:alternate" content="de_DE">
+    <meta property="article:published_time" content="2026-06-05">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="コード認識 設定マニュアル — 各設定の選び方">
+    <meta name="twitter:description" content="コード認識トレーニングの各設定（トレーニングモード・難易度・再生モード・問題タイプ・ルート音の出題・転回形・オクターブ）を、何のための設定で、誰が、どう選ぶべきかまで丁寧に解説するリファレンスマニュアルです。">
+    <meta name="twitter:image" content="https://solfegepro.com/og-image.png">
+
+    <!-- Favicon -->
+    <link rel="icon" href="/favicon.ico" sizes="any">
+    <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap"></noscript>
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="/style.css?v=17">
+    <link rel="stylesheet" href="/guides/article.css?v=11">
+
+    <style>
+        /* Manual option reference — responsive, no fixed px widths */
+        .manual-options {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr);
+            gap: var(--space-sm);
+            margin: var(--space-lg) 0;
+        }
+        .manual-option {
+            background: var(--surface);
+            border: 1px solid var(--surface-light);
+            border-radius: var(--radius-lg);
+            padding: var(--space-md);
+        }
+        .manual-option__name {
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: var(--space-xs);
+        }
+        .manual-option__desc {
+            font-size: 13px;
+            color: var(--text-secondary);
+        }
+        /* Bottom-line callout (conclusion first) */
+        .manual-lead {
+            font-size: 14px;
+            line-height: 1.75;
+            color: var(--text-primary);
+            border-left: 3px solid var(--primary);
+            background: rgba(212, 175, 55, 0.06);
+            padding: var(--space-sm) var(--space-md);
+            border-radius: 0 var(--radius-md) var(--radius-md) 0;
+            margin: var(--space-md) 0;
+        }
+        /* Per-setting evidence note — deliberately styled as an editorial
+           aside, NOT as a settings card (no surface fill, no gold label),
+           so it is never mistaken for an in-app option. */
+        .manual-rationale {
+            margin: var(--space-md) 0 var(--space-2xl);
+            padding: var(--space-sm) 0 var(--space-sm) var(--space-md);
+            border-left: 2px solid var(--surface-light);
+        }
+        .manual-rationale__label {
+            display: block;
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            color: var(--text-secondary);
+            margin-bottom: 4px;
+            opacity: 0.75;
+        }
+        .manual-rationale p {
+            font-size: 13px;
+            line-height: 1.75;
+            color: var(--text-secondary);
+            margin: 0;
+        }
+        .manual-rationale__ref {
+            font-size: 12px;
+            font-style: italic;
+            margin-top: var(--space-xs) !important;
+            opacity: 0.7;
+        }
+        /* Citation number linking to the reference list */
+        .manual-ref-num {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-style: normal;
+        }
+        .manual-ref-num:hover { color: var(--primary); }
+        /* Full reference list at page end */
+        .manual-refs {
+            margin: var(--space-2xl) 0 0;
+            padding-top: var(--space-lg);
+            border-top: 1px solid var(--surface-light);
+        }
+        .manual-refs__title {
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: var(--space-sm);
+        }
+        .manual-refs ol {
+            margin: 0;
+            padding-left: 1.25em;
+        }
+        .manual-refs li {
+            font-size: 12px;
+            line-height: 1.7;
+            color: var(--text-secondary);
+            margin-bottom: var(--space-xs);
+            scroll-margin-top: 84px;
+        }
+        .manual-refs li:target {
+            color: var(--text-primary);
+        }
+    </style>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"コード認識 設定マニュアル — 各設定の選び方","description":"コード認識トレーニングの各設定を、何のための設定で、誰が、どう選ぶべきかまで解説するリファレンスマニュアルです。","author":{"@type":"Organization","name":"ソルフェージュPRO"},"publisher":{"@type":"Organization","name":"ソルフェージュPRO","logo":{"@type":"ImageObject","url":"https://solfegepro.com/AppIcon.png"}},"datePublished":"2026-06-05","mainEntityOfPage":{"@type":"WebPage","@id":"https://solfegepro.com/manual/chord/"}}</script>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"ホーム","item":"https://solfegepro.com/"},{"@type":"ListItem","position":2,"name":"設定マニュアル","item":"https://solfegepro.com/manual/"},{"@type":"ListItem","position":3,"name":"コード認識 設定マニュアル — 各設定の選び方","item":"https://solfegepro.com/manual/chord/"}]}</script>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="nav__container">
+            <a href="/" class="nav__logo">
+                <img src="/AppIcon.png" alt="Solfege PRO" class="nav__logo-icon" width="32" height="32">
+                <span class="nav__logo-text">ソルフェージュPRO</span>
+            </a>
+            <ul class="nav__list">
+                <li><a href="/" class="nav__link">練習ガイド</a></li>
+                <li><a href="/guides/" class="nav__link">ガイド一覧</a></li>
+                <li><a href="/manual/" class="nav__link active">マニュアル</a></li>
+                            <li><a href="/start-here/" class="nav__link">どこから始める？</a></li>
+            </ul>
+            <div class="nav__settings">
+                <button class="settings-btn" id="lang-toggle" title="Toggle language">
+                    <span id="lang-text">EN</span>
+                </button>
+                <button class="hamburger-btn" id="hamburger-btn" aria-label="Menu" aria-expanded="false" aria-controls="drawer">
+                    <span class="hamburger-btn__line"></span>
+                    <span class="hamburger-btn__line"></span>
+                    <span class="hamburger-btn__line"></span>
+                </button>
+            </div>
+        </div>
+    </nav>
+        <!-- Mobile drawer (hidden on desktop) -->
+        <div class="drawer-overlay" id="drawer-overlay"></div>
+        <aside class="drawer" id="drawer" aria-label="Mobile menu" aria-hidden="true" inert>
+            <div class="drawer__header">
+                <span class="drawer__title">メニュー</span>
+                <button class="drawer__close" id="drawer-close" aria-label="Close menu">×</button>
+            </div>
+            <ul class="drawer__list">
+                    <li><a href="/" class="drawer__link">練習ガイド</a></li>
+                    <li><a href="/guides/" class="drawer__link">ガイド一覧</a></li>
+                    <li><a href="/manual/" class="drawer__link active">マニュアル</a></li>
+                    <li><a href="/start-here/" class="drawer__link">どこから始める？</a></li>
+            </ul>
+        </aside>
+
+
+    <!-- Article Header -->
+    <header class="page-header">
+        <div class="page-header__meta">
+            <span class="page-header__tag">マニュアル</span>
+            <span>コード認識</span>
+        </div>
+        <h1 class="page-header__title">
+            コード認識 設定マニュアル<br>各設定の意味と選び方
+            
+            
+            
+        </h1>
+        <p class="page-header__subtitle">
+            設定画面のどの項目を、どんなときに、どう選べばよいか。コード認識トレーニングの各設定を 1 つずつ解説します。設定画面の「?」から飛んできた方は、目的の項目までスクロールしてください。
+            
+            
+            
+        </p>
+    </header>
+
+    <!-- Top-of-article CTA -->
+    <aside class="article-top-cta" aria-label="App promotion">
+        <div class="article-top-cta__body">
+            <p class="article-top-cta__title">
+                ソルフェージュPRO でこの練習を試す
+                
+                
+                
+            </p>
+            <p class="article-top-cta__sub">
+                月額 980 円 · 1 週間無料トライアル
+                
+                
+                
+            </p>
+        </div>
+        <a href="https://apps.apple.com/jp/app/id6756626617" class="article-top-cta__button" data-cta-position="article_top">
+            App Store →
+            
+            
+            
+        </a>
+    </aside>
+
+    <!-- Article Body -->
+    <main class="article-body">
+
+        <!-- Intro -->
+        <p>
+            コード認識トレーニングは、同時に鳴る複数の音を聴いて、そのコードの種類（クオリティ = コードの性格。Major / Minor / 7th など）を耳だけで判別する練習です。コードの聴き取りはハーモニーを理解する土台で、耳コピや作曲、アンサンブルの基礎になります。
+            
+            
+            
+        </p>
+        <p>
+            このページは設定の選び方をまとめたマニュアルです。各設定は音楽教育で確立された学習法にもとづいて設計しています。判断が要る設定について、<strong>おすすめの選び方・何のための設定か・鍛えられる力とその根拠</strong>を簡潔に示します。設定画面の「?」から来た方は、目的の項目までスクロールしてください。
+            
+            
+            
+        </p>
+
+        <!-- #training-mode -->
+        <h2 id="training-mode">トレーニングモード</h2>
+
+        <p class="manual-lead">
+            <strong>まずは「通常」で十分。</strong> 特定のコードを狙うときだけ「カスタム」、成績がたまったら「忘れた頃に復習」「苦手克服」を使います。
+            
+            
+            
+        </p>
+
+        <p>
+            出題するコードをどの方針で選ぶかを決める設定です。4 つのモードがあります。
+            
+            
+            
+        </p>
+
+        <div class="manual-options">
+            <div class="manual-option">
+                <div class="manual-option__name">通常</div>
+                <div class="manual-option__desc">選んだ難易度に対応するコード群から出題します。特に狙いがなければこれで構いません。</div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name">カスタム</div>
+                <div class="manual-option__desc">出題するコードタイプを 1 つずつ自分で指定します。狙った組み合わせ（例：Maj7 と m7 だけ）を練習したいときに（最低 1 つ選択）。</div>
+            </div>
+        </div>
+
+        <p>
+            残りの 2 つ — 忘れた頃に復習 と 苦手克服 — は成績データがたまってから効くモードです。考え方はどのトレーニングでも共通なので、下に展開します。
+            
+            
+            
+        </p>
+
+        <!-- TODO i18n: fr/de spans are interim English; translate after ja voice approval -->
+<!-- Reusable mode partial. Training-agnostic: do NOT mention chord/scale/etc. -->
+<section class="article-mode" id="mode-spaced-repetition">
+    <h3 class="article-mode__title">「忘れた頃に復習」モード（間隔反復 / spaced repetition）</h3>
+
+    <p>
+        間隔反復とは、一度学んだ項目を「少し忘れかけた頃」に再び出題する仕組みです。直前に正解したものほど次に出るまでの間隔が長くなり、間違えたものほど早く戻ってきます。同じ問題を続けて詰め込む（集中学習）よりも、思い出す努力を挟むほうが記憶が定着する、という考え方に基づいています。
+        
+        
+        
+    </p>
+
+    <p>
+        このモードが向くのは、扱う項目が増えてきて「前にできたはずのものを忘れている」と感じ始めた人です。出題の配分をアプリ側が自動で調整するため、どれを復習すべきか自分で管理する必要がありません。短時間の練習を毎日続けるほど効果が出やすい設計です。
+        
+        
+        
+    </p>
+
+    <p>
+        迷ったら、一通りの項目を一度学び終えたあとの「維持」の段階で使うのが自然です。新しい項目をゼロから覚える段階では通常モードで土台を作り、その後この間隔反復で長期記憶に移していく、という二段構えが扱いやすいでしょう。<em>復習の間隔を空けるほど長期保持が高まる効果は Cepeda ら (2006) が大規模にまとめており、思い出す行為そのものが記憶を強める点は Roediger &amp; Karpicke (2006) が示しています。</em>
+        
+        
+        
+    </p>
+</section>
+
+        <!-- TODO i18n: fr/de spans are interim English; translate after ja voice approval -->
+<!-- Reusable mode partial. Training-agnostic: do NOT mention chord/scale/etc. -->
+<section class="article-mode" id="mode-weak-point">
+    <h3 class="article-mode__title">苦手克服（weak-point focus）モード</h3>
+
+    <p>
+        苦手克服モードは、これまでの回答記録から正答率の低い項目を見つけ出し、それらを優先的に多く出題するモードです。すでに安定して正解できる項目に時間を使わず、あなたが取りこぼしている部分だけに練習を集中させます。出題対象はあなたの成績に応じて自動で選ばれます。
+        
+        
+        
+    </p>
+
+    <p>
+        このモードが向くのは、全体の正答率は伸びているのに「特定のいくつかだけがいつも引っかかる」段階の人です。苦手な項目ばかりが続くので体感の難しさは上がりますが、その「少し難しい」状態こそが上達の効くポイントです（望ましい困難 / desirable difficulties）。十分な回答数がたまるまでは候補が出ないため、まず通常モードである程度プレイしてから使います。
+        
+        
+        
+    </p>
+
+    <p>
+        迷ったら、ある難易度で頭打ちになり「あと一歩で安定するのに、いつも同じところで落とす」と感じたときに数セッション集中投下するのが効果的です。苦手が解消したら通常モードに戻し、全体のバランスを保ちましょう。<em>間違えやすい項目をあえて繰り返し思い出させるこの「テスト効果」は、Roediger &amp; Karpicke (2006) が、後の保持に強く効くことを示しています。</em>
+        
+        
+        
+    </p>
+</section>
+
+
+        <div class="manual-rationale">
+            <span class="manual-rationale__label">学習科学の裏づけ</span>
+            <p>
+                4 つのモードは「今の自分に必要なコードへ練習を集中させる」ためにあります。自分で思い出して答える出題形式そのものが、ただ聴き流すより記憶を強くします（テスト効果）。「忘れた頃に復習」「苦手克服」は、この効果を成績データで自動化したモードです。
+                
+                
+                
+            </p>
+            <p class="manual-rationale__ref">参考: Roediger &amp; Karpicke (2006) <a class="manual-ref-num" href="#ref-1">[1]</a></p>
+        </div>
+
+        <!-- #difficulty -->
+        <h2 id="difficulty">難易度</h2>
+
+        <p class="manual-lead">
+            <strong>迷ったら「基本トライアド」から。</strong> 今の難易度で正答率 80% 以上が安定したら、1 段ずつ上げます。
+            
+            
+            
+        </p>
+
+        <p>
+            出題されるコードタイプの範囲を決める設定です（通常モードで表示）。バークリー式のカリキュラムにならい、トライアド（3 和音）→ 7th（4 和音）→ テンション（拡張）へと段階的に広がります。
+            
+            
+            
+        </p>
+
+        <div class="manual-options">
+            <div class="manual-option">
+                <div class="manual-option__name">基本トライアド</div>
+                <div class="manual-option__desc">メジャー・マイナーのみ。コードの「明暗」を決める 3 度（=ルートの 3 つ上の音）の聴き分けに集中できる、最初の一歩です。</div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name">全トライアド</div>
+                <div class="manual-option__desc">ディミニッシュ・オーグメント追加。5 度が狭い（dim）・広い（aug）響きを聴き分ける段階です。</div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name">基本7th</div>
+                <div class="manual-option__desc">Maj7・m7・7（ドミナント7th）。トライアドの上に 7 度が乗った 4 和音。3 種の違いは微妙なので、トライアドが安定してから進むのが効果的です。</div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name">全7th</div>
+                <div class="manual-option__desc">m7b5・dim7・mMaj7追加。ジャズで頻出する、緊張感の強い 7th コードまで含みます。</div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name">テンション</div>
+                <div class="manual-option__desc">9th・11th・13thコード。さらに上の音を重ねた拡張コード。色彩の豊かな響きを扱う最上位の段階です。</div>
+            </div>
+        </div>
+
+        <div class="manual-rationale">
+            <span class="manual-rationale__label">学習科学の裏づけ</span>
+            <p>
+                一度に扱うコードが少ないほど、耳が処理する情報量が減り、聴き分けの手がかりを確実に身につけられます。狭い範囲を確実にしてから広げるほうが、いきなり全部に挑むより速く上達します。新しい技能の初期は処理の負荷を抑えるほど学習が進む、という認知負荷の考え方にもとづく段階設計です。
+                
+                
+                
+            </p>
+            <p class="manual-rationale__ref">参考: Sweller (1988) <a class="manual-ref-num" href="#ref-2">[2]</a></p>
+        </div>
+
+        <!-- #playback-mode -->
+        <h2 id="playback-mode">再生モード</h2>
+
+        <p class="manual-lead">
+            <strong>新しいコードは「アルペジオ」で構造をつかみ、慣れたら「ブロック」、仕上げに「ランダム」。</strong>
+            
+            
+            
+        </p>
+
+        <p>
+            コードの音をどう鳴らすかを決めます。同じコードでも、鳴らし方で聴き取りの難しさが変わります。
+            
+            
+            
+        </p>
+
+        <div class="manual-options">
+            <div class="manual-option">
+                <div class="manual-option__name">ブロック</div>
+                <div class="manual-option__desc">全音を同時に鳴らします。和音全体の「塊の響き」を一瞬で判断する、実際の演奏に近い聴き方でやや難しめ。</div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name">アルペジオ</div>
+                <div class="manual-option__desc">下から 1 音ずつ順に鳴らします（アルペジオ＝分散和音）。各音を個別に追えるので構造を分析しやすく、3 度や 7 度の位置を確認するのに向きます。</div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name">ランダム</div>
+                <div class="manual-option__desc">出題ごとにブロックかアルペジオかを切り替え。どちらの鳴らし方でも聴き取れるように。</div>
+            </div>
+        </div>
+
+        <div class="manual-rationale">
+            <span class="manual-rationale__label">学習科学の裏づけ</span>
+            <p>
+                目的は、1 つの鳴り方に頼らずコードそのものを聴けるようにすることです。アルペジオは構造を 1 音ずつ分析でき、ブロックは実際の音楽に近い塊の響きで瞬時の判断を鍛えます。鳴らし方を変えて練習すると、特定の手がかりに依存せず、どんな鳴り方でも聴き取る力が付きます。
+                
+                
+                
+            </p>
+            <p class="manual-rationale__ref">参考: Brunmair &amp; Richter (2019) <a class="manual-ref-num" href="#ref-3">[3]</a>; Karpinski (2000) <a class="manual-ref-num" href="#ref-4">[4]</a></p>
+        </div>
+
+        <!-- #question-type -->
+        <h2 id="question-type">問題タイプ</h2>
+
+        <p class="manual-lead">
+            <strong>基本は「コードクオリティ」のままで OK。</strong> クオリティの聴き分けが安定したら「ベース音」→「転回形」へ進みます。
+            
+            
+            
+        </p>
+
+        <p>
+            「何を答えるか」を決める設定です。同じコードを聴いても、問われるものが違えば鍛えられる耳も変わります。
+            
+            
+            
+        </p>
+
+        <div class="manual-options">
+            <div class="manual-option">
+                <div class="manual-option__name">コードクオリティ</div>
+                <div class="manual-option__desc">コードの種類（メジャー・マイナー等）を識別します。コード認識の中心であり、基本となる出題タイプ。</div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name">ベース音</div>
+                <div class="manual-option__desc">最低音（ベース音＝一番低く鳴っている音）を識別します。転回形（後述）を聴き分ける基礎になる耳を鍛えます。選ぶと転回形が自動的に有効に。</div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name">転回形</div>
+                <div class="manual-option__desc">転回形（基本形・第1転回・第2転回＝最低音を入れ替えた形）を識別します。同じコードでも重心の移動を聴き取る、より高度な耳。選ぶと転回形が自動的に有効に。</div>
+            </div>
+        </div>
+
+        <div class="manual-rationale">
+            <span class="manual-rationale__label">学習科学の裏づけ</span>
+            <p>
+                問題タイプを段階的に進めるのは、コードを聴く力を要素ごとに積み上げるためです。まずクオリティ（明暗や緊張感）を聴き分け、次に最低音、そして転回形へと進むことで、和音の構造を多面的に聴き取る耳が育ちます。これはイヤートレーニングで確立された、クオリティと転回形を順に学ぶ進め方に沿っています。
+                
+                
+                
+            </p>
+            <p class="manual-rationale__ref">参考: Karpinski (2000) <a class="manual-ref-num" href="#ref-4">[4]</a></p>
+        </div>
+
+        <!-- #root-mode -->
+        <h2 id="root-mode">ルート音の出題</h2>
+
+        <p class="manual-lead">
+            <strong>基本は「全キーでランダム」（アプリの推奨）。</strong> まったくの初学者でコードタイプの違いだけに集中したいときだけ、一時的に「ルートを固定」します。
+            
+            
+            
+        </p>
+
+        <p>
+            コードのルート（根音＝コードの土台になる一番下の基準音）を毎回どう決めるかの設定です。「全キーでランダム」か「ルートを固定」かを選びます。
+            
+            
+            
+        </p>
+
+        <div class="manual-options">
+            <div class="manual-option">
+                <div class="manual-option__name">全キーでランダム（推奨）</div>
+                <div class="manual-option__desc">出題ごとにルートを 12 キーからランダムに選びます。音の高さに頼らずコードの「形そのもの」を聴き取れる、本番に近い練習です。</div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name">ルートを固定</div>
+                <div class="manual-option__desc">ルートを 1 つの音に固定します（固定すると、どの音にするか選ぶ欄が現れます）。基準音が一定で比較しやすく、コードタイプの違いだけに集中したい学習初期向き。</div>
+            </div>
+        </div>
+
+        <div class="manual-rationale">
+            <span class="manual-rationale__label">学習科学の裏づけ</span>
+            <p>
+                全キーでランダムを基本にするのは、特定の音の高さに頼らずコードの形そのものを聴く力を育てるためです。異なるキーを混ぜて出題する練習（インターリービング）が、同じ条件を続けるより定着するのは、メタ分析が示すとおりです。実際の音楽はどんなキーでも出てくるので、本番に近い力が付きます。
+                
+                
+                
+            </p>
+            <p class="manual-rationale__ref">参考: Brunmair &amp; Richter (2019) <a class="manual-ref-num" href="#ref-3">[3]</a></p>
+        </div>
+
+        <!-- #inversions -->
+        <h2 id="inversions">転回形</h2>
+
+        <p class="manual-lead">
+            <strong>最初はオフ。</strong> コードクオリティの聴き分けが安定してから転回形を加えます。土台ができる前に混ぜると混乱のもとです。
+            
+            
+            
+        </p>
+
+        <p>
+            転回形（＝コードの最低音を変えた形）を出題に含めるかどうかの設定です。たとえば C メジャー（C-E-G）が基本形で、最低音を E にした E-G-C が第1転回、G にした G-C-E が第2転回。構成音は同じでも、どの音が一番下かで響きの重心が変わります。問題タイプで ベース音 または 転回形 を選ぶと自動的に有効になります。
+            
+            
+            
+        </p>
+
+        <div class="manual-rationale">
+            <span class="manual-rationale__label">学習科学の裏づけ</span>
+            <p>
+                転回形を後から加えるのは、まず基本形でコードの響きを確実にしてから、最低音の違いという新しい手がかりを足すためです。実際の音楽では転回形が当たり前に出てくるので、避けて通れない要素ですが、土台ができてから取り組むほうが定着します。クオリティと転回形を順に学ぶ進め方は、イヤートレーニングで確立されたものです。
+                
+                
+                
+            </p>
+            <p class="manual-rationale__ref">参考: Karpinski (2000) <a class="manual-ref-num" href="#ref-4">[4]</a></p>
+        </div>
+
+        <!-- #octave -->
+        <h2 id="octave">オクターブ</h2>
+
+        <p class="manual-lead">
+            <strong>基本は「中音（C4）」。</strong> 中音で安定したら、低音・高音でも試して音域に左右されない耳を育てます。
+            
+            
+            
+        </p>
+
+        <p>
+            コードを鳴らす音域（高さ）を決める設定です。低音（C3）・中音（C4）・高音（C5）の 3 つから選べます。低音は構成音が団子になって聴き分けづらく、高音は音が離れて明瞭ですが響きは薄め。中音（C4）はその中間で、コード認識にもっともバランスが良い音域です。
+            
+            
+            
+        </p>
+
+        <div class="manual-rationale">
+            <span class="manual-rationale__label">学習科学の裏づけ</span>
+            <p>
+                中音から始めるのは、構成音が聴き分けやすい音域で耳が処理する負荷を抑えるためです。学習初期に余計な聴き取りづらさを減らすと、コードタイプの違いそのものに集中できます。慣れたら他の音域に広げて、どの高さでも聴ける力を付けます。初期ほど負荷を抑えると学習が進みやすい、という認知負荷の考え方に沿った設計です。
+                
+                
+                
+            </p>
+            <p class="manual-rationale__ref">参考: Sweller (1988) <a class="manual-ref-num" href="#ref-2">[2]</a></p>
+        </div>
+
+        <!-- References -->
+        <section class="manual-refs">
+            <div class="manual-refs__title">参考文献</div>
+            <ol>
+                <li id="ref-1">Roediger, H. L., &amp; Karpicke, J. D. (2006). Test-enhanced learning: Taking memory tests improves long-term retention. <em>Psychological Science, 17</em>(3), 249–255.</li>
+                <li id="ref-2">Sweller, J. (1988). Cognitive load during problem solving: Effects on learning. <em>Cognitive Science, 12</em>(2), 257–285.</li>
+                <li id="ref-3">Brunmair, M., &amp; Richter, T. (2019). Similarity matters: A meta-analysis of interleaved learning and its moderators. <em>Psychological Bulletin, 145</em>(11), 1029–1052.</li>
+                <li id="ref-4">Karpinski, G. S. (2000). <em>Aural Skills Acquisition: The Development of Listening, Reading, and Performing Skills in College-Level Musicians.</em> Oxford University Press.</li>
+            </ol>
+        </section>
+
+    </main>
+
+    <!-- Final CTA -->
+    <section class="article-cta">
+        <h2 class="article-cta__title">設定を決めたら、さっそく試してみよう</h2>
+        <p class="article-cta__text">
+            各設定の意味がわかれば、あとは実際に手を動かすだけです。<br>迷ったら本ページの「迷ったら…」をなぞって始めてみてください。<br>ソルフェージュPRO の コード認識 で、自分に合った設定を見つけましょう。
+            
+            
+            
+        </p>
+        <a href="https://apps.apple.com/jp/app/id6756626617" class="app-store-link" aria-label="Download on the App Store">
+            <img class="app-store-link__img" width="109" height="40" src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/ja-jp" alt="App Storeで入手">
+            
+            
+            
+        </a>
+    </section>
+
+    <!-- Related Content -->
+    <div class="article-related">
+        <div class="article-related__title">関連コンテンツ</div>
+        <a href="/guides/ear-training-chords/" class="article-related__link" style="margin-bottom: var(--space-md);">
+            <div class="article-related__link-title">コードを聴き分ける力とは何か — 和音の響きを理解する</div>
+            <div class="article-related__link-desc">設定の前に、そもそもコード認識とは何かを知りたい方へ。構成音の違いと段階的な練習法を解説したガイド。</div>
+        </a>
+        <a href="/" class="article-related__link">
+            <div class="article-related__link-title">ソルフェージュPRO 練習ガイド</div>
+            <div class="article-related__link-desc">ギター・ベース・ドラム・ピアノ・ボーカル向けの課題別練習メニュー</div>
+        </a>
+    </div>
+
+    <!-- Article Note -->
+    <aside class="article-endnote">
+        <p class="article-endnote__text">
+            本ページはアプリ内の設定項目の解説を目的としたリファレンスです。記載した推奨の進め方は、音楽教育で広く用いられるイヤートレーニングの方法論をもとにした一般的な目安であり、最適な設定は個人の経験や目的によって異なります。引用した研究は学習一般の知見であり、本アプリでの効果を保証するものではありません。
+            
+            
+            
+        </p>
+    </aside>
+
+    <!-- Footer -->
+    <footer class="article-footer">
+        <p class="article-footer__text">
+            &copy; 2026 ソルフェージュPRO &mdash;
+            <a href="https://apps.apple.com/jp/app/id6756626617" class="article-footer__link">App Store</a>
+        </p>
+    </footer>
+    <script src="/bootstrap.js?v=3" defer></script>
+</body>
+</html>

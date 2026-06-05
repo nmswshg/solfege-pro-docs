@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="ja"
+      data-title-ja="コード進行認識 設定マニュアル — 各設定の選び方 | ソルフェージュPRO"
+      data-title-en="Chord Progression Settings Manual — How to Choose Each Option | Solfege PRO"
+      data-title-fr="Manuel des réglages — Reconnaissance des progressions d'accords — Comment choisir chaque option | Solfege PRO"
+      data-title-de="Einstellungshandbuch — Akkordfolgen-Erkennung — So wählst du jede Option | Solfege PRO">
+<head>
+    <meta charset="UTF-8">
+    <meta name="robots" content="index, follow">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#1A1A1E">
+    <title>コード進行認識 設定マニュアル — 各設定の選び方 | ソルフェージュPRO</title>
+    <meta name="description" content="コード進行トレーニングの各設定（トレーニングモード・難易度・進行の長さ・キーモード）を、何のための設定で、誰が、どう選ぶべきかまで丁寧に解説するリファレンスマニュアルです。">
+
+    <!-- Canonical -->
+    <link rel="canonical" href="https://solfegepro.com/manual/progression/">
+    <link rel="alternate" hreflang="ja" href="https://solfegepro.com/manual/progression/">
+    <link rel="alternate" hreflang="en" href="https://solfegepro.com/en/manual/progression/">
+    <link rel="alternate" hreflang="fr" href="https://solfegepro.com/fr/manual/progression/">
+    <link rel="alternate" hreflang="de" href="https://solfegepro.com/de/manual/progression/">
+    <link rel="alternate" hreflang="x-default" href="https://solfegepro.com/manual/progression/">
+<!-- OGP -->
+    <meta property="og:title" content="コード進行認識 設定マニュアル — 各設定の選び方">
+    <meta property="og:description" content="コード進行トレーニングの各設定（トレーニングモード・難易度・進行の長さ・キーモード）を、何のための設定で、誰が、どう選ぶべきかまで丁寧に解説するリファレンスマニュアルです。">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://solfegepro.com/manual/progression/">
+    <meta property="og:site_name" content="ソルフェージュPRO">
+    <meta property="og:image" content="https://solfegepro.com/og-image.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Solfege PRO">
+    <meta property="og:locale" content="ja_JP">
+    <meta property="og:locale:alternate" content="en_US">
+    <meta property="og:locale:alternate" content="fr_FR">
+    <meta property="og:locale:alternate" content="de_DE">
+    <meta property="article:published_time" content="2026-06-05">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="コード進行認識 設定マニュアル — 各設定の選び方">
+    <meta name="twitter:description" content="コード進行トレーニングの各設定（トレーニングモード・難易度・進行の長さ・キーモード）を、何のための設定で、誰が、どう選ぶべきかまで丁寧に解説するリファレンスマニュアルです。">
+    <meta name="twitter:image" content="https://solfegepro.com/og-image.png">
+
+    <!-- Favicon -->
+    <link rel="icon" href="/favicon.ico" sizes="any">
+    <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap"></noscript>
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="/style.css?v=17">
+    <link rel="stylesheet" href="/guides/article.css?v=11">
+
+    <style>
+        /* Manual option reference — responsive, no fixed px widths */
+        .manual-options {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr);
+            gap: var(--space-sm);
+            margin: var(--space-lg) 0;
+        }
+        .manual-option {
+            background: var(--surface);
+            border: 1px solid var(--surface-light);
+            border-radius: var(--radius-lg);
+            padding: var(--space-md);
+        }
+        .manual-option__name {
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: var(--space-xs);
+        }
+        .manual-option__desc {
+            font-size: 13px;
+            color: var(--text-secondary);
+        }
+        /* Bottom-line callout (conclusion first) */
+        .manual-lead {
+            font-size: 14px;
+            line-height: 1.75;
+            color: var(--text-primary);
+            border-left: 3px solid var(--primary);
+            background: rgba(212, 175, 55, 0.06);
+            padding: var(--space-sm) var(--space-md);
+            border-radius: 0 var(--radius-md) var(--radius-md) 0;
+            margin: var(--space-md) 0;
+        }
+        /* Per-setting evidence note — deliberately styled as an editorial
+           aside, NOT as a settings card (no surface fill, no gold label),
+           so it is never mistaken for an in-app option. */
+        .manual-rationale {
+            margin: var(--space-md) 0 var(--space-2xl);
+            padding: var(--space-sm) 0 var(--space-sm) var(--space-md);
+            border-left: 2px solid var(--surface-light);
+        }
+        .manual-rationale__label {
+            display: block;
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            color: var(--text-secondary);
+            margin-bottom: 4px;
+            opacity: 0.75;
+        }
+        .manual-rationale p {
+            font-size: 13px;
+            line-height: 1.75;
+            color: var(--text-secondary);
+            margin: 0;
+        }
+        .manual-rationale__ref {
+            font-size: 12px;
+            font-style: italic;
+            margin-top: var(--space-xs) !important;
+            opacity: 0.7;
+        }
+        /* Citation number linking to the reference list */
+        .manual-ref-num {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-style: normal;
+        }
+        .manual-ref-num:hover { color: var(--primary); }
+        /* Full reference list at page end */
+        .manual-refs {
+            margin: var(--space-2xl) 0 0;
+            padding-top: var(--space-lg);
+            border-top: 1px solid var(--surface-light);
+        }
+        .manual-refs__title {
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: var(--space-sm);
+        }
+        .manual-refs ol {
+            margin: 0;
+            padding-left: 1.25em;
+        }
+        .manual-refs li {
+            font-size: 12px;
+            line-height: 1.7;
+            color: var(--text-secondary);
+            margin-bottom: var(--space-xs);
+            scroll-margin-top: 84px;
+        }
+        .manual-refs li:target {
+            color: var(--text-primary);
+        }
+    </style>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"コード進行認識 設定マニュアル — 各設定の選び方","description":"コード進行トレーニングの各設定を、何のための設定で、誰が、どう選ぶべきかまで解説するリファレンスマニュアルです。","author":{"@type":"Organization","name":"ソルフェージュPRO"},"publisher":{"@type":"Organization","name":"ソルフェージュPRO","logo":{"@type":"ImageObject","url":"https://solfegepro.com/AppIcon.png"}},"datePublished":"2026-06-05","mainEntityOfPage":{"@type":"WebPage","@id":"https://solfegepro.com/manual/progression/"}}</script>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"ホーム","item":"https://solfegepro.com/"},{"@type":"ListItem","position":2,"name":"設定マニュアル","item":"https://solfegepro.com/manual/"},{"@type":"ListItem","position":3,"name":"コード進行認識 設定マニュアル — 各設定の選び方","item":"https://solfegepro.com/manual/progression/"}]}</script>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="nav__container">
+            <a href="/" class="nav__logo">
+                <img src="/AppIcon.png" alt="Solfege PRO" class="nav__logo-icon" width="32" height="32">
+                <span class="nav__logo-text">ソルフェージュPRO</span>
+            </a>
+            <ul class="nav__list">
+                <li><a href="/" class="nav__link">練習ガイド</a></li>
+                <li><a href="/guides/" class="nav__link">ガイド一覧</a></li>
+                <li><a href="/manual/" class="nav__link active">マニュアル</a></li>
+                            <li><a href="/start-here/" class="nav__link">どこから始める？</a></li>
+            </ul>
+            <div class="nav__settings">
+                <button class="settings-btn" id="lang-toggle" title="Toggle language">
+                    <span id="lang-text">EN</span>
+                </button>
+                <button class="hamburger-btn" id="hamburger-btn" aria-label="Menu" aria-expanded="false" aria-controls="drawer">
+                    <span class="hamburger-btn__line"></span>
+                    <span class="hamburger-btn__line"></span>
+                    <span class="hamburger-btn__line"></span>
+                </button>
+            </div>
+        </div>
+    </nav>
+        <!-- Mobile drawer (hidden on desktop) -->
+        <div class="drawer-overlay" id="drawer-overlay"></div>
+        <aside class="drawer" id="drawer" aria-label="Mobile menu" aria-hidden="true" inert>
+            <div class="drawer__header">
+                <span class="drawer__title">メニュー</span>
+                <button class="drawer__close" id="drawer-close" aria-label="Close menu">×</button>
+            </div>
+            <ul class="drawer__list">
+                    <li><a href="/" class="drawer__link">練習ガイド</a></li>
+                    <li><a href="/guides/" class="drawer__link">ガイド一覧</a></li>
+                    <li><a href="/manual/" class="drawer__link active">マニュアル</a></li>
+                    <li><a href="/start-here/" class="drawer__link">どこから始める？</a></li>
+            </ul>
+        </aside>
+
+
+    <!-- Article Header -->
+    <header class="page-header">
+        <div class="page-header__meta">
+            <span class="page-header__tag">マニュアル</span>
+            <span>コード進行認識</span>
+        </div>
+        <h1 class="page-header__title">
+            コード進行認識 設定マニュアル<br>各設定の意味と選び方
+            
+            
+            
+        </h1>
+        <p class="page-header__subtitle">
+            設定画面のどの項目を、どんなときに、どう選べばよいか。コード進行トレーニングの各設定を 1 つずつ解説します。設定画面の「?」から飛んできた方は、目的の項目までスクロールしてください。
+            
+            
+            
+        </p>
+    </header>
+
+    <!-- Top-of-article CTA -->
+    <aside class="article-top-cta" aria-label="App promotion">
+        <div class="article-top-cta__body">
+            <p class="article-top-cta__title">
+                ソルフェージュPRO でこの練習を試す
+                
+                
+                
+            </p>
+            <p class="article-top-cta__sub">
+                月額 980 円 · 1 週間無料トライアル
+                
+                
+                
+            </p>
+        </div>
+        <a href="https://apps.apple.com/jp/app/id6756626617" class="article-top-cta__button" data-cta-position="article_top">
+            App Store →
+            
+            
+            
+        </a>
+    </aside>
+
+    <!-- Article Body -->
+    <main class="article-body">
+
+        <!-- Intro -->
+        <p>
+            コード進行トレーニングは、続けて鳴る複数のコードを聴いて、その並び（進行＝和音の連なり）を耳だけで聴き取る練習です。1 つ 1 つのコードの種類だけでなく、「このコードからこのコードへ動く」という流れ＝ハーモニーの文脈を捉える耳が目標になります。進行が聴けると、曲の弾き語りや耳コピ、アドリブの土台ができます。
+            
+            
+            
+        </p>
+        <p>
+            このページは設定の選び方をまとめたマニュアルです。各設定は音楽教育で確立された学習法にもとづいて設計しています。判断が要る設定について、<strong>おすすめの選び方・何のための設定か・鍛えられる力とその根拠</strong>を簡潔に示します。設定画面の「?」から来た方は、目的の項目までスクロールしてください。
+            
+            
+            
+        </p>
+
+        <!-- #training-mode -->
+        <h2 id="training-mode">トレーニングモード</h2>
+
+        <p class="manual-lead">
+            <strong>まずは「通常」で十分。</strong> 成績がたまったら「忘れた頃に復習」「苦手克服」を使います。
+            
+            
+            
+        </p>
+
+        <p>
+            出題する進行をどの方針で選ぶかを決める設定です。3 つのモードがあります。
+            
+            
+            
+        </p>
+
+        <div class="manual-options">
+            <div class="manual-option">
+                <div class="manual-option__name">通常モード</div>
+                <div class="manual-option__desc">選んだ難易度・進行の長さ・キーに当てはまる進行を均等に出題します。特に狙いがなければこれで構いません。下で説明する各設定が、そのまま出題範囲になります。</div>
+            </div>
+        </div>
+
+        <p>
+            残りの 2 つ — 忘れた頃に復習 と 苦手克服 — は成績データがたまってから効くモードです。苦手克服 は苦手な進行が見つかるまで（=十分な回答数がたまるまで）は選べません。考え方はどのトレーニングでも共通なので、下に展開します。
+            
+            
+            
+        </p>
+
+        <!-- TODO i18n: fr/de spans are interim English; translate after ja voice approval -->
+<!-- Reusable mode partial. Training-agnostic: do NOT mention chord/scale/etc. -->
+<section class="article-mode" id="mode-spaced-repetition">
+    <h3 class="article-mode__title">「忘れた頃に復習」モード（間隔反復 / spaced repetition）</h3>
+
+    <p>
+        間隔反復とは、一度学んだ項目を「少し忘れかけた頃」に再び出題する仕組みです。直前に正解したものほど次に出るまでの間隔が長くなり、間違えたものほど早く戻ってきます。同じ問題を続けて詰め込む（集中学習）よりも、思い出す努力を挟むほうが記憶が定着する、という考え方に基づいています。
+        
+        
+        
+    </p>
+
+    <p>
+        このモードが向くのは、扱う項目が増えてきて「前にできたはずのものを忘れている」と感じ始めた人です。出題の配分をアプリ側が自動で調整するため、どれを復習すべきか自分で管理する必要がありません。短時間の練習を毎日続けるほど効果が出やすい設計です。
+        
+        
+        
+    </p>
+
+    <p>
+        迷ったら、一通りの項目を一度学び終えたあとの「維持」の段階で使うのが自然です。新しい項目をゼロから覚える段階では通常モードで土台を作り、その後この間隔反復で長期記憶に移していく、という二段構えが扱いやすいでしょう。<em>復習の間隔を空けるほど長期保持が高まる効果は Cepeda ら (2006) が大規模にまとめており、思い出す行為そのものが記憶を強める点は Roediger &amp; Karpicke (2006) が示しています。</em>
+        
+        
+        
+    </p>
+</section>
+
+        <!-- TODO i18n: fr/de spans are interim English; translate after ja voice approval -->
+<!-- Reusable mode partial. Training-agnostic: do NOT mention chord/scale/etc. -->
+<section class="article-mode" id="mode-weak-point">
+    <h3 class="article-mode__title">苦手克服（weak-point focus）モード</h3>
+
+    <p>
+        苦手克服モードは、これまでの回答記録から正答率の低い項目を見つけ出し、それらを優先的に多く出題するモードです。すでに安定して正解できる項目に時間を使わず、あなたが取りこぼしている部分だけに練習を集中させます。出題対象はあなたの成績に応じて自動で選ばれます。
+        
+        
+        
+    </p>
+
+    <p>
+        このモードが向くのは、全体の正答率は伸びているのに「特定のいくつかだけがいつも引っかかる」段階の人です。苦手な項目ばかりが続くので体感の難しさは上がりますが、その「少し難しい」状態こそが上達の効くポイントです（望ましい困難 / desirable difficulties）。十分な回答数がたまるまでは候補が出ないため、まず通常モードである程度プレイしてから使います。
+        
+        
+        
+    </p>
+
+    <p>
+        迷ったら、ある難易度で頭打ちになり「あと一歩で安定するのに、いつも同じところで落とす」と感じたときに数セッション集中投下するのが効果的です。苦手が解消したら通常モードに戻し、全体のバランスを保ちましょう。<em>間違えやすい項目をあえて繰り返し思い出させるこの「テスト効果」は、Roediger &amp; Karpicke (2006) が、後の保持に強く効くことを示しています。</em>
+        
+        
+        
+    </p>
+</section>
+
+
+        <div class="manual-rationale">
+            <span class="manual-rationale__label">学習科学の裏づけ</span>
+            <p>
+                3 つのモードは「今の自分に必要な進行へ練習を集中させる」ためにあります。自分で思い出して答える出題形式そのものが、ただ聴き流すより記憶を強くします（テスト効果）。「忘れた頃に復習」「苦手克服」は、この効果を成績データで自動化したモードです。
+                
+                
+                
+            </p>
+            <p class="manual-rationale__ref">参考: Roediger &amp; Karpicke (2006) <a class="manual-ref-num" href="#ref-1">[1]</a></p>
+        </div>
+
+        <!-- #difficulty (also the notation / answer-style choice) -->
+        <h2 id="difficulty">難易度（回答の表記方式）</h2>
+
+        <p class="manual-lead">
+            <strong>迷ったら「機能 基礎 (T/SD/D)」から。</strong> 「落ち着く→動く→緊張→解決」の骨格が安定したら、機能 上級 → ローマ数字 → コードシンボル と上げます。
+            
+            
+            
+        </p>
+
+        <p>
+            単に「やさしい/むずかしい」ではなく、進行を<strong>どの表記で答えるか</strong>を決める設定です。機能（T/SD/D。コードの和声的な役割）、ローマ数字、具体的なコードネームのどれで答えるかで、鍛えられる耳と必要な知識が変わります。抽象度の高い 機能 から、具体的な コードシンボル へと段階的に進みます。
+            
+            
+            
+        </p>
+
+        <div class="manual-options" id="notation">
+            <div class="manual-option">
+                <div class="manual-option__name">機能 基礎 (T/SD/D)</div>
+                <div class="manual-option__desc">各コードの機能だけを答えます。T=トニック（落ち着き）、SD=サブドミナント（動き出し）、D=ドミナント（緊張・解決を求める）の 3 つで、基礎は I=T, IV=SD, V=D のみ。名前を知らなくても進行の役割の流れを耳でつかむ入門段階です。</div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name">機能 上級 (T/SD/D)</div>
+                <div class="manual-option__desc">同じ機能で答えますが範囲が広がり、I/vi/iii=T、IV/ii=SD、V/vii=D と複数のコードが同じ機能を担うことを聴き分けます。vi が I の代わりにトニックを担う「代理」の響きを捉える段階です。</div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name">ローマ数字</div>
+                <div class="manual-option__desc">進行を I・IV・V・vi のようなローマ数字（=キーの中での度数）で答えます。機能より一段細かく「キーの何番目か」を特定し、どのキーでも通用する移調可能な「進行の地図」を耳で読む力が付きます。</div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name">コードシンボル</div>
+                <div class="manual-option__desc">進行を C・Dm・G のような具体的なコードネームで答えます。譜面やリードシートにそのまま対応する最も実践的な段階。キーとローマ数字の両方を頭の中で結びつける必要があり、最上位です。</div>
+            </div>
+        </div>
+
+        <div class="manual-rationale">
+            <span class="manual-rationale__label">学習科学の裏づけ</span>
+            <p>
+                進行をまず機能（和声的役割）でまとめて聴く段階を置くのは、扱う情報を絞って耳の負荷を下げ、確実な土台を作るためです。具体的なコード名を覚える前に「落ち着く→動く→緊張→解決」の骨格を聴き取れるようにする機能和声（functional harmony）の考え方は、大学レベルのイヤートレーニングで確立された手順で、抽象度の低い段階から始めるほど初期の処理の負荷を抑えられます。
+                
+                
+                
+            </p>
+            <p class="manual-rationale__ref">参考: Karpinski (2000) <a class="manual-ref-num" href="#ref-2">[2]</a>; Sweller (1988) <a class="manual-ref-num" href="#ref-3">[3]</a></p>
+        </div>
+
+        <!-- #length -->
+        <h2 id="length">進行の長さ</h2>
+
+        <p class="manual-lead">
+            <strong>迷ったら「3コード」。</strong> 1 つの動きを固めたいなら 2コード、楽曲まるごとの流れに挑むなら 4コード へ。
+            
+            
+            
+        </p>
+
+        <p>
+            1 問あたり何個のコードが続けて鳴るかを決める設定です。2 コード・3 コード・4 コード から選べます。コードの数が増えるほど覚えておく音と聴き取る関係性が増え、難しくなります。長さや難易度を変えると、その組み合わせで出題できるパターン数が画面右上に表示されます。
+            
+            
+            
+        </p>
+
+        <div class="manual-options">
+            <div class="manual-option">
+                <div class="manual-option__name">2コード</div>
+                <div class="manual-option__desc">2 つのコードの「動き 1 つ」だけを聴きます。V→I（解決）や IV→I のような最小単位の進行に集中でき、ひとつの動きの響きを確実に覚えるのに最適。最初の一歩。</div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name">3コード</div>
+                <div class="manual-option__desc">3 つのコードで「行って戻る」流れを聴きます。I→IV→V や ii→V→I など、音楽でいちばん耳にする定番の形を含む、進行の典型を学べるバランスの良い長さ。</div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name">4コード</div>
+                <div class="manual-option__desc">4 つのコードで、1 つの完結したフレーズに近い進行を聴きます。I→vi→IV→V や I→V→vi→IV など実際の楽曲そのままの流れ。記憶の負荷が高く最上位の難しさ。</div>
+            </div>
+        </div>
+
+        <div class="manual-rationale">
+            <span class="manual-rationale__label">学習科学の裏づけ</span>
+            <p>
+                短い進行から始められるのは、一度に覚えておくコードの数を減らして耳の負荷を抑えるためです。少ない数で動きの響きを確実にしてから長くするほうが、いきなり 4 コードに挑むより速く上達します。新しい技能の初期は処理の負荷を抑えるほど学習が進む、という認知負荷の考え方にもとづく段階設計です。
+                
+                
+                
+            </p>
+            <p class="manual-rationale__ref">参考: Sweller (1988) <a class="manual-ref-num" href="#ref-3">[3]</a></p>
+        </div>
+
+        <!-- #key-quality -->
+        <h2 id="key-quality">キーモード（メジャー / マイナー）</h2>
+
+        <p class="manual-lead">
+            <strong>迷ったら「メジャー」から。</strong> 安定したら「マイナー」を加え、明暗どちらのキーでも進行を読み取れる耳に広げます。
+            
+            
+            
+        </p>
+
+        <p>
+            進行を メジャーキー で出すか マイナーキー で出すかを決める設定です。メジャーとマイナーでは、同じ度数の進行でも響きの明暗が大きく変わり、登場するコードの並びも変わります。
+            
+            
+            
+        </p>
+
+        <div class="manual-options">
+            <div class="manual-option">
+                <div class="manual-option__name">メジャー</div>
+                <div class="manual-option__desc">メジャーキーで練習します。明るく安定した響きで、I→IV→V や ii→V→I といったポップスで最頻出の進行が中心。進行認識を学び始めるときの基本はこちら。</div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name">マイナー</div>
+                <div class="manual-option__desc">マイナーキーで練習します。暗く陰りのある響きで、i→iv→V や i→VI→VII などマイナー特有の進行を聴き分けます。メジャーが安定してから加えると、対比で違いがよくわかります。</div>
+            </div>
+        </div>
+
+        <div class="manual-rationale">
+            <span class="manual-rationale__label">学習科学の裏づけ</span>
+            <p>
+                メジャーから始めるのは、聴き慣れた明るい進行のほうが機能（T/SD/D）やローマ数字の感覚をつかみやすいためです。長調・短調それぞれの和声の流れを聴き分け、文脈の中でコードの役割を捉える練習は、大学レベルのイヤートレーニングで土台とされる機能的な聴き方そのものです。
+                
+                
+                
+            </p>
+            <p class="manual-rationale__ref">参考: Karpinski (2000) <a class="manual-ref-num" href="#ref-2">[2]</a></p>
+        </div>
+
+        <!-- References -->
+        <section class="manual-refs">
+            <div class="manual-refs__title">参考文献</div>
+            <ol>
+                <li id="ref-1">Roediger, H. L., &amp; Karpicke, J. D. (2006). Test-enhanced learning: Taking memory tests improves long-term retention. <em>Psychological Science, 17</em>(3), 249–255.</li>
+                <li id="ref-2">Karpinski, G. S. (2000). <em>Aural Skills Acquisition: The Development of Listening, Reading, and Performing Skills in College-Level Musicians.</em> Oxford University Press.</li>
+                <li id="ref-3">Sweller, J. (1988). Cognitive load during problem solving: Effects on learning. <em>Cognitive Science, 12</em>(2), 257–285.</li>
+            </ol>
+        </section>
+
+    </main>
+
+    <!-- Final CTA -->
+    <section class="article-cta">
+        <h2 class="article-cta__title">設定を決めたら、さっそく試してみよう</h2>
+        <p class="article-cta__text">
+            各設定の意味がわかれば、あとは実際に手を動かすだけです。<br>迷ったら本ページの「迷ったら…」をなぞって始めてみてください。<br>ソルフェージュPRO の コード進行認識 で、自分に合った設定を見つけましょう。
+            
+            
+            
+        </p>
+        <a href="https://apps.apple.com/jp/app/id6756626617" class="app-store-link" aria-label="Download on the App Store">
+            <img class="app-store-link__img" width="109" height="40" src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/ja-jp" alt="App Storeで入手">
+            
+            
+            
+        </a>
+    </section>
+
+    <!-- Related Content -->
+    <div class="article-related">
+        <div class="article-related__title">関連コンテンツ</div>
+        <a href="/manual/chord/" class="article-related__link" style="margin-bottom: var(--space-md);">
+            <div class="article-related__link-title">コード認識 設定マニュアル — 各設定の意味と選び方</div>
+            <div class="article-related__link-desc">進行の前に、まず 1 つ 1 つのコードを聴き分けたい方へ。コード認識トレーニングの各設定を解説したマニュアル。</div>
+        </a>
+        <a href="/" class="article-related__link">
+            <div class="article-related__link-title">ソルフェージュPRO 練習ガイド</div>
+            <div class="article-related__link-desc">ギター・ベース・ドラム・ピアノ・ボーカル向けの課題別練習メニュー</div>
+        </a>
+    </div>
+
+    <!-- Article Note -->
+    <aside class="article-endnote">
+        <p class="article-endnote__text">
+            本ページはアプリ内の設定項目の解説を目的としたリファレンスです。記載した推奨の進め方は、音楽教育で広く用いられるイヤートレーニングの方法論をもとにした一般的な目安であり、最適な設定は個人の経験や目的によって異なります。引用した研究は学習一般の知見であり、本アプリでの効果を保証するものではありません。
+            
+            
+            
+        </p>
+    </aside>
+
+    <!-- Footer -->
+    <footer class="article-footer">
+        <p class="article-footer__text">
+            &copy; 2026 ソルフェージュPRO &mdash;
+            <a href="https://apps.apple.com/jp/app/id6756626617" class="article-footer__link">App Store</a>
+        </p>
+    </footer>
+    <script src="/bootstrap.js?v=3" defer></script>
+</body>
+</html>

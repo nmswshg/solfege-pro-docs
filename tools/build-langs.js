@@ -73,6 +73,10 @@ function listSources() {
     function walk(dir, rel) {
         if (!fs.existsSync(dir)) return;
         for (const name of fs.readdirSync(dir)) {
+            // Skip include-only partials: they are inlined via the
+            // `<!-- include: _partials/NAME.html -->` directive and must NOT
+            // emit standalone output pages (no _partials/.../index.html).
+            if (name === '_partials') continue;
             const full = path.join(dir, name);
             const stat = fs.statSync(full);
             if (stat.isDirectory()) {
@@ -379,6 +383,7 @@ function localizeJsonLd(html, srcPath, lang) {
 // src/guides/index.html; hard-coded here to avoid a second file read per page.
 const GUIDES_CRUMB = { ja: '練習ガイド一覧', en: 'Training Guides', fr: "Guides d'entraînement", de: 'Übungsleitfäden' };
 const HOME_CRUMB = { ja: 'ホーム', en: 'Home', fr: 'Accueil', de: 'Startseite' };
+const MANUAL_CRUMB = { ja: '設定マニュアル', en: 'Manual', fr: 'Manuel', de: 'Handbuch' };
 
 // Inject a BreadcrumbList JSON-LD (Home > Guides > <article>) into guide article
 // pages. Only article pages under guides/ (NOT the guides index itself, NOT
@@ -387,15 +392,21 @@ const HOME_CRUMB = { ja: 'ホーム', en: 'Home', fr: 'Accueil', de: 'Startseite
 // page-metadata.json automatically. Idempotent: keyed off the @type so a second
 // run replaces rather than duplicates. Returns html unchanged for non-targets.
 function injectBreadcrumbJsonLd(html, srcPath, lang) {
-    if (!srcPath.startsWith('guides/') || srcPath === 'guides/index.html') return html;
+    // Guides and manual article pages get a Home > Section > Leaf breadcrumb.
+    // Section-index pages (guides/index, manual/index) are excluded.
+    const isGuide = srcPath.startsWith('guides/') && srcPath !== 'guides/index.html';
+    const isManual = srcPath.startsWith('manual/') && srcPath !== 'manual/index.html';
+    if (!isGuide && !isManual) return html;
     if (html.includes('"BreadcrumbList"')) return html; // already present (defensive)
 
     const titleMatch = html.match(/<title>([^<]*)<\/title>/);
     if (!titleMatch) return html;
     const leaf = stripSiteSuffix(titleMatch[1]);
 
+    const sectionIndex = isManual ? 'manual/index.html' : 'guides/index.html';
+    const sectionName = isManual ? MANUAL_CRUMB[lang] : GUIDES_CRUMB[lang];
     const homeUrl = SITE_ORIGIN + srcPathToUrlPath('index.html', lang);
-    const guidesUrl = SITE_ORIGIN + srcPathToUrlPath('guides/index.html', lang);
+    const sectionUrl = SITE_ORIGIN + srcPathToUrlPath(sectionIndex, lang);
     const selfUrl = SITE_ORIGIN + srcPathToUrlPath(srcPath, lang);
 
     const breadcrumb = {
@@ -403,7 +414,7 @@ function injectBreadcrumbJsonLd(html, srcPath, lang) {
         '@type': 'BreadcrumbList',
         itemListElement: [
             { '@type': 'ListItem', position: 1, name: HOME_CRUMB[lang], item: homeUrl },
-            { '@type': 'ListItem', position: 2, name: GUIDES_CRUMB[lang], item: guidesUrl },
+            { '@type': 'ListItem', position: 2, name: sectionName, item: sectionUrl },
             { '@type': 'ListItem', position: 3, name: leaf, item: selfUrl },
         ],
     };
@@ -755,6 +766,24 @@ function generateRedirectStubs(allSources) {
 // Per-source processing
 // --------------------------------------------------------------------
 
+/**
+ * Expand `<!-- include: _partials/NAME.html -->` directives by inlining the
+ * raw contents of src/<directive path>. Runs BEFORE any per-language transform
+ * (span-stripping), so a partial's own four-lang spans are stripped to the
+ * target language exactly like inline page content. Missing includes fail
+ * loudly (throw with the path) rather than silently leaving the directive.
+ */
+function expandIncludes(html) {
+    const includeRe = /<!--\s*include:\s*([^\s][^>]*?\.html)\s*-->/g;
+    return html.replace(includeRe, (m, includePath) => {
+        const partialFsPath = path.join(SRC_DIR, includePath.trim());
+        if (!fs.existsSync(partialFsPath)) {
+            throw new Error(`include directive references missing partial: ${partialFsPath}`);
+        }
+        return fs.readFileSync(partialFsPath, 'utf8');
+    });
+}
+
 function processSource(srcRelPath) {
     const srcFsPath = path.join(SRC_DIR, srcRelPath);
     let raw = fs.readFileSync(srcFsPath, 'utf8');
@@ -766,6 +795,12 @@ function processSource(srcRelPath) {
         raw = jaUpdated;
         fs.writeFileSync(srcFsPath, raw, 'utf8');
     }
+
+    // Inline shared partials BEFORE any per-language transform runs (and after
+    // the source write-back above, so the directive stays in the source file),
+    // so a partial's four-lang spans get stripped to the target language like
+    // inline page content.
+    raw = expandIncludes(raw);
 
     // Generate all four language outputs.
     for (const lang of LANGS_ALL) {

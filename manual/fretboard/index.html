@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html lang="ja"
+      data-title-ja="指板トレーニング 設定マニュアル — 各設定の選び方 | ソルフェージュPRO"
+      data-title-en="Fretboard Training Settings Manual — How to Choose Each Option | Solfege PRO"
+      data-title-fr="Manuel des réglages de l'entraînement au manche — comment choisir chaque option | Solfege PRO"
+      data-title-de="Handbuch zu den Einstellungen des Griffbrett-Trainings — wie Sie jede Option wählen | Solfege PRO">
+<head>
+    <meta charset="UTF-8">
+    <meta name="robots" content="index, follow">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#1A1A1E">
+    <title>指板トレーニング 設定マニュアル — 各設定の選び方 | ソルフェージュPRO</title>
+    <meta name="description" content="指板トレーニングの各設定（トレーニングモード・出題する音・フレット範囲・対象弦・回答モード・ヒント・チューニング・利き手）を、何のための設定で、誰が、どう選ぶべきかまで丁寧に解説するリファレンスマニュアルです。">
+
+    <!-- Canonical -->
+    <link rel="canonical" href="https://solfegepro.com/manual/fretboard/">
+    <link rel="alternate" hreflang="ja" href="https://solfegepro.com/manual/fretboard/">
+    <link rel="alternate" hreflang="en" href="https://solfegepro.com/en/manual/fretboard/">
+    <link rel="alternate" hreflang="fr" href="https://solfegepro.com/fr/manual/fretboard/">
+    <link rel="alternate" hreflang="de" href="https://solfegepro.com/de/manual/fretboard/">
+    <link rel="alternate" hreflang="x-default" href="https://solfegepro.com/manual/fretboard/">
+<!-- OGP -->
+    <meta property="og:title" content="指板トレーニング 設定マニュアル — 各設定の選び方">
+    <meta property="og:description" content="指板トレーニングの各設定（トレーニングモード・出題する音・フレット範囲・対象弦・回答モード・ヒント・チューニング・利き手）を、何のための設定で、誰が、どう選ぶべきかまで丁寧に解説するリファレンスマニュアルです。">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://solfegepro.com/manual/fretboard/">
+    <meta property="og:site_name" content="ソルフェージュPRO">
+    <meta property="og:image" content="https://solfegepro.com/og-image.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Solfege PRO">
+    <meta property="og:locale" content="ja_JP">
+    <meta property="og:locale:alternate" content="en_US">
+    <meta property="og:locale:alternate" content="fr_FR">
+    <meta property="og:locale:alternate" content="de_DE">
+    <meta property="article:published_time" content="2026-06-05">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="指板トレーニング 設定マニュアル — 各設定の選び方">
+    <meta name="twitter:description" content="指板トレーニングの各設定（トレーニングモード・出題する音・フレット範囲・対象弦・回答モード・ヒント・チューニング・利き手）を、何のための設定で、誰が、どう選ぶべきかまで丁寧に解説するリファレンスマニュアルです。">
+    <meta name="twitter:image" content="https://solfegepro.com/og-image.png">
+
+    <!-- Favicon -->
+    <link rel="icon" href="/favicon.ico" sizes="any">
+    <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap"></noscript>
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="/style.css?v=17">
+    <link rel="stylesheet" href="/guides/article.css?v=11">
+
+    <style>
+        /* Manual option reference — responsive, no fixed px widths */
+        .manual-options {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr);
+            gap: var(--space-sm);
+            margin: var(--space-lg) 0;
+        }
+        .manual-option {
+            background: var(--surface);
+            border: 1px solid var(--surface-light);
+            border-radius: var(--radius-lg);
+            padding: var(--space-md);
+        }
+        .manual-option__name {
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: var(--space-xs);
+        }
+        .manual-option__desc {
+            font-size: 13px;
+            color: var(--text-secondary);
+        }
+        /* Bottom-line callout (conclusion first) */
+        .manual-lead {
+            font-size: 14px;
+            line-height: 1.75;
+            color: var(--text-primary);
+            border-left: 3px solid var(--primary);
+            background: rgba(212, 175, 55, 0.06);
+            padding: var(--space-sm) var(--space-md);
+            border-radius: 0 var(--radius-md) var(--radius-md) 0;
+            margin: var(--space-md) 0;
+        }
+        /* Per-setting evidence note — deliberately styled as an editorial
+           aside, NOT as a settings card (no surface fill, no gold label),
+           so it is never mistaken for an in-app option. */
+        .manual-rationale {
+            margin: var(--space-md) 0 var(--space-2xl);
+            padding: var(--space-sm) 0 var(--space-sm) var(--space-md);
+            border-left: 2px solid var(--surface-light);
+        }
+        .manual-rationale__label {
+            display: block;
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            color: var(--text-secondary);
+            margin-bottom: 4px;
+            opacity: 0.75;
+        }
+        .manual-rationale p {
+            font-size: 13px;
+            line-height: 1.75;
+            color: var(--text-secondary);
+            margin: 0;
+        }
+        .manual-rationale__ref {
+            font-size: 12px;
+            font-style: italic;
+            margin-top: var(--space-xs) !important;
+            opacity: 0.7;
+        }
+        /* Citation number linking to the reference list */
+        .manual-ref-num {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-style: normal;
+        }
+        .manual-ref-num:hover { color: var(--primary); }
+        /* Full reference list at page end */
+        .manual-refs {
+            margin: var(--space-2xl) 0 0;
+            padding-top: var(--space-lg);
+            border-top: 1px solid var(--surface-light);
+        }
+        .manual-refs__title {
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: var(--space-sm);
+        }
+        .manual-refs ol {
+            margin: 0;
+            padding-left: 1.25em;
+        }
+        .manual-refs li {
+            font-size: 12px;
+            line-height: 1.7;
+            color: var(--text-secondary);
+            margin-bottom: var(--space-xs);
+            scroll-margin-top: 84px;
+        }
+        .manual-refs li:target {
+            color: var(--text-primary);
+        }
+    </style>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"指板トレーニング 設定マニュアル — 各設定の選び方","description":"指板トレーニングの各設定を、何のための設定で、誰が、どう選ぶべきかまで解説するリファレンスマニュアルです。","author":{"@type":"Organization","name":"ソルフェージュPRO"},"publisher":{"@type":"Organization","name":"ソルフェージュPRO","logo":{"@type":"ImageObject","url":"https://solfegepro.com/AppIcon.png"}},"datePublished":"2026-06-05","mainEntityOfPage":{"@type":"WebPage","@id":"https://solfegepro.com/manual/fretboard/"}}</script>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"ホーム","item":"https://solfegepro.com/"},{"@type":"ListItem","position":2,"name":"設定マニュアル","item":"https://solfegepro.com/manual/"},{"@type":"ListItem","position":3,"name":"指板トレーニング 設定マニュアル — 各設定の選び方","item":"https://solfegepro.com/manual/fretboard/"}]}</script>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="nav__container">
+            <a href="/" class="nav__logo">
+                <img src="/AppIcon.png" alt="Solfege PRO" class="nav__logo-icon" width="32" height="32">
+                <span class="nav__logo-text">ソルフェージュPRO</span>
+            </a>
+            <ul class="nav__list">
+                <li><a href="/" class="nav__link">練習ガイド</a></li>
+                <li><a href="/guides/" class="nav__link">ガイド一覧</a></li>
+                <li><a href="/manual/" class="nav__link active">マニュアル</a></li>
+                            <li><a href="/start-here/" class="nav__link">どこから始める？</a></li>
+            </ul>
+            <div class="nav__settings">
+                <button class="settings-btn" id="lang-toggle" title="Toggle language">
+                    <span id="lang-text">EN</span>
+                </button>
+                <button class="hamburger-btn" id="hamburger-btn" aria-label="Menu" aria-expanded="false" aria-controls="drawer">
+                    <span class="hamburger-btn__line"></span>
+                    <span class="hamburger-btn__line"></span>
+                    <span class="hamburger-btn__line"></span>
+                </button>
+            </div>
+        </div>
+    </nav>
+        <!-- Mobile drawer (hidden on desktop) -->
+        <div class="drawer-overlay" id="drawer-overlay"></div>
+        <aside class="drawer" id="drawer" aria-label="Mobile menu" aria-hidden="true" inert>
+            <div class="drawer__header">
+                <span class="drawer__title">メニュー</span>
+                <button class="drawer__close" id="drawer-close" aria-label="Close menu">×</button>
+            </div>
+            <ul class="drawer__list">
+                    <li><a href="/" class="drawer__link">練習ガイド</a></li>
+                    <li><a href="/guides/" class="drawer__link">ガイド一覧</a></li>
+                    <li><a href="/manual/" class="drawer__link active">マニュアル</a></li>
+                    <li><a href="/start-here/" class="drawer__link">どこから始める？</a></li>
+            </ul>
+        </aside>
+
+
+    <!-- Article Header -->
+    <header class="page-header">
+        <div class="page-header__meta">
+            <span class="page-header__tag">マニュアル</span>
+            <span>指板トレーニング</span>
+        </div>
+        <h1 class="page-header__title">
+            指板トレーニング 設定マニュアル<br>各設定の意味と選び方
+            
+            
+            
+        </h1>
+        <p class="page-header__subtitle">
+            設定画面のどの項目を、どんなときに、どう選べばよいか。指板トレーニングの各設定を 1 つずつ解説します。設定画面の「?」から飛んできた方は、目的の項目までスクロールしてください。
+            
+            
+            
+        </p>
+    </header>
+
+    <!-- Top-of-article CTA -->
+    <aside class="article-top-cta" aria-label="App promotion">
+        <div class="article-top-cta__body">
+            <p class="article-top-cta__title">
+                ソルフェージュPRO でこの練習を試す
+                
+                
+                
+            </p>
+            <p class="article-top-cta__sub">
+                月額 980 円 · 1 週間無料トライアル
+                
+                
+                
+            </p>
+        </div>
+        <a href="https://apps.apple.com/jp/app/id6756626617" class="article-top-cta__button" data-cta-position="article_top">
+            App Store →
+            
+            
+            
+        </a>
+    </aside>
+
+    <!-- Article Body -->
+    <main class="article-body">
+
+        <!-- Intro -->
+        <p>
+            指板トレーニングは、ギターのどのフレットがどの音名かを、考えずに分かるレベルまで体に覚え込ませる練習です。スケールやコードを「形」だけで覚えていても応用が利きませんが、指板上の音名が瞬時に出てくると、アドリブ・移調・耳コピが一気に楽になります。
+            
+            
+            
+        </p>
+        <p>
+            このページは設定の選び方をまとめたマニュアルです。各設定は音楽教育で確立された学習法にもとづいて設計しています。判断が要る設定について、<strong>おすすめの選び方・何のための設定か・鍛えられる力とその根拠</strong>を簡潔に示します。設定画面の「?」から来た方は、目的の項目までスクロールしてください。
+            
+            
+            
+        </p>
+
+        <!-- #mode -->
+        <h2 id="mode">トレーニングモード（出題の向き）</h2>
+
+        <p class="manual-lead">
+            <strong>まずは「音名 → 位置」から。</strong> 安定したら「位置 → 音名」で逆向きを固め、1 音の広がりを身につけたくなったら「弦移動」へ。
+            
+            
+            
+        </p>
+
+        <p>
+            「何を見せて、何を答えさせるか」という出題の向きを決める設定です。3 つのモードがあり、同じ指板上の音名を扱っても、見る向きが違えば別の力が付きます。
+            
+            
+            
+        </p>
+
+        <div class="manual-options">
+            <div class="manual-option">
+                <div class="manual-option__name">音名 → 位置（noteToFret）</div>
+                <div class="manual-option__desc">提示された音名を指板上で探してタップする、最も基本となる向き。スケールやコードを弾くときに必要な「音名→押さえる場所」の回路を鍛えます。まずはここから。</div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name">位置 → 音名（fretToNote）</div>
+                <div class="manual-option__desc">指板上の 1 点を示され、その音名を選択肢から答える逆引き。いま押さえている場所が何の音かを言語化する力を鍛え、暗記を両面から強くします。</div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name">弦移動（stringMovement）</div>
+                <div class="manual-option__desc">同じ音名を弦をまたいで次々に探す応用モード（例：「C」を 6 弦・5 弦・4 弦…と各弦で）。1 音が指板全体にどう散らばるかを横断的に把握します。フレット範囲は 0–12 に固定。</div>
+            </div>
+        </div>
+
+        <div class="manual-rationale">
+            <span class="manual-rationale__label">学習科学の裏づけ</span>
+            <p>
+                3 つの向きは、楽器奏者に求められる「音名と指板上の位置を双方向に結びつける」力を別々の角度から鍛えます。同じ素材を呼び出す向きを変えて練習することで、形だけの暗記ではなく実際の演奏で使える知識になります。これは器楽・聴音教育で確立された指板習熟の考え方に沿った設計です。
+                
+                
+                
+            </p>
+            <p class="manual-rationale__ref">参考: Karpinski (2000) <a class="manual-ref-num" href="#ref-1">[1]</a></p>
+        </div>
+
+        <!-- #target-notes -->
+        <h2 id="target-notes">出題する音（出題範囲の音名）</h2>
+
+        <p class="manual-lead">
+            <strong>まずは「幹音のみ」から。</strong> 7 音を指板のどこでも 80% 以上で言えるようになってから「シャープを含む」（または「全ての音」）へ。フラット表記が必要な人だけ「フラットを含む」を。
+            
+            
+            
+        </p>
+
+        <p>
+            どの音名を出題対象にするかを決める設定です。幹音（=シャープもフラットも付かない自然音 C D E F G A B）だけにするか、シャープ・フラットを含めるかを選びます。範囲を絞るほど覚える対象は少なく、広げるほど指板の全 12 音をカバーします。
+            
+            
+            
+        </p>
+
+        <div class="manual-options">
+            <div class="manual-option">
+                <div class="manual-option__name">幹音のみ</div>
+                <div class="manual-option__desc">C, D, E, F, G, A, B の 7 音だけを出題します。指板暗記の最初の一歩。まずこの 7 音を指板全体で確実に言えるようにするのが、上達の近道です。</div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name">シャープを含む</div>
+                <div class="manual-option__desc">12 音全てを、シャープ表記（C#, D#…）で出題します。幹音が固まったら、間にある半音を加えて指板を完全にカバーします。</div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name">フラットを含む</div>
+                <div class="manual-option__desc">12 音全てを、フラット表記（Db, Eb…）で出題します。同じ音でも C# と Db のように書き方が変わる「異名同音」に慣れたいときに。フラット系のキーで演奏する人向け。</div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name">全ての音</div>
+                <div class="manual-option__desc">12 音全てを出題します。シャープ・フラットの両表記を認識する、最も範囲の広い設定。指板全体を本番レベルで仕上げる段階です。</div>
+            </div>
+        </div>
+
+        <div class="manual-rationale">
+            <span class="manual-rationale__label">学習科学の裏づけ</span>
+            <p>
+                一度に覚える音名が少ないほど、処理する情報量が減り、各音の位置を確実に身につけられます。狭い範囲を固めてから広げるほうが、いきなり 12 音すべてに挑むより速く定着します。新しい技能の初期は処理の負荷を抑えるほど学習が進む、という認知負荷の考え方にもとづく段階設計です。
+                
+                
+                
+            </p>
+            <p class="manual-rationale__ref">参考: Sweller (1988) <a class="manual-ref-num" href="#ref-2">[2]</a></p>
+        </div>
+
+        <!-- #fret-range -->
+        <h2 id="fret-range">フレット範囲</h2>
+
+        <p class="manual-lead">
+            <strong>まず「0-5」で土台を作り、安定したら「0-12（標準）」へ。</strong> 12 フレット以降は同じ並びの繰り返しなので、まずはここを目標にすると効率的です。
+            
+            
+            
+        </p>
+
+        <p>
+            指板上のどの区間から出題するかを決める設定で、出題の難易度を実質的に左右する効きの大きい項目です。狭く絞れば覚える場所が減り、広げれば指板全体を扱います。なお 弦移動 モードでは 0-12 に固定されます。
+            
+            
+            
+        </p>
+
+        <div class="manual-options">
+            <div class="manual-option">
+                <div class="manual-option__name">0-5（初心者向け）</div>
+                <div class="manual-option__desc">ローポジション（0〜5 フレット）だけ。開放弦に近く、コードを覚え始めた人が最初に触る領域です。範囲が狭いので最初の暗記に最適。</div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name">5-12（中級者向け）</div>
+                <div class="manual-option__desc">ミドル〜ハイポジション（5〜12 フレット）。ローポジションが固まった人が、苦手になりがちな中盤を集中的に埋める区間です。</div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name">0-12（標準）</div>
+                <div class="manual-option__desc">0〜12 フレット。12 フレットでオクターブが一巡するため、ここまで覚えれば残りは繰り返しです。指板暗記の標準的なゴール範囲。</div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name">0-24（全フレット）</div>
+                <div class="manual-option__desc">指板全域（0〜24 フレット）。ハイフレットまで使うソロやリードを弾く人向け。最上位の仕上げ段階です。</div>
+            </div>
+        </div>
+
+        <div class="manual-rationale">
+            <span class="manual-rationale__label">学習科学の裏づけ</span>
+            <p>
+                出題範囲を絞ると、一度に覚える位置の数が減り、その区間を確実に身につけられます。狭い区間を固めてから広げるほうが、最初から指板全域に挑むより速く定着します。新しい技能の初期は処理の負荷を抑えるほど学習が進む、という認知負荷の考え方にもとづく段階設計です。
+                
+                
+                
+            </p>
+            <p class="manual-rationale__ref">参考: Sweller (1988) <a class="manual-ref-num" href="#ref-2">[2]</a></p>
+        </div>
+
+        <!-- #strings -->
+        <h2 id="strings">対象弦（フォーカス設定）</h2>
+
+        <p class="manual-lead">
+            <strong>基本は「全ての弦」のままで OK。</strong> 特定の弦だけ正答率が低いと気づいたら、その弦に一時的に絞って集中し、また全弦に戻します。
+            
+            
+            
+        </p>
+
+        <p>
+            6 本のうちどの弦から出題するかを絞る設定です（音名 → 位置 モードのフォーカス設定内）。「全ての弦」のほか、高音弦・低音弦の 3 本ずつ、あるいは 1 弦ずつに絞り込めます。同じフォーカス設定にある 苦手な音のみ を使うと、正答率 70% 未満の音だけが自動的に出題されます（成績データがたまってから有効）。
+            
+            
+            
+        </p>
+
+        <div class="manual-options">
+            <div class="manual-option">
+                <div class="manual-option__name">全ての弦</div>
+                <div class="manual-option__desc">6 弦すべてから出題します。本番に近い総合練習。特に絞る理由がなければこのまま。</div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name">高音弦 (1-3弦) / 低音弦 (4-6弦)</div>
+                <div class="manual-option__desc">3 本ずつのグループに絞ります。低音弦（E A D）はコードのルートを探すのに、高音弦（G B E）はメロディやソロの位置取りに直結します。用途に合わせて半分ずつ固める使い方が便利。</div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name">1弦〜6弦（個別）</div>
+                <div class="manual-option__desc">特定の 1 弦だけに絞ります。「6 弦の音名がいつもあやふや」のような、はっきりした苦手を 1 本ずつ潰すための最も狭い設定です。</div>
+            </div>
+        </div>
+
+        <div class="manual-rationale">
+            <span class="manual-rationale__label">学習科学の裏づけ</span>
+            <p>
+                対象弦を絞れるのは、一度に扱う情報量を減らして苦手な部分を確実に埋めるためです。全弦をまとめて練習すると弱い 1 弦は数の中に埋もれがちですが、その弦だけに絞ると処理の負荷が下がり、集中して定着させられます。初期や苦手克服では負荷を抑えるほど学習が進む、という認知負荷の考え方にもとづきます。
+                
+                
+                
+            </p>
+            <p class="manual-rationale__ref">参考: Sweller (1988) <a class="manual-ref-num" href="#ref-2">[2]</a></p>
+        </div>
+
+        <!-- #answer-mode -->
+        <h2 id="answer-mode">回答モード</h2>
+
+        <p class="manual-lead">
+            <strong>まずは「1箇所タップ」から。</strong> 各音の位置がだいたい頭に入ってきたら「全箇所タップ」に切り替え、指板全体での散らばりを完成させます。
+            
+            
+            
+        </p>
+
+        <p>
+            音名を指板で答えるとき（音名 → 位置 モード）に「どこまでタップすれば正解か」を決める設定です。1 つの音名は指板上の複数の場所に存在するため、全部を答えさせるか 1 箇所で良しとするかで難易度が変わります。
+            
+            
+            
+        </p>
+
+        <div class="manual-options">
+            <div class="manual-option">
+                <div class="manual-option__name">1箇所タップ</div>
+                <div class="manual-option__desc">正解の場所を 1 つ見つければ正解です。スピード重視。1 つでも見つかれば次へ進めるので、テンポよく数をこなして反応速度を鍛えたいときに向きます。</div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name">全箇所タップ</div>
+                <div class="manual-option__desc">その範囲にある正解の場所を、すべて見つけてタップします。1 つの音名が指板のどこに散らばっているかを完全に把握する、網羅性重視の設定。難易度は上がります。</div>
+            </div>
+        </div>
+
+        <div class="manual-rationale">
+            <span class="manual-rationale__label">学習科学の裏づけ</span>
+            <p>
+                2 つの設定は、楽器奏者に必要な「1 つの音名が指板全体のどこにあるか」という知識を段階的に仕上げるためにあります。最初は 1 箇所で即答する反応を作り、慣れたら全箇所を答えさせて指板全域の位置関係を網羅します。これは器楽・聴音教育で確立された指板習熟の進め方に沿った設計です。
+                
+                
+                
+            </p>
+            <p class="manual-rationale__ref">参考: Karpinski (2000) <a class="manual-ref-num" href="#ref-1">[1]</a></p>
+        </div>
+
+        <!-- #hint-level -->
+        <h2 id="hint-level">ヒント（アシスト設定）</h2>
+
+        <p class="manual-lead">
+            <strong>まったくの初学者は「オクターブ表示」で位置関係をつかみ、慣れたら「ヒントなし」へ。</strong> 最終目標は ヒントなし で安定して答えられることです。
+            
+            
+            
+        </p>
+
+        <p>
+            回答中にどれだけ補助情報を表示するかを決める設定です。補助が多いほど答えやすくなりますが、その分「自力で思い出す」負荷が減るため、慣れたら減らしていくのが基本です。
+            
+            
+            
+        </p>
+
+        <div class="manual-options">
+            <div class="manual-option">
+                <div class="manual-option__name">ヒントなし</div>
+                <div class="manual-option__desc">補助は一切なし。完全に自力で答えます。記憶を「自分で引き出す」負荷が最大になり、定着が最も進む状態です。最終的にはここを目指します。</div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name">オクターブ表示</div>
+                <div class="manual-option__desc">同じ音名のオクターブ位置をハイライトします。1 つ見つかれば他も推測しやすくなるので、まだ位置関係がつかめていない学習初期の補助に。</div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name">残り数表示</div>
+                <div class="manual-option__desc">あと何箇所の正解が残っているかを表示します。全箇所タップと組み合わせると、「まだ取りこぼしがある」と分かるので探し漏れを防げます。</div>
+            </div>
+        </div>
+
+        <div class="manual-rationale">
+            <span class="manual-rationale__label">学習科学の裏づけ</span>
+            <p>
+                ヒントは、初学者がまだ覚えきっていない段階で処理の負荷を下げるための足場（スキャフォールド）です。オクターブ表示などの補助が手がかりを与えて負荷を抑え、位置関係をつかみやすくします。慣れて余裕が出たら補助を外し、自力で答える本来の負荷に戻すのが効果的です。足場で負荷を抑えると初期の学習が進む、という認知負荷の考え方にもとづきます。
+                
+                
+                
+            </p>
+            <p class="manual-rationale__ref">参考: Sweller (1988) <a class="manual-ref-num" href="#ref-2">[2]</a></p>
+        </div>
+
+        <!-- #tuning -->
+        <h2 id="tuning">チューニング</h2>
+
+        <p class="manual-lead">
+            <strong>基本は「標準（EADGBE）」のままで OK。</strong> 変則チューニングは、実際にそのチューニングで弾く必要が出てきてから取り組めば十分です。
+            
+            
+            
+        </p>
+
+        <p>
+            各弦の開放弦の音を何にするかを決める設定です。チューニングが変わると同じフレット位置でも鳴る音名が変わるため、指板上の音名マップそのものが変わります。標準（EADGBE）のほか、6 弦だけ 1 音下げたドロップ D（DADGBE）や、開放弦だけで和音が鳴るオープン G・オープン D・DADGAD などに対応します。普段と違うチューニングで弾く曲があるなら、それに合わせて指板を覚え直すために使います。
+            
+            
+            
+        </p>
+
+        <!-- #handedness -->
+        <h2 id="handedness">利き手</h2>
+
+        <p class="manual-lead">
+            <strong>自分が弾いているギターと同じ向きを選んでください。</strong> 右利き用ギターなら 右利き、左利き用ギターなら 左利き。一度選べば十分です。
+            
+            
+            
+        </p>
+
+        <p>
+            画面に表示する指板の向きを決める設定です。難易度や練習内容を変えるものではなく、表示を自分の楽器に合わせるためのものです。手元のギターと画面の向きが一致していないと、位置を答えるとき頭の中で左右を反転させる余計な手間がかかります。
+            
+            
+            
+        </p>
+
+        <div class="manual-options">
+            <div class="manual-option">
+                <div class="manual-option__name">右利き</div>
+                <div class="manual-option__desc">標準表示です。右利き用ギター（左手で押さえる）の見え方に合わせた向き。ほとんどの人はこちらで構いません。</div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name">左利き</div>
+                <div class="manual-option__desc">指板を左右反転して表示します。左利き用ギター（右手で押さえる）を弾く人が、手元と同じ見え方で練習できます。</div>
+            </div>
+        </div>
+
+        <!-- References -->
+        <section class="manual-refs">
+            <div class="manual-refs__title">参考文献</div>
+            <ol>
+                <li id="ref-1">Karpinski, G. S. (2000). <em>Aural Skills Acquisition: The Development of Listening, Reading, and Performing Skills in College-Level Musicians.</em> Oxford University Press.</li>
+                <li id="ref-2">Sweller, J. (1988). Cognitive load during problem solving: Effects on learning. <em>Cognitive Science, 12</em>(2), 257–285.</li>
+            </ol>
+        </section>
+
+    </main>
+
+    <!-- Final CTA -->
+    <section class="article-cta">
+        <h2 class="article-cta__title">設定を決めたら、さっそく試してみよう</h2>
+        <p class="article-cta__text">
+            各設定の意味がわかれば、あとは実際に手を動かすだけです。<br>迷ったら本ページの「迷ったら…」をなぞって始めてみてください。<br>ソルフェージュPRO の 指板トレーニング で、自分に合った設定を見つけましょう。
+            
+            
+            
+        </p>
+        <a href="https://apps.apple.com/jp/app/id6756626617" class="app-store-link" aria-label="Download on the App Store">
+            <img class="app-store-link__img" width="109" height="40" src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/ja-jp" alt="App Storeで入手">
+            
+            
+            
+        </a>
+    </section>
+
+    <!-- Related Content -->
+    <div class="article-related">
+        <div class="article-related__title">関連コンテンツ</div>
+        <a href="/guides/fretboard-training/" class="article-related__link" style="margin-bottom: var(--space-md);">
+            <div class="article-related__link-title">指板トレーニングとは何か — ギターの音名を暗記する</div>
+            <div class="article-related__link-desc">設定の前に、そもそも指板トレーニングとは何かを知りたい方へ。なぜ指板上の音名を覚えると上達するのか、段階的な練習法を解説したガイド。</div>
+        </a>
+        <a href="/" class="article-related__link">
+            <div class="article-related__link-title">ソルフェージュPRO 練習ガイド</div>
+            <div class="article-related__link-desc">ギター・ベース・ドラム・ピアノ・ボーカル向けの課題別練習メニュー</div>
+        </a>
+    </div>
+
+    <!-- Article Note -->
+    <aside class="article-endnote">
+        <p class="article-endnote__text">
+            本ページはアプリ内の設定項目の解説を目的としたリファレンスです。記載した推奨の進め方は、音楽教育で広く用いられる練習の方法論をもとにした一般的な目安であり、最適な設定は個人の経験や目的によって異なります。引用した研究は学習一般の知見であり、本アプリでの効果を保証するものではありません。
+            
+            
+            
+        </p>
+    </aside>
+
+    <!-- Footer -->
+    <footer class="article-footer">
+        <p class="article-footer__text">
+            &copy; 2026 ソルフェージュPRO &mdash;
+            <a href="https://apps.apple.com/jp/app/id6756626617" class="article-footer__link">App Store</a>
+        </p>
+    </footer>
+    <script src="/bootstrap.js?v=3" defer></script>
+</body>
+</html>

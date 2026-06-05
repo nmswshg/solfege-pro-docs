@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html lang="ja"
+      data-title-ja="コード認識 設定マニュアル — 各設定の選び方 | ソルフェージュPRO"
+      data-title-en="Chord Recognition Settings Manual — How to Choose Each Option | Solfege PRO"
+      data-title-fr="Manuel des réglages de reconnaissance d'accords — Comment choisir chaque option | Solfege PRO"
+      data-title-de="Handbuch der Akkorderkennung-Einstellungen — So wählen Sie jede Option | Solfege PRO">
+<head>
+    <meta charset="UTF-8">
+    <meta name="robots" content="index, follow">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#1A1A1E">
+    <title>コード認識 設定マニュアル — 各設定の選び方 | ソルフェージュPRO</title>
+    <meta name="description" content="コード認識トレーニングの各設定（トレーニングモード・難易度・再生モード・問題タイプ・ルート音の出題・転回形・オクターブ）を、何のための設定で、誰が、どう選ぶべきかまで丁寧に解説するリファレンスマニュアルです。">
+
+    <!-- Canonical -->
+    <link rel="canonical" href="https://solfegepro.com/manual/chord/">
+    <link rel="alternate" hreflang="ja" href="https://solfegepro.com/manual/chord/">
+    <link rel="alternate" hreflang="en" href="https://solfegepro.com/en/manual/chord/">
+    <link rel="alternate" hreflang="fr" href="https://solfegepro.com/fr/manual/chord/">
+    <link rel="alternate" hreflang="de" href="https://solfegepro.com/de/manual/chord/">
+    <link rel="alternate" hreflang="x-default" href="https://solfegepro.com/manual/chord/">
+
+    <!-- OGP -->
+    <meta property="og:title" content="コード認識 設定マニュアル — 各設定の選び方">
+    <meta property="og:description" content="コード認識トレーニングの各設定（トレーニングモード・難易度・再生モード・問題タイプ・ルート音の出題・転回形・オクターブ）を、何のための設定で、誰が、どう選ぶべきかまで丁寧に解説するリファレンスマニュアルです。">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://solfegepro.com/manual/chord/">
+    <meta property="og:site_name" content="ソルフェージュPRO">
+    <meta property="og:image" content="https://solfegepro.com/og-image.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Solfege PRO">
+    <meta property="og:locale" content="ja_JP">
+    <meta property="og:locale:alternate" content="en_US">
+    <meta property="og:locale:alternate" content="fr_FR">
+    <meta property="og:locale:alternate" content="de_DE">
+    <meta property="article:published_time" content="2026-06-05">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="コード認識 設定マニュアル — 各設定の選び方">
+    <meta name="twitter:description" content="コード認識トレーニングの各設定（トレーニングモード・難易度・再生モード・問題タイプ・ルート音の出題・転回形・オクターブ）を、何のための設定で、誰が、どう選ぶべきかまで丁寧に解説するリファレンスマニュアルです。">
+    <meta name="twitter:image" content="https://solfegepro.com/og-image.png">
+
+    <!-- Favicon -->
+    <link rel="icon" href="/favicon.ico" sizes="any">
+    <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap"></noscript>
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="/style.css?v=17">
+    <link rel="stylesheet" href="/guides/article.css?v=11">
+
+    <style>
+        /* Manual option reference — responsive, no fixed px widths */
+        .manual-options {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr);
+            gap: var(--space-sm);
+            margin: var(--space-lg) 0;
+        }
+        .manual-option {
+            background: var(--surface);
+            border: 1px solid var(--surface-light);
+            border-radius: var(--radius-lg);
+            padding: var(--space-md);
+        }
+        .manual-option__name {
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: var(--space-xs);
+        }
+        .manual-option__desc {
+            font-size: 13px;
+            color: var(--text-secondary);
+        }
+        /* Bottom-line callout (conclusion first) */
+        .manual-lead {
+            font-size: 14px;
+            line-height: 1.75;
+            color: var(--text-primary);
+            border-left: 3px solid var(--primary);
+            background: rgba(212, 175, 55, 0.06);
+            padding: var(--space-sm) var(--space-md);
+            border-radius: 0 var(--radius-md) var(--radius-md) 0;
+            margin: var(--space-md) 0;
+        }
+        /* Per-setting evidence note — deliberately styled as an editorial
+           aside, NOT as a settings card (no surface fill, no gold label),
+           so it is never mistaken for an in-app option. */
+        .manual-rationale {
+            margin: var(--space-md) 0 var(--space-2xl);
+            padding: var(--space-sm) 0 var(--space-sm) var(--space-md);
+            border-left: 2px solid var(--surface-light);
+        }
+        .manual-rationale__label {
+            display: block;
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            color: var(--text-secondary);
+            margin-bottom: 4px;
+            opacity: 0.75;
+        }
+        .manual-rationale p {
+            font-size: 13px;
+            line-height: 1.75;
+            color: var(--text-secondary);
+            margin: 0;
+        }
+        .manual-rationale__ref {
+            font-size: 12px;
+            font-style: italic;
+            margin-top: var(--space-xs) !important;
+            opacity: 0.7;
+        }
+        /* Citation number linking to the reference list */
+        .manual-ref-num {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-style: normal;
+        }
+        .manual-ref-num:hover { color: var(--primary); }
+        /* Full reference list at page end */
+        .manual-refs {
+            margin: var(--space-2xl) 0 0;
+            padding-top: var(--space-lg);
+            border-top: 1px solid var(--surface-light);
+        }
+        .manual-refs__title {
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: var(--space-sm);
+        }
+        .manual-refs ol {
+            margin: 0;
+            padding-left: 1.25em;
+        }
+        .manual-refs li {
+            font-size: 12px;
+            line-height: 1.7;
+            color: var(--text-secondary);
+            margin-bottom: var(--space-xs);
+            scroll-margin-top: 84px;
+        }
+        .manual-refs li:target {
+            color: var(--text-primary);
+        }
+    </style>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"コード認識 設定マニュアル — 各設定の選び方","description":"コード認識トレーニングの各設定を、何のための設定で、誰が、どう選ぶべきかまで解説するリファレンスマニュアルです。","author":{"@type":"Organization","name":"ソルフェージュPRO"},"publisher":{"@type":"Organization","name":"ソルフェージュPRO","logo":{"@type":"ImageObject","url":"https://solfegepro.com/AppIcon.png"}},"datePublished":"2026-06-05","mainEntityOfPage":{"@type":"WebPage","@id":"https://solfegepro.com/manual/chord/"}}</script>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="nav__container">
+            <a href="/" class="nav__logo">
+                <img src="/AppIcon.png" alt="Solfege PRO" class="nav__logo-icon" width="32" height="32">
+                <span class="nav__logo-text"><span lang="ja">ソルフェージュPRO</span><span lang="en">Solfege PRO</span><span lang="fr">Solfege PRO</span><span lang="de">Solfege PRO</span></span>
+            </a>
+            <ul class="nav__list">
+                <li><a href="/" class="nav__link"><span lang="ja">練習ガイド</span><span lang="en">Practice Guide</span><span lang="fr">Guide d'entraînement</span><span lang="de">Übungsleitfaden</span></a></li>
+                <li><a href="/guides/" class="nav__link"><span lang="ja">ガイド一覧</span><span lang="en">Guides</span><span lang="fr">Guides</span><span lang="de">Leitfäden</span></a></li>
+                <li><a href="/manual/" class="nav__link active"><span lang="ja">マニュアル</span><span lang="en">Manual</span><span lang="fr">Manuel</span><span lang="de">Handbuch</span></a></li>
+                            <li><a href="/start-here/" class="nav__link"><span lang="ja">どこから始める？</span><span lang="en">Where to Start?</span><span lang="fr">Par où commencer ?</span><span lang="de">Wo anfangen?</span></a></li>
+            </ul>
+            <div class="nav__settings">
+                <button class="settings-btn" id="lang-toggle" title="Toggle language">
+                    <span id="lang-text">EN</span>
+                </button>
+                <button class="hamburger-btn" id="hamburger-btn" aria-label="Menu" aria-expanded="false" aria-controls="drawer">
+                    <span class="hamburger-btn__line"></span>
+                    <span class="hamburger-btn__line"></span>
+                    <span class="hamburger-btn__line"></span>
+                </button>
+            </div>
+        </div>
+    </nav>
+        <!-- Mobile drawer (hidden on desktop) -->
+        <div class="drawer-overlay" id="drawer-overlay"></div>
+        <aside class="drawer" id="drawer" aria-label="Mobile menu" aria-hidden="true" inert>
+            <div class="drawer__header">
+                <span class="drawer__title"><span lang="ja">メニュー</span><span lang="en">Menu</span><span lang="fr">Menu</span><span lang="de">Menü</span></span>
+                <button class="drawer__close" id="drawer-close" aria-label="Close menu">×</button>
+            </div>
+            <ul class="drawer__list">
+                    <li><a href="/" class="drawer__link"><span lang="ja">練習ガイド</span><span lang="en">Practice Guide</span><span lang="fr">Guide d'entraînement</span><span lang="de">Übungsleitfaden</span></a></li>
+                    <li><a href="/guides/" class="drawer__link"><span lang="ja">ガイド一覧</span><span lang="en">Guides</span><span lang="fr">Guides</span><span lang="de">Leitfäden</span></a></li>
+                    <li><a href="/manual/" class="drawer__link active"><span lang="ja">マニュアル</span><span lang="en">Manual</span><span lang="fr">Manuel</span><span lang="de">Handbuch</span></a></li>
+                    <li><a href="/start-here/" class="drawer__link"><span lang="ja">どこから始める？</span><span lang="en">Where to Start?</span><span lang="fr">Par où commencer ?</span><span lang="de">Wo anfangen?</span></a></li>
+            </ul>
+        </aside>
+
+
+    <!-- Article Header -->
+    <header class="page-header">
+        <div class="page-header__meta">
+            <span class="page-header__tag"><span lang="ja">マニュアル</span><span lang="en">Manual</span><span lang="fr">Manuel</span><span lang="de">Handbuch</span></span>
+            <span><span lang="ja">コード認識</span><span lang="en">Chord Recognition</span><span lang="fr">Reconnaissance d'accords</span><span lang="de">Akkorderkennung</span></span>
+        </div>
+        <h1 class="page-header__title">
+            <span lang="ja">コード認識 設定マニュアル<br>各設定の意味と選び方</span>
+            <span lang="en">Chord Recognition Settings Manual<br>What Each Option Means and How to Choose</span>
+            <span lang="fr">Manuel des réglages de reconnaissance d'accords<br>Le sens de chaque option et comment la choisir</span>
+            <span lang="de">Handbuch der Akkorderkennung-Einstellungen<br>Was jede Option bedeutet und wie man sie wählt</span>
+        </h1>
+        <p class="page-header__subtitle">
+            <span lang="ja">設定画面のどの項目を、どんなときに、どう選べばよいか。コード認識トレーニングの各設定を 1 つずつ解説します。設定画面の「?」から飛んできた方は、目的の項目までスクロールしてください。</span>
+            <span lang="en">Which option to pick, when, and why. This page walks through each setting in chord recognition training, one at a time. If you arrived from a "?" in the settings screen, scroll to the option you need.</span>
+            <span lang="fr">Quelle option choisir, quand et pourquoi. Cette page passe en revue chaque réglage de l'entraînement à la reconnaissance d'accords, un par un. Si vous arrivez depuis un « ? » de l'écran des réglages, faites défiler jusqu'à l'option recherchée.</span>
+            <span lang="de">Welche Option du wann und warum wählst. Diese Seite geht jede Einstellung des Akkorderkennung-Trainings einzeln durch. Wenn du von einem „?" im Einstellungsbildschirm hierherkommst, scrolle zur gewünschten Option.</span>
+        </p>
+    </header>
+
+    <!-- Top-of-article CTA -->
+    <aside class="article-top-cta" aria-label="App promotion">
+        <div class="article-top-cta__body">
+            <p class="article-top-cta__title">
+                <span lang="ja">ソルフェージュPRO でこの練習を試す</span>
+                <span lang="en">Try this in Solfege PRO</span>
+                <span lang="fr">Essayez cet exercice dans Solfege PRO</span>
+                <span lang="de">Probieren Sie diese Übung in Solfege PRO</span>
+            </p>
+            <p class="article-top-cta__sub">
+                <span lang="ja">月額 980 円 · 1 週間無料トライアル</span>
+                <span lang="en">¥980/month · 1-week free trial</span>
+                <span lang="fr">980 ¥/mois · essai gratuit d'une semaine</span>
+                <span lang="de">980 ¥/Monat · 1 Woche kostenlos testen</span>
+            </p>
+        </div>
+        <a href="https://apps.apple.com/jp/app/id6756626617" class="article-top-cta__button" data-cta-position="article_top">
+            <span lang="ja">App Store →</span>
+            <span lang="en">App Store →</span>
+            <span lang="fr">App Store →</span>
+            <span lang="de">App Store →</span>
+        </a>
+    </aside>
+
+    <!-- Article Body -->
+    <main class="article-body">
+
+        <!-- Intro -->
+        <p>
+            <span lang="ja">コード認識トレーニングは、同時に鳴る複数の音を聴いて、そのコードの種類（クオリティ = コードの性格。Major / Minor / 7th など）を耳だけで判別する練習です。コードの聴き取りはハーモニーを理解する土台で、耳コピや作曲、アンサンブルの基礎になります。</span>
+            <span lang="en">Chord recognition training is practice at hearing several notes sounded at once and identifying the chord's quality (the chord's character — Major / Minor / 7th, and so on) by ear alone. Hearing chords is the foundation for understanding harmony, and the basis of ear-copying, composing, and ensemble playing.</span>
+            <span lang="fr">L'entraînement à la reconnaissance d'accords consiste à écouter plusieurs notes jouées simultanément et à identifier la qualité de l'accord (le caractère de l'accord — majeur / mineur / septième, etc.) à l'oreille seule. Entendre les accords est le socle de la compréhension de l'harmonie, et la base du relevé à l'oreille, de la composition et du jeu en groupe.</span>
+            <span lang="de">Beim Akkorderkennung-Training übst du, gleichzeitig erklingende Töne zu hören und die Qualität des Akkords (den Charakter des Akkords — Dur / Moll / Septime usw.) allein mit dem Ohr zu bestimmen. Akkorde zu hören ist die Grundlage für das Verständnis der Harmonie und die Basis fürs Heraushören, Komponieren und Zusammenspiel.</span>
+        </p>
+        <p>
+            <span lang="ja">このページは設定の選び方をまとめたマニュアルです。各設定は音楽教育で確立された学習法にもとづいて設計しています。判断が要る設定について、<strong>おすすめの選び方・何のための設定か・鍛えられる力とその根拠</strong>を簡潔に示します。設定画面の「?」から来た方は、目的の項目までスクロールしてください。</span>
+            <span lang="en">This page is a manual for choosing the settings. Each setting is designed around established methods from music education. For each setting that calls for a decision, we give <strong>the recommended choice, what it is for, and what it trains — with the evidence behind it</strong>. If you arrived from a "?" in the settings screen, scroll to the option you need.</span>
+            <span lang="fr">Cette page est un manuel pour choisir les réglages. Chaque réglage s'appuie sur des méthodes éprouvées de la pédagogie musicale. Pour chaque réglage qui demande une décision, nous indiquons <strong>le choix recommandé, à quoi il sert et ce qu'il développe — avec les fondements qui l'appuient</strong>. Si vous arrivez depuis un « ? » de l'écran des réglages, faites défiler jusqu'à l'option recherchée.</span>
+            <span lang="de">Diese Seite ist ein Handbuch zur Wahl der Einstellungen. Jede Einstellung beruht auf bewährten Methoden der Musikpädagogik. Für jede Einstellung, die eine Entscheidung erfordert, nennen wir <strong>die empfohlene Wahl, wofür sie dient und was sie trainiert — mit der Evidenz dahinter</strong>. Wenn du von einem „?" im Einstellungsbildschirm hierherkommst, scrolle zur gewünschten Option.</span>
+        </p>
+
+        <!-- #training-mode -->
+        <h2 id="training-mode"><span lang="ja">トレーニングモード</span><span lang="en">Training Mode</span><span lang="fr">Mode d'entraînement</span><span lang="de">Trainingsmodus</span></h2>
+
+        <p class="manual-lead">
+            <span lang="ja"><strong>まずは「通常」で十分。</strong> 特定のコードを狙うときだけ「カスタム」、成績がたまったら「忘れた頃に復習」「苦手克服」を使います。</span>
+            <span lang="en"><strong>Normal is enough to start.</strong> Use Custom only to target specific chords, and reach for "Review When You Forget" and "Weak-Point Focus" once your results accumulate.</span>
+            <span lang="fr"><strong>« Normal » suffit pour commencer.</strong> Utilisez « Personnalisé » uniquement pour cibler des accords précis, et passez à « Réviser au bon moment » et « Travailler ses faiblesses » une fois vos résultats accumulés.</span>
+            <span lang="de"><strong>„Normal" reicht für den Anfang.</strong> Nutze „Benutzerdefiniert" nur, um bestimmte Akkorde gezielt zu üben, und greife zu „Wiederholen vor dem Vergessen" und „Schwachstellen-Fokus", sobald sich deine Ergebnisse angesammelt haben.</span>
+        </p>
+
+        <p>
+            <span lang="ja">出題するコードをどの方針で選ぶかを決める設定です。4 つのモードがあります。</span>
+            <span lang="en">This setting decides the policy by which chords are chosen for you. There are four modes.</span>
+            <span lang="fr">Ce réglage détermine selon quelle logique les accords vous sont proposés. Il existe quatre modes.</span>
+            <span lang="de">Diese Einstellung legt fest, nach welcher Logik dir Akkorde gestellt werden. Es gibt vier Modi.</span>
+        </p>
+
+        <div class="manual-options">
+            <div class="manual-option">
+                <div class="manual-option__name"><span lang="ja">通常</span><span lang="en">Normal</span><span lang="fr">Normal</span><span lang="de">Normal</span></div>
+                <div class="manual-option__desc"><span lang="ja">選んだ難易度に対応するコード群から出題します。特に狙いがなければこれで構いません。</span><span lang="en">Draws from the chords matching your chosen difficulty. With no special intent, this is the one.</span><span lang="fr">Puise dans les accords correspondant à la difficulté choisie. Sans objectif particulier, c'est l'option à retenir.</span><span lang="de">Greift auf die Akkorde zurück, die zur gewählten Schwierigkeit passen. Ohne besondere Absicht ist das die richtige Wahl.</span></div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name"><span lang="ja">カスタム</span><span lang="en">Custom</span><span lang="fr">Personnalisé</span><span lang="de">Benutzerdefiniert</span></div>
+                <div class="manual-option__desc"><span lang="ja">出題するコードタイプを 1 つずつ自分で指定します。狙った組み合わせ（例：Maj7 と m7 だけ）を練習したいときに（最低 1 つ選択）。</span><span lang="en">You hand-pick which chord types appear. For drilling a targeted combination (say, just Maj7 vs m7) — select at least one.</span><span lang="fr">Vous choisissez vous-même chaque type d'accord proposé. Pour travailler une combinaison ciblée (par ex. seulement Maj7 et m7) — sélectionnez-en au moins un.</span><span lang="de">Du wählst jeden Akkordtyp einzeln selbst aus. Um eine gezielte Kombination zu üben (z. B. nur Maj7 und m7) — wähle mindestens einen aus.</span></div>
+            </div>
+        </div>
+
+        <p>
+            <span lang="ja">残りの 2 つ — 忘れた頃に復習 と 苦手克服 — は成績データがたまってから効くモードです。考え方はどのトレーニングでも共通なので、下に展開します。</span>
+            <span lang="en">The other two — "Review When You Forget" and "Weak-Point Focus" — pay off once your performance data accumulates. They work the same way across every training, so they appear inline below.</span>
+            <span lang="fr">Les deux autres — « Réviser au bon moment » et « Travailler ses faiblesses » — deviennent utiles une fois vos données de résultats accumulées. Leur logique est identique dans tous les entraînements, c'est pourquoi elles sont détaillées ci-dessous.</span>
+            <span lang="de">Die anderen beiden — „Wiederholen vor dem Vergessen" und „Schwachstellen-Fokus" — zahlen sich aus, sobald sich deine Leistungsdaten angesammelt haben. Sie funktionieren in jedem Training gleich und werden daher unten eingebunden erklärt.</span>
+        </p>
+
+        <!-- include: _partials/mode-spaced-repetition.html -->
+        <!-- include: _partials/mode-weak-point.html -->
+
+        <div class="manual-rationale">
+            <span class="manual-rationale__label"><span lang="ja">学習科学の裏づけ</span><span lang="en">The evidence behind it</span><span lang="fr">Les fondements scientifiques</span><span lang="de">Die wissenschaftliche Grundlage</span></span>
+            <p>
+                <span lang="ja">4 つのモードは「今の自分に必要なコードへ練習を集中させる」ためにあります。自分で思い出して答える出題形式そのものが、ただ聴き流すより記憶を強くします（テスト効果）。「忘れた頃に復習」「苦手克服」は、この効果を成績データで自動化したモードです。</span>
+                <span lang="en">The four modes exist to concentrate practice on the chords you currently need. The quiz format itself — recalling the answer rather than listening passively — strengthens memory more than re-listening (the testing effect). "Review When You Forget" and "Weak-Point Focus" automate this using your performance data.</span>
+                <span lang="fr">Les quatre modes existent pour concentrer l'entraînement sur les accords dont vous avez actuellement besoin. Le format de quiz lui-même — se remémorer la réponse plutôt qu'écouter passivement — renforce la mémoire davantage qu'une simple réécoute (l'effet de test). « Réviser au bon moment » et « Travailler ses faiblesses » automatisent cet effet à partir de vos données de résultats.</span>
+                <span lang="de">Die vier Modi gibt es, um das Üben auf die Akkorde zu konzentrieren, die du gerade brauchst. Das Quizformat selbst — die Antwort abzurufen, statt passiv zu hören — stärkt das Gedächtnis stärker als bloßes Wiederhören (der Testing-Effekt). „Wiederholen vor dem Vergessen" und „Schwachstellen-Fokus" automatisieren das anhand deiner Leistungsdaten.</span>
+            </p>
+            <p class="manual-rationale__ref"><span lang="ja">参考: </span><span lang="en">Ref.: </span><span lang="fr">Réf. : </span><span lang="de">Quelle: </span>Roediger &amp; Karpicke (2006) <a class="manual-ref-num" href="#ref-1">[1]</a></p>
+        </div>
+
+        <!-- #difficulty -->
+        <h2 id="difficulty"><span lang="ja">難易度</span><span lang="en">Difficulty</span><span lang="fr">Difficulté</span><span lang="de">Schwierigkeit</span></h2>
+
+        <p class="manual-lead">
+            <span lang="ja"><strong>迷ったら「基本トライアド」から。</strong> 今の難易度で正答率 80% 以上が安定したら、1 段ずつ上げます。</span>
+            <span lang="en"><strong>When unsure, start at Basic Triads.</strong> Step up one level once you reliably hold 80%+ at the current one.</span>
+            <span lang="fr"><strong>En cas de doute, commencez par « Triades de base ».</strong> Montez d'un niveau une fois que vous tenez de façon stable 80 % ou plus de bonnes réponses au niveau actuel.</span>
+            <span lang="de"><strong>Im Zweifel mit „Basis-Dreiklänge" beginnen.</strong> Steige eine Stufe höher, sobald du auf der aktuellen Stufe zuverlässig 80 % oder mehr hältst.</span>
+        </p>
+
+        <p>
+            <span lang="ja">出題されるコードタイプの範囲を決める設定です（通常モードで表示）。バークリー式のカリキュラムにならい、トライアド（3 和音）→ 7th（4 和音）→ テンション（拡張）へと段階的に広がります。</span>
+            <span lang="en">Sets the range of chord types you'll be asked about (shown in Standard mode). Following a Berklee-style curriculum, the pool widens step by step: triads → 7th chords → tensions.</span>
+            <span lang="fr">Détermine l'éventail des types d'accords proposés (affiché en mode normal). Suivant un cursus inspiré de Berklee, le répertoire s'élargit étape par étape : triades → accords de septième → tensions.</span>
+            <span lang="de">Legt den Umfang der Akkordtypen fest, die abgefragt werden (im Normal-Modus angezeigt). Einem Berklee-orientierten Lehrplan folgend, erweitert sich der Vorrat Schritt für Schritt: Dreiklänge → Septakkorde → Optionstöne.</span>
+        </p>
+
+        <div class="manual-options">
+            <div class="manual-option">
+                <div class="manual-option__name"><span lang="ja">基本トライアド</span><span lang="en">Basic Triads</span><span lang="fr">Triades de base</span><span lang="de">Basis-Dreiklänge</span></div>
+                <div class="manual-option__desc"><span lang="ja">メジャー・マイナーのみ。コードの「明暗」を決める 3 度（=ルートの 3 つ上の音）の聴き分けに集中できる、最初の一歩です。</span><span lang="en">Major and Minor only. The first step, letting you focus on hearing the 3rd (the note two steps above the root) that decides a chord's bright-or-dark quality.</span><span lang="fr">Majeur et mineur uniquement. La première étape, qui vous permet de vous concentrer sur l'écoute de la tierce (la note située deux degrés au-dessus de la fondamentale), celle qui décide du caractère clair ou sombre de l'accord.</span><span lang="de">Nur Dur und Moll. Der erste Schritt, der dir erlaubt, dich aufs Hören der Terz (der Note zwei Stufen über dem Grundton) zu konzentrieren, die über den hellen oder dunklen Charakter eines Akkords entscheidet.</span></div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name"><span lang="ja">全トライアド</span><span lang="en">All Triads</span><span lang="fr">Toutes les triades</span><span lang="de">Alle Dreiklänge</span></div>
+                <div class="manual-option__desc"><span lang="ja">ディミニッシュ・オーグメント追加。5 度が狭い（dim）・広い（aug）響きを聴き分ける段階です。</span><span lang="en">Adds Diminished and Augmented. Now you learn to hear the narrowed 5th (dim) and widened 5th (aug).</span><span lang="fr">Ajoute les accords diminués et augmentés. Vous apprenez maintenant à entendre la quinte resserrée (dim) et la quinte élargie (aug).</span><span lang="de">Ergänzt verminderte und übermäßige Akkorde. Jetzt lernst du, die verengte Quinte (dim) und die erweiterte Quinte (aug) zu hören.</span></div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name"><span lang="ja">基本7th</span><span lang="en">Basic 7ths</span><span lang="fr">Septièmes de base</span><span lang="de">Basis-Septakkorde</span></div>
+                <div class="manual-option__desc"><span lang="ja">Maj7・m7・7（ドミナント7th）。トライアドの上に 7 度が乗った 4 和音。3 種の違いは微妙なので、トライアドが安定してから進むのが効果的です。</span><span lang="en">Maj7, m7, and 7 (dominant 7th). Four-note chords with a 7th stacked on the triad. The three are subtly different, so move here only after triads feel stable.</span><span lang="fr">Maj7, m7 et 7 (septième de dominante). Des accords de quatre notes, avec une septième posée au-dessus de la triade. Les trois se distinguent subtilement : ne passez ici qu'une fois les triades bien assimilées.</span><span lang="de">Maj7, m7 und 7 (Dominantseptakkord). Vierklänge mit einer Septime über dem Dreiklang. Die drei unterscheiden sich nur fein, geh also erst hierher, wenn die Dreiklänge sicher sitzen.</span></div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name"><span lang="ja">全7th</span><span lang="en">All 7ths</span><span lang="fr">Toutes les septièmes</span><span lang="de">Alle Septakkorde</span></div>
+                <div class="manual-option__desc"><span lang="ja">m7b5・dim7・mMaj7追加。ジャズで頻出する、緊張感の強い 7th コードまで含みます。</span><span lang="en">Adds m7b5, dim7, and mMaj7 — the more tense 7th chords common in jazz.</span><span lang="fr">Ajoute m7b5, dim7 et mMaj7 — les accords de septième les plus tendus, fréquents dans le jazz.</span><span lang="de">Ergänzt m7b5, dim7 und mMaj7 — die spannungsreicheren Septakkorde, die im Jazz häufig vorkommen.</span></div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name"><span lang="ja">テンション</span><span lang="en">Tensions</span><span lang="fr">Tensions</span><span lang="de">Tensions</span></div>
+                <div class="manual-option__desc"><span lang="ja">9th・11th・13thコード。さらに上の音を重ねた拡張コード。色彩の豊かな響きを扱う最上位の段階です。</span><span lang="en">9th, 11th, and 13th chords. Extended chords with further notes stacked on top — the top tier, dealing with rich, colorful sonorities.</span><span lang="fr">Accords de neuvième, onzième et treizième. Des accords étendus, avec des notes empilées encore plus haut — le niveau le plus avancé, qui traite des sonorités riches et colorées.</span><span lang="de">None-, Undezim- und Tredezimakkorde. Erweiterte Akkorde mit noch weiter darüber geschichteten Tönen — die höchste Stufe, die sich mit reichen, farbigen Klängen befasst.</span></div>
+            </div>
+        </div>
+
+        <div class="manual-rationale">
+            <span class="manual-rationale__label"><span lang="ja">学習科学の裏づけ</span><span lang="en">The evidence behind it</span><span lang="fr">Les fondements scientifiques</span><span lang="de">Die wissenschaftliche Grundlage</span></span>
+            <p>
+                <span lang="ja">一度に扱うコードが少ないほど、耳が処理する情報量が減り、聴き分けの手がかりを確実に身につけられます。狭い範囲を確実にしてから広げるほうが、いきなり全部に挑むより速く上達します。新しい技能の初期は処理の負荷を抑えるほど学習が進む、という認知負荷の考え方にもとづく段階設計です。</span>
+                <span lang="en">The fewer chord types you handle at once, the less your ear must process, and the more reliably you fix the cues for telling them apart. Securing a narrow range before widening it gets you there faster than tackling everything at once. The tiers follow cognitive-load theory: keeping processing demands low early in a new skill aids learning.</span>
+                <span lang="fr">Moins vous traitez de types d'accords à la fois, moins votre oreille a d'informations à gérer, et plus vous fixez de manière fiable les indices qui permettent de les distinguer. Maîtriser un éventail restreint avant de l'élargir vous mène au but plus vite que de tout aborder d'un coup. Cette progression par paliers s'appuie sur la théorie de la charge cognitive : maintenir une charge de traitement faible au début d'une nouvelle compétence favorise l'apprentissage.</span>
+                <span lang="de">Je weniger Akkordtypen du auf einmal bearbeitest, desto weniger muss dein Ohr verarbeiten, und desto zuverlässiger prägst du dir die Merkmale ein, an denen du sie unterscheidest. Einen engen Bereich zu sichern, bevor du ihn erweiterst, bringt dich schneller ans Ziel, als alles auf einmal anzugehen. Die Stufen folgen der Cognitive-Load-Theorie: eine geringe Verarbeitungslast zu Beginn einer neuen Fähigkeit fördert das Lernen.</span>
+            </p>
+            <p class="manual-rationale__ref"><span lang="ja">参考: </span><span lang="en">Ref.: </span><span lang="fr">Réf. : </span><span lang="de">Quelle: </span>Sweller (1988) <a class="manual-ref-num" href="#ref-2">[2]</a></p>
+        </div>
+
+        <!-- #playback-mode -->
+        <h2 id="playback-mode"><span lang="ja">再生モード</span><span lang="en">Playback Mode</span><span lang="fr">Mode de lecture</span><span lang="de">Wiedergabemodus</span></h2>
+
+        <p class="manual-lead">
+            <span lang="ja"><strong>新しいコードは「アルペジオ」で構造をつかみ、慣れたら「ブロック」、仕上げに「ランダム」。</strong></span>
+            <span lang="en"><strong>Learn a new chord in Arpeggiated, switch to Block as you get comfortable, and finish with Random.</strong></span>
+            <span lang="fr"><strong>Apprenez un nouvel accord en mode « Arpégé » pour en saisir la structure, passez à « Bloc » une fois à l'aise, et terminez par « Aléatoire ».</strong></span>
+            <span lang="de"><strong>Lerne einen neuen Akkord im Modus „Arpeggiert", um seine Struktur zu erfassen, wechsle zu „Block", sobald du sicher bist, und schließe mit „Zufällig" ab.</strong></span>
+        </p>
+
+        <p>
+            <span lang="ja">コードの音をどう鳴らすかを決めます。同じコードでも、鳴らし方で聴き取りの難しさが変わります。</span>
+            <span lang="en">Decides how the chord is sounded. The same chord can be easier or harder to identify depending on how it's played.</span>
+            <span lang="fr">Détermine comment l'accord est joué. Un même accord peut être plus ou moins facile à identifier selon sa façon d'être joué.</span>
+            <span lang="de">Legt fest, wie der Akkord erklingt. Derselbe Akkord lässt sich je nach Spielweise leichter oder schwerer erkennen.</span>
+        </p>
+
+        <div class="manual-options">
+            <div class="manual-option">
+                <div class="manual-option__name"><span lang="ja">ブロック</span><span lang="en">Block</span><span lang="fr">Bloc</span><span lang="de">Block</span></div>
+                <div class="manual-option__desc"><span lang="ja">全音を同時に鳴らします。和音全体の「塊の響き」を一瞬で判断する、実際の演奏に近い聴き方でやや難しめ。</span><span lang="en">All notes sound at once. You judge the whole chord's mass of sound in an instant — close to how real music arrives, and a bit harder.</span><span lang="fr">Toutes les notes sonnent en même temps. Vous jugez en un instant la « masse sonore » de l'accord entier — proche de la manière dont la musique réelle nous parvient, et un peu plus difficile.</span><span lang="de">Alle Töne erklingen gleichzeitig. Du beurteilst in einem Augenblick die „Klangmasse" des gesamten Akkords — nah daran, wie echte Musik bei uns ankommt, und etwas schwerer.</span></div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name"><span lang="ja">アルペジオ</span><span lang="en">Arpeggiated</span><span lang="fr">Arpégé</span><span lang="de">Arpeggiert</span></div>
+                <div class="manual-option__desc"><span lang="ja">下から 1 音ずつ順に鳴らします（アルペジオ＝分散和音）。各音を個別に追えるので構造を分析しやすく、3 度や 7 度の位置を確認するのに向きます。</span><span lang="en">Notes play one at a time from the bottom up (an arpeggio, i.e. a broken chord). You can follow each note individually, so the structure is easy to analyze — ideal for locating the 3rd or 7th.</span><span lang="fr">Les notes sonnent une à une de bas en haut (un arpège, c'est-à-dire un accord brisé). Vous pouvez suivre chaque note individuellement, ce qui rend la structure facile à analyser — idéal pour repérer la tierce ou la septième.</span><span lang="de">Die Töne erklingen nacheinander von unten nach oben (ein Arpeggio, d. h. ein gebrochener Akkord). Du kannst jeden Ton einzeln verfolgen, sodass sich die Struktur leicht analysieren lässt — ideal, um die Terz oder die Septime zu lokalisieren.</span></div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name"><span lang="ja">ランダム</span><span lang="en">Random</span><span lang="fr">Aléatoire</span><span lang="de">Zufällig</span></div>
+                <div class="manual-option__desc"><span lang="ja">出題ごとにブロックかアルペジオかを切り替え。どちらの鳴らし方でも聴き取れるように。</span><span lang="en">Switches between block and arpeggiated each question, so you can identify chords whichever way they're voiced.</span><span lang="fr">Alterne entre bloc et arpège à chaque question, pour que vous puissiez reconnaître les accords quelle que soit leur façon d'être joués.</span><span lang="de">Wechselt bei jeder Frage zwischen Block und Arpeggio, damit du Akkorde unabhängig von ihrer Spielweise erkennen kannst.</span></div>
+            </div>
+        </div>
+
+        <div class="manual-rationale">
+            <span class="manual-rationale__label"><span lang="ja">学習科学の裏づけ</span><span lang="en">The evidence behind it</span><span lang="fr">Les fondements scientifiques</span><span lang="de">Die wissenschaftliche Grundlage</span></span>
+            <p>
+                <span lang="ja">目的は、1 つの鳴り方に頼らずコードそのものを聴けるようにすることです。アルペジオは構造を 1 音ずつ分析でき、ブロックは実際の音楽に近い塊の響きで瞬時の判断を鍛えます。鳴らし方を変えて練習すると、特定の手がかりに依存せず、どんな鳴り方でも聴き取る力が付きます。</span>
+                <span lang="en">The aim is to hear the chord itself without leaning on one presentation. Arpeggiated lets you analyze the structure note by note, while Block trains instant judgment on the chord's mass of sound, close to real music. Varying how it's played stops you depending on a single cue and builds the ability to identify chords however they're voiced.</span>
+                <span lang="fr">L'objectif est d'entendre l'accord lui-même sans s'appuyer sur une seule présentation. L'arpège permet d'analyser la structure note par note, tandis que le bloc entraîne le jugement instantané sur la masse sonore de l'accord, proche de la musique réelle. Varier la façon de jouer vous empêche de dépendre d'un seul indice et développe la capacité à reconnaître les accords quelle que soit leur façon d'être joués.</span>
+                <span lang="de">Das Ziel ist, den Akkord selbst zu hören, ohne sich auf eine einzige Darbietung zu stützen. Das Arpeggio erlaubt, die Struktur Ton für Ton zu analysieren, während der Block das blitzschnelle Urteil über die Klangmasse des Akkords trainiert, nah an echter Musik. Die Spielweise zu variieren hält dich davon ab, von einem einzigen Merkmal abhängig zu sein, und baut die Fähigkeit auf, Akkorde unabhängig von ihrer Spielweise zu erkennen.</span>
+            </p>
+            <p class="manual-rationale__ref"><span lang="ja">参考: </span><span lang="en">Ref.: </span><span lang="fr">Réf. : </span><span lang="de">Quelle: </span>Brunmair &amp; Richter (2019) <a class="manual-ref-num" href="#ref-3">[3]</a>; Karpinski (2000) <a class="manual-ref-num" href="#ref-4">[4]</a></p>
+        </div>
+
+        <!-- #question-type -->
+        <h2 id="question-type"><span lang="ja">問題タイプ</span><span lang="en">Question Type</span><span lang="fr">Type de question</span><span lang="de">Fragetyp</span></h2>
+
+        <p class="manual-lead">
+            <span lang="ja"><strong>基本は「コードクオリティ」のままで OK。</strong> クオリティの聴き分けが安定したら「ベース音」→「転回形」へ進みます。</span>
+            <span lang="en"><strong>Leave it on Chord Quality to start.</strong> Once quality recognition is stable, progress to Bass Note, then Inversion.</span>
+            <span lang="fr"><strong>Au début, laissez-le sur « Qualité de l'accord ».</strong> Une fois la reconnaissance de la qualité stabilisée, passez à « Note de basse », puis à « Renversement ».</span>
+            <span lang="de"><strong>Lass es zu Beginn auf „Akkordqualität".</strong> Sobald die Erkennung der Qualität stabil ist, gehe weiter zu „Basston" und dann zu „Umkehrung".</span>
+        </p>
+
+        <p>
+            <span lang="ja">「何を答えるか」を決める設定です。同じコードを聴いても、問われるものが違えば鍛えられる耳も変わります。</span>
+            <span lang="en">Decides what you are asked to answer. Even for the same chord, what gets asked changes which listening skill you build.</span>
+            <span lang="fr">Détermine ce que vous devez répondre. Même pour un accord identique, la nature de la question modifie l'oreille que vous développez.</span>
+            <span lang="de">Legt fest, was du beantworten sollst. Selbst beim gleichen Akkord ändert die Art der Frage, welches Gehör du schulst.</span>
+        </p>
+
+        <div class="manual-options">
+            <div class="manual-option">
+                <div class="manual-option__name"><span lang="ja">コードクオリティ</span><span lang="en">Chord Quality</span><span lang="fr">Qualité de l'accord</span><span lang="de">Akkordqualität</span></div>
+                <div class="manual-option__desc"><span lang="ja">コードの種類（メジャー・マイナー等）を識別します。コード認識の中心であり、基本となる出題タイプ。</span><span lang="en">Identify the chord's type (Major, Minor, and so on). The heart of chord recognition and the default question type.</span><span lang="fr">Identifiez le type de l'accord (majeur, mineur, etc.). Le cœur de la reconnaissance d'accords et le type de question par défaut.</span><span lang="de">Bestimme den Typ des Akkords (Dur, Moll usw.). Das Herzstück der Akkorderkennung und der Standard-Fragetyp.</span></div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name"><span lang="ja">ベース音</span><span lang="en">Bass Note</span><span lang="fr">Note de basse</span><span lang="de">Basston</span></div>
+                <div class="manual-option__desc"><span lang="ja">最低音（ベース音＝一番低く鳴っている音）を識別します。転回形（後述）を聴き分ける基礎になる耳を鍛えます。選ぶと転回形が自動的に有効に。</span><span lang="en">Identify the lowest sounding note (the bass note). Trains the ear that underlies hearing inversions (below). Selecting it auto-enables inversions.</span><span lang="fr">Identifiez la note la plus grave (la note de basse). Développe l'oreille qui sert de base à l'écoute des renversements (voir plus bas). La sélectionner active automatiquement les renversements.</span><span lang="de">Bestimme den tiefsten erklingenden Ton (den Basston). Schult das Gehör, das dem Hören von Umkehrungen (siehe unten) zugrunde liegt. Die Auswahl aktiviert die Umkehrungen automatisch.</span></div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name"><span lang="ja">転回形</span><span lang="en">Inversion</span><span lang="fr">Renversement</span><span lang="de">Umkehrung</span></div>
+                <div class="manual-option__desc"><span lang="ja">転回形（基本形・第1転回・第2転回＝最低音を入れ替えた形）を識別します。同じコードでも重心の移動を聴き取る、より高度な耳。選ぶと転回形が自動的に有効に。</span><span lang="en">Identify the inversion (root position, 1st, 2nd — forms made by swapping which tone is lowest). A more advanced ear that hears the shifting center of gravity of the same chord. Auto-enables inversions.</span><span lang="fr">Identifiez le renversement (état fondamental, premier, deuxième — formes obtenues en changeant la note la plus grave). Une oreille plus avancée, qui entend le déplacement du centre de gravité d'un même accord. Active automatiquement les renversements.</span><span lang="de">Bestimme die Umkehrung (Grundstellung, erste, zweite — Formen, die durch Vertauschen des tiefsten Tons entstehen). Ein fortgeschritteneres Gehör, das die Verschiebung des Schwerpunkts desselben Akkords hört. Aktiviert die Umkehrungen automatisch.</span></div>
+            </div>
+        </div>
+
+        <div class="manual-rationale">
+            <span class="manual-rationale__label"><span lang="ja">学習科学の裏づけ</span><span lang="en">The evidence behind it</span><span lang="fr">Les fondements scientifiques</span><span lang="de">Die wissenschaftliche Grundlage</span></span>
+            <p>
+                <span lang="ja">問題タイプを段階的に進めるのは、コードを聴く力を要素ごとに積み上げるためです。まずクオリティ（明暗や緊張感）を聴き分け、次に最低音、そして転回形へと進むことで、和音の構造を多面的に聴き取る耳が育ちます。これはイヤートレーニングで確立された、クオリティと転回形を順に学ぶ進め方に沿っています。</span>
+                <span lang="en">Progressing through question types builds chord-hearing skill element by element. Telling quality (bright/dark, tension) apart first, then the lowest note, then the inversion, develops an ear that hears chord structure from several angles. This follows the established ear-training progression of learning quality and inversions in turn.</span>
+                <span lang="fr">Avancer à travers les types de question construit la capacité d'écoute des accords élément par élément. Distinguer d'abord la qualité (clair/sombre, tension), puis la note la plus grave, puis le renversement, développe une oreille qui entend la structure de l'accord sous plusieurs angles. Cela suit la progression éprouvée de l'entraînement de l'oreille, qui consiste à apprendre tour à tour la qualité et les renversements.</span>
+                <span lang="de">Sich durch die Fragetypen vorzuarbeiten baut das Akkordgehör Element für Element auf. Zuerst die Qualität (hell/dunkel, Spannung) zu unterscheiden, dann den tiefsten Ton, dann die Umkehrung, entwickelt ein Gehör, das die Akkordstruktur aus mehreren Blickwinkeln hört. Das folgt der bewährten Gehörbildungsprogression, Qualität und Umkehrungen nacheinander zu lernen.</span>
+            </p>
+            <p class="manual-rationale__ref"><span lang="ja">参考: </span><span lang="en">Ref.: </span><span lang="fr">Réf. : </span><span lang="de">Quelle: </span>Karpinski (2000) <a class="manual-ref-num" href="#ref-4">[4]</a></p>
+        </div>
+
+        <!-- #root-mode -->
+        <h2 id="root-mode"><span lang="ja">ルート音の出題</span><span lang="en">Root Mode</span><span lang="fr">Choix de la fondamentale</span><span lang="de">Grundton-Auswahl</span></h2>
+
+        <p class="manual-lead">
+            <span lang="ja"><strong>基本は「全キーでランダム」（アプリの推奨）。</strong> まったくの初学者でコードタイプの違いだけに集中したいときだけ、一時的に「ルートを固定」します。</span>
+            <span lang="en"><strong>Default to "Random across all keys" (the app's recommendation).</strong> Fix the root only temporarily, as an absolute beginner who wants to isolate the chord-type difference.</span>
+            <span lang="fr"><strong>Par défaut, « Aléatoire sur toutes les tonalités » (la recommandation de l'application).</strong> Ne fixez la fondamentale que de façon temporaire, en tant que grand débutant souhaitant isoler la différence entre les types d'accords.</span>
+            <span lang="de"><strong>Standardmäßig „Zufällig über alle Tonarten" (die Empfehlung der App).</strong> Fixiere den Grundton nur vorübergehend, als absoluter Anfänger, der den Unterschied zwischen den Akkordtypen isolieren möchte.</span>
+        </p>
+
+        <p>
+            <span lang="ja">コードのルート（根音＝コードの土台になる一番下の基準音）を毎回どう決めるかの設定です。「全キーでランダム」か「ルートを固定」かを選びます。</span>
+            <span lang="en">Decides how the chord's root (the foundational lowest reference note) is chosen each time. You pick "Random across all keys" or "Fixed root."</span>
+            <span lang="fr">Détermine comment la fondamentale de l'accord (la note de référence la plus grave, qui sert de base à l'accord) est choisie à chaque fois. Vous choisissez « Aléatoire sur toutes les tonalités » ou « Fondamentale fixe ».</span>
+            <span lang="de">Legt fest, wie der Grundton des Akkords (der tiefste Bezugston, der die Basis des Akkords bildet) jedes Mal gewählt wird. Du wählst „Zufällig über alle Tonarten" oder „Fester Grundton".</span>
+        </p>
+
+        <div class="manual-options">
+            <div class="manual-option">
+                <div class="manual-option__name"><span lang="ja">全キーでランダム（推奨）</span><span lang="en">Random across all keys (recommended)</span><span lang="fr">Aléatoire sur toutes les tonalités (recommandé)</span><span lang="de">Zufällig über alle Tonarten (empfohlen)</span></div>
+                <div class="manual-option__desc"><span lang="ja">出題ごとにルートを 12 キーからランダムに選びます。音の高さに頼らずコードの「形そのもの」を聴き取れる、本番に近い練習です。</span><span lang="en">Picks the root at random from all 12 keys each question. You hear the chord's shape itself rather than leaning on one pitch — the most realistic practice.</span><span lang="fr">Choisit la fondamentale au hasard parmi les 12 tonalités à chaque question. Vous entendez la « forme même » de l'accord plutôt que de vous appuyer sur une seule hauteur — l'entraînement le plus proche du réel.</span><span lang="de">Wählt den Grundton bei jeder Frage zufällig aus allen 12 Tonarten. Du hörst die „Form selbst" des Akkords, statt dich auf eine einzige Tonhöhe zu stützen — das realitätsnächste Training.</span></div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name"><span lang="ja">ルートを固定</span><span lang="en">Fixed root</span><span lang="fr">Fondamentale fixe</span><span lang="de">Fester Grundton</span></div>
+                <div class="manual-option__desc"><span lang="ja">ルートを 1 つの音に固定します（固定すると、どの音にするか選ぶ欄が現れます）。基準音が一定で比較しやすく、コードタイプの違いだけに集中したい学習初期向き。</span><span lang="en">Locks the root to a single pitch (choosing this reveals a picker for which note). A constant reference makes chords easy to compare — good for early learning when you want to isolate the chord-type difference.</span><span lang="fr">Fixe la fondamentale sur une seule hauteur (ce choix fait apparaître un sélecteur de note). Un point de référence constant rend les accords faciles à comparer — idéal au début de l'apprentissage, quand on veut isoler la différence entre les types d'accords.</span><span lang="de">Legt den Grundton auf eine einzige Tonhöhe fest (diese Wahl blendet eine Auswahl für den Ton ein). Ein konstanter Bezugspunkt macht Akkorde leicht vergleichbar — gut für die frühe Lernphase, wenn man den Unterschied zwischen den Akkordtypen isolieren möchte.</span></div>
+            </div>
+        </div>
+
+        <div class="manual-rationale">
+            <span class="manual-rationale__label"><span lang="ja">学習科学の裏づけ</span><span lang="en">The evidence behind it</span><span lang="fr">Les fondements scientifiques</span><span lang="de">Die wissenschaftliche Grundlage</span></span>
+            <p>
+                <span lang="ja">全キーでランダムを基本にするのは、特定の音の高さに頼らずコードの形そのものを聴く力を育てるためです。異なるキーを混ぜて出題する練習（インターリービング）が、同じ条件を続けるより定着するのは、メタ分析が示すとおりです。実際の音楽はどんなキーでも出てくるので、本番に近い力が付きます。</span>
+                <span lang="en">Random across all keys is the default so you build the ability to hear the chord's shape itself without leaning on one pitch height. Mixing different keys (interleaving) retains better than blocking the same condition, as meta-analysis shows. Real music appears in every key, so this builds a realistic ear.</span>
+                <span lang="fr">« Aléatoire sur toutes les tonalités » est le réglage par défaut afin que vous développiez la capacité d'entendre la forme même de l'accord sans vous appuyer sur une seule hauteur. Mélanger différentes tonalités (l'entraînement entrelacé) ancre mieux que de s'en tenir à une condition constante, comme le montre la méta-analyse. La musique réelle apparaît dans toutes les tonalités, ce qui forge une oreille proche du réel.</span>
+                <span lang="de">„Zufällig über alle Tonarten" ist die Voreinstellung, damit du die Fähigkeit aufbaust, die Form des Akkords selbst zu hören, ohne dich auf eine einzige Tonhöhe zu stützen. Verschiedene Tonarten zu mischen (verschachteltes Lernen) verankert besser, als bei einer gleichbleibenden Bedingung zu bleiben, wie die Meta-Analyse zeigt. Echte Musik kommt in jeder Tonart vor, was ein realitätsnahes Gehör formt.</span>
+            </p>
+            <p class="manual-rationale__ref"><span lang="ja">参考: </span><span lang="en">Ref.: </span><span lang="fr">Réf. : </span><span lang="de">Quelle: </span>Brunmair &amp; Richter (2019) <a class="manual-ref-num" href="#ref-3">[3]</a></p>
+        </div>
+
+        <!-- #inversions -->
+        <h2 id="inversions"><span lang="ja">転回形</span><span lang="en">Inversions</span><span lang="fr">Renversements</span><span lang="de">Umkehrungen</span></h2>
+
+        <p class="manual-lead">
+            <span lang="ja"><strong>最初はオフ。</strong> コードクオリティの聴き分けが安定してから転回形を加えます。土台ができる前に混ぜると混乱のもとです。</span>
+            <span lang="en"><strong>Leave it off at first.</strong> Add inversions only once your quality recognition is stable; mixing them in before the foundation is set tends to cause confusion.</span>
+            <span lang="fr"><strong>Au début, laissez-les désactivés.</strong> N'ajoutez les renversements qu'une fois votre reconnaissance de la qualité stabilisée ; les mêler avant que le socle soit en place crée généralement de la confusion.</span>
+            <span lang="de"><strong>Lass sie anfangs ausgeschaltet.</strong> Füge Umkehrungen erst hinzu, wenn deine Qualitätserkennung stabil ist; sie zu früh einzumischen, bevor das Fundament steht, führt meist zu Verwirrung.</span>
+        </p>
+
+        <p>
+            <span lang="ja">転回形（＝コードの最低音を変えた形）を出題に含めるかどうかの設定です。たとえば C メジャー（C-E-G）が基本形で、最低音を E にした E-G-C が第1転回、G にした G-C-E が第2転回。構成音は同じでも、どの音が一番下かで響きの重心が変わります。問題タイプで ベース音 または 転回形 を選ぶと自動的に有効になります。</span>
+            <span lang="en">Controls whether inversions — forms with a changed lowest note — appear. For example, C Major (C-E-G) is root position; E-G-C (lowest note E) is the first inversion and G-C-E (lowest note G) the second. The notes are the same, but which one sits at the bottom shifts the chord's center of gravity. Choosing Bass Note or Inversion as the question type enables this automatically.</span>
+            <span lang="fr">Contrôle si les renversements — des formes dont la note la plus grave est modifiée — apparaissent. Par exemple, do majeur (C-E-G) est à l'état fondamental ; E-G-C (note la plus grave : E) est le premier renversement et G-C-E (note la plus grave : G) le deuxième. Les notes sont les mêmes, mais celle qui se trouve en bas déplace le centre de gravité de l'accord. Choisir « Note de basse » ou « Renversement » comme type de question l'active automatiquement.</span>
+            <span lang="de">Steuert, ob Umkehrungen — Formen mit verändertem tiefstem Ton — vorkommen. Zum Beispiel steht C-Dur (C-E-G) in Grundstellung; E-G-C (tiefster Ton E) ist die erste Umkehrung und G-C-E (tiefster Ton G) die zweite. Die Töne sind dieselben, aber welcher unten liegt, verschiebt den Schwerpunkt des Akkords. Die Wahl von „Basston" oder „Umkehrung" als Fragetyp aktiviert dies automatisch.</span>
+        </p>
+
+        <div class="manual-rationale">
+            <span class="manual-rationale__label"><span lang="ja">学習科学の裏づけ</span><span lang="en">The evidence behind it</span><span lang="fr">Les fondements scientifiques</span><span lang="de">Die wissenschaftliche Grundlage</span></span>
+            <p>
+                <span lang="ja">転回形を後から加えるのは、まず基本形でコードの響きを確実にしてから、最低音の違いという新しい手がかりを足すためです。実際の音楽では転回形が当たり前に出てくるので、避けて通れない要素ですが、土台ができてから取り組むほうが定着します。クオリティと転回形を順に学ぶ進め方は、イヤートレーニングで確立されたものです。</span>
+                <span lang="en">Inversions are added later so you first secure the chord's sound in root position, then bring in the new cue of a changed lowest note. Inversions are everywhere in real music and unavoidable, but they stick better once the foundation is set. Learning quality and then inversions in turn is an established ear-training progression.</span>
+                <span lang="fr">Les renversements sont ajoutés plus tard afin que vous assuriez d'abord la sonorité de l'accord à l'état fondamental, avant d'introduire le nouvel indice qu'est une note la plus grave modifiée. Les renversements sont partout dans la musique réelle et incontournables, mais ils s'ancrent mieux une fois le socle en place. Apprendre tour à tour la qualité puis les renversements est une progression éprouvée de l'entraînement de l'oreille.</span>
+                <span lang="de">Umkehrungen werden später hinzugefügt, damit du zuerst den Klang des Akkords in Grundstellung sicherst und dann das neue Merkmal eines veränderten tiefsten Tons einführst. Umkehrungen sind in echter Musik überall und unvermeidlich, aber sie prägen sich besser ein, wenn das Fundament steht. Erst die Qualität und dann die Umkehrungen zu lernen, ist eine bewährte Gehörbildungsprogression.</span>
+            </p>
+            <p class="manual-rationale__ref"><span lang="ja">参考: </span><span lang="en">Ref.: </span><span lang="fr">Réf. : </span><span lang="de">Quelle: </span>Karpinski (2000) <a class="manual-ref-num" href="#ref-4">[4]</a></p>
+        </div>
+
+        <!-- #octave -->
+        <h2 id="octave"><span lang="ja">オクターブ</span><span lang="en">Octave</span><span lang="fr">Octave</span><span lang="de">Oktave</span></h2>
+
+        <p class="manual-lead">
+            <span lang="ja"><strong>基本は「中音（C4）」。</strong> 中音で安定したら、低音・高音でも試して音域に左右されない耳を育てます。</span>
+            <span lang="en"><strong>Leave it on Middle (C4).</strong> Once stable there, try the low and high registers too, building an ear that isn't swayed by register.</span>
+            <span lang="fr"><strong>Laissez-le sur « Médium (C4) ».</strong> Une fois stable à ce niveau, essayez aussi les registres grave et aigu, pour forger une oreille qui ne se laisse pas influencer par la tessiture.</span>
+            <span lang="de"><strong>Lass es auf „Mitte (C4)".</strong> Sobald es dort stabil ist, probiere auch die tiefe und hohe Lage aus, um ein Gehör zu formen, das sich von der Lage nicht beirren lässt.</span>
+        </p>
+
+        <p>
+            <span lang="ja">コードを鳴らす音域（高さ）を決める設定です。低音（C3）・中音（C4）・高音（C5）の 3 つから選べます。低音は構成音が団子になって聴き分けづらく、高音は音が離れて明瞭ですが響きは薄め。中音（C4）はその中間で、コード認識にもっともバランスが良い音域です。</span>
+            <span lang="en">Sets the register (pitch height) at which chords are played: Low (C3), Middle (C4), or High (C5). In the low register chord tones bunch together and are harder to separate; in the high register the notes spread apart and sound clearer but thinner. Middle (C4) sits between them and is the best-balanced register for chord recognition.</span>
+            <span lang="fr">Détermine le registre (la hauteur) auquel les accords sont joués : grave (C3), médium (C4) ou aigu (C5). Dans le registre grave, les notes de l'accord s'agglutinent et sont plus difficiles à séparer ; dans l'aigu, les notes s'écartent et sonnent plus clair mais plus mince. Le médium (C4) se situe entre les deux et constitue le registre le mieux équilibré pour la reconnaissance d'accords.</span>
+            <span lang="de">Legt die Lage (Tonhöhe) fest, in der die Akkorde gespielt werden: tief (C3), Mitte (C4) oder hoch (C5). In der tiefen Lage drängen sich die Akkordtöne zusammen und lassen sich schwerer trennen; in der hohen Lage spreizen sich die Töne und klingen klarer, aber dünner. Die Mitte (C4) liegt dazwischen und ist die am besten ausgewogene Lage für die Akkorderkennung.</span>
+        </p>
+
+        <div class="manual-rationale">
+            <span class="manual-rationale__label"><span lang="ja">学習科学の裏づけ</span><span lang="en">The evidence behind it</span><span lang="fr">Les fondements scientifiques</span><span lang="de">Die wissenschaftliche Grundlage</span></span>
+            <p>
+                <span lang="ja">中音から始めるのは、構成音が聴き分けやすい音域で耳が処理する負荷を抑えるためです。学習初期に余計な聴き取りづらさを減らすと、コードタイプの違いそのものに集中できます。慣れたら他の音域に広げて、どの高さでも聴ける力を付けます。初期ほど負荷を抑えると学習が進みやすい、という認知負荷の考え方に沿った設計です。</span>
+                <span lang="en">Starting in the middle register keeps the ear's processing load low by using the range where chord tones are easiest to separate. Reducing needless difficulty early lets you focus on the chord-type difference itself; you widen to other registers later to hear chords at any height. This follows cognitive-load theory: keeping the load lower early aids learning.</span>
+                <span lang="fr">Commencer dans le registre médium maintient une faible charge de traitement pour l'oreille, en utilisant la plage où les notes de l'accord sont les plus faciles à séparer. Réduire les difficultés superflues au début vous permet de vous concentrer sur la différence entre les types d'accords ; vous élargissez ensuite aux autres registres pour entendre les accords à n'importe quelle hauteur. Cela suit la théorie de la charge cognitive : maintenir une charge plus faible au début favorise l'apprentissage.</span>
+                <span lang="de">In der mittleren Lage zu beginnen, hält die Verarbeitungslast des Ohrs gering, indem der Bereich genutzt wird, in dem sich die Akkordtöne am leichtesten trennen lassen. Unnötige Schwierigkeit früh zu verringern, erlaubt dir, dich auf den Unterschied zwischen den Akkordtypen selbst zu konzentrieren; später erweiterst du auf andere Lagen, um Akkorde in jeder Höhe zu hören. Das folgt der Cognitive-Load-Theorie: eine geringere Last zu Beginn fördert das Lernen.</span>
+            </p>
+            <p class="manual-rationale__ref"><span lang="ja">参考: </span><span lang="en">Ref.: </span><span lang="fr">Réf. : </span><span lang="de">Quelle: </span>Sweller (1988) <a class="manual-ref-num" href="#ref-2">[2]</a></p>
+        </div>
+
+        <!-- References -->
+        <section class="manual-refs">
+            <div class="manual-refs__title"><span lang="ja">参考文献</span><span lang="en">References</span><span lang="fr">Références</span><span lang="de">Quellen</span></div>
+            <ol>
+                <li id="ref-1">Roediger, H. L., &amp; Karpicke, J. D. (2006). Test-enhanced learning: Taking memory tests improves long-term retention. <em>Psychological Science, 17</em>(3), 249–255.</li>
+                <li id="ref-2">Sweller, J. (1988). Cognitive load during problem solving: Effects on learning. <em>Cognitive Science, 12</em>(2), 257–285.</li>
+                <li id="ref-3">Brunmair, M., &amp; Richter, T. (2019). Similarity matters: A meta-analysis of interleaved learning and its moderators. <em>Psychological Bulletin, 145</em>(11), 1029–1052.</li>
+                <li id="ref-4">Karpinski, G. S. (2000). <em>Aural Skills Acquisition: The Development of Listening, Reading, and Performing Skills in College-Level Musicians.</em> Oxford University Press.</li>
+            </ol>
+        </section>
+
+    </main>
+
+    <!-- Final CTA -->
+    <section class="article-cta">
+        <h2 class="article-cta__title"><span lang="ja">設定を決めたら、さっそく試してみよう</span><span lang="en">Settings Sorted? Give It a Try</span><span lang="fr">Réglages décidés ? Essayez sans attendre</span><span lang="de">Einstellungen geklärt? Probieren Sie es aus</span></h2>
+        <p class="article-cta__text">
+            <span lang="ja">各設定の意味がわかれば、あとは実際に手を動かすだけです。<br>迷ったら本ページの「迷ったら…」をなぞって始めてみてください。<br>ソルフェージュPRO の コード認識 で、自分に合った設定を見つけましょう。</span>
+            <span lang="en">Once you understand each setting, the rest is hands-on practice.<br>When unsure, just follow the "when in doubt" lines on this page.<br>Find the settings that fit you in Solfege PRO's Chord Recognition.</span>
+            <span lang="fr">Une fois chaque réglage compris, il ne reste plus qu'à pratiquer.<br>En cas de doute, suivez simplement les lignes « En cas de doute… » de cette page.<br>Trouvez les réglages qui vous conviennent dans la Reconnaissance d'accords de Solfege PRO.</span>
+            <span lang="de">Sobald Sie jede Einstellung verstanden haben, bleibt nur noch das praktische Üben.<br>Folgen Sie im Zweifel einfach den Zeilen „Im Zweifel…" auf dieser Seite.<br>Finden Sie die für Sie passenden Einstellungen in der Akkorderkennung von Solfege PRO.</span>
+        </p>
+        <a href="https://apps.apple.com/jp/app/id6756626617" class="app-store-link" aria-label="Download on the App Store">
+            <span lang="ja"><img class="app-store-link__img" width="109" height="40" src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/ja-jp" alt="App Storeで入手"></span>
+            <span lang="en"><img class="app-store-link__img" width="120" height="40" src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/en-us" alt="Download on the App Store"></span>
+            <span lang="fr"><img class="app-store-link__img" width="127" height="40" src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/fr-fr" alt="Télécharger dans l'App Store"></span>
+            <span lang="de"><img class="app-store-link__img" width="120" height="40" src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/de-de" alt="Laden im App Store"></span>
+        </a>
+    </section>
+
+    <!-- Related Content -->
+    <div class="article-related">
+        <div class="article-related__title"><span lang="ja">関連コンテンツ</span><span lang="en">Related Content</span><span lang="fr">Contenu associé</span><span lang="de">Verwandte Inhalte</span></div>
+        <a href="/guides/ear-training-chords/" class="article-related__link" style="margin-bottom: var(--space-md);">
+            <div class="article-related__link-title"><span lang="ja">コードを聴き分ける力とは何か — 和音の響きを理解する</span><span lang="en">What Is Chord Recognition? — Understanding Harmonic Sounds</span><span lang="fr">Qu'est-ce que la reconnaissance d'accords ? — Comprendre la sonorité des accords</span><span lang="de">Was ist Akkorderkennung? — Den Klang von Harmonien verstehen</span></div>
+            <div class="article-related__link-desc"><span lang="ja">設定の前に、そもそもコード認識とは何かを知りたい方へ。構成音の違いと段階的な練習法を解説したガイド。</span><span lang="en">For those who want to understand what chord recognition is before adjusting settings — a guide to chord-tone differences and step-by-step practice.</span><span lang="fr">Pour celles et ceux qui veulent comprendre ce qu'est la reconnaissance d'accords avant d'ajuster les réglages — un guide sur les différences entre les notes constitutives et une pratique progressive.</span><span lang="de">Für alle, die verstehen möchten, was Akkorderkennung ist, bevor sie die Einstellungen anpassen — ein Leitfaden zu den Unterschieden der Akkordtöne und schrittweisem Üben.</span></div>
+        </a>
+        <a href="/" class="article-related__link">
+            <div class="article-related__link-title"><span lang="ja">ソルフェージュPRO 練習ガイド</span><span lang="en">Solfege PRO Practice Guide</span><span lang="fr">Guide d'entraînement Solfege PRO</span><span lang="de">Solfege PRO Übungsleitfaden</span></div>
+            <div class="article-related__link-desc"><span lang="ja">ギター・ベース・ドラム・ピアノ・ボーカル向けの課題別練習メニュー</span><span lang="en">Challenge-based practice menus for guitar, bass, drums, piano, and vocals</span><span lang="fr">Programmes d'entraînement par problématique pour guitare, basse, batterie, piano et chant</span><span lang="de">Problem­bezogene Übungsmenüs für Gitarre, Bass, Schlagzeug, Klavier und Gesang</span></div>
+        </a>
+    </div>
+
+    <!-- Article Note -->
+    <aside class="article-endnote">
+        <p class="article-endnote__text">
+            <span lang="ja">本ページはアプリ内の設定項目の解説を目的としたリファレンスです。記載した推奨の進め方は、音楽教育で広く用いられるイヤートレーニングの方法論をもとにした一般的な目安であり、最適な設定は個人の経験や目的によって異なります。引用した研究は学習一般の知見であり、本アプリでの効果を保証するものではありません。</span>
+            <span lang="en">This page is a reference explaining the app's in-app settings. The recommended progressions given here are general guidelines based on widely used ear-training methodology; the optimal settings vary with individual experience and goals. The cited studies report general learning findings and do not guarantee results within this app.</span>
+            <span lang="fr">Cette page est une référence expliquant les réglages internes de l'application. Les progressions recommandées ici sont des repères généraux fondés sur une méthodologie d'entraînement de l'oreille largement répandue ; les réglages optimaux varient selon l'expérience et les objectifs de chacun. Les études citées rapportent des résultats généraux sur l'apprentissage et ne garantissent pas de résultats au sein de cette application.</span>
+            <span lang="de">Diese Seite ist eine Referenz, die die in der App enthaltenen Einstellungen erläutert. Die hier empfohlenen Abfolgen sind allgemeine Richtwerte, die auf einer weit verbreiteten Methodik des Gehörtrainings beruhen; die optimalen Einstellungen hängen von der individuellen Erfahrung und den Zielen ab. Die zitierten Studien berichten allgemeine Erkenntnisse zum Lernen und garantieren keine Ergebnisse innerhalb dieser App.</span>
+        </p>
+    </aside>
+
+    <!-- Footer -->
+    <footer class="article-footer">
+        <p class="article-footer__text">
+            &copy; 2026 <span lang="ja">ソルフェージュPRO</span><span lang="en">Solfege PRO</span><span lang="fr">Solfege PRO</span><span lang="de">Solfege PRO</span> &mdash;
+            <a href="https://apps.apple.com/jp/app/id6756626617" class="article-footer__link">App Store</a>
+        </p>
+    </footer>
+    <script src="/bootstrap.js?v=3" defer></script>
+</body>
+</html>

@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html lang="fr"
+      data-title-ja="スケール認識 設定マニュアル — 各設定の選び方 | ソルフェージュPRO"
+      data-title-en="Scale Recognition Settings Manual — How to Choose Each Option | Solfege PRO"
+      data-title-fr="Manuel des réglages de reconnaissance de gammes — Comment choisir chaque option | Solfege PRO"
+      data-title-de="Handbuch der Einstellungen zur Tonleiter-Erkennung — Jede Option richtig wählen | Solfege PRO">
+<head>
+    <meta charset="UTF-8">
+    <meta name="robots" content="index, follow">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#1A1A1E">
+    <title>Manuel des réglages de reconnaissance de gammes — Comment choisir chaque option | Solfege PRO</title>
+    <meta name="description" content="Manuel de référence des réglages de reconnaissance de gammes — mode, difficulté, lecture, modes, style mineur mélodique, fondamentale : qui choisit quoi.">
+
+    <!-- Canonical -->
+    <link rel="canonical" href="https://solfegepro.com/fr/manual/scale/">
+    <link rel="alternate" hreflang="ja" href="https://solfegepro.com/manual/scale/">
+    <link rel="alternate" hreflang="en" href="https://solfegepro.com/en/manual/scale/">
+    <link rel="alternate" hreflang="fr" href="https://solfegepro.com/fr/manual/scale/">
+    <link rel="alternate" hreflang="de" href="https://solfegepro.com/de/manual/scale/">
+    <link rel="alternate" hreflang="x-default" href="https://solfegepro.com/manual/scale/">
+<!-- OGP -->
+    <meta property="og:title" content="Manuel des réglages de reconnaissance de gammes — Comment choisir chaque option">
+    <meta property="og:description" content="Manuel de référence des réglages de reconnaissance de gammes — mode, difficulté, lecture, modes, style mineur mélodique, fondamentale : qui choisit quoi.">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://solfegepro.com/fr/manual/scale/">
+    <meta property="og:site_name" content="Solfege PRO">
+    <meta property="og:image" content="https://solfegepro.com/og-image.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Solfege PRO">
+    <meta property="og:locale" content="fr_FR">
+    <meta property="og:locale:alternate" content="ja_JP">
+    <meta property="og:locale:alternate" content="en_US">
+    <meta property="og:locale:alternate" content="de_DE">
+    <meta property="article:published_time" content="2026-06-05">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Manuel des réglages de reconnaissance de gammes — Comment choisir chaque option">
+    <meta name="twitter:description" content="Manuel de référence des réglages de reconnaissance de gammes — mode, difficulté, lecture, modes, style mineur mélodique, fondamentale : qui choisit quoi.">
+    <meta name="twitter:image" content="https://solfegepro.com/og-image.png">
+
+    <!-- Favicon -->
+    <link rel="icon" href="/favicon.ico" sizes="any">
+    <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap"></noscript>
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="/style.css?v=17">
+    <link rel="stylesheet" href="/guides/article.css?v=11">
+
+    <style>
+        /* Manual option reference — responsive, no fixed px widths */
+        .manual-options {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr);
+            gap: var(--space-sm);
+            margin: var(--space-lg) 0;
+        }
+        .manual-option {
+            background: var(--surface);
+            border: 1px solid var(--surface-light);
+            border-radius: var(--radius-lg);
+            padding: var(--space-md);
+        }
+        .manual-option__name {
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: var(--space-xs);
+        }
+        .manual-option__desc {
+            font-size: 13px;
+            color: var(--text-secondary);
+        }
+        /* Bottom-line callout (conclusion first) */
+        .manual-lead {
+            font-size: 14px;
+            line-height: 1.75;
+            color: var(--text-primary);
+            border-left: 3px solid var(--primary);
+            background: rgba(212, 175, 55, 0.06);
+            padding: var(--space-sm) var(--space-md);
+            border-radius: 0 var(--radius-md) var(--radius-md) 0;
+            margin: var(--space-md) 0;
+        }
+        /* Per-setting evidence note — deliberately styled as an editorial
+           aside, NOT as a settings card (no surface fill, no gold label),
+           so it is never mistaken for an in-app option. */
+        .manual-rationale {
+            margin: var(--space-md) 0 var(--space-2xl);
+            padding: var(--space-sm) 0 var(--space-sm) var(--space-md);
+            border-left: 2px solid var(--surface-light);
+        }
+        .manual-rationale__label {
+            display: block;
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            color: var(--text-secondary);
+            margin-bottom: 4px;
+            opacity: 0.75;
+        }
+        .manual-rationale p {
+            font-size: 13px;
+            line-height: 1.75;
+            color: var(--text-secondary);
+            margin: 0;
+        }
+        .manual-rationale__ref {
+            font-size: 12px;
+            font-style: italic;
+            margin-top: var(--space-xs) !important;
+            opacity: 0.7;
+        }
+        /* Citation number linking to the reference list */
+        .manual-ref-num {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-style: normal;
+        }
+        .manual-ref-num:hover { color: var(--primary); }
+        /* Full reference list at page end */
+        .manual-refs {
+            margin: var(--space-2xl) 0 0;
+            padding-top: var(--space-lg);
+            border-top: 1px solid var(--surface-light);
+        }
+        .manual-refs__title {
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: var(--space-sm);
+        }
+        .manual-refs ol {
+            margin: 0;
+            padding-left: 1.25em;
+        }
+        .manual-refs li {
+            font-size: 12px;
+            line-height: 1.7;
+            color: var(--text-secondary);
+            margin-bottom: var(--space-xs);
+            scroll-margin-top: 84px;
+        }
+        .manual-refs li:target {
+            color: var(--text-primary);
+        }
+    </style>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Manuel des réglages de reconnaissance de gammes — Comment choisir chaque option","description":"Manuel de référence des réglages de reconnaissance de gammes — mode, difficulté, lecture, modes, style mineur mélodique, fondamentale : qui choisit quoi.","author":{"@type":"Organization","name":"Solfege PRO"},"publisher":{"@type":"Organization","name":"Solfege PRO","logo":{"@type":"ImageObject","url":"https://solfegepro.com/AppIcon.png"}},"datePublished":"2026-06-05","mainEntityOfPage":{"@type":"WebPage","@id":"https://solfegepro.com/fr/manual/scale/"}}</script>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Accueil","item":"https://solfegepro.com/fr/"},{"@type":"ListItem","position":2,"name":"Manuel","item":"https://solfegepro.com/fr/manual/"},{"@type":"ListItem","position":3,"name":"Manuel des réglages de reconnaissance de gammes — Comment choisir chaque option","item":"https://solfegepro.com/fr/manual/scale/"}]}</script>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="nav__container">
+            <a href="/" class="nav__logo">
+                <img src="/AppIcon.png" alt="Solfege PRO" class="nav__logo-icon" width="32" height="32">
+                <span class="nav__logo-text">Solfege PRO</span>
+            </a>
+            <ul class="nav__list">
+                <li><a href="/" class="nav__link">Guide d'entraînement</a></li>
+                <li><a href="/guides/" class="nav__link">Guides</a></li>
+                <li><a href="/manual/" class="nav__link active">Manuel</a></li>
+                            <li><a href="/start-here/" class="nav__link">Par où commencer ?</a></li>
+            </ul>
+            <div class="nav__settings">
+                <button class="settings-btn" id="lang-toggle" title="Toggle language">
+                    <span id="lang-text">EN</span>
+                </button>
+                <button class="hamburger-btn" id="hamburger-btn" aria-label="Menu" aria-expanded="false" aria-controls="drawer">
+                    <span class="hamburger-btn__line"></span>
+                    <span class="hamburger-btn__line"></span>
+                    <span class="hamburger-btn__line"></span>
+                </button>
+            </div>
+        </div>
+    </nav>
+        <!-- Mobile drawer (hidden on desktop) -->
+        <div class="drawer-overlay" id="drawer-overlay"></div>
+        <aside class="drawer" id="drawer" aria-label="Mobile menu" aria-hidden="true" inert>
+            <div class="drawer__header">
+                <span class="drawer__title">Menu</span>
+                <button class="drawer__close" id="drawer-close" aria-label="Close menu">×</button>
+            </div>
+            <ul class="drawer__list">
+                    <li><a href="/" class="drawer__link">Guide d'entraînement</a></li>
+                    <li><a href="/guides/" class="drawer__link">Guides</a></li>
+                    <li><a href="/manual/" class="drawer__link active">Manuel</a></li>
+                    <li><a href="/start-here/" class="drawer__link">Par où commencer ?</a></li>
+            </ul>
+        </aside>
+
+
+    <!-- Article Header -->
+    <header class="page-header">
+        <div class="page-header__meta">
+            <span class="page-header__tag">Manuel</span>
+            <span>Reconnaissance de gammes</span>
+        </div>
+        <h1 class="page-header__title">
+            
+            
+            Manuel des réglages de reconnaissance de gammes<br>Le sens de chaque option et comment la choisir
+            
+        </h1>
+        <p class="page-header__subtitle">
+            
+            
+            Quelle option choisir, quand et pourquoi. Cette page passe en revue chaque réglage de l'entraînement à la reconnaissance de gammes, un par un. Si vous êtes arrivé depuis un « ? » de l'écran des réglages, faites défiler jusqu'à l'option voulue.
+            
+        </p>
+    </header>
+
+    <!-- Top-of-article CTA -->
+    <aside class="article-top-cta" aria-label="App promotion">
+        <div class="article-top-cta__body">
+            <p class="article-top-cta__title">
+                
+                
+                Essayez cet exercice dans Solfege PRO
+                
+            </p>
+            <p class="article-top-cta__sub">
+                
+                
+                980 ¥/mois · essai gratuit d'une semaine
+                
+            </p>
+        </div>
+        <a href="https://apps.apple.com/fr/app/id6756626617" class="article-top-cta__button" data-cta-position="article_top">
+            
+            
+            App Store →
+            
+        </a>
+    </aside>
+
+    <!-- Article Body -->
+    <main class="article-body">
+
+        <!-- Intro -->
+        <p>
+            
+            
+            L'entraînement à la reconnaissance de gammes consiste à écouter une série de notes jouées dans l'ordre (une gamme) et à identifier à l'oreille seule de quel type de gamme il s'agit. Là où un accord est un empilement de notes sonnant en même temps, une gamme est une ligne de notes se déplaçant en séquence — vous entendez l'agencement même des intervalles qui donne à une gamme son caractère lumineux, sombre ou tendu.
+            
+        </p>
+        <p>
+            
+            
+            Cette page est un manuel pour choisir les réglages. Chaque réglage s'appuie sur des méthodes établies de l'enseignement musical. Pour chaque réglage qui demande une décision, nous indiquons <strong>le choix recommandé, à quoi il sert et ce qu'il développe — avec les fondements scientifiques</strong>. Si vous êtes arrivé depuis un « ? » de l'écran des réglages, faites défiler jusqu'à l'option voulue.
+            
+        </p>
+
+        <!-- #training-mode -->
+        <h2 id="training-mode">Mode d'entraînement</h2>
+
+        <p class="manual-lead">
+            
+            
+            <strong>« Normal » suffit pour commencer.</strong> N'utilisez « Personnalisé » que pour cibler des gammes précises, et passez à « Réviser au bon moment » et « Travail des points faibles » une fois vos résultats accumulés.
+            
+        </p>
+
+        <p>
+            
+            
+            Ce réglage détermine la logique selon laquelle les gammes vous sont proposées. Il existe quatre modes.
+            
+        </p>
+
+        <div class="manual-options">
+            <div class="manual-option">
+                <div class="manual-option__name">Normal</div>
+                <div class="manual-option__desc">Puise dans les gammes correspondant à la difficulté choisie. Sans objectif particulier, c'est le bon choix.</div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name">Personnalisé</div>
+                <div class="manual-option__desc">Vous choisissez vous-même, une par une, les types de gammes proposés. Pour travailler une combinaison ciblée (sélectionnez-en au moins un).</div>
+            </div>
+        </div>
+
+        <p>
+            
+            
+            Les deux autres — « Réviser au bon moment » et « Travail des points faibles » — deviennent utiles une fois vos données de résultats accumulées. Leur fonctionnement est le même pour tous les entraînements, ils sont donc détaillés ci-dessous.
+            
+        </p>
+
+        <!-- TODO i18n: fr/de spans are interim English; translate after ja voice approval -->
+<!-- Reusable mode partial. Training-agnostic: do NOT mention chord/scale/etc. -->
+<section class="article-mode" id="mode-spaced-repetition">
+    <h3 class="article-mode__title">Mode « Répétition espacée » (spaced repetition)</h3>
+
+    <p>
+        
+        
+        Spaced repetition means an item you have already studied comes back just as you are about to forget it. The more reliably you answer something, the longer the gap before it returns; the items you miss come back sooner. It rests on the idea that recall is more durable when you space the reviews out rather than cramming the same item back-to-back.
+        
+    </p>
+
+    <p>
+        
+        
+        This mode suits you once the pool of items has grown and you start noticing that things you once knew have slipped. The app handles the scheduling automatically, so you do not have to track what needs reviewing. It rewards short, daily sessions more than occasional long ones.
+        
+    </p>
+
+    <p>
+        
+        
+        When in doubt, reach for it in the "maintenance" phase, after you have worked through the items once. Use the normal mode to build the foundation when everything is new, then let spaced repetition move that knowledge into long-term memory — a comfortable two-step approach. <em>The benefit of spacing reviews for long-term retention was synthesized at scale by Cepeda et al. (2006), and the finding that the act of retrieval itself strengthens memory comes from Roediger &amp; Karpicke (2006).</em>
+        
+    </p>
+</section>
+
+        <!-- TODO i18n: fr/de spans are interim English; translate after ja voice approval -->
+<!-- Reusable mode partial. Training-agnostic: do NOT mention chord/scale/etc. -->
+<section class="article-mode" id="mode-weak-point">
+    <h3 class="article-mode__title">Weak-Point Focus Mode</h3>
+
+    <p>
+        
+        
+        Weak-point focus looks at your answer history, identifies the items with the lowest accuracy, and serves those to you more often. Instead of spending time on what you already answer reliably, it concentrates practice on exactly the places you keep missing. The app picks the targets automatically from your own results.
+        
+    </p>
+
+    <p>
+        
+        
+        This mode suits the stage where your overall accuracy is climbing but a specific few items still trip you up every time. Because it keeps returning to your weak spots, it feels harder — and that controlled extra effort is precisely where the learning happens (the principle of desirable difficulties). It needs enough answer history before candidates appear, so play the normal mode for a while first.
+        
+    </p>
+
+    <p>
+        
+        
+        When in doubt, drop in for a few concentrated sessions whenever you plateau at a given level and feel you "keep losing the same handful of items right before it would stabilize." Once the weak spots clear, return to the normal mode to keep your overall balance. <em>Deliberately making yourself retrieve the items you tend to miss — the "testing effect" — was shown by Roediger &amp; Karpicke (2006) to strongly benefit later retention.</em>
+        
+    </p>
+</section>
+
+
+        <div class="manual-rationale">
+            <span class="manual-rationale__label">Fondements scientifiques</span>
+            <p>
+                
+                
+                Les quatre modes servent à concentrer l'entraînement sur les gammes dont vous avez besoin en ce moment. Le format de quiz lui-même — se rappeler la réponse plutôt qu'écouter passivement — renforce la mémoire davantage que la simple réécoute (effet de test). « Réviser au bon moment » et « Travail des points faibles » automatisent cet effet à partir de vos données de résultats.
+                
+            </p>
+            <p class="manual-rationale__ref">Réf. : Roediger &amp; Karpicke (2006) <a class="manual-ref-num" href="#ref-1">[1]</a></p>
+        </div>
+
+        <!-- #difficulty -->
+        <h2 id="difficulty">Difficulté</h2>
+
+        <p class="manual-lead">
+            
+            
+            <strong>En cas de doute, commencez par « Débutant ».</strong> Montez d'un niveau une fois que vous maintenez de façon stable 80 % ou plus au niveau actuel.
+            
+        </p>
+
+        <p>
+            
+            
+            Définit l'éventail des types de gammes proposés (affiché en mode Normal). Selon un cursus de type Berklee, le répertoire s'élargit pas à pas : majeure/mineure → modes (modes ecclésiastiques) → pentatonique/blues → toutes les gammes.
+            
+        </p>
+
+        <div class="manual-options">
+            <div class="manual-option">
+                <div class="manual-option__name">Débutant</div>
+                <div class="manual-option__desc">Majeure ou mineure uniquement. La première étape, axée sur la tierce (la note deux degrés au-dessus de la fondamentale) qui rend une gamme lumineuse ou sombre.</div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name">Intermédiaire</div>
+                <div class="manual-option__desc">Ajoute le mineur harmonique et le mineur mélodique — pour entendre la tension caractéristique née de la hausse de la sixte et de la septième.</div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name">Modes</div>
+                <div class="manual-option__desc">Modes ecclésiastiques (dorien, phrygien, etc.). Une étape un peu plus avancée, pour entendre de subtiles différences de couleur (voir la section ci-dessous).</div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name">Pentatonique</div>
+                <div class="manual-option__desc">Gammes pentatonique et blues — cinq notes au lieu de sept (penta = cinq), la sonorité ouverte fréquente dans le rock et le blues.</div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name">Avancé</div>
+                <div class="manual-option__desc">Tous les types de gammes. Le niveau le plus élevé, mêlant toutes les étapes précédentes ; vous identifiez une gamme sans savoir laquelle va venir.</div>
+            </div>
+        </div>
+
+        <div class="manual-rationale">
+            <span class="manual-rationale__label">Fondements scientifiques</span>
+            <p>
+                
+                
+                Moins vous traitez de gammes à la fois, moins votre oreille a d'informations à gérer, et plus vous fixez de façon fiable les indices qui permettent de les distinguer. Assurer un répertoire restreint avant de l'élargir vous fait progresser plus vite que de tout aborder d'un coup. Les niveaux suivent la théorie de la charge cognitive : maintenir une faible charge de traitement au début d'une nouvelle compétence favorise l'apprentissage.
+                
+            </p>
+            <p class="manual-rationale__ref">Réf. : Sweller (1988) <a class="manual-ref-num" href="#ref-2">[2]</a></p>
+        </div>
+
+        <!-- #modes -->
+        <h2 id="modes">Modes (modes ecclésiastiques)</h2>
+
+        <p class="manual-lead">
+            
+            
+            <strong>N'essayez pas d'apprendre les sept modes d'un coup — en mode Personnalisé, n'en choisissez que deux ou trois (par exemple « majeure + dorien »), en commençant par des combinaisons dont les différences sont nettement audibles.</strong>
+            
+        </p>
+
+        <p>
+            
+            
+            Explication des modes ecclésiastiques proposés lorsque vous choisissez Modes dans la difficulté (les sept gammes formées en changeant la note de la gamme majeure à partir de laquelle on commence à compter). Les notes sont les mêmes, mais partir d'un autre degré réorganise les intervalles (la disposition des tons et demi-tons), donnant à chacun sa propre couleur. L'ionien est la gamme majeure, l'éolien le mineur naturel, et le dorien, le phrygien, le lydien et le mixolydien possèdent chacun une « note caractéristique » facile à repérer.
+            
+        </p>
+
+        <div class="manual-rationale">
+            <span class="manual-rationale__label">Fondements scientifiques</span>
+            <p>
+                
+                
+                Distinguer les modes, c'est la capacité d'entendre la couleur produite par l'agencement des intervalles, et non les notes elles-mêmes. Familiariser son oreille par petits groupes de modes très contrastés facilite la saisie de la note caractéristique de chacun. Cela suit une approche établie de l'entraînement de l'oreille au niveau universitaire, où l'écoute des modes et des gammes se construit par étapes.
+                
+            </p>
+            <p class="manual-rationale__ref">Réf. : Karpinski (2000) <a class="manual-ref-num" href="#ref-3">[3]</a></p>
+        </div>
+
+        <!-- #melodic-minor-style -->
+        <h2 id="melodic-minor-style">Style du mineur mélodique</h2>
+
+        <p class="manual-lead">
+            
+            
+            <strong>Laissez le réglage par défaut, « Jazz ».</strong> Ne choisissez « Classique » que pour vous conformer à la théorie ou aux examens classiques, ou pour habituer votre oreille au mouvement traditionnel où la montée et la descente diffèrent.
+            
+        </p>
+
+        <p>
+            
+            
+            Détermine la façon dont la gamme mineure mélodique est traitée en descente (en redescendant de l'aigu vers le grave). Ce réglage n'apparaît que lorsque le mineur mélodique fait partie des gammes proposées, et prend tout son sens lorsque le mode de lecture comporte une descente (Descendant ou Montant + descendant).
+            
+        </p>
+
+        <div class="manual-options">
+            <div class="manual-option">
+                <div class="manual-option__name">Jazz</div>
+                <div class="manual-option__desc">Même gamme en montée et en descente ; la sixte et la septième haussées le restent en redescendant — le style courant du jazz moderne (réglage par défaut de l'application).</div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name">Classique</div>
+                <div class="manual-option__desc">Mineur naturel en descente ; on monte avec le mineur mélodique, puis on rabaisse la sixte et la septième en redescendant — le style classique traditionnel.</div>
+            </div>
+        </div>
+
+        <div class="manual-rationale">
+            <span class="manual-rationale__label">Fondements scientifiques</span>
+            <p>
+                
+                
+                Ce réglage vous permet de traiter à l'oreille la convention selon laquelle, dans la musique réelle, le mineur mélodique change de forme entre la montée et la descente. S'exercer à entendre la descente comme distincte développe la capacité d'entendre correctement ce mouvement où les notes changent entre la montée et la descente. Construire par étapes une écoute mélodique intégrant les différences entre montée et descente est une méthode établie de l'entraînement de l'oreille au niveau universitaire.
+                
+            </p>
+            <p class="manual-rationale__ref">Réf. : Karpinski (2000) <a class="manual-ref-num" href="#ref-3">[3]</a></p>
+        </div>
+
+        <!-- #playback-mode -->
+        <h2 id="playback-mode">Mode de lecture</h2>
+
+        <p class="manual-lead">
+            
+            
+            <strong>Apprenez d'abord la forme en « Montant », ajoutez « Descendant » et « Montant + descendant » à mesure que vous gagnez en aisance, et terminez par « Aléatoire ».</strong>
+            
+        </p>
+
+        <p>
+            
+            
+            Détermine le sens dans lequel la gamme est jouée. Une même gamme se reconnaît différemment selon le sens.
+            
+        </p>
+
+        <div class="manual-options">
+            <div class="manual-option">
+                <div class="manual-option__name">Montant</div>
+                <div class="manual-option__desc">Vers le haut uniquement, du grave à l'aigu. Les premières notes permettent de se faire une idée rapidement — le sens le plus simple et le plus facile à reconnaître, adapté au début de l'apprentissage.</div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name">Descendant</div>
+                <div class="manual-option__desc">Vers le bas uniquement, de l'aigu au grave. Une gamme apprise en montant produit ici une autre impression ; pour former une oreille qui ne s'appuie pas uniquement sur la forme ascendante.</div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name">Montant + descendant</div>
+                <div class="manual-option__desc">On monte puis on redescend, l'un à la suite de l'autre. Davantage d'éléments pour juger, et pour les gammes comme le mineur mélodique dont la forme change entre la montée et la descente, la différence ressort clairement.</div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name">Aléatoire</div>
+                <div class="manual-option__desc">Alterne entre montant et descendant à chaque question, pour que vous sachiez reconnaître les gammes dans les deux sens.</div>
+            </div>
+        </div>
+
+        <div class="manual-rationale">
+            <span class="manual-rationale__label">Fondements scientifiques</span>
+            <p>
+                
+                
+                L'objectif est d'entendre la gamme elle-même sans s'appuyer sur un seul sens. La musique réelle emploie aussi bien des lignes ascendantes que descendantes. Varier le sens vous empêche de dépendre d'un indice unique (comme un « début de chanson » ascendant) et développe la capacité d'entendre la disposition des intervalles elle-même. Cela suit le principe établi de l'entraînement de l'oreille consistant à cultiver une écoute qui intègre la direction mélodique.
+                
+            </p>
+            <p class="manual-rationale__ref">Réf. : Karpinski (2000) <a class="manual-ref-num" href="#ref-3">[3]</a></p>
+        </div>
+
+        <!-- #playback-speed -->
+        <h2 id="playback-speed">Vitesse de lecture</h2>
+
+        <p class="manual-lead">
+            
+            
+            <strong>Restez sur « Normal ».</strong> Passez à « Lent » seulement quand une nouvelle gamme vous fait trébucher ; passez à « Rapide » une fois que c'est stable.
+            
+        </p>
+
+        <p>
+            
+            
+            Détermine la vitesse à laquelle chaque note de la gamme est jouée. Lent, Normal ou Rapide : « Lent » vous permet de suivre la disposition des demi-tons et des tons note par note, tandis que « Rapide » se rapproche du flux d'un jeu réel et entraîne le jugement instantané de la forme d'une gamme.
+            
+        </p>
+
+        <div class="manual-rationale">
+            <span class="manual-rationale__label">Fondements scientifiques</span>
+            <p>
+                
+                
+                La vitesse est réglable afin que vous puissiez adapter la charge de traitement à votre stade d'apprentissage. Tant qu'une nouvelle gamme reste peu familière, « Lent » réduit la charge ; une fois la discrimination stable, « Rapide » entraîne le jugement instantané. Maintenir une charge plus faible au début suit la théorie de la charge cognitive.
+                
+            </p>
+            <p class="manual-rationale__ref">Réf. : Sweller (1988) <a class="manual-ref-num" href="#ref-2">[2]</a></p>
+        </div>
+
+        <!-- #root-mode -->
+        <h2 id="root-mode">Fondamentale (tonalité)</h2>
+
+        <p class="manual-lead">
+            
+            
+            <strong>Utilisez « Aléatoire sur toutes les tonalités » (recommandation de l'application).</strong> Un grand débutant qui souhaite isoler la seule différence de type de gamme peut temporairement fixer la fondamentale.
+            
+        </p>
+
+        <p>
+            
+            
+            Détermine comment est choisie, à chaque fois, la fondamentale de la gamme (la note de référence à partir de laquelle la gamme commence — c'est-à-dire sa tonalité). Vous choisissez « Aléatoire sur toutes les tonalités » ou « Fondamentale fixe ».
+            
+        </p>
+
+        <div class="manual-options">
+            <div class="manual-option">
+                <div class="manual-option__name">Aléatoire (toutes les tonalités, recommandé)</div>
+                <div class="manual-option__desc">Choisit la fondamentale au hasard parmi les 12 tonalités à chaque question. Vous entendez la disposition des intervalles elle-même sans vous appuyer sur une hauteur précise — l'entraînement le plus proche du réel.</div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name">Fondamentale fixe</div>
+                <div class="manual-option__desc">Fixe la fondamentale (tonalité) sur une seule note (un sélecteur de note apparaît alors). Un point de départ constant facilite la comparaison des gammes — adapté au début de l'apprentissage.</div>
+            </div>
+        </div>
+
+        <div class="manual-rationale">
+            <span class="manual-rationale__label">Fondements scientifiques</span>
+            <p>
+                
+                
+                Faire varier la tonalité existe pour que vous puissiez entendre la disposition des intervalles de la gamme elle-même plutôt que de vous appuyer sur une seule hauteur. Mêler différentes tonalités (entraînement entrelacé) procure une meilleure rétention à long terme que de regrouper une même condition, comme le montre une méta-analyse. Qu'un débutant fixe temporairement la fondamentale est l'exception — on ne nivelle les conditions qu'au tout début pour faciliter la comparaison.
+                
+            </p>
+            <p class="manual-rationale__ref">Réf. : Brunmair &amp; Richter (2019) <a class="manual-ref-num" href="#ref-4">[4]</a></p>
+        </div>
+
+        <!-- References -->
+        <section class="manual-refs">
+            <div class="manual-refs__title">Références</div>
+            <ol>
+                <li id="ref-1">Roediger, H. L., &amp; Karpicke, J. D. (2006). Test-enhanced learning: Taking memory tests improves long-term retention. <em>Psychological Science, 17</em>(3), 249–255.</li>
+                <li id="ref-2">Sweller, J. (1988). Cognitive load during problem solving: Effects on learning. <em>Cognitive Science, 12</em>(2), 257–285.</li>
+                <li id="ref-3">Karpinski, G. S. (2000). <em>Aural Skills Acquisition: The Development of Listening, Reading, and Performing Skills in College-Level Musicians.</em> Oxford University Press.</li>
+                <li id="ref-4">Brunmair, M., &amp; Richter, T. (2019). Similarity matters: A meta-analysis of interleaved learning and its moderators. <em>Psychological Bulletin, 145</em>(11), 1029–1052.</li>
+            </ol>
+        </section>
+
+    </main>
+
+    <!-- Final CTA -->
+    <section class="article-cta">
+        <h2 class="article-cta__title">Réglages décidés ? Essayez sans attendre</h2>
+        <p class="article-cta__text">
+            
+            
+            Une fois chaque réglage compris, il ne reste plus qu'à pratiquer.<br>En cas de doute, suivez simplement les lignes « En cas de doute… » de cette page.<br>Trouvez les réglages qui vous conviennent dans la Reconnaissance de gammes de Solfege PRO.
+            
+        </p>
+        <a href="https://apps.apple.com/fr/app/id6756626617" class="app-store-link" aria-label="Download on the App Store">
+            
+            
+            <img class="app-store-link__img" width="127" height="40" src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/fr-fr" alt="Télécharger dans l'App Store">
+            
+        </a>
+    </section>
+
+    <!-- Related Content -->
+    <div class="article-related">
+        <div class="article-related__title">Contenu associé</div>
+        <a href="/guides/ear-training-scales/" class="article-related__link" style="margin-bottom: var(--space-md);">
+            <div class="article-related__link-title">Qu'est-ce que la reconnaissance de gammes ? — Comprendre la sonorité des gammes</div>
+            <div class="article-related__link-desc">Pour celles et ceux qui veulent comprendre ce qu'est la reconnaissance de gammes avant de régler les paramètres — un guide sur les différences de disposition des intervalles et sur une pratique progressive.</div>
+        </a>
+        <a href="/" class="article-related__link">
+            <div class="article-related__link-title">Guide d'entraînement Solfege PRO</div>
+            <div class="article-related__link-desc">Programmes d'entraînement par problématique pour guitare, basse, batterie, piano et chant</div>
+        </a>
+    </div>
+
+    <!-- Article Note -->
+    <aside class="article-endnote">
+        <p class="article-endnote__text">
+            
+            
+            Cette page est une référence expliquant les réglages internes de l'application. Les progressions recommandées ici sont des repères généraux fondés sur une méthodologie d'entraînement de l'oreille largement répandue ; les réglages optimaux varient selon l'expérience et les objectifs de chacun. Les études citées rapportent des résultats généraux sur l'apprentissage et ne garantissent pas de résultats au sein de cette application.
+            
+        </p>
+    </aside>
+
+    <!-- Footer -->
+    <footer class="article-footer">
+        <p class="article-footer__text">
+            &copy; 2026 Solfege PRO &mdash;
+            <a href="https://apps.apple.com/fr/app/id6756626617" class="article-footer__link">App Store</a>
+        </p>
+    </footer>
+    <script src="/bootstrap.js?v=3" defer></script>
+</body>
+</html>

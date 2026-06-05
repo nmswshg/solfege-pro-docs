@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="ja"
+      data-title-ja="コード進行認識 設定マニュアル — 各設定の選び方 | ソルフェージュPRO"
+      data-title-en="Chord Progression Settings Manual — How to Choose Each Option | Solfege PRO"
+      data-title-fr="Manuel des réglages — Reconnaissance des progressions d'accords — Comment choisir chaque option | Solfege PRO"
+      data-title-de="Einstellungshandbuch — Akkordfolgen-Erkennung — So wählst du jede Option | Solfege PRO">
+<head>
+    <meta charset="UTF-8">
+    <meta name="robots" content="index, follow">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#1A1A1E">
+    <title>コード進行認識 設定マニュアル — 各設定の選び方 | ソルフェージュPRO</title>
+    <meta name="description" content="コード進行トレーニングの各設定（トレーニングモード・難易度・進行の長さ・キーモード）を、何のための設定で、誰が、どう選ぶべきかまで丁寧に解説するリファレンスマニュアルです。">
+
+    <!-- Canonical -->
+    <link rel="canonical" href="https://solfegepro.com/manual/progression/">
+    <link rel="alternate" hreflang="ja" href="https://solfegepro.com/manual/progression/">
+    <link rel="alternate" hreflang="en" href="https://solfegepro.com/en/manual/progression/">
+    <link rel="alternate" hreflang="fr" href="https://solfegepro.com/fr/manual/progression/">
+    <link rel="alternate" hreflang="de" href="https://solfegepro.com/de/manual/progression/">
+    <link rel="alternate" hreflang="x-default" href="https://solfegepro.com/manual/progression/">
+
+    <!-- OGP -->
+    <meta property="og:title" content="コード進行認識 設定マニュアル — 各設定の選び方">
+    <meta property="og:description" content="コード進行トレーニングの各設定（トレーニングモード・難易度・進行の長さ・キーモード）を、何のための設定で、誰が、どう選ぶべきかまで丁寧に解説するリファレンスマニュアルです。">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://solfegepro.com/manual/progression/">
+    <meta property="og:site_name" content="ソルフェージュPRO">
+    <meta property="og:image" content="https://solfegepro.com/og-image.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Solfege PRO">
+    <meta property="og:locale" content="ja_JP">
+    <meta property="og:locale:alternate" content="en_US">
+    <meta property="og:locale:alternate" content="fr_FR">
+    <meta property="og:locale:alternate" content="de_DE">
+    <meta property="article:published_time" content="2026-06-05">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="コード進行認識 設定マニュアル — 各設定の選び方">
+    <meta name="twitter:description" content="コード進行トレーニングの各設定（トレーニングモード・難易度・進行の長さ・キーモード）を、何のための設定で、誰が、どう選ぶべきかまで丁寧に解説するリファレンスマニュアルです。">
+    <meta name="twitter:image" content="https://solfegepro.com/og-image.png">
+
+    <!-- Favicon -->
+    <link rel="icon" href="/favicon.ico" sizes="any">
+    <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap"></noscript>
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="/style.css?v=17">
+    <link rel="stylesheet" href="/guides/article.css?v=11">
+
+    <style>
+        /* Manual option reference — responsive, no fixed px widths */
+        .manual-options {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr);
+            gap: var(--space-sm);
+            margin: var(--space-lg) 0;
+        }
+        .manual-option {
+            background: var(--surface);
+            border: 1px solid var(--surface-light);
+            border-radius: var(--radius-lg);
+            padding: var(--space-md);
+        }
+        .manual-option__name {
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: var(--space-xs);
+        }
+        .manual-option__desc {
+            font-size: 13px;
+            color: var(--text-secondary);
+        }
+        /* Bottom-line callout (conclusion first) */
+        .manual-lead {
+            font-size: 14px;
+            line-height: 1.75;
+            color: var(--text-primary);
+            border-left: 3px solid var(--primary);
+            background: rgba(212, 175, 55, 0.06);
+            padding: var(--space-sm) var(--space-md);
+            border-radius: 0 var(--radius-md) var(--radius-md) 0;
+            margin: var(--space-md) 0;
+        }
+        /* Per-setting evidence note — deliberately styled as an editorial
+           aside, NOT as a settings card (no surface fill, no gold label),
+           so it is never mistaken for an in-app option. */
+        .manual-rationale {
+            margin: var(--space-md) 0 var(--space-2xl);
+            padding: var(--space-sm) 0 var(--space-sm) var(--space-md);
+            border-left: 2px solid var(--surface-light);
+        }
+        .manual-rationale__label {
+            display: block;
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            color: var(--text-secondary);
+            margin-bottom: 4px;
+            opacity: 0.75;
+        }
+        .manual-rationale p {
+            font-size: 13px;
+            line-height: 1.75;
+            color: var(--text-secondary);
+            margin: 0;
+        }
+        .manual-rationale__ref {
+            font-size: 12px;
+            font-style: italic;
+            margin-top: var(--space-xs) !important;
+            opacity: 0.7;
+        }
+        /* Citation number linking to the reference list */
+        .manual-ref-num {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-style: normal;
+        }
+        .manual-ref-num:hover { color: var(--primary); }
+        /* Full reference list at page end */
+        .manual-refs {
+            margin: var(--space-2xl) 0 0;
+            padding-top: var(--space-lg);
+            border-top: 1px solid var(--surface-light);
+        }
+        .manual-refs__title {
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: var(--space-sm);
+        }
+        .manual-refs ol {
+            margin: 0;
+            padding-left: 1.25em;
+        }
+        .manual-refs li {
+            font-size: 12px;
+            line-height: 1.7;
+            color: var(--text-secondary);
+            margin-bottom: var(--space-xs);
+            scroll-margin-top: 84px;
+        }
+        .manual-refs li:target {
+            color: var(--text-primary);
+        }
+    </style>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"コード進行認識 設定マニュアル — 各設定の選び方","description":"コード進行トレーニングの各設定を、何のための設定で、誰が、どう選ぶべきかまで解説するリファレンスマニュアルです。","author":{"@type":"Organization","name":"ソルフェージュPRO"},"publisher":{"@type":"Organization","name":"ソルフェージュPRO","logo":{"@type":"ImageObject","url":"https://solfegepro.com/AppIcon.png"}},"datePublished":"2026-06-05","mainEntityOfPage":{"@type":"WebPage","@id":"https://solfegepro.com/manual/progression/"}}</script>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="nav__container">
+            <a href="/" class="nav__logo">
+                <img src="/AppIcon.png" alt="Solfege PRO" class="nav__logo-icon" width="32" height="32">
+                <span class="nav__logo-text"><span lang="ja">ソルフェージュPRO</span><span lang="en">Solfege PRO</span><span lang="fr">Solfege PRO</span><span lang="de">Solfege PRO</span></span>
+            </a>
+            <ul class="nav__list">
+                <li><a href="/" class="nav__link"><span lang="ja">練習ガイド</span><span lang="en">Practice Guide</span><span lang="fr">Guide d'entraînement</span><span lang="de">Übungsleitfaden</span></a></li>
+                <li><a href="/guides/" class="nav__link"><span lang="ja">ガイド一覧</span><span lang="en">Guides</span><span lang="fr">Guides</span><span lang="de">Leitfäden</span></a></li>
+                <li><a href="/manual/" class="nav__link active"><span lang="ja">マニュアル</span><span lang="en">Manual</span><span lang="fr">Manuel</span><span lang="de">Handbuch</span></a></li>
+                            <li><a href="/start-here/" class="nav__link"><span lang="ja">どこから始める？</span><span lang="en">Where to Start?</span><span lang="fr">Par où commencer ?</span><span lang="de">Wo anfangen?</span></a></li>
+            </ul>
+            <div class="nav__settings">
+                <button class="settings-btn" id="lang-toggle" title="Toggle language">
+                    <span id="lang-text">EN</span>
+                </button>
+                <button class="hamburger-btn" id="hamburger-btn" aria-label="Menu" aria-expanded="false" aria-controls="drawer">
+                    <span class="hamburger-btn__line"></span>
+                    <span class="hamburger-btn__line"></span>
+                    <span class="hamburger-btn__line"></span>
+                </button>
+            </div>
+        </div>
+    </nav>
+        <!-- Mobile drawer (hidden on desktop) -->
+        <div class="drawer-overlay" id="drawer-overlay"></div>
+        <aside class="drawer" id="drawer" aria-label="Mobile menu" aria-hidden="true" inert>
+            <div class="drawer__header">
+                <span class="drawer__title"><span lang="ja">メニュー</span><span lang="en">Menu</span><span lang="fr">Menu</span><span lang="de">Menü</span></span>
+                <button class="drawer__close" id="drawer-close" aria-label="Close menu">×</button>
+            </div>
+            <ul class="drawer__list">
+                    <li><a href="/" class="drawer__link"><span lang="ja">練習ガイド</span><span lang="en">Practice Guide</span><span lang="fr">Guide d'entraînement</span><span lang="de">Übungsleitfaden</span></a></li>
+                    <li><a href="/guides/" class="drawer__link"><span lang="ja">ガイド一覧</span><span lang="en">Guides</span><span lang="fr">Guides</span><span lang="de">Leitfäden</span></a></li>
+                    <li><a href="/manual/" class="drawer__link active"><span lang="ja">マニュアル</span><span lang="en">Manual</span><span lang="fr">Manuel</span><span lang="de">Handbuch</span></a></li>
+                    <li><a href="/start-here/" class="drawer__link"><span lang="ja">どこから始める？</span><span lang="en">Where to Start?</span><span lang="fr">Par où commencer ?</span><span lang="de">Wo anfangen?</span></a></li>
+            </ul>
+        </aside>
+
+
+    <!-- Article Header -->
+    <header class="page-header">
+        <div class="page-header__meta">
+            <span class="page-header__tag"><span lang="ja">マニュアル</span><span lang="en">Manual</span><span lang="fr">Manuel</span><span lang="de">Handbuch</span></span>
+            <span><span lang="ja">コード進行認識</span><span lang="en">Chord Progression</span><span lang="fr">Progression d'accords</span><span lang="de">Akkordfolge</span></span>
+        </div>
+        <h1 class="page-header__title">
+            <span lang="ja">コード進行認識 設定マニュアル<br>各設定の意味と選び方</span>
+            <span lang="en">Chord Progression Settings Manual<br>What Each Option Means and How to Choose</span>
+            <span lang="fr">Manuel des réglages — Reconnaissance des progressions d'accords<br>Le sens de chaque option et comment la choisir</span>
+            <span lang="de">Einstellungshandbuch — Akkordfolgen-Erkennung<br>Was jede Option bedeutet und wie man sie wählt</span>
+        </h1>
+        <p class="page-header__subtitle">
+            <span lang="ja">設定画面のどの項目を、どんなときに、どう選べばよいか。コード進行トレーニングの各設定を 1 つずつ解説します。設定画面の「?」から飛んできた方は、目的の項目までスクロールしてください。</span>
+            <span lang="en">Which option to pick, when, and why. This page walks through each setting in chord progression training, one at a time. If you arrived from a "?" in the settings screen, scroll to the option you need.</span>
+            <span lang="fr">Quelle option choisir, quand et pourquoi. Cette page passe en revue, un à un, chaque réglage de l'entraînement aux progressions d'accords. Si vous arrivez depuis un « ? » de l'écran des réglages, faites défiler jusqu'à l'option recherchée.</span>
+            <span lang="de">Welche Option du wählst, wann und warum. Diese Seite geht jede Einstellung des Akkordfolgen-Trainings einzeln durch. Wenn du von einem „?" im Einstellungsbildschirm kommst, scrolle zur gewünschten Option.</span>
+        </p>
+    </header>
+
+    <!-- Top-of-article CTA -->
+    <aside class="article-top-cta" aria-label="App promotion">
+        <div class="article-top-cta__body">
+            <p class="article-top-cta__title">
+                <span lang="ja">ソルフェージュPRO でこの練習を試す</span>
+                <span lang="en">Try this in Solfege PRO</span>
+                <span lang="fr">Pratiquer dans Solfege PRO</span>
+                <span lang="de">In Solfege PRO üben</span>
+            </p>
+            <p class="article-top-cta__sub">
+                <span lang="ja">月額 980 円 · 1 週間無料トライアル</span>
+                <span lang="en">¥980/month · 1-week free trial</span>
+                <span lang="fr">¥980/mois · 1 semaine d'essai gratuite</span>
+                <span lang="de">¥980/Monat · 1 Woche Gratistestphase</span>
+            </p>
+        </div>
+        <a href="https://apps.apple.com/jp/app/id6756626617" class="article-top-cta__button" data-cta-position="article_top">
+            <span lang="ja">App Store →</span>
+            <span lang="en">App Store →</span>
+            <span lang="fr">App Store →</span>
+            <span lang="de">App Store →</span>
+        </a>
+    </aside>
+
+    <!-- Article Body -->
+    <main class="article-body">
+
+        <!-- Intro -->
+        <p>
+            <span lang="ja">コード進行トレーニングは、続けて鳴る複数のコードを聴いて、その並び（進行＝和音の連なり）を耳だけで聴き取る練習です。1 つ 1 つのコードの種類だけでなく、「このコードからこのコードへ動く」という流れ＝ハーモニーの文脈を捉える耳が目標になります。進行が聴けると、曲の弾き語りや耳コピ、アドリブの土台ができます。</span>
+            <span lang="en">Chord progression training is practice at hearing several chords played in a row and following their sequence — the progression, i.e. how harmonies connect — by ear alone. The goal is not just the type of each chord but the ear for context: "this chord moves to that one." Hearing progressions is the foundation for playing songs by ear, transcribing, and improvising.</span>
+            <span lang="fr">L'entraînement aux progressions d'accords consiste à écouter plusieurs accords joués à la suite et à suivre leur enchaînement — la progression, c'est-à-dire la façon dont les harmonies se relient — à l'oreille seule. L'objectif n'est pas seulement le type de chaque accord, mais l'oreille du contexte : « cet accord va vers celui-là ». Entendre les progressions est la base pour jouer des morceaux à l'oreille, faire des relevés et improviser.</span>
+            <span lang="de">Beim Akkordfolgen-Training übst du, mehrere nacheinander gespielte Akkorde zu hören und ihrer Abfolge zu folgen — der Progression, also wie sich Harmonien verbinden — allein mit dem Ohr. Das Ziel ist nicht nur der Typ jedes Akkords, sondern das Ohr für den Zusammenhang: „dieser Akkord geht zu jenem". Akkordfolgen zu hören ist die Grundlage, um Stücke nach Gehör zu spielen, herauszuhören und zu improvisieren.</span>
+        </p>
+        <p>
+            <span lang="ja">このページは設定の選び方をまとめたマニュアルです。各設定は音楽教育で確立された学習法にもとづいて設計しています。判断が要る設定について、<strong>おすすめの選び方・何のための設定か・鍛えられる力とその根拠</strong>を簡潔に示します。設定画面の「?」から来た方は、目的の項目までスクロールしてください。</span>
+            <span lang="en">This page is a manual for choosing the settings. Each setting is designed around established methods from music education. For each setting that calls for a decision, we give <strong>the recommended choice, what it is for, and what it trains — with the evidence behind it</strong>. If you arrived from a "?" in the settings screen, scroll to the option you need.</span>
+            <span lang="fr">Cette page est un manuel pour choisir les réglages. Chaque réglage s'appuie sur des méthodes éprouvées de l'éducation musicale. Pour chaque réglage qui demande une décision, nous indiquons <strong>le choix recommandé, à quoi il sert et ce qu'il développe — avec les preuves à l'appui</strong>. Si vous arrivez depuis un « ? » de l'écran des réglages, faites défiler jusqu'à l'option recherchée.</span>
+            <span lang="de">Diese Seite ist ein Handbuch zur Wahl der Einstellungen. Jede Einstellung beruht auf bewährten Methoden der Musikpädagogik. Für jede Einstellung, die eine Entscheidung erfordert, nennen wir <strong>die empfohlene Wahl, wozu sie dient und was sie trainiert — mit den Belegen dahinter</strong>. Wenn du von einem „?" im Einstellungsbildschirm kommst, scrolle zur gewünschten Option.</span>
+        </p>
+
+        <!-- #training-mode -->
+        <h2 id="training-mode"><span lang="ja">トレーニングモード</span><span lang="en">Training Mode</span><span lang="fr">Mode d'entraînement</span><span lang="de">Trainingsmodus</span></h2>
+
+        <p class="manual-lead">
+            <span lang="ja"><strong>まずは「通常」で十分。</strong> 成績がたまったら「忘れた頃に復習」「苦手克服」を使います。</span>
+            <span lang="en"><strong>Normal is enough to start.</strong> Reach for "Review When You Forget" and "Weak-Point Focus" once your results accumulate.</span>
+            <span lang="fr"><strong>« Normal » suffit pour commencer.</strong> Passez à « Réviser au bon moment » et « Renforcer les points faibles » une fois que vos résultats s'accumulent.</span>
+            <span lang="de"><strong>„Normal" reicht für den Anfang.</strong> Greife zu „Wiederholen beim Vergessen" und „Schwachstellen-Fokus", sobald sich deine Ergebnisse angesammelt haben.</span>
+        </p>
+
+        <p>
+            <span lang="ja">出題する進行をどの方針で選ぶかを決める設定です。3 つのモードがあります。</span>
+            <span lang="en">This setting decides the policy by which progressions are chosen for you. There are three modes.</span>
+            <span lang="fr">Ce réglage détermine selon quelle logique les progressions vous sont proposées. Il existe trois modes.</span>
+            <span lang="de">Diese Einstellung legt fest, nach welcher Regel dir Progressionen vorgelegt werden. Es gibt drei Modi.</span>
+        </p>
+
+        <div class="manual-options">
+            <div class="manual-option">
+                <div class="manual-option__name"><span lang="ja">通常モード</span><span lang="en">Normal</span><span lang="fr">Normal</span><span lang="de">Normal</span></div>
+                <div class="manual-option__desc"><span lang="ja">選んだ難易度・進行の長さ・キーに当てはまる進行を均等に出題します。特に狙いがなければこれで構いません。下で説明する各設定が、そのまま出題範囲になります。</span><span lang="en">Draws evenly from the progressions that match your chosen difficulty, length, and key. With no special intent, this is the one. The settings explained below directly set the question pool.</span><span lang="fr">Propose à parts égales les progressions correspondant à la difficulté, à la longueur et à la tonalité choisies. Sans objectif particulier, c'est le bon choix. Les réglages expliqués plus bas définissent directement l'ensemble des questions.</span><span lang="de">Zieht gleichmäßig aus den Progressionen, die zu deiner gewählten Schwierigkeit, Länge und Tonart passen. Ohne besondere Absicht ist dies die richtige Wahl. Die unten erläuterten Einstellungen legen direkt den Fragenpool fest.</span></div>
+            </div>
+        </div>
+
+        <p>
+            <span lang="ja">残りの 2 つ — 忘れた頃に復習 と 苦手克服 — は成績データがたまってから効くモードです。苦手克服 は苦手な進行が見つかるまで（=十分な回答数がたまるまで）は選べません。考え方はどのトレーニングでも共通なので、下に展開します。</span>
+            <span lang="en">The other two — "Review When You Forget" and "Weak-Point Focus" — pay off once your performance data accumulates. "Weak-Point Focus" stays unavailable until weak progressions have been identified (that is, until you have enough answer history). They work the same way across every training, so they appear inline below.</span>
+            <span lang="fr">Les deux autres — « Réviser au bon moment » et « Renforcer les points faibles » — portent leurs fruits une fois que vos données de performance s'accumulent. « Renforcer les points faibles » reste indisponible tant que des progressions faibles n'ont pas été repérées (c'est-à-dire tant que vous n'avez pas assez d'historique de réponses). Leur logique est la même dans tous les entraînements ; elle est détaillée ci-dessous.</span>
+            <span lang="de">Die beiden anderen — „Wiederholen beim Vergessen" und „Schwachstellen-Fokus" — zahlen sich aus, sobald sich deine Leistungsdaten ansammeln. „Schwachstellen-Fokus" bleibt gesperrt, bis schwache Progressionen erkannt wurden (also bis du genug Antwortverlauf hast). Sie funktionieren in jedem Training gleich und werden daher unten erläutert.</span>
+        </p>
+
+        <!-- include: _partials/mode-spaced-repetition.html -->
+        <!-- include: _partials/mode-weak-point.html -->
+
+        <div class="manual-rationale">
+            <span class="manual-rationale__label"><span lang="ja">学習科学の裏づけ</span><span lang="en">The evidence behind it</span><span lang="fr">Les preuves à l'appui</span><span lang="de">Die Belege dahinter</span></span>
+            <p>
+                <span lang="ja">3 つのモードは「今の自分に必要な進行へ練習を集中させる」ためにあります。自分で思い出して答える出題形式そのものが、ただ聴き流すより記憶を強くします（テスト効果）。「忘れた頃に復習」「苦手克服」は、この効果を成績データで自動化したモードです。</span>
+                <span lang="en">The three modes exist to concentrate practice on the progressions you currently need. The quiz format itself — recalling the answer rather than listening passively — strengthens memory more than re-listening (the testing effect). "Review When You Forget" and "Weak-Point Focus" automate this using your performance data.</span>
+                <span lang="fr">Les trois modes servent à concentrer l'entraînement sur les progressions dont vous avez besoin en ce moment. Le format de quiz lui-même — se rappeler la réponse plutôt qu'écouter passivement — renforce la mémoire mieux que la simple réécoute (l'effet de test). « Réviser au bon moment » et « Renforcer les points faibles » automatisent cet effet à partir de vos données de performance.</span>
+                <span lang="de">Die drei Modi dienen dazu, das Üben auf die Progressionen zu konzentrieren, die du gerade brauchst. Das Quizformat selbst — die Antwort abzurufen, statt passiv zuzuhören — festigt das Gedächtnis stärker als erneutes Anhören (der Testeffekt). „Wiederholen beim Vergessen" und „Schwachstellen-Fokus" automatisieren dies anhand deiner Leistungsdaten.</span>
+            </p>
+            <p class="manual-rationale__ref"><span lang="ja">参考: </span><span lang="en">Ref.: </span><span lang="fr">Réf. : </span><span lang="de">Quelle: </span>Roediger &amp; Karpicke (2006) <a class="manual-ref-num" href="#ref-1">[1]</a></p>
+        </div>
+
+        <!-- #difficulty (also the notation / answer-style choice) -->
+        <h2 id="difficulty"><span lang="ja">難易度（回答の表記方式）</span><span lang="en">Difficulty (answer notation)</span><span lang="fr">Difficulté (notation des réponses)</span><span lang="de">Schwierigkeit (Antwortnotation)</span></h2>
+
+        <p class="manual-lead">
+            <span lang="ja"><strong>迷ったら「機能 基礎 (T/SD/D)」から。</strong> 「落ち着く→動く→緊張→解決」の骨格が安定したら、機能 上級 → ローマ数字 → コードシンボル と上げます。</span>
+            <span lang="en"><strong>When unsure, start at Function Basic (T/SD/D).</strong> Once the "rest → move → tension → resolution" skeleton is stable, step up to Function Advanced → Roman Numerals → Chord Symbols.</span>
+            <span lang="fr"><strong>En cas de doute, commencez par Fonction — Base (T/SD/D).</strong> Une fois le squelette « repos → mouvement → tension → résolution » bien en place, montez vers Fonction — Avancé → Chiffres romains → Symboles d'accords.</span>
+            <span lang="de"><strong>Im Zweifel mit Funktion — Grundlagen (T/SD/D) beginnen.</strong> Sobald das Gerüst „Ruhe → Bewegung → Spannung → Auflösung" sitzt, steige auf zu Funktion — Fortgeschritten → Römische Ziffern → Akkordsymbole.</span>
+        </p>
+
+        <p>
+            <span lang="ja">単に「やさしい/むずかしい」ではなく、進行を<strong>どの表記で答えるか</strong>を決める設定です。機能（T/SD/D。コードの和声的な役割）、ローマ数字、具体的なコードネームのどれで答えるかで、鍛えられる耳と必要な知識が変わります。抽象度の高い 機能 から、具体的な コードシンボル へと段階的に進みます。</span>
+            <span lang="en">Not merely "easy vs. hard" — it decides <strong>the notation in which you answer</strong> a progression. Answering by function (T/SD/D — a chord's harmonic role), by Roman numerals, or by concrete chord names trains a different ear and requires different knowledge. It moves step by step from the most abstract — Function — toward the most concrete — Chord Symbols.</span>
+            <span lang="fr">Il ne s'agit pas simplement de « facile ou difficile » : ce réglage décide <strong>dans quelle notation vous répondez</strong> à une progression. Répondre par fonction (T/SD/D — le rôle harmonique d'un accord), par chiffres romains ou par noms d'accords concrets développe une oreille différente et demande des connaissances différentes. On progresse pas à pas, du plus abstrait — Fonction — vers le plus concret — Symboles d'accords.</span>
+            <span lang="de">Es geht nicht bloß um „leicht oder schwer" — diese Einstellung legt fest, <strong>in welcher Notation du antwortest</strong>. Per Funktion (T/SD/D — die harmonische Rolle eines Akkords), per römischen Ziffern oder per konkreten Akkordnamen zu antworten trainiert ein jeweils anderes Ohr und verlangt anderes Wissen. Es geht Schritt für Schritt vom Abstraktesten — Funktion — zum Konkretesten — Akkordsymbole.</span>
+        </p>
+
+        <div class="manual-options" id="notation">
+            <div class="manual-option">
+                <div class="manual-option__name"><span lang="ja">機能 基礎 (T/SD/D)</span><span lang="en">Function Basic (T/SD/D)</span><span lang="fr">Fonction — Base (T/SD/D)</span><span lang="de">Funktion — Grundlagen (T/SD/D)</span></div>
+                <div class="manual-option__desc"><span lang="ja">各コードの機能だけを答えます。T=トニック（落ち着き）、SD=サブドミナント（動き出し）、D=ドミナント（緊張・解決を求める）の 3 つで、基礎は I=T, IV=SD, V=D のみ。名前を知らなくても進行の役割の流れを耳でつかむ入門段階です。</span><span lang="en">You answer only each chord's function — three labels: T = tonic (rest), SD = subdominant (setting off), D = dominant (tension wanting resolution). Basic uses only I=T, IV=SD, V=D. The entry stage for hearing the flow of roles, even without chord names.</span><span lang="fr">Vous ne répondez que par la fonction de chaque accord — trois étiquettes : T = tonique (repos), SD = sous-dominante (départ), D = dominante (tension réclamant une résolution). La base n'utilise que I=T, IV=SD, V=D. L'étape d'entrée pour entendre le flux des rôles, même sans connaître les noms d'accords.</span><span lang="de">Du antwortest nur mit der Funktion jedes Akkords — drei Bezeichnungen: T = Tonika (Ruhe), SD = Subdominante (Aufbruch), D = Dominante (Spannung, die nach Auflösung verlangt). Die Grundstufe verwendet nur I=T, IV=SD, V=D. Die Einstiegsstufe, um den Fluss der Rollen zu hören, auch ohne Akkordnamen.</span></div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name"><span lang="ja">機能 上級 (T/SD/D)</span><span lang="en">Function Advanced (T/SD/D)</span><span lang="fr">Fonction — Avancé (T/SD/D)</span><span lang="de">Funktion — Fortgeschritten (T/SD/D)</span></div>
+                <div class="manual-option__desc"><span lang="ja">同じ機能で答えますが範囲が広がり、I/vi/iii=T、IV/ii=SD、V/vii=D と複数のコードが同じ機能を担うことを聴き分けます。vi が I の代わりにトニックを担う「代理」の響きを捉える段階です。</span><span lang="en">Same function-based answers, but the scope widens: several chords share one function (I/vi/iii=T, IV/ii=SD, V/vii=D). You learn to hear, e.g., vi standing in for I as a tonic — the sound of substitution.</span><span lang="fr">Mêmes réponses par fonction, mais la portée s'élargit : plusieurs accords partagent une même fonction (I/vi/iii=T, IV/ii=SD, V/vii=D). Vous apprenez à entendre, par exemple, vi qui remplace I comme tonique — le son de la substitution.</span><span lang="de">Dieselben funktionsbasierten Antworten, aber der Umfang wächst: mehrere Akkorde teilen sich eine Funktion (I/vi/iii=T, IV/ii=SD, V/vii=D). Du lernst zu hören, wie etwa vi als Stellvertreter für I die Tonika übernimmt — der Klang der Substitution.</span></div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name"><span lang="ja">ローマ数字</span><span lang="en">Roman Numerals</span><span lang="fr">Chiffres romains</span><span lang="de">Römische Ziffern</span></div>
+                <div class="manual-option__desc"><span lang="ja">進行を I・IV・V・vi のようなローマ数字（=キーの中での度数）で答えます。機能より一段細かく「キーの何番目か」を特定し、どのキーでも通用する移調可能な「進行の地図」を耳で読む力が付きます。</span><span lang="en">You answer with Roman numerals such as I, IV, V, vi (the scale degree within the key). One step finer than function: you pinpoint which numbered chord it is, building a transposable "map" of progressions that holds in any key.</span><span lang="fr">Vous répondez par des chiffres romains comme I, IV, V, vi (le degré dans la tonalité). Un cran plus fin que la fonction : vous identifiez précisément quel degré c'est, en construisant une « carte » transposable des progressions, valable dans n'importe quelle tonalité.</span><span lang="de">Du antwortest mit römischen Ziffern wie I, IV, V, vi (der Stufe innerhalb der Tonart). Eine Stufe feiner als die Funktion: du bestimmst genau, welche Stufe es ist, und baust eine transponierbare „Landkarte" der Progressionen auf, die in jeder Tonart gilt.</span></div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name"><span lang="ja">コードシンボル</span><span lang="en">Chord Symbols</span><span lang="fr">Symboles d'accords</span><span lang="de">Akkordsymbole</span></div>
+                <div class="manual-option__desc"><span lang="ja">進行を C・Dm・G のような具体的なコードネームで答えます。譜面やリードシートにそのまま対応する最も実践的な段階。キーとローマ数字の両方を頭の中で結びつける必要があり、最上位です。</span><span lang="en">You answer with concrete chord names such as C, Dm, G — the most practical level, mapping directly onto charts and lead sheets. It demands connecting both the key and the Roman numeral in your head, so it is the top tier.</span><span lang="fr">Vous répondez par des noms d'accords concrets comme C, Dm, G — le niveau le plus pratique, qui correspond directement aux partitions et aux lead sheets. Il exige de relier dans sa tête à la fois la tonalité et le chiffre romain ; c'est donc le niveau le plus élevé.</span><span lang="de">Du antwortest mit konkreten Akkordnamen wie C, Dm, G — die praktischste Stufe, die direkt zu Notenblättern und Lead Sheets passt. Sie verlangt, im Kopf sowohl die Tonart als auch die römische Ziffer zu verbinden, und ist daher die höchste Stufe.</span></div>
+            </div>
+        </div>
+
+        <div class="manual-rationale">
+            <span class="manual-rationale__label"><span lang="ja">学習科学の裏づけ</span><span lang="en">The evidence behind it</span><span lang="fr">Les preuves à l'appui</span><span lang="de">Die Belege dahinter</span></span>
+            <p>
+                <span lang="ja">進行をまず機能（和声的役割）でまとめて聴く段階を置くのは、扱う情報を絞って耳の負荷を下げ、確実な土台を作るためです。具体的なコード名を覚える前に「落ち着く→動く→緊張→解決」の骨格を聴き取れるようにする機能和声（functional harmony）の考え方は、大学レベルのイヤートレーニングで確立された手順で、抽象度の低い段階から始めるほど初期の処理の負荷を抑えられます。</span>
+                <span lang="en">Starting by hearing a progression in terms of function (its harmonic role) narrows the information to process and lowers the load, building a secure foundation. Hearing the "rest → move → tension → resolution" skeleton before memorizing concrete chord names — functional harmony — is an established procedure in college-level ear training, and beginning at the more abstract tier keeps early processing demands low.</span>
+                <span lang="fr">Commencer par entendre une progression du point de vue de la fonction (son rôle harmonique) limite l'information à traiter et réduit la charge, en bâtissant une base solide. Entendre le squelette « repos → mouvement → tension → résolution » avant de mémoriser des noms d'accords concrets — l'harmonie fonctionnelle — est une démarche éprouvée dans l'enseignement supérieur de l'oreille musicale, et débuter au niveau le plus abstrait maintient basse la charge de traitement initiale.</span>
+                <span lang="de">Eine Progression zuerst über die Funktion (ihre harmonische Rolle) zu hören, begrenzt die zu verarbeitende Information und senkt die Last, was ein sicheres Fundament schafft. Das Gerüst „Ruhe → Bewegung → Spannung → Auflösung" zu hören, bevor man konkrete Akkordnamen lernt — die Funktionsharmonik —, ist ein bewährtes Vorgehen im Hörtraining auf Hochschulniveau, und der Beginn auf der abstrakteren Stufe hält die anfängliche Verarbeitungslast gering.</span>
+            </p>
+            <p class="manual-rationale__ref"><span lang="ja">参考: </span><span lang="en">Ref.: </span><span lang="fr">Réf. : </span><span lang="de">Quelle: </span>Karpinski (2000) <a class="manual-ref-num" href="#ref-2">[2]</a>; Sweller (1988) <a class="manual-ref-num" href="#ref-3">[3]</a></p>
+        </div>
+
+        <!-- #length -->
+        <h2 id="length"><span lang="ja">進行の長さ</span><span lang="en">Progression Length</span><span lang="fr">Longueur de la progression</span><span lang="de">Länge der Progression</span></h2>
+
+        <p class="manual-lead">
+            <span lang="ja"><strong>迷ったら「3コード」。</strong> 1 つの動きを固めたいなら 2コード、楽曲まるごとの流れに挑むなら 4コード へ。</span>
+            <span lang="en"><strong>When unsure, pick 3 chords.</strong> Drop to 2 chords to lock in a single motion, or move up to 4 chords to take on whole-song flows.</span>
+            <span lang="fr"><strong>En cas de doute, choisissez 3 accords.</strong> Descendez à 2 accords pour ancrer un seul mouvement, ou montez à 4 accords pour aborder le flux d'un morceau entier.</span>
+            <span lang="de"><strong>Im Zweifel 3 Akkorde wählen.</strong> Geh auf 2 Akkorde herunter, um eine einzelne Bewegung zu festigen, oder auf 4 Akkorde hinauf, um den Verlauf eines ganzen Stücks anzugehen.</span>
+        </p>
+
+        <p>
+            <span lang="ja">1 問あたり何個のコードが続けて鳴るかを決める設定です。2 コード・3 コード・4 コード から選べます。コードの数が増えるほど覚えておく音と聴き取る関係性が増え、難しくなります。長さや難易度を変えると、その組み合わせで出題できるパターン数が画面右上に表示されます。</span>
+            <span lang="en">Sets how many chords play in a row per question. You can choose 2, 3, or 4 chords. The more chords, the more you must hold in memory and the more relationships you must track — so it gets harder. As you change length or difficulty, the number of patterns available for that combination appears at the top-right of the screen.</span>
+            <span lang="fr">Définit combien d'accords sont joués à la suite par question. Vous pouvez choisir 2, 3 ou 4 accords. Plus il y a d'accords, plus vous devez en garder en mémoire et plus de relations à suivre — donc c'est plus difficile. Lorsque vous modifiez la longueur ou la difficulté, le nombre de motifs disponibles pour cette combinaison s'affiche en haut à droite de l'écran.</span>
+            <span lang="de">Legt fest, wie viele Akkorde pro Frage nacheinander erklingen. Du kannst 2, 3 oder 4 Akkorde wählen. Je mehr Akkorde, desto mehr musst du im Gedächtnis behalten und desto mehr Beziehungen verfolgen — es wird also schwerer. Wenn du Länge oder Schwierigkeit änderst, erscheint die Zahl der für diese Kombination verfügbaren Muster oben rechts im Bildschirm.</span>
+        </p>
+
+        <div class="manual-options">
+            <div class="manual-option">
+                <div class="manual-option__name"><span lang="ja">2コード</span><span lang="en">2 chords</span><span lang="fr">2 accords</span><span lang="de">2 Akkorde</span></div>
+                <div class="manual-option__desc"><span lang="ja">2 つのコードの「動き 1 つ」だけを聴きます。V→I（解決）や IV→I のような最小単位の進行に集中でき、ひとつの動きの響きを確実に覚えるのに最適。最初の一歩。</span><span lang="en">You hear a single "move" between two chords. You can focus on the smallest unit — V→I (resolution), IV→I — ideal for firmly learning the sound of one motion. The first step.</span><span lang="fr">Vous n'entendez qu'un seul « mouvement » entre deux accords. Vous pouvez vous concentrer sur l'unité minimale — V→I (résolution), IV→I —, idéal pour apprendre solidement le son d'un seul mouvement. Le premier pas.</span><span lang="de">Du hörst nur eine einzige „Bewegung" zwischen zwei Akkorden. Du kannst dich auf die kleinste Einheit konzentrieren — V→I (Auflösung), IV→I —, ideal, um den Klang einer einzelnen Bewegung sicher zu lernen. Der erste Schritt.</span></div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name"><span lang="ja">3コード</span><span lang="en">3 chords</span><span lang="fr">3 accords</span><span lang="de">3 Akkorde</span></div>
+                <div class="manual-option__desc"><span lang="ja">3 つのコードで「行って戻る」流れを聴きます。I→IV→V や ii→V→I など、音楽でいちばん耳にする定番の形を含む、進行の典型を学べるバランスの良い長さ。</span><span lang="en">Three chords give a "go-and-return" shape, including the most familiar staples — I→IV→V, ii→V→I. A well-balanced length for learning the typical contours of a progression.</span><span lang="fr">Trois accords donnent une forme « aller-retour », incluant les enchaînements les plus familiers — I→IV→V, ii→V→I. Une longueur bien équilibrée pour apprendre les contours typiques d'une progression.</span><span lang="de">Drei Akkorde ergeben eine „Hin-und-zurück"-Gestalt, einschließlich der vertrautesten Standards — I→IV→V, ii→V→I. Eine gut ausgewogene Länge, um die typischen Verläufe einer Progression zu lernen.</span></div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name"><span lang="ja">4コード</span><span lang="en">4 chords</span><span lang="fr">4 accords</span><span lang="de">4 Akkorde</span></div>
+                <div class="manual-option__desc"><span lang="ja">4 つのコードで、1 つの完結したフレーズに近い進行を聴きます。I→vi→IV→V や I→V→vi→IV など実際の楽曲そのままの流れ。記憶の負荷が高く最上位の難しさ。</span><span lang="en">Four chords give a progression close to a complete phrase — real-song flows like I→vi→IV→V or I→V→vi→IV. The memory load is high — the top tier of difficulty.</span><span lang="fr">Quatre accords donnent une progression proche d'une phrase complète — des enchaînements de vrais morceaux comme I→vi→IV→V ou I→V→vi→IV. La charge mémorielle est élevée — le niveau de difficulté le plus haut.</span><span lang="de">Vier Akkorde ergeben eine Progression, die einer vollständigen Phrase nahekommt — Verläufe echter Stücke wie I→vi→IV→V oder I→V→vi→IV. Die Gedächtnislast ist hoch — die höchste Schwierigkeitsstufe.</span></div>
+            </div>
+        </div>
+
+        <div class="manual-rationale">
+            <span class="manual-rationale__label"><span lang="ja">学習科学の裏づけ</span><span lang="en">The evidence behind it</span><span lang="fr">Les preuves à l'appui</span><span lang="de">Die Belege dahinter</span></span>
+            <p>
+                <span lang="ja">短い進行から始められるのは、一度に覚えておくコードの数を減らして耳の負荷を抑えるためです。少ない数で動きの響きを確実にしてから長くするほうが、いきなり 4 コードに挑むより速く上達します。新しい技能の初期は処理の負荷を抑えるほど学習が進む、という認知負荷の考え方にもとづく段階設計です。</span>
+                <span lang="en">You can start from short progressions so as to hold fewer chords at once and keep the load on your ear low. Securing the sound of the motion with few chords before lengthening gets you there faster than tackling four chords at once. The tiers follow cognitive-load theory: keeping processing demands low early in a new skill aids learning.</span>
+                <span lang="fr">Vous pouvez partir de progressions courtes afin de retenir moins d'accords à la fois et de garder la charge sur l'oreille basse. Assurer le son du mouvement avec peu d'accords avant de l'allonger vous y mène plus vite que d'attaquer quatre accords d'emblée. La progression des niveaux suit la théorie de la charge cognitive : limiter les exigences de traitement au début d'une nouvelle compétence favorise l'apprentissage.</span>
+                <span lang="de">Du kannst von kurzen Progressionen ausgehen, um weniger Akkorde auf einmal zu behalten und die Last für dein Ohr gering zu halten. Den Klang der Bewegung mit wenigen Akkorden zu sichern, bevor du verlängerst, bringt dich schneller voran, als sofort vier Akkorde anzugehen. Die Stufung folgt der Theorie der kognitiven Belastung: geringe Verarbeitungsanforderungen zu Beginn einer neuen Fertigkeit fördern das Lernen.</span>
+            </p>
+            <p class="manual-rationale__ref"><span lang="ja">参考: </span><span lang="en">Ref.: </span><span lang="fr">Réf. : </span><span lang="de">Quelle: </span>Sweller (1988) <a class="manual-ref-num" href="#ref-3">[3]</a></p>
+        </div>
+
+        <!-- #key-quality -->
+        <h2 id="key-quality"><span lang="ja">キーモード（メジャー / マイナー）</span><span lang="en">Key Mode (Major / Minor)</span><span lang="fr">Mode de tonalité (majeur / mineur)</span><span lang="de">Tonart-Modus (Dur / Moll)</span></h2>
+
+        <p class="manual-lead">
+            <span lang="ja"><strong>迷ったら「メジャー」から。</strong> 安定したら「マイナー」を加え、明暗どちらのキーでも進行を読み取れる耳に広げます。</span>
+            <span lang="en"><strong>When unsure, start with Major.</strong> Once it feels stable, add Minor to extend your ear so you can read progressions in keys of either character.</span>
+            <span lang="fr"><strong>En cas de doute, commencez par le majeur.</strong> Une fois cela bien en place, ajoutez le mineur pour élargir votre oreille et lire les progressions dans des tonalités de l'un comme de l'autre caractère.</span>
+            <span lang="de"><strong>Im Zweifel mit Dur beginnen.</strong> Sobald es sitzt, nimm Moll hinzu, um dein Ohr zu erweitern und Progressionen in Tonarten beider Charaktere lesen zu können.</span>
+        </p>
+
+        <p>
+            <span lang="ja">進行を メジャーキー で出すか マイナーキー で出すかを決める設定です。メジャーとマイナーでは、同じ度数の進行でも響きの明暗が大きく変わり、登場するコードの並びも変わります。</span>
+            <span lang="en">Decides whether progressions come in a major key or a minor key. Major and minor give the same scale-degree progression a very different bright-or-dark character, and the set of chords that appears changes too.</span>
+            <span lang="fr">Détermine si les progressions sont proposées en tonalité majeure ou mineure. Le majeur et le mineur donnent à une même progression de degrés un caractère clair ou sombre très différent, et l'ensemble des accords qui apparaissent change aussi.</span>
+            <span lang="de">Legt fest, ob Progressionen in einer Dur- oder einer Moll-Tonart erscheinen. Dur und Moll verleihen derselben Stufen-Progression einen sehr unterschiedlichen hellen oder dunklen Charakter, und auch die Menge der vorkommenden Akkorde ändert sich.</span>
+        </p>
+
+        <div class="manual-options">
+            <div class="manual-option">
+                <div class="manual-option__name"><span lang="ja">メジャー</span><span lang="en">Major</span><span lang="fr">Majeur</span><span lang="de">Dur</span></div>
+                <div class="manual-option__desc"><span lang="ja">メジャーキーで練習します。明るく安定した響きで、I→IV→V や ii→V→I といったポップスで最頻出の進行が中心。進行認識を学び始めるときの基本はこちら。</span><span lang="en">Practice in major keys — a bright, stable sound centered on the progressions you hear most in pop (I→IV→V, ii→V→I). The default when you begin learning progression recognition.</span><span lang="fr">Entraînez-vous en tonalités majeures — une sonorité claire et stable, centrée sur les progressions les plus fréquentes en pop (I→IV→V, ii→V→I). Le choix par défaut quand on débute la reconnaissance des progressions.</span><span lang="de">Übe in Dur-Tonarten — ein heller, stabiler Klang, der sich auf die im Pop häufigsten Progressionen konzentriert (I→IV→V, ii→V→I). Die Standardwahl, wenn du mit der Folgenerkennung beginnst.</span></div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name"><span lang="ja">マイナー</span><span lang="en">Minor</span><span lang="fr">Mineur</span><span lang="de">Moll</span></div>
+                <div class="manual-option__desc"><span lang="ja">マイナーキーで練習します。暗く陰りのある響きで、i→iv→V や i→VI→VII などマイナー特有の進行を聴き分けます。メジャーが安定してから加えると、対比で違いがよくわかります。</span><span lang="en">Practice in minor keys — a darker, shadowed sound, training you to hear minor-specific progressions such as i→iv→V or i→VI→VII. Add it once major feels stable, and the contrast makes the difference clear.</span><span lang="fr">Entraînez-vous en tonalités mineures — une sonorité plus sombre et voilée, qui vous exerce à entendre des progressions propres au mineur comme i→iv→V ou i→VI→VII. Ajoutez-le une fois le majeur bien en place : le contraste rend la différence évidente.</span><span lang="de">Übe in Moll-Tonarten — ein dunklerer, verschatteter Klang, der dich darin schult, Moll-typische Progressionen wie i→iv→V oder i→VI→VII zu hören. Nimm es hinzu, sobald Dur sitzt, dann macht der Kontrast den Unterschied deutlich.</span></div>
+            </div>
+        </div>
+
+        <div class="manual-rationale">
+            <span class="manual-rationale__label"><span lang="ja">学習科学の裏づけ</span><span lang="en">The evidence behind it</span><span lang="fr">Les preuves à l'appui</span><span lang="de">Die Belege dahinter</span></span>
+            <p>
+                <span lang="ja">メジャーから始めるのは、聴き慣れた明るい進行のほうが機能（T/SD/D）やローマ数字の感覚をつかみやすいためです。長調・短調それぞれの和声の流れを聴き分け、文脈の中でコードの役割を捉える練習は、大学レベルのイヤートレーニングで土台とされる機能的な聴き方そのものです。</span>
+                <span lang="en">Starting with major works because its familiar, bright progressions make it easier to grasp the feel of function (T/SD/D) and Roman numerals. Telling apart the harmonic flow of major and minor and hearing each chord's role in context is exactly the functional listening that college-level ear training treats as foundational.</span>
+                <span lang="fr">Commencer par le majeur fonctionne parce que ses progressions familières et lumineuses facilitent la saisie de la sensation de fonction (T/SD/D) et des chiffres romains. Distinguer le flux harmonique du majeur et du mineur et entendre le rôle de chaque accord dans son contexte, c'est précisément l'écoute fonctionnelle que l'enseignement supérieur de l'oreille musicale considère comme fondamentale.</span>
+                <span lang="de">Mit Dur zu beginnen funktioniert, weil seine vertrauten, hellen Progressionen das Gefühl für Funktion (T/SD/D) und römische Ziffern leichter erfassbar machen. Den harmonischen Verlauf von Dur und Moll auseinanderzuhalten und die Rolle jedes Akkords im Zusammenhang zu hören, ist genau jenes funktionale Hören, das das Hörtraining auf Hochschulniveau als grundlegend behandelt.</span>
+            </p>
+            <p class="manual-rationale__ref"><span lang="ja">参考: </span><span lang="en">Ref.: </span><span lang="fr">Réf. : </span><span lang="de">Quelle: </span>Karpinski (2000) <a class="manual-ref-num" href="#ref-2">[2]</a></p>
+        </div>
+
+        <!-- References -->
+        <section class="manual-refs">
+            <div class="manual-refs__title"><span lang="ja">参考文献</span><span lang="en">References</span><span lang="fr">Références</span><span lang="de">Quellen</span></div>
+            <ol>
+                <li id="ref-1">Roediger, H. L., &amp; Karpicke, J. D. (2006). Test-enhanced learning: Taking memory tests improves long-term retention. <em>Psychological Science, 17</em>(3), 249–255.</li>
+                <li id="ref-2">Karpinski, G. S. (2000). <em>Aural Skills Acquisition: The Development of Listening, Reading, and Performing Skills in College-Level Musicians.</em> Oxford University Press.</li>
+                <li id="ref-3">Sweller, J. (1988). Cognitive load during problem solving: Effects on learning. <em>Cognitive Science, 12</em>(2), 257–285.</li>
+            </ol>
+        </section>
+
+    </main>
+
+    <!-- Final CTA -->
+    <section class="article-cta">
+        <h2 class="article-cta__title"><span lang="ja">設定を決めたら、さっそく試してみよう</span><span lang="en">Settings Sorted? Give It a Try</span><span lang="fr">Réglages décidés ? Essayez sans attendre</span><span lang="de">Einstellungen geklärt? Probieren Sie es aus</span></h2>
+        <p class="article-cta__text">
+            <span lang="ja">各設定の意味がわかれば、あとは実際に手を動かすだけです。<br>迷ったら本ページの「迷ったら…」をなぞって始めてみてください。<br>ソルフェージュPRO の コード進行認識 で、自分に合った設定を見つけましょう。</span>
+            <span lang="en">Once you understand each setting, the rest is hands-on practice.<br>When unsure, just follow the "when in doubt" lines on this page.<br>Find the settings that fit you in Solfege PRO's Chord Progression.</span>
+            <span lang="fr">Une fois chaque réglage compris, il ne reste plus qu'à pratiquer.<br>En cas de doute, suivez simplement les lignes « En cas de doute… » de cette page.<br>Trouvez les réglages qui vous conviennent dans la Reconnaissance des progressions d'accords de Solfege PRO.</span>
+            <span lang="de">Sobald Sie jede Einstellung verstanden haben, bleibt nur noch das praktische Üben.<br>Folgen Sie im Zweifel einfach den Zeilen „Im Zweifel…" auf dieser Seite.<br>Finden Sie die für Sie passenden Einstellungen in der Akkordfolgen-Erkennung von Solfege PRO.</span>
+        </p>
+        <a href="https://apps.apple.com/jp/app/id6756626617" class="app-store-link" aria-label="Download on the App Store">
+            <span lang="ja"><img class="app-store-link__img" width="109" height="40" src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/ja-jp" alt="App Storeで入手"></span>
+            <span lang="en"><img class="app-store-link__img" width="120" height="40" src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/en-us" alt="Download on the App Store"></span>
+            <span lang="fr"><img class="app-store-link__img" width="127" height="40" src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/fr-fr" alt="Télécharger dans l'App Store"></span>
+            <span lang="de"><img class="app-store-link__img" width="120" height="40" src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/de-de" alt="Laden im App Store"></span>
+        </a>
+    </section>
+
+    <!-- Related Content -->
+    <div class="article-related">
+        <div class="article-related__title"><span lang="ja">関連コンテンツ</span><span lang="en">Related Content</span><span lang="fr">Contenu associé</span><span lang="de">Verwandte Inhalte</span></div>
+        <a href="/manual/chord/" class="article-related__link" style="margin-bottom: var(--space-md);">
+            <div class="article-related__link-title"><span lang="ja">コード認識 設定マニュアル — 各設定の意味と選び方</span><span lang="en">Chord Recognition Settings Manual — What Each Option Means</span><span lang="fr">Manuel des réglages de reconnaissance d'accords — Le sens de chaque option</span><span lang="de">Handbuch der Akkorderkennung-Einstellungen — Was jede Option bedeutet</span></div>
+            <div class="article-related__link-desc"><span lang="ja">進行の前に、まず 1 つ 1 つのコードを聴き分けたい方へ。コード認識トレーニングの各設定を解説したマニュアル。</span><span lang="en">For those who want to identify single chords before progressions — a manual covering each setting in chord recognition training.</span><span lang="fr">Pour celles et ceux qui veulent d'abord reconnaître les accords un à un avant les progressions — un manuel détaillant chaque réglage de l'entraînement à la reconnaissance d'accords.</span><span lang="de">Für alle, die zuerst einzelne Akkorde erkennen möchten, bevor sie sich an Progressionen wagen — ein Handbuch, das jede Einstellung des Akkorderkennungstrainings erläutert.</span></div>
+        </a>
+        <a href="/" class="article-related__link">
+            <div class="article-related__link-title"><span lang="ja">ソルフェージュPRO 練習ガイド</span><span lang="en">Solfege PRO Practice Guide</span><span lang="fr">Guide d'entraînement Solfege PRO</span><span lang="de">Solfege PRO Übungsleitfaden</span></div>
+            <div class="article-related__link-desc"><span lang="ja">ギター・ベース・ドラム・ピアノ・ボーカル向けの課題別練習メニュー</span><span lang="en">Challenge-based practice menus for guitar, bass, drums, piano, and vocals</span><span lang="fr">Programmes d'entraînement par problématique pour guitare, basse, batterie, piano et chant</span><span lang="de">Problem­bezogene Übungsmenüs für Gitarre, Bass, Schlagzeug, Klavier und Gesang</span></div>
+        </a>
+    </div>
+
+    <!-- Article Note -->
+    <aside class="article-endnote">
+        <p class="article-endnote__text">
+            <span lang="ja">本ページはアプリ内の設定項目の解説を目的としたリファレンスです。記載した推奨の進め方は、音楽教育で広く用いられるイヤートレーニングの方法論をもとにした一般的な目安であり、最適な設定は個人の経験や目的によって異なります。引用した研究は学習一般の知見であり、本アプリでの効果を保証するものではありません。</span>
+            <span lang="en">This page is a reference explaining the app's in-app settings. The recommended progressions given here are general guidelines based on widely used ear-training methodology; the optimal settings vary with individual experience and goals. The cited studies report general learning findings and do not guarantee results within this app.</span>
+            <span lang="fr">Cette page est une référence expliquant les réglages internes de l'application. Les progressions recommandées ici sont des repères généraux fondés sur une méthodologie d'entraînement de l'oreille largement répandue ; les réglages optimaux varient selon l'expérience et les objectifs de chacun. Les études citées rapportent des résultats généraux sur l'apprentissage et ne garantissent pas de résultats au sein de cette application.</span>
+            <span lang="de">Diese Seite ist eine Referenz, die die in der App enthaltenen Einstellungen erläutert. Die hier empfohlenen Abfolgen sind allgemeine Richtwerte, die auf einer weit verbreiteten Methodik des Gehörtrainings beruhen; die optimalen Einstellungen hängen von der individuellen Erfahrung und den Zielen ab. Die zitierten Studien berichten allgemeine Erkenntnisse zum Lernen und garantieren keine Ergebnisse innerhalb dieser App.</span>
+        </p>
+    </aside>
+
+    <!-- Footer -->
+    <footer class="article-footer">
+        <p class="article-footer__text">
+            &copy; 2026 <span lang="ja">ソルフェージュPRO</span><span lang="en">Solfege PRO</span><span lang="fr">Solfege PRO</span><span lang="de">Solfege PRO</span> &mdash;
+            <a href="https://apps.apple.com/jp/app/id6756626617" class="article-footer__link">App Store</a>
+        </p>
+    </footer>
+    <script src="/bootstrap.js?v=3" defer></script>
+</body>
+</html>

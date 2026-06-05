@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<html lang="ja"
+      data-title-ja="インターバル（音程）設定マニュアル — 各設定の選び方 | ソルフェージュPRO"
+      data-title-en="Interval Training Settings Manual — How to Choose Each Option | Solfege PRO"
+      data-title-fr="Manuel des réglages d'entraînement aux intervalles — Comment choisir chaque option | Solfege PRO"
+      data-title-de="Handbuch zu den Intervalltraining-Einstellungen — So wählen Sie jede Option | Solfege PRO">
+<head>
+    <meta charset="UTF-8">
+    <meta name="robots" content="index, follow">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#1A1A1E">
+    <title>インターバル（音程）設定マニュアル — 各設定の選び方 | ソルフェージュPRO</title>
+    <meta name="description" content="インターバル（音程）トレーニングの各設定（練習モード・難易度・練習するインターバル・再生モード・出題する音域・音の再生スピード・次の問題への進み方）を、何のための設定で、誰が、どう選ぶべきかまで丁寧に解説するリファレンスマニュアルです。">
+
+    <!-- Canonical -->
+    <link rel="canonical" href="https://solfegepro.com/manual/interval/">
+    <link rel="alternate" hreflang="ja" href="https://solfegepro.com/manual/interval/">
+    <link rel="alternate" hreflang="en" href="https://solfegepro.com/en/manual/interval/">
+    <link rel="alternate" hreflang="fr" href="https://solfegepro.com/fr/manual/interval/">
+    <link rel="alternate" hreflang="de" href="https://solfegepro.com/de/manual/interval/">
+    <link rel="alternate" hreflang="x-default" href="https://solfegepro.com/manual/interval/">
+<!-- OGP -->
+    <meta property="og:title" content="インターバル（音程）設定マニュアル — 各設定の選び方">
+    <meta property="og:description" content="インターバル（音程）トレーニングの各設定（練習モード・難易度・練習するインターバル・再生モード・出題する音域・音の再生スピード・次の問題への進み方）を、何のための設定で、誰が、どう選ぶべきかまで丁寧に解説するリファレンスマニュアルです。">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://solfegepro.com/manual/interval/">
+    <meta property="og:site_name" content="ソルフェージュPRO">
+    <meta property="og:image" content="https://solfegepro.com/og-image.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Solfege PRO">
+    <meta property="og:locale" content="ja_JP">
+    <meta property="og:locale:alternate" content="en_US">
+    <meta property="og:locale:alternate" content="fr_FR">
+    <meta property="og:locale:alternate" content="de_DE">
+    <meta property="article:published_time" content="2026-06-05">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="インターバル（音程）設定マニュアル — 各設定の選び方">
+    <meta name="twitter:description" content="インターバル（音程）トレーニングの各設定（練習モード・難易度・練習するインターバル・再生モード・出題する音域・音の再生スピード・次の問題への進み方）を、何のための設定で、誰が、どう選ぶべきかまで丁寧に解説するリファレンスマニュアルです。">
+    <meta name="twitter:image" content="https://solfegepro.com/og-image.png">
+
+    <!-- Favicon -->
+    <link rel="icon" href="/favicon.ico" sizes="any">
+    <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap"></noscript>
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="/style.css?v=17">
+    <link rel="stylesheet" href="/guides/article.css?v=11">
+
+    <style>
+        /* Manual option reference — responsive, no fixed px widths */
+        .manual-options {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr);
+            gap: var(--space-sm);
+            margin: var(--space-lg) 0;
+        }
+        .manual-option {
+            background: var(--surface);
+            border: 1px solid var(--surface-light);
+            border-radius: var(--radius-lg);
+            padding: var(--space-md);
+        }
+        .manual-option__name {
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: var(--space-xs);
+        }
+        .manual-option__desc {
+            font-size: 13px;
+            color: var(--text-secondary);
+        }
+        /* Bottom-line callout (conclusion first) */
+        .manual-lead {
+            font-size: 14px;
+            line-height: 1.75;
+            color: var(--text-primary);
+            border-left: 3px solid var(--primary);
+            background: rgba(212, 175, 55, 0.06);
+            padding: var(--space-sm) var(--space-md);
+            border-radius: 0 var(--radius-md) var(--radius-md) 0;
+            margin: var(--space-md) 0;
+        }
+        /* Per-setting evidence note — deliberately styled as an editorial
+           aside, NOT as a settings card (no surface fill, no gold label),
+           so it is never mistaken for an in-app option. */
+        .manual-rationale {
+            margin: var(--space-md) 0 var(--space-2xl);
+            padding: var(--space-sm) 0 var(--space-sm) var(--space-md);
+            border-left: 2px solid var(--surface-light);
+        }
+        .manual-rationale__label {
+            display: block;
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            color: var(--text-secondary);
+            margin-bottom: 4px;
+            opacity: 0.75;
+        }
+        .manual-rationale p {
+            font-size: 13px;
+            line-height: 1.75;
+            color: var(--text-secondary);
+            margin: 0;
+        }
+        .manual-rationale__ref {
+            font-size: 12px;
+            font-style: italic;
+            margin-top: var(--space-xs) !important;
+            opacity: 0.7;
+        }
+        /* Citation number linking to the reference list */
+        .manual-ref-num {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-style: normal;
+        }
+        .manual-ref-num:hover { color: var(--primary); }
+        /* Full reference list at page end */
+        .manual-refs {
+            margin: var(--space-2xl) 0 0;
+            padding-top: var(--space-lg);
+            border-top: 1px solid var(--surface-light);
+        }
+        .manual-refs__title {
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: var(--space-sm);
+        }
+        .manual-refs ol {
+            margin: 0;
+            padding-left: 1.25em;
+        }
+        .manual-refs li {
+            font-size: 12px;
+            line-height: 1.7;
+            color: var(--text-secondary);
+            margin-bottom: var(--space-xs);
+            scroll-margin-top: 84px;
+        }
+        .manual-refs li:target {
+            color: var(--text-primary);
+        }
+    </style>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"インターバル（音程）設定マニュアル — 各設定の選び方","description":"インターバル（音程）トレーニングの各設定を、何のための設定で、誰が、どう選ぶべきかまで解説するリファレンスマニュアルです。","author":{"@type":"Organization","name":"ソルフェージュPRO"},"publisher":{"@type":"Organization","name":"ソルフェージュPRO","logo":{"@type":"ImageObject","url":"https://solfegepro.com/AppIcon.png"}},"datePublished":"2026-06-05","mainEntityOfPage":{"@type":"WebPage","@id":"https://solfegepro.com/manual/interval/"}}</script>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"ホーム","item":"https://solfegepro.com/"},{"@type":"ListItem","position":2,"name":"設定マニュアル","item":"https://solfegepro.com/manual/"},{"@type":"ListItem","position":3,"name":"インターバル（音程）設定マニュアル — 各設定の選び方","item":"https://solfegepro.com/manual/interval/"}]}</script>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="nav__container">
+            <a href="/" class="nav__logo">
+                <img src="/AppIcon.png" alt="Solfege PRO" class="nav__logo-icon" width="32" height="32">
+                <span class="nav__logo-text">ソルフェージュPRO</span>
+            </a>
+            <ul class="nav__list">
+                <li><a href="/" class="nav__link">練習ガイド</a></li>
+                <li><a href="/guides/" class="nav__link">ガイド一覧</a></li>
+                <li><a href="/manual/" class="nav__link active">マニュアル</a></li>
+                            <li><a href="/start-here/" class="nav__link">どこから始める？</a></li>
+            </ul>
+            <div class="nav__settings">
+                <button class="settings-btn" id="lang-toggle" title="Toggle language">
+                    <span id="lang-text">EN</span>
+                </button>
+                <button class="hamburger-btn" id="hamburger-btn" aria-label="Menu" aria-expanded="false" aria-controls="drawer">
+                    <span class="hamburger-btn__line"></span>
+                    <span class="hamburger-btn__line"></span>
+                    <span class="hamburger-btn__line"></span>
+                </button>
+            </div>
+        </div>
+    </nav>
+        <!-- Mobile drawer (hidden on desktop) -->
+        <div class="drawer-overlay" id="drawer-overlay"></div>
+        <aside class="drawer" id="drawer" aria-label="Mobile menu" aria-hidden="true" inert>
+            <div class="drawer__header">
+                <span class="drawer__title">メニュー</span>
+                <button class="drawer__close" id="drawer-close" aria-label="Close menu">×</button>
+            </div>
+            <ul class="drawer__list">
+                    <li><a href="/" class="drawer__link">練習ガイド</a></li>
+                    <li><a href="/guides/" class="drawer__link">ガイド一覧</a></li>
+                    <li><a href="/manual/" class="drawer__link active">マニュアル</a></li>
+                    <li><a href="/start-here/" class="drawer__link">どこから始める？</a></li>
+            </ul>
+        </aside>
+
+
+    <!-- Article Header -->
+    <header class="page-header">
+        <div class="page-header__meta">
+            <span class="page-header__tag">マニュアル</span>
+            <span>インターバル（音程）</span>
+        </div>
+        <h1 class="page-header__title">
+            インターバル（音程）設定マニュアル<br>各設定の意味と選び方
+            
+            
+            
+        </h1>
+        <p class="page-header__subtitle">
+            設定画面のどの項目を、どんなときに、どう選べばよいか。インターバル（音程）トレーニングの各設定を 1 つずつ解説します。設定画面の「?」から飛んできた方は、目的の項目までスクロールしてください。
+            
+            
+            
+        </p>
+    </header>
+
+    <!-- Top-of-article CTA -->
+    <aside class="article-top-cta" aria-label="App promotion">
+        <div class="article-top-cta__body">
+            <p class="article-top-cta__title">
+                ソルフェージュPRO でこの練習を試す
+                
+                
+                
+            </p>
+            <p class="article-top-cta__sub">
+                月額 980 円 · 1 週間無料トライアル
+                
+                
+                
+            </p>
+        </div>
+        <a href="https://apps.apple.com/jp/app/id6756626617" class="article-top-cta__button" data-cta-position="article_top">
+            App Store →
+            
+            
+            
+        </a>
+    </aside>
+
+    <!-- Article Body -->
+    <main class="article-body">
+
+        <!-- Intro -->
+        <p>
+            インターバル（音程）トレーニングは、2 つの音の高さの隔たり（=音程。たとえば完全 5 度や長 3 度）を耳だけで言い当てる練習です。音程はメロディーもハーモニーも聴き取るための土台で、すべてのイヤートレーニングの出発点になります。
+            
+            
+            
+        </p>
+        <p>
+            このページは設定の選び方をまとめたマニュアルです。各設定は音楽教育で確立された学習法にもとづいて設計しています。判断が要る設定について、<strong>おすすめの選び方・何のための設定か・鍛えられる力とその根拠</strong>を簡潔に示します。設定画面の「?」から来た方は、目的の項目までスクロールしてください。
+            
+            
+            
+        </p>
+
+        <!-- #training-mode -->
+        <h2 id="training-mode">練習モード（トレーニングモード）</h2>
+
+        <p class="manual-lead">
+            <strong>まずは「通常」で十分。</strong> 特定の音程を狙うときだけ「カスタム」、成績がたまったら「忘れた頃に復習」「苦手克服」を使います。
+            
+            
+            
+        </p>
+
+        <p>
+            出題する音程をどの方針で選ぶかを決める設定です。4 つのモードがあります。
+            
+            
+            
+        </p>
+
+        <div class="manual-options">
+            <div class="manual-option">
+                <div class="manual-option__name">通常</div>
+                <div class="manual-option__desc">選んだ難易度に対応する音程群から出題します。特に狙いがなければこれで構いません。</div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name">カスタム</div>
+                <div class="manual-option__desc">出題する音程を 1 つずつ自分で指定します。狙った組み合わせだけを練習したいときに（最低 1 つ選択）。</div>
+            </div>
+        </div>
+
+        <p>
+            残りの 2 つ — 忘れた頃に復習 と 苦手克服 — は成績データがたまってから効くモードです。考え方はどのトレーニングでも共通なので、下に展開します。
+            
+            
+            
+        </p>
+
+        <!-- TODO i18n: fr/de spans are interim English; translate after ja voice approval -->
+<!-- Reusable mode partial. Training-agnostic: do NOT mention chord/scale/etc. -->
+<section class="article-mode" id="mode-spaced-repetition">
+    <h3 class="article-mode__title">「忘れた頃に復習」モード（間隔反復 / spaced repetition）</h3>
+
+    <p>
+        間隔反復とは、一度学んだ項目を「少し忘れかけた頃」に再び出題する仕組みです。直前に正解したものほど次に出るまでの間隔が長くなり、間違えたものほど早く戻ってきます。同じ問題を続けて詰め込む（集中学習）よりも、思い出す努力を挟むほうが記憶が定着する、という考え方に基づいています。
+        
+        
+        
+    </p>
+
+    <p>
+        このモードが向くのは、扱う項目が増えてきて「前にできたはずのものを忘れている」と感じ始めた人です。出題の配分をアプリ側が自動で調整するため、どれを復習すべきか自分で管理する必要がありません。短時間の練習を毎日続けるほど効果が出やすい設計です。
+        
+        
+        
+    </p>
+
+    <p>
+        迷ったら、一通りの項目を一度学び終えたあとの「維持」の段階で使うのが自然です。新しい項目をゼロから覚える段階では通常モードで土台を作り、その後この間隔反復で長期記憶に移していく、という二段構えが扱いやすいでしょう。<em>復習の間隔を空けるほど長期保持が高まる効果は Cepeda ら (2006) が大規模にまとめており、思い出す行為そのものが記憶を強める点は Roediger &amp; Karpicke (2006) が示しています。</em>
+        
+        
+        
+    </p>
+</section>
+
+        <!-- TODO i18n: fr/de spans are interim English; translate after ja voice approval -->
+<!-- Reusable mode partial. Training-agnostic: do NOT mention chord/scale/etc. -->
+<section class="article-mode" id="mode-weak-point">
+    <h3 class="article-mode__title">苦手克服（weak-point focus）モード</h3>
+
+    <p>
+        苦手克服モードは、これまでの回答記録から正答率の低い項目を見つけ出し、それらを優先的に多く出題するモードです。すでに安定して正解できる項目に時間を使わず、あなたが取りこぼしている部分だけに練習を集中させます。出題対象はあなたの成績に応じて自動で選ばれます。
+        
+        
+        
+    </p>
+
+    <p>
+        このモードが向くのは、全体の正答率は伸びているのに「特定のいくつかだけがいつも引っかかる」段階の人です。苦手な項目ばかりが続くので体感の難しさは上がりますが、その「少し難しい」状態こそが上達の効くポイントです（望ましい困難 / desirable difficulties）。十分な回答数がたまるまでは候補が出ないため、まず通常モードである程度プレイしてから使います。
+        
+        
+        
+    </p>
+
+    <p>
+        迷ったら、ある難易度で頭打ちになり「あと一歩で安定するのに、いつも同じところで落とす」と感じたときに数セッション集中投下するのが効果的です。苦手が解消したら通常モードに戻し、全体のバランスを保ちましょう。<em>間違えやすい項目をあえて繰り返し思い出させるこの「テスト効果」は、Roediger &amp; Karpicke (2006) が、後の保持に強く効くことを示しています。</em>
+        
+        
+        
+    </p>
+</section>
+
+
+        <div class="manual-rationale">
+            <span class="manual-rationale__label">学習科学の裏づけ</span>
+            <p>
+                4 つのモードは「今の自分に必要な音程へ練習を集中させる」ためにあります。自分で思い出して答える出題形式そのものが、ただ聴き流すより記憶を強くします（テスト効果）。「忘れた頃に復習」「苦手克服」は、この効果を成績データで自動化したモードです。
+                
+                
+                
+            </p>
+            <p class="manual-rationale__ref">参考: Roediger &amp; Karpicke (2006) <a class="manual-ref-num" href="#ref-1">[1]</a></p>
+        </div>
+
+        <!-- #difficulty -->
+        <h2 id="difficulty">難易度</h2>
+
+        <p class="manual-lead">
+            <strong>迷ったら「初級」から。</strong> 今の難易度で正答率 80% 以上が安定したら、1 段ずつ上げます。
+            
+            
+            
+        </p>
+
+        <p>
+            出題される音程の範囲を決める設定です（通常モードで表示）。聴き分けやすい音程から始まり、段階的に難しい音程へ広がります。
+            
+            
+            
+        </p>
+
+        <div class="manual-options">
+            <div class="manual-option">
+                <div class="manual-option__name">初級</div>
+                <div class="manual-option__desc">基本の 5 音程（長 2 度・長 3 度・完全 4 度・完全 5 度・オクターブ）。隔たりが大きく聴き分けやすい音程だけ。</div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name">中級</div>
+                <div class="manual-option__desc">8 音程。短 3 度・短 6 度・長 6 度が加わり、長短（明るい/暗い）の聴き分けが入ります。</div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name">上級</div>
+                <div class="manual-option__desc">全 13 音程。短 2 度・トライトーン（増 4 度=半オクターブ）・短 7 度・長 7 度まで含む最上位。</div>
+            </div>
+        </div>
+
+        <div class="manual-rationale">
+            <span class="manual-rationale__label">学習科学の裏づけ</span>
+            <p>
+                一度に扱う音程が少ないほど、耳が処理する情報量が減り、聴き分けの手がかりを確実に身につけられます。狭い範囲を確実にしてから広げるほうが、いきなり全部に挑むより速く上達します。新しい技能の初期は処理の負荷を抑えるほど学習が進む、という認知負荷の考え方にもとづく段階設計です。
+                
+                
+                
+            </p>
+            <p class="manual-rationale__ref">参考: Sweller (1988) <a class="manual-ref-num" href="#ref-2">[2]</a></p>
+        </div>
+
+        <!-- #target-intervals -->
+        <h2 id="target-intervals">練習するインターバル（対象音程）</h2>
+
+        <p class="manual-lead">
+            <strong>基本は使わなくてOK。</strong> 統計で「いつも間違える音程」が見えたら、その 2〜3 種類だけをここで選んで集中します。
+            
+            
+            
+        </p>
+
+        <p>
+            出題に含める音程を自分で選ぶ設定です（カスタムモードで表示）。混同しやすいペア（例：長 3 度と完全 4 度、完全 4 度と完全 5 度）だけを並べると効果的です。最低 1 つ選択。
+            
+            
+            
+        </p>
+
+        <div class="manual-rationale">
+            <span class="manual-rationale__label">学習科学の裏づけ</span>
+            <p>
+                似た音程を隣り合わせて比べると「どこが違うか」に注意が向き、区別する力が育ちます。似たもの同士を混ぜて学ぶ練習（インターリービング）は、1 種類ずつ固める練習より長期的な定着が高いことがメタ分析で示されています。
+                
+                
+                
+            </p>
+            <p class="manual-rationale__ref">参考: Brunmair &amp; Richter (2019) <a class="manual-ref-num" href="#ref-3">[3]</a></p>
+        </div>
+
+        <!-- #playback-mode -->
+        <h2 id="playback-mode">再生モード</h2>
+
+        <p class="manual-lead">
+            <strong>新しい音程は「上昇」で覚え、慣れたら「下降」「和音」を足し、仕上げに「ランダム」。</strong>
+            
+            
+            
+        </p>
+
+        <p>
+            2 音をどう鳴らすかを決めます。同じ音程でも鳴らし方で難しさが変わります。
+            
+            
+            
+        </p>
+
+        <div class="manual-options">
+            <div class="manual-option">
+                <div class="manual-option__name">上昇</div>
+                <div class="manual-option__desc">低い音→高い音の順。最も馴染みやすく、歌で覚えた音程を思い出しやすいので学習初期向き。</div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name">下降</div>
+                <div class="manual-option__desc">高い音→低い音の順。上行とは印象が変わり、急に難しく感じることが多い。</div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name">和音</div>
+                <div class="manual-option__desc">2 音を同時に。重なった響きが「溶け合うか／ぶつかるか」で判断。ハーモニーの耳に直結し、やや難しめ。</div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name">ランダム</div>
+                <div class="manual-option__desc">出題ごとに上昇・下降・和音を切り替え。どの鳴らし方でも聴けるように。</div>
+            </div>
+        </div>
+
+        <div class="manual-rationale">
+            <span class="manual-rationale__label">学習科学の裏づけ</span>
+            <p>
+                目的は、1 つの鳴り方に頼らず音程そのものを聴けるようにすることです。実際の音楽では上行・下行・同時のどれも出てきます。鳴らし方を変えて練習すると、上行の「歌い出し」のような特定の手がかりに依存せず、隔たり自体を聴き取る力が付きます。
+                
+                
+                
+            </p>
+            <p class="manual-rationale__ref">参考: Brunmair &amp; Richter (2019) <a class="manual-ref-num" href="#ref-3">[3]</a>; Karpinski (2000) <a class="manual-ref-num" href="#ref-4">[4]</a></p>
+        </div>
+
+        <!-- #reference-pitch -->
+        <h2 id="reference-pitch">出題する音域（基準音 / ルート音）</h2>
+
+        <p class="manual-lead">
+            <strong>初学者は「いつも同じ音から」(C4)、聴き分けが安定したら「違う音域から」。</strong>
+            
+            
+            
+        </p>
+
+        <p>
+            音程を測る出発点（=最初に鳴る音、ルート音）を毎回どう決めるかの設定です。固定すると基準音を C4（中央ド）・E4（ギター 1 弦）・A4（440Hz）から選べます（迷ったら推奨の C4）。
+            
+            
+            
+        </p>
+
+        <div class="manual-options">
+            <div class="manual-option">
+                <div class="manual-option__name">いつも同じ音から</div>
+                <div class="manual-option__desc">基準音を 1 つに固定。出発点が一定で比較しやすく、音の高さに惑わされず音程の違いだけに集中できる。学習初期向き。</div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name">違う音域から</div>
+                <div class="manual-option__desc">毎回基準音の高さを変える。どの調・どの高さでも当てられる、実践に近い力が付く。</div>
+            </div>
+        </div>
+
+        <div class="manual-rationale">
+            <span class="manual-rationale__label">学習科学の裏づけ</span>
+            <p>
+                段階を分けているのは、初期は条件を固定して負荷を下げ、慣れたら条件を変えて実践に近づけるためです。出発点を変える練習（条件のインターリービング）が単調な反復より定着するのは、メタ分析が示すとおりです。
+                
+                
+                
+            </p>
+            <p class="manual-rationale__ref">参考: Brunmair &amp; Richter (2019) <a class="manual-ref-num" href="#ref-3">[3]</a></p>
+        </div>
+
+        <!-- #playback-speed -->
+        <h2 id="playback-speed">音の再生スピード（再生速度）</h2>
+
+        <p class="manual-lead">
+            <strong>基本は「普通」。</strong> 新しい音程でつまずくときだけ「ゆっくり」、安定したら「速い」。
+            
+            
+            
+        </p>
+
+        <p>
+            2 音の鳴る速さ（1 音の長さと間隔）を調整します。順番に鳴らす上昇・下降で表示（和音は対象外）。ゆっくり／普通／速い の 3 段階です。「ゆっくり」は 1 音ずつじっくり聴け、「速い」は短時間で反復回数を稼げます。
+            
+            
+            
+        </p>
+
+        <div class="manual-rationale">
+            <span class="manual-rationale__label">学習科学の裏づけ</span>
+            <p>
+                速さを変えられるのは、学習の段階に処理の負荷を合わせるためです。新しい音程に慣れないうちはゆっくりで負荷を下げ、聴き分けが安定したら速くして瞬時の判断を鍛えます。初期ほど負荷を抑えると学習が進みやすい、という認知負荷の考え方に沿っています。
+                
+                
+                
+            </p>
+            <p class="manual-rationale__ref">参考: Sweller (1988) <a class="manual-ref-num" href="#ref-2">[2]</a></p>
+        </div>
+
+        <!-- #practice-speed -->
+        <h2 id="practice-speed">次の問題への進み方（自動進行）</h2>
+
+        <p class="manual-lead">
+            <strong>覚えたてのうちは「手動で進める」、数をこなしたくなったら「自動で進む」。</strong>
+            
+            
+            
+        </p>
+
+        <p>
+            1 問答えたあと、次の問題へどう移るかを決めます。手動／自動の 2 つです。
+            
+            
+            
+        </p>
+
+        <div class="manual-options">
+            <div class="manual-option">
+                <div class="manual-option__name">手動で進める</div>
+                <div class="manual-option__desc">「次へ」を押すまで止まる。正誤を自分のペースで確認したい、間違えた音を聴き直したいときに。</div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name">自動で進む</div>
+                <div class="manual-option__desc">答えると自動で次へ。テンポよく数をこなし、反射的な聴き取りを鍛えたいときに。</div>
+            </div>
+        </div>
+
+        <div class="manual-rationale">
+            <span class="manual-rationale__label">学習科学の裏づけ</span>
+            <p>
+                どちらも「自分で答えを思い出す→確かめる」を繰り返すための設定です。思い出して答える反復（テスト形式）は、ただ聴き流すより記憶に強く残ります。手動は 1 問ずつの確認、自動は反復回数を増やす目的に向きます。
+                
+                
+                
+            </p>
+            <p class="manual-rationale__ref">参考: Roediger &amp; Karpicke (2006) <a class="manual-ref-num" href="#ref-1">[1]</a></p>
+        </div>
+
+        <!-- References -->
+        <section class="manual-refs">
+            <div class="manual-refs__title">参考文献</div>
+            <ol>
+                <li id="ref-1">Roediger, H. L., &amp; Karpicke, J. D. (2006). Test-enhanced learning: Taking memory tests improves long-term retention. <em>Psychological Science, 17</em>(3), 249–255.</li>
+                <li id="ref-2">Sweller, J. (1988). Cognitive load during problem solving: Effects on learning. <em>Cognitive Science, 12</em>(2), 257–285.</li>
+                <li id="ref-3">Brunmair, M., &amp; Richter, T. (2019). Similarity matters: A meta-analysis of interleaved learning and its moderators. <em>Psychological Bulletin, 145</em>(11), 1029–1052.</li>
+                <li id="ref-4">Karpinski, G. S. (2000). <em>Aural Skills Acquisition: The Development of Listening, Reading, and Performing Skills in College-Level Musicians.</em> Oxford University Press.</li>
+            </ol>
+        </section>
+
+    </main>
+
+    <!-- Final CTA -->
+    <section class="article-cta">
+        <h2 class="article-cta__title">設定を決めたら、さっそく試してみよう</h2>
+        <p class="article-cta__text">
+            各設定の意味がわかれば、あとは実際に手を動かすだけです。<br>迷ったら本ページの「迷ったら…」をなぞって始めてみてください。<br>ソルフェージュPRO の インターバル（音程）トレーニング で、自分に合った設定を見つけましょう。
+            
+            
+            
+        </p>
+        <a href="https://apps.apple.com/jp/app/id6756626617" class="app-store-link" aria-label="Download on the App Store">
+            <img class="app-store-link__img" width="109" height="40" src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/ja-jp" alt="App Storeで入手">
+            
+            
+            
+        </a>
+    </section>
+
+    <!-- Related Content -->
+    <div class="article-related">
+        <div class="article-related__title">関連コンテンツ</div>
+        <a href="/guides/interval-training/" class="article-related__link" style="margin-bottom: var(--space-md);">
+            <div class="article-related__link-title">音程を聴き分ける力とは何か — インターバルの聴き取りを理解する</div>
+            <div class="article-related__link-desc">設定の前に、そもそも音程とは何かを知りたい方へ。2 音の隔たりの違いと段階的な練習法を解説したガイド。</div>
+        </a>
+        <a href="/" class="article-related__link">
+            <div class="article-related__link-title">ソルフェージュPRO 練習ガイド</div>
+            <div class="article-related__link-desc">ギター・ベース・ドラム・ピアノ・ボーカル向けの課題別練習メニュー</div>
+        </a>
+    </div>
+
+    <!-- Article Note -->
+    <aside class="article-endnote">
+        <p class="article-endnote__text">
+            本ページはアプリ内の設定項目の解説を目的としたリファレンスです。記載した推奨の進め方は、音楽教育で広く用いられるイヤートレーニングの方法論をもとにした一般的な目安であり、最適な設定は個人の経験や目的によって異なります。引用した研究は学習一般の知見であり、本アプリでの効果を保証するものではありません。
+            
+            
+            
+        </p>
+    </aside>
+
+    <!-- Footer -->
+    <footer class="article-footer">
+        <p class="article-footer__text">
+            &copy; 2026 ソルフェージュPRO &mdash;
+            <a href="https://apps.apple.com/jp/app/id6756626617" class="article-footer__link">App Store</a>
+        </p>
+    </footer>
+    <script src="/bootstrap.js?v=3" defer></script>
+</body>
+</html>

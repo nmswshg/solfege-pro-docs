@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="de"
+      data-title-ja="譜読み 設定マニュアル — 各設定の選び方 | ソルフェージュPRO"
+      data-title-en="Sight Reading Settings Manual — How to Choose Each Option | Solfege PRO"
+      data-title-fr="Manuel des réglages de Lecture à vue — Comment choisir chaque option | Solfege PRO"
+      data-title-de="Einstellungshandbuch Blattlesen — So wählen Sie jede Option | Solfege PRO">
+<head>
+    <meta charset="UTF-8">
+    <meta name="robots" content="index, follow">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#1A1A1E">
+    <title>Einstellungshandbuch Blattlesen — So wählen Sie jede Option | Solfege PRO</title>
+    <meta name="description" content="Referenz zu den Blattlesen-Einstellungen — Schwierigkeit, Übungsmodus, Notenschlüssel, Tonart, Hilfslinien: wofür jede Option ist und wie man wählt.">
+
+    <!-- Canonical -->
+    <link rel="canonical" href="https://solfegepro.com/de/manual/sight-reading/">
+    <link rel="alternate" hreflang="ja" href="https://solfegepro.com/manual/sight-reading/">
+    <link rel="alternate" hreflang="en" href="https://solfegepro.com/en/manual/sight-reading/">
+    <link rel="alternate" hreflang="fr" href="https://solfegepro.com/fr/manual/sight-reading/">
+    <link rel="alternate" hreflang="de" href="https://solfegepro.com/de/manual/sight-reading/">
+    <link rel="alternate" hreflang="x-default" href="https://solfegepro.com/manual/sight-reading/">
+<!-- OGP -->
+    <meta property="og:title" content="Einstellungshandbuch Blattlesen — So wählen Sie jede Option">
+    <meta property="og:description" content="Referenz zu den Blattlesen-Einstellungen — Schwierigkeit, Übungsmodus, Notenschlüssel, Tonart, Hilfslinien: wofür jede Option ist und wie man wählt.">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://solfegepro.com/de/manual/sight-reading/">
+    <meta property="og:site_name" content="Solfege PRO">
+    <meta property="og:image" content="https://solfegepro.com/og-image.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Solfege PRO">
+    <meta property="og:locale" content="de_DE">
+    <meta property="og:locale:alternate" content="ja_JP">
+    <meta property="og:locale:alternate" content="en_US">
+    <meta property="og:locale:alternate" content="fr_FR">
+    <meta property="article:published_time" content="2026-06-05">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Einstellungshandbuch Blattlesen — So wählen Sie jede Option">
+    <meta name="twitter:description" content="Referenz zu den Blattlesen-Einstellungen — Schwierigkeit, Übungsmodus, Notenschlüssel, Tonart, Hilfslinien: wofür jede Option ist und wie man wählt.">
+    <meta name="twitter:image" content="https://solfegepro.com/og-image.png">
+
+    <!-- Favicon -->
+    <link rel="icon" href="/favicon.ico" sizes="any">
+    <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap"></noscript>
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="/style.css?v=17">
+    <link rel="stylesheet" href="/guides/article.css?v=11">
+
+    <style>
+        /* Manual option reference — responsive, no fixed px widths */
+        .manual-options {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr);
+            gap: var(--space-sm);
+            margin: var(--space-lg) 0;
+        }
+        .manual-option {
+            background: var(--surface);
+            border: 1px solid var(--surface-light);
+            border-radius: var(--radius-lg);
+            padding: var(--space-md);
+        }
+        .manual-option__name {
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: var(--space-xs);
+        }
+        .manual-option__desc {
+            font-size: 13px;
+            color: var(--text-secondary);
+        }
+        /* Bottom-line callout (conclusion first) */
+        .manual-lead {
+            font-size: 14px;
+            line-height: 1.75;
+            color: var(--text-primary);
+            border-left: 3px solid var(--primary);
+            background: rgba(212, 175, 55, 0.06);
+            padding: var(--space-sm) var(--space-md);
+            border-radius: 0 var(--radius-md) var(--radius-md) 0;
+            margin: var(--space-md) 0;
+        }
+        /* Per-setting evidence note — deliberately styled as an editorial
+           aside, NOT as a settings card (no surface fill, no gold label),
+           so it is never mistaken for an in-app option. */
+        .manual-rationale {
+            margin: var(--space-md) 0 var(--space-2xl);
+            padding: var(--space-sm) 0 var(--space-sm) var(--space-md);
+            border-left: 2px solid var(--surface-light);
+        }
+        .manual-rationale__label {
+            display: block;
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            color: var(--text-secondary);
+            margin-bottom: 4px;
+            opacity: 0.75;
+        }
+        .manual-rationale p {
+            font-size: 13px;
+            line-height: 1.75;
+            color: var(--text-secondary);
+            margin: 0;
+        }
+        .manual-rationale__ref {
+            font-size: 12px;
+            font-style: italic;
+            margin-top: var(--space-xs) !important;
+            opacity: 0.7;
+        }
+        /* Citation number linking to the reference list */
+        .manual-ref-num {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-style: normal;
+        }
+        .manual-ref-num:hover { color: var(--primary); }
+        /* Full reference list at page end */
+        .manual-refs {
+            margin: var(--space-2xl) 0 0;
+            padding-top: var(--space-lg);
+            border-top: 1px solid var(--surface-light);
+        }
+        .manual-refs__title {
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: var(--space-sm);
+        }
+        .manual-refs ol {
+            margin: 0;
+            padding-left: 1.25em;
+        }
+        .manual-refs li {
+            font-size: 12px;
+            line-height: 1.7;
+            color: var(--text-secondary);
+            margin-bottom: var(--space-xs);
+            scroll-margin-top: 84px;
+        }
+        .manual-refs li:target {
+            color: var(--text-primary);
+        }
+    </style>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Einstellungshandbuch Blattlesen — So wählen Sie jede Option","description":"Referenz zu den Blattlesen-Einstellungen — Schwierigkeit, Übungsmodus, Notenschlüssel, Tonart, Hilfslinien: wofür jede Option ist und wie man wählt.","author":{"@type":"Organization","name":"Solfege PRO"},"publisher":{"@type":"Organization","name":"Solfege PRO","logo":{"@type":"ImageObject","url":"https://solfegepro.com/AppIcon.png"}},"datePublished":"2026-06-05","mainEntityOfPage":{"@type":"WebPage","@id":"https://solfegepro.com/de/manual/sight-reading/"}}</script>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Startseite","item":"https://solfegepro.com/de/"},{"@type":"ListItem","position":2,"name":"Handbuch","item":"https://solfegepro.com/de/manual/"},{"@type":"ListItem","position":3,"name":"Einstellungshandbuch Blattlesen — So wählen Sie jede Option","item":"https://solfegepro.com/de/manual/sight-reading/"}]}</script>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="nav__container">
+            <a href="/" class="nav__logo">
+                <img src="/AppIcon.png" alt="Solfege PRO" class="nav__logo-icon" width="32" height="32">
+                <span class="nav__logo-text">Solfege PRO</span>
+            </a>
+            <ul class="nav__list">
+                <li><a href="/" class="nav__link">Übungsleitfaden</a></li>
+                <li><a href="/guides/" class="nav__link">Leitfäden</a></li>
+                <li><a href="/manual/" class="nav__link active">Handbuch</a></li>
+                            <li><a href="/start-here/" class="nav__link">Wo anfangen?</a></li>
+            </ul>
+            <div class="nav__settings">
+                <button class="settings-btn" id="lang-toggle" title="Toggle language">
+                    <span id="lang-text">EN</span>
+                </button>
+                <button class="hamburger-btn" id="hamburger-btn" aria-label="Menu" aria-expanded="false" aria-controls="drawer">
+                    <span class="hamburger-btn__line"></span>
+                    <span class="hamburger-btn__line"></span>
+                    <span class="hamburger-btn__line"></span>
+                </button>
+            </div>
+        </div>
+    </nav>
+        <!-- Mobile drawer (hidden on desktop) -->
+        <div class="drawer-overlay" id="drawer-overlay"></div>
+        <aside class="drawer" id="drawer" aria-label="Mobile menu" aria-hidden="true" inert>
+            <div class="drawer__header">
+                <span class="drawer__title">Menü</span>
+                <button class="drawer__close" id="drawer-close" aria-label="Close menu">×</button>
+            </div>
+            <ul class="drawer__list">
+                    <li><a href="/" class="drawer__link">Übungsleitfaden</a></li>
+                    <li><a href="/guides/" class="drawer__link">Leitfäden</a></li>
+                    <li><a href="/manual/" class="drawer__link active">Handbuch</a></li>
+                    <li><a href="/start-here/" class="drawer__link">Wo anfangen?</a></li>
+            </ul>
+        </aside>
+
+
+    <!-- Article Header -->
+    <header class="page-header">
+        <div class="page-header__meta">
+            <span class="page-header__tag">Handbuch</span>
+            <span>Blattlesen</span>
+        </div>
+        <h1 class="page-header__title">
+            
+            
+            
+            Einstellungshandbuch Blattlesen<br>Was jede Option bedeutet und wie man sie wählt
+        </h1>
+        <p class="page-header__subtitle">
+            
+            
+            
+            Welche Option man wann und warum wählt. Diese Seite erklärt jede Einstellung des Blattlese-Trainings, eine nach der anderen. Wenn Sie über ein „?" im Einstellungsbildschirm hierhergelangt sind, scrollen Sie zur gewünschten Option.
+        </p>
+    </header>
+
+    <!-- Top-of-article CTA -->
+    <aside class="article-top-cta" aria-label="App promotion">
+        <div class="article-top-cta__body">
+            <p class="article-top-cta__title">
+                
+                
+                
+                Probieren Sie diese Übung in Solfege PRO
+            </p>
+            <p class="article-top-cta__sub">
+                
+                
+                
+                980 ¥/Monat · 1 Woche kostenlos testen
+            </p>
+        </div>
+        <a href="https://apps.apple.com/de/app/id6756626617" class="article-top-cta__button" data-cta-position="article_top">
+            
+            
+            
+            App Store →
+        </a>
+    </aside>
+
+    <!-- Article Body -->
+    <main class="article-body">
+
+        <!-- Intro -->
+        <p>
+            
+            
+            
+            Das Blattlese-Training entwickelt Ihre Fähigkeit, eine Note im Notensystem anzusehen und ihren Namen (Do, Re, Mi…) schnell und genau zu lesen. Das Notensystem zu lesen ist die Grundlage, um eine Partitur in Musik zu verwandeln, und der Ausgangspunkt für das Spielen jedes Instruments.
+        </p>
+        <p>
+            
+            
+            
+            Diese Seite ist ein Handbuch zur Wahl der Einstellungen. Jede Einstellung beruht auf etablierten Methoden der Musikpädagogik. Für jede Einstellung, die eine Entscheidung erfordert, nennen wir <strong>die empfohlene Wahl, wozu sie dient und was sie trainiert — mit den Belegen dahinter</strong>. Wenn Sie über ein „?" im Einstellungsbildschirm hierhergelangt sind, scrollen Sie zur gewünschten Option.
+        </p>
+
+        <!-- #difficulty -->
+        <h2 id="difficulty">Schwierigkeit</h2>
+
+        <p class="manual-lead">
+            
+            
+            
+            <strong>Im Zweifel mit „Anfänger" beginnen.</strong> Steigen Sie eine Stufe höher, sobald Sie auf der aktuellen Stufe zuverlässig 80 % oder mehr halten.
+        </p>
+
+        <p>
+            
+            
+            
+            Diese Einstellung legt auf einmal den Umfang der abgefragten Noten fest — den Tonbereich, die Vorzeichen und ob Hilfslinien auftauchen. Ein engerer Tonbereich mit weniger Symbolen ist leichter; ein weiterer mit mehr Symbolen ist schwerer.
+        </p>
+
+        <div class="manual-options">
+            <div class="manual-option">
+                <div class="manual-option__name">Anfänger</div>
+                <div class="manual-option__desc">Mittlerer Tonbereich, nur Stammtöne (die unveränderten Tonhöhen der weißen Tasten), nahe der Mitte des Violinschlüssel-Notensystems in C-Dur — der erste Schritt, um zu verankern, welche Note auf welcher Linie und in welchem Zwischenraum liegt.</div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name">Mittelstufe</div>
+                <div class="manual-option__desc">Ein weiterer Tonbereich mit Akzidenzien; der Bassschlüssel kommt hinzu und es erscheinen Vorzeichen mit bis zu drei Kreuzen oder Bes, sodass sich der Lesebereich erheblich erweitert.</div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name">Fortgeschritten</div>
+                <div class="manual-option__desc">Voller Tonumfang einschließlich Hilfslinien — alle Vorzeichen sowie Noten, die über das Notensystem hinausreichen; die höchste Stufe, am nächsten an echten Partituren.</div>
+            </div>
+        </div>
+
+        <div class="manual-rationale">
+            <span class="manual-rationale__label">Die Belege dahinter</span>
+            <p>
+                
+                
+                
+                Je enger der Bereich ist, den Sie auf einmal bewältigen, desto weniger müssen Ihre Augen verarbeiten und desto zuverlässiger prägen Sie sich ein, welche Note auf welcher Linie und in welchem Zwischenraum liegt. Blattlesen beruht auf sofortigem Abruf, daher kommen Sie schneller voran, wenn Sie einen engen Bereich sichern, bevor Sie ihn erweitern. Die Stufen folgen der Theorie der kognitiven Belastung: Eine geringe Verarbeitungslast zu Beginn einer neuen Fähigkeit fördert das Lernen.
+            </p>
+            <p class="manual-rationale__ref">Quelle: Sweller (1988) <a class="manual-ref-num" href="#ref-1">[1]</a></p>
+        </div>
+
+        <!-- #training-mode -->
+        <h2 id="training-mode">Trainingsmodus</h2>
+
+        <p class="manual-lead">
+            
+            
+            
+            <strong>„Normal" reicht für den Anfang.</strong> Verwenden Sie „Nach Tonart" nur, um ein bestimmtes Vorzeichen gezielt zu üben, und greifen Sie zu „Schwachstellen-Training", sobald sich Ihre Ergebnisse angesammelt haben.
+        </p>
+
+        <p>
+            
+            
+            
+            Diese Einstellung legt fest, nach welcher Logik die Noten für Sie ausgewählt werden. Es gibt drei Modi.
+        </p>
+
+        <div class="manual-options">
+            <div class="manual-option">
+                <div class="manual-option__name">Normal</div>
+                <div class="manual-option__desc">Schöpft aus allen Noten, die zur gewählten Schwierigkeit passen. Ohne besondere Absicht ist dies die richtige Wahl.</div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name">Nach Tonart</div>
+                <div class="manual-option__desc">Beschränkt die Fragen auf eine einzige Tonart, um ein Vorzeichen gezielt zu üben, das Ihnen schwerfällt (bei Auswahl erscheint darunter die Auswahl „Zu übende Tonart").</div>
+            </div>
+        </div>
+
+        <p>
+            
+            
+            
+            Der verbleibende Modus — „Schwachstellen-Training" — zahlt sich aus, sobald sich Ihre Leistungsdaten angesammelt haben. Er funktioniert in jedem Training gleich, daher wird er unten direkt erläutert.
+        </p>
+
+        <!-- TODO i18n: fr/de spans are interim English; translate after ja voice approval -->
+<!-- Reusable mode partial. Training-agnostic: do NOT mention chord/scale/etc. -->
+<section class="article-mode" id="mode-weak-point">
+    <h3 class="article-mode__title">Weak-Point Focus Mode</h3>
+
+    <p>
+        
+        
+        
+        Weak-point focus looks at your answer history, identifies the items with the lowest accuracy, and serves those to you more often. Instead of spending time on what you already answer reliably, it concentrates practice on exactly the places you keep missing. The app picks the targets automatically from your own results.
+    </p>
+
+    <p>
+        
+        
+        
+        This mode suits the stage where your overall accuracy is climbing but a specific few items still trip you up every time. Because it keeps returning to your weak spots, it feels harder — and that controlled extra effort is precisely where the learning happens (the principle of desirable difficulties). It needs enough answer history before candidates appear, so play the normal mode for a while first.
+    </p>
+
+    <p>
+        
+        
+        
+        When in doubt, drop in for a few concentrated sessions whenever you plateau at a given level and feel you "keep losing the same handful of items right before it would stabilize." Once the weak spots clear, return to the normal mode to keep your overall balance. <em>Deliberately making yourself retrieve the items you tend to miss — the "testing effect" — was shown by Roediger &amp; Karpicke (2006) to strongly benefit later retention.</em>
+    </p>
+</section>
+
+
+        <div class="manual-rationale">
+            <span class="manual-rationale__label">Die Belege dahinter</span>
+            <p>
+                
+                
+                
+                Die drei Modi dienen dazu, die Übung auf die Noten zu konzentrieren, die Sie gerade brauchen. Das Quiz-Format selbst — die Antwort abzurufen statt nur hinzusehen — stärkt das Gedächtnis stärker als passives Betrachten (der Testeffekt). „Schwachstellen-Training" automatisiert dies anhand Ihrer Leistungsdaten.
+            </p>
+            <p class="manual-rationale__ref">Quelle: Roediger &amp; Karpicke (2006) <a class="manual-ref-num" href="#ref-2">[2]</a></p>
+        </div>
+
+        <!-- #clef -->
+        <h2 id="clef">Notenschlüssel (Violin-/Bassschlüssel)</h2>
+
+        <p class="manual-lead">
+            
+            
+            
+            <strong>Beginnen Sie mit dem Schlüssel, den Ihr Instrument verwendet.</strong> Violinschlüssel für Gitarre und Gesang, Bassschlüssel für Bass; Pianisten festigen jeden Schlüssel, bevor sie zu „Beide" wechseln.
+        </p>
+
+        <p>
+            
+            
+            
+            Der Notenschlüssel ist das Symbol am linken Rand des Notensystems, das festlegt, welche Linie welcher Tonhöhe entspricht. Dieselbe Stelle benennt eine völlig andere Note, je nachdem, ob es der Violin- oder der Bassschlüssel ist.
+        </p>
+
+        <div class="manual-options">
+            <div class="manual-option">
+                <div class="manual-option__name">Violinschlüssel</div>
+                <div class="manual-option__desc">Der Schlüssel des hohen Registers (𝄞); seine zweite Linie ist das G. Der grundlegendste Schlüssel — für Gitarre, Gesang, die rechte Hand am Klavier und die meisten Melodieinstrumente.</div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name">Bassschlüssel</div>
+                <div class="manual-option__desc">Der Schlüssel des tiefen Registers (𝄢); seine vierte Linie ist das F. Unverzichtbar für Bass, die linke Hand am Klavier, Cello und andere tiefe Register; seine Zuordnung unterscheidet sich vom Violinschlüssel, daher lernt man ihn als eigenes System.</div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name">Beide</div>
+                <div class="manual-option__desc">Mischt Fragen in Violin- und Bassschlüssel; da Sie nicht vorhersagen können, welcher erscheint, gewöhnen Sie sich an, vor dem Lesen den Schlüssel am linken Rand zu prüfen — ideal für Klavier und andere Instrumente, die beide lesen.</div>
+            </div>
+        </div>
+
+        <div class="manual-rationale">
+            <span class="manual-rationale__label">Die Belege dahinter</span>
+            <p>
+                
+                
+                
+                Da jeder Schlüssel die Tonhöhen anders zuordnet, müssen Violin- und Bassschlüssel als getrennte Systeme erworben werden. Einen Schlüssel zu sichern, bevor man den anderen hinzunimmt, ist die etablierte Abfolge im Blattlese-Unterricht. Der Umgang mit beiden entwickelt die für das Spielen wesentliche Gewohnheit, vor dem Lesen den vorangestellten Schlüssel zu prüfen.
+            </p>
+            <p class="manual-rationale__ref">Quelle: Karpinski (2000) <a class="manual-ref-num" href="#ref-3">[3]</a></p>
+        </div>
+
+        <!-- #key -->
+        <h2 id="key">Zu übende Tonart (Vorzeichen)</h2>
+
+        <p class="manual-lead">
+            
+            
+            
+            <strong>Wenn Sie merken, dass ein bestimmtes Vorzeichen Sie stolpern lässt, beschränken Sie sich auf genau dieses.</strong> Ansonsten begegnen Sie im Modus „Normal" einer Vielfalt von Tonarten.
+        </p>
+
+        <p>
+            
+            
+            
+            Legt die Fragen auf eine einzige Tonart fest; diese Einstellung erscheint nur, wenn Sie „Nach Tonart" als Trainingsmodus wählen. Ein Vorzeichen — die Kreuze oder Bes links im Notensystem — bestimmt, welche Noten verändert werden (z. B. G-Dur hat ein Kreuz, Es-Dur drei Bes). Die wählbaren Tonarten richten sich nach Ihrer Schwierigkeit: nur C-Dur bei „Anfänger", bis zu drei Akzidenzien bei „Mittelstufe", alle zwölf Tonarten bei „Fortgeschritten".
+        </p>
+
+        <div class="manual-rationale">
+            <span class="manual-rationale__label">Die Belege dahinter</span>
+            <p>
+                
+                
+                
+                Sich auf eine einzige Tonart zu beschränken, lenkt die Aufmerksamkeit auf das wiederkehrende Muster dieses Vorzeichens — „diese Note ist hier immer erhöht" — sodass es sich einprägt. Über das Vorzeichen zu lesen ist ein etablierter Ansatz im Blattlese-Unterricht, der hilft, die Tonhöhenanordnung jeder Tonart zu verinnerlichen.
+            </p>
+            <p class="manual-rationale__ref">Quelle: Karpinski (2000) <a class="manual-ref-num" href="#ref-3">[3]</a></p>
+        </div>
+
+        <!-- #ledger -->
+        <h2 id="ledger">Hilfslinien einbeziehen (Hilfslinien)</h2>
+
+        <p class="manual-lead">
+            
+            
+            
+            <strong>Lassen Sie es zunächst aus, um die Noten innerhalb des Notensystems zu sichern, und fügen Sie die Hilfslinien hinzu, sobald es stabil ist.</strong> Beachten Sie: Die Schwierigkeit „Fortgeschritten" bezieht sie automatisch ein.
+        </p>
+
+        <p>
+            
+            
+            
+            Steuert, ob Hilfslinien — die kurzen Hilfslinien, die ober- oder unterhalb des Notensystems hinzugefügt werden — erscheinen. Tonhöhen, die für die fünf Linien zu hoch oder zu tief sind, werden geschrieben, indem man Linie für Linie hinzufügt (z. B. liegt das eingestrichene C, C4, auf einer Hilfslinie unter dem Violinschlüssel-Notensystem). Diese Positionen abzuzählen kostet Zeit und ist ein häufiger Stolperstein, doch Noten auf Hilfslinien sind in echten Partituren überall, daher sind sie auf Dauer unvermeidlich.
+        </p>
+
+        <div class="manual-rationale">
+            <span class="manual-rationale__label">Die Belege dahinter</span>
+            <p>
+                
+                
+                
+                Die Hilfslinien zunächst auszuschalten senkt die Lesebelastung, indem es begrenzt, wie viel Sie auf einmal verarbeiten müssen. Sie hinzuzumischen, bevor die Grundlage steht, häuft das Abzählen von Positionen an und führt leicht zu Verwirrung. Die Noten innerhalb des Notensystems zu sichern, bevor man Hilfslinien hinzufügt, hält die anfängliche Belastung gering und fördert das Lernen — im Einklang mit der Theorie der kognitiven Belastung, nach der die Verarbeitungslast zu Beginn einer neuen Fähigkeit gering bleiben sollte.
+            </p>
+            <p class="manual-rationale__ref">Quelle: Sweller (1988) <a class="manual-ref-num" href="#ref-1">[1]</a></p>
+        </div>
+
+        <!-- References -->
+        <section class="manual-refs">
+            <div class="manual-refs__title">Quellen</div>
+            <ol>
+                <li id="ref-1">Sweller, J. (1988). Cognitive load during problem solving: Effects on learning. <em>Cognitive Science, 12</em>(2), 257–285.</li>
+                <li id="ref-2">Roediger, H. L., &amp; Karpicke, J. D. (2006). Test-enhanced learning: Taking memory tests improves long-term retention. <em>Psychological Science, 17</em>(3), 249–255.</li>
+                <li id="ref-3">Karpinski, G. S. (2000). <em>Aural Skills Acquisition: The Development of Listening, Reading, and Performing Skills in College-Level Musicians.</em> Oxford University Press.</li>
+            </ol>
+        </section>
+
+    </main>
+
+    <!-- Final CTA -->
+    <section class="article-cta">
+        <h2 class="article-cta__title">Einstellungen geklärt? Probieren Sie es aus</h2>
+        <p class="article-cta__text">
+            
+            
+            
+            Sobald Sie jede Einstellung verstanden haben, bleibt nur noch das praktische Üben.<br>Folgen Sie im Zweifel einfach den Zeilen „Im Zweifel…" auf dieser Seite.<br>Finden Sie die für Sie passenden Einstellungen im Blattlesen von Solfege PRO.
+        </p>
+        <a href="https://apps.apple.com/de/app/id6756626617" class="app-store-link" aria-label="Download on the App Store">
+            
+            
+            
+            <img class="app-store-link__img" width="120" height="40" src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/de-de" alt="Laden im App Store">
+        </a>
+    </section>
+
+    <!-- Related Content -->
+    <div class="article-related">
+        <div class="article-related__title">Verwandte Inhalte</div>
+        <a href="/guides/sight-reading/" class="article-related__link" style="margin-bottom: var(--space-md);">
+            <div class="article-related__link-title">Was ist Vom-Blatt-Lesen? — Grundlagen und Übungen zum schnellen Notenlesen</div>
+            <div class="article-related__link-desc">Für alle, die wissen möchten, wie man das Blattlesen übt, bevor sie die Einstellungen anpassen — ein Leitfaden zu Orientierungsnoten und schrittweisem Üben.</div>
+        </a>
+        <a href="/" class="article-related__link">
+            <div class="article-related__link-title">Solfege PRO Übungsleitfaden</div>
+            <div class="article-related__link-desc">Problem­bezogene Übungsmenüs für Gitarre, Bass, Schlagzeug, Klavier und Gesang</div>
+        </a>
+    </div>
+
+    <!-- Article Note -->
+    <aside class="article-endnote">
+        <p class="article-endnote__text">
+            
+            
+            
+            Diese Seite ist eine Referenz, die die in der App enthaltenen Einstellungen erläutert. Die hier empfohlenen Abfolgen sind allgemeine Richtwerte, die auf einer weit verbreiteten Methodik des Blattlesens beruhen; die optimalen Einstellungen hängen von der individuellen Erfahrung und den Zielen ab. Die zitierten Studien berichten allgemeine Erkenntnisse zum Lernen und garantieren keine Ergebnisse innerhalb dieser App.
+        </p>
+    </aside>
+
+    <!-- Footer -->
+    <footer class="article-footer">
+        <p class="article-footer__text">
+            &copy; 2026 Solfege PRO &mdash;
+            <a href="https://apps.apple.com/de/app/id6756626617" class="article-footer__link">App Store</a>
+        </p>
+    </footer>
+    <script src="/bootstrap.js?v=3" defer></script>
+</body>
+</html>

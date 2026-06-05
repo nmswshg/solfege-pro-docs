@@ -30,6 +30,8 @@ const PAGES = [
     '/guides/ear-training-progressions/',
     '/practice/piano/',
     '/practice/training-menu/interval/',
+    '/manual/',
+    '/manual/chord/',
 ];
 
 const VIEWPORTS = [

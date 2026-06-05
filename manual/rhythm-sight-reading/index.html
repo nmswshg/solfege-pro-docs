@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="ja"
+      data-title-ja="リズム譜読み 設定マニュアル — 各設定の選び方 | ソルフェージュPRO"
+      data-title-en="Rhythm Sight Reading Settings Manual — How to Choose Each Option | Solfege PRO"
+      data-title-fr="Manuel des réglages de lecture rythmique à vue — Comment choisir chaque option | Solfege PRO"
+      data-title-de="Handbuch der Einstellungen für Rhythmus-Blattlesen — So wählen Sie jede Option | Solfege PRO">
+<head>
+    <meta charset="UTF-8">
+    <meta name="robots" content="index, follow">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#1A1A1E">
+    <title>リズム譜読み 設定マニュアル — 各設定の選び方 | ソルフェージュPRO</title>
+    <meta name="description" content="リズム譜読みトレーニングの各設定（出題ソース・パターン・繰り返し回数・テンポ・判定の厳しさ・カスタムの音価）を、何のための設定で、誰が、どう選ぶべきかまで丁寧に解説するリファレンスマニュアルです。">
+
+    <!-- Canonical -->
+    <link rel="canonical" href="https://solfegepro.com/manual/rhythm-sight-reading/">
+    <link rel="alternate" hreflang="ja" href="https://solfegepro.com/manual/rhythm-sight-reading/">
+    <link rel="alternate" hreflang="en" href="https://solfegepro.com/en/manual/rhythm-sight-reading/">
+    <link rel="alternate" hreflang="fr" href="https://solfegepro.com/fr/manual/rhythm-sight-reading/">
+    <link rel="alternate" hreflang="de" href="https://solfegepro.com/de/manual/rhythm-sight-reading/">
+    <link rel="alternate" hreflang="x-default" href="https://solfegepro.com/manual/rhythm-sight-reading/">
+<!-- OGP -->
+    <meta property="og:title" content="リズム譜読み 設定マニュアル — 各設定の選び方">
+    <meta property="og:description" content="リズム譜読みトレーニングの各設定（出題ソース・パターン・繰り返し回数・テンポ・判定の厳しさ・カスタムの音価）を、何のための設定で、誰が、どう選ぶべきかまで丁寧に解説するリファレンスマニュアルです。">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://solfegepro.com/manual/rhythm-sight-reading/">
+    <meta property="og:site_name" content="ソルフェージュPRO">
+    <meta property="og:image" content="https://solfegepro.com/og-image.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Solfege PRO">
+    <meta property="og:locale" content="ja_JP">
+    <meta property="og:locale:alternate" content="en_US">
+    <meta property="og:locale:alternate" content="fr_FR">
+    <meta property="og:locale:alternate" content="de_DE">
+    <meta property="article:published_time" content="2026-06-05">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="リズム譜読み 設定マニュアル — 各設定の選び方">
+    <meta name="twitter:description" content="リズム譜読みトレーニングの各設定（出題ソース・パターン・繰り返し回数・テンポ・判定の厳しさ・カスタムの音価）を、何のための設定で、誰が、どう選ぶべきかまで丁寧に解説するリファレンスマニュアルです。">
+    <meta name="twitter:image" content="https://solfegepro.com/og-image.png">
+
+    <!-- Favicon -->
+    <link rel="icon" href="/favicon.ico" sizes="any">
+    <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap"></noscript>
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="/style.css?v=17">
+    <link rel="stylesheet" href="/guides/article.css?v=11">
+
+    <style>
+        /* Manual option reference — responsive, no fixed px widths */
+        .manual-options {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr);
+            gap: var(--space-sm);
+            margin: var(--space-lg) 0;
+        }
+        .manual-option {
+            background: var(--surface);
+            border: 1px solid var(--surface-light);
+            border-radius: var(--radius-lg);
+            padding: var(--space-md);
+        }
+        .manual-option__name {
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: var(--space-xs);
+        }
+        .manual-option__desc {
+            font-size: 13px;
+            color: var(--text-secondary);
+        }
+        /* Bottom-line callout (conclusion first) */
+        .manual-lead {
+            font-size: 14px;
+            line-height: 1.75;
+            color: var(--text-primary);
+            border-left: 3px solid var(--primary);
+            background: rgba(212, 175, 55, 0.06);
+            padding: var(--space-sm) var(--space-md);
+            border-radius: 0 var(--radius-md) var(--radius-md) 0;
+            margin: var(--space-md) 0;
+        }
+        /* Per-setting evidence note — deliberately styled as an editorial
+           aside, NOT as a settings card (no surface fill, no gold label),
+           so it is never mistaken for an in-app option. */
+        .manual-rationale {
+            margin: var(--space-md) 0 var(--space-2xl);
+            padding: var(--space-sm) 0 var(--space-sm) var(--space-md);
+            border-left: 2px solid var(--surface-light);
+        }
+        .manual-rationale__label {
+            display: block;
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            color: var(--text-secondary);
+            margin-bottom: 4px;
+            opacity: 0.75;
+        }
+        .manual-rationale p {
+            font-size: 13px;
+            line-height: 1.75;
+            color: var(--text-secondary);
+            margin: 0;
+        }
+        .manual-rationale__ref {
+            font-size: 12px;
+            font-style: italic;
+            margin-top: var(--space-xs) !important;
+            opacity: 0.7;
+        }
+        /* Citation number linking to the reference list */
+        .manual-ref-num {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-style: normal;
+        }
+        .manual-ref-num:hover { color: var(--primary); }
+        /* Full reference list at page end */
+        .manual-refs {
+            margin: var(--space-2xl) 0 0;
+            padding-top: var(--space-lg);
+            border-top: 1px solid var(--surface-light);
+        }
+        .manual-refs__title {
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: var(--space-sm);
+        }
+        .manual-refs ol {
+            margin: 0;
+            padding-left: 1.25em;
+        }
+        .manual-refs li {
+            font-size: 12px;
+            line-height: 1.7;
+            color: var(--text-secondary);
+            margin-bottom: var(--space-xs);
+            scroll-margin-top: 84px;
+        }
+        .manual-refs li:target {
+            color: var(--text-primary);
+        }
+    </style>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"リズム譜読み 設定マニュアル — 各設定の選び方","description":"リズム譜読みトレーニングの各設定を、何のための設定で、誰が、どう選ぶべきかまで解説するリファレンスマニュアルです。","author":{"@type":"Organization","name":"ソルフェージュPRO"},"publisher":{"@type":"Organization","name":"ソルフェージュPRO","logo":{"@type":"ImageObject","url":"https://solfegepro.com/AppIcon.png"}},"datePublished":"2026-06-05","mainEntityOfPage":{"@type":"WebPage","@id":"https://solfegepro.com/manual/rhythm-sight-reading/"}}</script>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"ホーム","item":"https://solfegepro.com/"},{"@type":"ListItem","position":2,"name":"設定マニュアル","item":"https://solfegepro.com/manual/"},{"@type":"ListItem","position":3,"name":"リズム譜読み 設定マニュアル — 各設定の選び方","item":"https://solfegepro.com/manual/rhythm-sight-reading/"}]}</script>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="nav__container">
+            <a href="/" class="nav__logo">
+                <img src="/AppIcon.png" alt="Solfege PRO" class="nav__logo-icon" width="32" height="32">
+                <span class="nav__logo-text">ソルフェージュPRO</span>
+            </a>
+            <ul class="nav__list">
+                <li><a href="/" class="nav__link">練習ガイド</a></li>
+                <li><a href="/guides/" class="nav__link">ガイド一覧</a></li>
+                <li><a href="/manual/" class="nav__link active">マニュアル</a></li>
+                            <li><a href="/start-here/" class="nav__link">どこから始める？</a></li>
+            </ul>
+            <div class="nav__settings">
+                <button class="settings-btn" id="lang-toggle" title="Toggle language">
+                    <span id="lang-text">EN</span>
+                </button>
+                <button class="hamburger-btn" id="hamburger-btn" aria-label="Menu" aria-expanded="false" aria-controls="drawer">
+                    <span class="hamburger-btn__line"></span>
+                    <span class="hamburger-btn__line"></span>
+                    <span class="hamburger-btn__line"></span>
+                </button>
+            </div>
+        </div>
+    </nav>
+        <!-- Mobile drawer (hidden on desktop) -->
+        <div class="drawer-overlay" id="drawer-overlay"></div>
+        <aside class="drawer" id="drawer" aria-label="Mobile menu" aria-hidden="true" inert>
+            <div class="drawer__header">
+                <span class="drawer__title">メニュー</span>
+                <button class="drawer__close" id="drawer-close" aria-label="Close menu">×</button>
+            </div>
+            <ul class="drawer__list">
+                    <li><a href="/" class="drawer__link">練習ガイド</a></li>
+                    <li><a href="/guides/" class="drawer__link">ガイド一覧</a></li>
+                    <li><a href="/manual/" class="drawer__link active">マニュアル</a></li>
+                    <li><a href="/start-here/" class="drawer__link">どこから始める？</a></li>
+            </ul>
+        </aside>
+
+
+    <!-- Article Header -->
+    <header class="page-header">
+        <div class="page-header__meta">
+            <span class="page-header__tag">マニュアル</span>
+            <span>リズム譜読み</span>
+        </div>
+        <h1 class="page-header__title">
+            リズム譜読み 設定マニュアル<br>各設定の意味と選び方
+            
+            
+            
+        </h1>
+        <p class="page-header__subtitle">
+            設定画面のどの項目を、どんなときに、どう選べばよいか。リズム譜読みトレーニングの各設定を 1 つずつ解説します。設定画面の「?」から飛んできた方は、目的の項目までスクロールしてください。
+            
+            
+            
+        </p>
+    </header>
+
+    <!-- Top-of-article CTA -->
+    <aside class="article-top-cta" aria-label="App promotion">
+        <div class="article-top-cta__body">
+            <p class="article-top-cta__title">
+                ソルフェージュPRO でこの練習を試す
+                
+                
+                
+            </p>
+            <p class="article-top-cta__sub">
+                月額 980 円 · 1 週間無料トライアル
+                
+                
+                
+            </p>
+        </div>
+        <a href="https://apps.apple.com/jp/app/id6756626617" class="article-top-cta__button" data-cta-position="article_top">
+            App Store →
+            
+            
+            
+        </a>
+    </aside>
+
+    <!-- Article Body -->
+    <main class="article-body">
+
+        <!-- Intro -->
+        <p>
+            リズム譜読みトレーニングは、画面に表示された譜面（音符の並び）を読み取り、メトロノームに合わせて正しいタイミングでタップする力を鍛える練習です。音の高さではなく「いつ鳴らすか」だけに集中するので、譜読みの中でもリズムの読み・刻みに特化しています。
+            
+            
+            
+        </p>
+        <p>
+            このページは設定の選び方をまとめたマニュアルです。各設定は音楽教育で確立された学習法にもとづいて設計しています。判断が要る設定について、<strong>おすすめの選び方・何のための設定か・鍛えられる力とその根拠</strong>を簡潔に示します。設定画面の「?」から来た方は、目的の項目までスクロールしてください。
+            
+            
+            
+        </p>
+
+        <!-- #patterns -->
+        <h2 id="patterns">出題ソース／パターン（出題範囲）</h2>
+
+        <p class="manual-lead">
+            <strong>まずは「カリキュラム」の初級から。</strong> ひと通り読めるようになって変化が欲しくなったら「カスタム」に切り替え、苦手な音価だけを混ぜて鍛えます。
+            
+            
+            
+        </p>
+
+        <p>
+            練習する譜面を「どこから持ってくるか」を決める設定です。カリキュラム（厳選された決まったパターン）と カスタム（音価＝音符の長さを選んで毎回自動生成）の 2 つから選びます。カリキュラムを選ぶと、含まれる音価が段階的に難しくなる初級・中級・上級のパターン一覧から 1 つを選びます（初級は 4 分音符だけ、中級は 8 分音符や付点、上級は 16 分音符や三連符）。
+            
+            
+            
+        </p>
+
+        <div class="manual-options">
+            <div class="manual-option">
+                <div class="manual-option__name">カリキュラム</div>
+                <div class="manual-option__desc">難易度別の一覧から厳選パターンを 1 つ選んで繰り返します。「サンプルを聴く」で鳴り方も確認でき、学習を始める段階に最適です。</div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name">カスタム</div>
+                <div class="manual-option__desc">含める音価（4分・2分・8分・16分・付点4分・付点8分）と追加要素（休符・8分三連符）、小節数（2 か 4）を選ぶと、毎回新しい譜面が自動生成されます。最低 1 つ音価を選ばないと開始できません。</div>
+            </div>
+        </div>
+
+        <p>
+            カスタムでは、付点8分音符 を ON にすると拍の端を埋めるために 16分音符 が自動で ON になります（16分音符 を OFF にすると付点8分音符も外れます）。付点8分が拍を完成させるのに 16 分を必要とするためで、表示と実際の出題を一致させる仕組みです。
+            
+            
+            
+        </p>
+
+        <div class="manual-rationale">
+            <span class="manual-rationale__label">学習科学の裏づけ</span>
+            <p>
+                2 つのソースは、固める段階と広げる段階を切り替えるためにあります。決まったパターンの反復で「この音符の並び＝このリズム」という対応を体に入れたあと、カスタムで似た音価を混ぜると、固定パターンだけを反復するより長期的な定着が高まります。似たもの同士を混ぜて学ぶ練習（インターリービング）の効果はメタ分析が示しています。
+                
+                
+                
+            </p>
+            <p class="manual-rationale__ref">参考: Brunmair &amp; Richter (2019) <a class="manual-ref-num" href="#ref-1">[1]</a></p>
+        </div>
+
+        <!-- #repeats -->
+        <h2 id="repeats">繰り返し回数（反復数）</h2>
+
+        <p class="manual-lead">
+            <strong>迷ったら 5 回前後。</strong> 慣れないパターンは多めに、すでに読めるパターンの確認なら少なめにします。
+            
+            
+            
+        </p>
+
+        <p>
+            1 回のセッションで同じパターンを何回繰り返すかを決める設定です（1〜20 回）。譜読みは「読む → 叩く → ずれを直す」を回数を重ねて精度を上げていく練習なので、この回数がセッションの長さと定着の度合いを左右します。少なすぎると手が覚える前に終わり、多すぎると間延びして集中が切れやすくなります。
+            
+            
+            
+        </p>
+
+        <div class="manual-rationale">
+            <span class="manual-rationale__label">学習科学の裏づけ</span>
+            <p>
+                繰り返すたびに譜面を自分で読み取って叩き直すので、各回が 1 つの想起（思い出して再現する）になります。思い出して答える反復はただ眺めるより記憶に強く残るため、適度な回数を重ねることでパターンが定着します。
+                
+                
+                
+            </p>
+            <p class="manual-rationale__ref">参考: Roediger &amp; Karpicke (2006) <a class="manual-ref-num" href="#ref-2">[2]</a></p>
+        </div>
+
+        <!-- #bpm -->
+        <h2 id="bpm">テンポ（BPM）</h2>
+
+        <p class="manual-lead">
+            <strong>迷ったら 80 BPM 前後から。</strong> そのテンポでミスなく叩けるようになってから、少しずつ上げてください。
+            
+            
+            
+        </p>
+
+        <p>
+            メトロノームの速さを決める設定です。BPM（Beats Per Minute = 1 分間の拍数）で 40〜180 の範囲から選びます。遅いテンポは譜面を確認しながら確実に叩けるので新しいパターンを覚える段階に向き、速いテンポは反射的に読む力を要求し本番に近い実戦練習になります。ただし土台ができる前に上げると雑なタップが癖になります。
+            
+            
+            
+        </p>
+
+        <div class="manual-rationale">
+            <span class="manual-rationale__label">学習科学の裏づけ</span>
+            <p>
+                テンポを変えられるのは、メトロノームに動きを合わせる力（拍への同期）を段階的に鍛えるためです。遅いテンポで正確に合わせられるようになってから上げると、速くなっても拍からのずれを抑えやすくなります。タップと拍の同期は、テンポによって難しさが変わることが同期研究で示されています。
+                
+                
+                
+            </p>
+            <p class="manual-rationale__ref">参考: Repp (2005) <a class="manual-ref-num" href="#ref-3">[3]</a></p>
+        </div>
+
+        <!-- #difficulty -->
+        <h2 id="difficulty">判定の厳しさ（難易度）</h2>
+
+        <p class="manual-lead">
+            <strong>まずは「カジュアル」か「スタンダード」で。</strong> 安定して高評価が出るようになってから、1 段ずつ厳しくして精度を詰めます。
+            
+            
+            
+        </p>
+
+        <p>
+            あなたのタップが「正解」と認められる時間のずれ（許容範囲）をどれだけ厳しくするかを決める設定です。タップが拍から何ミリ秒ずれたかで Perfect / Great などの評価が決まり、その合格ラインが 4 段階で変わります。譜読みそのものの難しさではなく、タイミング精度の採点基準を変える設定です。
+            
+            
+            
+        </p>
+
+        <div class="manual-options">
+            <div class="manual-option">
+                <div class="manual-option__name">カジュアル</div>
+                <div class="manual-option__desc">±150 ms 以内ならOK の余裕ある判定。まず譜面どおりの順番でタップできているかを確認したい初学者向け。</div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name">スタンダード</div>
+                <div class="manual-option__desc">±90 ms でパーフェクト、±150 ms でグレート。読む順番が安定し、精度も意識し始める段階のバランス設定。</div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name">シビア</div>
+                <div class="manual-option__desc">±50 ms でパーフェクト、±90 ms でグレート。細かいブレを詰めたい中〜上級者向け。アンサンブルで通用する精度を目指す段階。</div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name">プロ</div>
+                <div class="manual-option__desc">±25 ms でパーフェクト、±50 ms でグレート。最も厳しい採点。プロ奏者レベルの均一なタイム感を磨きたい人向け。</div>
+            </div>
+        </div>
+
+        <div class="manual-rationale">
+            <span class="manual-rationale__label">学習科学の裏づけ</span>
+            <p>
+                許容範囲を段階に分けているのは、初期は判定をゆるめて読む処理に集中させ、慣れたら精度の負荷を足すためです。読みとタイミングの両方を一度に厳しく問うと処理が過負荷になり、読み自体への集中が削がれます。新しい技能の初期ほど処理の負荷を抑えると学習が進む、という認知負荷の考え方にもとづく設計です。
+                
+                
+                
+            </p>
+            <p class="manual-rationale__ref">参考: Sweller (1988) <a class="manual-ref-num" href="#ref-4">[4]</a></p>
+        </div>
+
+        <!-- References -->
+        <section class="manual-refs">
+            <div class="manual-refs__title">参考文献</div>
+            <ol>
+                <li id="ref-1">Brunmair, M., &amp; Richter, T. (2019). Similarity matters: A meta-analysis of interleaved learning and its moderators. <em>Psychological Bulletin, 145</em>(11), 1029–1052.</li>
+                <li id="ref-2">Roediger, H. L., &amp; Karpicke, J. D. (2006). Test-enhanced learning: Taking memory tests improves long-term retention. <em>Psychological Science, 17</em>(3), 249–255.</li>
+                <li id="ref-3">Repp, B. H. (2005). Sensorimotor synchronization: A review of the tapping literature. <em>Psychonomic Bulletin &amp; Review, 12</em>(6), 969–992.</li>
+                <li id="ref-4">Sweller, J. (1988). Cognitive load during problem solving: Effects on learning. <em>Cognitive Science, 12</em>(2), 257–285.</li>
+            </ol>
+        </section>
+
+    </main>
+
+    <!-- Final CTA -->
+    <section class="article-cta">
+        <h2 class="article-cta__title">設定を決めたら、さっそく試してみよう</h2>
+        <p class="article-cta__text">
+            各設定の意味がわかれば、あとは実際に手を動かすだけです。<br>迷ったら本ページの「迷ったら…」をなぞって始めてみてください。<br>ソルフェージュPRO の リズム譜読み で、自分に合った設定を見つけましょう。
+            
+            
+            
+        </p>
+        <a href="https://apps.apple.com/jp/app/id6756626617" class="app-store-link" aria-label="Download on the App Store">
+            <img class="app-store-link__img" width="109" height="40" src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/ja-jp" alt="App Storeで入手">
+            
+            
+            
+        </a>
+    </section>
+
+    <!-- Related Content -->
+    <div class="article-related">
+        <div class="article-related__title">関連コンテンツ</div>
+        <a href="/guides/how-to-count-rhythms/" class="article-related__link" style="margin-bottom: var(--space-md);">
+            <div class="article-related__link-title">リズムの数え方 — 音符の長さを読んで刻む</div>
+            <div class="article-related__link-desc">設定の前に、そもそも音符の長さをどう数えるかを知りたい方へ。4 分・8 分・付点・三連符の読み方を解説したガイド。</div>
+        </a>
+        <a href="/" class="article-related__link">
+            <div class="article-related__link-title">ソルフェージュPRO 練習ガイド</div>
+            <div class="article-related__link-desc">ギター・ベース・ドラム・ピアノ・ボーカル向けの課題別練習メニュー</div>
+        </a>
+    </div>
+
+    <!-- Article Note -->
+    <aside class="article-endnote">
+        <p class="article-endnote__text">
+            本ページはアプリ内の設定項目の解説を目的としたリファレンスです。記載した推奨の進め方は、音楽教育で広く用いられる譜読み・リズムトレーニングの方法論をもとにした一般的な目安であり、最適な設定は個人の経験や目的によって異なります。引用した研究は学習一般の知見であり、本アプリでの効果を保証するものではありません。
+            
+            
+            
+        </p>
+    </aside>
+
+    <!-- Footer -->
+    <footer class="article-footer">
+        <p class="article-footer__text">
+            &copy; 2026 ソルフェージュPRO &mdash;
+            <a href="https://apps.apple.com/jp/app/id6756626617" class="article-footer__link">App Store</a>
+        </p>
+    </footer>
+    <script src="/bootstrap.js?v=3" defer></script>
+</body>
+</html>

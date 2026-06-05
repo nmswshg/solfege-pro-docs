@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<html lang="fr"
+      data-title-ja="インターバル（音程）設定マニュアル — 各設定の選び方 | ソルフェージュPRO"
+      data-title-en="Interval Training Settings Manual — How to Choose Each Option | Solfege PRO"
+      data-title-fr="Manuel des réglages d'entraînement aux intervalles — Comment choisir chaque option | Solfege PRO"
+      data-title-de="Handbuch zu den Intervalltraining-Einstellungen — So wählen Sie jede Option | Solfege PRO">
+<head>
+    <meta charset="UTF-8">
+    <meta name="robots" content="index, follow">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#1A1A1E">
+    <title>Manuel des réglages d'entraînement aux intervalles — Comment choisir chaque option | Solfege PRO</title>
+    <meta name="description" content="Manuel de référence des réglages d'entraînement aux intervalles — mode, difficulté, intervalles, lecture, registre, vitesse, progression : qui, comment.">
+
+    <!-- Canonical -->
+    <link rel="canonical" href="https://solfegepro.com/fr/manual/interval/">
+    <link rel="alternate" hreflang="ja" href="https://solfegepro.com/manual/interval/">
+    <link rel="alternate" hreflang="en" href="https://solfegepro.com/en/manual/interval/">
+    <link rel="alternate" hreflang="fr" href="https://solfegepro.com/fr/manual/interval/">
+    <link rel="alternate" hreflang="de" href="https://solfegepro.com/de/manual/interval/">
+    <link rel="alternate" hreflang="x-default" href="https://solfegepro.com/manual/interval/">
+<!-- OGP -->
+    <meta property="og:title" content="Manuel des réglages d'entraînement aux intervalles — Comment choisir chaque option">
+    <meta property="og:description" content="Manuel de référence des réglages d'entraînement aux intervalles — mode, difficulté, intervalles, lecture, registre, vitesse, progression : qui, comment.">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://solfegepro.com/fr/manual/interval/">
+    <meta property="og:site_name" content="Solfege PRO">
+    <meta property="og:image" content="https://solfegepro.com/og-image.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Solfege PRO">
+    <meta property="og:locale" content="fr_FR">
+    <meta property="og:locale:alternate" content="ja_JP">
+    <meta property="og:locale:alternate" content="en_US">
+    <meta property="og:locale:alternate" content="de_DE">
+    <meta property="article:published_time" content="2026-06-05">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Manuel des réglages d'entraînement aux intervalles — Comment choisir chaque option">
+    <meta name="twitter:description" content="Manuel de référence des réglages d'entraînement aux intervalles — mode, difficulté, intervalles, lecture, registre, vitesse, progression : qui, comment.">
+    <meta name="twitter:image" content="https://solfegepro.com/og-image.png">
+
+    <!-- Favicon -->
+    <link rel="icon" href="/favicon.ico" sizes="any">
+    <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap"></noscript>
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="/style.css?v=17">
+    <link rel="stylesheet" href="/guides/article.css?v=11">
+
+    <style>
+        /* Manual option reference — responsive, no fixed px widths */
+        .manual-options {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr);
+            gap: var(--space-sm);
+            margin: var(--space-lg) 0;
+        }
+        .manual-option {
+            background: var(--surface);
+            border: 1px solid var(--surface-light);
+            border-radius: var(--radius-lg);
+            padding: var(--space-md);
+        }
+        .manual-option__name {
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: var(--space-xs);
+        }
+        .manual-option__desc {
+            font-size: 13px;
+            color: var(--text-secondary);
+        }
+        /* Bottom-line callout (conclusion first) */
+        .manual-lead {
+            font-size: 14px;
+            line-height: 1.75;
+            color: var(--text-primary);
+            border-left: 3px solid var(--primary);
+            background: rgba(212, 175, 55, 0.06);
+            padding: var(--space-sm) var(--space-md);
+            border-radius: 0 var(--radius-md) var(--radius-md) 0;
+            margin: var(--space-md) 0;
+        }
+        /* Per-setting evidence note — deliberately styled as an editorial
+           aside, NOT as a settings card (no surface fill, no gold label),
+           so it is never mistaken for an in-app option. */
+        .manual-rationale {
+            margin: var(--space-md) 0 var(--space-2xl);
+            padding: var(--space-sm) 0 var(--space-sm) var(--space-md);
+            border-left: 2px solid var(--surface-light);
+        }
+        .manual-rationale__label {
+            display: block;
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            color: var(--text-secondary);
+            margin-bottom: 4px;
+            opacity: 0.75;
+        }
+        .manual-rationale p {
+            font-size: 13px;
+            line-height: 1.75;
+            color: var(--text-secondary);
+            margin: 0;
+        }
+        .manual-rationale__ref {
+            font-size: 12px;
+            font-style: italic;
+            margin-top: var(--space-xs) !important;
+            opacity: 0.7;
+        }
+        /* Citation number linking to the reference list */
+        .manual-ref-num {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-style: normal;
+        }
+        .manual-ref-num:hover { color: var(--primary); }
+        /* Full reference list at page end */
+        .manual-refs {
+            margin: var(--space-2xl) 0 0;
+            padding-top: var(--space-lg);
+            border-top: 1px solid var(--surface-light);
+        }
+        .manual-refs__title {
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: var(--space-sm);
+        }
+        .manual-refs ol {
+            margin: 0;
+            padding-left: 1.25em;
+        }
+        .manual-refs li {
+            font-size: 12px;
+            line-height: 1.7;
+            color: var(--text-secondary);
+            margin-bottom: var(--space-xs);
+            scroll-margin-top: 84px;
+        }
+        .manual-refs li:target {
+            color: var(--text-primary);
+        }
+    </style>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Manuel des réglages d'entraînement aux intervalles — Comment choisir chaque option","description":"Manuel de référence des réglages d'entraînement aux intervalles — mode, difficulté, intervalles, lecture, registre, vitesse, progression : qui, comment.","author":{"@type":"Organization","name":"Solfege PRO"},"publisher":{"@type":"Organization","name":"Solfege PRO","logo":{"@type":"ImageObject","url":"https://solfegepro.com/AppIcon.png"}},"datePublished":"2026-06-05","mainEntityOfPage":{"@type":"WebPage","@id":"https://solfegepro.com/fr/manual/interval/"}}</script>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Accueil","item":"https://solfegepro.com/fr/"},{"@type":"ListItem","position":2,"name":"Manuel","item":"https://solfegepro.com/fr/manual/"},{"@type":"ListItem","position":3,"name":"Manuel des réglages d'entraînement aux intervalles — Comment choisir chaque option","item":"https://solfegepro.com/fr/manual/interval/"}]}</script>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="nav__container">
+            <a href="/" class="nav__logo">
+                <img src="/AppIcon.png" alt="Solfege PRO" class="nav__logo-icon" width="32" height="32">
+                <span class="nav__logo-text">Solfege PRO</span>
+            </a>
+            <ul class="nav__list">
+                <li><a href="/" class="nav__link">Guide d'entraînement</a></li>
+                <li><a href="/guides/" class="nav__link">Guides</a></li>
+                <li><a href="/manual/" class="nav__link active">Manuel</a></li>
+                            <li><a href="/start-here/" class="nav__link">Par où commencer ?</a></li>
+            </ul>
+            <div class="nav__settings">
+                <button class="settings-btn" id="lang-toggle" title="Toggle language">
+                    <span id="lang-text">EN</span>
+                </button>
+                <button class="hamburger-btn" id="hamburger-btn" aria-label="Menu" aria-expanded="false" aria-controls="drawer">
+                    <span class="hamburger-btn__line"></span>
+                    <span class="hamburger-btn__line"></span>
+                    <span class="hamburger-btn__line"></span>
+                </button>
+            </div>
+        </div>
+    </nav>
+        <!-- Mobile drawer (hidden on desktop) -->
+        <div class="drawer-overlay" id="drawer-overlay"></div>
+        <aside class="drawer" id="drawer" aria-label="Mobile menu" aria-hidden="true" inert>
+            <div class="drawer__header">
+                <span class="drawer__title">Menu</span>
+                <button class="drawer__close" id="drawer-close" aria-label="Close menu">×</button>
+            </div>
+            <ul class="drawer__list">
+                    <li><a href="/" class="drawer__link">Guide d'entraînement</a></li>
+                    <li><a href="/guides/" class="drawer__link">Guides</a></li>
+                    <li><a href="/manual/" class="drawer__link active">Manuel</a></li>
+                    <li><a href="/start-here/" class="drawer__link">Par où commencer ?</a></li>
+            </ul>
+        </aside>
+
+
+    <!-- Article Header -->
+    <header class="page-header">
+        <div class="page-header__meta">
+            <span class="page-header__tag">Manuel</span>
+            <span>Reconnaissance d'intervalles</span>
+        </div>
+        <h1 class="page-header__title">
+            
+            
+            Manuel des réglages de reconnaissance d'intervalles<br>Le sens de chaque option et comment la choisir
+            
+        </h1>
+        <p class="page-header__subtitle">
+            
+            
+            Quelle option choisir, quand et pourquoi. Cette page passe en revue chaque réglage de l'entraînement aux intervalles, un par un. Si vous arrivez depuis un « ? » de l'écran des réglages, faites défiler jusqu'à l'option qui vous intéresse.
+            
+        </p>
+    </header>
+
+    <!-- Top-of-article CTA -->
+    <aside class="article-top-cta" aria-label="App promotion">
+        <div class="article-top-cta__body">
+            <p class="article-top-cta__title">
+                
+                
+                Essayez cet exercice dans Solfege PRO
+                
+            </p>
+            <p class="article-top-cta__sub">
+                
+                
+                980 ¥/mois · essai gratuit d'une semaine
+                
+            </p>
+        </div>
+        <a href="https://apps.apple.com/fr/app/id6756626617" class="article-top-cta__button" data-cta-position="article_top">
+            
+            
+            App Store →
+            
+        </a>
+    </aside>
+
+    <!-- Article Body -->
+    <main class="article-body">
+
+        <!-- Intro -->
+        <p>
+            
+            
+            L'entraînement aux intervalles consiste à nommer, à l'oreille seule, l'écart de hauteur entre deux notes (un « intervalle » — par exemple une quinte juste ou une tierce majeure). Les intervalles sont la base de l'écoute de la mélodie comme de l'harmonie, et le point de départ de toute l'éducation de l'oreille.
+            
+        </p>
+        <p>
+            
+            
+            Cette page est un manuel pour choisir les réglages. Chaque réglage s'appuie sur des méthodes établies de l'éducation musicale. Pour chaque réglage qui demande une décision, nous indiquons <strong>le choix recommandé, à quoi il sert et ce qu'il développe — avec les preuves à l'appui</strong>. Si vous arrivez depuis un « ? » de l'écran des réglages, faites défiler jusqu'à l'option qui vous intéresse.
+            
+        </p>
+
+        <!-- #training-mode -->
+        <h2 id="training-mode">Mode d'entraînement</h2>
+
+        <p class="manual-lead">
+            
+            
+            <strong>« Standard » suffit pour débuter.</strong> N'utilisez « Personnalisé » que pour viser des intervalles précis, et passez à « Réviser quand vous oubliez » et « Travailler les points faibles » une fois vos résultats accumulés.
+            
+        </p>
+
+        <p>
+            
+            
+            Ce réglage détermine selon quelle logique les intervalles vous sont proposés. Il existe quatre modes.
+            
+        </p>
+
+        <div class="manual-options">
+            <div class="manual-option">
+                <div class="manual-option__name">Standard</div>
+                <div class="manual-option__desc">Puise dans les intervalles correspondant à la difficulté choisie. Sans intention particulière, c'est celui-ci.</div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name">Personnalisé</div>
+                <div class="manual-option__desc">Vous choisissez vous-même chaque intervalle proposé. Pour travailler uniquement une combinaison ciblée (en sélectionner au moins un).</div>
+            </div>
+        </div>
+
+        <p>
+            
+            
+            Les deux autres — « Réviser quand vous oubliez » et « Travailler les points faibles » — prennent tout leur sens une fois vos données de performance accumulées. Comme leur principe est identique pour tous les entraînements, ils sont détaillés ci-dessous.
+            
+        </p>
+
+        <!-- TODO i18n: fr/de spans are interim English; translate after ja voice approval -->
+<!-- Reusable mode partial. Training-agnostic: do NOT mention chord/scale/etc. -->
+<section class="article-mode" id="mode-spaced-repetition">
+    <h3 class="article-mode__title">Mode « Répétition espacée » (spaced repetition)</h3>
+
+    <p>
+        
+        
+        Spaced repetition means an item you have already studied comes back just as you are about to forget it. The more reliably you answer something, the longer the gap before it returns; the items you miss come back sooner. It rests on the idea that recall is more durable when you space the reviews out rather than cramming the same item back-to-back.
+        
+    </p>
+
+    <p>
+        
+        
+        This mode suits you once the pool of items has grown and you start noticing that things you once knew have slipped. The app handles the scheduling automatically, so you do not have to track what needs reviewing. It rewards short, daily sessions more than occasional long ones.
+        
+    </p>
+
+    <p>
+        
+        
+        When in doubt, reach for it in the "maintenance" phase, after you have worked through the items once. Use the normal mode to build the foundation when everything is new, then let spaced repetition move that knowledge into long-term memory — a comfortable two-step approach. <em>The benefit of spacing reviews for long-term retention was synthesized at scale by Cepeda et al. (2006), and the finding that the act of retrieval itself strengthens memory comes from Roediger &amp; Karpicke (2006).</em>
+        
+    </p>
+</section>
+
+        <!-- TODO i18n: fr/de spans are interim English; translate after ja voice approval -->
+<!-- Reusable mode partial. Training-agnostic: do NOT mention chord/scale/etc. -->
+<section class="article-mode" id="mode-weak-point">
+    <h3 class="article-mode__title">Weak-Point Focus Mode</h3>
+
+    <p>
+        
+        
+        Weak-point focus looks at your answer history, identifies the items with the lowest accuracy, and serves those to you more often. Instead of spending time on what you already answer reliably, it concentrates practice on exactly the places you keep missing. The app picks the targets automatically from your own results.
+        
+    </p>
+
+    <p>
+        
+        
+        This mode suits the stage where your overall accuracy is climbing but a specific few items still trip you up every time. Because it keeps returning to your weak spots, it feels harder — and that controlled extra effort is precisely where the learning happens (the principle of desirable difficulties). It needs enough answer history before candidates appear, so play the normal mode for a while first.
+        
+    </p>
+
+    <p>
+        
+        
+        When in doubt, drop in for a few concentrated sessions whenever you plateau at a given level and feel you "keep losing the same handful of items right before it would stabilize." Once the weak spots clear, return to the normal mode to keep your overall balance. <em>Deliberately making yourself retrieve the items you tend to miss — the "testing effect" — was shown by Roediger &amp; Karpicke (2006) to strongly benefit later retention.</em>
+        
+    </p>
+</section>
+
+
+        <div class="manual-rationale">
+            <span class="manual-rationale__label">Les fondements scientifiques</span>
+            <p>
+                
+                
+                Les quatre modes servent à concentrer la pratique sur les intervalles dont vous avez besoin sur le moment. Le format quiz lui-même — rappeler la réponse plutôt qu'écouter passivement — ancre mieux la mémoire que la réécoute (l'effet test). « Réviser quand vous oubliez » et « Travailler les points faibles » automatisent cet effet à partir de vos données de performance.
+                
+            </p>
+            <p class="manual-rationale__ref">Réf. : Roediger &amp; Karpicke (2006) <a class="manual-ref-num" href="#ref-1">[1]</a></p>
+        </div>
+
+        <!-- #difficulty -->
+        <h2 id="difficulty">Difficulté</h2>
+
+        <p class="manual-lead">
+            
+            
+            <strong>Dans le doute, commencez par « Débutant ».</strong> Montez d'un niveau une fois que vous tenez de façon stable 80 % ou plus au niveau actuel.
+            
+        </p>
+
+        <p>
+            
+            
+            Définit l'éventail des intervalles qui vous seront proposés (affiché en mode Standard). Il part des intervalles les plus faciles à distinguer et s'élargit, étape par étape, vers les plus difficiles.
+            
+        </p>
+
+        <div class="manual-options">
+            <div class="manual-option">
+                <div class="manual-option__name">Débutant</div>
+                <div class="manual-option__desc">Les 5 intervalles fondamentaux (M2, M3, P4, P5, octave) — uniquement les plus larges et les plus faciles à distinguer.</div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name">Intermédiaire</div>
+                <div class="manual-option__desc">8 intervalles ; ajoute m3, m6 et M6, introduisant la distinction majeur/mineur (le caractère clair/sombre).</div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name">Avancé</div>
+                <div class="manual-option__desc">Les 13 intervalles — y compris m2, le triton (quarte augmentée = demi-octave), m7 et M7. Le niveau le plus élevé.</div>
+            </div>
+        </div>
+
+        <div class="manual-rationale">
+            <span class="manual-rationale__label">Les fondements scientifiques</span>
+            <p>
+                
+                
+                Moins vous traitez d'intervalles à la fois, moins votre oreille a d'informations à gérer, et plus vous fixez sûrement les indices qui permettent de les distinguer. Consolider un éventail restreint avant de l'élargir mène au résultat plus vite que de tout aborder d'un coup. Cette progression par paliers suit la théorie de la charge cognitive : limiter la charge de traitement au début d'une nouvelle compétence favorise l'apprentissage.
+                
+            </p>
+            <p class="manual-rationale__ref">Réf. : Sweller (1988) <a class="manual-ref-num" href="#ref-2">[2]</a></p>
+        </div>
+
+        <!-- #target-intervals -->
+        <h2 id="target-intervals">Intervalles à travailler</h2>
+
+        <p class="manual-lead">
+            
+            
+            <strong>En général, inutile d'y toucher.</strong> Quand les statistiques révèlent « l'intervalle que je rate toujours », sélectionnez ici uniquement ces deux ou trois-là et concentrez-vous dessus.
+            
+        </p>
+
+        <p>
+            
+            
+            Vous laisse choisir les intervalles proposés (affiché en mode Personnalisé). C'est plus efficace en n'alignant qu'une paire facilement confondue — par exemple M3 / P4, ou P4 / P5. En sélectionner au moins un.
+            
+        </p>
+
+        <div class="manual-rationale">
+            <span class="manual-rationale__label">Les fondements scientifiques</span>
+            <p>
+                
+                
+                Comparer côte à côte des intervalles proches dirige l'attention sur ce qui les différencie et affine la discrimination. Mélanger des éléments similaires (l'entraînement entrelacé) assure une meilleure rétention à long terme que de travailler un seul type à la fois, comme le montre une méta-analyse.
+                
+            </p>
+            <p class="manual-rationale__ref">Réf. : Brunmair &amp; Richter (2019) <a class="manual-ref-num" href="#ref-3">[3]</a></p>
+        </div>
+
+        <!-- #playback-mode -->
+        <h2 id="playback-mode">Mode de lecture</h2>
+
+        <p class="manual-lead">
+            
+            
+            <strong>Apprenez un nouvel intervalle en « Ascendant », ajoutez « Descendant » et « Harmonique » à mesure que vous êtes à l'aise, et terminez par « Aléatoire ».</strong>
+            
+        </p>
+
+        <p>
+            
+            
+            Détermine comment les deux notes sont jouées. Un même intervalle peut être plus ou moins difficile selon la manière dont il est joué.
+            
+        </p>
+
+        <div class="manual-options">
+            <div class="manual-option">
+                <div class="manual-option__name">Ascendant</div>
+                <div class="manual-option__desc">La note grave puis l'aiguë. La forme la plus familière ; les intervalles appris par des chansons reviennent facilement, ce qui convient au début de l'apprentissage.</div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name">Descendant</div>
+                <div class="manual-option__desc">La note aiguë puis la grave. L'impression diffère de l'ascendant et cela paraît souvent soudainement plus difficile.</div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name">Harmonique</div>
+                <div class="manual-option__desc">Les deux notes en même temps. On juge selon que le mélange est consonant ou dissonant ; cela développe directement l'oreille harmonique et c'est un peu plus difficile.</div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name">Aléatoire</div>
+                <div class="manual-option__desc">Alterne entre les trois à chaque question, pour savoir identifier les intervalles quelle que soit la manière dont ils sont joués.</div>
+            </div>
+        </div>
+
+        <div class="manual-rationale">
+            <span class="manual-rationale__label">Les fondements scientifiques</span>
+            <p>
+                
+                
+                L'objectif est d'entendre l'intervalle lui-même sans s'appuyer sur une seule présentation. La musique réelle utilise aussi bien les formes ascendantes, descendantes que simultanées. Varier la manière de jouer vous empêche de dépendre d'un indice unique (comme une « ouverture de chanson » ascendante) et développe la capacité à entendre l'écart en soi.
+                
+            </p>
+            <p class="manual-rationale__ref">Réf. : Brunmair &amp; Richter (2019) <a class="manual-ref-num" href="#ref-3">[3]</a>; Karpinski (2000) <a class="manual-ref-num" href="#ref-4">[4]</a></p>
+        </div>
+
+        <!-- #reference-pitch -->
+        <h2 id="reference-pitch">Note de départ (note de référence)</h2>
+
+        <p class="manual-lead">
+            
+            
+            <strong>Les débutants choisissent « Toujours la même note » (C4) ; passez à « Notes différentes » une fois votre discrimination stabilisée.</strong>
+            
+        </p>
+
+        <p>
+            
+            
+            Détermine comment la note de référence — la première note jouée, à partir de laquelle l'intervalle est mesuré (la fondamentale) — est choisie à chaque fois. Si elle est fixe, vous pouvez la régler sur C4 (do central), E4 (1re corde de guitare) ou A4 (440 Hz) — dans le doute, le C4 recommandé.
+            
+        </p>
+
+        <div class="manual-options">
+            <div class="manual-option">
+                <div class="manual-option__name">Toujours la même note</div>
+                <div class="manual-option__desc">Fixe la note de référence sur une seule hauteur. Un point de départ constant facilite la comparaison : vous vous concentrez sur la différence, sans vous laisser tromper par la hauteur absolue. Adapté au début de l'apprentissage.</div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name">Notes différentes</div>
+                <div class="manual-option__desc">Change la hauteur de la note de référence à chaque fois. Développe une oreille proche de la pratique réelle, capable de reconnaître les intervalles dans n'importe quelle tonalité ou registre.</div>
+            </div>
+        </div>
+
+        <div class="manual-rationale">
+            <span class="manual-rationale__label">Les fondements scientifiques</span>
+            <p>
+                
+                
+                Les deux étapes existent pour que vous puissiez abaisser la charge en fixant les conditions au début, puis les faire varier ensuite pour vous rapprocher de l'usage réel. Varier le point de départ (entrelacer les conditions) assure une meilleure rétention qu'une répétition monotone, comme le montre une méta-analyse.
+                
+            </p>
+            <p class="manual-rationale__ref">Réf. : Brunmair &amp; Richter (2019) <a class="manual-ref-num" href="#ref-3">[3]</a></p>
+        </div>
+
+        <!-- #playback-speed -->
+        <h2 id="playback-speed">Vitesse de lecture du son</h2>
+
+        <p class="manual-lead">
+            
+            
+            <strong>Laissez sur « Normal ».</strong> Passez à « Lent » uniquement quand un nouvel intervalle vous fait trébucher ; passez à « Rapide » une fois stabilisé.
+            
+        </p>
+
+        <p>
+            
+            
+            Règle la vitesse à laquelle les deux notes sont jouées (durée d'une note et intervalle entre elles). Apparaît dans les modes séquentiels Ascendant / Descendant (pas en Harmonique). Lent, Normal ou Rapide : « Lent » permet d'écouter chaque note attentivement, tandis que « Rapide » concentre plus de répétitions en moins de temps.
+            
+        </p>
+
+        <div class="manual-rationale">
+            <span class="manual-rationale__label">Les fondements scientifiques</span>
+            <p>
+                
+                
+                La vitesse est réglable pour ajuster la charge de traitement à votre niveau d'apprentissage. Tant qu'un nouvel intervalle ne vous est pas familier, « Lent » abaisse la charge ; une fois la discrimination stabilisée, « Rapide » entraîne le jugement instantané. Maintenir une charge plus faible au début suit la théorie de la charge cognitive.
+                
+            </p>
+            <p class="manual-rationale__ref">Réf. : Sweller (1988) <a class="manual-ref-num" href="#ref-2">[2]</a></p>
+        </div>
+
+        <!-- #practice-speed -->
+        <h2 id="practice-speed">Passage à la question suivante</h2>
+
+        <p class="manual-lead">
+            
+            
+            <strong>Utilisez « Passage manuel » tant que les intervalles sont encore nouveaux ; passez à « Passage automatique » quand vous voulez enchaîner les répétitions.</strong>
+            
+        </p>
+
+        <p>
+            
+            
+            Détermine comment vous passez à la question suivante après avoir répondu. Manuel ou automatique.
+            
+        </p>
+
+        <div class="manual-options">
+            <div class="manual-option">
+                <div class="manual-option__name">Passage manuel</div>
+                <div class="manual-option__desc">Reste en attente jusqu'à ce que vous appuyiez sur « Suivant ». Pour vérifier vos réponses à votre rythme ou réécouter un intervalle manqué.</div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name">Passage automatique</div>
+                <div class="manual-option__desc">Passe automatiquement à la suite. Pour un rythme soutenu et entraîner une écoute réflexe.</div>
+            </div>
+        </div>
+
+        <div class="manual-rationale">
+            <span class="manual-rationale__label">Les fondements scientifiques</span>
+            <p>
+                
+                
+                Les deux servent la même boucle — rappeler soi-même la réponse, puis vérifier. La récupération en mémoire (le format quiz) retient bien mieux que la réécoute passive. Le mode manuel sert à la vérification question par question ; le mode automatique sert à augmenter le nombre de répétitions.
+                
+            </p>
+            <p class="manual-rationale__ref">Réf. : Roediger &amp; Karpicke (2006) <a class="manual-ref-num" href="#ref-1">[1]</a></p>
+        </div>
+
+        <!-- References -->
+        <section class="manual-refs">
+            <div class="manual-refs__title">Références</div>
+            <ol>
+                <li id="ref-1">Roediger, H. L., &amp; Karpicke, J. D. (2006). Test-enhanced learning: Taking memory tests improves long-term retention. <em>Psychological Science, 17</em>(3), 249–255.</li>
+                <li id="ref-2">Sweller, J. (1988). Cognitive load during problem solving: Effects on learning. <em>Cognitive Science, 12</em>(2), 257–285.</li>
+                <li id="ref-3">Brunmair, M., &amp; Richter, T. (2019). Similarity matters: A meta-analysis of interleaved learning and its moderators. <em>Psychological Bulletin, 145</em>(11), 1029–1052.</li>
+                <li id="ref-4">Karpinski, G. S. (2000). <em>Aural Skills Acquisition: The Development of Listening, Reading, and Performing Skills in College-Level Musicians.</em> Oxford University Press.</li>
+            </ol>
+        </section>
+
+    </main>
+
+    <!-- Final CTA -->
+    <section class="article-cta">
+        <h2 class="article-cta__title">Réglages décidés ? Essayez sans attendre</h2>
+        <p class="article-cta__text">
+            
+            
+            Une fois chaque réglage compris, il ne reste plus qu'à pratiquer.<br>En cas de doute, suivez simplement les lignes « En cas de doute… » de cette page.<br>Trouvez les réglages qui vous conviennent dans la Reconnaissance d'intervalles de Solfege PRO.
+            
+        </p>
+        <a href="https://apps.apple.com/fr/app/id6756626617" class="app-store-link" aria-label="Download on the App Store">
+            
+            
+            <img class="app-store-link__img" width="127" height="40" src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/fr-fr" alt="Télécharger dans l'App Store">
+            
+        </a>
+    </section>
+
+    <!-- Related Content -->
+    <div class="article-related">
+        <div class="article-related__title">Contenu associé</div>
+        <a href="/guides/interval-training/" class="article-related__link" style="margin-bottom: var(--space-md);">
+            <div class="article-related__link-title">Qu'est-ce que la reconnaissance d'intervalles ? — Comprendre les intervalles pour former l'oreille</div>
+            <div class="article-related__link-desc">Pour celles et ceux qui veulent comprendre ce qu'est un intervalle avant d'ajuster les réglages — un guide sur la différence d'écart entre deux notes et une pratique progressive.</div>
+        </a>
+        <a href="/" class="article-related__link">
+            <div class="article-related__link-title">Guide d'entraînement Solfege PRO</div>
+            <div class="article-related__link-desc">Programmes d'entraînement par problématique pour guitare, basse, batterie, piano et chant</div>
+        </a>
+    </div>
+
+    <!-- Article Note -->
+    <aside class="article-endnote">
+        <p class="article-endnote__text">
+            
+            
+            Cette page est une référence expliquant les réglages internes de l'application. Les progressions recommandées ici sont des repères généraux fondés sur une méthodologie d'entraînement de l'oreille largement répandue ; les réglages optimaux varient selon l'expérience et les objectifs de chacun. Les études citées rapportent des résultats généraux sur l'apprentissage et ne garantissent pas de résultats au sein de cette application.
+            
+        </p>
+    </aside>
+
+    <!-- Footer -->
+    <footer class="article-footer">
+        <p class="article-footer__text">
+            &copy; 2026 Solfege PRO &mdash;
+            <a href="https://apps.apple.com/fr/app/id6756626617" class="article-footer__link">App Store</a>
+        </p>
+    </footer>
+    <script src="/bootstrap.js?v=3" defer></script>
+</body>
+</html>

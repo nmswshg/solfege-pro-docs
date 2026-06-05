@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html lang="ja"
+      data-title-ja="スケール認識 設定マニュアル — 各設定の選び方 | ソルフェージュPRO"
+      data-title-en="Scale Recognition Settings Manual — How to Choose Each Option | Solfege PRO"
+      data-title-fr="Manuel des réglages de reconnaissance de gammes — Comment choisir chaque option | Solfege PRO"
+      data-title-de="Handbuch der Einstellungen zur Tonleiter-Erkennung — Jede Option richtig wählen | Solfege PRO">
+<head>
+    <meta charset="UTF-8">
+    <meta name="robots" content="index, follow">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#1A1A1E">
+    <title>スケール認識 設定マニュアル — 各設定の選び方 | ソルフェージュPRO</title>
+    <meta name="description" content="スケール認識トレーニングの各設定（トレーニングモード・難易度・再生モード・モード/教会旋法・メロディックマイナーのスタイル・ルート音の出題）を、何のための設定で、誰が、どう選ぶべきかまで丁寧に解説するリファレンスマニュアルです。">
+
+    <!-- Canonical -->
+    <link rel="canonical" href="https://solfegepro.com/manual/scale/">
+    <link rel="alternate" hreflang="ja" href="https://solfegepro.com/manual/scale/">
+    <link rel="alternate" hreflang="en" href="https://solfegepro.com/en/manual/scale/">
+    <link rel="alternate" hreflang="fr" href="https://solfegepro.com/fr/manual/scale/">
+    <link rel="alternate" hreflang="de" href="https://solfegepro.com/de/manual/scale/">
+    <link rel="alternate" hreflang="x-default" href="https://solfegepro.com/manual/scale/">
+
+    <!-- OGP -->
+    <meta property="og:title" content="スケール認識 設定マニュアル — 各設定の選び方">
+    <meta property="og:description" content="スケール認識トレーニングの各設定（トレーニングモード・難易度・再生モード・モード/教会旋法・メロディックマイナーのスタイル・ルート音の出題）を、何のための設定で、誰が、どう選ぶべきかまで丁寧に解説するリファレンスマニュアルです。">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://solfegepro.com/manual/scale/">
+    <meta property="og:site_name" content="ソルフェージュPRO">
+    <meta property="og:image" content="https://solfegepro.com/og-image.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Solfege PRO">
+    <meta property="og:locale" content="ja_JP">
+    <meta property="og:locale:alternate" content="en_US">
+    <meta property="og:locale:alternate" content="fr_FR">
+    <meta property="og:locale:alternate" content="de_DE">
+    <meta property="article:published_time" content="2026-06-05">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="スケール認識 設定マニュアル — 各設定の選び方">
+    <meta name="twitter:description" content="スケール認識トレーニングの各設定（トレーニングモード・難易度・再生モード・モード/教会旋法・メロディックマイナーのスタイル・ルート音の出題）を、何のための設定で、誰が、どう選ぶべきかまで丁寧に解説するリファレンスマニュアルです。">
+    <meta name="twitter:image" content="https://solfegepro.com/og-image.png">
+
+    <!-- Favicon -->
+    <link rel="icon" href="/favicon.ico" sizes="any">
+    <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap"></noscript>
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="/style.css?v=17">
+    <link rel="stylesheet" href="/guides/article.css?v=11">
+
+    <style>
+        /* Manual option reference — responsive, no fixed px widths */
+        .manual-options {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr);
+            gap: var(--space-sm);
+            margin: var(--space-lg) 0;
+        }
+        .manual-option {
+            background: var(--surface);
+            border: 1px solid var(--surface-light);
+            border-radius: var(--radius-lg);
+            padding: var(--space-md);
+        }
+        .manual-option__name {
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: var(--space-xs);
+        }
+        .manual-option__desc {
+            font-size: 13px;
+            color: var(--text-secondary);
+        }
+        /* Bottom-line callout (conclusion first) */
+        .manual-lead {
+            font-size: 14px;
+            line-height: 1.75;
+            color: var(--text-primary);
+            border-left: 3px solid var(--primary);
+            background: rgba(212, 175, 55, 0.06);
+            padding: var(--space-sm) var(--space-md);
+            border-radius: 0 var(--radius-md) var(--radius-md) 0;
+            margin: var(--space-md) 0;
+        }
+        /* Per-setting evidence note — deliberately styled as an editorial
+           aside, NOT as a settings card (no surface fill, no gold label),
+           so it is never mistaken for an in-app option. */
+        .manual-rationale {
+            margin: var(--space-md) 0 var(--space-2xl);
+            padding: var(--space-sm) 0 var(--space-sm) var(--space-md);
+            border-left: 2px solid var(--surface-light);
+        }
+        .manual-rationale__label {
+            display: block;
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            color: var(--text-secondary);
+            margin-bottom: 4px;
+            opacity: 0.75;
+        }
+        .manual-rationale p {
+            font-size: 13px;
+            line-height: 1.75;
+            color: var(--text-secondary);
+            margin: 0;
+        }
+        .manual-rationale__ref {
+            font-size: 12px;
+            font-style: italic;
+            margin-top: var(--space-xs) !important;
+            opacity: 0.7;
+        }
+        /* Citation number linking to the reference list */
+        .manual-ref-num {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-style: normal;
+        }
+        .manual-ref-num:hover { color: var(--primary); }
+        /* Full reference list at page end */
+        .manual-refs {
+            margin: var(--space-2xl) 0 0;
+            padding-top: var(--space-lg);
+            border-top: 1px solid var(--surface-light);
+        }
+        .manual-refs__title {
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: var(--space-sm);
+        }
+        .manual-refs ol {
+            margin: 0;
+            padding-left: 1.25em;
+        }
+        .manual-refs li {
+            font-size: 12px;
+            line-height: 1.7;
+            color: var(--text-secondary);
+            margin-bottom: var(--space-xs);
+            scroll-margin-top: 84px;
+        }
+        .manual-refs li:target {
+            color: var(--text-primary);
+        }
+    </style>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"スケール認識 設定マニュアル — 各設定の選び方","description":"スケール認識トレーニングの各設定を、何のための設定で、誰が、どう選ぶべきかまで解説するリファレンスマニュアルです。","author":{"@type":"Organization","name":"ソルフェージュPRO"},"publisher":{"@type":"Organization","name":"ソルフェージュPRO","logo":{"@type":"ImageObject","url":"https://solfegepro.com/AppIcon.png"}},"datePublished":"2026-06-05","mainEntityOfPage":{"@type":"WebPage","@id":"https://solfegepro.com/manual/scale/"}}</script>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="nav__container">
+            <a href="/" class="nav__logo">
+                <img src="/AppIcon.png" alt="Solfege PRO" class="nav__logo-icon" width="32" height="32">
+                <span class="nav__logo-text"><span lang="ja">ソルフェージュPRO</span><span lang="en">Solfege PRO</span><span lang="fr">Solfege PRO</span><span lang="de">Solfege PRO</span></span>
+            </a>
+            <ul class="nav__list">
+                <li><a href="/" class="nav__link"><span lang="ja">練習ガイド</span><span lang="en">Practice Guide</span><span lang="fr">Guide d'entraînement</span><span lang="de">Übungsleitfaden</span></a></li>
+                <li><a href="/guides/" class="nav__link"><span lang="ja">ガイド一覧</span><span lang="en">Guides</span><span lang="fr">Guides</span><span lang="de">Leitfäden</span></a></li>
+                <li><a href="/manual/" class="nav__link active"><span lang="ja">マニュアル</span><span lang="en">Manual</span><span lang="fr">Manuel</span><span lang="de">Handbuch</span></a></li>
+                            <li><a href="/start-here/" class="nav__link"><span lang="ja">どこから始める？</span><span lang="en">Where to Start?</span><span lang="fr">Par où commencer ?</span><span lang="de">Wo anfangen?</span></a></li>
+            </ul>
+            <div class="nav__settings">
+                <button class="settings-btn" id="lang-toggle" title="Toggle language">
+                    <span id="lang-text">EN</span>
+                </button>
+                <button class="hamburger-btn" id="hamburger-btn" aria-label="Menu" aria-expanded="false" aria-controls="drawer">
+                    <span class="hamburger-btn__line"></span>
+                    <span class="hamburger-btn__line"></span>
+                    <span class="hamburger-btn__line"></span>
+                </button>
+            </div>
+        </div>
+    </nav>
+        <!-- Mobile drawer (hidden on desktop) -->
+        <div class="drawer-overlay" id="drawer-overlay"></div>
+        <aside class="drawer" id="drawer" aria-label="Mobile menu" aria-hidden="true" inert>
+            <div class="drawer__header">
+                <span class="drawer__title"><span lang="ja">メニュー</span><span lang="en">Menu</span><span lang="fr">Menu</span><span lang="de">Menü</span></span>
+                <button class="drawer__close" id="drawer-close" aria-label="Close menu">×</button>
+            </div>
+            <ul class="drawer__list">
+                    <li><a href="/" class="drawer__link"><span lang="ja">練習ガイド</span><span lang="en">Practice Guide</span><span lang="fr">Guide d'entraînement</span><span lang="de">Übungsleitfaden</span></a></li>
+                    <li><a href="/guides/" class="drawer__link"><span lang="ja">ガイド一覧</span><span lang="en">Guides</span><span lang="fr">Guides</span><span lang="de">Leitfäden</span></a></li>
+                    <li><a href="/manual/" class="drawer__link active"><span lang="ja">マニュアル</span><span lang="en">Manual</span><span lang="fr">Manuel</span><span lang="de">Handbuch</span></a></li>
+                    <li><a href="/start-here/" class="drawer__link"><span lang="ja">どこから始める？</span><span lang="en">Where to Start?</span><span lang="fr">Par où commencer ?</span><span lang="de">Wo anfangen?</span></a></li>
+            </ul>
+        </aside>
+
+
+    <!-- Article Header -->
+    <header class="page-header">
+        <div class="page-header__meta">
+            <span class="page-header__tag"><span lang="ja">マニュアル</span><span lang="en">Manual</span><span lang="fr">Manuel</span><span lang="de">Handbuch</span></span>
+            <span><span lang="ja">スケール認識</span><span lang="en">Scale Recognition</span><span lang="fr">Reconnaissance de gammes</span><span lang="de">Tonleiter-Erkennung</span></span>
+        </div>
+        <h1 class="page-header__title">
+            <span lang="ja">スケール認識 設定マニュアル<br>各設定の意味と選び方</span>
+            <span lang="en">Scale Recognition Settings Manual<br>What Each Option Means and How to Choose</span>
+            <span lang="fr">Manuel des réglages de reconnaissance de gammes<br>Le sens de chaque option et comment la choisir</span>
+            <span lang="de">Handbuch der Einstellungen zur Tonleiter-Erkennung<br>Was jede Option bedeutet und wie man sie wählt</span>
+        </h1>
+        <p class="page-header__subtitle">
+            <span lang="ja">設定画面のどの項目を、どんなときに、どう選べばよいか。スケール認識トレーニングの各設定を 1 つずつ解説します。設定画面の「?」から飛んできた方は、目的の項目までスクロールしてください。</span>
+            <span lang="en">Which option to pick, when, and why. This page walks through each setting in scale recognition training, one at a time. If you arrived from a "?" in the settings screen, scroll to the option you need.</span>
+            <span lang="fr">Quelle option choisir, quand et pourquoi. Cette page passe en revue chaque réglage de l'entraînement à la reconnaissance de gammes, un par un. Si vous êtes arrivé depuis un « ? » de l'écran des réglages, faites défiler jusqu'à l'option voulue.</span>
+            <span lang="de">Welche Option wann und warum wählen. Diese Seite geht jede Einstellung des Trainings zur Tonleiter-Erkennung einzeln durch. Wenn Sie über ein „?" im Einstellungsbildschirm hierhergekommen sind, scrollen Sie zur gewünschten Option.</span>
+        </p>
+    </header>
+
+    <!-- Top-of-article CTA -->
+    <aside class="article-top-cta" aria-label="App promotion">
+        <div class="article-top-cta__body">
+            <p class="article-top-cta__title">
+                <span lang="ja">ソルフェージュPRO でこの練習を試す</span>
+                <span lang="en">Try this in Solfege PRO</span>
+                <span lang="fr">Essayez cet exercice dans Solfege PRO</span>
+                <span lang="de">Probieren Sie diese Übung in Solfege PRO</span>
+            </p>
+            <p class="article-top-cta__sub">
+                <span lang="ja">月額 980 円 · 1 週間無料トライアル</span>
+                <span lang="en">¥980/month · 1-week free trial</span>
+                <span lang="fr">980 ¥/mois · essai gratuit d'une semaine</span>
+                <span lang="de">980 ¥/Monat · 1 Woche kostenlos testen</span>
+            </p>
+        </div>
+        <a href="https://apps.apple.com/jp/app/id6756626617" class="article-top-cta__button" data-cta-position="article_top">
+            <span lang="ja">App Store →</span>
+            <span lang="en">App Store →</span>
+            <span lang="fr">App Store →</span>
+            <span lang="de">App Store →</span>
+        </a>
+    </aside>
+
+    <!-- Article Body -->
+    <main class="article-body">
+
+        <!-- Intro -->
+        <p>
+            <span lang="ja">スケール認識トレーニングは、順番に鳴る一連の音（=スケール = 音階）を聴いて、それがどの種類のスケールかを耳だけで判別する練習です。コードが「同時に鳴る音の塊」なのに対し、スケールは「並んで動く音の連なり」で、明暗や緊張感を生む音の並び方そのものを聴き取ります。</span>
+            <span lang="en">Scale recognition training is practice at hearing a series of notes played in order (a scale) and identifying which kind of scale it is by ear alone. Where a chord is a stack of notes sounding at once, a scale is a line of notes moving in sequence — you hear the very arrangement of steps that gives a scale its bright, dark, or tense character.</span>
+            <span lang="fr">L'entraînement à la reconnaissance de gammes consiste à écouter une série de notes jouées dans l'ordre (une gamme) et à identifier à l'oreille seule de quel type de gamme il s'agit. Là où un accord est un empilement de notes sonnant en même temps, une gamme est une ligne de notes se déplaçant en séquence — vous entendez l'agencement même des intervalles qui donne à une gamme son caractère lumineux, sombre ou tendu.</span>
+            <span lang="de">Beim Training zur Tonleiter-Erkennung geht es darum, eine Folge nacheinander gespielter Töne (eine Tonleiter) zu hören und allein nach Gehör zu bestimmen, um welche Art von Tonleiter es sich handelt. Während ein Akkord ein Stapel gleichzeitig erklingender Töne ist, ist eine Tonleiter eine Linie von Tönen, die sich nacheinander bewegen — Sie hören genau die Anordnung der Schritte, die einer Tonleiter ihren hellen, dunklen oder gespannten Charakter verleiht.</span>
+        </p>
+        <p>
+            <span lang="ja">このページは設定の選び方をまとめたマニュアルです。各設定は音楽教育で確立された学習法にもとづいて設計しています。判断が要る設定について、<strong>おすすめの選び方・何のための設定か・鍛えられる力とその根拠</strong>を簡潔に示します。設定画面の「?」から来た方は、目的の項目までスクロールしてください。</span>
+            <span lang="en">This page is a manual for choosing the settings. Each setting is designed around established methods from music education. For each setting that calls for a decision, we give <strong>the recommended choice, what it is for, and what it trains — with the evidence behind it</strong>. If you arrived from a "?" in the settings screen, scroll to the option you need.</span>
+            <span lang="fr">Cette page est un manuel pour choisir les réglages. Chaque réglage s'appuie sur des méthodes établies de l'enseignement musical. Pour chaque réglage qui demande une décision, nous indiquons <strong>le choix recommandé, à quoi il sert et ce qu'il développe — avec les fondements scientifiques</strong>. Si vous êtes arrivé depuis un « ? » de l'écran des réglages, faites défiler jusqu'à l'option voulue.</span>
+            <span lang="de">Diese Seite ist ein Handbuch zur Wahl der Einstellungen. Jede Einstellung beruht auf etablierten Methoden der Musikpädagogik. Für jede Einstellung, die eine Entscheidung erfordert, nennen wir <strong>die empfohlene Wahl, wozu sie dient und was sie trainiert — samt der wissenschaftlichen Grundlage</strong>. Wenn Sie über ein „?" im Einstellungsbildschirm hierhergekommen sind, scrollen Sie zur gewünschten Option.</span>
+        </p>
+
+        <!-- #training-mode -->
+        <h2 id="training-mode"><span lang="ja">トレーニングモード</span><span lang="en">Training Mode</span><span lang="fr">Mode d'entraînement</span><span lang="de">Trainingsmodus</span></h2>
+
+        <p class="manual-lead">
+            <span lang="ja"><strong>まずは「通常」で十分。</strong> 特定のスケールを狙うときだけ「カスタム」、成績がたまったら「忘れた頃に復習」「苦手克服」を使います。</span>
+            <span lang="en"><strong>Normal is enough to start.</strong> Use Custom only to target specific scales, and reach for "Review When You Forget" and "Weak-Point Focus" once your results accumulate.</span>
+            <span lang="fr"><strong>« Normal » suffit pour commencer.</strong> N'utilisez « Personnalisé » que pour cibler des gammes précises, et passez à « Réviser au bon moment » et « Travail des points faibles » une fois vos résultats accumulés.</span>
+            <span lang="de"><strong>Zum Einstieg genügt „Normal".</strong> Verwenden Sie „Benutzerdefiniert" nur, um gezielt bestimmte Tonleitern zu üben, und greifen Sie zu „Rechtzeitig wiederholen" und „Schwachstellen-Fokus", sobald sich Ihre Ergebnisse angesammelt haben.</span>
+        </p>
+
+        <p>
+            <span lang="ja">出題するスケールをどの方針で選ぶかを決める設定です。4 つのモードがあります。</span>
+            <span lang="en">This setting decides the policy by which scales are chosen for you. There are four modes.</span>
+            <span lang="fr">Ce réglage détermine la logique selon laquelle les gammes vous sont proposées. Il existe quatre modes.</span>
+            <span lang="de">Diese Einstellung legt fest, nach welchem Prinzip die Tonleitern für Sie ausgewählt werden. Es gibt vier Modi.</span>
+        </p>
+
+        <div class="manual-options">
+            <div class="manual-option">
+                <div class="manual-option__name"><span lang="ja">通常</span><span lang="en">Normal</span><span lang="fr">Normal</span><span lang="de">Normal</span></div>
+                <div class="manual-option__desc"><span lang="ja">選んだ難易度に応じたスケール群から出題します。特に狙いがなければこれで構いません。</span><span lang="en">Draws from the scales matching your chosen difficulty. With no special intent, this is the one.</span><span lang="fr">Puise dans les gammes correspondant à la difficulté choisie. Sans objectif particulier, c'est le bon choix.</span><span lang="de">Wählt aus den Tonleitern, die zur gewählten Schwierigkeit passen. Ohne besondere Absicht ist dies die richtige Wahl.</span></div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name"><span lang="ja">カスタム</span><span lang="en">Custom</span><span lang="fr">Personnalisé</span><span lang="de">Benutzerdefiniert</span></div>
+                <div class="manual-option__desc"><span lang="ja">出題するスケールタイプを 1 つずつ自分で指定します。狙った組み合わせだけを練習したいときに（最低 1 つ選択）。</span><span lang="en">You hand-pick which scale types appear. For drilling a targeted combination (select at least one).</span><span lang="fr">Vous choisissez vous-même, une par une, les types de gammes proposés. Pour travailler une combinaison ciblée (sélectionnez-en au moins un).</span><span lang="de">Sie wählen selbst, einzeln, welche Tonleiter-Typen erscheinen. Um eine gezielte Kombination zu üben (mindestens einen auswählen).</span></div>
+            </div>
+        </div>
+
+        <p>
+            <span lang="ja">残りの 2 つ — 忘れた頃に復習 と 苦手克服 — は成績データがたまってから効くモードです。考え方はどのトレーニングでも共通なので、下に展開します。</span>
+            <span lang="en">The other two — "Review When You Forget" and "Weak-Point Focus" — pay off once your performance data accumulates. They work the same way across every training, so they appear inline below.</span>
+            <span lang="fr">Les deux autres — « Réviser au bon moment » et « Travail des points faibles » — deviennent utiles une fois vos données de résultats accumulées. Leur fonctionnement est le même pour tous les entraînements, ils sont donc détaillés ci-dessous.</span>
+            <span lang="de">Die anderen beiden — „Rechtzeitig wiederholen" und „Schwachstellen-Fokus" — entfalten ihre Wirkung, sobald sich Ihre Leistungsdaten angesammelt haben. Sie funktionieren in jedem Training gleich und werden daher unten erläutert.</span>
+        </p>
+
+        <!-- include: _partials/mode-spaced-repetition.html -->
+        <!-- include: _partials/mode-weak-point.html -->
+
+        <div class="manual-rationale">
+            <span class="manual-rationale__label"><span lang="ja">学習科学の裏づけ</span><span lang="en">The evidence behind it</span><span lang="fr">Fondements scientifiques</span><span lang="de">Wissenschaftliche Grundlage</span></span>
+            <p>
+                <span lang="ja">4 つのモードは「今の自分に必要なスケールへ練習を集中させる」ためにあります。自分で思い出して答える出題形式そのものが、ただ聴き流すより記憶を強くします（テスト効果）。「忘れた頃に復習」「苦手克服」は、この効果を成績データで自動化したモードです。</span>
+                <span lang="en">The four modes exist to concentrate practice on the scales you currently need. The quiz format itself — recalling the answer rather than listening passively — strengthens memory more than re-listening (the testing effect). "Review When You Forget" and "Weak-Point Focus" automate this using your performance data.</span>
+                <span lang="fr">Les quatre modes servent à concentrer l'entraînement sur les gammes dont vous avez besoin en ce moment. Le format de quiz lui-même — se rappeler la réponse plutôt qu'écouter passivement — renforce la mémoire davantage que la simple réécoute (effet de test). « Réviser au bon moment » et « Travail des points faibles » automatisent cet effet à partir de vos données de résultats.</span>
+                <span lang="de">Die vier Modi dienen dazu, das Üben auf die Tonleitern zu konzentrieren, die Sie gerade brauchen. Das Quizformat selbst — die Antwort abzurufen, statt passiv zuzuhören — festigt das Gedächtnis stärker als bloßes erneutes Hören (Testeffekt). „Rechtzeitig wiederholen" und „Schwachstellen-Fokus" automatisieren dies anhand Ihrer Leistungsdaten.</span>
+            </p>
+            <p class="manual-rationale__ref"><span lang="ja">参考: </span><span lang="en">Ref.: </span><span lang="fr">Réf. : </span><span lang="de">Quelle: </span>Roediger &amp; Karpicke (2006) <a class="manual-ref-num" href="#ref-1">[1]</a></p>
+        </div>
+
+        <!-- #difficulty -->
+        <h2 id="difficulty"><span lang="ja">難易度</span><span lang="en">Difficulty</span><span lang="fr">Difficulté</span><span lang="de">Schwierigkeit</span></h2>
+
+        <p class="manual-lead">
+            <span lang="ja"><strong>迷ったら「初級」から。</strong> 今の難易度で正答率 80% 以上が安定したら、1 段ずつ上げます。</span>
+            <span lang="en"><strong>When unsure, start at Beginner.</strong> Step up one level once you reliably hold 80%+ at the current one.</span>
+            <span lang="fr"><strong>En cas de doute, commencez par « Débutant ».</strong> Montez d'un niveau une fois que vous maintenez de façon stable 80 % ou plus au niveau actuel.</span>
+            <span lang="de"><strong>Im Zweifel mit „Anfänger" beginnen.</strong> Steigen Sie eine Stufe höher, sobald Sie auf der aktuellen Stufe zuverlässig 80 % oder mehr halten.</span>
+        </p>
+
+        <p>
+            <span lang="ja">出題されるスケールタイプの範囲を決める設定です（通常モードで表示）。バークリー式のカリキュラムにならい、メジャー/マイナー → モード（教会旋法）→ ペンタトニック/ブルース → 全スケールへと段階的に広がります。</span>
+            <span lang="en">Sets the range of scale types you'll be asked about (shown in Normal mode). Following a Berklee-style curriculum, the pool widens step by step: Major/Minor → Modes (church modes) → Pentatonic/Blues → all scales.</span>
+            <span lang="fr">Définit l'éventail des types de gammes proposés (affiché en mode Normal). Selon un cursus de type Berklee, le répertoire s'élargit pas à pas : majeure/mineure → modes (modes ecclésiastiques) → pentatonique/blues → toutes les gammes.</span>
+            <span lang="de">Legt den Umfang der abgefragten Tonleiter-Typen fest (im Modus Normal angezeigt). Nach einem Berklee-artigen Lehrplan erweitert sich der Vorrat Schritt für Schritt: Dur/Moll → Modi (Kirchentonarten) → Pentatonik/Blues → alle Tonleitern.</span>
+        </p>
+
+        <div class="manual-options">
+            <div class="manual-option">
+                <div class="manual-option__name"><span lang="ja">初級</span><span lang="en">Beginner</span><span lang="fr">Débutant</span><span lang="de">Anfänger</span></div>
+                <div class="manual-option__desc"><span lang="ja">メジャー vs マイナーのみ。明暗を決める 3 度（=ルートの 3 つ上の音）の聴き分けに集中できる最初の一歩。</span><span lang="en">Major vs Minor only. The first step, focusing on the 3rd (the note two steps above the root) that makes a scale bright or dark.</span><span lang="fr">Majeure ou mineure uniquement. La première étape, axée sur la tierce (la note deux degrés au-dessus de la fondamentale) qui rend une gamme lumineuse ou sombre.</span><span lang="de">Nur Dur oder Moll. Der erste Schritt, mit Fokus auf der Terz (dem Ton zwei Schritte über dem Grundton), die eine Tonleiter hell oder dunkel macht.</span></div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name"><span lang="ja">中級</span><span lang="en">Intermediate</span><span lang="fr">Intermédiaire</span><span lang="de">Mittelstufe</span></div>
+                <div class="manual-option__desc"><span lang="ja">ハーモニック・メロディックマイナー追加。6 度・7 度の上げ方で生まれる独特の緊張感を聴き分けます。</span><span lang="en">Adds Harmonic and Melodic Minor — hearing the distinctive tension from raising the 6th and 7th.</span><span lang="fr">Ajoute le mineur harmonique et le mineur mélodique — pour entendre la tension caractéristique née de la hausse de la sixte et de la septième.</span><span lang="de">Ergänzt harmonisch Moll und melodisch Moll — um die charakteristische Spannung zu hören, die durch das Erhöhen der Sexte und Septime entsteht.</span></div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name"><span lang="ja">モード</span><span lang="en">Modes</span><span lang="fr">Modes</span><span lang="de">Modi</span></div>
+                <div class="manual-option__desc"><span lang="ja">教会旋法（ドリアン、フリジアン等）。微妙な色彩の違いを聴き取る、やや高度な段階（詳細は下の項）。</span><span lang="en">Church modes (Dorian, Phrygian, etc.). A more advanced step hearing subtle differences in color (see the section below).</span><span lang="fr">Modes ecclésiastiques (dorien, phrygien, etc.). Une étape un peu plus avancée, pour entendre de subtiles différences de couleur (voir la section ci-dessous).</span><span lang="de">Kirchentonarten (dorisch, phrygisch usw.). Eine etwas anspruchsvollere Stufe, um feine Farbunterschiede zu hören (siehe den Abschnitt unten).</span></div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name"><span lang="ja">ペンタトニック</span><span lang="en">Pentatonic</span><span lang="fr">Pentatonique</span><span lang="de">Pentatonik</span></div>
+                <div class="manual-option__desc"><span lang="ja">ペンタトニック＆ブルーススケール。7 音でなく 5 音（ペンタ=5）の、ロック・ブルースで頻出する開けた響き。</span><span lang="en">Pentatonic and Blues scales — five notes rather than seven (penta = five), the open sound common in rock and blues.</span><span lang="fr">Gammes pentatonique et blues — cinq notes au lieu de sept (penta = cinq), la sonorité ouverte fréquente dans le rock et le blues.</span><span lang="de">Pentatonik- und Blues-Tonleitern — fünf Töne statt sieben (penta = fünf), der offene Klang, der in Rock und Blues häufig vorkommt.</span></div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name"><span lang="ja">上級</span><span lang="en">Advanced</span><span lang="fr">Avancé</span><span lang="de">Fortgeschritten</span></div>
+                <div class="manual-option__desc"><span lang="ja">全スケールタイプ。これまでの段階すべてを混ぜて出題する最上位。何が来るか分からない状態で判別します。</span><span lang="en">All scale types. The top tier, mixing every previous stage; you identify a scale with no idea which is coming.</span><span lang="fr">Tous les types de gammes. Le niveau le plus élevé, mêlant toutes les étapes précédentes ; vous identifiez une gamme sans savoir laquelle va venir.</span><span lang="de">Alle Tonleiter-Typen. Die höchste Stufe, die alle vorherigen Stufen mischt; Sie bestimmen eine Tonleiter, ohne zu wissen, welche kommt.</span></div>
+            </div>
+        </div>
+
+        <div class="manual-rationale">
+            <span class="manual-rationale__label"><span lang="ja">学習科学の裏づけ</span><span lang="en">The evidence behind it</span><span lang="fr">Fondements scientifiques</span><span lang="de">Wissenschaftliche Grundlage</span></span>
+            <p>
+                <span lang="ja">一度に扱うスケールが少ないほど、耳が処理する情報量が減り、聴き分けの手がかりを確実に身につけられます。狭い範囲を確実にしてから広げるほうが、いきなり全部に挑むより速く上達します。新しい技能の初期は処理の負荷を抑えるほど学習が進む、という認知負荷の考え方にもとづく段階設計です。</span>
+                <span lang="en">The fewer scales you handle at once, the less your ear must process, and the more reliably you fix the cues for telling them apart. Securing a narrow pool before widening it gets you there faster than tackling everything at once. The tiers follow cognitive-load theory: keeping processing demands low early in a new skill aids learning.</span>
+                <span lang="fr">Moins vous traitez de gammes à la fois, moins votre oreille a d'informations à gérer, et plus vous fixez de façon fiable les indices qui permettent de les distinguer. Assurer un répertoire restreint avant de l'élargir vous fait progresser plus vite que de tout aborder d'un coup. Les niveaux suivent la théorie de la charge cognitive : maintenir une faible charge de traitement au début d'une nouvelle compétence favorise l'apprentissage.</span>
+                <span lang="de">Je weniger Tonleitern Sie auf einmal bearbeiten, desto weniger muss Ihr Gehör verarbeiten und desto zuverlässiger prägen Sie sich die Hinweise ein, um sie zu unterscheiden. Einen kleinen Vorrat zu festigen, bevor man ihn erweitert, führt schneller zum Ziel, als alles auf einmal anzugehen. Die Stufen folgen der Theorie der kognitiven Belastung: eine geringe Verarbeitungslast zu Beginn einer neuen Fähigkeit fördert das Lernen.</span>
+            </p>
+            <p class="manual-rationale__ref"><span lang="ja">参考: </span><span lang="en">Ref.: </span><span lang="fr">Réf. : </span><span lang="de">Quelle: </span>Sweller (1988) <a class="manual-ref-num" href="#ref-2">[2]</a></p>
+        </div>
+
+        <!-- #modes -->
+        <h2 id="modes"><span lang="ja">モード（教会旋法）</span><span lang="en">Modes (Church Modes)</span><span lang="fr">Modes (modes ecclésiastiques)</span><span lang="de">Modi (Kirchentonarten)</span></h2>
+
+        <p class="manual-lead">
+            <span lang="ja"><strong>全 7 旋法を一度に覚えようとせず、カスタムで「メジャー＋ドリアン」のように 2〜3 種だけ選び、違いがはっきり聴こえる組み合わせから始めます。</strong></span>
+            <span lang="en"><strong>Don't learn all seven modes at once — in Custom mode pick just two or three (say "Major + Dorian"), starting with combinations whose differences are clearly audible.</strong></span>
+            <span lang="fr"><strong>N'essayez pas d'apprendre les sept modes d'un coup — en mode Personnalisé, n'en choisissez que deux ou trois (par exemple « majeure + dorien »), en commençant par des combinaisons dont les différences sont nettement audibles.</strong></span>
+            <span lang="de"><strong>Lernen Sie nicht alle sieben Modi auf einmal — wählen Sie im Modus Benutzerdefiniert nur zwei oder drei (etwa „Dur + dorisch") und beginnen Sie mit Kombinationen, deren Unterschiede deutlich hörbar sind.</strong></span>
+        </p>
+
+        <p>
+            <span lang="ja">難易度で モード を選ぶと出題される教会旋法（=メジャースケールのどの音から数え始めるかを変えて作る 7 種類の音階）の解説です。構成音は同じでも、開始音が変わると音の並び（全音・半音の配置）が変わり、それぞれに固有の色彩が生まれます。イオニアン＝メジャースケール、エオリアン＝ナチュラルマイナーで、ドリアン・フリジアン・リディアン・ミクソリディアンなどには聴き取りやすい「手がかりとなる 1 音」があります。</span>
+            <span lang="en">An explanation of the church modes asked when you choose Modes under difficulty (the seven scales formed by changing which note of the major scale you start counting from). The notes are the same, but starting elsewhere rearranges the steps (the whole/half-step pattern), giving each its own color. Ionian is the major scale, Aeolian is the natural minor, and Dorian, Phrygian, Lydian, and Mixolydian each have one easy "tell-tale note" to latch onto.</span>
+            <span lang="fr">Explication des modes ecclésiastiques proposés lorsque vous choisissez Modes dans la difficulté (les sept gammes formées en changeant la note de la gamme majeure à partir de laquelle on commence à compter). Les notes sont les mêmes, mais partir d'un autre degré réorganise les intervalles (la disposition des tons et demi-tons), donnant à chacun sa propre couleur. L'ionien est la gamme majeure, l'éolien le mineur naturel, et le dorien, le phrygien, le lydien et le mixolydien possèdent chacun une « note caractéristique » facile à repérer.</span>
+            <span lang="de">Eine Erläuterung der Kirchentonarten, die abgefragt werden, wenn Sie unter Schwierigkeit Modi wählen (die sieben Tonleitern, die entstehen, wenn man ändert, von welchem Ton der Dur-Tonleiter aus man zu zählen beginnt). Die Töne sind dieselben, doch ein anderer Ausgangston ordnet die Schritte neu an (das Muster aus Ganz- und Halbtönen) und verleiht jeder ihre eigene Farbe. Ionisch ist die Dur-Tonleiter, äolisch das natürliche Moll, und dorisch, phrygisch, lydisch und mixolydisch haben jeweils einen leicht erkennbaren „charakteristischen Ton", an dem man sich orientieren kann.</span>
+        </p>
+
+        <div class="manual-rationale">
+            <span class="manual-rationale__label"><span lang="ja">学習科学の裏づけ</span><span lang="en">The evidence behind it</span><span lang="fr">Fondements scientifiques</span><span lang="de">Wissenschaftliche Grundlage</span></span>
+            <p>
+                <span lang="ja">旋法の聴き分けは、構成音ではなく「音の並び方が生む色彩」を聴く力です。違いの大きい旋法から少数ずつ耳になじませると、それぞれの旋法に固有の手がかり音をつかみやすくなります。これは大学レベルのイヤートレーニングで、旋法・音階の聴音を段階的に積み上げる確立された方法に沿っています。</span>
+                <span lang="en">Telling modes apart is the skill of hearing the color produced by the arrangement of steps, not the notes themselves. Getting a few sharply different modes into your ear at a time makes each mode's tell-tale note easier to grasp. This follows an established approach in college-level ear training, where modal and scalar listening is built up in stages.</span>
+                <span lang="fr">Distinguer les modes, c'est la capacité d'entendre la couleur produite par l'agencement des intervalles, et non les notes elles-mêmes. Familiariser son oreille par petits groupes de modes très contrastés facilite la saisie de la note caractéristique de chacun. Cela suit une approche établie de l'entraînement de l'oreille au niveau universitaire, où l'écoute des modes et des gammes se construit par étapes.</span>
+                <span lang="de">Modi zu unterscheiden ist die Fähigkeit, die Farbe zu hören, die durch die Anordnung der Schritte entsteht, nicht die Töne selbst. Wenn man jeweils einige deutlich verschiedene Modi ins Ohr bekommt, lässt sich der charakteristische Ton jedes Modus leichter erfassen. Dies folgt einem etablierten Ansatz des Gehörtrainings auf Hochschulniveau, bei dem das Hören von Modi und Tonleitern stufenweise aufgebaut wird.</span>
+            </p>
+            <p class="manual-rationale__ref"><span lang="ja">参考: </span><span lang="en">Ref.: </span><span lang="fr">Réf. : </span><span lang="de">Quelle: </span>Karpinski (2000) <a class="manual-ref-num" href="#ref-3">[3]</a></p>
+        </div>
+
+        <!-- #melodic-minor-style -->
+        <h2 id="melodic-minor-style"><span lang="ja">メロディックマイナーのスタイル</span><span lang="en">Melodic Minor Style</span><span lang="fr">Style du mineur mélodique</span><span lang="de">Stil von melodisch Moll</span></h2>
+
+        <p class="manual-lead">
+            <span lang="ja"><strong>初期設定の「ジャズ式」のままでOK。</strong> クラシックの理論・試験に合わせたいときや、上行・下行で響きが変わる伝統的な動きを耳になじませたいときだけ「クラシック式」。</span>
+            <span lang="en"><strong>Leave it on the default, Jazz.</strong> Choose Classical only to match classical theory or exams, or to train your ear on the traditional motion where ascent and descent differ.</span>
+            <span lang="fr"><strong>Laissez le réglage par défaut, « Jazz ».</strong> Ne choisissez « Classique » que pour vous conformer à la théorie ou aux examens classiques, ou pour habituer votre oreille au mouvement traditionnel où la montée et la descente diffèrent.</span>
+            <span lang="de"><strong>Belassen Sie die Voreinstellung „Jazz".</strong> Wählen Sie „Klassisch" nur, um der klassischen Theorie oder Prüfungen zu entsprechen oder um Ihr Gehör an die traditionelle Bewegung zu gewöhnen, bei der Aufstieg und Abstieg sich unterscheiden.</span>
+        </p>
+
+        <p>
+            <span lang="ja">メロディックマイナー（旋律的短音階）を鳴らすときの下行（=高い音から低い音へ降りるとき）の扱いを決める設定です。出題範囲にメロディックマイナーが含まれるときだけ表示され、再生モードで下行を含めるとき（下行・上行+下行）に最も意味を持ちます。</span>
+            <span lang="en">Decides how the melodic minor scale is treated on its descent (coming down from high to low). It appears only when melodic minor is in the question pool, and matters most when the playback mode includes a descent (Descending, or Both).</span>
+            <span lang="fr">Détermine la façon dont la gamme mineure mélodique est traitée en descente (en redescendant de l'aigu vers le grave). Ce réglage n'apparaît que lorsque le mineur mélodique fait partie des gammes proposées, et prend tout son sens lorsque le mode de lecture comporte une descente (Descendant ou Montant + descendant).</span>
+            <span lang="de">Legt fest, wie die melodisch-Moll-Tonleiter beim Abstieg behandelt wird (beim Herunterspielen von hoch nach tief). Diese Einstellung erscheint nur, wenn melodisch Moll im Vorrat der Aufgaben enthalten ist, und ist am wichtigsten, wenn der Wiedergabemodus einen Abstieg umfasst (Absteigend oder Auf- und absteigend).</span>
+        </p>
+
+        <div class="manual-options">
+            <div class="manual-option">
+                <div class="manual-option__name"><span lang="ja">ジャズ式</span><span lang="en">Jazz</span><span lang="fr">Jazz</span><span lang="de">Jazz</span></div>
+                <div class="manual-option__desc"><span lang="ja">上行・下行とも同じ音階。下がるときも 6 度・7 度を上げたまま演奏する、モダンジャズで一般的なスタイル（アプリの初期設定）。</span><span lang="en">Same scale ascending and descending; the raised 6th and 7th stay raised on the way down — the common modern-jazz style (the app's default).</span><span lang="fr">Même gamme en montée et en descente ; la sixte et la septième haussées le restent en redescendant — le style courant du jazz moderne (réglage par défaut de l'application).</span><span lang="de">Dieselbe Tonleiter auf- und absteigend; die erhöhte Sexte und Septime bleiben auch abwärts erhöht — der gängige Stil des modernen Jazz (Voreinstellung der App).</span></div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name"><span lang="ja">クラシック式</span><span lang="en">Classical</span><span lang="fr">Classique</span><span lang="de">Klassisch</span></div>
+                <div class="manual-option__desc"><span lang="ja">下行時はナチュラルマイナー。上行はメロディックマイナー、下行は 6 度・7 度を戻して降りる、クラシックの伝統的なスタイル。</span><span lang="en">Natural minor on the descent; you ascend with the melodic minor, then lower the 6th and 7th back coming down — the traditional classical style.</span><span lang="fr">Mineur naturel en descente ; on monte avec le mineur mélodique, puis on rabaisse la sixte et la septième en redescendant — le style classique traditionnel.</span><span lang="de">Natürliches Moll beim Abstieg; man steigt mit melodisch Moll auf und senkt dann die Sexte und Septime beim Herabsteigen wieder ab — der traditionelle klassische Stil.</span></div>
+            </div>
+        </div>
+
+        <div class="manual-rationale">
+            <span class="manual-rationale__label"><span lang="ja">学習科学の裏づけ</span><span lang="en">The evidence behind it</span><span lang="fr">Fondements scientifiques</span><span lang="de">Wissenschaftliche Grundlage</span></span>
+            <p>
+                <span lang="ja">この設定は、実際の音楽でメロディックマイナーが上行・下行で姿を変える慣習を耳で扱えるようにするためにあります。下行を区別して聴く練習は、上行と下行で音が入れ替わる動きを正しく聴き取る力を育てます。上行・下行の違いを含めて旋律を聴音する力を段階的に養うのは、大学レベルのイヤートレーニングで確立された方法です。</span>
+                <span lang="en">This setting lets you handle by ear the convention by which, in real music, the melodic minor changes shape between ascent and descent. Practicing the descent as distinct builds the ability to hear the motion correctly where notes swap between going up and coming down. Building melodic listening that includes ascending-versus-descending differences in stages is an established method in college-level ear training.</span>
+                <span lang="fr">Ce réglage vous permet de traiter à l'oreille la convention selon laquelle, dans la musique réelle, le mineur mélodique change de forme entre la montée et la descente. S'exercer à entendre la descente comme distincte développe la capacité d'entendre correctement ce mouvement où les notes changent entre la montée et la descente. Construire par étapes une écoute mélodique intégrant les différences entre montée et descente est une méthode établie de l'entraînement de l'oreille au niveau universitaire.</span>
+                <span lang="de">Diese Einstellung ermöglicht es Ihnen, nach Gehör mit der Konvention umzugehen, nach der sich melodisch Moll in echter Musik zwischen Aufstieg und Abstieg in der Gestalt verändert. Den Abstieg gesondert zu üben entwickelt die Fähigkeit, diese Bewegung richtig zu hören, bei der Töne zwischen Aufwärts- und Abwärtsbewegung wechseln. Melodisches Hören, das die Unterschiede zwischen Auf- und Abstieg einschließt, stufenweise aufzubauen, ist eine etablierte Methode des Gehörtrainings auf Hochschulniveau.</span>
+            </p>
+            <p class="manual-rationale__ref"><span lang="ja">参考: </span><span lang="en">Ref.: </span><span lang="fr">Réf. : </span><span lang="de">Quelle: </span>Karpinski (2000) <a class="manual-ref-num" href="#ref-3">[3]</a></p>
+        </div>
+
+        <!-- #playback-mode -->
+        <h2 id="playback-mode"><span lang="ja">再生モード</span><span lang="en">Playback Mode</span><span lang="fr">Mode de lecture</span><span lang="de">Wiedergabemodus</span></h2>
+
+        <p class="manual-lead">
+            <span lang="ja"><strong>まずは「上行」で形を覚え、慣れたら「下行」「上行+下行」を足し、仕上げに「ランダム」。</strong></span>
+            <span lang="en"><strong>Learn the shape in Ascending first, add Descending and Both as you get comfortable, and finish with Random.</strong></span>
+            <span lang="fr"><strong>Apprenez d'abord la forme en « Montant », ajoutez « Descendant » et « Montant + descendant » à mesure que vous gagnez en aisance, et terminez par « Aléatoire ».</strong></span>
+            <span lang="de"><strong>Lernen Sie die Gestalt zuerst in „Aufsteigend", fügen Sie „Absteigend" und „Auf- und absteigend" hinzu, sobald Sie sicherer werden, und schließen Sie mit „Zufällig" ab.</strong></span>
+        </p>
+
+        <p>
+            <span lang="ja">スケールをどの向きに鳴らすかを決めます。同じスケールでも鳴らす向きで聴き取りの感覚が変わります。</span>
+            <span lang="en">Decides in which direction the scale is played. The same scale feels different to identify depending on the direction.</span>
+            <span lang="fr">Détermine le sens dans lequel la gamme est jouée. Une même gamme se reconnaît différemment selon le sens.</span>
+            <span lang="de">Legt fest, in welcher Richtung die Tonleiter gespielt wird. Dieselbe Tonleiter fühlt sich je nach Richtung anders zu erkennen an.</span>
+        </p>
+
+        <div class="manual-options">
+            <div class="manual-option">
+                <div class="manual-option__name"><span lang="ja">上行</span><span lang="en">Ascending</span><span lang="fr">Montant</span><span lang="de">Aufsteigend</span></div>
+                <div class="manual-option__desc"><span lang="ja">低い音→高い音の向きだけ。最初の数音で当たりを付けやすく、もっとも基本的で聴き取りやすい。学習初期向き。</span><span lang="en">Upward only, low to high. The first few notes make it easy to size up — the most basic, easiest direction, good for early learning.</span><span lang="fr">Vers le haut uniquement, du grave à l'aigu. Les premières notes permettent de se faire une idée rapidement — le sens le plus simple et le plus facile à reconnaître, adapté au début de l'apprentissage.</span><span lang="de">Nur aufwärts, von tief nach hoch. Schon die ersten Töne lassen sich gut einschätzen — die einfachste, am leichtesten zu erkennende Richtung, gut für den Anfang.</span></div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name"><span lang="ja">下行</span><span lang="en">Descending</span><span lang="fr">Descendant</span><span lang="de">Absteigend</span></div>
+                <div class="manual-option__desc"><span lang="ja">高い音→低い音の向きだけ。上行で覚えたスケールも印象が変わる。上行に頼りきらない耳を作りたいときに。</span><span lang="en">Downward only, high to low. A scale learned ascending sounds different here; for building an ear that doesn't rely solely on the upward shape.</span><span lang="fr">Vers le bas uniquement, de l'aigu au grave. Une gamme apprise en montant produit ici une autre impression ; pour former une oreille qui ne s'appuie pas uniquement sur la forme ascendante.</span><span lang="de">Nur abwärts, von hoch nach tief. Eine aufsteigend gelernte Tonleiter klingt hier anders; um ein Gehör zu bilden, das sich nicht allein auf die aufsteigende Gestalt verlässt.</span></div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name"><span lang="ja">上行+下行</span><span lang="en">Both</span><span lang="fr">Montant + descendant</span><span lang="de">Auf- und absteigend</span></div>
+                <div class="manual-option__desc"><span lang="ja">上がってから下がる両方を続けて。判断材料は増え、メロディックマイナーのように上下で並びが変わるスケールは違いが明確に出る。</span><span lang="en">Up then back down. More to judge from, and for scales like melodic minor whose shape changes between up and down, the difference shows clearly.</span><span lang="fr">On monte puis on redescend, l'un à la suite de l'autre. Davantage d'éléments pour juger, et pour les gammes comme le mineur mélodique dont la forme change entre la montée et la descente, la différence ressort clairement.</span><span lang="de">Erst hinauf, dann wieder hinab, unmittelbar nacheinander. Mehr Anhaltspunkte zur Beurteilung, und bei Tonleitern wie melodisch Moll, deren Gestalt sich zwischen Auf- und Abstieg ändert, tritt der Unterschied deutlich hervor.</span></div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name"><span lang="ja">ランダム</span><span lang="en">Random</span><span lang="fr">Aléatoire</span><span lang="de">Zufällig</span></div>
+                <div class="manual-option__desc"><span lang="ja">出題ごとに上行か下行かを切り替え。どちらの向きでも聴き取れるよう、まんべんなく鍛える。</span><span lang="en">Switches between ascending and descending each question, so you can identify scales in either direction.</span><span lang="fr">Alterne entre montant et descendant à chaque question, pour que vous sachiez reconnaître les gammes dans les deux sens.</span><span lang="de">Wechselt bei jeder Aufgabe zwischen aufsteigend und absteigend, damit Sie Tonleitern in beiden Richtungen erkennen können.</span></div>
+            </div>
+        </div>
+
+        <div class="manual-rationale">
+            <span class="manual-rationale__label"><span lang="ja">学習科学の裏づけ</span><span lang="en">The evidence behind it</span><span lang="fr">Fondements scientifiques</span><span lang="de">Wissenschaftliche Grundlage</span></span>
+            <p>
+                <span lang="ja">目的は、1 つの向きに頼らずスケールそのものを聴けるようにすることです。実際の音楽では上行も下行も出てきます。向きを変えて練習すると、上行の「歌い出し」のような特定の手がかりに依存せず、音の並び方そのものを聴き取る力が付きます。これは旋律の方向を含めて聴音を養う、確立されたイヤートレーニングの考え方に沿っています。</span>
+                <span lang="en">The aim is to hear the scale itself without leaning on one direction. Real music uses both ascending and descending lines. Varying the direction stops you depending on a single cue (like an ascending "song opening") and builds the ability to hear the step pattern itself. This follows the established ear-training principle of cultivating listening that includes melodic direction.</span>
+                <span lang="fr">L'objectif est d'entendre la gamme elle-même sans s'appuyer sur un seul sens. La musique réelle emploie aussi bien des lignes ascendantes que descendantes. Varier le sens vous empêche de dépendre d'un indice unique (comme un « début de chanson » ascendant) et développe la capacité d'entendre la disposition des intervalles elle-même. Cela suit le principe établi de l'entraînement de l'oreille consistant à cultiver une écoute qui intègre la direction mélodique.</span>
+                <span lang="de">Ziel ist es, die Tonleiter selbst zu hören, ohne sich auf eine Richtung zu stützen. Echte Musik verwendet sowohl aufsteigende als auch absteigende Linien. Den Wechsel der Richtung hindert Sie daran, sich auf einen einzigen Hinweis zu verlassen (etwa einen aufsteigenden „Liedanfang"), und entwickelt die Fähigkeit, das Schrittmuster selbst zu hören. Dies folgt dem etablierten Grundsatz des Gehörtrainings, ein Hören zu pflegen, das die melodische Richtung einbezieht.</span>
+            </p>
+            <p class="manual-rationale__ref"><span lang="ja">参考: </span><span lang="en">Ref.: </span><span lang="fr">Réf. : </span><span lang="de">Quelle: </span>Karpinski (2000) <a class="manual-ref-num" href="#ref-3">[3]</a></p>
+        </div>
+
+        <!-- #playback-speed -->
+        <h2 id="playback-speed"><span lang="ja">再生速度</span><span lang="en">Playback Speed</span><span lang="fr">Vitesse de lecture</span><span lang="de">Wiedergabegeschwindigkeit</span></h2>
+
+        <p class="manual-lead">
+            <span lang="ja"><strong>基本は「普通」。</strong> 新しいスケールでつまずくときだけ「ゆっくり」、安定したら「速い」。</span>
+            <span lang="en"><strong>Leave it on Normal.</strong> Drop to Slow only when a new scale trips you up; move to Fast once stable.</span>
+            <span lang="fr"><strong>Restez sur « Normal ».</strong> Passez à « Lent » seulement quand une nouvelle gamme vous fait trébucher ; passez à « Rapide » une fois que c'est stable.</span>
+            <span lang="de"><strong>Belassen Sie es auf „Normal".</strong> Wechseln Sie nur dann zu „Langsam", wenn Sie eine neue Tonleiter ins Stolpern bringt; gehen Sie zu „Schnell" über, sobald es stabil ist.</span>
+        </p>
+
+        <p>
+            <span lang="ja">スケールの 1 音 1 音をどれくらいの速さで鳴らすかを決めます。ゆっくり／普通／速い の 3 段階。「ゆっくり」は半音・全音の並びを 1 音ずつ丁寧に追え、「速い」は実際の演奏に近い流れで形を一瞬でつかむ瞬発力を鍛えます。</span>
+            <span lang="en">Decides how fast each note of the scale plays. Slow, Normal, or Fast: Slow lets you trace the half- and whole-step pattern one note at a time, while Fast approaches real-playing flow and trains snap judgment of a scale's shape.</span>
+            <span lang="fr">Détermine la vitesse à laquelle chaque note de la gamme est jouée. Lent, Normal ou Rapide : « Lent » vous permet de suivre la disposition des demi-tons et des tons note par note, tandis que « Rapide » se rapproche du flux d'un jeu réel et entraîne le jugement instantané de la forme d'une gamme.</span>
+            <span lang="de">Legt fest, wie schnell jeder Ton der Tonleiter erklingt. Langsam, Normal oder Schnell: „Langsam" lässt Sie das Muster aus Halb- und Ganztönen Ton für Ton nachvollziehen, während „Schnell" dem Fluss echten Spiels näherkommt und das blitzschnelle Erfassen der Gestalt einer Tonleiter trainiert.</span>
+        </p>
+
+        <div class="manual-rationale">
+            <span class="manual-rationale__label"><span lang="ja">学習科学の裏づけ</span><span lang="en">The evidence behind it</span><span lang="fr">Fondements scientifiques</span><span lang="de">Wissenschaftliche Grundlage</span></span>
+            <p>
+                <span lang="ja">速さを変えられるのは、学習の段階に処理の負荷を合わせるためです。新しいスケールに慣れないうちはゆっくりで負荷を下げ、聴き分けが安定したら速くして瞬時の判断を鍛えます。初期ほど負荷を抑えると学習が進みやすい、という認知負荷の考え方に沿っています。</span>
+                <span lang="en">Speed is adjustable so you can match the processing load to your stage of learning. While a new scale is unfamiliar, Slow lowers the load; once discrimination is stable, Fast trains instant judgment. Keeping the load lower early follows cognitive-load theory.</span>
+                <span lang="fr">La vitesse est réglable afin que vous puissiez adapter la charge de traitement à votre stade d'apprentissage. Tant qu'une nouvelle gamme reste peu familière, « Lent » réduit la charge ; une fois la discrimination stable, « Rapide » entraîne le jugement instantané. Maintenir une charge plus faible au début suit la théorie de la charge cognitive.</span>
+                <span lang="de">Die Geschwindigkeit ist einstellbar, damit Sie die Verarbeitungslast an Ihren Lernstand anpassen können. Solange eine neue Tonleiter ungewohnt ist, senkt „Langsam" die Last; sobald die Unterscheidung stabil ist, trainiert „Schnell" das sofortige Urteil. Die Last anfangs niedriger zu halten folgt der Theorie der kognitiven Belastung.</span>
+            </p>
+            <p class="manual-rationale__ref"><span lang="ja">参考: </span><span lang="en">Ref.: </span><span lang="fr">Réf. : </span><span lang="de">Quelle: </span>Sweller (1988) <a class="manual-ref-num" href="#ref-2">[2]</a></p>
+        </div>
+
+        <!-- #root-mode -->
+        <h2 id="root-mode"><span lang="ja">ルート音（キー）の出題</span><span lang="en">Root Note (Key)</span><span lang="fr">Fondamentale (tonalité)</span><span lang="de">Grundton (Tonart)</span></h2>
+
+        <p class="manual-lead">
+            <span lang="ja"><strong>基本は「全キーでランダム」(アプリ推奨)。</strong> まったくの初学者でスケールタイプの違いだけに集中したい段階では、一時的に「ルートを固定」。</span>
+            <span lang="en"><strong>Use Random across all keys (the app's recommendation).</strong> An absolute beginner who wants to isolate the scale-type difference may temporarily Fix the root.</span>
+            <span lang="fr"><strong>Utilisez « Aléatoire sur toutes les tonalités » (recommandation de l'application).</strong> Un grand débutant qui souhaite isoler la seule différence de type de gamme peut temporairement fixer la fondamentale.</span>
+            <span lang="de"><strong>Verwenden Sie „Zufällig über alle Tonarten" (Empfehlung der App).</strong> Ein absoluter Anfänger, der nur den Unterschied der Tonleiter-Typen isolieren möchte, kann den Grundton vorübergehend festlegen.</span>
+        </p>
+
+        <p>
+            <span lang="ja">スケールのルート（根音 = スケールの起点になる基準音 = そのキー）を毎回どう決めるかの設定です。「全キーでランダム」か「ルートを固定」を選びます。</span>
+            <span lang="en">Decides how the scale's root (the reference note the scale starts from — that is, its key) is chosen each time. You pick "Random across all keys" or "Fixed root."</span>
+            <span lang="fr">Détermine comment est choisie, à chaque fois, la fondamentale de la gamme (la note de référence à partir de laquelle la gamme commence — c'est-à-dire sa tonalité). Vous choisissez « Aléatoire sur toutes les tonalités » ou « Fondamentale fixe ».</span>
+            <span lang="de">Legt fest, wie der Grundton der Tonleiter (der Bezugston, von dem die Tonleiter ausgeht — also ihre Tonart) jedes Mal gewählt wird. Sie wählen „Zufällig über alle Tonarten" oder „Fester Grundton".</span>
+        </p>
+
+        <div class="manual-options">
+            <div class="manual-option">
+                <div class="manual-option__name"><span lang="ja">全キーでランダム（推奨）</span><span lang="en">Random (all keys, recommended)</span><span lang="fr">Aléatoire (toutes les tonalités, recommandé)</span><span lang="de">Zufällig (alle Tonarten, empfohlen)</span></div>
+                <div class="manual-option__desc"><span lang="ja">出題ごとにルートを 12 キーからランダムに選ぶ。特定の音の高さに頼らず並び方そのものを聴き取れる、本番に近い練習。</span><span lang="en">Picks the root at random from all 12 keys each question. You hear the step pattern itself without leaning on one pitch — the most realistic practice.</span><span lang="fr">Choisit la fondamentale au hasard parmi les 12 tonalités à chaque question. Vous entendez la disposition des intervalles elle-même sans vous appuyer sur une hauteur précise — l'entraînement le plus proche du réel.</span><span lang="de">Wählt den Grundton bei jeder Aufgabe zufällig aus allen 12 Tonarten. Sie hören das Schrittmuster selbst, ohne sich auf eine bestimmte Tonhöhe zu stützen — das realitätsnächste Training.</span></div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name"><span lang="ja">ルートを固定</span><span lang="en">Fixed root</span><span lang="fr">Fondamentale fixe</span><span lang="de">Fester Grundton</span></div>
+                <div class="manual-option__desc"><span lang="ja">ルート（キー）を 1 つの音に固定（固定するとどの音にするか選ぶ欄が現れる）。起点が一定で比較しやすく、学習初期向き。</span><span lang="en">Locks the root (key) to one pitch (this reveals a picker for which note). A constant start makes scales easy to compare — good for early learning.</span><span lang="fr">Fixe la fondamentale (tonalité) sur une seule note (un sélecteur de note apparaît alors). Un point de départ constant facilite la comparaison des gammes — adapté au début de l'apprentissage.</span><span lang="de">Legt den Grundton (die Tonart) auf einen einzigen Ton fest (dann erscheint eine Auswahl für den Ton). Ein gleichbleibender Ausgangspunkt erleichtert den Vergleich der Tonleitern — gut für den Anfang.</span></div>
+            </div>
+        </div>
+
+        <div class="manual-rationale">
+            <span class="manual-rationale__label"><span lang="ja">学習科学の裏づけ</span><span lang="en">The evidence behind it</span><span lang="fr">Fondements scientifiques</span><span lang="de">Wissenschaftliche Grundlage</span></span>
+            <p>
+                <span lang="ja">キーを変えて出題するのは、特定の音の高さに頼らずスケールの並び方そのものを聴けるようにするためです。異なるキーを混ぜて学ぶ練習（インターリービング）は、同じ条件を続けるより長期的な定着が高いことがメタ分析で示されています。初学者が一時的にルートを固定するのは、最初だけ条件をそろえて比較を楽にするための例外です。</span>
+                <span lang="en">Varying the key exists so you can hear the scale's step pattern itself rather than leaning on one pitch height. Mixing different keys (interleaving) yields better long-term retention than blocking the same condition, as meta-analysis shows. A beginner fixing the root temporarily is the exception — leveling conditions only at the start to ease comparison.</span>
+                <span lang="fr">Faire varier la tonalité existe pour que vous puissiez entendre la disposition des intervalles de la gamme elle-même plutôt que de vous appuyer sur une seule hauteur. Mêler différentes tonalités (entraînement entrelacé) procure une meilleure rétention à long terme que de regrouper une même condition, comme le montre une méta-analyse. Qu'un débutant fixe temporairement la fondamentale est l'exception — on ne nivelle les conditions qu'au tout début pour faciliter la comparaison.</span>
+                <span lang="de">Das Variieren der Tonart gibt es, damit Sie das Schrittmuster der Tonleiter selbst hören, statt sich auf eine einzige Tonhöhe zu stützen. Verschiedene Tonarten zu mischen (verschränktes Üben) führt zu besserer langfristiger Behaltensleistung als das Wiederholen derselben Bedingung am Stück, wie eine Meta-Analyse zeigt. Dass ein Anfänger den Grundton vorübergehend festlegt, ist die Ausnahme — die Bedingungen werden nur am Anfang vereinheitlicht, um den Vergleich zu erleichtern.</span>
+            </p>
+            <p class="manual-rationale__ref"><span lang="ja">参考: </span><span lang="en">Ref.: </span><span lang="fr">Réf. : </span><span lang="de">Quelle: </span>Brunmair &amp; Richter (2019) <a class="manual-ref-num" href="#ref-4">[4]</a></p>
+        </div>
+
+        <!-- References -->
+        <section class="manual-refs">
+            <div class="manual-refs__title"><span lang="ja">参考文献</span><span lang="en">References</span><span lang="fr">Références</span><span lang="de">Quellen</span></div>
+            <ol>
+                <li id="ref-1">Roediger, H. L., &amp; Karpicke, J. D. (2006). Test-enhanced learning: Taking memory tests improves long-term retention. <em>Psychological Science, 17</em>(3), 249–255.</li>
+                <li id="ref-2">Sweller, J. (1988). Cognitive load during problem solving: Effects on learning. <em>Cognitive Science, 12</em>(2), 257–285.</li>
+                <li id="ref-3">Karpinski, G. S. (2000). <em>Aural Skills Acquisition: The Development of Listening, Reading, and Performing Skills in College-Level Musicians.</em> Oxford University Press.</li>
+                <li id="ref-4">Brunmair, M., &amp; Richter, T. (2019). Similarity matters: A meta-analysis of interleaved learning and its moderators. <em>Psychological Bulletin, 145</em>(11), 1029–1052.</li>
+            </ol>
+        </section>
+
+    </main>
+
+    <!-- Final CTA -->
+    <section class="article-cta">
+        <h2 class="article-cta__title"><span lang="ja">設定を決めたら、さっそく試してみよう</span><span lang="en">Settings Sorted? Give It a Try</span><span lang="fr">Réglages décidés ? Essayez sans attendre</span><span lang="de">Einstellungen geklärt? Probieren Sie es aus</span></h2>
+        <p class="article-cta__text">
+            <span lang="ja">各設定の意味がわかれば、あとは実際に手を動かすだけです。<br>迷ったら本ページの「迷ったら…」をなぞって始めてみてください。<br>ソルフェージュPRO の スケール認識 で、自分に合った設定を見つけましょう。</span>
+            <span lang="en">Once you understand each setting, the rest is hands-on practice.<br>When unsure, just follow the "when in doubt" lines on this page.<br>Find the settings that fit you in Solfege PRO's Scale Recognition.</span>
+            <span lang="fr">Une fois chaque réglage compris, il ne reste plus qu'à pratiquer.<br>En cas de doute, suivez simplement les lignes « En cas de doute… » de cette page.<br>Trouvez les réglages qui vous conviennent dans la Reconnaissance de gammes de Solfege PRO.</span>
+            <span lang="de">Sobald Sie jede Einstellung verstanden haben, bleibt nur noch das praktische Üben.<br>Folgen Sie im Zweifel einfach den Zeilen „Im Zweifel…" auf dieser Seite.<br>Finden Sie die für Sie passenden Einstellungen in der Tonleiter-Erkennung von Solfege PRO.</span>
+        </p>
+        <a href="https://apps.apple.com/jp/app/id6756626617" class="app-store-link" aria-label="Download on the App Store">
+            <span lang="ja"><img class="app-store-link__img" width="109" height="40" src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/ja-jp" alt="App Storeで入手"></span>
+            <span lang="en"><img class="app-store-link__img" width="120" height="40" src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/en-us" alt="Download on the App Store"></span>
+            <span lang="fr"><img class="app-store-link__img" width="127" height="40" src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/fr-fr" alt="Télécharger dans l'App Store"></span>
+            <span lang="de"><img class="app-store-link__img" width="120" height="40" src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/de-de" alt="Laden im App Store"></span>
+        </a>
+    </section>
+
+    <!-- Related Content -->
+    <div class="article-related">
+        <div class="article-related__title"><span lang="ja">関連コンテンツ</span><span lang="en">Related Content</span><span lang="fr">Contenu associé</span><span lang="de">Verwandte Inhalte</span></div>
+        <a href="/guides/ear-training-scales/" class="article-related__link" style="margin-bottom: var(--space-md);">
+            <div class="article-related__link-title"><span lang="ja">スケールを聴き分ける力とは何か — 音階の響きを理解する</span><span lang="en">What Is Scale Recognition? — Understanding Scale Sounds</span><span lang="fr">Qu'est-ce que la reconnaissance de gammes ? — Comprendre la sonorité des gammes</span><span lang="de">Was ist Tonleiter-Erkennung? — Den Klang der Tonleitern verstehen</span></div>
+            <div class="article-related__link-desc"><span lang="ja">設定の前に、そもそもスケール認識とは何かを知りたい方へ。音の並び方の違いと段階的な練習法を解説したガイド。</span><span lang="en">For those who want to understand what scale recognition is before adjusting settings — a guide to step-pattern differences and step-by-step practice.</span><span lang="fr">Pour celles et ceux qui veulent comprendre ce qu'est la reconnaissance de gammes avant de régler les paramètres — un guide sur les différences de disposition des intervalles et sur une pratique progressive.</span><span lang="de">Für alle, die verstehen möchten, was Tonleiter-Erkennung ist, bevor sie die Einstellungen anpassen — ein Leitfaden zu den Unterschieden im Schrittmuster und zum schrittweisen Üben.</span></div>
+        </a>
+        <a href="/" class="article-related__link">
+            <div class="article-related__link-title"><span lang="ja">ソルフェージュPRO 練習ガイド</span><span lang="en">Solfege PRO Practice Guide</span><span lang="fr">Guide d'entraînement Solfege PRO</span><span lang="de">Solfege PRO Übungsleitfaden</span></div>
+            <div class="article-related__link-desc"><span lang="ja">ギター・ベース・ドラム・ピアノ・ボーカル向けの課題別練習メニュー</span><span lang="en">Challenge-based practice menus for guitar, bass, drums, piano, and vocals</span><span lang="fr">Programmes d'entraînement par problématique pour guitare, basse, batterie, piano et chant</span><span lang="de">Problem­bezogene Übungsmenüs für Gitarre, Bass, Schlagzeug, Klavier und Gesang</span></div>
+        </a>
+    </div>
+
+    <!-- Article Note -->
+    <aside class="article-endnote">
+        <p class="article-endnote__text">
+            <span lang="ja">本ページはアプリ内の設定項目の解説を目的としたリファレンスです。記載した推奨の進め方は、音楽教育で広く用いられるイヤートレーニングの方法論をもとにした一般的な目安であり、最適な設定は個人の経験や目的によって異なります。引用した研究は学習一般の知見であり、本アプリでの効果を保証するものではありません。</span>
+            <span lang="en">This page is a reference explaining the app's in-app settings. The recommended progressions given here are general guidelines based on widely used ear-training methodology; the optimal settings vary with individual experience and goals. The cited studies report general learning findings and do not guarantee results within this app.</span>
+            <span lang="fr">Cette page est une référence expliquant les réglages internes de l'application. Les progressions recommandées ici sont des repères généraux fondés sur une méthodologie d'entraînement de l'oreille largement répandue ; les réglages optimaux varient selon l'expérience et les objectifs de chacun. Les études citées rapportent des résultats généraux sur l'apprentissage et ne garantissent pas de résultats au sein de cette application.</span>
+            <span lang="de">Diese Seite ist eine Referenz, die die in der App enthaltenen Einstellungen erläutert. Die hier empfohlenen Abfolgen sind allgemeine Richtwerte, die auf einer weit verbreiteten Methodik des Gehörtrainings beruhen; die optimalen Einstellungen hängen von der individuellen Erfahrung und den Zielen ab. Die zitierten Studien berichten allgemeine Erkenntnisse zum Lernen und garantieren keine Ergebnisse innerhalb dieser App.</span>
+        </p>
+    </aside>
+
+    <!-- Footer -->
+    <footer class="article-footer">
+        <p class="article-footer__text">
+            &copy; 2026 <span lang="ja">ソルフェージュPRO</span><span lang="en">Solfege PRO</span><span lang="fr">Solfege PRO</span><span lang="de">Solfege PRO</span> &mdash;
+            <a href="https://apps.apple.com/jp/app/id6756626617" class="article-footer__link">App Store</a>
+        </p>
+    </footer>
+    <script src="/bootstrap.js?v=3" defer></script>
+</body>
+</html>

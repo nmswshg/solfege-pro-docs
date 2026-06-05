@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html lang="fr"
+      data-title-ja="指板トレーニング 設定マニュアル — 各設定の選び方 | ソルフェージュPRO"
+      data-title-en="Fretboard Training Settings Manual — How to Choose Each Option | Solfege PRO"
+      data-title-fr="Manuel des réglages de l'entraînement au manche — comment choisir chaque option | Solfege PRO"
+      data-title-de="Handbuch zu den Einstellungen des Griffbrett-Trainings — wie Sie jede Option wählen | Solfege PRO">
+<head>
+    <meta charset="UTF-8">
+    <meta name="robots" content="index, follow">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#1A1A1E">
+    <title>Manuel des réglages de l'entraînement au manche — comment choisir chaque option | Solfege PRO</title>
+    <meta name="description" content="Manuel des réglages de l'entraînement au manche — mode, notes, cases, cordes, réponse, indices, accordage, main : qui choisit quoi et pourquoi.">
+
+    <!-- Canonical -->
+    <link rel="canonical" href="https://solfegepro.com/fr/manual/fretboard/">
+    <link rel="alternate" hreflang="ja" href="https://solfegepro.com/manual/fretboard/">
+    <link rel="alternate" hreflang="en" href="https://solfegepro.com/en/manual/fretboard/">
+    <link rel="alternate" hreflang="fr" href="https://solfegepro.com/fr/manual/fretboard/">
+    <link rel="alternate" hreflang="de" href="https://solfegepro.com/de/manual/fretboard/">
+    <link rel="alternate" hreflang="x-default" href="https://solfegepro.com/manual/fretboard/">
+<!-- OGP -->
+    <meta property="og:title" content="Manuel des réglages de l'entraînement au manche — comment choisir chaque option">
+    <meta property="og:description" content="Manuel des réglages de l'entraînement au manche — mode, notes, cases, cordes, réponse, indices, accordage, main : qui choisit quoi et pourquoi.">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://solfegepro.com/fr/manual/fretboard/">
+    <meta property="og:site_name" content="Solfege PRO">
+    <meta property="og:image" content="https://solfegepro.com/og-image.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Solfege PRO">
+    <meta property="og:locale" content="fr_FR">
+    <meta property="og:locale:alternate" content="ja_JP">
+    <meta property="og:locale:alternate" content="en_US">
+    <meta property="og:locale:alternate" content="de_DE">
+    <meta property="article:published_time" content="2026-06-05">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Manuel des réglages de l'entraînement au manche — comment choisir chaque option">
+    <meta name="twitter:description" content="Manuel des réglages de l'entraînement au manche — mode, notes, cases, cordes, réponse, indices, accordage, main : qui choisit quoi et pourquoi.">
+    <meta name="twitter:image" content="https://solfegepro.com/og-image.png">
+
+    <!-- Favicon -->
+    <link rel="icon" href="/favicon.ico" sizes="any">
+    <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap"></noscript>
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="/style.css?v=17">
+    <link rel="stylesheet" href="/guides/article.css?v=11">
+
+    <style>
+        /* Manual option reference — responsive, no fixed px widths */
+        .manual-options {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr);
+            gap: var(--space-sm);
+            margin: var(--space-lg) 0;
+        }
+        .manual-option {
+            background: var(--surface);
+            border: 1px solid var(--surface-light);
+            border-radius: var(--radius-lg);
+            padding: var(--space-md);
+        }
+        .manual-option__name {
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: var(--space-xs);
+        }
+        .manual-option__desc {
+            font-size: 13px;
+            color: var(--text-secondary);
+        }
+        /* Bottom-line callout (conclusion first) */
+        .manual-lead {
+            font-size: 14px;
+            line-height: 1.75;
+            color: var(--text-primary);
+            border-left: 3px solid var(--primary);
+            background: rgba(212, 175, 55, 0.06);
+            padding: var(--space-sm) var(--space-md);
+            border-radius: 0 var(--radius-md) var(--radius-md) 0;
+            margin: var(--space-md) 0;
+        }
+        /* Per-setting evidence note — deliberately styled as an editorial
+           aside, NOT as a settings card (no surface fill, no gold label),
+           so it is never mistaken for an in-app option. */
+        .manual-rationale {
+            margin: var(--space-md) 0 var(--space-2xl);
+            padding: var(--space-sm) 0 var(--space-sm) var(--space-md);
+            border-left: 2px solid var(--surface-light);
+        }
+        .manual-rationale__label {
+            display: block;
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            color: var(--text-secondary);
+            margin-bottom: 4px;
+            opacity: 0.75;
+        }
+        .manual-rationale p {
+            font-size: 13px;
+            line-height: 1.75;
+            color: var(--text-secondary);
+            margin: 0;
+        }
+        .manual-rationale__ref {
+            font-size: 12px;
+            font-style: italic;
+            margin-top: var(--space-xs) !important;
+            opacity: 0.7;
+        }
+        /* Citation number linking to the reference list */
+        .manual-ref-num {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-style: normal;
+        }
+        .manual-ref-num:hover { color: var(--primary); }
+        /* Full reference list at page end */
+        .manual-refs {
+            margin: var(--space-2xl) 0 0;
+            padding-top: var(--space-lg);
+            border-top: 1px solid var(--surface-light);
+        }
+        .manual-refs__title {
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: var(--space-sm);
+        }
+        .manual-refs ol {
+            margin: 0;
+            padding-left: 1.25em;
+        }
+        .manual-refs li {
+            font-size: 12px;
+            line-height: 1.7;
+            color: var(--text-secondary);
+            margin-bottom: var(--space-xs);
+            scroll-margin-top: 84px;
+        }
+        .manual-refs li:target {
+            color: var(--text-primary);
+        }
+    </style>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Manuel des réglages de l'entraînement au manche — comment choisir chaque option","description":"Manuel des réglages de l'entraînement au manche — mode, notes, cases, cordes, réponse, indices, accordage, main : qui choisit quoi et pourquoi.","author":{"@type":"Organization","name":"Solfege PRO"},"publisher":{"@type":"Organization","name":"Solfege PRO","logo":{"@type":"ImageObject","url":"https://solfegepro.com/AppIcon.png"}},"datePublished":"2026-06-05","mainEntityOfPage":{"@type":"WebPage","@id":"https://solfegepro.com/fr/manual/fretboard/"}}</script>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Accueil","item":"https://solfegepro.com/fr/"},{"@type":"ListItem","position":2,"name":"Manuel","item":"https://solfegepro.com/fr/manual/"},{"@type":"ListItem","position":3,"name":"Manuel des réglages de l'entraînement au manche — comment choisir chaque option","item":"https://solfegepro.com/fr/manual/fretboard/"}]}</script>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="nav__container">
+            <a href="/" class="nav__logo">
+                <img src="/AppIcon.png" alt="Solfege PRO" class="nav__logo-icon" width="32" height="32">
+                <span class="nav__logo-text">Solfege PRO</span>
+            </a>
+            <ul class="nav__list">
+                <li><a href="/" class="nav__link">Guide d'entraînement</a></li>
+                <li><a href="/guides/" class="nav__link">Guides</a></li>
+                <li><a href="/manual/" class="nav__link active">Manuel</a></li>
+                            <li><a href="/start-here/" class="nav__link">Par où commencer ?</a></li>
+            </ul>
+            <div class="nav__settings">
+                <button class="settings-btn" id="lang-toggle" title="Toggle language">
+                    <span id="lang-text">EN</span>
+                </button>
+                <button class="hamburger-btn" id="hamburger-btn" aria-label="Menu" aria-expanded="false" aria-controls="drawer">
+                    <span class="hamburger-btn__line"></span>
+                    <span class="hamburger-btn__line"></span>
+                    <span class="hamburger-btn__line"></span>
+                </button>
+            </div>
+        </div>
+    </nav>
+        <!-- Mobile drawer (hidden on desktop) -->
+        <div class="drawer-overlay" id="drawer-overlay"></div>
+        <aside class="drawer" id="drawer" aria-label="Mobile menu" aria-hidden="true" inert>
+            <div class="drawer__header">
+                <span class="drawer__title">Menu</span>
+                <button class="drawer__close" id="drawer-close" aria-label="Close menu">×</button>
+            </div>
+            <ul class="drawer__list">
+                    <li><a href="/" class="drawer__link">Guide d'entraînement</a></li>
+                    <li><a href="/guides/" class="drawer__link">Guides</a></li>
+                    <li><a href="/manual/" class="drawer__link active">Manuel</a></li>
+                    <li><a href="/start-here/" class="drawer__link">Par où commencer ?</a></li>
+            </ul>
+        </aside>
+
+
+    <!-- Article Header -->
+    <header class="page-header">
+        <div class="page-header__meta">
+            <span class="page-header__tag">Manuel</span>
+            <span>Entraînement au manche</span>
+        </div>
+        <h1 class="page-header__title">
+            
+            
+            Manuel des réglages de l'entraînement au manche<br>Ce que signifie chaque option et comment la choisir
+            
+        </h1>
+        <p class="page-header__subtitle">
+            
+            
+            Quelle option choisir, quand et pourquoi. Cette page passe en revue chaque réglage de l'entraînement au manche, un par un. Si vous arrivez depuis un « ? » de l'écran des réglages, faites défiler jusqu'à l'option qui vous intéresse.
+            
+        </p>
+    </header>
+
+    <!-- Top-of-article CTA -->
+    <aside class="article-top-cta" aria-label="App promotion">
+        <div class="article-top-cta__body">
+            <p class="article-top-cta__title">
+                
+                
+                Essayez cet exercice dans Solfege PRO
+                
+            </p>
+            <p class="article-top-cta__sub">
+                
+                
+                980 ¥/mois · essai gratuit d'une semaine
+                
+            </p>
+        </div>
+        <a href="https://apps.apple.com/fr/app/id6756626617" class="article-top-cta__button" data-cta-position="article_top">
+            
+            
+            App Store →
+            
+        </a>
+    </aside>
+
+    <!-- Article Body -->
+    <main class="article-body">
+
+        <!-- Intro -->
+        <p>
+            
+            
+            L'entraînement au manche grave dans vos mains le nom de la note sous chaque case jusqu'à ce que vous le connaissiez sans réfléchir. Mémoriser les gammes et les accords uniquement comme des « formes » vous bloque, mais dès que les noms des notes sur le manche vous viennent instantanément, improviser, transposer et relever des morceaux à l'oreille deviennent bien plus faciles.
+            
+        </p>
+        <p>
+            
+            
+            Cette page est un manuel pour choisir les réglages. Chaque réglage est conçu à partir de méthodes établies de la pédagogie musicale. Pour chaque réglage qui demande une décision, nous indiquons <strong>le choix recommandé, son objectif et ce qu'il développe — avec les fondements qui le justifient</strong>. Si vous arrivez depuis un « ? » de l'écran des réglages, faites défiler jusqu'à l'option qui vous intéresse.
+            
+        </p>
+
+        <!-- #mode -->
+        <h2 id="mode">Mode d'entraînement</h2>
+
+        <p class="manual-lead">
+            
+            
+            <strong>Commencez par Note → Position.</strong> Une fois à l'aise, consolidez le sens inverse avec Position → Note, puis passez à Déplacement sur les cordes lorsque vous voulez intégrer la façon dont une note se répartit sur le manche.
+            
+        </p>
+
+        <p>
+            
+            
+            Ce réglage détermine le sens de chaque question — ce que l'on vous montre et ce que vous devez répondre. Il existe trois modes ; même s'ils portent tous sur les noms des notes sur le manche, le sens dans lequel vous regardez décide de la compétence que vous développez.
+            
+        </p>
+
+        <div class="manual-options">
+            <div class="manual-option">
+                <div class="manual-option__name">Note → Position (noteToFret)</div>
+                <div class="manual-option__desc">Vous tapez l'endroit où vit un nom de note donné sur le manche — le sens le plus fondamental, qui construit le circuit « nom de note → où poser le doigt » dont vous avez besoin pour jouer gammes et accords. Commencez par là.</div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name">Position → Note (fretToNote)</div>
+                <div class="manual-option__desc">La recherche inverse : un seul point vous est montré et vous en choisissez le nom de note. Cela entraîne la capacité à nommer la note que vous êtes en train de jouer et renforce la mémorisation des deux côtés.</div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name">Déplacement sur les cordes (stringMovement)</div>
+                <div class="manual-option__desc">Un mode avancé qui consiste à chercher le même nom de note d'une corde à l'autre (par ex. « C » sur la 6e, la 5e, la 4e…), pour cartographier la façon dont une note se répartit sur tout le manche. La plage de cases est fixée à 0–12.</div>
+            </div>
+        </div>
+
+        <div class="manual-rationale">
+            <span class="manual-rationale__label">Les fondements scientifiques</span>
+            <p>
+                
+                
+                Les trois sens entraînent, sous des angles différents, le lien bidirectionnel entre les noms des notes et les positions sur le manche dont les instrumentistes ont besoin. Rappeler le même matériau dans des sens différents transforme des « formes » apprises par cœur en un savoir utilisable pendant le jeu. Cette conception suit la pédagogie instrumentale et auditive établie pour la maîtrise du manche.
+                
+            </p>
+            <p class="manual-rationale__ref">Réf. : Karpinski (2000) <a class="manual-ref-num" href="#ref-1">[1]</a></p>
+        </div>
+
+        <!-- #target-notes -->
+        <h2 id="target-notes">Notes (notes à travailler)</h2>
+
+        <p class="manual-lead">
+            
+            
+            <strong>Commencez par Notes naturelles seulement.</strong> Élargissez à Inclure les dièses (ou Toutes les notes) une fois que vous savez nommer les sept notes naturelles n'importe où sur le manche à 80 % ou plus. Ne choisissez Inclure les bémols que si vous avez besoin de l'orthographe en bémols.
+            
+        </p>
+
+        <p>
+            
+            
+            Ce réglage définit quels noms de notes apparaissent. Vous choisissez d'utiliser uniquement les notes naturelles (les sept notes sans dièse ni bémol — C D E F G A B) ou d'inclure les dièses et les bémols. Plus la plage est restreinte, moins il y a de notes à apprendre ; plus elle est large, plus elle couvre les 12 notes chromatiques.
+            
+        </p>
+
+        <div class="manual-options">
+            <div class="manual-option">
+                <div class="manual-option__name">Notes naturelles seulement</div>
+                <div class="manual-option__desc">N'interroge que les sept notes C, D, E, F, G, A, B. La première étape de la mémorisation du manche. Savoir nommer ces sept notes n'importe où sur le manche est le chemin le plus rapide pour progresser.</div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name">Inclure les dièses</div>
+                <div class="manual-option__desc">Couvre les 12 notes, écrites avec des dièses (C#, D#, …). Une fois les notes naturelles bien acquises, ajoutez les demi-tons intermédiaires pour couvrir entièrement le manche.</div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name">Inclure les bémols</div>
+                <div class="manual-option__desc">Couvre les 12 notes, écrites avec des bémols (Db, Eb, …). Pour vous habituer aux enharmonies — la même hauteur écrite de deux façons, comme C# et Db. Utile si vous jouez dans des tonalités en bémols.</div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name">Toutes les notes</div>
+                <div class="manual-option__desc">Interroge les 12 notes, en reconnaissant à la fois l'orthographe en dièses et en bémols — le réglage le plus large. L'étape où vous peaufinez tout le manche jusqu'au niveau de la scène.</div>
+            </div>
+        </div>
+
+        <div class="manual-rationale">
+            <span class="manual-rationale__label">Les fondements scientifiques</span>
+            <p>
+                
+                
+                Moins vous apprenez de noms de notes à la fois, moins vous avez à traiter d'informations, et plus vous fixez de façon fiable les emplacements de chaque note. Consolider une plage restreinte avant de l'élargir s'ancre plus vite que d'aborder les 12 notes d'un coup. Cette progression par paliers suit la théorie de la charge cognitive : limiter la charge de traitement au début d'une nouvelle compétence favorise l'apprentissage.
+                
+            </p>
+            <p class="manual-rationale__ref">Réf. : Sweller (1988) <a class="manual-ref-num" href="#ref-2">[2]</a></p>
+        </div>
+
+        <!-- #fret-range -->
+        <h2 id="fret-range">Plage de cases</h2>
+
+        <p class="manual-lead">
+            
+            
+            <strong>Posez les bases sur 0-5, puis élargissez à 0-12 (Standard).</strong> Au-delà de la 12e case, la disposition ne fait que se répéter ; viser d'abord 0-12 est donc l'objectif le plus efficace.
+            
+        </p>
+
+        <p>
+            
+            
+            Ce réglage définit la portion du manche dans laquelle les questions sont tirées — c'est en pratique le bouton de difficulté. Restreignez-le et il y a moins d'emplacements à mémoriser ; élargissez-le et vous travaillez tout le manche. Notez qu'en mode Déplacement sur les cordes, il est fixé à 0-12.
+            
+        </p>
+
+        <div class="manual-options">
+            <div class="manual-option">
+                <div class="manual-option__name">0-5 (débutant)</div>
+                <div class="manual-option__desc">La position basse uniquement (cases 0 à 5). Proche des cordes à vide, c'est la zone que les débutants abordent en premier quand ils apprennent des accords. Sa faible étendue en fait l'idéal pour votre première mémorisation.</div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name">5-12 (intermédiaire)</div>
+                <div class="manual-option__desc">Position médiane à haute (cases 5 à 12). Pour les joueurs qui maîtrisent la position basse et veulent maintenant combler le milieu du manche, qui a tendance à être un point faible.</div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name">0-12 (standard)</div>
+                <div class="manual-option__desc">Cases 0 à 12. L'octave se répète à la 12e case ; une fois que vous connaissez jusque-là, le reste n'est qu'une répétition. La plage cible standard pour la mémorisation du manche.</div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name">0-24 (manche complet)</div>
+                <div class="manual-option__desc">Tout le manche (cases 0 à 24). Pour les joueurs qui utilisent les cases hautes dans les solos et les parties lead. L'étape de finition la plus avancée.</div>
+            </div>
+        </div>
+
+        <div class="manual-rationale">
+            <span class="manual-rationale__label">Les fondements scientifiques</span>
+            <p>
+                
+                
+                Restreindre la plage réduit le nombre de positions que vous apprenez à la fois, ce qui vous permet de fixer cette portion de façon fiable. Consolider une petite région avant de l'élargir s'ancre plus vite que d'attaquer tout le manche dès le départ. Cette progression par paliers suit la théorie de la charge cognitive : limiter la charge de traitement au début d'une nouvelle compétence favorise l'apprentissage.
+                
+            </p>
+            <p class="manual-rationale__ref">Réf. : Sweller (1988) <a class="manual-ref-num" href="#ref-2">[2]</a></p>
+        </div>
+
+        <!-- #strings -->
+        <h2 id="strings">Cordes</h2>
+
+        <p class="manual-lead">
+            
+            
+            <strong>Laissez-le sur Toutes les cordes.</strong> Quand vous remarquez qu'une corde traîne en taux de réussite, restreignez-vous temporairement à cette corde, concentrez-vous, puis revenez aux six.
+            
+        </p>
+
+        <p>
+            
+            
+            Ce réglage restreint celles des six cordes dans lesquelles les questions sont tirées (dans les réglages de Focus du mode Note → Position). Outre « Toutes les cordes », vous pouvez vous limiter aux trois cordes aiguës ou aux trois cordes graves, ou à une seule corde. Le focus Notes faibles uniquement, dans le même panneau, propose automatiquement seulement les notes en dessous de 70 % de réussite (actif une fois que les données s'accumulent).
+            
+        </p>
+
+        <div class="manual-options">
+            <div class="manual-option">
+                <div class="manual-option__name">Toutes les cordes</div>
+                <div class="manual-option__desc">Tire des questions des six cordes — un entraînement complet et réaliste. Laissez ce réglage, sauf si vous avez une raison de restreindre.</div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name">Cordes aiguës (1-3) / Cordes graves (4-6)</div>
+                <div class="manual-option__desc">Restreint à un groupe de trois. Les cordes graves (E A D) sont directement liées à la recherche des fondamentales des accords ; les cordes aiguës (G B E) au placement des mélodies et des solos. Consolider une moitié à la fois selon vos besoins est pratique.</div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name">Cordes 1 à 6 (individuel)</div>
+                <div class="manual-option__desc">Se limite à une seule corde. Le réglage le plus restreint, pour éliminer un point faible évident une corde à la fois — par exemple « je suis toujours hésitant sur les noms de notes de la 6e corde ».</div>
+            </div>
+        </div>
+
+        <div class="manual-rationale">
+            <span class="manual-rationale__label">Les fondements scientifiques</span>
+            <p>
+                
+                
+                Restreindre les cordes vous permet de réduire ce que vous gérez à la fois et de combler un point faible de façon fiable. Une corde hésitante se perd dans la masse quand vous travaillez les six ; l'isoler abaisse la charge afin que vous puissiez vous concentrer et l'ancrer durablement. Cela suit la théorie de la charge cognitive : limiter la charge — au début ou pour consolider une faiblesse — favorise l'apprentissage.
+                
+            </p>
+            <p class="manual-rationale__ref">Réf. : Sweller (1988) <a class="manual-ref-num" href="#ref-2">[2]</a></p>
+        </div>
+
+        <!-- #answer-mode -->
+        <h2 id="answer-mode">Mode de réponse</h2>
+
+        <p class="manual-lead">
+            
+            
+            <strong>Commencez par Une seule position.</strong> Une fois que les emplacements de chaque note sont à peu près en tête, passez à Toutes les positions pour compléter l'image d'ensemble de leur répartition sur le manche.
+            
+        </p>
+
+        <p>
+            
+            
+            Ce réglage détermine, lorsque vous répondez à une note sur le manche (mode Note → Position), combien d'endroits vous devez taper pour avoir juste. Un même nom de note existe à plusieurs endroits ; devoir les trouver tous ou un seul change donc la difficulté.
+            
+        </p>
+
+        <div class="manual-options">
+            <div class="manual-option">
+                <div class="manual-option__name">Une seule position</div>
+                <div class="manual-option__desc">Trouvez un seul endroit correct et vous avez juste. Axé sur la vitesse. Comme un seul suffit pour avancer, ce mode convient pour enchaîner de nombreuses questions à un bon tempo afin de développer la rapidité de réaction.</div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name">Toutes les positions</div>
+                <div class="manual-option__desc">Trouvez et tapez tous les endroits corrects de la plage. Un réglage axé sur l'exhaustivité, qui cartographie précisément où un nom de note est dispersé sur le manche. Plus difficile.</div>
+            </div>
+        </div>
+
+        <div class="manual-rationale">
+            <span class="manual-rationale__label">Les fondements scientifiques</span>
+            <p>
+                
+                
+                Les deux réglages échelonnent la connaissance, propre à l'instrumentiste, de l'endroit où vit un nom de note sur tout le manche. D'abord vous construisez une réponse instantanée sur un seul point ; puis, une fois à l'aise, trouver chaque endroit cartographie l'ensemble des positions. Cette conception suit la pédagogie instrumentale et auditive établie pour la maîtrise du manche.
+                
+            </p>
+            <p class="manual-rationale__ref">Réf. : Karpinski (2000) <a class="manual-ref-num" href="#ref-1">[1]</a></p>
+        </div>
+
+        <!-- #hint-level -->
+        <h2 id="hint-level">Indices</h2>
+
+        <p class="manual-lead">
+            
+            
+            <strong>Les grands débutants utilisent Afficher les octaves pour saisir la disposition, puis passent à Aucun indice.</strong> L'objectif final est de répondre de façon fiable sans indice.
+            
+        </p>
+
+        <p>
+            
+            
+            Ce réglage détermine la quantité d'aide affichée pendant que vous répondez. Plus d'aide facilite la réponse, mais réduit aussi l'effort de rappel par vous-même — la règle de base est donc de la diminuer à mesure que vous êtes à l'aise.
+            
+        </p>
+
+        <div class="manual-options">
+            <div class="manual-option">
+                <div class="manual-option__name">Aucun indice</div>
+                <div class="manual-option__desc">Aucune aide du tout — vous répondez entièrement par vous-même. Cela maximise l'effort pour extraire la réponse de la mémoire, ce qui produit la rétention la plus forte. C'est l'objectif ultime.</div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name">Afficher les octaves</div>
+                <div class="manual-option__desc">Met en évidence les positions à l'octave du même nom de note. En trouver une rend les autres plus faciles à déduire — une bonne aide au début, quand les relations spatiales ne sont pas encore claires.</div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name">Afficher le nombre restant</div>
+                <div class="manual-option__desc">Affiche combien d'endroits corrects il reste. Associé à Toutes les positions, il vous indique qu'« il en reste encore », ce qui évite d'en oublier.</div>
+            </div>
+        </div>
+
+        <div class="manual-rationale">
+            <span class="manual-rationale__label">Les fondements scientifiques</span>
+            <p>
+                
+                
+                Les indices sont un étayage qui abaisse la charge de traitement tant qu'un débutant n'a pas encore mémorisé le manche. Des aides comme Afficher les octaves fournissent un repère, maintiennent la charge basse et facilitent la compréhension de la disposition. Une fois que vous avez de la marge, retirer les aides rétablit toute la charge du rappel sans aide. Cela suit la théorie de la charge cognitive : les étayages qui réduisent la charge soutiennent l'apprentissage initial.
+                
+            </p>
+            <p class="manual-rationale__ref">Réf. : Sweller (1988) <a class="manual-ref-num" href="#ref-2">[2]</a></p>
+        </div>
+
+        <!-- #tuning -->
+        <h2 id="tuning">Accordage</h2>
+
+        <p class="manual-lead">
+            
+            
+            <strong>Laissez-le sur Standard (EADGBE).</strong> Ne vous attaquez aux accordages alternatifs que lorsque vous avez réellement besoin de jouer dans l'un d'eux.
+            
+        </p>
+
+        <p>
+            
+            
+            Ce réglage définit la hauteur à vide de chaque corde. Si vous le changez, la même position de case produit un nom de note différent, donc toute la carte des noms de notes sur le manche se décale. Outre Standard (EADGBE), il prend en charge le Drop D (DADGBE, la 6e corde abaissée d'un ton), ainsi que l'Open G, l'Open D et le DADGAD, où les seules cordes à vide forment un accord. Si vous jouez des morceaux dans un accordage inhabituel, utilisez ceci pour réapprendre le manche en conséquence.
+            
+        </p>
+
+        <!-- #handedness -->
+        <h2 id="handedness">Main directrice</h2>
+
+        <p class="manual-lead">
+            
+            
+            <strong>Choisissez celui qui correspond à la guitare que vous jouez.</strong> Droitier pour une guitare pour droitier, Gaucher pour une guitare pour gaucher — choisissez-le une fois et laissez-le.
+            
+        </p>
+
+        <p>
+            
+            
+            Ce réglage définit l'orientation du manche affiché à l'écran. Il ne change ni la difficulté ni le contenu — il fait simplement correspondre l'affichage à votre instrument. Si votre guitare et la disposition à l'écran ne concordent pas, vous gaspillez de l'effort à inverser mentalement la gauche et la droite quand vous répondez aux positions.
+            
+        </p>
+
+        <div class="manual-options">
+            <div class="manual-option">
+                <div class="manual-option__name">Droitier</div>
+                <div class="manual-option__desc">L'affichage standard, correspondant à l'apparence d'une guitare pour droitier (jouée de la main gauche). Cela convient à la plupart des joueurs.</div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name">Gaucher</div>
+                <div class="manual-option__desc">Inverse le manche de gauche à droite. Permet aux joueurs d'une guitare pour gaucher (jouée de la main droite) de s'entraîner avec la même vue que leur instrument.</div>
+            </div>
+        </div>
+
+        <!-- References -->
+        <section class="manual-refs">
+            <div class="manual-refs__title">Références</div>
+            <ol>
+                <li id="ref-1">Karpinski, G. S. (2000). <em>Aural Skills Acquisition: The Development of Listening, Reading, and Performing Skills in College-Level Musicians.</em> Oxford University Press.</li>
+                <li id="ref-2">Sweller, J. (1988). Cognitive load during problem solving: Effects on learning. <em>Cognitive Science, 12</em>(2), 257–285.</li>
+            </ol>
+        </section>
+
+    </main>
+
+    <!-- Final CTA -->
+    <section class="article-cta">
+        <h2 class="article-cta__title">Réglages décidés ? Essayez sans attendre</h2>
+        <p class="article-cta__text">
+            
+            
+            Une fois chaque réglage compris, il ne reste plus qu'à pratiquer.<br>En cas de doute, suivez simplement les lignes « En cas de doute… » de cette page.<br>Trouvez les réglages qui vous conviennent dans l'entraînement au manche de Solfege PRO.
+            
+        </p>
+        <a href="https://apps.apple.com/fr/app/id6756626617" class="app-store-link" aria-label="Download on the App Store">
+            
+            
+            <img class="app-store-link__img" width="127" height="40" src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/fr-fr" alt="Télécharger dans l'App Store">
+            
+        </a>
+    </section>
+
+    <!-- Related Content -->
+    <div class="article-related">
+        <div class="article-related__title">Contenu associé</div>
+        <a href="/guides/fretboard-training/" class="article-related__link" style="margin-bottom: var(--space-md);">
+            <div class="article-related__link-title">Maîtriser le manche — Apprendre efficacement les notes de la guitare</div>
+            <div class="article-related__link-desc">Pour celles et ceux qui veulent comprendre ce qu'est l'entraînement du manche avant d'ajuster les réglages — un guide expliquant pourquoi mémoriser le nom des notes sur le manche accélère les progrès, avec une pratique progressive.</div>
+        </a>
+        <a href="/" class="article-related__link">
+            <div class="article-related__link-title">Guide d'entraînement Solfege PRO</div>
+            <div class="article-related__link-desc">Programmes d'entraînement par problématique pour guitare, basse, batterie, piano et chant</div>
+        </a>
+    </div>
+
+    <!-- Article Note -->
+    <aside class="article-endnote">
+        <p class="article-endnote__text">
+            
+            
+            Cette page est une référence expliquant les réglages internes de l'application. Les progressions recommandées ici sont des repères généraux fondés sur une méthodologie de pratique largement répandue ; les réglages optimaux varient selon l'expérience et les objectifs de chacun. Les études citées rapportent des résultats généraux sur l'apprentissage et ne garantissent pas de résultats au sein de cette application.
+            
+        </p>
+    </aside>
+
+    <!-- Footer -->
+    <footer class="article-footer">
+        <p class="article-footer__text">
+            &copy; 2026 Solfege PRO &mdash;
+            <a href="https://apps.apple.com/fr/app/id6756626617" class="article-footer__link">App Store</a>
+        </p>
+    </footer>
+    <script src="/bootstrap.js?v=3" defer></script>
+</body>
+</html>

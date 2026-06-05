@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html lang="ja"
+      data-title-ja="指板トレーニング 設定マニュアル — 各設定の選び方 | ソルフェージュPRO"
+      data-title-en="Fretboard Training Settings Manual — How to Choose Each Option | Solfege PRO"
+      data-title-fr="Manuel des réglages de l'entraînement au manche — comment choisir chaque option | Solfege PRO"
+      data-title-de="Handbuch zu den Einstellungen des Griffbrett-Trainings — wie Sie jede Option wählen | Solfege PRO">
+<head>
+    <meta charset="UTF-8">
+    <meta name="robots" content="index, follow">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#1A1A1E">
+    <title>指板トレーニング 設定マニュアル — 各設定の選び方 | ソルフェージュPRO</title>
+    <meta name="description" content="指板トレーニングの各設定（トレーニングモード・出題する音・フレット範囲・対象弦・回答モード・ヒント・チューニング・利き手）を、何のための設定で、誰が、どう選ぶべきかまで丁寧に解説するリファレンスマニュアルです。">
+
+    <!-- Canonical -->
+    <link rel="canonical" href="https://solfegepro.com/manual/fretboard/">
+    <link rel="alternate" hreflang="ja" href="https://solfegepro.com/manual/fretboard/">
+    <link rel="alternate" hreflang="en" href="https://solfegepro.com/en/manual/fretboard/">
+    <link rel="alternate" hreflang="fr" href="https://solfegepro.com/fr/manual/fretboard/">
+    <link rel="alternate" hreflang="de" href="https://solfegepro.com/de/manual/fretboard/">
+    <link rel="alternate" hreflang="x-default" href="https://solfegepro.com/manual/fretboard/">
+
+    <!-- OGP -->
+    <meta property="og:title" content="指板トレーニング 設定マニュアル — 各設定の選び方">
+    <meta property="og:description" content="指板トレーニングの各設定（トレーニングモード・出題する音・フレット範囲・対象弦・回答モード・ヒント・チューニング・利き手）を、何のための設定で、誰が、どう選ぶべきかまで丁寧に解説するリファレンスマニュアルです。">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://solfegepro.com/manual/fretboard/">
+    <meta property="og:site_name" content="ソルフェージュPRO">
+    <meta property="og:image" content="https://solfegepro.com/og-image.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Solfege PRO">
+    <meta property="og:locale" content="ja_JP">
+    <meta property="og:locale:alternate" content="en_US">
+    <meta property="og:locale:alternate" content="fr_FR">
+    <meta property="og:locale:alternate" content="de_DE">
+    <meta property="article:published_time" content="2026-06-05">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="指板トレーニング 設定マニュアル — 各設定の選び方">
+    <meta name="twitter:description" content="指板トレーニングの各設定（トレーニングモード・出題する音・フレット範囲・対象弦・回答モード・ヒント・チューニング・利き手）を、何のための設定で、誰が、どう選ぶべきかまで丁寧に解説するリファレンスマニュアルです。">
+    <meta name="twitter:image" content="https://solfegepro.com/og-image.png">
+
+    <!-- Favicon -->
+    <link rel="icon" href="/favicon.ico" sizes="any">
+    <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap"></noscript>
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="/style.css?v=17">
+    <link rel="stylesheet" href="/guides/article.css?v=11">
+
+    <style>
+        /* Manual option reference — responsive, no fixed px widths */
+        .manual-options {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr);
+            gap: var(--space-sm);
+            margin: var(--space-lg) 0;
+        }
+        .manual-option {
+            background: var(--surface);
+            border: 1px solid var(--surface-light);
+            border-radius: var(--radius-lg);
+            padding: var(--space-md);
+        }
+        .manual-option__name {
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: var(--space-xs);
+        }
+        .manual-option__desc {
+            font-size: 13px;
+            color: var(--text-secondary);
+        }
+        /* Bottom-line callout (conclusion first) */
+        .manual-lead {
+            font-size: 14px;
+            line-height: 1.75;
+            color: var(--text-primary);
+            border-left: 3px solid var(--primary);
+            background: rgba(212, 175, 55, 0.06);
+            padding: var(--space-sm) var(--space-md);
+            border-radius: 0 var(--radius-md) var(--radius-md) 0;
+            margin: var(--space-md) 0;
+        }
+        /* Per-setting evidence note — deliberately styled as an editorial
+           aside, NOT as a settings card (no surface fill, no gold label),
+           so it is never mistaken for an in-app option. */
+        .manual-rationale {
+            margin: var(--space-md) 0 var(--space-2xl);
+            padding: var(--space-sm) 0 var(--space-sm) var(--space-md);
+            border-left: 2px solid var(--surface-light);
+        }
+        .manual-rationale__label {
+            display: block;
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            color: var(--text-secondary);
+            margin-bottom: 4px;
+            opacity: 0.75;
+        }
+        .manual-rationale p {
+            font-size: 13px;
+            line-height: 1.75;
+            color: var(--text-secondary);
+            margin: 0;
+        }
+        .manual-rationale__ref {
+            font-size: 12px;
+            font-style: italic;
+            margin-top: var(--space-xs) !important;
+            opacity: 0.7;
+        }
+        /* Citation number linking to the reference list */
+        .manual-ref-num {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-style: normal;
+        }
+        .manual-ref-num:hover { color: var(--primary); }
+        /* Full reference list at page end */
+        .manual-refs {
+            margin: var(--space-2xl) 0 0;
+            padding-top: var(--space-lg);
+            border-top: 1px solid var(--surface-light);
+        }
+        .manual-refs__title {
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: var(--space-sm);
+        }
+        .manual-refs ol {
+            margin: 0;
+            padding-left: 1.25em;
+        }
+        .manual-refs li {
+            font-size: 12px;
+            line-height: 1.7;
+            color: var(--text-secondary);
+            margin-bottom: var(--space-xs);
+            scroll-margin-top: 84px;
+        }
+        .manual-refs li:target {
+            color: var(--text-primary);
+        }
+    </style>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"指板トレーニング 設定マニュアル — 各設定の選び方","description":"指板トレーニングの各設定を、何のための設定で、誰が、どう選ぶべきかまで解説するリファレンスマニュアルです。","author":{"@type":"Organization","name":"ソルフェージュPRO"},"publisher":{"@type":"Organization","name":"ソルフェージュPRO","logo":{"@type":"ImageObject","url":"https://solfegepro.com/AppIcon.png"}},"datePublished":"2026-06-05","mainEntityOfPage":{"@type":"WebPage","@id":"https://solfegepro.com/manual/fretboard/"}}</script>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="nav__container">
+            <a href="/" class="nav__logo">
+                <img src="/AppIcon.png" alt="Solfege PRO" class="nav__logo-icon" width="32" height="32">
+                <span class="nav__logo-text"><span lang="ja">ソルフェージュPRO</span><span lang="en">Solfege PRO</span><span lang="fr">Solfege PRO</span><span lang="de">Solfege PRO</span></span>
+            </a>
+            <ul class="nav__list">
+                <li><a href="/" class="nav__link"><span lang="ja">練習ガイド</span><span lang="en">Practice Guide</span><span lang="fr">Guide d'entraînement</span><span lang="de">Übungsleitfaden</span></a></li>
+                <li><a href="/guides/" class="nav__link"><span lang="ja">ガイド一覧</span><span lang="en">Guides</span><span lang="fr">Guides</span><span lang="de">Leitfäden</span></a></li>
+                <li><a href="/manual/" class="nav__link active"><span lang="ja">マニュアル</span><span lang="en">Manual</span><span lang="fr">Manuel</span><span lang="de">Handbuch</span></a></li>
+                            <li><a href="/start-here/" class="nav__link"><span lang="ja">どこから始める？</span><span lang="en">Where to Start?</span><span lang="fr">Par où commencer ?</span><span lang="de">Wo anfangen?</span></a></li>
+            </ul>
+            <div class="nav__settings">
+                <button class="settings-btn" id="lang-toggle" title="Toggle language">
+                    <span id="lang-text">EN</span>
+                </button>
+                <button class="hamburger-btn" id="hamburger-btn" aria-label="Menu" aria-expanded="false" aria-controls="drawer">
+                    <span class="hamburger-btn__line"></span>
+                    <span class="hamburger-btn__line"></span>
+                    <span class="hamburger-btn__line"></span>
+                </button>
+            </div>
+        </div>
+    </nav>
+        <!-- Mobile drawer (hidden on desktop) -->
+        <div class="drawer-overlay" id="drawer-overlay"></div>
+        <aside class="drawer" id="drawer" aria-label="Mobile menu" aria-hidden="true" inert>
+            <div class="drawer__header">
+                <span class="drawer__title"><span lang="ja">メニュー</span><span lang="en">Menu</span><span lang="fr">Menu</span><span lang="de">Menü</span></span>
+                <button class="drawer__close" id="drawer-close" aria-label="Close menu">×</button>
+            </div>
+            <ul class="drawer__list">
+                    <li><a href="/" class="drawer__link"><span lang="ja">練習ガイド</span><span lang="en">Practice Guide</span><span lang="fr">Guide d'entraînement</span><span lang="de">Übungsleitfaden</span></a></li>
+                    <li><a href="/guides/" class="drawer__link"><span lang="ja">ガイド一覧</span><span lang="en">Guides</span><span lang="fr">Guides</span><span lang="de">Leitfäden</span></a></li>
+                    <li><a href="/manual/" class="drawer__link active"><span lang="ja">マニュアル</span><span lang="en">Manual</span><span lang="fr">Manuel</span><span lang="de">Handbuch</span></a></li>
+                    <li><a href="/start-here/" class="drawer__link"><span lang="ja">どこから始める？</span><span lang="en">Where to Start?</span><span lang="fr">Par où commencer ?</span><span lang="de">Wo anfangen?</span></a></li>
+            </ul>
+        </aside>
+
+
+    <!-- Article Header -->
+    <header class="page-header">
+        <div class="page-header__meta">
+            <span class="page-header__tag"><span lang="ja">マニュアル</span><span lang="en">Manual</span><span lang="fr">Manuel</span><span lang="de">Handbuch</span></span>
+            <span><span lang="ja">指板トレーニング</span><span lang="en">Fretboard Training</span><span lang="fr">Entraînement au manche</span><span lang="de">Griffbrett-Training</span></span>
+        </div>
+        <h1 class="page-header__title">
+            <span lang="ja">指板トレーニング 設定マニュアル<br>各設定の意味と選び方</span>
+            <span lang="en">Fretboard Training Settings Manual<br>What Each Option Means and How to Choose</span>
+            <span lang="fr">Manuel des réglages de l'entraînement au manche<br>Ce que signifie chaque option et comment la choisir</span>
+            <span lang="de">Handbuch zu den Einstellungen des Griffbrett-Trainings<br>Was jede Option bedeutet und wie Sie sie wählen</span>
+        </h1>
+        <p class="page-header__subtitle">
+            <span lang="ja">設定画面のどの項目を、どんなときに、どう選べばよいか。指板トレーニングの各設定を 1 つずつ解説します。設定画面の「?」から飛んできた方は、目的の項目までスクロールしてください。</span>
+            <span lang="en">Which option to pick, when, and why. This page walks through each setting in fretboard training, one at a time. If you arrived from a "?" in the settings screen, scroll to the option you need.</span>
+            <span lang="fr">Quelle option choisir, quand et pourquoi. Cette page passe en revue chaque réglage de l'entraînement au manche, un par un. Si vous arrivez depuis un « ? » de l'écran des réglages, faites défiler jusqu'à l'option qui vous intéresse.</span>
+            <span lang="de">Welche Option Sie wann und warum wählen sollten. Diese Seite geht jede Einstellung des Griffbrett-Trainings einzeln durch. Wenn Sie über ein „?" im Einstellungsbildschirm hierher gelangt sind, scrollen Sie zur gewünschten Option.</span>
+        </p>
+    </header>
+
+    <!-- Top-of-article CTA -->
+    <aside class="article-top-cta" aria-label="App promotion">
+        <div class="article-top-cta__body">
+            <p class="article-top-cta__title">
+                <span lang="ja">ソルフェージュPRO でこの練習を試す</span>
+                <span lang="en">Try this in Solfege PRO</span>
+                <span lang="fr">Essayez cet exercice dans Solfege PRO</span>
+                <span lang="de">Probieren Sie diese Übung in Solfege PRO</span>
+            </p>
+            <p class="article-top-cta__sub">
+                <span lang="ja">月額 980 円 · 1 週間無料トライアル</span>
+                <span lang="en">¥980/month · 1-week free trial</span>
+                <span lang="fr">980 ¥/mois · essai gratuit d'une semaine</span>
+                <span lang="de">980 ¥/Monat · 1 Woche kostenlos testen</span>
+            </p>
+        </div>
+        <a href="https://apps.apple.com/jp/app/id6756626617" class="article-top-cta__button" data-cta-position="article_top">
+            <span lang="ja">App Store →</span>
+            <span lang="en">App Store →</span>
+            <span lang="fr">App Store →</span>
+            <span lang="de">App Store →</span>
+        </a>
+    </aside>
+
+    <!-- Article Body -->
+    <main class="article-body">
+
+        <!-- Intro -->
+        <p>
+            <span lang="ja">指板トレーニングは、ギターのどのフレットがどの音名かを、考えずに分かるレベルまで体に覚え込ませる練習です。スケールやコードを「形」だけで覚えていても応用が利きませんが、指板上の音名が瞬時に出てくると、アドリブ・移調・耳コピが一気に楽になります。</span>
+            <span lang="en">Fretboard training drills the name of the note under every fret into your hands until you know it without thinking. Memorizing scales and chords only as shapes leaves you stuck, but once note names on the neck come to you instantly, improvising, transposing, and learning songs by ear all get far easier.</span>
+            <span lang="fr">L'entraînement au manche grave dans vos mains le nom de la note sous chaque case jusqu'à ce que vous le connaissiez sans réfléchir. Mémoriser les gammes et les accords uniquement comme des « formes » vous bloque, mais dès que les noms des notes sur le manche vous viennent instantanément, improviser, transposer et relever des morceaux à l'oreille deviennent bien plus faciles.</span>
+            <span lang="de">Das Griffbrett-Training prägt Ihren Händen den Namen der Note unter jedem Bund ein, bis Sie ihn ohne Nachdenken kennen. Tonleitern und Akkorde nur als „Formen" zu merken bringt Sie nicht weiter, doch sobald Ihnen die Notennamen auf dem Griffbrett sofort einfallen, werden Improvisieren, Transponieren und das Heraushören von Stücken deutlich leichter.</span>
+        </p>
+        <p>
+            <span lang="ja">このページは設定の選び方をまとめたマニュアルです。各設定は音楽教育で確立された学習法にもとづいて設計しています。判断が要る設定について、<strong>おすすめの選び方・何のための設定か・鍛えられる力とその根拠</strong>を簡潔に示します。設定画面の「?」から来た方は、目的の項目までスクロールしてください。</span>
+            <span lang="en">This page is a manual for choosing the settings. Each setting is designed around established methods from music education. For each setting that calls for a decision, we give <strong>the recommended choice, what it is for, and what it trains — with the evidence behind it</strong>. If you arrived from a "?" in the settings screen, scroll to the option you need.</span>
+            <span lang="fr">Cette page est un manuel pour choisir les réglages. Chaque réglage est conçu à partir de méthodes établies de la pédagogie musicale. Pour chaque réglage qui demande une décision, nous indiquons <strong>le choix recommandé, son objectif et ce qu'il développe — avec les fondements qui le justifient</strong>. Si vous arrivez depuis un « ? » de l'écran des réglages, faites défiler jusqu'à l'option qui vous intéresse.</span>
+            <span lang="de">Diese Seite ist ein Handbuch zur Wahl der Einstellungen. Jede Einstellung beruht auf etablierten Methoden der Musikpädagogik. Für jede Einstellung, die eine Entscheidung erfordert, nennen wir <strong>die empfohlene Wahl, wozu sie dient und was sie trainiert — samt der Belege dahinter</strong>. Wenn Sie über ein „?" im Einstellungsbildschirm hierher gelangt sind, scrollen Sie zur gewünschten Option.</span>
+        </p>
+
+        <!-- #mode -->
+        <h2 id="mode"><span lang="ja">トレーニングモード（出題の向き）</span><span lang="en">Training Mode</span><span lang="fr">Mode d'entraînement</span><span lang="de">Trainingsmodus</span></h2>
+
+        <p class="manual-lead">
+            <span lang="ja"><strong>まずは「音名 → 位置」から。</strong> 安定したら「位置 → 音名」で逆向きを固め、1 音の広がりを身につけたくなったら「弦移動」へ。</span>
+            <span lang="en"><strong>Start with Note → Position.</strong> Once stable, firm up the reverse with Position → Note, then move to String Movement when you want to internalize how one note spreads across the neck.</span>
+            <span lang="fr"><strong>Commencez par Note → Position.</strong> Une fois à l'aise, consolidez le sens inverse avec Position → Note, puis passez à Déplacement sur les cordes lorsque vous voulez intégrer la façon dont une note se répartit sur le manche.</span>
+            <span lang="de"><strong>Beginnen Sie mit Note → Position.</strong> Sobald das sitzt, festigen Sie die umgekehrte Richtung mit Position → Note und wechseln Sie dann zu Saitenwechsel, wenn Sie verinnerlichen möchten, wie sich eine Note über das Griffbrett verteilt.</span>
+        </p>
+
+        <p>
+            <span lang="ja">「何を見せて、何を答えさせるか」という出題の向きを決める設定です。3 つのモードがあり、同じ指板上の音名を扱っても、見る向きが違えば別の力が付きます。</span>
+            <span lang="en">This setting decides the direction of each question — what you are shown and what you answer. There are three modes; even though all deal with note names on the neck, the direction you look determines the skill you build.</span>
+            <span lang="fr">Ce réglage détermine le sens de chaque question — ce que l'on vous montre et ce que vous devez répondre. Il existe trois modes ; même s'ils portent tous sur les noms des notes sur le manche, le sens dans lequel vous regardez décide de la compétence que vous développez.</span>
+            <span lang="de">Diese Einstellung bestimmt die Richtung jeder Frage — was Ihnen gezeigt wird und was Sie antworten. Es gibt drei Modi; obwohl sich alle mit den Notennamen auf dem Griffbrett befassen, entscheidet die Blickrichtung darüber, welche Fähigkeit Sie aufbauen.</span>
+        </p>
+
+        <div class="manual-options">
+            <div class="manual-option">
+                <div class="manual-option__name"><span lang="ja">音名 → 位置（noteToFret）</span><span lang="en">Note → Position (noteToFret)</span><span lang="fr">Note → Position (noteToFret)</span><span lang="de">Note → Position (noteToFret)</span></div>
+                <div class="manual-option__desc"><span lang="ja">提示された音名を指板上で探してタップする、最も基本となる向き。スケールやコードを弾くときに必要な「音名→押さえる場所」の回路を鍛えます。まずはここから。</span><span lang="en">You tap where a given note name lives on the neck — the most fundamental direction, building the "note name → where to press" circuit you need to play scales and chords. Start here.</span><span lang="fr">Vous tapez l'endroit où vit un nom de note donné sur le manche — le sens le plus fondamental, qui construit le circuit « nom de note → où poser le doigt » dont vous avez besoin pour jouer gammes et accords. Commencez par là.</span><span lang="de">Sie tippen die Stelle an, an der ein vorgegebener Notenname auf dem Griffbrett liegt — die grundlegendste Richtung, die den Kreislauf „Notenname → wo greifen" aufbaut, den Sie zum Spielen von Tonleitern und Akkorden brauchen. Fangen Sie hier an.</span></div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name"><span lang="ja">位置 → 音名（fretToNote）</span><span lang="en">Position → Note (fretToNote)</span><span lang="fr">Position → Note (fretToNote)</span><span lang="de">Position → Note (fretToNote)</span></div>
+                <div class="manual-option__desc"><span lang="ja">指板上の 1 点を示され、その音名を選択肢から答える逆引き。いま押さえている場所が何の音かを言語化する力を鍛え、暗記を両面から強くします。</span><span lang="en">The reverse lookup: a single spot is shown and you pick its note name. It trains naming the note you are fretting and strengthens memory from both sides.</span><span lang="fr">La recherche inverse : un seul point vous est montré et vous en choisissez le nom de note. Cela entraîne la capacité à nommer la note que vous êtes en train de jouer et renforce la mémorisation des deux côtés.</span><span lang="de">Die umgekehrte Suche: Eine einzelne Stelle wird gezeigt und Sie wählen deren Notennamen. Das trainiert, die gerade gegriffene Note zu benennen, und festigt das Gedächtnis von beiden Seiten.</span></div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name"><span lang="ja">弦移動（stringMovement）</span><span lang="en">String Movement (stringMovement)</span><span lang="fr">Déplacement sur les cordes (stringMovement)</span><span lang="de">Saitenwechsel (stringMovement)</span></div>
+                <div class="manual-option__desc"><span lang="ja">同じ音名を弦をまたいで次々に探す応用モード（例：「C」を 6 弦・5 弦・4 弦…と各弦で）。1 音が指板全体にどう散らばるかを横断的に把握します。フレット範囲は 0–12 に固定。</span><span lang="en">An advanced mode hunting the same note name across one string after another (e.g. "C" on the 6th, 5th, 4th…), mapping how one note spreads across the whole neck. The fret range is fixed to 0–12.</span><span lang="fr">Un mode avancé qui consiste à chercher le même nom de note d'une corde à l'autre (par ex. « C » sur la 6e, la 5e, la 4e…), pour cartographier la façon dont une note se répartit sur tout le manche. La plage de cases est fixée à 0–12.</span><span lang="de">Ein fortgeschrittener Modus, bei dem man denselben Notennamen von Saite zu Saite sucht (z. B. „C" auf der 6., 5., 4. …) und so abbildet, wie sich eine Note über das ganze Griffbrett verteilt. Der Bundbereich ist auf 0–12 festgelegt.</span></div>
+            </div>
+        </div>
+
+        <div class="manual-rationale">
+            <span class="manual-rationale__label"><span lang="ja">学習科学の裏づけ</span><span lang="en">The evidence behind it</span><span lang="fr">Les fondements scientifiques</span><span lang="de">Die wissenschaftliche Grundlage</span></span>
+            <p>
+                <span lang="ja">3 つの向きは、楽器奏者に求められる「音名と指板上の位置を双方向に結びつける」力を別々の角度から鍛えます。同じ素材を呼び出す向きを変えて練習することで、形だけの暗記ではなく実際の演奏で使える知識になります。これは器楽・聴音教育で確立された指板習熟の考え方に沿った設計です。</span>
+                <span lang="en">The three directions train, from different angles, the two-way link between note names and positions on the neck that instrumentalists need. Recalling the same material in different directions turns rote shapes into knowledge you can use while playing. The design follows established instrumental and aural-skills pedagogy for mastering the fretboard.</span>
+                <span lang="fr">Les trois sens entraînent, sous des angles différents, le lien bidirectionnel entre les noms des notes et les positions sur le manche dont les instrumentistes ont besoin. Rappeler le même matériau dans des sens différents transforme des « formes » apprises par cœur en un savoir utilisable pendant le jeu. Cette conception suit la pédagogie instrumentale et auditive établie pour la maîtrise du manche.</span>
+                <span lang="de">Die drei Richtungen trainieren aus verschiedenen Blickwinkeln die wechselseitige Verknüpfung zwischen Notennamen und Positionen auf dem Griffbrett, die Instrumentalisten benötigen. Dasselbe Material in verschiedenen Richtungen abzurufen, verwandelt auswendig gelernte „Formen" in Wissen, das Sie beim Spielen nutzen können. Diese Gestaltung folgt der etablierten Instrumental- und Gehörbildungspädagogik zur Beherrschung des Griffbretts.</span>
+            </p>
+            <p class="manual-rationale__ref"><span lang="ja">参考: </span><span lang="en">Ref.: </span><span lang="fr">Réf. : </span><span lang="de">Quelle: </span>Karpinski (2000) <a class="manual-ref-num" href="#ref-1">[1]</a></p>
+        </div>
+
+        <!-- #target-notes -->
+        <h2 id="target-notes"><span lang="ja">出題する音（出題範囲の音名）</span><span lang="en">Notes (Target Notes)</span><span lang="fr">Notes (notes à travailler)</span><span lang="de">Noten (Zielnoten)</span></h2>
+
+        <p class="manual-lead">
+            <span lang="ja"><strong>まずは「幹音のみ」から。</strong> 7 音を指板のどこでも 80% 以上で言えるようになってから「シャープを含む」（または「全ての音」）へ。フラット表記が必要な人だけ「フラットを含む」を。</span>
+            <span lang="en"><strong>Start with Naturals Only.</strong> Widen to Include Sharps (or All Notes) once you can name the seven naturals anywhere on the neck at 80%+. Choose Include Flats only if you need flat spellings.</span>
+            <span lang="fr"><strong>Commencez par Notes naturelles seulement.</strong> Élargissez à Inclure les dièses (ou Toutes les notes) une fois que vous savez nommer les sept notes naturelles n'importe où sur le manche à 80 % ou plus. Ne choisissez Inclure les bémols que si vous avez besoin de l'orthographe en bémols.</span>
+            <span lang="de"><strong>Beginnen Sie mit Nur Stammtöne.</strong> Erweitern Sie auf Kreuze einbeziehen (oder Alle Noten), sobald Sie die sieben Stammtöne überall auf dem Griffbrett zu 80 % oder mehr benennen können. Wählen Sie Bes einbeziehen nur, wenn Sie die Schreibweise mit Bes benötigen.</span>
+        </p>
+
+        <p>
+            <span lang="ja">どの音名を出題対象にするかを決める設定です。幹音（=シャープもフラットも付かない自然音 C D E F G A B）だけにするか、シャープ・フラットを含めるかを選びます。範囲を絞るほど覚える対象は少なく、広げるほど指板の全 12 音をカバーします。</span>
+            <span lang="en">This setting sets which note names appear. You choose whether to use only the naturals (the seven notes with no sharp or flat — C D E F G A B) or to include sharps and flats. The narrower the range, the fewer notes to learn; the wider it goes, the more it covers all 12 chromatic notes.</span>
+            <span lang="fr">Ce réglage définit quels noms de notes apparaissent. Vous choisissez d'utiliser uniquement les notes naturelles (les sept notes sans dièse ni bémol — C D E F G A B) ou d'inclure les dièses et les bémols. Plus la plage est restreinte, moins il y a de notes à apprendre ; plus elle est large, plus elle couvre les 12 notes chromatiques.</span>
+            <span lang="de">Diese Einstellung legt fest, welche Notennamen erscheinen. Sie wählen, ob nur die Stammtöne verwendet werden (die sieben Noten ohne Kreuz oder Be — C D E F G A B) oder ob Kreuze und Bes einbezogen werden. Je enger der Bereich, desto weniger Noten sind zu lernen; je weiter er reicht, desto mehr deckt er alle 12 chromatischen Noten ab.</span>
+        </p>
+
+        <div class="manual-options">
+            <div class="manual-option">
+                <div class="manual-option__name"><span lang="ja">幹音のみ</span><span lang="en">Naturals Only</span><span lang="fr">Notes naturelles seulement</span><span lang="de">Nur Stammtöne</span></div>
+                <div class="manual-option__desc"><span lang="ja">C, D, E, F, G, A, B の 7 音だけを出題します。指板暗記の最初の一歩。まずこの 7 音を指板全体で確実に言えるようにするのが、上達の近道です。</span><span lang="en">Asks only the seven notes C, D, E, F, G, A, B. The first step in fretboard memory. Being able to name these seven anywhere on the neck is the fastest route forward.</span><span lang="fr">N'interroge que les sept notes C, D, E, F, G, A, B. La première étape de la mémorisation du manche. Savoir nommer ces sept notes n'importe où sur le manche est le chemin le plus rapide pour progresser.</span><span lang="de">Fragt nur die sieben Noten C, D, E, F, G, A, B ab. Der erste Schritt beim Einprägen des Griffbretts. Diese sieben Noten überall auf dem Griffbrett benennen zu können, ist der schnellste Weg voran.</span></div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name"><span lang="ja">シャープを含む</span><span lang="en">Include Sharps</span><span lang="fr">Inclure les dièses</span><span lang="de">Kreuze einbeziehen</span></div>
+                <div class="manual-option__desc"><span lang="ja">12 音全てを、シャープ表記（C#, D#…）で出題します。幹音が固まったら、間にある半音を加えて指板を完全にカバーします。</span><span lang="en">Covers all 12 notes, written with sharps (C#, D#, …). Once the naturals are solid, add the in-between semitones to cover the neck completely.</span><span lang="fr">Couvre les 12 notes, écrites avec des dièses (C#, D#, …). Une fois les notes naturelles bien acquises, ajoutez les demi-tons intermédiaires pour couvrir entièrement le manche.</span><span lang="de">Deckt alle 12 Noten ab, geschrieben mit Kreuzen (C#, D#, …). Sobald die Stammtöne sitzen, fügen Sie die dazwischenliegenden Halbtöne hinzu, um das Griffbrett vollständig abzudecken.</span></div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name"><span lang="ja">フラットを含む</span><span lang="en">Include Flats</span><span lang="fr">Inclure les bémols</span><span lang="de">Bes einbeziehen</span></div>
+                <div class="manual-option__desc"><span lang="ja">12 音全てを、フラット表記（Db, Eb…）で出題します。同じ音でも C# と Db のように書き方が変わる「異名同音」に慣れたいときに。フラット系のキーで演奏する人向け。</span><span lang="en">Covers all 12 notes, written with flats (Db, Eb, …). For getting used to enharmonics — the same pitch spelled two ways, like C# and Db. Useful if you play in flat keys.</span><span lang="fr">Couvre les 12 notes, écrites avec des bémols (Db, Eb, …). Pour vous habituer aux enharmonies — la même hauteur écrite de deux façons, comme C# et Db. Utile si vous jouez dans des tonalités en bémols.</span><span lang="de">Deckt alle 12 Noten ab, geschrieben mit Bes (Db, Eb, …). Um sich an Enharmonik zu gewöhnen — dieselbe Tonhöhe auf zwei Arten geschrieben, wie C# und Db. Nützlich, wenn Sie in B-Tonarten spielen.</span></div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name"><span lang="ja">全ての音</span><span lang="en">All Notes</span><span lang="fr">Toutes les notes</span><span lang="de">Alle Noten</span></div>
+                <div class="manual-option__desc"><span lang="ja">12 音全てを出題します。シャープ・フラットの両表記を認識する、最も範囲の広い設定。指板全体を本番レベルで仕上げる段階です。</span><span lang="en">Asks all 12 notes, recognizing both sharp and flat spellings — the widest setting. The stage where you polish the entire neck to performance level.</span><span lang="fr">Interroge les 12 notes, en reconnaissant à la fois l'orthographe en dièses et en bémols — le réglage le plus large. L'étape où vous peaufinez tout le manche jusqu'au niveau de la scène.</span><span lang="de">Fragt alle 12 Noten ab und erkennt sowohl die Schreibweise mit Kreuzen als auch mit Bes — die weiteste Einstellung. Die Phase, in der Sie das gesamte Griffbrett bis zum Auftrittsniveau verfeinern.</span></div>
+            </div>
+        </div>
+
+        <div class="manual-rationale">
+            <span class="manual-rationale__label"><span lang="ja">学習科学の裏づけ</span><span lang="en">The evidence behind it</span><span lang="fr">Les fondements scientifiques</span><span lang="de">Die wissenschaftliche Grundlage</span></span>
+            <p>
+                <span lang="ja">一度に覚える音名が少ないほど、処理する情報量が減り、各音の位置を確実に身につけられます。狭い範囲を固めてから広げるほうが、いきなり 12 音すべてに挑むより速く定着します。新しい技能の初期は処理の負荷を抑えるほど学習が進む、という認知負荷の考え方にもとづく段階設計です。</span>
+                <span lang="en">The fewer note names you learn at once, the less you must process, and the more reliably you fix each note's locations. Securing a narrow range before widening it sticks faster than taking on all 12 at once. The tiers follow cognitive-load theory: keeping processing demands low early in a new skill aids learning.</span>
+                <span lang="fr">Moins vous apprenez de noms de notes à la fois, moins vous avez à traiter d'informations, et plus vous fixez de façon fiable les emplacements de chaque note. Consolider une plage restreinte avant de l'élargir s'ancre plus vite que d'aborder les 12 notes d'un coup. Cette progression par paliers suit la théorie de la charge cognitive : limiter la charge de traitement au début d'une nouvelle compétence favorise l'apprentissage.</span>
+                <span lang="de">Je weniger Notennamen Sie auf einmal lernen, desto weniger müssen Sie verarbeiten und desto zuverlässiger prägen Sie sich die Lage jeder Note ein. Einen engen Bereich zu festigen, bevor man ihn erweitert, sitzt schneller, als alle 12 auf einmal anzugehen. Die Stufen folgen der Cognitive-Load-Theorie: Eine geringe Verarbeitungslast zu Beginn einer neuen Fähigkeit fördert das Lernen.</span>
+            </p>
+            <p class="manual-rationale__ref"><span lang="ja">参考: </span><span lang="en">Ref.: </span><span lang="fr">Réf. : </span><span lang="de">Quelle: </span>Sweller (1988) <a class="manual-ref-num" href="#ref-2">[2]</a></p>
+        </div>
+
+        <!-- #fret-range -->
+        <h2 id="fret-range"><span lang="ja">フレット範囲</span><span lang="en">Fret Range</span><span lang="fr">Plage de cases</span><span lang="de">Bundbereich</span></h2>
+
+        <p class="manual-lead">
+            <span lang="ja"><strong>まず「0-5」で土台を作り、安定したら「0-12（標準）」へ。</strong> 12 フレット以降は同じ並びの繰り返しなので、まずはここを目標にすると効率的です。</span>
+            <span lang="en"><strong>Build the foundation at 0-5, then widen to 0-12 (Standard).</strong> The layout above the 12th fret just repeats, so aiming for 0-12 first is the efficient target.</span>
+            <span lang="fr"><strong>Posez les bases sur 0-5, puis élargissez à 0-12 (Standard).</strong> Au-delà de la 12e case, la disposition ne fait que se répéter ; viser d'abord 0-12 est donc l'objectif le plus efficace.</span>
+            <span lang="de"><strong>Legen Sie die Grundlage bei 0-5 und erweitern Sie dann auf 0-12 (Standard).</strong> Oberhalb des 12. Bundes wiederholt sich die Anordnung nur, daher ist es am effizientesten, zunächst 0-12 anzustreben.</span>
+        </p>
+
+        <p>
+            <span lang="ja">指板上のどの区間から出題するかを決める設定で、出題の難易度を実質的に左右する効きの大きい項目です。狭く絞れば覚える場所が減り、広げれば指板全体を扱います。なお 弦移動 モードでは 0-12 に固定されます。</span>
+            <span lang="en">This setting sets which section of the neck questions are drawn from — effectively the difficulty dial. Narrow it and there are fewer places to memorize; widen it and you handle the whole neck. Note that in String Movement mode it is fixed to 0-12.</span>
+            <span lang="fr">Ce réglage définit la portion du manche dans laquelle les questions sont tirées — c'est en pratique le bouton de difficulté. Restreignez-le et il y a moins d'emplacements à mémoriser ; élargissez-le et vous travaillez tout le manche. Notez qu'en mode Déplacement sur les cordes, il est fixé à 0-12.</span>
+            <span lang="de">Diese Einstellung legt fest, aus welchem Abschnitt des Griffbretts die Fragen stammen — praktisch der Schwierigkeitsregler. Schränken Sie ihn ein, gibt es weniger Stellen zu merken; erweitern Sie ihn, bearbeiten Sie das ganze Griffbrett. Beachten Sie, dass er im Modus Saitenwechsel auf 0-12 festgelegt ist.</span>
+        </p>
+
+        <div class="manual-options">
+            <div class="manual-option">
+                <div class="manual-option__name"><span lang="ja">0-5（初心者向け）</span><span lang="en">0-5 (Beginner)</span><span lang="fr">0-5 (débutant)</span><span lang="de">0-5 (Anfänger)</span></div>
+                <div class="manual-option__desc"><span lang="ja">ローポジション（0〜5 フレット）だけ。開放弦に近く、コードを覚え始めた人が最初に触る領域です。範囲が狭いので最初の暗記に最適。</span><span lang="en">Low position only (frets 0–5). Close to the open strings, this is the area beginners touch first when learning chords. Its narrow span makes it ideal for your first memorization.</span><span lang="fr">La position basse uniquement (cases 0 à 5). Proche des cordes à vide, c'est la zone que les débutants abordent en premier quand ils apprennent des accords. Sa faible étendue en fait l'idéal pour votre première mémorisation.</span><span lang="de">Nur die tiefe Lage (Bünde 0 bis 5). Nahe an den leeren Saiten ist dies der Bereich, den Anfänger beim Akkordlernen zuerst berühren. Seine geringe Spanne macht ihn ideal für Ihr erstes Einprägen.</span></div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name"><span lang="ja">5-12（中級者向け）</span><span lang="en">5-12 (Intermediate)</span><span lang="fr">5-12 (intermédiaire)</span><span lang="de">5-12 (Mittelstufe)</span></div>
+                <div class="manual-option__desc"><span lang="ja">ミドル〜ハイポジション（5〜12 フレット）。ローポジションが固まった人が、苦手になりがちな中盤を集中的に埋める区間です。</span><span lang="en">Middle to high position (frets 5–12). For players who have nailed the low position and now want to fill in the middle of the neck, which tends to be a weak spot.</span><span lang="fr">Position médiane à haute (cases 5 à 12). Pour les joueurs qui maîtrisent la position basse et veulent maintenant combler le milieu du manche, qui a tendance à être un point faible.</span><span lang="de">Mittlere bis hohe Lage (Bünde 5 bis 12). Für Spieler, die die tiefe Lage beherrschen und nun die Mitte des Griffbretts auffüllen wollen, die oft eine Schwachstelle ist.</span></div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name"><span lang="ja">0-12（標準）</span><span lang="en">0-12 (Standard)</span><span lang="fr">0-12 (standard)</span><span lang="de">0-12 (Standard)</span></div>
+                <div class="manual-option__desc"><span lang="ja">0〜12 フレット。12 フレットでオクターブが一巡するため、ここまで覚えれば残りは繰り返しです。指板暗記の標準的なゴール範囲。</span><span lang="en">Frets 0–12. The octave repeats at the 12th fret, so once you know this far, the rest is a repeat. The standard target range for fretboard memory.</span><span lang="fr">Cases 0 à 12. L'octave se répète à la 12e case ; une fois que vous connaissez jusque-là, le reste n'est qu'une répétition. La plage cible standard pour la mémorisation du manche.</span><span lang="de">Bünde 0 bis 12. Die Oktave wiederholt sich am 12. Bund; sobald Sie bis hierhin kennen, ist der Rest eine Wiederholung. Der Standard-Zielbereich für das Einprägen des Griffbretts.</span></div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name"><span lang="ja">0-24（全フレット）</span><span lang="en">0-24 (Full Fretboard)</span><span lang="fr">0-24 (manche complet)</span><span lang="de">0-24 (ganzes Griffbrett)</span></div>
+                <div class="manual-option__desc"><span lang="ja">指板全域（0〜24 フレット）。ハイフレットまで使うソロやリードを弾く人向け。最上位の仕上げ段階です。</span><span lang="en">The entire neck (frets 0–24). For players who use the high frets in solos and lead lines. The top-tier finishing stage.</span><span lang="fr">Tout le manche (cases 0 à 24). Pour les joueurs qui utilisent les cases hautes dans les solos et les parties lead. L'étape de finition la plus avancée.</span><span lang="de">Das gesamte Griffbrett (Bünde 0 bis 24). Für Spieler, die die hohen Bünde in Soli und Leadlinien nutzen. Die oberste Vollendungsstufe.</span></div>
+            </div>
+        </div>
+
+        <div class="manual-rationale">
+            <span class="manual-rationale__label"><span lang="ja">学習科学の裏づけ</span><span lang="en">The evidence behind it</span><span lang="fr">Les fondements scientifiques</span><span lang="de">Die wissenschaftliche Grundlage</span></span>
+            <p>
+                <span lang="ja">出題範囲を絞ると、一度に覚える位置の数が減り、その区間を確実に身につけられます。狭い区間を固めてから広げるほうが、最初から指板全域に挑むより速く定着します。新しい技能の初期は処理の負荷を抑えるほど学習が進む、という認知負荷の考え方にもとづく段階設計です。</span>
+                <span lang="en">Narrowing the range cuts the number of positions you learn at once, so you fix that section reliably. Securing a small region before widening sticks faster than tackling the whole neck from the start. The tiers follow cognitive-load theory: keeping processing demands low early in a new skill aids learning.</span>
+                <span lang="fr">Restreindre la plage réduit le nombre de positions que vous apprenez à la fois, ce qui vous permet de fixer cette portion de façon fiable. Consolider une petite région avant de l'élargir s'ancre plus vite que d'attaquer tout le manche dès le départ. Cette progression par paliers suit la théorie de la charge cognitive : limiter la charge de traitement au début d'une nouvelle compétence favorise l'apprentissage.</span>
+                <span lang="de">Den Bereich einzuschränken verringert die Zahl der Positionen, die Sie auf einmal lernen, sodass Sie diesen Abschnitt zuverlässig einprägen. Eine kleine Region zu festigen, bevor man sie erweitert, sitzt schneller, als von Anfang an das ganze Griffbrett anzugehen. Die Stufen folgen der Cognitive-Load-Theorie: Eine geringe Verarbeitungslast zu Beginn einer neuen Fähigkeit fördert das Lernen.</span>
+            </p>
+            <p class="manual-rationale__ref"><span lang="ja">参考: </span><span lang="en">Ref.: </span><span lang="fr">Réf. : </span><span lang="de">Quelle: </span>Sweller (1988) <a class="manual-ref-num" href="#ref-2">[2]</a></p>
+        </div>
+
+        <!-- #strings -->
+        <h2 id="strings"><span lang="ja">対象弦（フォーカス設定）</span><span lang="en">Strings</span><span lang="fr">Cordes</span><span lang="de">Saiten</span></h2>
+
+        <p class="manual-lead">
+            <span lang="ja"><strong>基本は「全ての弦」のままで OK。</strong> 特定の弦だけ正答率が低いと気づいたら、その弦に一時的に絞って集中し、また全弦に戻します。</span>
+            <span lang="en"><strong>Leave it on All Strings.</strong> When you notice one string lagging in accuracy, temporarily narrow to that string, focus, then return to all six.</span>
+            <span lang="fr"><strong>Laissez-le sur Toutes les cordes.</strong> Quand vous remarquez qu'une corde traîne en taux de réussite, restreignez-vous temporairement à cette corde, concentrez-vous, puis revenez aux six.</span>
+            <span lang="de"><strong>Belassen Sie es auf Alle Saiten.</strong> Wenn Sie bemerken, dass eine Saite bei der Trefferquote zurückbleibt, schränken Sie sich vorübergehend auf diese Saite ein, konzentrieren Sie sich und kehren Sie dann zu allen sechs zurück.</span>
+        </p>
+
+        <p>
+            <span lang="ja">6 本のうちどの弦から出題するかを絞る設定です（音名 → 位置 モードのフォーカス設定内）。「全ての弦」のほか、高音弦・低音弦の 3 本ずつ、あるいは 1 弦ずつに絞り込めます。同じフォーカス設定にある 苦手な音のみ を使うと、正答率 70% 未満の音だけが自動的に出題されます（成績データがたまってから有効）。</span>
+            <span lang="en">This setting narrows which of the six strings questions are drawn from (under the Focus settings in Note → Position mode). Besides "All Strings," you can limit to the three treble or three bass strings, or a single string. The Weak Notes Only focus in the same panel auto-serves just the notes below 70% accuracy (active once data accumulates).</span>
+            <span lang="fr">Ce réglage restreint celles des six cordes dans lesquelles les questions sont tirées (dans les réglages de Focus du mode Note → Position). Outre « Toutes les cordes », vous pouvez vous limiter aux trois cordes aiguës ou aux trois cordes graves, ou à une seule corde. Le focus Notes faibles uniquement, dans le même panneau, propose automatiquement seulement les notes en dessous de 70 % de réussite (actif une fois que les données s'accumulent).</span>
+            <span lang="de">Diese Einstellung schränkt ein, aus welcher der sechs Saiten die Fragen stammen (in den Focus-Einstellungen des Modus Note → Position). Neben „Alle Saiten" können Sie sich auf die drei hohen oder die drei tiefen Saiten oder auf eine einzelne Saite beschränken. Der Focus Nur schwache Noten im selben Bereich liefert automatisch nur die Noten unter 70 % Trefferquote (aktiv, sobald sich Daten angesammelt haben).</span>
+        </p>
+
+        <div class="manual-options">
+            <div class="manual-option">
+                <div class="manual-option__name"><span lang="ja">全ての弦</span><span lang="en">All Strings</span><span lang="fr">Toutes les cordes</span><span lang="de">Alle Saiten</span></div>
+                <div class="manual-option__desc"><span lang="ja">6 弦すべてから出題します。本番に近い総合練習。特に絞る理由がなければこのまま。</span><span lang="en">Draws from all six strings — comprehensive, realistic practice. Leave it here unless you have a reason to narrow down.</span><span lang="fr">Tire des questions des six cordes — un entraînement complet et réaliste. Laissez ce réglage, sauf si vous avez une raison de restreindre.</span><span lang="de">Zieht Fragen aus allen sechs Saiten — ein umfassendes, realistisches Training. Belassen Sie es hier, sofern Sie keinen Grund haben, einzuschränken.</span></div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name"><span lang="ja">高音弦 (1-3弦) / 低音弦 (4-6弦)</span><span lang="en">High Strings (1-3) / Low Strings (4-6)</span><span lang="fr">Cordes aiguës (1-3) / Cordes graves (4-6)</span><span lang="de">Hohe Saiten (1-3) / Tiefe Saiten (4-6)</span></div>
+                <div class="manual-option__desc"><span lang="ja">3 本ずつのグループに絞ります。低音弦（E A D）はコードのルートを探すのに、高音弦（G B E）はメロディやソロの位置取りに直結します。用途に合わせて半分ずつ固める使い方が便利。</span><span lang="en">Narrows to a group of three. The bass strings (E A D) tie directly to finding chord roots; the treble strings (G B E) to placing melodies and solos. Solidifying one half at a time per your needs is handy.</span><span lang="fr">Restreint à un groupe de trois. Les cordes graves (E A D) sont directement liées à la recherche des fondamentales des accords ; les cordes aiguës (G B E) au placement des mélodies et des solos. Consolider une moitié à la fois selon vos besoins est pratique.</span><span lang="de">Schränkt auf eine Dreiergruppe ein. Die tiefen Saiten (E A D) hängen direkt mit dem Auffinden der Akkordgrundtöne zusammen, die hohen Saiten (G B E) mit dem Platzieren von Melodien und Soli. Je eine Hälfte nach Bedarf zu festigen, ist praktisch.</span></div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name"><span lang="ja">1弦〜6弦（個別）</span><span lang="en">1st–6th String (individual)</span><span lang="fr">Cordes 1 à 6 (individuel)</span><span lang="de">1. bis 6. Saite (einzeln)</span></div>
+                <div class="manual-option__desc"><span lang="ja">特定の 1 弦だけに絞ります。「6 弦の音名がいつもあやふや」のような、はっきりした苦手を 1 本ずつ潰すための最も狭い設定です。</span><span lang="en">Limits to a single string. The narrowest setting, for crushing a clear weak spot one string at a time — say, "I'm always shaky on the 6th string's note names."</span><span lang="fr">Se limite à une seule corde. Le réglage le plus restreint, pour éliminer un point faible évident une corde à la fois — par exemple « je suis toujours hésitant sur les noms de notes de la 6e corde ».</span><span lang="de">Beschränkt sich auf eine einzelne Saite. Die engste Einstellung, um eine klare Schwachstelle Saite für Saite zu beseitigen — etwa „bei den Notennamen der 6. Saite bin ich immer unsicher".</span></div>
+            </div>
+        </div>
+
+        <div class="manual-rationale">
+            <span class="manual-rationale__label"><span lang="ja">学習科学の裏づけ</span><span lang="en">The evidence behind it</span><span lang="fr">Les fondements scientifiques</span><span lang="de">Die wissenschaftliche Grundlage</span></span>
+            <p>
+                <span lang="ja">対象弦を絞れるのは、一度に扱う情報量を減らして苦手な部分を確実に埋めるためです。全弦をまとめて練習すると弱い 1 弦は数の中に埋もれがちですが、その弦だけに絞ると処理の負荷が下がり、集中して定着させられます。初期や苦手克服では負荷を抑えるほど学習が進む、という認知負荷の考え方にもとづきます。</span>
+                <span lang="en">Narrowing the strings lets you cut how much you handle at once and reliably fill a weak spot. A single shaky string gets lost in the crowd when you practice all six; isolating it lowers the load so you can focus and make it stick. This follows cognitive-load theory: keeping demands low — early on or when shoring up a weakness — aids learning.</span>
+                <span lang="fr">Restreindre les cordes vous permet de réduire ce que vous gérez à la fois et de combler un point faible de façon fiable. Une corde hésitante se perd dans la masse quand vous travaillez les six ; l'isoler abaisse la charge afin que vous puissiez vous concentrer et l'ancrer durablement. Cela suit la théorie de la charge cognitive : limiter la charge — au début ou pour consolider une faiblesse — favorise l'apprentissage.</span>
+                <span lang="de">Die Saiten einzuschränken lässt Sie verringern, wie viel Sie auf einmal bewältigen, und eine Schwachstelle zuverlässig auffüllen. Eine einzelne unsichere Saite geht in der Menge unter, wenn Sie alle sechs üben; sie zu isolieren senkt die Last, sodass Sie sich konzentrieren und es festigen können. Das folgt der Cognitive-Load-Theorie: Eine geringe Last — am Anfang oder beim Beheben einer Schwäche — fördert das Lernen.</span>
+            </p>
+            <p class="manual-rationale__ref"><span lang="ja">参考: </span><span lang="en">Ref.: </span><span lang="fr">Réf. : </span><span lang="de">Quelle: </span>Sweller (1988) <a class="manual-ref-num" href="#ref-2">[2]</a></p>
+        </div>
+
+        <!-- #answer-mode -->
+        <h2 id="answer-mode"><span lang="ja">回答モード</span><span lang="en">Answer Mode</span><span lang="fr">Mode de réponse</span><span lang="de">Antwortmodus</span></h2>
+
+        <p class="manual-lead">
+            <span lang="ja"><strong>まずは「1箇所タップ」から。</strong> 各音の位置がだいたい頭に入ってきたら「全箇所タップ」に切り替え、指板全体での散らばりを完成させます。</span>
+            <span lang="en"><strong>Start with Single Position.</strong> Once each note's locations are roughly in your head, switch to All Positions to complete the full picture of how they spread across the neck.</span>
+            <span lang="fr"><strong>Commencez par Une seule position.</strong> Une fois que les emplacements de chaque note sont à peu près en tête, passez à Toutes les positions pour compléter l'image d'ensemble de leur répartition sur le manche.</span>
+            <span lang="de"><strong>Beginnen Sie mit Einzelne Position.</strong> Sobald Sie die Lagen jeder Note ungefähr im Kopf haben, wechseln Sie zu Alle Positionen, um das Gesamtbild ihrer Verteilung über das Griffbrett zu vervollständigen.</span>
+        </p>
+
+        <p>
+            <span lang="ja">音名を指板で答えるとき（音名 → 位置 モード）に「どこまでタップすれば正解か」を決める設定です。1 つの音名は指板上の複数の場所に存在するため、全部を答えさせるか 1 箇所で良しとするかで難易度が変わります。</span>
+            <span lang="en">This setting decides, when you answer a note on the neck (Note → Position mode), how much you must tap to be correct. One note name exists in several spots, so whether you must find them all or just one changes the difficulty.</span>
+            <span lang="fr">Ce réglage détermine, lorsque vous répondez à une note sur le manche (mode Note → Position), combien d'endroits vous devez taper pour avoir juste. Un même nom de note existe à plusieurs endroits ; devoir les trouver tous ou un seul change donc la difficulté.</span>
+            <span lang="de">Diese Einstellung bestimmt, wenn Sie eine Note auf dem Griffbrett beantworten (Modus Note → Position), wie viele Stellen Sie antippen müssen, um richtig zu liegen. Ein Notenname existiert an mehreren Stellen; ob Sie alle oder nur eine finden müssen, ändert daher die Schwierigkeit.</span>
+        </p>
+
+        <div class="manual-options">
+            <div class="manual-option">
+                <div class="manual-option__name"><span lang="ja">1箇所タップ</span><span lang="en">Single Position</span><span lang="fr">Une seule position</span><span lang="de">Einzelne Position</span></div>
+                <div class="manual-option__desc"><span lang="ja">正解の場所を 1 つ見つければ正解です。スピード重視。1 つでも見つかれば次へ進めるので、テンポよく数をこなして反応速度を鍛えたいときに向きます。</span><span lang="en">Find just one correct spot and you are right. Speed-oriented. Since one is enough to advance, it suits drilling many questions at a brisk tempo to build reaction speed.</span><span lang="fr">Trouvez un seul endroit correct et vous avez juste. Axé sur la vitesse. Comme un seul suffit pour avancer, ce mode convient pour enchaîner de nombreuses questions à un bon tempo afin de développer la rapidité de réaction.</span><span lang="de">Finden Sie nur eine richtige Stelle und Sie liegen richtig. Auf Geschwindigkeit ausgelegt. Da eine zum Weiterkommen genügt, eignet sich dieser Modus, um viele Fragen in flottem Tempo zu üben und so die Reaktionsgeschwindigkeit aufzubauen.</span></div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name"><span lang="ja">全箇所タップ</span><span lang="en">All Positions</span><span lang="fr">Toutes les positions</span><span lang="de">Alle Positionen</span></div>
+                <div class="manual-option__desc"><span lang="ja">その範囲にある正解の場所を、すべて見つけてタップします。1 つの音名が指板のどこに散らばっているかを完全に把握する、網羅性重視の設定。難易度は上がります。</span><span lang="en">Find and tap every correct spot within the range. A completeness-oriented setting that maps exactly where one note name is scattered across the neck. Harder.</span><span lang="fr">Trouvez et tapez tous les endroits corrects de la plage. Un réglage axé sur l'exhaustivité, qui cartographie précisément où un nom de note est dispersé sur le manche. Plus difficile.</span><span lang="de">Finden und tippen Sie jede richtige Stelle innerhalb des Bereichs an. Eine auf Vollständigkeit ausgelegte Einstellung, die genau abbildet, wo ein Notenname über das Griffbrett verstreut ist. Schwieriger.</span></div>
+            </div>
+        </div>
+
+        <div class="manual-rationale">
+            <span class="manual-rationale__label"><span lang="ja">学習科学の裏づけ</span><span lang="en">The evidence behind it</span><span lang="fr">Les fondements scientifiques</span><span lang="de">Die wissenschaftliche Grundlage</span></span>
+            <p>
+                <span lang="ja">2 つの設定は、楽器奏者に必要な「1 つの音名が指板全体のどこにあるか」という知識を段階的に仕上げるためにあります。最初は 1 箇所で即答する反応を作り、慣れたら全箇所を答えさせて指板全域の位置関係を網羅します。これは器楽・聴音教育で確立された指板習熟の進め方に沿った設計です。</span>
+                <span lang="en">The two settings stage the instrumentalist's knowledge of where one note name lives across the whole neck. First you build an instant single-spot response; then, once comfortable, finding every spot maps the full set of positions. The design follows established instrumental and aural-skills pedagogy for mastering the fretboard.</span>
+                <span lang="fr">Les deux réglages échelonnent la connaissance, propre à l'instrumentiste, de l'endroit où vit un nom de note sur tout le manche. D'abord vous construisez une réponse instantanée sur un seul point ; puis, une fois à l'aise, trouver chaque endroit cartographie l'ensemble des positions. Cette conception suit la pédagogie instrumentale et auditive établie pour la maîtrise du manche.</span>
+                <span lang="de">Die beiden Einstellungen staffeln das instrumentale Wissen darüber, wo ein Notenname über das ganze Griffbrett liegt. Zuerst bauen Sie eine sofortige Reaktion auf eine einzelne Stelle auf; sobald Sie sicher sind, bildet das Finden jeder Stelle die gesamte Menge der Positionen ab. Diese Gestaltung folgt der etablierten Instrumental- und Gehörbildungspädagogik zur Beherrschung des Griffbretts.</span>
+            </p>
+            <p class="manual-rationale__ref"><span lang="ja">参考: </span><span lang="en">Ref.: </span><span lang="fr">Réf. : </span><span lang="de">Quelle: </span>Karpinski (2000) <a class="manual-ref-num" href="#ref-1">[1]</a></p>
+        </div>
+
+        <!-- #hint-level -->
+        <h2 id="hint-level"><span lang="ja">ヒント（アシスト設定）</span><span lang="en">Hints</span><span lang="fr">Indices</span><span lang="de">Hinweise</span></h2>
+
+        <p class="manual-lead">
+            <span lang="ja"><strong>まったくの初学者は「オクターブ表示」で位置関係をつかみ、慣れたら「ヒントなし」へ。</strong> 最終目標は ヒントなし で安定して答えられることです。</span>
+            <span lang="en"><strong>Absolute beginners use Show Octaves to grasp the layout, then switch to No Hints.</strong> The final goal is to answer reliably with No Hints.</span>
+            <span lang="fr"><strong>Les grands débutants utilisent Afficher les octaves pour saisir la disposition, puis passent à Aucun indice.</strong> L'objectif final est de répondre de façon fiable sans indice.</span>
+            <span lang="de"><strong>Absolute Anfänger nutzen Oktaven anzeigen, um die Anordnung zu erfassen, und wechseln dann zu Keine Hinweise.</strong> Das Endziel ist, zuverlässig ohne Hinweise zu antworten.</span>
+        </p>
+
+        <p>
+            <span lang="ja">回答中にどれだけ補助情報を表示するかを決める設定です。補助が多いほど答えやすくなりますが、その分「自力で思い出す」負荷が減るため、慣れたら減らしていくのが基本です。</span>
+            <span lang="en">This setting decides how much assistance is shown while you answer. More help makes answering easier, but it also reduces the effort of recalling on your own — so the basic rule is to dial it down as you get comfortable.</span>
+            <span lang="fr">Ce réglage détermine la quantité d'aide affichée pendant que vous répondez. Plus d'aide facilite la réponse, mais réduit aussi l'effort de rappel par vous-même — la règle de base est donc de la diminuer à mesure que vous êtes à l'aise.</span>
+            <span lang="de">Diese Einstellung bestimmt, wie viel Hilfe angezeigt wird, während Sie antworten. Mehr Hilfe erleichtert das Antworten, verringert aber auch die Anstrengung, sich selbst zu erinnern — die Grundregel lautet daher, sie zu verringern, sobald Sie sicherer werden.</span>
+        </p>
+
+        <div class="manual-options">
+            <div class="manual-option">
+                <div class="manual-option__name"><span lang="ja">ヒントなし</span><span lang="en">No Hints</span><span lang="fr">Aucun indice</span><span lang="de">Keine Hinweise</span></div>
+                <div class="manual-option__desc"><span lang="ja">補助は一切なし。完全に自力で答えます。記憶を「自分で引き出す」負荷が最大になり、定着が最も進む状態です。最終的にはここを目指します。</span><span lang="en">No assistance at all — you answer entirely on your own. This maximizes the effort of pulling the answer from memory, which drives the strongest retention. This is the ultimate target.</span><span lang="fr">Aucune aide du tout — vous répondez entièrement par vous-même. Cela maximise l'effort pour extraire la réponse de la mémoire, ce qui produit la rétention la plus forte. C'est l'objectif ultime.</span><span lang="de">Überhaupt keine Hilfe — Sie antworten völlig allein. Das maximiert die Anstrengung, die Antwort aus dem Gedächtnis abzurufen, was die stärkste Behaltensleistung bewirkt. Das ist das letztendliche Ziel.</span></div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name"><span lang="ja">オクターブ表示</span><span lang="en">Show Octaves</span><span lang="fr">Afficher les octaves</span><span lang="de">Oktaven anzeigen</span></div>
+                <div class="manual-option__desc"><span lang="ja">同じ音名のオクターブ位置をハイライトします。1 つ見つかれば他も推測しやすくなるので、まだ位置関係がつかめていない学習初期の補助に。</span><span lang="en">Highlights the octave positions of the same note name. Finding one makes the others easier to infer — good support early on when the spatial relationships are not yet clear.</span><span lang="fr">Met en évidence les positions à l'octave du même nom de note. En trouver une rend les autres plus faciles à déduire — une bonne aide au début, quand les relations spatiales ne sont pas encore claires.</span><span lang="de">Hebt die Oktavpositionen desselben Notennamens hervor. Eine zu finden macht die anderen leichter ableitbar — eine gute Hilfe am Anfang, wenn die räumlichen Beziehungen noch nicht klar sind.</span></div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name"><span lang="ja">残り数表示</span><span lang="en">Show Remaining</span><span lang="fr">Afficher le nombre restant</span><span lang="de">Verbleibende anzeigen</span></div>
+                <div class="manual-option__desc"><span lang="ja">あと何箇所の正解が残っているかを表示します。全箇所タップと組み合わせると、「まだ取りこぼしがある」と分かるので探し漏れを防げます。</span><span lang="en">Shows how many correct spots remain. Paired with All Positions, it tells you "there are still some left," preventing missed spots.</span><span lang="fr">Affiche combien d'endroits corrects il reste. Associé à Toutes les positions, il vous indique qu'« il en reste encore », ce qui évite d'en oublier.</span><span lang="de">Zeigt an, wie viele richtige Stellen noch übrig sind. Zusammen mit Alle Positionen sagt es Ihnen, dass „noch welche übrig sind", und verhindert so übersehene Stellen.</span></div>
+            </div>
+        </div>
+
+        <div class="manual-rationale">
+            <span class="manual-rationale__label"><span lang="ja">学習科学の裏づけ</span><span lang="en">The evidence behind it</span><span lang="fr">Les fondements scientifiques</span><span lang="de">Die wissenschaftliche Grundlage</span></span>
+            <p>
+                <span lang="ja">ヒントは、初学者がまだ覚えきっていない段階で処理の負荷を下げるための足場（スキャフォールド）です。オクターブ表示などの補助が手がかりを与えて負荷を抑え、位置関係をつかみやすくします。慣れて余裕が出たら補助を外し、自力で答える本来の負荷に戻すのが効果的です。足場で負荷を抑えると初期の学習が進む、という認知負荷の考え方にもとづきます。</span>
+                <span lang="en">Hints are a scaffold that lowers the processing load while a beginner has not yet memorized the neck. Aids like Show Octaves supply a cue, hold the load down, and make the layout easier to grasp. Once you have room to spare, removing the aids restores the full load of recalling unaided. This follows cognitive-load theory: scaffolds that reduce load support early learning.</span>
+                <span lang="fr">Les indices sont un étayage qui abaisse la charge de traitement tant qu'un débutant n'a pas encore mémorisé le manche. Des aides comme Afficher les octaves fournissent un repère, maintiennent la charge basse et facilitent la compréhension de la disposition. Une fois que vous avez de la marge, retirer les aides rétablit toute la charge du rappel sans aide. Cela suit la théorie de la charge cognitive : les étayages qui réduisent la charge soutiennent l'apprentissage initial.</span>
+                <span lang="de">Hinweise sind ein Gerüst (Scaffolding), das die Verarbeitungslast senkt, solange ein Anfänger das Griffbrett noch nicht eingeprägt hat. Hilfen wie Oktaven anzeigen liefern einen Anhaltspunkt, halten die Last niedrig und machen die Anordnung leichter erfassbar. Sobald Sie Spielraum haben, stellt das Entfernen der Hilfen die volle Last des unbegleiteten Abrufens wieder her. Das folgt der Cognitive-Load-Theorie: Gerüste, die die Last verringern, unterstützen das frühe Lernen.</span>
+            </p>
+            <p class="manual-rationale__ref"><span lang="ja">参考: </span><span lang="en">Ref.: </span><span lang="fr">Réf. : </span><span lang="de">Quelle: </span>Sweller (1988) <a class="manual-ref-num" href="#ref-2">[2]</a></p>
+        </div>
+
+        <!-- #tuning -->
+        <h2 id="tuning"><span lang="ja">チューニング</span><span lang="en">Tuning</span><span lang="fr">Accordage</span><span lang="de">Stimmung</span></h2>
+
+        <p class="manual-lead">
+            <span lang="ja"><strong>基本は「標準（EADGBE）」のままで OK。</strong> 変則チューニングは、実際にそのチューニングで弾く必要が出てきてから取り組めば十分です。</span>
+            <span lang="en"><strong>Leave it on Standard (EADGBE).</strong> Take on alternate tunings only when you actually need to play in one.</span>
+            <span lang="fr"><strong>Laissez-le sur Standard (EADGBE).</strong> Ne vous attaquez aux accordages alternatifs que lorsque vous avez réellement besoin de jouer dans l'un d'eux.</span>
+            <span lang="de"><strong>Belassen Sie es auf Standard (EADGBE).</strong> Nehmen Sie sich alternative Stimmungen erst vor, wenn Sie tatsächlich in einer davon spielen müssen.</span>
+        </p>
+
+        <p>
+            <span lang="ja">各弦の開放弦の音を何にするかを決める設定です。チューニングが変わると同じフレット位置でも鳴る音名が変わるため、指板上の音名マップそのものが変わります。標準（EADGBE）のほか、6 弦だけ 1 音下げたドロップ D（DADGBE）や、開放弦だけで和音が鳴るオープン G・オープン D・DADGAD などに対応します。普段と違うチューニングで弾く曲があるなら、それに合わせて指板を覚え直すために使います。</span>
+            <span lang="en">This setting sets the open-string pitch of each string. Change it and the same fret position produces a different note name, so the whole map of note names on the neck shifts. Besides Standard (EADGBE), it supports Drop D (DADGBE, the 6th string down a whole step), and Open G, Open D, and DADGAD, where open strings alone sound a chord. If you play songs in an unusual tuning, use this to relearn the neck for it.</span>
+            <span lang="fr">Ce réglage définit la hauteur à vide de chaque corde. Si vous le changez, la même position de case produit un nom de note différent, donc toute la carte des noms de notes sur le manche se décale. Outre Standard (EADGBE), il prend en charge le Drop D (DADGBE, la 6e corde abaissée d'un ton), ainsi que l'Open G, l'Open D et le DADGAD, où les seules cordes à vide forment un accord. Si vous jouez des morceaux dans un accordage inhabituel, utilisez ceci pour réapprendre le manche en conséquence.</span>
+            <span lang="de">Diese Einstellung legt die Leersaiten-Tonhöhe jeder Saite fest. Ändern Sie sie, erzeugt dieselbe Bundposition einen anderen Notennamen, sodass sich die gesamte Karte der Notennamen auf dem Griffbrett verschiebt. Neben Standard (EADGBE) unterstützt sie Drop D (DADGBE, die 6. Saite einen Ganzton tiefer) sowie Open G, Open D und DADGAD, bei denen schon die leeren Saiten einen Akkord ergeben. Wenn Sie Stücke in einer ungewöhnlichen Stimmung spielen, nutzen Sie dies, um das Griffbrett dafür neu zu lernen.</span>
+        </p>
+
+        <!-- #handedness -->
+        <h2 id="handedness"><span lang="ja">利き手</span><span lang="en">Handedness</span><span lang="fr">Main directrice</span><span lang="de">Händigkeit</span></h2>
+
+        <p class="manual-lead">
+            <span lang="ja"><strong>自分が弾いているギターと同じ向きを選んでください。</strong> 右利き用ギターなら 右利き、左利き用ギターなら 左利き。一度選べば十分です。</span>
+            <span lang="en"><strong>Pick whichever matches the guitar you play.</strong> Right-handed for a right-handed guitar, Left-handed for a left-handed one — choose it once and leave it.</span>
+            <span lang="fr"><strong>Choisissez celui qui correspond à la guitare que vous jouez.</strong> Droitier pour une guitare pour droitier, Gaucher pour une guitare pour gaucher — choisissez-le une fois et laissez-le.</span>
+            <span lang="de"><strong>Wählen Sie, was zur Gitarre passt, die Sie spielen.</strong> Rechtshänder für eine Rechtshänder-Gitarre, Linkshänder für eine Linkshänder-Gitarre — einmal wählen und so belassen.</span>
+        </p>
+
+        <p>
+            <span lang="ja">画面に表示する指板の向きを決める設定です。難易度や練習内容を変えるものではなく、表示を自分の楽器に合わせるためのものです。手元のギターと画面の向きが一致していないと、位置を答えるとき頭の中で左右を反転させる余計な手間がかかります。</span>
+            <span lang="en">This setting sets the orientation of the fretboard shown on screen. It does not change difficulty or content — it simply matches the display to your instrument. If your guitar and the on-screen layout disagree, you waste effort mentally flipping left and right when answering positions.</span>
+            <span lang="fr">Ce réglage définit l'orientation du manche affiché à l'écran. Il ne change ni la difficulté ni le contenu — il fait simplement correspondre l'affichage à votre instrument. Si votre guitare et la disposition à l'écran ne concordent pas, vous gaspillez de l'effort à inverser mentalement la gauche et la droite quand vous répondez aux positions.</span>
+            <span lang="de">Diese Einstellung legt die Ausrichtung des auf dem Bildschirm gezeigten Griffbretts fest. Sie ändert weder Schwierigkeit noch Inhalt — sie passt lediglich die Anzeige an Ihr Instrument an. Wenn Ihre Gitarre und die Anordnung auf dem Bildschirm nicht übereinstimmen, verschwenden Sie Mühe damit, beim Antworten gedanklich links und rechts zu vertauschen.</span>
+        </p>
+
+        <div class="manual-options">
+            <div class="manual-option">
+                <div class="manual-option__name"><span lang="ja">右利き</span><span lang="en">Right-handed</span><span lang="fr">Droitier</span><span lang="de">Rechtshänder</span></div>
+                <div class="manual-option__desc"><span lang="ja">標準表示です。右利き用ギター（左手で押さえる）の見え方に合わせた向き。ほとんどの人はこちらで構いません。</span><span lang="en">The standard display, matching how a right-handed guitar (fretted with the left hand) looks. This is fine for most players.</span><span lang="fr">L'affichage standard, correspondant à l'apparence d'une guitare pour droitier (jouée de la main gauche). Cela convient à la plupart des joueurs.</span><span lang="de">Die Standardanzeige, die dem Aussehen einer Rechtshänder-Gitarre (mit der linken Hand gegriffen) entspricht. Das passt für die meisten Spieler.</span></div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name"><span lang="ja">左利き</span><span lang="en">Left-handed</span><span lang="fr">Gaucher</span><span lang="de">Linkshänder</span></div>
+                <div class="manual-option__desc"><span lang="ja">指板を左右反転して表示します。左利き用ギター（右手で押さえる）を弾く人が、手元と同じ見え方で練習できます。</span><span lang="en">Mirrors the fretboard left to right. Lets players of a left-handed guitar (fretted with the right hand) practice with the same view as their instrument.</span><span lang="fr">Inverse le manche de gauche à droite. Permet aux joueurs d'une guitare pour gaucher (jouée de la main droite) de s'entraîner avec la même vue que leur instrument.</span><span lang="de">Spiegelt das Griffbrett von links nach rechts. Lässt Spieler einer Linkshänder-Gitarre (mit der rechten Hand gegriffen) mit derselben Ansicht wie ihr Instrument üben.</span></div>
+            </div>
+        </div>
+
+        <!-- References -->
+        <section class="manual-refs">
+            <div class="manual-refs__title"><span lang="ja">参考文献</span><span lang="en">References</span><span lang="fr">Références</span><span lang="de">Quellen</span></div>
+            <ol>
+                <li id="ref-1">Karpinski, G. S. (2000). <em>Aural Skills Acquisition: The Development of Listening, Reading, and Performing Skills in College-Level Musicians.</em> Oxford University Press.</li>
+                <li id="ref-2">Sweller, J. (1988). Cognitive load during problem solving: Effects on learning. <em>Cognitive Science, 12</em>(2), 257–285.</li>
+            </ol>
+        </section>
+
+    </main>
+
+    <!-- Final CTA -->
+    <section class="article-cta">
+        <h2 class="article-cta__title"><span lang="ja">設定を決めたら、さっそく試してみよう</span><span lang="en">Settings Sorted? Give It a Try</span><span lang="fr">Réglages décidés ? Essayez sans attendre</span><span lang="de">Einstellungen geklärt? Probieren Sie es aus</span></h2>
+        <p class="article-cta__text">
+            <span lang="ja">各設定の意味がわかれば、あとは実際に手を動かすだけです。<br>迷ったら本ページの「迷ったら…」をなぞって始めてみてください。<br>ソルフェージュPRO の 指板トレーニング で、自分に合った設定を見つけましょう。</span>
+            <span lang="en">Once you understand each setting, the rest is hands-on practice.<br>When unsure, just follow the "when in doubt" lines on this page.<br>Find the settings that fit you in Solfege PRO's Fretboard Training.</span>
+            <span lang="fr">Une fois chaque réglage compris, il ne reste plus qu'à pratiquer.<br>En cas de doute, suivez simplement les lignes « En cas de doute… » de cette page.<br>Trouvez les réglages qui vous conviennent dans l'entraînement au manche de Solfege PRO.</span>
+            <span lang="de">Sobald Sie jede Einstellung verstanden haben, bleibt nur noch das praktische Üben.<br>Folgen Sie im Zweifel einfach den Zeilen „Im Zweifel…" auf dieser Seite.<br>Finden Sie die für Sie passenden Einstellungen im Griffbrett-Training von Solfege PRO.</span>
+        </p>
+        <a href="https://apps.apple.com/jp/app/id6756626617" class="app-store-link" aria-label="Download on the App Store">
+            <span lang="ja"><img class="app-store-link__img" width="109" height="40" src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/ja-jp" alt="App Storeで入手"></span>
+            <span lang="en"><img class="app-store-link__img" width="120" height="40" src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/en-us" alt="Download on the App Store"></span>
+            <span lang="fr"><img class="app-store-link__img" width="127" height="40" src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/fr-fr" alt="Télécharger dans l'App Store"></span>
+            <span lang="de"><img class="app-store-link__img" width="120" height="40" src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/de-de" alt="Laden im App Store"></span>
+        </a>
+    </section>
+
+    <!-- Related Content -->
+    <div class="article-related">
+        <div class="article-related__title"><span lang="ja">関連コンテンツ</span><span lang="en">Related Content</span><span lang="fr">Contenu associé</span><span lang="de">Verwandte Inhalte</span></div>
+        <a href="/guides/fretboard-training/" class="article-related__link" style="margin-bottom: var(--space-md);">
+            <div class="article-related__link-title"><span lang="ja">指板トレーニングとは何か — ギターの音名を暗記する</span><span lang="en">What Is Fretboard Training? — Memorizing the Notes on the Guitar Neck</span><span lang="fr">Maîtriser le manche — Apprendre efficacement les notes de la guitare</span><span lang="de">Das Griffbrett beherrschen — Gitarrennoten effizient lernen</span></div>
+            <div class="article-related__link-desc"><span lang="ja">設定の前に、そもそも指板トレーニングとは何かを知りたい方へ。なぜ指板上の音名を覚えると上達するのか、段階的な練習法を解説したガイド。</span><span lang="en">For those who want to understand what fretboard training is before adjusting settings — a guide to why memorizing note names on the neck accelerates progress, with step-by-step practice.</span><span lang="fr">Pour celles et ceux qui veulent comprendre ce qu'est l'entraînement du manche avant d'ajuster les réglages — un guide expliquant pourquoi mémoriser le nom des notes sur le manche accélère les progrès, avec une pratique progressive.</span><span lang="de">Für alle, die verstehen möchten, was Griffbrett-Training ist, bevor sie die Einstellungen anpassen — ein Leitfaden dazu, warum das Einprägen der Tonnamen auf dem Hals den Fortschritt beschleunigt, mit schrittweisem Üben.</span></div>
+        </a>
+        <a href="/" class="article-related__link">
+            <div class="article-related__link-title"><span lang="ja">ソルフェージュPRO 練習ガイド</span><span lang="en">Solfege PRO Practice Guide</span><span lang="fr">Guide d'entraînement Solfege PRO</span><span lang="de">Solfege PRO Übungsleitfaden</span></div>
+            <div class="article-related__link-desc"><span lang="ja">ギター・ベース・ドラム・ピアノ・ボーカル向けの課題別練習メニュー</span><span lang="en">Challenge-based practice menus for guitar, bass, drums, piano, and vocals</span><span lang="fr">Programmes d'entraînement par problématique pour guitare, basse, batterie, piano et chant</span><span lang="de">Problem­bezogene Übungsmenüs für Gitarre, Bass, Schlagzeug, Klavier und Gesang</span></div>
+        </a>
+    </div>
+
+    <!-- Article Note -->
+    <aside class="article-endnote">
+        <p class="article-endnote__text">
+            <span lang="ja">本ページはアプリ内の設定項目の解説を目的としたリファレンスです。記載した推奨の進め方は、音楽教育で広く用いられる練習の方法論をもとにした一般的な目安であり、最適な設定は個人の経験や目的によって異なります。引用した研究は学習一般の知見であり、本アプリでの効果を保証するものではありません。</span>
+            <span lang="en">This page is a reference explaining the app's in-app settings. The recommended progressions given here are general guidelines based on widely used practice methodology; the optimal settings vary with individual experience and goals. The cited studies report general learning findings and do not guarantee results within this app.</span>
+            <span lang="fr">Cette page est une référence expliquant les réglages internes de l'application. Les progressions recommandées ici sont des repères généraux fondés sur une méthodologie de pratique largement répandue ; les réglages optimaux varient selon l'expérience et les objectifs de chacun. Les études citées rapportent des résultats généraux sur l'apprentissage et ne garantissent pas de résultats au sein de cette application.</span>
+            <span lang="de">Diese Seite ist eine Referenz, die die in der App enthaltenen Einstellungen erläutert. Die hier empfohlenen Abfolgen sind allgemeine Richtwerte, die auf einer weit verbreiteten Übungsmethodik beruhen; die optimalen Einstellungen hängen von der individuellen Erfahrung und den Zielen ab. Die zitierten Studien berichten allgemeine Erkenntnisse zum Lernen und garantieren keine Ergebnisse innerhalb dieser App.</span>
+        </p>
+    </aside>
+
+    <!-- Footer -->
+    <footer class="article-footer">
+        <p class="article-footer__text">
+            &copy; 2026 <span lang="ja">ソルフェージュPRO</span><span lang="en">Solfege PRO</span><span lang="fr">Solfege PRO</span><span lang="de">Solfege PRO</span> &mdash;
+            <a href="https://apps.apple.com/jp/app/id6756626617" class="article-footer__link">App Store</a>
+        </p>
+    </footer>
+    <script src="/bootstrap.js?v=3" defer></script>
+</body>
+</html>

@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="en"
+      data-title-ja="譜読み 設定マニュアル — 各設定の選び方 | ソルフェージュPRO"
+      data-title-en="Sight Reading Settings Manual — How to Choose Each Option | Solfege PRO"
+      data-title-fr="Manuel des réglages de Lecture à vue — Comment choisir chaque option | Solfege PRO"
+      data-title-de="Einstellungshandbuch Blattlesen — So wählen Sie jede Option | Solfege PRO">
+<head>
+    <meta charset="UTF-8">
+    <meta name="robots" content="index, follow">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#1A1A1E">
+    <title>Sight Reading Settings Manual — How to Choose Each Option | Solfege PRO</title>
+    <meta name="description" content="Reference manual for Sight Reading settings — difficulty, practice mode, clef, key signature, ledger lines: what each is for and how to choose it.">
+
+    <!-- Canonical -->
+    <link rel="canonical" href="https://solfegepro.com/en/manual/sight-reading/">
+    <link rel="alternate" hreflang="ja" href="https://solfegepro.com/manual/sight-reading/">
+    <link rel="alternate" hreflang="en" href="https://solfegepro.com/en/manual/sight-reading/">
+    <link rel="alternate" hreflang="fr" href="https://solfegepro.com/fr/manual/sight-reading/">
+    <link rel="alternate" hreflang="de" href="https://solfegepro.com/de/manual/sight-reading/">
+    <link rel="alternate" hreflang="x-default" href="https://solfegepro.com/manual/sight-reading/">
+<!-- OGP -->
+    <meta property="og:title" content="Sight Reading Settings Manual — How to Choose Each Option">
+    <meta property="og:description" content="Reference manual for Sight Reading settings — difficulty, practice mode, clef, key signature, ledger lines: what each is for and how to choose it.">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://solfegepro.com/en/manual/sight-reading/">
+    <meta property="og:site_name" content="Solfege PRO">
+    <meta property="og:image" content="https://solfegepro.com/og-image.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Solfege PRO">
+    <meta property="og:locale" content="en_US">
+    <meta property="og:locale:alternate" content="ja_JP">
+    <meta property="og:locale:alternate" content="fr_FR">
+    <meta property="og:locale:alternate" content="de_DE">
+    <meta property="article:published_time" content="2026-06-05">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Sight Reading Settings Manual — How to Choose Each Option">
+    <meta name="twitter:description" content="Reference manual for Sight Reading settings — difficulty, practice mode, clef, key signature, ledger lines: what each is for and how to choose it.">
+    <meta name="twitter:image" content="https://solfegepro.com/og-image.png">
+
+    <!-- Favicon -->
+    <link rel="icon" href="/favicon.ico" sizes="any">
+    <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap"></noscript>
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="/style.css?v=17">
+    <link rel="stylesheet" href="/guides/article.css?v=11">
+
+    <style>
+        /* Manual option reference — responsive, no fixed px widths */
+        .manual-options {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr);
+            gap: var(--space-sm);
+            margin: var(--space-lg) 0;
+        }
+        .manual-option {
+            background: var(--surface);
+            border: 1px solid var(--surface-light);
+            border-radius: var(--radius-lg);
+            padding: var(--space-md);
+        }
+        .manual-option__name {
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: var(--space-xs);
+        }
+        .manual-option__desc {
+            font-size: 13px;
+            color: var(--text-secondary);
+        }
+        /* Bottom-line callout (conclusion first) */
+        .manual-lead {
+            font-size: 14px;
+            line-height: 1.75;
+            color: var(--text-primary);
+            border-left: 3px solid var(--primary);
+            background: rgba(212, 175, 55, 0.06);
+            padding: var(--space-sm) var(--space-md);
+            border-radius: 0 var(--radius-md) var(--radius-md) 0;
+            margin: var(--space-md) 0;
+        }
+        /* Per-setting evidence note — deliberately styled as an editorial
+           aside, NOT as a settings card (no surface fill, no gold label),
+           so it is never mistaken for an in-app option. */
+        .manual-rationale {
+            margin: var(--space-md) 0 var(--space-2xl);
+            padding: var(--space-sm) 0 var(--space-sm) var(--space-md);
+            border-left: 2px solid var(--surface-light);
+        }
+        .manual-rationale__label {
+            display: block;
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            color: var(--text-secondary);
+            margin-bottom: 4px;
+            opacity: 0.75;
+        }
+        .manual-rationale p {
+            font-size: 13px;
+            line-height: 1.75;
+            color: var(--text-secondary);
+            margin: 0;
+        }
+        .manual-rationale__ref {
+            font-size: 12px;
+            font-style: italic;
+            margin-top: var(--space-xs) !important;
+            opacity: 0.7;
+        }
+        /* Citation number linking to the reference list */
+        .manual-ref-num {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-style: normal;
+        }
+        .manual-ref-num:hover { color: var(--primary); }
+        /* Full reference list at page end */
+        .manual-refs {
+            margin: var(--space-2xl) 0 0;
+            padding-top: var(--space-lg);
+            border-top: 1px solid var(--surface-light);
+        }
+        .manual-refs__title {
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: var(--space-sm);
+        }
+        .manual-refs ol {
+            margin: 0;
+            padding-left: 1.25em;
+        }
+        .manual-refs li {
+            font-size: 12px;
+            line-height: 1.7;
+            color: var(--text-secondary);
+            margin-bottom: var(--space-xs);
+            scroll-margin-top: 84px;
+        }
+        .manual-refs li:target {
+            color: var(--text-primary);
+        }
+    </style>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Sight Reading Settings Manual — How to Choose Each Option","description":"Reference manual for Sight Reading settings — difficulty, practice mode, clef, key signature, ledger lines: what each is for and how to choose it.","author":{"@type":"Organization","name":"Solfege PRO"},"publisher":{"@type":"Organization","name":"Solfege PRO","logo":{"@type":"ImageObject","url":"https://solfegepro.com/AppIcon.png"}},"datePublished":"2026-06-05","mainEntityOfPage":{"@type":"WebPage","@id":"https://solfegepro.com/en/manual/sight-reading/"}}</script>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://solfegepro.com/en/"},{"@type":"ListItem","position":2,"name":"Manual","item":"https://solfegepro.com/en/manual/"},{"@type":"ListItem","position":3,"name":"Sight Reading Settings Manual — How to Choose Each Option","item":"https://solfegepro.com/en/manual/sight-reading/"}]}</script>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="nav__container">
+            <a href="/" class="nav__logo">
+                <img src="/AppIcon.png" alt="Solfege PRO" class="nav__logo-icon" width="32" height="32">
+                <span class="nav__logo-text">Solfege PRO</span>
+            </a>
+            <ul class="nav__list">
+                <li><a href="/" class="nav__link">Practice Guide</a></li>
+                <li><a href="/guides/" class="nav__link">Guides</a></li>
+                <li><a href="/manual/" class="nav__link active">Manual</a></li>
+                            <li><a href="/start-here/" class="nav__link">Where to Start?</a></li>
+            </ul>
+            <div class="nav__settings">
+                <button class="settings-btn" id="lang-toggle" title="Toggle language">
+                    <span id="lang-text">EN</span>
+                </button>
+                <button class="hamburger-btn" id="hamburger-btn" aria-label="Menu" aria-expanded="false" aria-controls="drawer">
+                    <span class="hamburger-btn__line"></span>
+                    <span class="hamburger-btn__line"></span>
+                    <span class="hamburger-btn__line"></span>
+                </button>
+            </div>
+        </div>
+    </nav>
+        <!-- Mobile drawer (hidden on desktop) -->
+        <div class="drawer-overlay" id="drawer-overlay"></div>
+        <aside class="drawer" id="drawer" aria-label="Mobile menu" aria-hidden="true" inert>
+            <div class="drawer__header">
+                <span class="drawer__title">Menu</span>
+                <button class="drawer__close" id="drawer-close" aria-label="Close menu">×</button>
+            </div>
+            <ul class="drawer__list">
+                    <li><a href="/" class="drawer__link">Practice Guide</a></li>
+                    <li><a href="/guides/" class="drawer__link">Guides</a></li>
+                    <li><a href="/manual/" class="drawer__link active">Manual</a></li>
+                    <li><a href="/start-here/" class="drawer__link">Where to Start?</a></li>
+            </ul>
+        </aside>
+
+
+    <!-- Article Header -->
+    <header class="page-header">
+        <div class="page-header__meta">
+            <span class="page-header__tag">Manual</span>
+            <span>Sight Reading</span>
+        </div>
+        <h1 class="page-header__title">
+            
+            Sight Reading Settings Manual<br>What Each Option Means and How to Choose
+            
+            
+        </h1>
+        <p class="page-header__subtitle">
+            
+            Which option to pick, when, and why. This page walks through each setting in sight reading training, one at a time. If you arrived from a "?" in the settings screen, scroll to the option you need.
+            
+            
+        </p>
+    </header>
+
+    <!-- Top-of-article CTA -->
+    <aside class="article-top-cta" aria-label="App promotion">
+        <div class="article-top-cta__body">
+            <p class="article-top-cta__title">
+                
+                Try this in Solfege PRO
+                
+                
+            </p>
+            <p class="article-top-cta__sub">
+                
+                ¥980/month · 1-week free trial
+                
+                
+            </p>
+        </div>
+        <a href="https://apps.apple.com/us/app/id6756626617" class="article-top-cta__button" data-cta-position="article_top">
+            
+            App Store →
+            
+            
+        </a>
+    </aside>
+
+    <!-- Article Body -->
+    <main class="article-body">
+
+        <!-- Intro -->
+        <p>
+            
+            Sight reading training builds your ability to look at a note on the staff and read its name (Do, Re, Mi…) quickly and accurately. Reading the staff is the foundation for turning a score into music, and the starting point for playing any instrument.
+            
+            
+        </p>
+        <p>
+            
+            This page is a manual for choosing the settings. Each setting is designed around established methods from music education. For each setting that calls for a decision, we give <strong>the recommended choice, what it is for, and what it trains — with the evidence behind it</strong>. If you arrived from a "?" in the settings screen, scroll to the option you need.
+            
+            
+        </p>
+
+        <!-- #difficulty -->
+        <h2 id="difficulty">Difficulty</h2>
+
+        <p class="manual-lead">
+            
+            <strong>When unsure, start at Beginner.</strong> Step up one level once you reliably hold 80%+ at the current one.
+            
+            
+        </p>
+
+        <p>
+            
+            Bundles together the range of notes you'll be asked to read — the register, the key signatures, and whether ledger lines appear. A narrower register with fewer symbols is easier; a wider one with more symbols is harder.
+            
+            
+        </p>
+
+        <div class="manual-options">
+            <div class="manual-option">
+                <div class="manual-option__name">Beginner</div>
+                <div class="manual-option__desc">Middle register, natural notes only (the unaltered white-key pitches), near the center of the treble staff in the key of C — the first step of anchoring which note sits on each line and space.</div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name">Intermediate</div>
+                <div class="manual-option__desc">A wider range with accidentals; the bass clef joins in and key signatures of up to three sharps or flats appear, so the reading range widens considerably.</div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name">Advanced</div>
+                <div class="manual-option__desc">Full range including ledger lines — all key signatures plus notes that reach beyond the staff; the top tier, closest to real-world scores.</div>
+            </div>
+        </div>
+
+        <div class="manual-rationale">
+            <span class="manual-rationale__label">The evidence behind it</span>
+            <p>
+                
+                The narrower the range you handle at once, the less your eyes must process, and the more reliably you fix which note sits on each line and space. Sight reading hinges on instant recall, so securing a narrow range before widening it gets you there faster. The tiers follow cognitive-load theory: keeping processing demands low early in a new skill aids learning.
+                
+                
+            </p>
+            <p class="manual-rationale__ref">Ref.: Sweller (1988) <a class="manual-ref-num" href="#ref-1">[1]</a></p>
+        </div>
+
+        <!-- #training-mode -->
+        <h2 id="training-mode">Training Mode</h2>
+
+        <p class="manual-lead">
+            
+            <strong>Standard is enough to start.</strong> Use Key Focus only to target a specific key signature, and reach for "Weak Point Focus" once your results accumulate.
+            
+            
+        </p>
+
+        <p>
+            
+            This setting decides the policy by which notes are chosen for you. There are three modes.
+            
+            
+        </p>
+
+        <div class="manual-options">
+            <div class="manual-option">
+                <div class="manual-option__name">Standard</div>
+                <div class="manual-option__desc">Draws from all the notes matching your chosen difficulty. With no special intent, this is the one.</div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name">Key Focus</div>
+                <div class="manual-option__desc">Narrows the questions to a single key, for drilling a key signature you find hard (selecting it reveals the "Key to Practice" picker below).</div>
+            </div>
+        </div>
+
+        <p>
+            
+            The remaining mode — "Weak Point Focus" — pays off once your performance data accumulates. It works the same way across every training, so it appears inline below.
+            
+            
+        </p>
+
+        <!-- TODO i18n: fr/de spans are interim English; translate after ja voice approval -->
+<!-- Reusable mode partial. Training-agnostic: do NOT mention chord/scale/etc. -->
+<section class="article-mode" id="mode-weak-point">
+    <h3 class="article-mode__title">Weak-Point Focus Mode</h3>
+
+    <p>
+        
+        Weak-point focus looks at your answer history, identifies the items with the lowest accuracy, and serves those to you more often. Instead of spending time on what you already answer reliably, it concentrates practice on exactly the places you keep missing. The app picks the targets automatically from your own results.
+        
+        
+    </p>
+
+    <p>
+        
+        This mode suits the stage where your overall accuracy is climbing but a specific few items still trip you up every time. Because it keeps returning to your weak spots, it feels harder — and that controlled extra effort is precisely where the learning happens (the principle of desirable difficulties). It needs enough answer history before candidates appear, so play the normal mode for a while first.
+        
+        
+    </p>
+
+    <p>
+        
+        When in doubt, drop in for a few concentrated sessions whenever you plateau at a given level and feel you "keep losing the same handful of items right before it would stabilize." Once the weak spots clear, return to the normal mode to keep your overall balance. <em>Deliberately making yourself retrieve the items you tend to miss — the "testing effect" — was shown by Roediger &amp; Karpicke (2006) to strongly benefit later retention.</em>
+        
+        
+    </p>
+</section>
+
+
+        <div class="manual-rationale">
+            <span class="manual-rationale__label">The evidence behind it</span>
+            <p>
+                
+                The three modes exist to concentrate practice on the notes you currently need. The quiz format itself — recalling the answer rather than just looking — strengthens memory more than passive viewing (the testing effect). "Weak Point Focus" automates this using your performance data.
+                
+                
+            </p>
+            <p class="manual-rationale__ref">Ref.: Roediger &amp; Karpicke (2006) <a class="manual-ref-num" href="#ref-2">[2]</a></p>
+        </div>
+
+        <!-- #clef -->
+        <h2 id="clef">Clef (Treble / Bass)</h2>
+
+        <p class="manual-lead">
+            
+            <strong>Start with the clef your instrument uses.</strong> Treble for guitar and voice, Bass for bass; pianists stabilize each clef before moving to Both.
+            
+            
+        </p>
+
+        <p>
+            
+            The clef is the symbol at the left edge of the staff that fixes which line is which pitch. The same spot names an entirely different note depending on whether the clef is treble or bass.
+            
+            
+        </p>
+
+        <div class="manual-options">
+            <div class="manual-option">
+                <div class="manual-option__name">Treble Clef</div>
+                <div class="manual-option__desc">The high-register clef (𝄞); its second line is G. The most basic clef — for guitar, vocals, the piano's right hand, and most melody instruments.</div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name">Bass Clef</div>
+                <div class="manual-option__desc">The low-register clef (𝄢); its fourth line is F. Essential for bass, the piano's left hand, cello, and other low registers; its mapping differs from the treble clef, so learn it as a separate system.</div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name">Both</div>
+                <div class="manual-option__desc">Mixes treble and bass questions; since you can't predict which appears, you build the habit of checking the left-edge clef before reading — ideal for piano and other instruments that read both.</div>
+            </div>
+        </div>
+
+        <div class="manual-rationale">
+            <span class="manual-rationale__label">The evidence behind it</span>
+            <p>
+                
+                Because each clef maps pitches differently, treble and bass must be acquired as separate systems. Securing one clef before adding the other is the established sequence in sight-reading instruction. Handling both builds the essential performing habit of checking the leading clef before you read.
+                
+                
+            </p>
+            <p class="manual-rationale__ref">Ref.: Karpinski (2000) <a class="manual-ref-num" href="#ref-3">[3]</a></p>
+        </div>
+
+        <!-- #key -->
+        <h2 id="key">Key to Practice (Key Signature)</h2>
+
+        <p class="manual-lead">
+            
+            <strong>When a specific key signature trips you up, narrow to just that one.</strong> Otherwise, meet a variety of keys in Standard mode.
+            
+            
+        </p>
+
+        <p>
+            
+            Pins the questions to one key, shown only when you pick Key Focus as the training mode. A key signature — the sharps or flats at the left of the staff — defines which notes are altered (e.g. G major has one sharp, E-flat major three flats). The selectable keys follow your difficulty: only C major at Beginner, up to three accidentals at Intermediate, all twelve keys at Advanced.
+            
+            
+        </p>
+
+        <div class="manual-rationale">
+            <span class="manual-rationale__label">The evidence behind it</span>
+            <p>
+                
+                Narrowing to one key concentrates attention on that signature's recurring pattern — "this note is always sharp here" — so it sinks in. Reading by way of the key signature is an established approach in sight-reading instruction, helping you internalize each key's layout of pitches.
+                
+                
+            </p>
+            <p class="manual-rationale__ref">Ref.: Karpinski (2000) <a class="manual-ref-num" href="#ref-3">[3]</a></p>
+        </div>
+
+        <!-- #ledger -->
+        <h2 id="ledger">Include Ledger Lines (Ledger Lines)</h2>
+
+        <p class="manual-lead">
+            
+            <strong>Leave it off at first to secure the in-staff notes, then add ledger lines once stable.</strong> Note that the Advanced difficulty includes them automatically.
+            
+            
+        </p>
+
+        <p>
+            
+            Controls whether ledger lines — the short helper lines added above or below the staff — appear. Pitches too high or low for the five lines are written by adding lines one at a time (e.g. Middle C, C4, sits on one ledger line below the treble staff). Counting these positions takes time and is a common stumbling point, but ledger-line notes are everywhere in real scores, so they are unavoidable in the long run.
+            
+            
+        </p>
+
+        <div class="manual-rationale">
+            <span class="manual-rationale__label">The evidence behind it</span>
+            <p>
+                
+                Turning ledger lines off at first lowers the reading load by limiting how much you must process at once. Mixing them in before the foundation is set piles on position-counting and tends to cause confusion. Securing the in-staff notes before adding ledger lines keeps the early load low and aids learning — in line with cognitive-load theory, which holds that processing demands should stay low early in a new skill.
+                
+                
+            </p>
+            <p class="manual-rationale__ref">Ref.: Sweller (1988) <a class="manual-ref-num" href="#ref-1">[1]</a></p>
+        </div>
+
+        <!-- References -->
+        <section class="manual-refs">
+            <div class="manual-refs__title">References</div>
+            <ol>
+                <li id="ref-1">Sweller, J. (1988). Cognitive load during problem solving: Effects on learning. <em>Cognitive Science, 12</em>(2), 257–285.</li>
+                <li id="ref-2">Roediger, H. L., &amp; Karpicke, J. D. (2006). Test-enhanced learning: Taking memory tests improves long-term retention. <em>Psychological Science, 17</em>(3), 249–255.</li>
+                <li id="ref-3">Karpinski, G. S. (2000). <em>Aural Skills Acquisition: The Development of Listening, Reading, and Performing Skills in College-Level Musicians.</em> Oxford University Press.</li>
+            </ol>
+        </section>
+
+    </main>
+
+    <!-- Final CTA -->
+    <section class="article-cta">
+        <h2 class="article-cta__title">Settings Sorted? Give It a Try</h2>
+        <p class="article-cta__text">
+            
+            Once you understand each setting, the rest is hands-on practice.<br>When unsure, just follow the "when in doubt" lines on this page.<br>Find the settings that fit you in Solfege PRO's Sight Reading.
+            
+            
+        </p>
+        <a href="https://apps.apple.com/us/app/id6756626617" class="app-store-link" aria-label="Download on the App Store">
+            
+            <img class="app-store-link__img" width="120" height="40" src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/en-us" alt="Download on the App Store">
+            
+            
+        </a>
+    </section>
+
+    <!-- Related Content -->
+    <div class="article-related">
+        <div class="article-related__title">Related Content</div>
+        <a href="/guides/sight-reading/" class="article-related__link" style="margin-bottom: var(--space-md);">
+            <div class="article-related__link-title">How to Read Music Faster — Fluent Sight Reading</div>
+            <div class="article-related__link-desc">For those who want to know how to practice sight reading before adjusting settings — a guide to landmark notes and step-by-step practice.</div>
+        </a>
+        <a href="/" class="article-related__link">
+            <div class="article-related__link-title">Solfege PRO Practice Guide</div>
+            <div class="article-related__link-desc">Challenge-based practice menus for guitar, bass, drums, piano, and vocals</div>
+        </a>
+    </div>
+
+    <!-- Article Note -->
+    <aside class="article-endnote">
+        <p class="article-endnote__text">
+            
+            This page is a reference explaining the app's in-app settings. The recommended progressions given here are general guidelines based on widely used sight-reading methodology; the optimal settings vary with individual experience and goals. The cited studies report general learning findings and do not guarantee results within this app.
+            
+            
+        </p>
+    </aside>
+
+    <!-- Footer -->
+    <footer class="article-footer">
+        <p class="article-footer__text">
+            &copy; 2026 Solfege PRO &mdash;
+            <a href="https://apps.apple.com/us/app/id6756626617" class="article-footer__link">App Store</a>
+        </p>
+    </footer>
+    <script src="/bootstrap.js?v=3" defer></script>
+</body>
+</html>

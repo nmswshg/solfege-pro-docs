@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="ja"
+      data-title-ja="リズムトレーニング 設定マニュアル — 各設定の選び方 | ソルフェージュPRO"
+      data-title-en="Rhythm Training Settings Manual — How to Choose Each Option | Solfege PRO"
+      data-title-fr="Manuel des réglages de l'entraînement au rythme — Comment choisir chaque option | Solfege PRO"
+      data-title-de="Handbuch zu den Einstellungen des Rhythmustrainings — So wählst du jede Option | Solfege PRO">
+<head>
+    <meta charset="UTF-8">
+    <meta name="robots" content="index, follow">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#1A1A1E">
+    <title>リズムトレーニング 設定マニュアル — 各設定の選び方 | ソルフェージュPRO</title>
+    <meta name="description" content="リズムトレーニングの各設定（入力方式・テンポ・難易度・拍子・クリック密度）を、何のための設定で、誰が、どう選ぶべきかまで丁寧に解説するリファレンスマニュアルです。">
+
+    <!-- Canonical -->
+    <link rel="canonical" href="https://solfegepro.com/manual/rhythm/">
+    <link rel="alternate" hreflang="ja" href="https://solfegepro.com/manual/rhythm/">
+    <link rel="alternate" hreflang="en" href="https://solfegepro.com/en/manual/rhythm/">
+    <link rel="alternate" hreflang="fr" href="https://solfegepro.com/fr/manual/rhythm/">
+    <link rel="alternate" hreflang="de" href="https://solfegepro.com/de/manual/rhythm/">
+    <link rel="alternate" hreflang="x-default" href="https://solfegepro.com/manual/rhythm/">
+<!-- OGP -->
+    <meta property="og:title" content="リズムトレーニング 設定マニュアル — 各設定の選び方">
+    <meta property="og:description" content="リズムトレーニングの各設定（入力方式・テンポ・難易度・拍子・クリック密度）を、何のための設定で、誰が、どう選ぶべきかまで丁寧に解説するリファレンスマニュアルです。">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://solfegepro.com/manual/rhythm/">
+    <meta property="og:site_name" content="ソルフェージュPRO">
+    <meta property="og:image" content="https://solfegepro.com/og-image.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Solfege PRO">
+    <meta property="og:locale" content="ja_JP">
+    <meta property="og:locale:alternate" content="en_US">
+    <meta property="og:locale:alternate" content="fr_FR">
+    <meta property="og:locale:alternate" content="de_DE">
+    <meta property="article:published_time" content="2026-06-05">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="リズムトレーニング 設定マニュアル — 各設定の選び方">
+    <meta name="twitter:description" content="リズムトレーニングの各設定（入力方式・テンポ・難易度・拍子・クリック密度）を、何のための設定で、誰が、どう選ぶべきかまで丁寧に解説するリファレンスマニュアルです。">
+    <meta name="twitter:image" content="https://solfegepro.com/og-image.png">
+
+    <!-- Favicon -->
+    <link rel="icon" href="/favicon.ico" sizes="any">
+    <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap"></noscript>
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="/style.css?v=17">
+    <link rel="stylesheet" href="/guides/article.css?v=11">
+
+    <style>
+        /* Manual option reference — responsive, no fixed px widths */
+        .manual-options {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr);
+            gap: var(--space-sm);
+            margin: var(--space-lg) 0;
+        }
+        .manual-option {
+            background: var(--surface);
+            border: 1px solid var(--surface-light);
+            border-radius: var(--radius-lg);
+            padding: var(--space-md);
+        }
+        .manual-option__name {
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: var(--space-xs);
+        }
+        .manual-option__desc {
+            font-size: 13px;
+            color: var(--text-secondary);
+        }
+        /* Bottom-line callout (conclusion first) */
+        .manual-lead {
+            font-size: 14px;
+            line-height: 1.75;
+            color: var(--text-primary);
+            border-left: 3px solid var(--primary);
+            background: rgba(212, 175, 55, 0.06);
+            padding: var(--space-sm) var(--space-md);
+            border-radius: 0 var(--radius-md) var(--radius-md) 0;
+            margin: var(--space-md) 0;
+        }
+        /* Per-setting evidence note — deliberately styled as an editorial
+           aside, NOT as a settings card (no surface fill, no gold label),
+           so it is never mistaken for an in-app option. */
+        .manual-rationale {
+            margin: var(--space-md) 0 var(--space-2xl);
+            padding: var(--space-sm) 0 var(--space-sm) var(--space-md);
+            border-left: 2px solid var(--surface-light);
+        }
+        .manual-rationale__label {
+            display: block;
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            color: var(--text-secondary);
+            margin-bottom: 4px;
+            opacity: 0.75;
+        }
+        .manual-rationale p {
+            font-size: 13px;
+            line-height: 1.75;
+            color: var(--text-secondary);
+            margin: 0;
+        }
+        .manual-rationale__ref {
+            font-size: 12px;
+            font-style: italic;
+            margin-top: var(--space-xs) !important;
+            opacity: 0.7;
+        }
+        /* Citation number linking to the reference list */
+        .manual-ref-num {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-style: normal;
+        }
+        .manual-ref-num:hover { color: var(--primary); }
+        /* Full reference list at page end */
+        .manual-refs {
+            margin: var(--space-2xl) 0 0;
+            padding-top: var(--space-lg);
+            border-top: 1px solid var(--surface-light);
+        }
+        .manual-refs__title {
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: var(--space-sm);
+        }
+        .manual-refs ol {
+            margin: 0;
+            padding-left: 1.25em;
+        }
+        .manual-refs li {
+            font-size: 12px;
+            line-height: 1.7;
+            color: var(--text-secondary);
+            margin-bottom: var(--space-xs);
+            scroll-margin-top: 84px;
+        }
+        .manual-refs li:target {
+            color: var(--text-primary);
+        }
+    </style>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"リズムトレーニング 設定マニュアル — 各設定の選び方","description":"リズムトレーニングの各設定を、何のための設定で、誰が、どう選ぶべきかまで解説するリファレンスマニュアルです。","author":{"@type":"Organization","name":"ソルフェージュPRO"},"publisher":{"@type":"Organization","name":"ソルフェージュPRO","logo":{"@type":"ImageObject","url":"https://solfegepro.com/AppIcon.png"}},"datePublished":"2026-06-05","mainEntityOfPage":{"@type":"WebPage","@id":"https://solfegepro.com/manual/rhythm/"}}</script>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"ホーム","item":"https://solfegepro.com/"},{"@type":"ListItem","position":2,"name":"設定マニュアル","item":"https://solfegepro.com/manual/"},{"@type":"ListItem","position":3,"name":"リズムトレーニング 設定マニュアル — 各設定の選び方","item":"https://solfegepro.com/manual/rhythm/"}]}</script>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="nav__container">
+            <a href="/" class="nav__logo">
+                <img src="/AppIcon.png" alt="Solfege PRO" class="nav__logo-icon" width="32" height="32">
+                <span class="nav__logo-text">ソルフェージュPRO</span>
+            </a>
+            <ul class="nav__list">
+                <li><a href="/" class="nav__link">練習ガイド</a></li>
+                <li><a href="/guides/" class="nav__link">ガイド一覧</a></li>
+                <li><a href="/manual/" class="nav__link active">マニュアル</a></li>
+                            <li><a href="/start-here/" class="nav__link">どこから始める？</a></li>
+            </ul>
+            <div class="nav__settings">
+                <button class="settings-btn" id="lang-toggle" title="Toggle language">
+                    <span id="lang-text">EN</span>
+                </button>
+                <button class="hamburger-btn" id="hamburger-btn" aria-label="Menu" aria-expanded="false" aria-controls="drawer">
+                    <span class="hamburger-btn__line"></span>
+                    <span class="hamburger-btn__line"></span>
+                    <span class="hamburger-btn__line"></span>
+                </button>
+            </div>
+        </div>
+    </nav>
+        <!-- Mobile drawer (hidden on desktop) -->
+        <div class="drawer-overlay" id="drawer-overlay"></div>
+        <aside class="drawer" id="drawer" aria-label="Mobile menu" aria-hidden="true" inert>
+            <div class="drawer__header">
+                <span class="drawer__title">メニュー</span>
+                <button class="drawer__close" id="drawer-close" aria-label="Close menu">×</button>
+            </div>
+            <ul class="drawer__list">
+                    <li><a href="/" class="drawer__link">練習ガイド</a></li>
+                    <li><a href="/guides/" class="drawer__link">ガイド一覧</a></li>
+                    <li><a href="/manual/" class="drawer__link active">マニュアル</a></li>
+                    <li><a href="/start-here/" class="drawer__link">どこから始める？</a></li>
+            </ul>
+        </aside>
+
+
+    <!-- Article Header -->
+    <header class="page-header">
+        <div class="page-header__meta">
+            <span class="page-header__tag">マニュアル</span>
+            <span>リズムトレーニング</span>
+        </div>
+        <h1 class="page-header__title">
+            リズムトレーニング 設定マニュアル<br>各設定の意味と選び方
+            
+            
+            
+        </h1>
+        <p class="page-header__subtitle">
+            どの項目を、どんなときに、どう選べばよいか。リズムトレーニングの各設定を 1 つずつ解説します。設定画面の「?」から飛んできた方は、目的の項目までスクロールしてください。
+            
+            
+            
+        </p>
+    </header>
+
+    <!-- Top-of-article CTA -->
+    <aside class="article-top-cta" aria-label="App promotion">
+        <div class="article-top-cta__body">
+            <p class="article-top-cta__title">
+                ソルフェージュPRO でこの練習を試す
+                
+                
+                
+            </p>
+            <p class="article-top-cta__sub">
+                月額 980 円 · 1 週間無料トライアル
+                
+                
+                
+            </p>
+        </div>
+        <a href="https://apps.apple.com/jp/app/id6756626617" class="article-top-cta__button" data-cta-position="article_top">
+            App Store →
+            
+            
+            
+        </a>
+    </aside>
+
+    <!-- Article Body -->
+    <main class="article-body">
+
+        <!-- Intro -->
+        <p>
+            リズムトレーニングは、メトロノームのクリックに合わせて画面をタップ（または手拍子）し、自分のタイミングがどれだけ正確かを測って鍛える練習です。コードやスケールのように「何の音か」を答えるのではなく、ジャストのタイミングに対して何ミリ秒ずれているか（=タイミング精度）を磨きます。安定したリズム感は、合奏でも独奏でも演奏の土台になります。
+            
+            
+            
+        </p>
+        <p>
+            このページは設定の選び方をまとめたマニュアルです。各設定は音楽教育で確立された学習法にもとづいて設計しています。判断が要る設定について、<strong>おすすめの選び方・何のための設定か・鍛えられる力とその根拠</strong>を簡潔に示します。設定画面の「?」から来た方は、目的の項目までスクロールしてください。
+            
+            
+            
+        </p>
+
+        <!-- #input-mode -->
+        <h2 id="input-mode">入力方式（タップ / クラップ）</h2>
+
+        <p class="manual-lead">
+            <strong>迷ったら「タップ」。</strong> 計測が最も安定します。体を動かして練習したい、実際の打楽器で確かめたいときだけ「クラップ（マイク）」へ。クラップではスピーカーより有線イヤホンが安定します。
+            
+            
+            
+        </p>
+
+        <p>
+            リズムをどうやって入力するかを決める設定です。測定の正確さに直結する最も重要な選択で、タップ と クラップ（マイク） の 2 つから選びます。
+            
+            
+            
+        </p>
+
+        <div class="manual-options">
+            <div class="manual-option">
+                <div class="manual-option__name">タップ</div>
+                <div class="manual-option__desc">画面をタップしてリズムを入力します。タッチ検出はほぼ遅延なし（低レイテンシ）で計測のばらつきが小さく、イヤホンも不要。リズム感そのものを純粋に測りたいときの基本です。</div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name">クラップ（マイク）</div>
+                <div class="manual-option__desc">拍手や打楽器の音をマイクで検出します（クラップ = 手拍子）。体で覚える練習に近い一方、マイク入力には機器ごとの遅延（レイテンシ）が乗り、状態に応じた注意表示や遅延補正の項目が現れます。</div>
+            </div>
+        </div>
+
+        <div class="manual-rationale">
+            <span class="manual-rationale__label">学習科学の裏づけ</span>
+            <p>
+                どちらの入力でも、鍛えるのはクリックに動作を合わせる感覚運動の同期（聴いた拍に体の動きをそろえる力）です。タップは入力の遅延が小さいぶん、あなた自身のずれを正確に映し出します。タッピングの同期能力は系統的に測れることが、タッピング研究のレビューで広く示されています。
+                
+                
+                
+            </p>
+            <p class="manual-rationale__ref">参考: Repp (2005) <a class="manual-ref-num" href="#ref-1">[1]</a></p>
+        </div>
+
+        <!-- #bpm -->
+        <h2 id="bpm">テンポ（BPM）</h2>
+
+        <p class="manual-lead">
+            <strong>迷ったら 90〜100 BPM から。</strong> そこで安定したら、上げる前にまず下げて、遅いテンポでも揺れないかを確かめると地力が付きます。
+            
+            
+            
+        </p>
+
+        <p>
+            メトロノームの速さを決める設定です。単位は BPM（beats per minute = 1 分間あたりの拍数）で、スライダーで 40〜200 を選べます。速いテンポ（150 以上）は反射的に反応できる反面「合っているように感じる」だけで雑になりがちで、遅いテンポ（60 前後）は拍間が長く、自分の内的パルス（自分の中で時を刻む感覚）を保つ力が問われます。中速（90〜120）が多くの楽曲で使われる実用的な帯域です。
+            
+            
+            
+        </p>
+
+        <div class="manual-rationale">
+            <span class="manual-rationale__label">学習科学の裏づけ</span>
+            <p>
+                テンポを変えられるのは、合わせる難しさが速さで変わるからです。遅いテンポほど拍間隔の変動が大きくなる（=ごまかしが効かず難しい）ことは、タッピング研究のレビューで繰り返し報告されています。だからこそ、遅いテンポで揺れないかを確かめると同期の地力が鍛えられます。
+                
+                
+                
+            </p>
+            <p class="manual-rationale__ref">参考: Repp (2005) <a class="manual-ref-num" href="#ref-1">[1]</a></p>
+        </div>
+
+        <!-- #difficulty -->
+        <h2 id="difficulty">難易度</h2>
+
+        <p class="manual-lead">
+            <strong>迷ったら「初級」から。</strong> 安定して高評価が出るようになったら 1 段ずつ上げます。とくにクラップ（マイク）は機器の遅延が乗るので、いきなり上級・プロにしないでください。
+            
+            
+            
+        </p>
+
+        <p>
+            タイミングの「合格ライン」をどれだけ厳しくするかを決める設定です。ジャストからの許容ずれ（ミリ秒）が段階的に狭くなり、Perfect / Great / Good の判定基準も連動して厳しくなります。コードやスケールの難易度が出題の幅を変えるのに対し、リズムの難易度は採点の精度を変えます。
+            
+            
+            
+        </p>
+
+        <div class="manual-options">
+            <div class="manual-option">
+                <div class="manual-option__name">初級</div>
+                <div class="manual-option__desc">±100ms - リズムの基礎。許容範囲が広く、まず「拍にだいたい合わせる」感覚をつかむための段階です。最初はここで構いません。</div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name">中級</div>
+                <div class="manual-option__desc">±60ms - 標準的な精度。多くの人にとって日常的な合奏に通用するレベルの判定です。</div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name">上級</div>
+                <div class="manual-option__desc">±40ms - 高い精度。人が「ずれ」として知覚し始める境界に近く、細かいムラまで見えてくる段階です。</div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name">プロ</div>
+                <div class="manual-option__desc">±25ms - プロレベル。プロの演奏家でも常時は難しい厳格な基準。完成度を限界まで詰めたい人向けです。</div>
+            </div>
+        </div>
+
+        <div class="manual-rationale">
+            <span class="manual-rationale__label">学習科学の裏づけ</span>
+            <p>
+                合格ラインを段階的に厳しくするのは、初期は判定をゆるめて処理の負荷を下げ、慣れてから精度を詰めるためです。新しい技能の初期ほど負荷を抑えるほど学習が進む、という認知負荷の考え方にもとづく段階設計です。広い許容範囲でまず「拍に合わせる感覚」を固めてから狭めるほうが、いきなり厳しい基準に挑むより速く上達します。
+                
+                
+                
+            </p>
+            <p class="manual-rationale__ref">参考: Sweller (1988) <a class="manual-ref-num" href="#ref-2">[2]</a></p>
+        </div>
+
+        <!-- #time-signature -->
+        <h2 id="time-signature">拍子</h2>
+
+        <p class="manual-lead">
+            <strong>迷ったら 4/4 のままで構いません。</strong> まず 4/4 で安定したタイミングを作り、3/4・6/8 へ広げ、変拍子の 5/4・7/8 は最後の挑戦に取っておくのが扱いやすい順序です。
+            
+            
+            
+        </p>
+
+        <p>
+            1 小節に何拍入るか（と拍の単位）を決める設定です。たとえば 4/4 は 4 拍子、3/4 はワルツの 3 拍子で、小節の区切りと強拍の位置が変わります。選べるのは 4/4・3/4・6/8・2/4・5/4・7/8 の 6 種です。
+            
+            
+            
+        </p>
+
+        <div class="manual-options">
+            <div class="manual-option">
+                <div class="manual-option__name">4/4・2/4</div>
+                <div class="manual-option__desc">最も一般的な拍子。ポップス・ロックの大半が 4/4 です。2/4 はマーチなどの軽快な 2 拍子。リズムの基礎を固めるならまずここから。</div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name">3/4・6/8</div>
+                <div class="manual-option__desc">3 拍子系。3/4 はワルツ、6/8 は 2 拍を 3 連で割る揺れたグルーヴ（バラードやアイリッシュなど）。4 拍子に慣れた次の一歩に向きます。</div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name">5/4・7/8</div>
+                <div class="manual-option__desc">変拍子。拍数が割り切れず、強拍の出る間隔が不規則になります。プログレやジャズ、民族音楽で使われる、上級者向けのチャレンジです。</div>
+            </div>
+        </div>
+
+        <div class="manual-rationale">
+            <span class="manual-rationale__label">学習科学の裏づけ</span>
+            <p>
+                拍子を選べるのは、強拍の並び（拍の階層構造）に体の動きを合わせる感覚運動の同期を、いろいろな枠組みで鍛えるためです。規則的な 4/4 から、強拍が不規則に並ぶ変拍子へ広げると、拍の構造を手がかりに同期する力が試されます。拍の構造が同期に影響することは、タッピング研究のレビューでも示されています。
+                
+                
+                
+            </p>
+            <p class="manual-rationale__ref">参考: Repp (2005) <a class="manual-ref-num" href="#ref-1">[1]</a></p>
+        </div>
+
+        <!-- #click-density -->
+        <h2 id="click-density">クリック密度</h2>
+
+        <p class="manual-lead">
+            <strong>迷ったら「全拍」から。</strong> 正確に合わせられたら 2&amp;4拍目 でバックビートを覚え、安定したら 1拍目のみ → 2小節ごと → 4小節ごと と間引いて内的パルスを鍛えます。鳴らない拍は頭の中でカウントを続けるのがコツです。
+            
+            
+            
+        </p>
+
+        <p>
+            メトロノームをどれだけ「間引いて」鳴らすかを決める設定です。すべての拍で鳴らすと合わせやすく、鳴る拍を減らすほど、クリックのない拍を自分の内的パルスで埋める力が問われます。リズム感を鍛えるうえで効きめが大きく、難易度インジケーター（丸 1〜5 個）で目安の難しさが示されます。
+            
+            
+            
+        </p>
+
+        <div class="manual-options">
+            <div class="manual-option">
+                <div class="manual-option__name">全拍</div>
+                <div class="manual-option__desc">初心者向け。すべての拍でクリックが鳴ります。外部のクリックに合わせる基礎練習で、最初の一歩です。</div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name">1&amp;3拍目（ダウンビート）</div>
+                <div class="manual-option__desc">小節の頭にあたるダウンビート（1・3 拍目）でだけ鳴らします。ダウンビートを意識してリズムをキープする練習です。</div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name">2&amp;4拍目（バックビート）</div>
+                <div class="manual-option__desc">裏拍にあたる 2・4 拍目で鳴らします（バックビート = ジャズやファンクのノリの核）。アクセントの重心が後ろにずれるので、グルーヴ感を鍛えるのに向きます。</div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name">1拍目のみ（内的パルス強化）</div>
+                <div class="manual-option__desc">各小節の 1 拍目だけ鳴らします。残りの拍は自分で刻むため、内的パルスを鍛え、自立したリズム感を養います。</div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name">2小節ごと（フレーズ感覚）</div>
+                <div class="manual-option__desc">2 小節に 1 回だけ鳴らします。長い区間を自分のテンポで保つ必要があり、2 小節単位のフレーズ構成力を強化します。</div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name">4小節ごと（プロレベル）</div>
+                <div class="manual-option__desc">4 小節に 1 回だけ鳴らします。4 小節間テンポを維持する上級トレーニングで、もっとも厳しい設定です。</div>
+            </div>
+        </div>
+
+        <div class="manual-rationale">
+            <span class="manual-rationale__label">学習科学の裏づけ</span>
+            <p>
+                全拍のクリックは、合わせる手がかりを外から与える「足場（スキャフォールド）」として処理の負荷を下げます。慣れてきたら鳴る拍を減らして足場を外し、自分の内的パルスで埋める負荷を少しずつ上げていきます。初期は負荷を抑え、習熟に応じて足場を減らすこの段階設計は、認知負荷の考え方に沿ったものです。
+                
+                
+                
+            </p>
+            <p class="manual-rationale__ref">参考: Sweller (1988) <a class="manual-ref-num" href="#ref-2">[2]</a></p>
+        </div>
+
+        <!-- References -->
+        <section class="manual-refs">
+            <div class="manual-refs__title">参考文献</div>
+            <ol>
+                <li id="ref-1">Repp, B. H. (2005). Sensorimotor synchronization: A review of the tapping literature. <em>Psychonomic Bulletin &amp; Review, 12</em>(6), 969–992.</li>
+                <li id="ref-2">Sweller, J. (1988). Cognitive load during problem solving: Effects on learning. <em>Cognitive Science, 12</em>(2), 257–285.</li>
+            </ol>
+        </section>
+
+    </main>
+
+    <!-- Final CTA -->
+    <section class="article-cta">
+        <h2 class="article-cta__title">設定を決めたら、さっそく試してみよう</h2>
+        <p class="article-cta__text">
+            各設定の意味がわかれば、あとは実際に手を動かすだけです。<br>迷ったら本ページの「迷ったら…」をなぞって始めてみてください。<br>ソルフェージュPRO の リズムトレーニング で、自分に合った設定を見つけましょう。
+            
+            
+            
+        </p>
+        <a href="https://apps.apple.com/jp/app/id6756626617" class="app-store-link" aria-label="Download on the App Store">
+            <img class="app-store-link__img" width="109" height="40" src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/ja-jp" alt="App Storeで入手">
+            
+            
+            
+        </a>
+    </section>
+
+    <!-- Related Content -->
+    <div class="article-related">
+        <div class="article-related__title">関連コンテンツ</div>
+        <a href="/guides/rhythm-training/" class="article-related__link" style="margin-bottom: var(--space-md);">
+            <div class="article-related__link-title">リズム感とは何か — 前乗り・後乗り・ポケットを分解する</div>
+            <div class="article-related__link-desc">設定の前に、そもそもリズム感とは何かを知りたい方へ。タイミングのずれと、その鍛え方を解説したガイド。</div>
+        </a>
+        <a href="/" class="article-related__link">
+            <div class="article-related__link-title">ソルフェージュPRO 練習ガイド</div>
+            <div class="article-related__link-desc">ギター・ベース・ドラム・ピアノ・ボーカル向けの課題別練習メニュー</div>
+        </a>
+    </div>
+
+    <!-- Article Note -->
+    <aside class="article-endnote">
+        <p class="article-endnote__text">
+            本ページはアプリ内の設定項目の解説を目的としたリファレンスです。記載した推奨の進め方は、音楽教育で広く用いられるリズムトレーニングの方法論をもとにした一般的な目安であり、最適な設定は個人の経験や目的によって異なります。クラップ（マイク）入力では機器のレイテンシにより測定値が変動する場合があります。引用した研究は学習一般の知見であり、本アプリでの効果を保証するものではありません。
+            
+            
+            
+        </p>
+    </aside>
+
+    <!-- Footer -->
+    <footer class="article-footer">
+        <p class="article-footer__text">
+            &copy; 2026 ソルフェージュPRO &mdash;
+            <a href="https://apps.apple.com/jp/app/id6756626617" class="article-footer__link">App Store</a>
+        </p>
+    </footer>
+    <script src="/bootstrap.js?v=3" defer></script>
+</body>
+</html>

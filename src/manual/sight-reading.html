@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="ja"
+      data-title-ja="譜読み 設定マニュアル — 各設定の選び方 | ソルフェージュPRO"
+      data-title-en="Sight Reading Settings Manual — How to Choose Each Option | Solfege PRO"
+      data-title-fr="Manuel des réglages de Lecture à vue — Comment choisir chaque option | Solfege PRO"
+      data-title-de="Einstellungshandbuch Blattlesen — So wählen Sie jede Option | Solfege PRO">
+<head>
+    <meta charset="UTF-8">
+    <meta name="robots" content="index, follow">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#1A1A1E">
+    <title>譜読み 設定マニュアル — 各設定の選び方 | ソルフェージュPRO</title>
+    <meta name="description" content="譜読みトレーニングの各設定（難易度・練習モード・音部記号・調号・加線）を、何のための設定で、誰が、どう選ぶべきかまで丁寧に解説するリファレンスマニュアルです。">
+
+    <!-- Canonical -->
+    <link rel="canonical" href="https://solfegepro.com/manual/sight-reading/">
+    <link rel="alternate" hreflang="ja" href="https://solfegepro.com/manual/sight-reading/">
+    <link rel="alternate" hreflang="en" href="https://solfegepro.com/en/manual/sight-reading/">
+    <link rel="alternate" hreflang="fr" href="https://solfegepro.com/fr/manual/sight-reading/">
+    <link rel="alternate" hreflang="de" href="https://solfegepro.com/de/manual/sight-reading/">
+    <link rel="alternate" hreflang="x-default" href="https://solfegepro.com/manual/sight-reading/">
+
+    <!-- OGP -->
+    <meta property="og:title" content="譜読み 設定マニュアル — 各設定の選び方">
+    <meta property="og:description" content="譜読みトレーニングの各設定（難易度・練習モード・音部記号・調号・加線）を、何のための設定で、誰が、どう選ぶべきかまで丁寧に解説するリファレンスマニュアルです。">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://solfegepro.com/manual/sight-reading/">
+    <meta property="og:site_name" content="ソルフェージュPRO">
+    <meta property="og:image" content="https://solfegepro.com/og-image.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Solfege PRO">
+    <meta property="og:locale" content="ja_JP">
+    <meta property="og:locale:alternate" content="en_US">
+    <meta property="og:locale:alternate" content="fr_FR">
+    <meta property="og:locale:alternate" content="de_DE">
+    <meta property="article:published_time" content="2026-06-05">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="譜読み 設定マニュアル — 各設定の選び方">
+    <meta name="twitter:description" content="譜読みトレーニングの各設定（難易度・練習モード・音部記号・調号・加線）を、何のための設定で、誰が、どう選ぶべきかまで丁寧に解説するリファレンスマニュアルです。">
+    <meta name="twitter:image" content="https://solfegepro.com/og-image.png">
+
+    <!-- Favicon -->
+    <link rel="icon" href="/favicon.ico" sizes="any">
+    <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap"></noscript>
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="/style.css?v=17">
+    <link rel="stylesheet" href="/guides/article.css?v=11">
+
+    <style>
+        /* Manual option reference — responsive, no fixed px widths */
+        .manual-options {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr);
+            gap: var(--space-sm);
+            margin: var(--space-lg) 0;
+        }
+        .manual-option {
+            background: var(--surface);
+            border: 1px solid var(--surface-light);
+            border-radius: var(--radius-lg);
+            padding: var(--space-md);
+        }
+        .manual-option__name {
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: var(--space-xs);
+        }
+        .manual-option__desc {
+            font-size: 13px;
+            color: var(--text-secondary);
+        }
+        /* Bottom-line callout (conclusion first) */
+        .manual-lead {
+            font-size: 14px;
+            line-height: 1.75;
+            color: var(--text-primary);
+            border-left: 3px solid var(--primary);
+            background: rgba(212, 175, 55, 0.06);
+            padding: var(--space-sm) var(--space-md);
+            border-radius: 0 var(--radius-md) var(--radius-md) 0;
+            margin: var(--space-md) 0;
+        }
+        /* Per-setting evidence note — deliberately styled as an editorial
+           aside, NOT as a settings card (no surface fill, no gold label),
+           so it is never mistaken for an in-app option. */
+        .manual-rationale {
+            margin: var(--space-md) 0 var(--space-2xl);
+            padding: var(--space-sm) 0 var(--space-sm) var(--space-md);
+            border-left: 2px solid var(--surface-light);
+        }
+        .manual-rationale__label {
+            display: block;
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            color: var(--text-secondary);
+            margin-bottom: 4px;
+            opacity: 0.75;
+        }
+        .manual-rationale p {
+            font-size: 13px;
+            line-height: 1.75;
+            color: var(--text-secondary);
+            margin: 0;
+        }
+        .manual-rationale__ref {
+            font-size: 12px;
+            font-style: italic;
+            margin-top: var(--space-xs) !important;
+            opacity: 0.7;
+        }
+        /* Citation number linking to the reference list */
+        .manual-ref-num {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-style: normal;
+        }
+        .manual-ref-num:hover { color: var(--primary); }
+        /* Full reference list at page end */
+        .manual-refs {
+            margin: var(--space-2xl) 0 0;
+            padding-top: var(--space-lg);
+            border-top: 1px solid var(--surface-light);
+        }
+        .manual-refs__title {
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: var(--space-sm);
+        }
+        .manual-refs ol {
+            margin: 0;
+            padding-left: 1.25em;
+        }
+        .manual-refs li {
+            font-size: 12px;
+            line-height: 1.7;
+            color: var(--text-secondary);
+            margin-bottom: var(--space-xs);
+            scroll-margin-top: 84px;
+        }
+        .manual-refs li:target {
+            color: var(--text-primary);
+        }
+    </style>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"譜読み 設定マニュアル — 各設定の選び方","description":"譜読みトレーニングの各設定を、何のための設定で、誰が、どう選ぶべきかまで解説するリファレンスマニュアルです。","author":{"@type":"Organization","name":"ソルフェージュPRO"},"publisher":{"@type":"Organization","name":"ソルフェージュPRO","logo":{"@type":"ImageObject","url":"https://solfegepro.com/AppIcon.png"}},"datePublished":"2026-06-05","mainEntityOfPage":{"@type":"WebPage","@id":"https://solfegepro.com/manual/sight-reading/"}}</script>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="nav__container">
+            <a href="/" class="nav__logo">
+                <img src="/AppIcon.png" alt="Solfege PRO" class="nav__logo-icon" width="32" height="32">
+                <span class="nav__logo-text"><span lang="ja">ソルフェージュPRO</span><span lang="en">Solfege PRO</span><span lang="fr">Solfege PRO</span><span lang="de">Solfege PRO</span></span>
+            </a>
+            <ul class="nav__list">
+                <li><a href="/" class="nav__link"><span lang="ja">練習ガイド</span><span lang="en">Practice Guide</span><span lang="fr">Guide d'entraînement</span><span lang="de">Übungsleitfaden</span></a></li>
+                <li><a href="/guides/" class="nav__link"><span lang="ja">ガイド一覧</span><span lang="en">Guides</span><span lang="fr">Guides</span><span lang="de">Leitfäden</span></a></li>
+                <li><a href="/manual/" class="nav__link active"><span lang="ja">マニュアル</span><span lang="en">Manual</span><span lang="fr">Manuel</span><span lang="de">Handbuch</span></a></li>
+                            <li><a href="/start-here/" class="nav__link"><span lang="ja">どこから始める？</span><span lang="en">Where to Start?</span><span lang="fr">Par où commencer ?</span><span lang="de">Wo anfangen?</span></a></li>
+            </ul>
+            <div class="nav__settings">
+                <button class="settings-btn" id="lang-toggle" title="Toggle language">
+                    <span id="lang-text">EN</span>
+                </button>
+                <button class="hamburger-btn" id="hamburger-btn" aria-label="Menu" aria-expanded="false" aria-controls="drawer">
+                    <span class="hamburger-btn__line"></span>
+                    <span class="hamburger-btn__line"></span>
+                    <span class="hamburger-btn__line"></span>
+                </button>
+            </div>
+        </div>
+    </nav>
+        <!-- Mobile drawer (hidden on desktop) -->
+        <div class="drawer-overlay" id="drawer-overlay"></div>
+        <aside class="drawer" id="drawer" aria-label="Mobile menu" aria-hidden="true" inert>
+            <div class="drawer__header">
+                <span class="drawer__title"><span lang="ja">メニュー</span><span lang="en">Menu</span><span lang="fr">Menu</span><span lang="de">Menü</span></span>
+                <button class="drawer__close" id="drawer-close" aria-label="Close menu">×</button>
+            </div>
+            <ul class="drawer__list">
+                    <li><a href="/" class="drawer__link"><span lang="ja">練習ガイド</span><span lang="en">Practice Guide</span><span lang="fr">Guide d'entraînement</span><span lang="de">Übungsleitfaden</span></a></li>
+                    <li><a href="/guides/" class="drawer__link"><span lang="ja">ガイド一覧</span><span lang="en">Guides</span><span lang="fr">Guides</span><span lang="de">Leitfäden</span></a></li>
+                    <li><a href="/manual/" class="drawer__link active"><span lang="ja">マニュアル</span><span lang="en">Manual</span><span lang="fr">Manuel</span><span lang="de">Handbuch</span></a></li>
+                    <li><a href="/start-here/" class="drawer__link"><span lang="ja">どこから始める？</span><span lang="en">Where to Start?</span><span lang="fr">Par où commencer ?</span><span lang="de">Wo anfangen?</span></a></li>
+            </ul>
+        </aside>
+
+
+    <!-- Article Header -->
+    <header class="page-header">
+        <div class="page-header__meta">
+            <span class="page-header__tag"><span lang="ja">マニュアル</span><span lang="en">Manual</span><span lang="fr">Manuel</span><span lang="de">Handbuch</span></span>
+            <span><span lang="ja">譜読み</span><span lang="en">Sight Reading</span><span lang="fr">Lecture à vue</span><span lang="de">Blattlesen</span></span>
+        </div>
+        <h1 class="page-header__title">
+            <span lang="ja">譜読み 設定マニュアル<br>各設定の意味と選び方</span>
+            <span lang="en">Sight Reading Settings Manual<br>What Each Option Means and How to Choose</span>
+            <span lang="fr">Manuel des réglages de Lecture à vue<br>Le sens de chaque option et comment la choisir</span>
+            <span lang="de">Einstellungshandbuch Blattlesen<br>Was jede Option bedeutet und wie man sie wählt</span>
+        </h1>
+        <p class="page-header__subtitle">
+            <span lang="ja">設定画面のどの項目を、どんなときに、どう選べばよいか。譜読みトレーニングの各設定を 1 つずつ解説します。設定画面の「?」から飛んできた方は、目的の項目までスクロールしてください。</span>
+            <span lang="en">Which option to pick, when, and why. This page walks through each setting in sight reading training, one at a time. If you arrived from a "?" in the settings screen, scroll to the option you need.</span>
+            <span lang="fr">Quelle option choisir, quand et pourquoi. Cette page détaille chaque réglage de l'entraînement à la lecture à vue, un par un. Si vous arrivez depuis un « ? » de l'écran des réglages, faites défiler jusqu'à l'option recherchée.</span>
+            <span lang="de">Welche Option man wann und warum wählt. Diese Seite erklärt jede Einstellung des Blattlese-Trainings, eine nach der anderen. Wenn Sie über ein „?" im Einstellungsbildschirm hierhergelangt sind, scrollen Sie zur gewünschten Option.</span>
+        </p>
+    </header>
+
+    <!-- Top-of-article CTA -->
+    <aside class="article-top-cta" aria-label="App promotion">
+        <div class="article-top-cta__body">
+            <p class="article-top-cta__title">
+                <span lang="ja">ソルフェージュPRO でこの練習を試す</span>
+                <span lang="en">Try this in Solfege PRO</span>
+                <span lang="fr">Essayez cet exercice dans Solfege PRO</span>
+                <span lang="de">Probieren Sie diese Übung in Solfege PRO</span>
+            </p>
+            <p class="article-top-cta__sub">
+                <span lang="ja">月額 980 円 · 1 週間無料トライアル</span>
+                <span lang="en">¥980/month · 1-week free trial</span>
+                <span lang="fr">980 ¥/mois · essai gratuit d'une semaine</span>
+                <span lang="de">980 ¥/Monat · 1 Woche kostenlos testen</span>
+            </p>
+        </div>
+        <a href="https://apps.apple.com/jp/app/id6756626617" class="article-top-cta__button" data-cta-position="article_top">
+            <span lang="ja">App Store →</span>
+            <span lang="en">App Store →</span>
+            <span lang="fr">App Store →</span>
+            <span lang="de">App Store →</span>
+        </a>
+    </aside>
+
+    <!-- Article Body -->
+    <main class="article-body">
+
+        <!-- Intro -->
+        <p>
+            <span lang="ja">譜読みトレーニングは、五線譜に書かれた音符を見て、その音名（ド・レ・ミ…）を素早く正確に読み取る力を鍛える練習です。譜読みは楽譜から音楽を再現するための土台で、どの楽器でも演奏の出発点になります。</span>
+            <span lang="en">Sight reading training builds your ability to look at a note on the staff and read its name (Do, Re, Mi…) quickly and accurately. Reading the staff is the foundation for turning a score into music, and the starting point for playing any instrument.</span>
+            <span lang="fr">L'entraînement à la lecture à vue développe votre capacité à regarder une note sur la portée et à en lire le nom (do, ré, mi…) rapidement et avec précision. Lire la portée est la base pour transformer une partition en musique, et le point de départ pour jouer de n'importe quel instrument.</span>
+            <span lang="de">Das Blattlese-Training entwickelt Ihre Fähigkeit, eine Note im Notensystem anzusehen und ihren Namen (Do, Re, Mi…) schnell und genau zu lesen. Das Notensystem zu lesen ist die Grundlage, um eine Partitur in Musik zu verwandeln, und der Ausgangspunkt für das Spielen jedes Instruments.</span>
+        </p>
+        <p>
+            <span lang="ja">このページは設定の選び方をまとめたマニュアルです。各設定は音楽教育で確立された学習法にもとづいて設計しています。判断が要る設定について、<strong>おすすめの選び方・何のための設定か・鍛えられる力とその根拠</strong>を簡潔に示します。設定画面の「?」から来た方は、目的の項目までスクロールしてください。</span>
+            <span lang="en">This page is a manual for choosing the settings. Each setting is designed around established methods from music education. For each setting that calls for a decision, we give <strong>the recommended choice, what it is for, and what it trains — with the evidence behind it</strong>. If you arrived from a "?" in the settings screen, scroll to the option you need.</span>
+            <span lang="fr">Cette page est un manuel pour choisir les réglages. Chaque réglage s'appuie sur des méthodes établies de la pédagogie musicale. Pour chaque réglage qui demande une décision, nous indiquons <strong>le choix recommandé, à quoi il sert et ce qu'il développe — preuves à l'appui</strong>. Si vous arrivez depuis un « ? » de l'écran des réglages, faites défiler jusqu'à l'option recherchée.</span>
+            <span lang="de">Diese Seite ist ein Handbuch zur Wahl der Einstellungen. Jede Einstellung beruht auf etablierten Methoden der Musikpädagogik. Für jede Einstellung, die eine Entscheidung erfordert, nennen wir <strong>die empfohlene Wahl, wozu sie dient und was sie trainiert — mit den Belegen dahinter</strong>. Wenn Sie über ein „?" im Einstellungsbildschirm hierhergelangt sind, scrollen Sie zur gewünschten Option.</span>
+        </p>
+
+        <!-- #difficulty -->
+        <h2 id="difficulty"><span lang="ja">難易度</span><span lang="en">Difficulty</span><span lang="fr">Difficulté</span><span lang="de">Schwierigkeit</span></h2>
+
+        <p class="manual-lead">
+            <span lang="ja"><strong>迷ったら「初級」から。</strong> 今の難易度で正答率 80% 以上が安定したら、1 段ずつ上げます。</span>
+            <span lang="en"><strong>When unsure, start at Beginner.</strong> Step up one level once you reliably hold 80%+ at the current one.</span>
+            <span lang="fr"><strong>En cas de doute, commencez par « Débutant ».</strong> Montez d'un niveau une fois que vous tenez de façon stable 80 % ou plus au niveau actuel.</span>
+            <span lang="de"><strong>Im Zweifel mit „Anfänger" beginnen.</strong> Steigen Sie eine Stufe höher, sobald Sie auf der aktuellen Stufe zuverlässig 80 % oder mehr halten.</span>
+        </p>
+
+        <p>
+            <span lang="ja">出題される音符の範囲（音域・調号・加線の有無）をまとめて決める設定です。音域が狭く記号が少ないほど読みやすく、広く多いほど難しくなります。</span>
+            <span lang="en">Bundles together the range of notes you'll be asked to read — the register, the key signatures, and whether ledger lines appear. A narrower register with fewer symbols is easier; a wider one with more symbols is harder.</span>
+            <span lang="fr">Ce réglage fixe d'un coup l'étendue des notes qui vous seront demandées — le registre, les armures et la présence ou non de lignes supplémentaires. Un registre plus étroit avec moins de symboles est plus facile ; un registre plus large avec plus de symboles est plus difficile.</span>
+            <span lang="de">Diese Einstellung legt auf einmal den Umfang der abgefragten Noten fest — den Tonbereich, die Vorzeichen und ob Hilfslinien auftauchen. Ein engerer Tonbereich mit weniger Symbolen ist leichter; ein weiterer mit mehr Symbolen ist schwerer.</span>
+        </p>
+
+        <div class="manual-options">
+            <div class="manual-option">
+                <div class="manual-option__name"><span lang="ja">初級</span><span lang="en">Beginner</span><span lang="fr">Débutant</span><span lang="de">Anfänger</span></div>
+                <div class="manual-option__desc"><span lang="ja">中央音域・幹音（変化記号のつかない白鍵の音）のみ。ト音記号の中心付近、調号もハ長調だけで、線と間の音名を体に入れる最初の一歩。</span><span lang="en">Middle register, natural notes only (the unaltered white-key pitches), near the center of the treble staff in the key of C — the first step of anchoring which note sits on each line and space.</span><span lang="fr">Registre médium, notes naturelles uniquement (les hauteurs des touches blanches, sans altération), près du centre de la portée en clé de sol et en do majeur — le premier pas pour ancrer quelle note se trouve sur chaque ligne et chaque interligne.</span><span lang="de">Mittlerer Tonbereich, nur Stammtöne (die unveränderten Tonhöhen der weißen Tasten), nahe der Mitte des Violinschlüssel-Notensystems in C-Dur — der erste Schritt, um zu verankern, welche Note auf welcher Linie und in welchem Zwischenraum liegt.</span></div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name"><span lang="ja">中級</span><span lang="en">Intermediate</span><span lang="fr">Intermédiaire</span><span lang="de">Mittelstufe</span></div>
+                <div class="manual-option__desc"><span lang="ja">広い音域、臨時記号あり。ヘ音記号が加わり、シャープ・フラット 3 つまでの調号が出題され、読む範囲が一気に広がる段階。</span><span lang="en">A wider range with accidentals; the bass clef joins in and key signatures of up to three sharps or flats appear, so the reading range widens considerably.</span><span lang="fr">Une étendue plus large avec des altérations accidentelles ; la clé de fa s'ajoute et des armures allant jusqu'à trois dièses ou bémols apparaissent, si bien que le champ de lecture s'élargit nettement.</span><span lang="de">Ein weiterer Tonbereich mit Akzidenzien; der Bassschlüssel kommt hinzu und es erscheinen Vorzeichen mit bis zu drei Kreuzen oder Bes, sodass sich der Lesebereich erheblich erweitert.</span></div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name"><span lang="ja">上級</span><span lang="en">Advanced</span><span lang="fr">Avancé</span><span lang="de">Fortgeschritten</span></div>
+                <div class="manual-option__desc"><span lang="ja">全音域、加線を含む。すべての調号と、五線の外まで伸びる加線上の音符まで出題する、実際の楽譜に最も近い最上位の段階。</span><span lang="en">Full range including ledger lines — all key signatures plus notes that reach beyond the staff; the top tier, closest to real-world scores.</span><span lang="fr">Étendue complète, lignes supplémentaires comprises — toutes les armures ainsi que des notes qui dépassent la portée ; le niveau le plus élevé, le plus proche des partitions réelles.</span><span lang="de">Voller Tonumfang einschließlich Hilfslinien — alle Vorzeichen sowie Noten, die über das Notensystem hinausreichen; die höchste Stufe, am nächsten an echten Partituren.</span></div>
+            </div>
+        </div>
+
+        <div class="manual-rationale">
+            <span class="manual-rationale__label"><span lang="ja">学習科学の裏づけ</span><span lang="en">The evidence behind it</span><span lang="fr">Les preuves à l'appui</span><span lang="de">Die Belege dahinter</span></span>
+            <p>
+                <span lang="ja">一度に扱う音符の範囲が狭いほど、目が処理する情報量が減り、線と間の音名を確実に覚えられます。譜読みは見た瞬間に答えられるかが鍵なので、狭い範囲を確実にしてから広げるほうが速く上達します。新しい技能の初期は処理の負荷を抑えるほど学習が進む、という認知負荷の考え方にもとづく段階設計です。</span>
+                <span lang="en">The narrower the range you handle at once, the less your eyes must process, and the more reliably you fix which note sits on each line and space. Sight reading hinges on instant recall, so securing a narrow range before widening it gets you there faster. The tiers follow cognitive-load theory: keeping processing demands low early in a new skill aids learning.</span>
+                <span lang="fr">Plus l'étendue traitée d'un coup est étroite, moins vos yeux ont à traiter, et plus vous fixez de façon fiable quelle note se trouve sur chaque ligne et chaque interligne. La lecture à vue repose sur la reconnaissance instantanée : sécuriser une étendue étroite avant de l'élargir vous y amène plus vite. Les niveaux suivent la théorie de la charge cognitive : maintenir une faible charge de traitement au début d'une nouvelle compétence facilite l'apprentissage.</span>
+                <span lang="de">Je enger der Bereich ist, den Sie auf einmal bewältigen, desto weniger müssen Ihre Augen verarbeiten und desto zuverlässiger prägen Sie sich ein, welche Note auf welcher Linie und in welchem Zwischenraum liegt. Blattlesen beruht auf sofortigem Abruf, daher kommen Sie schneller voran, wenn Sie einen engen Bereich sichern, bevor Sie ihn erweitern. Die Stufen folgen der Theorie der kognitiven Belastung: Eine geringe Verarbeitungslast zu Beginn einer neuen Fähigkeit fördert das Lernen.</span>
+            </p>
+            <p class="manual-rationale__ref"><span lang="ja">参考: </span><span lang="en">Ref.: </span><span lang="fr">Réf. : </span><span lang="de">Quelle: </span>Sweller (1988) <a class="manual-ref-num" href="#ref-1">[1]</a></p>
+        </div>
+
+        <!-- #training-mode -->
+        <h2 id="training-mode"><span lang="ja">練習モード</span><span lang="en">Training Mode</span><span lang="fr">Mode d'entraînement</span><span lang="de">Trainingsmodus</span></h2>
+
+        <p class="manual-lead">
+            <span lang="ja"><strong>まずは「通常」で十分。</strong> 特定の調号を狙うときだけ「調号別」、成績がたまったら「苦手克服」を使います。</span>
+            <span lang="en"><strong>Standard is enough to start.</strong> Use Key Focus only to target a specific key signature, and reach for "Weak Point Focus" once your results accumulate.</span>
+            <span lang="fr"><strong>« Normal » suffit pour commencer.</strong> N'utilisez « Par armure » que pour cibler une armure précise, et passez à « Travail des points faibles » une fois vos résultats accumulés.</span>
+            <span lang="de"><strong>„Normal" reicht für den Anfang.</strong> Verwenden Sie „Nach Tonart" nur, um ein bestimmtes Vorzeichen gezielt zu üben, und greifen Sie zu „Schwachstellen-Training", sobald sich Ihre Ergebnisse angesammelt haben.</span>
+        </p>
+
+        <p>
+            <span lang="ja">出題する音符をどの方針で選ぶかを決める設定です。3 つのモードがあります。</span>
+            <span lang="en">This setting decides the policy by which notes are chosen for you. There are three modes.</span>
+            <span lang="fr">Ce réglage détermine la logique selon laquelle les notes sont choisies pour vous. Il existe trois modes.</span>
+            <span lang="de">Diese Einstellung legt fest, nach welcher Logik die Noten für Sie ausgewählt werden. Es gibt drei Modi.</span>
+        </p>
+
+        <div class="manual-options">
+            <div class="manual-option">
+                <div class="manual-option__name"><span lang="ja">通常</span><span lang="en">Standard</span><span lang="fr">Normal</span><span lang="de">Normal</span></div>
+                <div class="manual-option__desc"><span lang="ja">選んだ難易度に対応するすべての音符から出題します。特に狙いがなければこれで構いません。</span><span lang="en">Draws from all the notes matching your chosen difficulty. With no special intent, this is the one.</span><span lang="fr">Puise dans toutes les notes correspondant à la difficulté choisie. Sans objectif particulier, c'est celui-ci qu'il faut prendre.</span><span lang="de">Schöpft aus allen Noten, die zur gewählten Schwierigkeit passen. Ohne besondere Absicht ist dies die richtige Wahl.</span></div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name"><span lang="ja">調号別（特定の調を練習）</span><span lang="en">Key Focus</span><span lang="fr">Par armure</span><span lang="de">Nach Tonart</span></div>
+                <div class="manual-option__desc"><span lang="ja">特定の 1 つの調に絞って出題します。苦手な調号を狙って慣らしたいときに（選ぶと「練習する調」の欄が現れます）。</span><span lang="en">Narrows the questions to a single key, for drilling a key signature you find hard (selecting it reveals the "Key to Practice" picker below).</span><span lang="fr">Restreint les questions à une seule tonalité, pour travailler une armure que vous trouvez difficile (en la sélectionnant, le sélecteur « Tonalité à travailler » apparaît plus bas).</span><span lang="de">Beschränkt die Fragen auf eine einzige Tonart, um ein Vorzeichen gezielt zu üben, das Ihnen schwerfällt (bei Auswahl erscheint darunter die Auswahl „Zu übende Tonart").</span></div>
+            </div>
+        </div>
+
+        <p>
+            <span lang="ja">残りの 1 つ — 苦手克服 — は成績データがたまってから効くモードです。考え方はどのトレーニングでも共通なので、下に展開します。</span>
+            <span lang="en">The remaining mode — "Weak Point Focus" — pays off once your performance data accumulates. It works the same way across every training, so it appears inline below.</span>
+            <span lang="fr">Le dernier mode — « Travail des points faibles » — devient utile une fois vos données de performance accumulées. Il fonctionne de la même manière dans tous les entraînements, c'est pourquoi il est présenté ci-dessous.</span>
+            <span lang="de">Der verbleibende Modus — „Schwachstellen-Training" — zahlt sich aus, sobald sich Ihre Leistungsdaten angesammelt haben. Er funktioniert in jedem Training gleich, daher wird er unten direkt erläutert.</span>
+        </p>
+
+        <!-- include: _partials/mode-weak-point.html -->
+
+        <div class="manual-rationale">
+            <span class="manual-rationale__label"><span lang="ja">学習科学の裏づけ</span><span lang="en">The evidence behind it</span><span lang="fr">Les preuves à l'appui</span><span lang="de">Die Belege dahinter</span></span>
+            <p>
+                <span lang="ja">3 つのモードは「今の自分に必要な音符へ練習を集中させる」ためにあります。自分で思い出して答える出題形式そのものが、ただ眺めるより記憶を強くします（テスト効果）。「苦手克服」は、この効果を成績データで自動化したモードです。</span>
+                <span lang="en">The three modes exist to concentrate practice on the notes you currently need. The quiz format itself — recalling the answer rather than just looking — strengthens memory more than passive viewing (the testing effect). "Weak Point Focus" automates this using your performance data.</span>
+                <span lang="fr">Les trois modes servent à concentrer la pratique sur les notes dont vous avez besoin en ce moment. Le format de quiz lui-même — se rappeler la réponse plutôt que simplement regarder — renforce la mémoire plus que l'observation passive (l'effet de test). « Travail des points faibles » automatise ce principe à partir de vos données de performance.</span>
+                <span lang="de">Die drei Modi dienen dazu, die Übung auf die Noten zu konzentrieren, die Sie gerade brauchen. Das Quiz-Format selbst — die Antwort abzurufen statt nur hinzusehen — stärkt das Gedächtnis stärker als passives Betrachten (der Testeffekt). „Schwachstellen-Training" automatisiert dies anhand Ihrer Leistungsdaten.</span>
+            </p>
+            <p class="manual-rationale__ref"><span lang="ja">参考: </span><span lang="en">Ref.: </span><span lang="fr">Réf. : </span><span lang="de">Quelle: </span>Roediger &amp; Karpicke (2006) <a class="manual-ref-num" href="#ref-2">[2]</a></p>
+        </div>
+
+        <!-- #clef -->
+        <h2 id="clef"><span lang="ja">音部記号（ト音記号 / ヘ音記号）</span><span lang="en">Clef (Treble / Bass)</span><span lang="fr">Clé (de sol / de fa)</span><span lang="de">Notenschlüssel (Violin-/Bassschlüssel)</span></h2>
+
+        <p class="manual-lead">
+            <span lang="ja"><strong>まずは自分の楽器で使う記号から。</strong> ギター・ボーカルは「ト音記号」、ベースは「ヘ音記号」、ピアノは片方ずつ安定させてから「両方」。</span>
+            <span lang="en"><strong>Start with the clef your instrument uses.</strong> Treble for guitar and voice, Bass for bass; pianists stabilize each clef before moving to Both.</span>
+            <span lang="fr"><strong>Commencez par la clé qu'utilise votre instrument.</strong> Clé de sol pour la guitare et la voix, clé de fa pour la basse ; les pianistes stabilisent chaque clé avant de passer à « Les deux ».</span>
+            <span lang="de"><strong>Beginnen Sie mit dem Schlüssel, den Ihr Instrument verwendet.</strong> Violinschlüssel für Gitarre und Gesang, Bassschlüssel für Bass; Pianisten festigen jeden Schlüssel, bevor sie zu „Beide" wechseln.</span>
+        </p>
+
+        <p>
+            <span lang="ja">音部記号（=clef）は、五線の左端に置かれて「どの線がどの音か」を決める記号です。同じ位置でも、ト音記号かヘ音記号かで音名がまったく変わります。</span>
+            <span lang="en">The clef is the symbol at the left edge of the staff that fixes which line is which pitch. The same spot names an entirely different note depending on whether the clef is treble or bass.</span>
+            <span lang="fr">La clé est le symbole placé à l'extrémité gauche de la portée qui fixe à quelle hauteur correspond chaque ligne. Un même emplacement nomme une note tout à fait différente selon que la clé est de sol ou de fa.</span>
+            <span lang="de">Der Notenschlüssel ist das Symbol am linken Rand des Notensystems, das festlegt, welche Linie welcher Tonhöhe entspricht. Dieselbe Stelle benennt eine völlig andere Note, je nachdem, ob es der Violin- oder der Bassschlüssel ist.</span>
+        </p>
+
+        <div class="manual-options">
+            <div class="manual-option">
+                <div class="manual-option__name"><span lang="ja">ト音記号</span><span lang="en">Treble Clef</span><span lang="fr">Clé de sol</span><span lang="de">Violinschlüssel</span></div>
+                <div class="manual-option__desc"><span lang="ja">高音部の記号（𝄞）。第 2 線が「ソ（G）」。ギター・ボーカル・ピアノ右手・多くのメロディ楽器で使う、最も基本の音部記号。</span><span lang="en">The high-register clef (𝄞); its second line is G. The most basic clef — for guitar, vocals, the piano's right hand, and most melody instruments.</span><span lang="fr">La clé du registre aigu (𝄞) ; sa deuxième ligne est le sol (G). La clé la plus fondamentale — pour la guitare, le chant, la main droite du piano et la plupart des instruments mélodiques.</span><span lang="de">Der Schlüssel des hohen Registers (𝄞); seine zweite Linie ist das G. Der grundlegendste Schlüssel — für Gitarre, Gesang, die rechte Hand am Klavier und die meisten Melodieinstrumente.</span></div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name"><span lang="ja">ヘ音記号</span><span lang="en">Bass Clef</span><span lang="fr">Clé de fa</span><span lang="de">Bassschlüssel</span></div>
+                <div class="manual-option__desc"><span lang="ja">低音部の記号（𝄢）。第 4 線が「ファ（F）」。ベース・ピアノ左手・チェロなど低音域に必須で、ト音記号とは音名の対応が違うため別物として覚えます。</span><span lang="en">The low-register clef (𝄢); its fourth line is F. Essential for bass, the piano's left hand, cello, and other low registers; its mapping differs from the treble clef, so learn it as a separate system.</span><span lang="fr">La clé du registre grave (𝄢) ; sa quatrième ligne est le fa (F). Indispensable pour la basse, la main gauche du piano, le violoncelle et les autres registres graves ; sa correspondance diffère de celle de la clé de sol, il faut donc l'apprendre comme un système distinct.</span><span lang="de">Der Schlüssel des tiefen Registers (𝄢); seine vierte Linie ist das F. Unverzichtbar für Bass, die linke Hand am Klavier, Cello und andere tiefe Register; seine Zuordnung unterscheidet sich vom Violinschlüssel, daher lernt man ihn als eigenes System.</span></div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name"><span lang="ja">両方</span><span lang="en">Both</span><span lang="fr">Les deux</span><span lang="de">Beide</span></div>
+                <div class="manual-option__desc"><span lang="ja">ト音記号とヘ音記号を混ぜて出題します。どちらが来るか分からないため、左端の音部記号をまず確認してから読む習慣が付き、ピアノなど両方を読む楽器に向きます。</span><span lang="en">Mixes treble and bass questions; since you can't predict which appears, you build the habit of checking the left-edge clef before reading — ideal for piano and other instruments that read both.</span><span lang="fr">Mélange les questions en clé de sol et en clé de fa ; comme vous ne pouvez pas prévoir laquelle apparaît, vous prenez l'habitude de vérifier la clé à l'extrémité gauche avant de lire — idéal pour le piano et les autres instruments qui lisent les deux.</span><span lang="de">Mischt Fragen in Violin- und Bassschlüssel; da Sie nicht vorhersagen können, welcher erscheint, gewöhnen Sie sich an, vor dem Lesen den Schlüssel am linken Rand zu prüfen — ideal für Klavier und andere Instrumente, die beide lesen.</span></div>
+            </div>
+        </div>
+
+        <div class="manual-rationale">
+            <span class="manual-rationale__label"><span lang="ja">学習科学の裏づけ</span><span lang="en">The evidence behind it</span><span lang="fr">Les preuves à l'appui</span><span lang="de">Die Belege dahinter</span></span>
+            <p>
+                <span lang="ja">音部記号ごとに音名の対応が違うため、ト音記号とヘ音記号は別の体系として身につける必要があります。まず一方を確実に読めるようにし、その後もう一方へ進むのが、譜読み指導で確立された段取りです。両方を扱うときは「先頭の記号を確認してから読む」という、実際の演奏で欠かせない手順が身につきます。</span>
+                <span lang="en">Because each clef maps pitches differently, treble and bass must be acquired as separate systems. Securing one clef before adding the other is the established sequence in sight-reading instruction. Handling both builds the essential performing habit of checking the leading clef before you read.</span>
+                <span lang="fr">Comme chaque clé fait correspondre les hauteurs différemment, la clé de sol et la clé de fa doivent s'acquérir comme deux systèmes distincts. Sécuriser une clé avant d'ajouter l'autre est la progression établie dans l'enseignement de la lecture à vue. Gérer les deux développe l'habitude essentielle, propre au jeu, de vérifier la clé en tête avant de lire.</span>
+                <span lang="de">Da jeder Schlüssel die Tonhöhen anders zuordnet, müssen Violin- und Bassschlüssel als getrennte Systeme erworben werden. Einen Schlüssel zu sichern, bevor man den anderen hinzunimmt, ist die etablierte Abfolge im Blattlese-Unterricht. Der Umgang mit beiden entwickelt die für das Spielen wesentliche Gewohnheit, vor dem Lesen den vorangestellten Schlüssel zu prüfen.</span>
+            </p>
+            <p class="manual-rationale__ref"><span lang="ja">参考: </span><span lang="en">Ref.: </span><span lang="fr">Réf. : </span><span lang="de">Quelle: </span>Karpinski (2000) <a class="manual-ref-num" href="#ref-3">[3]</a></p>
+        </div>
+
+        <!-- #key -->
+        <h2 id="key"><span lang="ja">練習する調（調号）</span><span lang="en">Key to Practice (Key Signature)</span><span lang="fr">Tonalité à travailler (armure)</span><span lang="de">Zu übende Tonart (Vorzeichen)</span></h2>
+
+        <p class="manual-lead">
+            <span lang="ja"><strong>特定の調号でつまずくと気づいたら、その 1 つに絞る。</strong> それ以外は「通常」モードで色々な調に触れて構いません。</span>
+            <span lang="en"><strong>When a specific key signature trips you up, narrow to just that one.</strong> Otherwise, meet a variety of keys in Standard mode.</span>
+            <span lang="fr"><strong>Si vous remarquez qu'une armure précise vous fait trébucher, restreignez-vous à celle-là.</strong> Sinon, côtoyez une variété de tonalités en mode « Normal ».</span>
+            <span lang="de"><strong>Wenn Sie merken, dass ein bestimmtes Vorzeichen Sie stolpern lässt, beschränken Sie sich auf genau dieses.</strong> Ansonsten begegnen Sie im Modus „Normal" einer Vielfalt von Tonarten.</span>
+        </p>
+
+        <p>
+            <span lang="ja">出題を 1 つの調に固定する設定で、練習モードで「調号別」を選んだときだけ表示されます。調号（=五線の左端に並ぶシャープ／フラットの数）は、どの音に変化記号が付くかを定めます（例：ト長調はシャープ 1 つ、変ホ長調はフラット 3 つ）。選べる調は難易度に連動し、初級はハ長調のみ、中級は 3 つまで、上級は全 12 調です。</span>
+            <span lang="en">Pins the questions to one key, shown only when you pick Key Focus as the training mode. A key signature — the sharps or flats at the left of the staff — defines which notes are altered (e.g. G major has one sharp, E-flat major three flats). The selectable keys follow your difficulty: only C major at Beginner, up to three accidentals at Intermediate, all twelve keys at Advanced.</span>
+            <span lang="fr">Fixe les questions sur une seule tonalité ; ce réglage n'apparaît que lorsque vous choisissez « Par armure » comme mode d'entraînement. Une armure — les dièses ou bémols à gauche de la portée — définit quelles notes sont altérées (par ex. sol majeur a un dièse, mi bémol majeur trois bémols). Les tonalités sélectionnables suivent votre difficulté : seulement do majeur en « Débutant », jusqu'à trois altérations en « Intermédiaire », les douze tonalités en « Avancé ».</span>
+            <span lang="de">Legt die Fragen auf eine einzige Tonart fest; diese Einstellung erscheint nur, wenn Sie „Nach Tonart" als Trainingsmodus wählen. Ein Vorzeichen — die Kreuze oder Bes links im Notensystem — bestimmt, welche Noten verändert werden (z. B. G-Dur hat ein Kreuz, Es-Dur drei Bes). Die wählbaren Tonarten richten sich nach Ihrer Schwierigkeit: nur C-Dur bei „Anfänger", bis zu drei Akzidenzien bei „Mittelstufe", alle zwölf Tonarten bei „Fortgeschritten".</span>
+        </p>
+
+        <div class="manual-rationale">
+            <span class="manual-rationale__label"><span lang="ja">学習科学の裏づけ</span><span lang="en">The evidence behind it</span><span lang="fr">Les preuves à l'appui</span><span lang="de">Die Belege dahinter</span></span>
+            <p>
+                <span lang="ja">1 つの調に絞ると、その調号特有の「いつもこの音にシャープが付く」というパターンに注意が集中し、体に入りやすくなります。調号を手がかりに読む練習は譜読み指導で確立された方法で、各調の音の並びを内面化するのに役立ちます。</span>
+                <span lang="en">Narrowing to one key concentrates attention on that signature's recurring pattern — "this note is always sharp here" — so it sinks in. Reading by way of the key signature is an established approach in sight-reading instruction, helping you internalize each key's layout of pitches.</span>
+                <span lang="fr">Se restreindre à une seule tonalité concentre l'attention sur le motif récurrent de cette armure — « ici, cette note est toujours diésée » — de sorte qu'il s'ancre. Lire par le biais de l'armure est une approche établie dans l'enseignement de la lecture à vue, qui aide à intérioriser l'agencement des hauteurs de chaque tonalité.</span>
+                <span lang="de">Sich auf eine einzige Tonart zu beschränken, lenkt die Aufmerksamkeit auf das wiederkehrende Muster dieses Vorzeichens — „diese Note ist hier immer erhöht" — sodass es sich einprägt. Über das Vorzeichen zu lesen ist ein etablierter Ansatz im Blattlese-Unterricht, der hilft, die Tonhöhenanordnung jeder Tonart zu verinnerlichen.</span>
+            </p>
+            <p class="manual-rationale__ref"><span lang="ja">参考: </span><span lang="en">Ref.: </span><span lang="fr">Réf. : </span><span lang="de">Quelle: </span>Karpinski (2000) <a class="manual-ref-num" href="#ref-3">[3]</a></p>
+        </div>
+
+        <!-- #ledger -->
+        <h2 id="ledger"><span lang="ja">加線を含める（加線）</span><span lang="en">Include Ledger Lines (Ledger Lines)</span><span lang="fr">Inclure les lignes supplémentaires (lignes supplémentaires)</span><span lang="de">Hilfslinien einbeziehen (Hilfslinien)</span></h2>
+
+        <p class="manual-lead">
+            <span lang="ja"><strong>最初はオフで五線内の音符を確実にし、安定してから加線を加えます。</strong> なお難易度「上級」では加線が自動的に含まれます。</span>
+            <span lang="en"><strong>Leave it off at first to secure the in-staff notes, then add ledger lines once stable.</strong> Note that the Advanced difficulty includes them automatically.</span>
+            <span lang="fr"><strong>Laissez d'abord ce réglage désactivé pour sécuriser les notes situées dans la portée, puis ajoutez les lignes supplémentaires une fois stable.</strong> À noter : la difficulté « Avancé » les inclut automatiquement.</span>
+            <span lang="de"><strong>Lassen Sie es zunächst aus, um die Noten innerhalb des Notensystems zu sichern, und fügen Sie die Hilfslinien hinzu, sobald es stabil ist.</strong> Beachten Sie: Die Schwierigkeit „Fortgeschritten" bezieht sie automatisch ein.</span>
+        </p>
+
+        <p>
+            <span lang="ja">加線（かせん = 五線の上下に短く書き足す補助線）を含めるかどうかの設定です。五線に収まらない高い音・低い音は、線を 1 本ずつ足してその上や間に音符を置きます（例：中央のド C4 はト音記号の五線の下に加線 1 本を足した位置）。位置を数えるのに時間がかかり、つまずきやすい部分ですが、実際の楽譜では当たり前に出てくるため、いずれ避けて通れません。</span>
+            <span lang="en">Controls whether ledger lines — the short helper lines added above or below the staff — appear. Pitches too high or low for the five lines are written by adding lines one at a time (e.g. Middle C, C4, sits on one ledger line below the treble staff). Counting these positions takes time and is a common stumbling point, but ledger-line notes are everywhere in real scores, so they are unavoidable in the long run.</span>
+            <span lang="fr">Détermine si les lignes supplémentaires — les courtes lignes auxiliaires ajoutées au-dessus ou en dessous de la portée — apparaissent. Les hauteurs trop aiguës ou trop graves pour les cinq lignes s'écrivent en ajoutant une ligne à la fois (par ex. le do central, C4, se place sur une ligne supplémentaire sous la portée en clé de sol). Compter ces positions prend du temps et constitue un écueil fréquent, mais les notes sur lignes supplémentaires sont partout dans les vraies partitions : on ne peut donc pas les éviter à long terme.</span>
+            <span lang="de">Steuert, ob Hilfslinien — die kurzen Hilfslinien, die ober- oder unterhalb des Notensystems hinzugefügt werden — erscheinen. Tonhöhen, die für die fünf Linien zu hoch oder zu tief sind, werden geschrieben, indem man Linie für Linie hinzufügt (z. B. liegt das eingestrichene C, C4, auf einer Hilfslinie unter dem Violinschlüssel-Notensystem). Diese Positionen abzuzählen kostet Zeit und ist ein häufiger Stolperstein, doch Noten auf Hilfslinien sind in echten Partituren überall, daher sind sie auf Dauer unvermeidlich.</span>
+        </p>
+
+        <div class="manual-rationale">
+            <span class="manual-rationale__label"><span lang="ja">学習科学の裏づけ</span><span lang="en">The evidence behind it</span><span lang="fr">Les preuves à l'appui</span><span lang="de">Die Belege dahinter</span></span>
+            <p>
+                <span lang="ja">最初に加線を外せるのは、扱う情報量を抑えて読みの負荷を下げるためです。土台ができる前に加線を混ぜると、位置を数える処理が重なって混乱しやすくなります。五線内を確実にしてから加線を加えるほうが、初期の負荷を抑えられて学習が進みます。新しい技能の初期は処理の負荷を低く保つほどよい、という認知負荷の考え方にもとづきます。</span>
+                <span lang="en">Turning ledger lines off at first lowers the reading load by limiting how much you must process at once. Mixing them in before the foundation is set piles on position-counting and tends to cause confusion. Securing the in-staff notes before adding ledger lines keeps the early load low and aids learning — in line with cognitive-load theory, which holds that processing demands should stay low early in a new skill.</span>
+                <span lang="fr">Désactiver d'abord les lignes supplémentaires réduit la charge de lecture en limitant ce que vous devez traiter à la fois. Les mélanger avant que les bases ne soient acquises ajoute le décompte des positions et tend à semer la confusion. Sécuriser les notes situées dans la portée avant d'ajouter les lignes supplémentaires maintient une faible charge au début et facilite l'apprentissage — conformément à la théorie de la charge cognitive, selon laquelle la charge de traitement doit rester faible au début d'une nouvelle compétence.</span>
+                <span lang="de">Die Hilfslinien zunächst auszuschalten senkt die Lesebelastung, indem es begrenzt, wie viel Sie auf einmal verarbeiten müssen. Sie hinzuzumischen, bevor die Grundlage steht, häuft das Abzählen von Positionen an und führt leicht zu Verwirrung. Die Noten innerhalb des Notensystems zu sichern, bevor man Hilfslinien hinzufügt, hält die anfängliche Belastung gering und fördert das Lernen — im Einklang mit der Theorie der kognitiven Belastung, nach der die Verarbeitungslast zu Beginn einer neuen Fähigkeit gering bleiben sollte.</span>
+            </p>
+            <p class="manual-rationale__ref"><span lang="ja">参考: </span><span lang="en">Ref.: </span><span lang="fr">Réf. : </span><span lang="de">Quelle: </span>Sweller (1988) <a class="manual-ref-num" href="#ref-1">[1]</a></p>
+        </div>
+
+        <!-- References -->
+        <section class="manual-refs">
+            <div class="manual-refs__title"><span lang="ja">参考文献</span><span lang="en">References</span><span lang="fr">Références</span><span lang="de">Quellen</span></div>
+            <ol>
+                <li id="ref-1">Sweller, J. (1988). Cognitive load during problem solving: Effects on learning. <em>Cognitive Science, 12</em>(2), 257–285.</li>
+                <li id="ref-2">Roediger, H. L., &amp; Karpicke, J. D. (2006). Test-enhanced learning: Taking memory tests improves long-term retention. <em>Psychological Science, 17</em>(3), 249–255.</li>
+                <li id="ref-3">Karpinski, G. S. (2000). <em>Aural Skills Acquisition: The Development of Listening, Reading, and Performing Skills in College-Level Musicians.</em> Oxford University Press.</li>
+            </ol>
+        </section>
+
+    </main>
+
+    <!-- Final CTA -->
+    <section class="article-cta">
+        <h2 class="article-cta__title"><span lang="ja">設定を決めたら、さっそく試してみよう</span><span lang="en">Settings Sorted? Give It a Try</span><span lang="fr">Réglages décidés ? Essayez sans attendre</span><span lang="de">Einstellungen geklärt? Probieren Sie es aus</span></h2>
+        <p class="article-cta__text">
+            <span lang="ja">各設定の意味がわかれば、あとは実際に手を動かすだけです。<br>迷ったら本ページの「迷ったら…」をなぞって始めてみてください。<br>ソルフェージュPRO の 譜読み で、自分に合った設定を見つけましょう。</span>
+            <span lang="en">Once you understand each setting, the rest is hands-on practice.<br>When unsure, just follow the "when in doubt" lines on this page.<br>Find the settings that fit you in Solfege PRO's Sight Reading.</span>
+            <span lang="fr">Une fois chaque réglage compris, il ne reste plus qu'à pratiquer.<br>En cas de doute, suivez simplement les lignes « En cas de doute… » de cette page.<br>Trouvez les réglages qui vous conviennent dans la Lecture à vue de Solfege PRO.</span>
+            <span lang="de">Sobald Sie jede Einstellung verstanden haben, bleibt nur noch das praktische Üben.<br>Folgen Sie im Zweifel einfach den Zeilen „Im Zweifel…" auf dieser Seite.<br>Finden Sie die für Sie passenden Einstellungen im Blattlesen von Solfege PRO.</span>
+        </p>
+        <a href="https://apps.apple.com/jp/app/id6756626617" class="app-store-link" aria-label="Download on the App Store">
+            <span lang="ja"><img class="app-store-link__img" width="109" height="40" src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/ja-jp" alt="App Storeで入手"></span>
+            <span lang="en"><img class="app-store-link__img" width="120" height="40" src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/en-us" alt="Download on the App Store"></span>
+            <span lang="fr"><img class="app-store-link__img" width="127" height="40" src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/fr-fr" alt="Télécharger dans l'App Store"></span>
+            <span lang="de"><img class="app-store-link__img" width="120" height="40" src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/de-de" alt="Laden im App Store"></span>
+        </a>
+    </section>
+
+    <!-- Related Content -->
+    <div class="article-related">
+        <div class="article-related__title"><span lang="ja">関連コンテンツ</span><span lang="en">Related Content</span><span lang="fr">Contenu associé</span><span lang="de">Verwandte Inhalte</span></div>
+        <a href="/guides/sight-reading/" class="article-related__link" style="margin-bottom: var(--space-md);">
+            <div class="article-related__link-title"><span lang="ja">譜読みが速くなる練習法 — 五線譜をスラスラ読む</span><span lang="en">How to Read Music Faster — Fluent Sight Reading</span><span lang="fr">Qu'est-ce que la lecture à vue ? — Bases et entraînement pour lire la portée rapidement</span><span lang="de">Was ist Vom-Blatt-Lesen? — Grundlagen und Übungen zum schnellen Notenlesen</span></div>
+            <div class="article-related__link-desc"><span lang="ja">設定の前に、そもそも譜読みをどう練習すればよいかを知りたい方へ。ランドマーク音と段階的な練習法を解説したガイド。</span><span lang="en">For those who want to know how to practice sight reading before adjusting settings — a guide to landmark notes and step-by-step practice.</span><span lang="fr">Pour celles et ceux qui veulent savoir comment travailler la lecture à vue avant d'ajuster les réglages — un guide sur les notes repères et une pratique progressive.</span><span lang="de">Für alle, die wissen möchten, wie man das Blattlesen übt, bevor sie die Einstellungen anpassen — ein Leitfaden zu Orientierungsnoten und schrittweisem Üben.</span></div>
+        </a>
+        <a href="/" class="article-related__link">
+            <div class="article-related__link-title"><span lang="ja">ソルフェージュPRO 練習ガイド</span><span lang="en">Solfege PRO Practice Guide</span><span lang="fr">Guide d'entraînement Solfege PRO</span><span lang="de">Solfege PRO Übungsleitfaden</span></div>
+            <div class="article-related__link-desc"><span lang="ja">ギター・ベース・ドラム・ピアノ・ボーカル向けの課題別練習メニュー</span><span lang="en">Challenge-based practice menus for guitar, bass, drums, piano, and vocals</span><span lang="fr">Programmes d'entraînement par problématique pour guitare, basse, batterie, piano et chant</span><span lang="de">Problem­bezogene Übungsmenüs für Gitarre, Bass, Schlagzeug, Klavier und Gesang</span></div>
+        </a>
+    </div>
+
+    <!-- Article Note -->
+    <aside class="article-endnote">
+        <p class="article-endnote__text">
+            <span lang="ja">本ページはアプリ内の設定項目の解説を目的としたリファレンスです。記載した推奨の進め方は、音楽教育で広く用いられる譜読み指導の方法論をもとにした一般的な目安であり、最適な設定は個人の経験や目的によって異なります。引用した研究は学習一般の知見であり、本アプリでの効果を保証するものではありません。</span>
+            <span lang="en">This page is a reference explaining the app's in-app settings. The recommended progressions given here are general guidelines based on widely used sight-reading methodology; the optimal settings vary with individual experience and goals. The cited studies report general learning findings and do not guarantee results within this app.</span>
+            <span lang="fr">Cette page est une référence expliquant les réglages internes de l'application. Les progressions recommandées ici sont des repères généraux fondés sur une méthodologie de lecture à vue largement répandue ; les réglages optimaux varient selon l'expérience et les objectifs de chacun. Les études citées rapportent des résultats généraux sur l'apprentissage et ne garantissent pas de résultats au sein de cette application.</span>
+            <span lang="de">Diese Seite ist eine Referenz, die die in der App enthaltenen Einstellungen erläutert. Die hier empfohlenen Abfolgen sind allgemeine Richtwerte, die auf einer weit verbreiteten Methodik des Blattlesens beruhen; die optimalen Einstellungen hängen von der individuellen Erfahrung und den Zielen ab. Die zitierten Studien berichten allgemeine Erkenntnisse zum Lernen und garantieren keine Ergebnisse innerhalb dieser App.</span>
+        </p>
+    </aside>
+
+    <!-- Footer -->
+    <footer class="article-footer">
+        <p class="article-footer__text">
+            &copy; 2026 <span lang="ja">ソルフェージュPRO</span><span lang="en">Solfege PRO</span><span lang="fr">Solfege PRO</span><span lang="de">Solfege PRO</span> &mdash;
+            <a href="https://apps.apple.com/jp/app/id6756626617" class="article-footer__link">App Store</a>
+        </p>
+    </footer>
+    <script src="/bootstrap.js?v=3" defer></script>
+</body>
+</html>

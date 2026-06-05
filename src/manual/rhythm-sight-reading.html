@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="ja"
+      data-title-ja="リズム譜読み 設定マニュアル — 各設定の選び方 | ソルフェージュPRO"
+      data-title-en="Rhythm Sight Reading Settings Manual — How to Choose Each Option | Solfege PRO"
+      data-title-fr="Manuel des réglages de lecture rythmique à vue — Comment choisir chaque option | Solfege PRO"
+      data-title-de="Handbuch der Einstellungen für Rhythmus-Blattlesen — So wählen Sie jede Option | Solfege PRO">
+<head>
+    <meta charset="UTF-8">
+    <meta name="robots" content="index, follow">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#1A1A1E">
+    <title>リズム譜読み 設定マニュアル — 各設定の選び方 | ソルフェージュPRO</title>
+    <meta name="description" content="リズム譜読みトレーニングの各設定（出題ソース・パターン・繰り返し回数・テンポ・判定の厳しさ・カスタムの音価）を、何のための設定で、誰が、どう選ぶべきかまで丁寧に解説するリファレンスマニュアルです。">
+
+    <!-- Canonical -->
+    <link rel="canonical" href="https://solfegepro.com/manual/rhythm-sight-reading/">
+    <link rel="alternate" hreflang="ja" href="https://solfegepro.com/manual/rhythm-sight-reading/">
+    <link rel="alternate" hreflang="en" href="https://solfegepro.com/en/manual/rhythm-sight-reading/">
+    <link rel="alternate" hreflang="fr" href="https://solfegepro.com/fr/manual/rhythm-sight-reading/">
+    <link rel="alternate" hreflang="de" href="https://solfegepro.com/de/manual/rhythm-sight-reading/">
+    <link rel="alternate" hreflang="x-default" href="https://solfegepro.com/manual/rhythm-sight-reading/">
+
+    <!-- OGP -->
+    <meta property="og:title" content="リズム譜読み 設定マニュアル — 各設定の選び方">
+    <meta property="og:description" content="リズム譜読みトレーニングの各設定（出題ソース・パターン・繰り返し回数・テンポ・判定の厳しさ・カスタムの音価）を、何のための設定で、誰が、どう選ぶべきかまで丁寧に解説するリファレンスマニュアルです。">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://solfegepro.com/manual/rhythm-sight-reading/">
+    <meta property="og:site_name" content="ソルフェージュPRO">
+    <meta property="og:image" content="https://solfegepro.com/og-image.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Solfege PRO">
+    <meta property="og:locale" content="ja_JP">
+    <meta property="og:locale:alternate" content="en_US">
+    <meta property="og:locale:alternate" content="fr_FR">
+    <meta property="og:locale:alternate" content="de_DE">
+    <meta property="article:published_time" content="2026-06-05">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="リズム譜読み 設定マニュアル — 各設定の選び方">
+    <meta name="twitter:description" content="リズム譜読みトレーニングの各設定（出題ソース・パターン・繰り返し回数・テンポ・判定の厳しさ・カスタムの音価）を、何のための設定で、誰が、どう選ぶべきかまで丁寧に解説するリファレンスマニュアルです。">
+    <meta name="twitter:image" content="https://solfegepro.com/og-image.png">
+
+    <!-- Favicon -->
+    <link rel="icon" href="/favicon.ico" sizes="any">
+    <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap"></noscript>
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="/style.css?v=17">
+    <link rel="stylesheet" href="/guides/article.css?v=11">
+
+    <style>
+        /* Manual option reference — responsive, no fixed px widths */
+        .manual-options {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr);
+            gap: var(--space-sm);
+            margin: var(--space-lg) 0;
+        }
+        .manual-option {
+            background: var(--surface);
+            border: 1px solid var(--surface-light);
+            border-radius: var(--radius-lg);
+            padding: var(--space-md);
+        }
+        .manual-option__name {
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: var(--space-xs);
+        }
+        .manual-option__desc {
+            font-size: 13px;
+            color: var(--text-secondary);
+        }
+        /* Bottom-line callout (conclusion first) */
+        .manual-lead {
+            font-size: 14px;
+            line-height: 1.75;
+            color: var(--text-primary);
+            border-left: 3px solid var(--primary);
+            background: rgba(212, 175, 55, 0.06);
+            padding: var(--space-sm) var(--space-md);
+            border-radius: 0 var(--radius-md) var(--radius-md) 0;
+            margin: var(--space-md) 0;
+        }
+        /* Per-setting evidence note — deliberately styled as an editorial
+           aside, NOT as a settings card (no surface fill, no gold label),
+           so it is never mistaken for an in-app option. */
+        .manual-rationale {
+            margin: var(--space-md) 0 var(--space-2xl);
+            padding: var(--space-sm) 0 var(--space-sm) var(--space-md);
+            border-left: 2px solid var(--surface-light);
+        }
+        .manual-rationale__label {
+            display: block;
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            color: var(--text-secondary);
+            margin-bottom: 4px;
+            opacity: 0.75;
+        }
+        .manual-rationale p {
+            font-size: 13px;
+            line-height: 1.75;
+            color: var(--text-secondary);
+            margin: 0;
+        }
+        .manual-rationale__ref {
+            font-size: 12px;
+            font-style: italic;
+            margin-top: var(--space-xs) !important;
+            opacity: 0.7;
+        }
+        /* Citation number linking to the reference list */
+        .manual-ref-num {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-style: normal;
+        }
+        .manual-ref-num:hover { color: var(--primary); }
+        /* Full reference list at page end */
+        .manual-refs {
+            margin: var(--space-2xl) 0 0;
+            padding-top: var(--space-lg);
+            border-top: 1px solid var(--surface-light);
+        }
+        .manual-refs__title {
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: var(--space-sm);
+        }
+        .manual-refs ol {
+            margin: 0;
+            padding-left: 1.25em;
+        }
+        .manual-refs li {
+            font-size: 12px;
+            line-height: 1.7;
+            color: var(--text-secondary);
+            margin-bottom: var(--space-xs);
+            scroll-margin-top: 84px;
+        }
+        .manual-refs li:target {
+            color: var(--text-primary);
+        }
+    </style>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"リズム譜読み 設定マニュアル — 各設定の選び方","description":"リズム譜読みトレーニングの各設定を、何のための設定で、誰が、どう選ぶべきかまで解説するリファレンスマニュアルです。","author":{"@type":"Organization","name":"ソルフェージュPRO"},"publisher":{"@type":"Organization","name":"ソルフェージュPRO","logo":{"@type":"ImageObject","url":"https://solfegepro.com/AppIcon.png"}},"datePublished":"2026-06-05","mainEntityOfPage":{"@type":"WebPage","@id":"https://solfegepro.com/manual/rhythm-sight-reading/"}}</script>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="nav__container">
+            <a href="/" class="nav__logo">
+                <img src="/AppIcon.png" alt="Solfege PRO" class="nav__logo-icon" width="32" height="32">
+                <span class="nav__logo-text"><span lang="ja">ソルフェージュPRO</span><span lang="en">Solfege PRO</span><span lang="fr">Solfege PRO</span><span lang="de">Solfege PRO</span></span>
+            </a>
+            <ul class="nav__list">
+                <li><a href="/" class="nav__link"><span lang="ja">練習ガイド</span><span lang="en">Practice Guide</span><span lang="fr">Guide d'entraînement</span><span lang="de">Übungsleitfaden</span></a></li>
+                <li><a href="/guides/" class="nav__link"><span lang="ja">ガイド一覧</span><span lang="en">Guides</span><span lang="fr">Guides</span><span lang="de">Leitfäden</span></a></li>
+                <li><a href="/manual/" class="nav__link active"><span lang="ja">マニュアル</span><span lang="en">Manual</span><span lang="fr">Manuel</span><span lang="de">Handbuch</span></a></li>
+                            <li><a href="/start-here/" class="nav__link"><span lang="ja">どこから始める？</span><span lang="en">Where to Start?</span><span lang="fr">Par où commencer ?</span><span lang="de">Wo anfangen?</span></a></li>
+            </ul>
+            <div class="nav__settings">
+                <button class="settings-btn" id="lang-toggle" title="Toggle language">
+                    <span id="lang-text">EN</span>
+                </button>
+                <button class="hamburger-btn" id="hamburger-btn" aria-label="Menu" aria-expanded="false" aria-controls="drawer">
+                    <span class="hamburger-btn__line"></span>
+                    <span class="hamburger-btn__line"></span>
+                    <span class="hamburger-btn__line"></span>
+                </button>
+            </div>
+        </div>
+    </nav>
+        <!-- Mobile drawer (hidden on desktop) -->
+        <div class="drawer-overlay" id="drawer-overlay"></div>
+        <aside class="drawer" id="drawer" aria-label="Mobile menu" aria-hidden="true" inert>
+            <div class="drawer__header">
+                <span class="drawer__title"><span lang="ja">メニュー</span><span lang="en">Menu</span><span lang="fr">Menu</span><span lang="de">Menü</span></span>
+                <button class="drawer__close" id="drawer-close" aria-label="Close menu">×</button>
+            </div>
+            <ul class="drawer__list">
+                    <li><a href="/" class="drawer__link"><span lang="ja">練習ガイド</span><span lang="en">Practice Guide</span><span lang="fr">Guide d'entraînement</span><span lang="de">Übungsleitfaden</span></a></li>
+                    <li><a href="/guides/" class="drawer__link"><span lang="ja">ガイド一覧</span><span lang="en">Guides</span><span lang="fr">Guides</span><span lang="de">Leitfäden</span></a></li>
+                    <li><a href="/manual/" class="drawer__link active"><span lang="ja">マニュアル</span><span lang="en">Manual</span><span lang="fr">Manuel</span><span lang="de">Handbuch</span></a></li>
+                    <li><a href="/start-here/" class="drawer__link"><span lang="ja">どこから始める？</span><span lang="en">Where to Start?</span><span lang="fr">Par où commencer ?</span><span lang="de">Wo anfangen?</span></a></li>
+            </ul>
+        </aside>
+
+
+    <!-- Article Header -->
+    <header class="page-header">
+        <div class="page-header__meta">
+            <span class="page-header__tag"><span lang="ja">マニュアル</span><span lang="en">Manual</span><span lang="fr">Manuel</span><span lang="de">Handbuch</span></span>
+            <span><span lang="ja">リズム譜読み</span><span lang="en">Rhythm Sight Reading</span><span lang="fr">Lecture rythmique à vue</span><span lang="de">Rhythmus-Blattlesen</span></span>
+        </div>
+        <h1 class="page-header__title">
+            <span lang="ja">リズム譜読み 設定マニュアル<br>各設定の意味と選び方</span>
+            <span lang="en">Rhythm Sight Reading Settings Manual<br>What Each Option Means and How to Choose</span>
+            <span lang="fr">Manuel des réglages de lecture rythmique à vue<br>Le sens de chaque option et comment la choisir</span>
+            <span lang="de">Einstellungshandbuch Rhythmus-Blattlesen<br>Was jede Option bedeutet und wie man sie wählt</span>
+        </h1>
+        <p class="page-header__subtitle">
+            <span lang="ja">設定画面のどの項目を、どんなときに、どう選べばよいか。リズム譜読みトレーニングの各設定を 1 つずつ解説します。設定画面の「?」から飛んできた方は、目的の項目までスクロールしてください。</span>
+            <span lang="en">Which option to pick, when, and why. This page walks through each setting in rhythm sight reading training, one at a time. If you arrived from a "?" in the settings screen, scroll to the option you need.</span>
+            <span lang="fr">Quelle option choisir, quand et pourquoi. Cette page passe en revue, un à un, chaque réglage de l'entraînement de lecture rythmique à vue. Si vous êtes arrivé depuis le « ? » de l'écran des réglages, faites défiler jusqu'à l'option recherchée.</span>
+            <span lang="de">Welche Option wann und warum gewählt werden sollte. Diese Seite geht jede Einstellung des Rhythmus-Blattlesen-Trainings einzeln durch. Wenn Sie über das „?“ im Einstellungsbildschirm hierhergekommen sind, scrollen Sie zur gewünschten Option.</span>
+        </p>
+    </header>
+
+    <!-- Top-of-article CTA -->
+    <aside class="article-top-cta" aria-label="App promotion">
+        <div class="article-top-cta__body">
+            <p class="article-top-cta__title">
+                <span lang="ja">ソルフェージュPRO でこの練習を試す</span>
+                <span lang="en">Try this in Solfege PRO</span>
+                <span lang="fr">Essayez cet exercice dans Solfege PRO</span>
+                <span lang="de">Probieren Sie diese Übung in Solfege PRO</span>
+            </p>
+            <p class="article-top-cta__sub">
+                <span lang="ja">月額 980 円 · 1 週間無料トライアル</span>
+                <span lang="en">¥980/month · 1-week free trial</span>
+                <span lang="fr">980 ¥/mois · essai gratuit d'une semaine</span>
+                <span lang="de">980 ¥/Monat · 1 Woche kostenlos testen</span>
+            </p>
+        </div>
+        <a href="https://apps.apple.com/jp/app/id6756626617" class="article-top-cta__button" data-cta-position="article_top">
+            <span lang="ja">App Store →</span>
+            <span lang="en">App Store →</span>
+            <span lang="fr">App Store →</span>
+            <span lang="de">App Store →</span>
+        </a>
+    </aside>
+
+    <!-- Article Body -->
+    <main class="article-body">
+
+        <!-- Intro -->
+        <p>
+            <span lang="ja">リズム譜読みトレーニングは、画面に表示された譜面（音符の並び）を読み取り、メトロノームに合わせて正しいタイミングでタップする力を鍛える練習です。音の高さではなく「いつ鳴らすか」だけに集中するので、譜読みの中でもリズムの読み・刻みに特化しています。</span>
+            <span lang="en">Rhythm sight reading training builds your ability to read the notation on screen (the sequence of note durations) and tap it at the right time against a metronome. Because you focus only on "when to play," not on pitch, it isolates the rhythm-reading and timekeeping side of sight reading.</span>
+            <span lang="fr">L'entraînement de lecture rythmique à vue développe votre capacité à lire la notation affichée à l'écran (la suite des durées de notes) et à la taper au bon moment sur un métronome. Comme vous vous concentrez uniquement sur le « quand jouer », et non sur la hauteur, il isole la lecture du rythme et la tenue du temps au sein de la lecture à vue.</span>
+            <span lang="de">Das Rhythmus-Blattlesen-Training entwickelt Ihre Fähigkeit, die auf dem Bildschirm angezeigte Notation (die Abfolge der Notenwerte) zu lesen und sie zum Metronom im richtigen Moment zu tippen. Da Sie sich nur auf das „Wann gespielt wird“ konzentrieren und nicht auf die Tonhöhe, isoliert es das Rhythmuslesen und das Halten des Tempos innerhalb des Blattlesens.</span>
+        </p>
+        <p>
+            <span lang="ja">このページは設定の選び方をまとめたマニュアルです。各設定は音楽教育で確立された学習法にもとづいて設計しています。判断が要る設定について、<strong>おすすめの選び方・何のための設定か・鍛えられる力とその根拠</strong>を簡潔に示します。設定画面の「?」から来た方は、目的の項目までスクロールしてください。</span>
+            <span lang="en">This page is a manual for choosing the settings. Each setting is designed around established methods from music education. For each setting that calls for a decision, we give <strong>the recommended choice, what it is for, and what it trains — with the evidence behind it</strong>. If you arrived from a "?" in the settings screen, scroll to the option you need.</span>
+            <span lang="fr">Cette page est un manuel d'aide au choix des réglages. Chaque réglage est conçu à partir de méthodes éprouvées issues de la pédagogie musicale. Pour chaque réglage qui demande une décision, nous indiquons <strong>le choix recommandé, à quoi il sert et ce qu'il fait travailler — avec les fondements qui l'appuient</strong>. Si vous êtes arrivé depuis le « ? » de l'écran des réglages, faites défiler jusqu'à l'option recherchée.</span>
+            <span lang="de">Diese Seite ist ein Handbuch zur Auswahl der Einstellungen. Jede Einstellung ist auf der Grundlage etablierter Methoden der Musikpädagogik gestaltet. Für jede Einstellung, die eine Entscheidung erfordert, nennen wir <strong>die empfohlene Wahl, wozu sie dient und was sie trainiert — samt der dahinterstehenden Belege</strong>. Wenn Sie über das „?“ im Einstellungsbildschirm hierhergekommen sind, scrollen Sie zur gewünschten Option.</span>
+        </p>
+
+        <!-- #patterns -->
+        <h2 id="patterns"><span lang="ja">出題ソース／パターン（出題範囲）</span><span lang="en">Pattern Source / Pattern</span><span lang="fr">Source des motifs / Motif</span><span lang="de">Musterquelle / Muster</span></h2>
+
+        <p class="manual-lead">
+            <span lang="ja"><strong>まずは「カリキュラム」の初級から。</strong> ひと通り読めるようになって変化が欲しくなったら「カスタム」に切り替え、苦手な音価だけを混ぜて鍛えます。</span>
+            <span lang="en"><strong>Start with Curriculum at the Beginner tier.</strong> Once you can read it through and want variety, switch to Custom and mix in just the note values you find hard.</span>
+            <span lang="fr"><strong>Commencez par « Cursus », au niveau débutant.</strong> Une fois que vous le lisez d'un bout à l'autre et que vous souhaitez de la variété, passez à « Personnalisé » et n'y mélangez que les valeurs de notes qui vous posent problème.</span>
+            <span lang="de"><strong>Beginnen Sie mit „Lehrplan“ auf der Anfängerstufe.</strong> Sobald Sie es durchlesen können und Abwechslung wünschen, wechseln Sie zu „Benutzerdefiniert“ und mischen Sie nur die Notenwerte hinzu, die Ihnen schwerfallen.</span>
+        </p>
+
+        <p>
+            <span lang="ja">練習する譜面を「どこから持ってくるか」を決める設定です。カリキュラム（厳選された決まったパターン）と カスタム（音価＝音符の長さを選んで毎回自動生成）の 2 つから選びます。カリキュラムを選ぶと、含まれる音価が段階的に難しくなる初級・中級・上級のパターン一覧から 1 つを選びます（初級は 4 分音符だけ、中級は 8 分音符や付点、上級は 16 分音符や三連符）。</span>
+            <span lang="en">Decides where the notation you practice comes from. You choose between Curriculum (curated, fixed cells) and Custom (auto-generated fresh each time from the note values — note lengths — you pick). Choosing Curriculum reveals a Pattern list grouped into Beginner / Intermediate / Advanced, where the note values grow harder step by step (Beginner is quarter notes only, Intermediate adds eighths and dotted notes, Advanced adds sixteenths and triplets).</span>
+            <span lang="fr">Détermine d'où provient la notation que vous travaillez. Vous choisissez entre « Cursus » (motifs fixes et sélectionnés) et « Personnalisé » (généré à neuf chaque fois à partir des valeurs de notes — les durées de notes — que vous choisissez). En choisissant « Cursus », une liste de motifs apparaît, répartie en débutant / intermédiaire / avancé, où les valeurs de notes deviennent progressivement plus difficiles (débutant : noires seules ; intermédiaire : ajout de croches et de notes pointées ; avancé : ajout de doubles-croches et de triolets).</span>
+            <span lang="de">Bestimmt, woher die Notation stammt, die Sie üben. Sie wählen zwischen „Lehrplan“ (kuratierte, feste Muster) und „Benutzerdefiniert“ (jedes Mal neu generiert aus den von Ihnen gewählten Notenwerten — den Notenlängen). Bei „Lehrplan“ erscheint eine Musterliste, gegliedert in Anfänger / Mittelstufe / Fortgeschritten, in der die Notenwerte schrittweise schwieriger werden (Anfänger: nur Viertelnoten; Mittelstufe: zusätzlich Achtel und punktierte Noten; Fortgeschritten: zusätzlich Sechzehntel und Triolen).</span>
+        </p>
+
+        <div class="manual-options">
+            <div class="manual-option">
+                <div class="manual-option__name"><span lang="ja">カリキュラム</span><span lang="en">Curriculum</span><span lang="fr">Cursus</span><span lang="de">Lehrplan</span></div>
+                <div class="manual-option__desc"><span lang="ja">難易度別の一覧から厳選パターンを 1 つ選んで繰り返します。「サンプルを聴く」で鳴り方も確認でき、学習を始める段階に最適です。</span><span lang="en">Pick one curated cell from the tiered list and drill it; "Listen to sample" plays how it sounds. Best for starting out.</span><span lang="fr">Choisissez un motif sélectionné dans la liste par niveau et travaillez-le en boucle ; « Écouter un exemple » vous fait entendre son rendu. Idéal pour débuter.</span><span lang="de">Wählen Sie ein kuratiertes Muster aus der nach Stufen geordneten Liste und üben Sie es; „Beispiel anhören“ spielt vor, wie es klingt. Ideal für den Einstieg.</span></div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name"><span lang="ja">カスタム</span><span lang="en">Custom</span><span lang="fr">Personnalisé</span><span lang="de">Benutzerdefiniert</span></div>
+                <div class="manual-option__desc"><span lang="ja">含める音価（4分・2分・8分・16分・付点4分・付点8分）と追加要素（休符・8分三連符）、小節数（2 か 4）を選ぶと、毎回新しい譜面が自動生成されます。最低 1 つ音価を選ばないと開始できません。</span><span lang="en">Pick the note values (quarter / half / eighth / sixteenth / dotted quarter / dotted eighth), Extras (rests / eighth triplets), and Measures per pattern (2 or 4); fresh notation is generated each session. You must enable at least one note value to start.</span><span lang="fr">Choisissez les valeurs de notes (noire / blanche / croche / double-croche / noire pointée / croche pointée), les éléments supplémentaires (silences / triolets de croches) et le nombre de mesures par motif (2 ou 4) ; une nouvelle notation est générée à chaque session. Vous devez activer au moins une valeur de note pour commencer.</span><span lang="de">Wählen Sie die Notenwerte (Viertel / halbe / Achtel / Sechzehntel / punktierte Viertel / punktierte Achtel), Zusätze (Pausen / Achteltriolen) und die Anzahl der Takte pro Muster (2 oder 4); jede Session wird eine neue Notation generiert. Sie müssen mindestens einen Notenwert aktivieren, um zu starten.</span></div>
+            </div>
+        </div>
+
+        <p>
+            <span lang="ja">カスタムでは、付点8分音符 を ON にすると拍の端を埋めるために 16分音符 が自動で ON になります（16分音符 を OFF にすると付点8分音符も外れます）。付点8分が拍を完成させるのに 16 分を必要とするためで、表示と実際の出題を一致させる仕組みです。</span>
+            <span lang="en">In Custom, turning Dotted eighth ON automatically turns Sixteenth ON to fill the end of the beat (and turning Sixteenth OFF clears Dotted eighth). A dotted eighth needs a sixteenth to complete the beat, so this keeps the display in sync with what is actually generated.</span>
+            <span lang="fr">En mode « Personnalisé », activer la croche pointée active automatiquement la double-croche pour combler la fin du temps (et désactiver la double-croche retire aussi la croche pointée). Une croche pointée a besoin d'une double-croche pour compléter le temps : ce mécanisme maintient l'affichage cohérent avec ce qui est réellement généré.</span>
+            <span lang="de">Im Modus „Benutzerdefiniert“ schaltet das Aktivieren der punktierten Achtel automatisch die Sechzehntel ein, um das Ende des Schlags aufzufüllen (und das Ausschalten der Sechzehntel entfernt auch die punktierte Achtel). Eine punktierte Achtel braucht eine Sechzehntel, um den Schlag zu vervollständigen; so bleibt die Anzeige mit dem, was tatsächlich generiert wird, im Einklang.</span>
+        </p>
+
+        <div class="manual-rationale">
+            <span class="manual-rationale__label"><span lang="ja">学習科学の裏づけ</span><span lang="en">The evidence behind it</span><span lang="fr">Les fondements scientifiques</span><span lang="de">Die wissenschaftliche Grundlage</span></span>
+            <p>
+                <span lang="ja">2 つのソースは、固める段階と広げる段階を切り替えるためにあります。決まったパターンの反復で「この音符の並び＝このリズム」という対応を体に入れたあと、カスタムで似た音価を混ぜると、固定パターンだけを反復するより長期的な定着が高まります。似たもの同士を混ぜて学ぶ練習（インターリービング）の効果はメタ分析が示しています。</span>
+                <span lang="en">The two sources let you switch between consolidating and broadening. After fixed-cell repetition wires in the mapping "this run of notes = this rhythm," mixing in similar note values via Custom retains better long-term than drilling one fixed cell alone. The benefit of mixing similar items (interleaving) is shown by meta-analysis.</span>
+                <span lang="fr">Les deux sources permettent d'alterner entre consolider et élargir. Une fois que la répétition d'un motif fixe a ancré l'association « cette suite de notes = ce rythme », mélanger des valeurs de notes proches via le mode « Personnalisé » se retient mieux à long terme que de répéter un seul motif fixe. Le bénéfice du mélange d'éléments proches (entrelacement) est démontré par une méta-analyse.</span>
+                <span lang="de">Die beiden Quellen ermöglichen den Wechsel zwischen Festigen und Erweitern. Nachdem die Wiederholung eines festen Musters die Zuordnung „diese Notenfolge = dieser Rhythmus“ verankert hat, prägt sich das Mischen ähnlicher Notenwerte über den Modus „Benutzerdefiniert“ langfristig besser ein als das bloße Üben eines einzelnen festen Musters. Der Nutzen des Mischens ähnlicher Elemente (verschränktes Lernen) ist durch eine Meta-Analyse belegt.</span>
+            </p>
+            <p class="manual-rationale__ref"><span lang="ja">参考: </span><span lang="en">Ref.: </span><span lang="fr">Réf. : </span><span lang="de">Quelle: </span>Brunmair &amp; Richter (2019) <a class="manual-ref-num" href="#ref-1">[1]</a></p>
+        </div>
+
+        <!-- #repeats -->
+        <h2 id="repeats"><span lang="ja">繰り返し回数（反復数）</span><span lang="en">Repeats</span><span lang="fr">Répétitions</span><span lang="de">Wiederholungen</span></h2>
+
+        <p class="manual-lead">
+            <span lang="ja"><strong>迷ったら 5 回前後。</strong> 慣れないパターンは多めに、すでに読めるパターンの確認なら少なめにします。</span>
+            <span lang="en"><strong>When in doubt, aim for around 5.</strong> Use more for an unfamiliar pattern and fewer for a quick check of one you can already read.</span>
+            <span lang="fr"><strong>En cas de doute, visez environ 5.</strong> Plus pour un motif inhabituel, moins pour une vérification rapide d'un motif que vous savez déjà lire.</span>
+            <span lang="de"><strong>Im Zweifel etwa 5.</strong> Mehr für ein ungewohntes Muster, weniger für eine schnelle Kontrolle eines bereits lesbaren Musters.</span>
+        </p>
+
+        <p>
+            <span lang="ja">1 回のセッションで同じパターンを何回繰り返すかを決める設定です（1〜20 回）。譜読みは「読む → 叩く → ずれを直す」を回数を重ねて精度を上げていく練習なので、この回数がセッションの長さと定着の度合いを左右します。少なすぎると手が覚える前に終わり、多すぎると間延びして集中が切れやすくなります。</span>
+            <span lang="en">Sets how many times the same pattern repeats in one session (1 to 20). Sight reading improves through "read → tap → correct the slip" over multiple passes, so this count governs session length and how well the pattern sticks. Too few ends before your hands learn it; too many drags and breaks your focus.</span>
+            <span lang="fr">Définit combien de fois le même motif est répété au cours d'une session (de 1 à 20). La lecture à vue progresse en enchaînant « lire → taper → corriger l'écart » sur plusieurs passages : ce nombre détermine donc la durée de la session et le degré d'ancrage du motif. Trop peu, et la session se termine avant que vos mains ne l'aient appris ; trop, et cela traîne en longueur et rompt la concentration.</span>
+            <span lang="de">Legt fest, wie oft dasselbe Muster in einer Session wiederholt wird (1 bis 20). Blattlesen verbessert sich durch „lesen → tippen → den Fehler korrigieren“ über mehrere Durchgänge; diese Anzahl bestimmt also die Länge der Session und wie gut sich das Muster einprägt. Zu wenige, und sie endet, bevor Ihre Hände es lernen; zu viele, und es zieht sich hin und reißt die Konzentration ab.</span>
+        </p>
+
+        <div class="manual-rationale">
+            <span class="manual-rationale__label"><span lang="ja">学習科学の裏づけ</span><span lang="en">The evidence behind it</span><span lang="fr">Les fondements scientifiques</span><span lang="de">Die wissenschaftliche Grundlage</span></span>
+            <p>
+                <span lang="ja">繰り返すたびに譜面を自分で読み取って叩き直すので、各回が 1 つの想起（思い出して再現する）になります。思い出して答える反復はただ眺めるより記憶に強く残るため、適度な回数を重ねることでパターンが定着します。</span>
+                <span lang="en">Each pass has you read and reproduce the notation yourself, so every repeat is one act of retrieval (recalling and re-producing it). Retrieval-based repetition retains far better than just looking again, so a moderate number of passes makes the pattern stick.</span>
+                <span lang="fr">À chaque passage, vous lisez et reproduisez vous-même la notation : chaque répétition est donc un acte de récupération (se rappeler puis reproduire). La répétition fondée sur la récupération se retient bien mieux que le simple fait de regarder à nouveau ; un nombre modéré de passages ancre donc le motif.</span>
+                <span lang="de">Bei jedem Durchgang lesen und reproduzieren Sie die Notation selbst, sodass jede Wiederholung ein Akt des Abrufs ist (sich erinnern und es erneut hervorbringen). Abrufbasierte Wiederholung prägt sich weit besser ein als bloßes erneutes Ansehen; eine moderate Anzahl von Durchgängen lässt das Muster also haften.</span>
+            </p>
+            <p class="manual-rationale__ref"><span lang="ja">参考: </span><span lang="en">Ref.: </span><span lang="fr">Réf. : </span><span lang="de">Quelle: </span>Roediger &amp; Karpicke (2006) <a class="manual-ref-num" href="#ref-2">[2]</a></p>
+        </div>
+
+        <!-- #bpm -->
+        <h2 id="bpm"><span lang="ja">テンポ（BPM）</span><span lang="en">Tempo</span><span lang="fr">Tempo</span><span lang="de">Tempo</span></h2>
+
+        <p class="manual-lead">
+            <span lang="ja"><strong>迷ったら 80 BPM 前後から。</strong> そのテンポでミスなく叩けるようになってから、少しずつ上げてください。</span>
+            <span lang="en"><strong>When in doubt, start around 80 BPM.</strong> Nudge it up only once you can tap that tempo without mistakes.</span>
+            <span lang="fr"><strong>En cas de doute, commencez autour de 80 BPM.</strong> Ne l'augmentez qu'une fois capable de taper ce tempo sans fautes.</span>
+            <span lang="de"><strong>Im Zweifel bei etwa 80 BPM beginnen.</strong> Erhöhen Sie es erst, wenn Sie dieses Tempo fehlerfrei tippen können.</span>
+        </p>
+
+        <p>
+            <span lang="ja">メトロノームの速さを決める設定です。BPM（Beats Per Minute = 1 分間の拍数）で 40〜180 の範囲から選びます。遅いテンポは譜面を確認しながら確実に叩けるので新しいパターンを覚える段階に向き、速いテンポは反射的に読む力を要求し本番に近い実戦練習になります。ただし土台ができる前に上げると雑なタップが癖になります。</span>
+            <span lang="en">Sets the metronome speed in BPM (beats per minute), from 40 to 180. A slow tempo lets you read the notation and tap reliably, which suits learning a new pattern; a fast tempo demands reflexive reading and is closer to real performance. But raising it before the foundation is set ingrains sloppy taps.</span>
+            <span lang="fr">Définit la vitesse du métronome en BPM (battements par minute), de 40 à 180. Un tempo lent vous permet de lire la notation et de taper de façon fiable, ce qui convient à l'apprentissage d'un nouveau motif ; un tempo rapide exige une lecture réflexe et se rapproche davantage du jeu réel. Mais l'augmenter avant d'avoir posé les bases ancre des frappes approximatives.</span>
+            <span lang="de">Legt die Metronomgeschwindigkeit in BPM (Schläge pro Minute) fest, von 40 bis 180. Ein langsames Tempo lässt Sie die Notation lesen und zuverlässig tippen, was sich zum Erlernen eines neuen Musters eignet; ein schnelles Tempo verlangt reflexartiges Lesen und kommt dem echten Spiel näher. Doch es zu erhöhen, bevor die Grundlage steht, prägt unsaubere Taps ein.</span>
+        </p>
+
+        <div class="manual-rationale">
+            <span class="manual-rationale__label"><span lang="ja">学習科学の裏づけ</span><span lang="en">The evidence behind it</span><span lang="fr">Les fondements scientifiques</span><span lang="de">Die wissenschaftliche Grundlage</span></span>
+            <p>
+                <span lang="ja">テンポを変えられるのは、メトロノームに動きを合わせる力（拍への同期）を段階的に鍛えるためです。遅いテンポで正確に合わせられるようになってから上げると、速くなっても拍からのずれを抑えやすくなります。タップと拍の同期は、テンポによって難しさが変わることが同期研究で示されています。</span>
+                <span lang="en">Tempo is adjustable so you can build synchronization to the metronome (locking to the beat) in stages. Once you can align accurately at a slow tempo and then raise it, you can better keep your deviation from the beat in check at speed. Synchronizing taps to a beat varies in difficulty with tempo, as the synchronization literature shows.</span>
+                <span lang="fr">Le tempo est réglable afin de développer par étapes la synchronisation avec le métronome (se caler sur le temps). Une fois que vous parvenez à vous aligner avec précision à un tempo lent, puis que vous l'augmentez, vous maîtrisez mieux votre écart par rapport au temps à grande vitesse. La difficulté à synchroniser ses frappes sur un temps varie selon le tempo, comme le montre la littérature sur la synchronisation.</span>
+                <span lang="de">Das Tempo ist einstellbar, damit Sie die Synchronisation mit dem Metronom (das Einrasten in den Schlag) schrittweise aufbauen können. Sobald Sie sich bei langsamem Tempo genau ausrichten können und es dann erhöhen, halten Sie Ihre Abweichung vom Schlag auch bei hohem Tempo besser im Griff. Wie schwierig es ist, Taps an einen Schlag zu synchronisieren, hängt vom Tempo ab, wie die Synchronisationsforschung zeigt.</span>
+            </p>
+            <p class="manual-rationale__ref"><span lang="ja">参考: </span><span lang="en">Ref.: </span><span lang="fr">Réf. : </span><span lang="de">Quelle: </span>Repp (2005) <a class="manual-ref-num" href="#ref-3">[3]</a></p>
+        </div>
+
+        <!-- #difficulty -->
+        <h2 id="difficulty"><span lang="ja">判定の厳しさ（難易度）</span><span lang="en">Strictness</span><span lang="fr">Sévérité du jugement</span><span lang="de">Strenge der Bewertung</span></h2>
+
+        <p class="manual-lead">
+            <span lang="ja"><strong>まずは「カジュアル」か「スタンダード」で。</strong> 安定して高評価が出るようになってから、1 段ずつ厳しくして精度を詰めます。</span>
+            <span lang="en"><strong>Start at Casual or Standard.</strong> Once high ratings come consistently, tighten one level at a time to refine accuracy.</span>
+            <span lang="fr"><strong>Commencez par « Décontracté » ou « Standard ».</strong> Une fois que vous obtenez régulièrement de bonnes évaluations, durcissez d'un cran à la fois pour affiner la précision.</span>
+            <span lang="de"><strong>Beginnen Sie mit „Locker“ oder „Standard“.</strong> Sobald durchgängig hohe Bewertungen kommen, verschärfen Sie es um jeweils eine Stufe, um die Genauigkeit zu verfeinern.</span>
+        </p>
+
+        <p>
+            <span lang="ja">あなたのタップが「正解」と認められる時間のずれ（許容範囲）をどれだけ厳しくするかを決める設定です。タップが拍から何ミリ秒ずれたかで Perfect / Great などの評価が決まり、その合格ラインが 4 段階で変わります。譜読みそのものの難しさではなく、タイミング精度の採点基準を変える設定です。</span>
+            <span lang="en">Decides how tight the timing tolerance is for your tap to count as correct. Your rating (Perfect, Great, and so on) depends on how many milliseconds your tap deviates from the beat, and this pass line shifts across four levels. It changes the grading standard for timing accuracy, not the difficulty of the reading itself.</span>
+            <span lang="fr">Détermine la sévérité de la tolérance temporelle pour que votre frappe soit considérée comme correcte. Votre évaluation (Parfait, Excellent, etc.) dépend du nombre de millisecondes d'écart de votre frappe par rapport au temps, et ce seuil de réussite varie sur quatre niveaux. Ce réglage modifie le barème de notation de la précision temporelle, et non la difficulté de la lecture elle-même.</span>
+            <span lang="de">Bestimmt, wie eng die Zeittoleranz ist, damit Ihr Tap als korrekt zählt. Ihre Bewertung (Perfekt, Großartig usw.) hängt davon ab, um wie viele Millisekunden Ihr Tap vom Schlag abweicht, und diese Bestehensgrenze verschiebt sich über vier Stufen. Es ändert den Bewertungsmaßstab für die zeitliche Genauigkeit, nicht die Schwierigkeit des Lesens selbst.</span>
+        </p>
+
+        <div class="manual-options">
+            <div class="manual-option">
+                <div class="manual-option__name"><span lang="ja">カジュアル</span><span lang="en">Casual</span><span lang="fr">Décontracté</span><span lang="de">Locker</span></div>
+                <div class="manual-option__desc"><span lang="ja">±150 ms 以内ならOK の余裕ある判定。まず譜面どおりの順番でタップできているかを確認したい初学者向け。</span><span lang="en">Generous — taps within ±150 ms count. For beginners first confirming they can tap in the right order.</span><span lang="fr">Tolérant — les frappes dans une marge de ±150 ms sont validées. Pour les débutants qui veulent d'abord vérifier qu'ils tapent dans le bon ordre.</span><span lang="de">Großzügig — Taps innerhalb von ±150 ms zählen. Für Anfänger, die zunächst bestätigen wollen, dass sie in der richtigen Reihenfolge tippen.</span></div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name"><span lang="ja">スタンダード</span><span lang="en">Standard</span><span lang="fr">Standard</span><span lang="de">Standard</span></div>
+                <div class="manual-option__desc"><span lang="ja">±90 ms でパーフェクト、±150 ms でグレート。読む順番が安定し、精度も意識し始める段階のバランス設定。</span><span lang="en">±90 ms for Perfect, ±150 ms for Great. A balanced level once your reading order is stable and you start caring about accuracy.</span><span lang="fr">±90 ms pour Parfait, ±150 ms pour Excellent. Un niveau équilibré une fois que votre ordre de lecture est stable et que vous commencez à vous soucier de la précision.</span><span lang="de">±90 ms für Perfekt, ±150 ms für Großartig. Eine ausgewogene Stufe, sobald Ihre Lesereihenfolge stabil ist und Sie beginnen, auf Genauigkeit zu achten.</span></div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name"><span lang="ja">シビア</span><span lang="en">Strict</span><span lang="fr">Strict</span><span lang="de">Streng</span></div>
+                <div class="manual-option__desc"><span lang="ja">±50 ms でパーフェクト、±90 ms でグレート。細かいブレを詰めたい中〜上級者向け。アンサンブルで通用する精度を目指す段階。</span><span lang="en">±50 ms for Perfect, ±90 ms for Great. For intermediate-to-advanced players tightening fine timing toward ensemble-ready accuracy.</span><span lang="fr">±50 ms pour Parfait, ±90 ms pour Excellent. Pour les joueurs de niveau intermédiaire à avancé qui resserrent leur timing fin vers une précision adaptée au jeu d'ensemble.</span><span lang="de">±50 ms für Perfekt, ±90 ms für Großartig. Für fortgeschrittene Spieler von der Mittelstufe an, die ihr feines Timing in Richtung ensembletauglicher Genauigkeit verschärfen.</span></div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name"><span lang="ja">プロ</span><span lang="en">Pro</span><span lang="fr">Pro</span><span lang="de">Pro</span></div>
+                <div class="manual-option__desc"><span lang="ja">±25 ms でパーフェクト、±50 ms でグレート。最も厳しい採点。プロ奏者レベルの均一なタイム感を磨きたい人向け。</span><span lang="en">±25 ms for Perfect, ±50 ms for Great. The toughest grading, for honing the even, professional-level time feel.</span><span lang="fr">±25 ms pour Parfait, ±50 ms pour Excellent. La notation la plus sévère, pour affiner une régularité temporelle de niveau professionnel.</span><span lang="de">±25 ms für Perfekt, ±50 ms für Großartig. Die strengste Bewertung, um das gleichmäßige Zeitgefühl auf Profiniveau zu schärfen.</span></div>
+            </div>
+        </div>
+
+        <div class="manual-rationale">
+            <span class="manual-rationale__label"><span lang="ja">学習科学の裏づけ</span><span lang="en">The evidence behind it</span><span lang="fr">Les fondements scientifiques</span><span lang="de">Die wissenschaftliche Grundlage</span></span>
+            <p>
+                <span lang="ja">許容範囲を段階に分けているのは、初期は判定をゆるめて読む処理に集中させ、慣れたら精度の負荷を足すためです。読みとタイミングの両方を一度に厳しく問うと処理が過負荷になり、読み自体への集中が削がれます。新しい技能の初期ほど処理の負荷を抑えると学習が進む、という認知負荷の考え方にもとづく設計です。</span>
+                <span lang="en">The tolerance is staged so that early on a loose judgment lets you focus on reading, and the accuracy load is added once you are comfortable. Demanding tight reading and tight timing at once overloads processing and pulls focus away from the reading itself. The design follows cognitive-load theory: keeping processing demands low early in a new skill aids learning.</span>
+                <span lang="fr">La tolérance est échelonnée pour qu'au début un jugement souple vous laisse vous concentrer sur la lecture, la charge de précision n'étant ajoutée qu'une fois à l'aise. Exiger en même temps une lecture serrée et un timing serré surcharge le traitement et détourne l'attention de la lecture elle-même. Cette conception suit la théorie de la charge cognitive : maintenir une faible charge de traitement au début d'une nouvelle compétence favorise l'apprentissage.</span>
+                <span lang="de">Die Toleranz ist gestuft, damit zu Beginn ein lockeres Urteil Sie auf das Lesen konzentrieren lässt und die Genauigkeitslast erst hinzukommt, wenn Sie sicher sind. Gleichzeitig enges Lesen und enges Timing zu fordern überlastet die Verarbeitung und lenkt die Aufmerksamkeit vom Lesen selbst ab. Der Entwurf folgt der Theorie der kognitiven Belastung: die Verarbeitungslast früh bei einer neuen Fähigkeit gering zu halten fördert das Lernen.</span>
+            </p>
+            <p class="manual-rationale__ref"><span lang="ja">参考: </span><span lang="en">Ref.: </span><span lang="fr">Réf. : </span><span lang="de">Quelle: </span>Sweller (1988) <a class="manual-ref-num" href="#ref-4">[4]</a></p>
+        </div>
+
+        <!-- References -->
+        <section class="manual-refs">
+            <div class="manual-refs__title"><span lang="ja">参考文献</span><span lang="en">References</span><span lang="fr">Références</span><span lang="de">Quellen</span></div>
+            <ol>
+                <li id="ref-1">Brunmair, M., &amp; Richter, T. (2019). Similarity matters: A meta-analysis of interleaved learning and its moderators. <em>Psychological Bulletin, 145</em>(11), 1029–1052.</li>
+                <li id="ref-2">Roediger, H. L., &amp; Karpicke, J. D. (2006). Test-enhanced learning: Taking memory tests improves long-term retention. <em>Psychological Science, 17</em>(3), 249–255.</li>
+                <li id="ref-3">Repp, B. H. (2005). Sensorimotor synchronization: A review of the tapping literature. <em>Psychonomic Bulletin &amp; Review, 12</em>(6), 969–992.</li>
+                <li id="ref-4">Sweller, J. (1988). Cognitive load during problem solving: Effects on learning. <em>Cognitive Science, 12</em>(2), 257–285.</li>
+            </ol>
+        </section>
+
+    </main>
+
+    <!-- Final CTA -->
+    <section class="article-cta">
+        <h2 class="article-cta__title"><span lang="ja">設定を決めたら、さっそく試してみよう</span><span lang="en">Settings Sorted? Give It a Try</span><span lang="fr">Réglages décidés ? Essayez sans attendre</span><span lang="de">Einstellungen geklärt? Probieren Sie es aus</span></h2>
+        <p class="article-cta__text">
+            <span lang="ja">各設定の意味がわかれば、あとは実際に手を動かすだけです。<br>迷ったら本ページの「迷ったら…」をなぞって始めてみてください。<br>ソルフェージュPRO の リズム譜読み で、自分に合った設定を見つけましょう。</span>
+            <span lang="en">Once you understand each setting, the rest is hands-on practice.<br>When unsure, just follow the "when in doubt" lines on this page.<br>Find the settings that fit you in Solfege PRO's Rhythm Sight Reading.</span>
+            <span lang="fr">Une fois chaque réglage compris, il ne reste plus qu'à pratiquer.<br>En cas de doute, suivez simplement les lignes « En cas de doute… » de cette page.<br>Trouvez les réglages qui vous conviennent dans la Lecture rythmique à vue de Solfege PRO.</span>
+            <span lang="de">Sobald Sie jede Einstellung verstanden haben, bleibt nur noch das praktische Üben.<br>Folgen Sie im Zweifel einfach den Zeilen „Im Zweifel…" auf dieser Seite.<br>Finden Sie die für Sie passenden Einstellungen im Rhythmus-Blattlesen von Solfege PRO.</span>
+        </p>
+        <a href="https://apps.apple.com/jp/app/id6756626617" class="app-store-link" aria-label="Download on the App Store">
+            <span lang="ja"><img class="app-store-link__img" width="109" height="40" src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/ja-jp" alt="App Storeで入手"></span>
+            <span lang="en"><img class="app-store-link__img" width="120" height="40" src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/en-us" alt="Download on the App Store"></span>
+            <span lang="fr"><img class="app-store-link__img" width="127" height="40" src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/fr-fr" alt="Télécharger dans l'App Store"></span>
+            <span lang="de"><img class="app-store-link__img" width="120" height="40" src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/de-de" alt="Laden im App Store"></span>
+        </a>
+    </section>
+
+    <!-- Related Content -->
+    <div class="article-related">
+        <div class="article-related__title"><span lang="ja">関連コンテンツ</span><span lang="en">Related Content</span><span lang="fr">Contenu associé</span><span lang="de">Verwandte Inhalte</span></div>
+        <a href="/guides/how-to-count-rhythms/" class="article-related__link" style="margin-bottom: var(--space-md);">
+            <div class="article-related__link-title"><span lang="ja">リズムの数え方 — 音符の長さを読んで刻む</span><span lang="en">How to Count Rhythms — Reading and Keeping Note Durations</span><span lang="fr">Comment compter le rythme — Lire et tenir les valeurs des notes</span><span lang="de">Rhythmus zählen lernen — Notenwerte lesen und halten</span></div>
+            <div class="article-related__link-desc"><span lang="ja">設定の前に、そもそも音符の長さをどう数えるかを知りたい方へ。4 分・8 分・付点・三連符の読み方を解説したガイド。</span><span lang="en">For those who want to understand how to count note durations before adjusting settings — a guide to reading quarters, eighths, dotted notes, and triplets.</span><span lang="fr">Pour celles et ceux qui veulent comprendre comment compter la durée des notes avant d'ajuster les réglages — un guide pour lire les noires, les croches, les notes pointées et les triolets.</span><span lang="de">Für alle, die verstehen möchten, wie man Notenwerte zählt, bevor sie die Einstellungen anpassen — ein Leitfaden zum Lesen von Vierteln, Achteln, punktierten Noten und Triolen.</span></div>
+        </a>
+        <a href="/" class="article-related__link">
+            <div class="article-related__link-title"><span lang="ja">ソルフェージュPRO 練習ガイド</span><span lang="en">Solfege PRO Practice Guide</span><span lang="fr">Guide d'entraînement Solfege PRO</span><span lang="de">Solfege PRO Übungsleitfaden</span></div>
+            <div class="article-related__link-desc"><span lang="ja">ギター・ベース・ドラム・ピアノ・ボーカル向けの課題別練習メニュー</span><span lang="en">Challenge-based practice menus for guitar, bass, drums, piano, and vocals</span><span lang="fr">Programmes d'entraînement par problématique pour guitare, basse, batterie, piano et chant</span><span lang="de">Problem­bezogene Übungsmenüs für Gitarre, Bass, Schlagzeug, Klavier und Gesang</span></div>
+        </a>
+    </div>
+
+    <!-- Article Note -->
+    <aside class="article-endnote">
+        <p class="article-endnote__text">
+            <span lang="ja">本ページはアプリ内の設定項目の解説を目的としたリファレンスです。記載した推奨の進め方は、音楽教育で広く用いられる譜読み・リズムトレーニングの方法論をもとにした一般的な目安であり、最適な設定は個人の経験や目的によって異なります。引用した研究は学習一般の知見であり、本アプリでの効果を保証するものではありません。</span>
+            <span lang="en">This page is a reference explaining the app's in-app settings. The recommended progressions given here are general guidelines based on widely used sight-reading and rhythm-training methodology; the optimal settings vary with individual experience and goals. The cited studies report general learning findings and do not guarantee results within this app.</span>
+            <span lang="fr">Cette page est une référence expliquant les réglages internes de l'application. Les progressions recommandées ici sont des repères généraux fondés sur une méthodologie de lecture à vue et d'entraînement rythmique largement répandue ; les réglages optimaux varient selon l'expérience et les objectifs de chacun. Les études citées rapportent des résultats généraux sur l'apprentissage et ne garantissent pas de résultats au sein de cette application.</span>
+            <span lang="de">Diese Seite ist eine Referenz, die die in der App enthaltenen Einstellungen erläutert. Die hier empfohlenen Abfolgen sind allgemeine Richtwerte, die auf einer weit verbreiteten Methodik des Blattlesens und Rhythmustrainings beruhen; die optimalen Einstellungen hängen von der individuellen Erfahrung und den Zielen ab. Die zitierten Studien berichten allgemeine Erkenntnisse zum Lernen und garantieren keine Ergebnisse innerhalb dieser App.</span>
+        </p>
+    </aside>
+
+    <!-- Footer -->
+    <footer class="article-footer">
+        <p class="article-footer__text">
+            &copy; 2026 <span lang="ja">ソルフェージュPRO</span><span lang="en">Solfege PRO</span><span lang="fr">Solfege PRO</span><span lang="de">Solfege PRO</span> &mdash;
+            <a href="https://apps.apple.com/jp/app/id6756626617" class="article-footer__link">App Store</a>
+        </p>
+    </footer>
+    <script src="/bootstrap.js?v=3" defer></script>
+</body>
+</html>

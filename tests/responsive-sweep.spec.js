@@ -39,6 +39,16 @@ const PAGES = [
     // entry / top
     '/',
     '/start-here/',
+    // manual/ — in-app help (per-training setting guides)
+    '/manual/',
+    '/manual/chord/',
+    '/manual/interval/',
+    '/manual/scale/',
+    '/manual/progression/',
+    '/manual/sight-reading/',
+    '/manual/fretboard/',
+    '/manual/rhythm/',
+    '/manual/rhythm-sight-reading/',
 ];
 
 // Boundary widths matter — 720/740/760/765/768/770/780 catch dead zones

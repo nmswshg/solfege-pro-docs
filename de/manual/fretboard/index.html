@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html lang="de"
+      data-title-ja="指板トレーニング 設定マニュアル — 各設定の選び方 | ソルフェージュPRO"
+      data-title-en="Fretboard Training Settings Manual — How to Choose Each Option | Solfege PRO"
+      data-title-fr="Manuel des réglages de l'entraînement au manche — comment choisir chaque option | Solfege PRO"
+      data-title-de="Handbuch zu den Einstellungen des Griffbrett-Trainings — wie Sie jede Option wählen | Solfege PRO">
+<head>
+    <meta charset="UTF-8">
+    <meta name="robots" content="index, follow">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#1A1A1E">
+    <title>Handbuch zu den Einstellungen des Griffbrett-Trainings — wie Sie jede Option wählen | Solfege PRO</title>
+    <meta name="description" content="Referenz zu den Griffbrett-Training-Einstellungen — Modus, Töne, Bundbereich, Saiten, Antwort, Hinweise, Stimmung, Händigkeit: wer wählt was und warum.">
+
+    <!-- Canonical -->
+    <link rel="canonical" href="https://solfegepro.com/de/manual/fretboard/">
+    <link rel="alternate" hreflang="ja" href="https://solfegepro.com/manual/fretboard/">
+    <link rel="alternate" hreflang="en" href="https://solfegepro.com/en/manual/fretboard/">
+    <link rel="alternate" hreflang="fr" href="https://solfegepro.com/fr/manual/fretboard/">
+    <link rel="alternate" hreflang="de" href="https://solfegepro.com/de/manual/fretboard/">
+    <link rel="alternate" hreflang="x-default" href="https://solfegepro.com/manual/fretboard/">
+<!-- OGP -->
+    <meta property="og:title" content="Handbuch zu den Einstellungen des Griffbrett-Trainings — wie Sie jede Option wählen">
+    <meta property="og:description" content="Referenz zu den Griffbrett-Training-Einstellungen — Modus, Töne, Bundbereich, Saiten, Antwort, Hinweise, Stimmung, Händigkeit: wer wählt was und warum.">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://solfegepro.com/de/manual/fretboard/">
+    <meta property="og:site_name" content="Solfege PRO">
+    <meta property="og:image" content="https://solfegepro.com/og-image.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Solfege PRO">
+    <meta property="og:locale" content="de_DE">
+    <meta property="og:locale:alternate" content="ja_JP">
+    <meta property="og:locale:alternate" content="en_US">
+    <meta property="og:locale:alternate" content="fr_FR">
+    <meta property="article:published_time" content="2026-06-05">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Handbuch zu den Einstellungen des Griffbrett-Trainings — wie Sie jede Option wählen">
+    <meta name="twitter:description" content="Referenz zu den Griffbrett-Training-Einstellungen — Modus, Töne, Bundbereich, Saiten, Antwort, Hinweise, Stimmung, Händigkeit: wer wählt was und warum.">
+    <meta name="twitter:image" content="https://solfegepro.com/og-image.png">
+
+    <!-- Favicon -->
+    <link rel="icon" href="/favicon.ico" sizes="any">
+    <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap"></noscript>
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="/style.css?v=17">
+    <link rel="stylesheet" href="/guides/article.css?v=11">
+
+    <style>
+        /* Manual option reference — responsive, no fixed px widths */
+        .manual-options {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr);
+            gap: var(--space-sm);
+            margin: var(--space-lg) 0;
+        }
+        .manual-option {
+            background: var(--surface);
+            border: 1px solid var(--surface-light);
+            border-radius: var(--radius-lg);
+            padding: var(--space-md);
+        }
+        .manual-option__name {
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: var(--space-xs);
+        }
+        .manual-option__desc {
+            font-size: 13px;
+            color: var(--text-secondary);
+        }
+        /* Bottom-line callout (conclusion first) */
+        .manual-lead {
+            font-size: 14px;
+            line-height: 1.75;
+            color: var(--text-primary);
+            border-left: 3px solid var(--primary);
+            background: rgba(212, 175, 55, 0.06);
+            padding: var(--space-sm) var(--space-md);
+            border-radius: 0 var(--radius-md) var(--radius-md) 0;
+            margin: var(--space-md) 0;
+        }
+        /* Per-setting evidence note — deliberately styled as an editorial
+           aside, NOT as a settings card (no surface fill, no gold label),
+           so it is never mistaken for an in-app option. */
+        .manual-rationale {
+            margin: var(--space-md) 0 var(--space-2xl);
+            padding: var(--space-sm) 0 var(--space-sm) var(--space-md);
+            border-left: 2px solid var(--surface-light);
+        }
+        .manual-rationale__label {
+            display: block;
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            color: var(--text-secondary);
+            margin-bottom: 4px;
+            opacity: 0.75;
+        }
+        .manual-rationale p {
+            font-size: 13px;
+            line-height: 1.75;
+            color: var(--text-secondary);
+            margin: 0;
+        }
+        .manual-rationale__ref {
+            font-size: 12px;
+            font-style: italic;
+            margin-top: var(--space-xs) !important;
+            opacity: 0.7;
+        }
+        /* Citation number linking to the reference list */
+        .manual-ref-num {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-style: normal;
+        }
+        .manual-ref-num:hover { color: var(--primary); }
+        /* Full reference list at page end */
+        .manual-refs {
+            margin: var(--space-2xl) 0 0;
+            padding-top: var(--space-lg);
+            border-top: 1px solid var(--surface-light);
+        }
+        .manual-refs__title {
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: var(--space-sm);
+        }
+        .manual-refs ol {
+            margin: 0;
+            padding-left: 1.25em;
+        }
+        .manual-refs li {
+            font-size: 12px;
+            line-height: 1.7;
+            color: var(--text-secondary);
+            margin-bottom: var(--space-xs);
+            scroll-margin-top: 84px;
+        }
+        .manual-refs li:target {
+            color: var(--text-primary);
+        }
+    </style>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Handbuch zu den Einstellungen des Griffbrett-Trainings — wie Sie jede Option wählen","description":"Referenz zu den Griffbrett-Training-Einstellungen — Modus, Töne, Bundbereich, Saiten, Antwort, Hinweise, Stimmung, Händigkeit: wer wählt was und warum.","author":{"@type":"Organization","name":"Solfege PRO"},"publisher":{"@type":"Organization","name":"Solfege PRO","logo":{"@type":"ImageObject","url":"https://solfegepro.com/AppIcon.png"}},"datePublished":"2026-06-05","mainEntityOfPage":{"@type":"WebPage","@id":"https://solfegepro.com/de/manual/fretboard/"}}</script>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Startseite","item":"https://solfegepro.com/de/"},{"@type":"ListItem","position":2,"name":"Handbuch","item":"https://solfegepro.com/de/manual/"},{"@type":"ListItem","position":3,"name":"Handbuch zu den Einstellungen des Griffbrett-Trainings — wie Sie jede Option wählen","item":"https://solfegepro.com/de/manual/fretboard/"}]}</script>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="nav__container">
+            <a href="/" class="nav__logo">
+                <img src="/AppIcon.png" alt="Solfege PRO" class="nav__logo-icon" width="32" height="32">
+                <span class="nav__logo-text">Solfege PRO</span>
+            </a>
+            <ul class="nav__list">
+                <li><a href="/" class="nav__link">Übungsleitfaden</a></li>
+                <li><a href="/guides/" class="nav__link">Leitfäden</a></li>
+                <li><a href="/manual/" class="nav__link active">Handbuch</a></li>
+                            <li><a href="/start-here/" class="nav__link">Wo anfangen?</a></li>
+            </ul>
+            <div class="nav__settings">
+                <button class="settings-btn" id="lang-toggle" title="Toggle language">
+                    <span id="lang-text">EN</span>
+                </button>
+                <button class="hamburger-btn" id="hamburger-btn" aria-label="Menu" aria-expanded="false" aria-controls="drawer">
+                    <span class="hamburger-btn__line"></span>
+                    <span class="hamburger-btn__line"></span>
+                    <span class="hamburger-btn__line"></span>
+                </button>
+            </div>
+        </div>
+    </nav>
+        <!-- Mobile drawer (hidden on desktop) -->
+        <div class="drawer-overlay" id="drawer-overlay"></div>
+        <aside class="drawer" id="drawer" aria-label="Mobile menu" aria-hidden="true" inert>
+            <div class="drawer__header">
+                <span class="drawer__title">Menü</span>
+                <button class="drawer__close" id="drawer-close" aria-label="Close menu">×</button>
+            </div>
+            <ul class="drawer__list">
+                    <li><a href="/" class="drawer__link">Übungsleitfaden</a></li>
+                    <li><a href="/guides/" class="drawer__link">Leitfäden</a></li>
+                    <li><a href="/manual/" class="drawer__link active">Handbuch</a></li>
+                    <li><a href="/start-here/" class="drawer__link">Wo anfangen?</a></li>
+            </ul>
+        </aside>
+
+
+    <!-- Article Header -->
+    <header class="page-header">
+        <div class="page-header__meta">
+            <span class="page-header__tag">Handbuch</span>
+            <span>Griffbrett-Training</span>
+        </div>
+        <h1 class="page-header__title">
+            
+            
+            
+            Handbuch zu den Einstellungen des Griffbrett-Trainings<br>Was jede Option bedeutet und wie Sie sie wählen
+        </h1>
+        <p class="page-header__subtitle">
+            
+            
+            
+            Welche Option Sie wann und warum wählen sollten. Diese Seite geht jede Einstellung des Griffbrett-Trainings einzeln durch. Wenn Sie über ein „?" im Einstellungsbildschirm hierher gelangt sind, scrollen Sie zur gewünschten Option.
+        </p>
+    </header>
+
+    <!-- Top-of-article CTA -->
+    <aside class="article-top-cta" aria-label="App promotion">
+        <div class="article-top-cta__body">
+            <p class="article-top-cta__title">
+                
+                
+                
+                Probieren Sie diese Übung in Solfege PRO
+            </p>
+            <p class="article-top-cta__sub">
+                
+                
+                
+                980 ¥/Monat · 1 Woche kostenlos testen
+            </p>
+        </div>
+        <a href="https://apps.apple.com/de/app/id6756626617" class="article-top-cta__button" data-cta-position="article_top">
+            
+            
+            
+            App Store →
+        </a>
+    </aside>
+
+    <!-- Article Body -->
+    <main class="article-body">
+
+        <!-- Intro -->
+        <p>
+            
+            
+            
+            Das Griffbrett-Training prägt Ihren Händen den Namen der Note unter jedem Bund ein, bis Sie ihn ohne Nachdenken kennen. Tonleitern und Akkorde nur als „Formen" zu merken bringt Sie nicht weiter, doch sobald Ihnen die Notennamen auf dem Griffbrett sofort einfallen, werden Improvisieren, Transponieren und das Heraushören von Stücken deutlich leichter.
+        </p>
+        <p>
+            
+            
+            
+            Diese Seite ist ein Handbuch zur Wahl der Einstellungen. Jede Einstellung beruht auf etablierten Methoden der Musikpädagogik. Für jede Einstellung, die eine Entscheidung erfordert, nennen wir <strong>die empfohlene Wahl, wozu sie dient und was sie trainiert — samt der Belege dahinter</strong>. Wenn Sie über ein „?" im Einstellungsbildschirm hierher gelangt sind, scrollen Sie zur gewünschten Option.
+        </p>
+
+        <!-- #mode -->
+        <h2 id="mode">Trainingsmodus</h2>
+
+        <p class="manual-lead">
+            
+            
+            
+            <strong>Beginnen Sie mit Note → Position.</strong> Sobald das sitzt, festigen Sie die umgekehrte Richtung mit Position → Note und wechseln Sie dann zu Saitenwechsel, wenn Sie verinnerlichen möchten, wie sich eine Note über das Griffbrett verteilt.
+        </p>
+
+        <p>
+            
+            
+            
+            Diese Einstellung bestimmt die Richtung jeder Frage — was Ihnen gezeigt wird und was Sie antworten. Es gibt drei Modi; obwohl sich alle mit den Notennamen auf dem Griffbrett befassen, entscheidet die Blickrichtung darüber, welche Fähigkeit Sie aufbauen.
+        </p>
+
+        <div class="manual-options">
+            <div class="manual-option">
+                <div class="manual-option__name">Note → Position (noteToFret)</div>
+                <div class="manual-option__desc">Sie tippen die Stelle an, an der ein vorgegebener Notenname auf dem Griffbrett liegt — die grundlegendste Richtung, die den Kreislauf „Notenname → wo greifen" aufbaut, den Sie zum Spielen von Tonleitern und Akkorden brauchen. Fangen Sie hier an.</div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name">Position → Note (fretToNote)</div>
+                <div class="manual-option__desc">Die umgekehrte Suche: Eine einzelne Stelle wird gezeigt und Sie wählen deren Notennamen. Das trainiert, die gerade gegriffene Note zu benennen, und festigt das Gedächtnis von beiden Seiten.</div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name">Saitenwechsel (stringMovement)</div>
+                <div class="manual-option__desc">Ein fortgeschrittener Modus, bei dem man denselben Notennamen von Saite zu Saite sucht (z. B. „C" auf der 6., 5., 4. …) und so abbildet, wie sich eine Note über das ganze Griffbrett verteilt. Der Bundbereich ist auf 0–12 festgelegt.</div>
+            </div>
+        </div>
+
+        <div class="manual-rationale">
+            <span class="manual-rationale__label">Die wissenschaftliche Grundlage</span>
+            <p>
+                
+                
+                
+                Die drei Richtungen trainieren aus verschiedenen Blickwinkeln die wechselseitige Verknüpfung zwischen Notennamen und Positionen auf dem Griffbrett, die Instrumentalisten benötigen. Dasselbe Material in verschiedenen Richtungen abzurufen, verwandelt auswendig gelernte „Formen" in Wissen, das Sie beim Spielen nutzen können. Diese Gestaltung folgt der etablierten Instrumental- und Gehörbildungspädagogik zur Beherrschung des Griffbretts.
+            </p>
+            <p class="manual-rationale__ref">Quelle: Karpinski (2000) <a class="manual-ref-num" href="#ref-1">[1]</a></p>
+        </div>
+
+        <!-- #target-notes -->
+        <h2 id="target-notes">Noten (Zielnoten)</h2>
+
+        <p class="manual-lead">
+            
+            
+            
+            <strong>Beginnen Sie mit Nur Stammtöne.</strong> Erweitern Sie auf Kreuze einbeziehen (oder Alle Noten), sobald Sie die sieben Stammtöne überall auf dem Griffbrett zu 80 % oder mehr benennen können. Wählen Sie Bes einbeziehen nur, wenn Sie die Schreibweise mit Bes benötigen.
+        </p>
+
+        <p>
+            
+            
+            
+            Diese Einstellung legt fest, welche Notennamen erscheinen. Sie wählen, ob nur die Stammtöne verwendet werden (die sieben Noten ohne Kreuz oder Be — C D E F G A B) oder ob Kreuze und Bes einbezogen werden. Je enger der Bereich, desto weniger Noten sind zu lernen; je weiter er reicht, desto mehr deckt er alle 12 chromatischen Noten ab.
+        </p>
+
+        <div class="manual-options">
+            <div class="manual-option">
+                <div class="manual-option__name">Nur Stammtöne</div>
+                <div class="manual-option__desc">Fragt nur die sieben Noten C, D, E, F, G, A, B ab. Der erste Schritt beim Einprägen des Griffbretts. Diese sieben Noten überall auf dem Griffbrett benennen zu können, ist der schnellste Weg voran.</div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name">Kreuze einbeziehen</div>
+                <div class="manual-option__desc">Deckt alle 12 Noten ab, geschrieben mit Kreuzen (C#, D#, …). Sobald die Stammtöne sitzen, fügen Sie die dazwischenliegenden Halbtöne hinzu, um das Griffbrett vollständig abzudecken.</div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name">Bes einbeziehen</div>
+                <div class="manual-option__desc">Deckt alle 12 Noten ab, geschrieben mit Bes (Db, Eb, …). Um sich an Enharmonik zu gewöhnen — dieselbe Tonhöhe auf zwei Arten geschrieben, wie C# und Db. Nützlich, wenn Sie in B-Tonarten spielen.</div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name">Alle Noten</div>
+                <div class="manual-option__desc">Fragt alle 12 Noten ab und erkennt sowohl die Schreibweise mit Kreuzen als auch mit Bes — die weiteste Einstellung. Die Phase, in der Sie das gesamte Griffbrett bis zum Auftrittsniveau verfeinern.</div>
+            </div>
+        </div>
+
+        <div class="manual-rationale">
+            <span class="manual-rationale__label">Die wissenschaftliche Grundlage</span>
+            <p>
+                
+                
+                
+                Je weniger Notennamen Sie auf einmal lernen, desto weniger müssen Sie verarbeiten und desto zuverlässiger prägen Sie sich die Lage jeder Note ein. Einen engen Bereich zu festigen, bevor man ihn erweitert, sitzt schneller, als alle 12 auf einmal anzugehen. Die Stufen folgen der Cognitive-Load-Theorie: Eine geringe Verarbeitungslast zu Beginn einer neuen Fähigkeit fördert das Lernen.
+            </p>
+            <p class="manual-rationale__ref">Quelle: Sweller (1988) <a class="manual-ref-num" href="#ref-2">[2]</a></p>
+        </div>
+
+        <!-- #fret-range -->
+        <h2 id="fret-range">Bundbereich</h2>
+
+        <p class="manual-lead">
+            
+            
+            
+            <strong>Legen Sie die Grundlage bei 0-5 und erweitern Sie dann auf 0-12 (Standard).</strong> Oberhalb des 12. Bundes wiederholt sich die Anordnung nur, daher ist es am effizientesten, zunächst 0-12 anzustreben.
+        </p>
+
+        <p>
+            
+            
+            
+            Diese Einstellung legt fest, aus welchem Abschnitt des Griffbretts die Fragen stammen — praktisch der Schwierigkeitsregler. Schränken Sie ihn ein, gibt es weniger Stellen zu merken; erweitern Sie ihn, bearbeiten Sie das ganze Griffbrett. Beachten Sie, dass er im Modus Saitenwechsel auf 0-12 festgelegt ist.
+        </p>
+
+        <div class="manual-options">
+            <div class="manual-option">
+                <div class="manual-option__name">0-5 (Anfänger)</div>
+                <div class="manual-option__desc">Nur die tiefe Lage (Bünde 0 bis 5). Nahe an den leeren Saiten ist dies der Bereich, den Anfänger beim Akkordlernen zuerst berühren. Seine geringe Spanne macht ihn ideal für Ihr erstes Einprägen.</div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name">5-12 (Mittelstufe)</div>
+                <div class="manual-option__desc">Mittlere bis hohe Lage (Bünde 5 bis 12). Für Spieler, die die tiefe Lage beherrschen und nun die Mitte des Griffbretts auffüllen wollen, die oft eine Schwachstelle ist.</div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name">0-12 (Standard)</div>
+                <div class="manual-option__desc">Bünde 0 bis 12. Die Oktave wiederholt sich am 12. Bund; sobald Sie bis hierhin kennen, ist der Rest eine Wiederholung. Der Standard-Zielbereich für das Einprägen des Griffbretts.</div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name">0-24 (ganzes Griffbrett)</div>
+                <div class="manual-option__desc">Das gesamte Griffbrett (Bünde 0 bis 24). Für Spieler, die die hohen Bünde in Soli und Leadlinien nutzen. Die oberste Vollendungsstufe.</div>
+            </div>
+        </div>
+
+        <div class="manual-rationale">
+            <span class="manual-rationale__label">Die wissenschaftliche Grundlage</span>
+            <p>
+                
+                
+                
+                Den Bereich einzuschränken verringert die Zahl der Positionen, die Sie auf einmal lernen, sodass Sie diesen Abschnitt zuverlässig einprägen. Eine kleine Region zu festigen, bevor man sie erweitert, sitzt schneller, als von Anfang an das ganze Griffbrett anzugehen. Die Stufen folgen der Cognitive-Load-Theorie: Eine geringe Verarbeitungslast zu Beginn einer neuen Fähigkeit fördert das Lernen.
+            </p>
+            <p class="manual-rationale__ref">Quelle: Sweller (1988) <a class="manual-ref-num" href="#ref-2">[2]</a></p>
+        </div>
+
+        <!-- #strings -->
+        <h2 id="strings">Saiten</h2>
+
+        <p class="manual-lead">
+            
+            
+            
+            <strong>Belassen Sie es auf Alle Saiten.</strong> Wenn Sie bemerken, dass eine Saite bei der Trefferquote zurückbleibt, schränken Sie sich vorübergehend auf diese Saite ein, konzentrieren Sie sich und kehren Sie dann zu allen sechs zurück.
+        </p>
+
+        <p>
+            
+            
+            
+            Diese Einstellung schränkt ein, aus welcher der sechs Saiten die Fragen stammen (in den Focus-Einstellungen des Modus Note → Position). Neben „Alle Saiten" können Sie sich auf die drei hohen oder die drei tiefen Saiten oder auf eine einzelne Saite beschränken. Der Focus Nur schwache Noten im selben Bereich liefert automatisch nur die Noten unter 70 % Trefferquote (aktiv, sobald sich Daten angesammelt haben).
+        </p>
+
+        <div class="manual-options">
+            <div class="manual-option">
+                <div class="manual-option__name">Alle Saiten</div>
+                <div class="manual-option__desc">Zieht Fragen aus allen sechs Saiten — ein umfassendes, realistisches Training. Belassen Sie es hier, sofern Sie keinen Grund haben, einzuschränken.</div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name">Hohe Saiten (1-3) / Tiefe Saiten (4-6)</div>
+                <div class="manual-option__desc">Schränkt auf eine Dreiergruppe ein. Die tiefen Saiten (E A D) hängen direkt mit dem Auffinden der Akkordgrundtöne zusammen, die hohen Saiten (G B E) mit dem Platzieren von Melodien und Soli. Je eine Hälfte nach Bedarf zu festigen, ist praktisch.</div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name">1. bis 6. Saite (einzeln)</div>
+                <div class="manual-option__desc">Beschränkt sich auf eine einzelne Saite. Die engste Einstellung, um eine klare Schwachstelle Saite für Saite zu beseitigen — etwa „bei den Notennamen der 6. Saite bin ich immer unsicher".</div>
+            </div>
+        </div>
+
+        <div class="manual-rationale">
+            <span class="manual-rationale__label">Die wissenschaftliche Grundlage</span>
+            <p>
+                
+                
+                
+                Die Saiten einzuschränken lässt Sie verringern, wie viel Sie auf einmal bewältigen, und eine Schwachstelle zuverlässig auffüllen. Eine einzelne unsichere Saite geht in der Menge unter, wenn Sie alle sechs üben; sie zu isolieren senkt die Last, sodass Sie sich konzentrieren und es festigen können. Das folgt der Cognitive-Load-Theorie: Eine geringe Last — am Anfang oder beim Beheben einer Schwäche — fördert das Lernen.
+            </p>
+            <p class="manual-rationale__ref">Quelle: Sweller (1988) <a class="manual-ref-num" href="#ref-2">[2]</a></p>
+        </div>
+
+        <!-- #answer-mode -->
+        <h2 id="answer-mode">Antwortmodus</h2>
+
+        <p class="manual-lead">
+            
+            
+            
+            <strong>Beginnen Sie mit Einzelne Position.</strong> Sobald Sie die Lagen jeder Note ungefähr im Kopf haben, wechseln Sie zu Alle Positionen, um das Gesamtbild ihrer Verteilung über das Griffbrett zu vervollständigen.
+        </p>
+
+        <p>
+            
+            
+            
+            Diese Einstellung bestimmt, wenn Sie eine Note auf dem Griffbrett beantworten (Modus Note → Position), wie viele Stellen Sie antippen müssen, um richtig zu liegen. Ein Notenname existiert an mehreren Stellen; ob Sie alle oder nur eine finden müssen, ändert daher die Schwierigkeit.
+        </p>
+
+        <div class="manual-options">
+            <div class="manual-option">
+                <div class="manual-option__name">Einzelne Position</div>
+                <div class="manual-option__desc">Finden Sie nur eine richtige Stelle und Sie liegen richtig. Auf Geschwindigkeit ausgelegt. Da eine zum Weiterkommen genügt, eignet sich dieser Modus, um viele Fragen in flottem Tempo zu üben und so die Reaktionsgeschwindigkeit aufzubauen.</div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name">Alle Positionen</div>
+                <div class="manual-option__desc">Finden und tippen Sie jede richtige Stelle innerhalb des Bereichs an. Eine auf Vollständigkeit ausgelegte Einstellung, die genau abbildet, wo ein Notenname über das Griffbrett verstreut ist. Schwieriger.</div>
+            </div>
+        </div>
+
+        <div class="manual-rationale">
+            <span class="manual-rationale__label">Die wissenschaftliche Grundlage</span>
+            <p>
+                
+                
+                
+                Die beiden Einstellungen staffeln das instrumentale Wissen darüber, wo ein Notenname über das ganze Griffbrett liegt. Zuerst bauen Sie eine sofortige Reaktion auf eine einzelne Stelle auf; sobald Sie sicher sind, bildet das Finden jeder Stelle die gesamte Menge der Positionen ab. Diese Gestaltung folgt der etablierten Instrumental- und Gehörbildungspädagogik zur Beherrschung des Griffbretts.
+            </p>
+            <p class="manual-rationale__ref">Quelle: Karpinski (2000) <a class="manual-ref-num" href="#ref-1">[1]</a></p>
+        </div>
+
+        <!-- #hint-level -->
+        <h2 id="hint-level">Hinweise</h2>
+
+        <p class="manual-lead">
+            
+            
+            
+            <strong>Absolute Anfänger nutzen Oktaven anzeigen, um die Anordnung zu erfassen, und wechseln dann zu Keine Hinweise.</strong> Das Endziel ist, zuverlässig ohne Hinweise zu antworten.
+        </p>
+
+        <p>
+            
+            
+            
+            Diese Einstellung bestimmt, wie viel Hilfe angezeigt wird, während Sie antworten. Mehr Hilfe erleichtert das Antworten, verringert aber auch die Anstrengung, sich selbst zu erinnern — die Grundregel lautet daher, sie zu verringern, sobald Sie sicherer werden.
+        </p>
+
+        <div class="manual-options">
+            <div class="manual-option">
+                <div class="manual-option__name">Keine Hinweise</div>
+                <div class="manual-option__desc">Überhaupt keine Hilfe — Sie antworten völlig allein. Das maximiert die Anstrengung, die Antwort aus dem Gedächtnis abzurufen, was die stärkste Behaltensleistung bewirkt. Das ist das letztendliche Ziel.</div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name">Oktaven anzeigen</div>
+                <div class="manual-option__desc">Hebt die Oktavpositionen desselben Notennamens hervor. Eine zu finden macht die anderen leichter ableitbar — eine gute Hilfe am Anfang, wenn die räumlichen Beziehungen noch nicht klar sind.</div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name">Verbleibende anzeigen</div>
+                <div class="manual-option__desc">Zeigt an, wie viele richtige Stellen noch übrig sind. Zusammen mit Alle Positionen sagt es Ihnen, dass „noch welche übrig sind", und verhindert so übersehene Stellen.</div>
+            </div>
+        </div>
+
+        <div class="manual-rationale">
+            <span class="manual-rationale__label">Die wissenschaftliche Grundlage</span>
+            <p>
+                
+                
+                
+                Hinweise sind ein Gerüst (Scaffolding), das die Verarbeitungslast senkt, solange ein Anfänger das Griffbrett noch nicht eingeprägt hat. Hilfen wie Oktaven anzeigen liefern einen Anhaltspunkt, halten die Last niedrig und machen die Anordnung leichter erfassbar. Sobald Sie Spielraum haben, stellt das Entfernen der Hilfen die volle Last des unbegleiteten Abrufens wieder her. Das folgt der Cognitive-Load-Theorie: Gerüste, die die Last verringern, unterstützen das frühe Lernen.
+            </p>
+            <p class="manual-rationale__ref">Quelle: Sweller (1988) <a class="manual-ref-num" href="#ref-2">[2]</a></p>
+        </div>
+
+        <!-- #tuning -->
+        <h2 id="tuning">Stimmung</h2>
+
+        <p class="manual-lead">
+            
+            
+            
+            <strong>Belassen Sie es auf Standard (EADGBE).</strong> Nehmen Sie sich alternative Stimmungen erst vor, wenn Sie tatsächlich in einer davon spielen müssen.
+        </p>
+
+        <p>
+            
+            
+            
+            Diese Einstellung legt die Leersaiten-Tonhöhe jeder Saite fest. Ändern Sie sie, erzeugt dieselbe Bundposition einen anderen Notennamen, sodass sich die gesamte Karte der Notennamen auf dem Griffbrett verschiebt. Neben Standard (EADGBE) unterstützt sie Drop D (DADGBE, die 6. Saite einen Ganzton tiefer) sowie Open G, Open D und DADGAD, bei denen schon die leeren Saiten einen Akkord ergeben. Wenn Sie Stücke in einer ungewöhnlichen Stimmung spielen, nutzen Sie dies, um das Griffbrett dafür neu zu lernen.
+        </p>
+
+        <!-- #handedness -->
+        <h2 id="handedness">Händigkeit</h2>
+
+        <p class="manual-lead">
+            
+            
+            
+            <strong>Wählen Sie, was zur Gitarre passt, die Sie spielen.</strong> Rechtshänder für eine Rechtshänder-Gitarre, Linkshänder für eine Linkshänder-Gitarre — einmal wählen und so belassen.
+        </p>
+
+        <p>
+            
+            
+            
+            Diese Einstellung legt die Ausrichtung des auf dem Bildschirm gezeigten Griffbretts fest. Sie ändert weder Schwierigkeit noch Inhalt — sie passt lediglich die Anzeige an Ihr Instrument an. Wenn Ihre Gitarre und die Anordnung auf dem Bildschirm nicht übereinstimmen, verschwenden Sie Mühe damit, beim Antworten gedanklich links und rechts zu vertauschen.
+        </p>
+
+        <div class="manual-options">
+            <div class="manual-option">
+                <div class="manual-option__name">Rechtshänder</div>
+                <div class="manual-option__desc">Die Standardanzeige, die dem Aussehen einer Rechtshänder-Gitarre (mit der linken Hand gegriffen) entspricht. Das passt für die meisten Spieler.</div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name">Linkshänder</div>
+                <div class="manual-option__desc">Spiegelt das Griffbrett von links nach rechts. Lässt Spieler einer Linkshänder-Gitarre (mit der rechten Hand gegriffen) mit derselben Ansicht wie ihr Instrument üben.</div>
+            </div>
+        </div>
+
+        <!-- References -->
+        <section class="manual-refs">
+            <div class="manual-refs__title">Quellen</div>
+            <ol>
+                <li id="ref-1">Karpinski, G. S. (2000). <em>Aural Skills Acquisition: The Development of Listening, Reading, and Performing Skills in College-Level Musicians.</em> Oxford University Press.</li>
+                <li id="ref-2">Sweller, J. (1988). Cognitive load during problem solving: Effects on learning. <em>Cognitive Science, 12</em>(2), 257–285.</li>
+            </ol>
+        </section>
+
+    </main>
+
+    <!-- Final CTA -->
+    <section class="article-cta">
+        <h2 class="article-cta__title">Einstellungen geklärt? Probieren Sie es aus</h2>
+        <p class="article-cta__text">
+            
+            
+            
+            Sobald Sie jede Einstellung verstanden haben, bleibt nur noch das praktische Üben.<br>Folgen Sie im Zweifel einfach den Zeilen „Im Zweifel…" auf dieser Seite.<br>Finden Sie die für Sie passenden Einstellungen im Griffbrett-Training von Solfege PRO.
+        </p>
+        <a href="https://apps.apple.com/de/app/id6756626617" class="app-store-link" aria-label="Download on the App Store">
+            
+            
+            
+            <img class="app-store-link__img" width="120" height="40" src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/de-de" alt="Laden im App Store">
+        </a>
+    </section>
+
+    <!-- Related Content -->
+    <div class="article-related">
+        <div class="article-related__title">Verwandte Inhalte</div>
+        <a href="/guides/fretboard-training/" class="article-related__link" style="margin-bottom: var(--space-md);">
+            <div class="article-related__link-title">Das Griffbrett beherrschen — Gitarrennoten effizient lernen</div>
+            <div class="article-related__link-desc">Für alle, die verstehen möchten, was Griffbrett-Training ist, bevor sie die Einstellungen anpassen — ein Leitfaden dazu, warum das Einprägen der Tonnamen auf dem Hals den Fortschritt beschleunigt, mit schrittweisem Üben.</div>
+        </a>
+        <a href="/" class="article-related__link">
+            <div class="article-related__link-title">Solfege PRO Übungsleitfaden</div>
+            <div class="article-related__link-desc">Problem­bezogene Übungsmenüs für Gitarre, Bass, Schlagzeug, Klavier und Gesang</div>
+        </a>
+    </div>
+
+    <!-- Article Note -->
+    <aside class="article-endnote">
+        <p class="article-endnote__text">
+            
+            
+            
+            Diese Seite ist eine Referenz, die die in der App enthaltenen Einstellungen erläutert. Die hier empfohlenen Abfolgen sind allgemeine Richtwerte, die auf einer weit verbreiteten Übungsmethodik beruhen; die optimalen Einstellungen hängen von der individuellen Erfahrung und den Zielen ab. Die zitierten Studien berichten allgemeine Erkenntnisse zum Lernen und garantieren keine Ergebnisse innerhalb dieser App.
+        </p>
+    </aside>
+
+    <!-- Footer -->
+    <footer class="article-footer">
+        <p class="article-footer__text">
+            &copy; 2026 Solfege PRO &mdash;
+            <a href="https://apps.apple.com/de/app/id6756626617" class="article-footer__link">App Store</a>
+        </p>
+    </footer>
+    <script src="/bootstrap.js?v=3" defer></script>
+</body>
+</html>

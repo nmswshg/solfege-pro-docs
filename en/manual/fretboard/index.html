@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html lang="en"
+      data-title-ja="指板トレーニング 設定マニュアル — 各設定の選び方 | ソルフェージュPRO"
+      data-title-en="Fretboard Training Settings Manual — How to Choose Each Option | Solfege PRO"
+      data-title-fr="Manuel des réglages de l'entraînement au manche — comment choisir chaque option | Solfege PRO"
+      data-title-de="Handbuch zu den Einstellungen des Griffbrett-Trainings — wie Sie jede Option wählen | Solfege PRO">
+<head>
+    <meta charset="UTF-8">
+    <meta name="robots" content="index, follow">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#1A1A1E">
+    <title>Fretboard Training Settings Manual — How to Choose Each Option | Solfege PRO</title>
+    <meta name="description" content="Reference manual for Fretboard Training settings — mode, notes, fret range, strings, answer mode, hints, tuning, handedness: who picks what and why.">
+
+    <!-- Canonical -->
+    <link rel="canonical" href="https://solfegepro.com/en/manual/fretboard/">
+    <link rel="alternate" hreflang="ja" href="https://solfegepro.com/manual/fretboard/">
+    <link rel="alternate" hreflang="en" href="https://solfegepro.com/en/manual/fretboard/">
+    <link rel="alternate" hreflang="fr" href="https://solfegepro.com/fr/manual/fretboard/">
+    <link rel="alternate" hreflang="de" href="https://solfegepro.com/de/manual/fretboard/">
+    <link rel="alternate" hreflang="x-default" href="https://solfegepro.com/manual/fretboard/">
+<!-- OGP -->
+    <meta property="og:title" content="Fretboard Training Settings Manual — How to Choose Each Option">
+    <meta property="og:description" content="Reference manual for Fretboard Training settings — mode, notes, fret range, strings, answer mode, hints, tuning, handedness: who picks what and why.">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://solfegepro.com/en/manual/fretboard/">
+    <meta property="og:site_name" content="Solfege PRO">
+    <meta property="og:image" content="https://solfegepro.com/og-image.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Solfege PRO">
+    <meta property="og:locale" content="en_US">
+    <meta property="og:locale:alternate" content="ja_JP">
+    <meta property="og:locale:alternate" content="fr_FR">
+    <meta property="og:locale:alternate" content="de_DE">
+    <meta property="article:published_time" content="2026-06-05">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Fretboard Training Settings Manual — How to Choose Each Option">
+    <meta name="twitter:description" content="Reference manual for Fretboard Training settings — mode, notes, fret range, strings, answer mode, hints, tuning, handedness: who picks what and why.">
+    <meta name="twitter:image" content="https://solfegepro.com/og-image.png">
+
+    <!-- Favicon -->
+    <link rel="icon" href="/favicon.ico" sizes="any">
+    <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap"></noscript>
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="/style.css?v=17">
+    <link rel="stylesheet" href="/guides/article.css?v=11">
+
+    <style>
+        /* Manual option reference — responsive, no fixed px widths */
+        .manual-options {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr);
+            gap: var(--space-sm);
+            margin: var(--space-lg) 0;
+        }
+        .manual-option {
+            background: var(--surface);
+            border: 1px solid var(--surface-light);
+            border-radius: var(--radius-lg);
+            padding: var(--space-md);
+        }
+        .manual-option__name {
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: var(--space-xs);
+        }
+        .manual-option__desc {
+            font-size: 13px;
+            color: var(--text-secondary);
+        }
+        /* Bottom-line callout (conclusion first) */
+        .manual-lead {
+            font-size: 14px;
+            line-height: 1.75;
+            color: var(--text-primary);
+            border-left: 3px solid var(--primary);
+            background: rgba(212, 175, 55, 0.06);
+            padding: var(--space-sm) var(--space-md);
+            border-radius: 0 var(--radius-md) var(--radius-md) 0;
+            margin: var(--space-md) 0;
+        }
+        /* Per-setting evidence note — deliberately styled as an editorial
+           aside, NOT as a settings card (no surface fill, no gold label),
+           so it is never mistaken for an in-app option. */
+        .manual-rationale {
+            margin: var(--space-md) 0 var(--space-2xl);
+            padding: var(--space-sm) 0 var(--space-sm) var(--space-md);
+            border-left: 2px solid var(--surface-light);
+        }
+        .manual-rationale__label {
+            display: block;
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            color: var(--text-secondary);
+            margin-bottom: 4px;
+            opacity: 0.75;
+        }
+        .manual-rationale p {
+            font-size: 13px;
+            line-height: 1.75;
+            color: var(--text-secondary);
+            margin: 0;
+        }
+        .manual-rationale__ref {
+            font-size: 12px;
+            font-style: italic;
+            margin-top: var(--space-xs) !important;
+            opacity: 0.7;
+        }
+        /* Citation number linking to the reference list */
+        .manual-ref-num {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-style: normal;
+        }
+        .manual-ref-num:hover { color: var(--primary); }
+        /* Full reference list at page end */
+        .manual-refs {
+            margin: var(--space-2xl) 0 0;
+            padding-top: var(--space-lg);
+            border-top: 1px solid var(--surface-light);
+        }
+        .manual-refs__title {
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: var(--space-sm);
+        }
+        .manual-refs ol {
+            margin: 0;
+            padding-left: 1.25em;
+        }
+        .manual-refs li {
+            font-size: 12px;
+            line-height: 1.7;
+            color: var(--text-secondary);
+            margin-bottom: var(--space-xs);
+            scroll-margin-top: 84px;
+        }
+        .manual-refs li:target {
+            color: var(--text-primary);
+        }
+    </style>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Fretboard Training Settings Manual — How to Choose Each Option","description":"Reference manual for Fretboard Training settings — mode, notes, fret range, strings, answer mode, hints, tuning, handedness: who picks what and why.","author":{"@type":"Organization","name":"Solfege PRO"},"publisher":{"@type":"Organization","name":"Solfege PRO","logo":{"@type":"ImageObject","url":"https://solfegepro.com/AppIcon.png"}},"datePublished":"2026-06-05","mainEntityOfPage":{"@type":"WebPage","@id":"https://solfegepro.com/en/manual/fretboard/"}}</script>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://solfegepro.com/en/"},{"@type":"ListItem","position":2,"name":"Manual","item":"https://solfegepro.com/en/manual/"},{"@type":"ListItem","position":3,"name":"Fretboard Training Settings Manual — How to Choose Each Option","item":"https://solfegepro.com/en/manual/fretboard/"}]}</script>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="nav__container">
+            <a href="/" class="nav__logo">
+                <img src="/AppIcon.png" alt="Solfege PRO" class="nav__logo-icon" width="32" height="32">
+                <span class="nav__logo-text">Solfege PRO</span>
+            </a>
+            <ul class="nav__list">
+                <li><a href="/" class="nav__link">Practice Guide</a></li>
+                <li><a href="/guides/" class="nav__link">Guides</a></li>
+                <li><a href="/manual/" class="nav__link active">Manual</a></li>
+                            <li><a href="/start-here/" class="nav__link">Where to Start?</a></li>
+            </ul>
+            <div class="nav__settings">
+                <button class="settings-btn" id="lang-toggle" title="Toggle language">
+                    <span id="lang-text">EN</span>
+                </button>
+                <button class="hamburger-btn" id="hamburger-btn" aria-label="Menu" aria-expanded="false" aria-controls="drawer">
+                    <span class="hamburger-btn__line"></span>
+                    <span class="hamburger-btn__line"></span>
+                    <span class="hamburger-btn__line"></span>
+                </button>
+            </div>
+        </div>
+    </nav>
+        <!-- Mobile drawer (hidden on desktop) -->
+        <div class="drawer-overlay" id="drawer-overlay"></div>
+        <aside class="drawer" id="drawer" aria-label="Mobile menu" aria-hidden="true" inert>
+            <div class="drawer__header">
+                <span class="drawer__title">Menu</span>
+                <button class="drawer__close" id="drawer-close" aria-label="Close menu">×</button>
+            </div>
+            <ul class="drawer__list">
+                    <li><a href="/" class="drawer__link">Practice Guide</a></li>
+                    <li><a href="/guides/" class="drawer__link">Guides</a></li>
+                    <li><a href="/manual/" class="drawer__link active">Manual</a></li>
+                    <li><a href="/start-here/" class="drawer__link">Where to Start?</a></li>
+            </ul>
+        </aside>
+
+
+    <!-- Article Header -->
+    <header class="page-header">
+        <div class="page-header__meta">
+            <span class="page-header__tag">Manual</span>
+            <span>Fretboard Training</span>
+        </div>
+        <h1 class="page-header__title">
+            
+            Fretboard Training Settings Manual<br>What Each Option Means and How to Choose
+            
+            
+        </h1>
+        <p class="page-header__subtitle">
+            
+            Which option to pick, when, and why. This page walks through each setting in fretboard training, one at a time. If you arrived from a "?" in the settings screen, scroll to the option you need.
+            
+            
+        </p>
+    </header>
+
+    <!-- Top-of-article CTA -->
+    <aside class="article-top-cta" aria-label="App promotion">
+        <div class="article-top-cta__body">
+            <p class="article-top-cta__title">
+                
+                Try this in Solfege PRO
+                
+                
+            </p>
+            <p class="article-top-cta__sub">
+                
+                ¥980/month · 1-week free trial
+                
+                
+            </p>
+        </div>
+        <a href="https://apps.apple.com/us/app/id6756626617" class="article-top-cta__button" data-cta-position="article_top">
+            
+            App Store →
+            
+            
+        </a>
+    </aside>
+
+    <!-- Article Body -->
+    <main class="article-body">
+
+        <!-- Intro -->
+        <p>
+            
+            Fretboard training drills the name of the note under every fret into your hands until you know it without thinking. Memorizing scales and chords only as shapes leaves you stuck, but once note names on the neck come to you instantly, improvising, transposing, and learning songs by ear all get far easier.
+            
+            
+        </p>
+        <p>
+            
+            This page is a manual for choosing the settings. Each setting is designed around established methods from music education. For each setting that calls for a decision, we give <strong>the recommended choice, what it is for, and what it trains — with the evidence behind it</strong>. If you arrived from a "?" in the settings screen, scroll to the option you need.
+            
+            
+        </p>
+
+        <!-- #mode -->
+        <h2 id="mode">Training Mode</h2>
+
+        <p class="manual-lead">
+            
+            <strong>Start with Note → Position.</strong> Once stable, firm up the reverse with Position → Note, then move to String Movement when you want to internalize how one note spreads across the neck.
+            
+            
+        </p>
+
+        <p>
+            
+            This setting decides the direction of each question — what you are shown and what you answer. There are three modes; even though all deal with note names on the neck, the direction you look determines the skill you build.
+            
+            
+        </p>
+
+        <div class="manual-options">
+            <div class="manual-option">
+                <div class="manual-option__name">Note → Position (noteToFret)</div>
+                <div class="manual-option__desc">You tap where a given note name lives on the neck — the most fundamental direction, building the "note name → where to press" circuit you need to play scales and chords. Start here.</div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name">Position → Note (fretToNote)</div>
+                <div class="manual-option__desc">The reverse lookup: a single spot is shown and you pick its note name. It trains naming the note you are fretting and strengthens memory from both sides.</div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name">String Movement (stringMovement)</div>
+                <div class="manual-option__desc">An advanced mode hunting the same note name across one string after another (e.g. "C" on the 6th, 5th, 4th…), mapping how one note spreads across the whole neck. The fret range is fixed to 0–12.</div>
+            </div>
+        </div>
+
+        <div class="manual-rationale">
+            <span class="manual-rationale__label">The evidence behind it</span>
+            <p>
+                
+                The three directions train, from different angles, the two-way link between note names and positions on the neck that instrumentalists need. Recalling the same material in different directions turns rote shapes into knowledge you can use while playing. The design follows established instrumental and aural-skills pedagogy for mastering the fretboard.
+                
+                
+            </p>
+            <p class="manual-rationale__ref">Ref.: Karpinski (2000) <a class="manual-ref-num" href="#ref-1">[1]</a></p>
+        </div>
+
+        <!-- #target-notes -->
+        <h2 id="target-notes">Notes (Target Notes)</h2>
+
+        <p class="manual-lead">
+            
+            <strong>Start with Naturals Only.</strong> Widen to Include Sharps (or All Notes) once you can name the seven naturals anywhere on the neck at 80%+. Choose Include Flats only if you need flat spellings.
+            
+            
+        </p>
+
+        <p>
+            
+            This setting sets which note names appear. You choose whether to use only the naturals (the seven notes with no sharp or flat — C D E F G A B) or to include sharps and flats. The narrower the range, the fewer notes to learn; the wider it goes, the more it covers all 12 chromatic notes.
+            
+            
+        </p>
+
+        <div class="manual-options">
+            <div class="manual-option">
+                <div class="manual-option__name">Naturals Only</div>
+                <div class="manual-option__desc">Asks only the seven notes C, D, E, F, G, A, B. The first step in fretboard memory. Being able to name these seven anywhere on the neck is the fastest route forward.</div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name">Include Sharps</div>
+                <div class="manual-option__desc">Covers all 12 notes, written with sharps (C#, D#, …). Once the naturals are solid, add the in-between semitones to cover the neck completely.</div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name">Include Flats</div>
+                <div class="manual-option__desc">Covers all 12 notes, written with flats (Db, Eb, …). For getting used to enharmonics — the same pitch spelled two ways, like C# and Db. Useful if you play in flat keys.</div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name">All Notes</div>
+                <div class="manual-option__desc">Asks all 12 notes, recognizing both sharp and flat spellings — the widest setting. The stage where you polish the entire neck to performance level.</div>
+            </div>
+        </div>
+
+        <div class="manual-rationale">
+            <span class="manual-rationale__label">The evidence behind it</span>
+            <p>
+                
+                The fewer note names you learn at once, the less you must process, and the more reliably you fix each note's locations. Securing a narrow range before widening it sticks faster than taking on all 12 at once. The tiers follow cognitive-load theory: keeping processing demands low early in a new skill aids learning.
+                
+                
+            </p>
+            <p class="manual-rationale__ref">Ref.: Sweller (1988) <a class="manual-ref-num" href="#ref-2">[2]</a></p>
+        </div>
+
+        <!-- #fret-range -->
+        <h2 id="fret-range">Fret Range</h2>
+
+        <p class="manual-lead">
+            
+            <strong>Build the foundation at 0-5, then widen to 0-12 (Standard).</strong> The layout above the 12th fret just repeats, so aiming for 0-12 first is the efficient target.
+            
+            
+        </p>
+
+        <p>
+            
+            This setting sets which section of the neck questions are drawn from — effectively the difficulty dial. Narrow it and there are fewer places to memorize; widen it and you handle the whole neck. Note that in String Movement mode it is fixed to 0-12.
+            
+            
+        </p>
+
+        <div class="manual-options">
+            <div class="manual-option">
+                <div class="manual-option__name">0-5 (Beginner)</div>
+                <div class="manual-option__desc">Low position only (frets 0–5). Close to the open strings, this is the area beginners touch first when learning chords. Its narrow span makes it ideal for your first memorization.</div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name">5-12 (Intermediate)</div>
+                <div class="manual-option__desc">Middle to high position (frets 5–12). For players who have nailed the low position and now want to fill in the middle of the neck, which tends to be a weak spot.</div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name">0-12 (Standard)</div>
+                <div class="manual-option__desc">Frets 0–12. The octave repeats at the 12th fret, so once you know this far, the rest is a repeat. The standard target range for fretboard memory.</div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name">0-24 (Full Fretboard)</div>
+                <div class="manual-option__desc">The entire neck (frets 0–24). For players who use the high frets in solos and lead lines. The top-tier finishing stage.</div>
+            </div>
+        </div>
+
+        <div class="manual-rationale">
+            <span class="manual-rationale__label">The evidence behind it</span>
+            <p>
+                
+                Narrowing the range cuts the number of positions you learn at once, so you fix that section reliably. Securing a small region before widening sticks faster than tackling the whole neck from the start. The tiers follow cognitive-load theory: keeping processing demands low early in a new skill aids learning.
+                
+                
+            </p>
+            <p class="manual-rationale__ref">Ref.: Sweller (1988) <a class="manual-ref-num" href="#ref-2">[2]</a></p>
+        </div>
+
+        <!-- #strings -->
+        <h2 id="strings">Strings</h2>
+
+        <p class="manual-lead">
+            
+            <strong>Leave it on All Strings.</strong> When you notice one string lagging in accuracy, temporarily narrow to that string, focus, then return to all six.
+            
+            
+        </p>
+
+        <p>
+            
+            This setting narrows which of the six strings questions are drawn from (under the Focus settings in Note → Position mode). Besides "All Strings," you can limit to the three treble or three bass strings, or a single string. The Weak Notes Only focus in the same panel auto-serves just the notes below 70% accuracy (active once data accumulates).
+            
+            
+        </p>
+
+        <div class="manual-options">
+            <div class="manual-option">
+                <div class="manual-option__name">All Strings</div>
+                <div class="manual-option__desc">Draws from all six strings — comprehensive, realistic practice. Leave it here unless you have a reason to narrow down.</div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name">High Strings (1-3) / Low Strings (4-6)</div>
+                <div class="manual-option__desc">Narrows to a group of three. The bass strings (E A D) tie directly to finding chord roots; the treble strings (G B E) to placing melodies and solos. Solidifying one half at a time per your needs is handy.</div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name">1st–6th String (individual)</div>
+                <div class="manual-option__desc">Limits to a single string. The narrowest setting, for crushing a clear weak spot one string at a time — say, "I'm always shaky on the 6th string's note names."</div>
+            </div>
+        </div>
+
+        <div class="manual-rationale">
+            <span class="manual-rationale__label">The evidence behind it</span>
+            <p>
+                
+                Narrowing the strings lets you cut how much you handle at once and reliably fill a weak spot. A single shaky string gets lost in the crowd when you practice all six; isolating it lowers the load so you can focus and make it stick. This follows cognitive-load theory: keeping demands low — early on or when shoring up a weakness — aids learning.
+                
+                
+            </p>
+            <p class="manual-rationale__ref">Ref.: Sweller (1988) <a class="manual-ref-num" href="#ref-2">[2]</a></p>
+        </div>
+
+        <!-- #answer-mode -->
+        <h2 id="answer-mode">Answer Mode</h2>
+
+        <p class="manual-lead">
+            
+            <strong>Start with Single Position.</strong> Once each note's locations are roughly in your head, switch to All Positions to complete the full picture of how they spread across the neck.
+            
+            
+        </p>
+
+        <p>
+            
+            This setting decides, when you answer a note on the neck (Note → Position mode), how much you must tap to be correct. One note name exists in several spots, so whether you must find them all or just one changes the difficulty.
+            
+            
+        </p>
+
+        <div class="manual-options">
+            <div class="manual-option">
+                <div class="manual-option__name">Single Position</div>
+                <div class="manual-option__desc">Find just one correct spot and you are right. Speed-oriented. Since one is enough to advance, it suits drilling many questions at a brisk tempo to build reaction speed.</div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name">All Positions</div>
+                <div class="manual-option__desc">Find and tap every correct spot within the range. A completeness-oriented setting that maps exactly where one note name is scattered across the neck. Harder.</div>
+            </div>
+        </div>
+
+        <div class="manual-rationale">
+            <span class="manual-rationale__label">The evidence behind it</span>
+            <p>
+                
+                The two settings stage the instrumentalist's knowledge of where one note name lives across the whole neck. First you build an instant single-spot response; then, once comfortable, finding every spot maps the full set of positions. The design follows established instrumental and aural-skills pedagogy for mastering the fretboard.
+                
+                
+            </p>
+            <p class="manual-rationale__ref">Ref.: Karpinski (2000) <a class="manual-ref-num" href="#ref-1">[1]</a></p>
+        </div>
+
+        <!-- #hint-level -->
+        <h2 id="hint-level">Hints</h2>
+
+        <p class="manual-lead">
+            
+            <strong>Absolute beginners use Show Octaves to grasp the layout, then switch to No Hints.</strong> The final goal is to answer reliably with No Hints.
+            
+            
+        </p>
+
+        <p>
+            
+            This setting decides how much assistance is shown while you answer. More help makes answering easier, but it also reduces the effort of recalling on your own — so the basic rule is to dial it down as you get comfortable.
+            
+            
+        </p>
+
+        <div class="manual-options">
+            <div class="manual-option">
+                <div class="manual-option__name">No Hints</div>
+                <div class="manual-option__desc">No assistance at all — you answer entirely on your own. This maximizes the effort of pulling the answer from memory, which drives the strongest retention. This is the ultimate target.</div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name">Show Octaves</div>
+                <div class="manual-option__desc">Highlights the octave positions of the same note name. Finding one makes the others easier to infer — good support early on when the spatial relationships are not yet clear.</div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name">Show Remaining</div>
+                <div class="manual-option__desc">Shows how many correct spots remain. Paired with All Positions, it tells you "there are still some left," preventing missed spots.</div>
+            </div>
+        </div>
+
+        <div class="manual-rationale">
+            <span class="manual-rationale__label">The evidence behind it</span>
+            <p>
+                
+                Hints are a scaffold that lowers the processing load while a beginner has not yet memorized the neck. Aids like Show Octaves supply a cue, hold the load down, and make the layout easier to grasp. Once you have room to spare, removing the aids restores the full load of recalling unaided. This follows cognitive-load theory: scaffolds that reduce load support early learning.
+                
+                
+            </p>
+            <p class="manual-rationale__ref">Ref.: Sweller (1988) <a class="manual-ref-num" href="#ref-2">[2]</a></p>
+        </div>
+
+        <!-- #tuning -->
+        <h2 id="tuning">Tuning</h2>
+
+        <p class="manual-lead">
+            
+            <strong>Leave it on Standard (EADGBE).</strong> Take on alternate tunings only when you actually need to play in one.
+            
+            
+        </p>
+
+        <p>
+            
+            This setting sets the open-string pitch of each string. Change it and the same fret position produces a different note name, so the whole map of note names on the neck shifts. Besides Standard (EADGBE), it supports Drop D (DADGBE, the 6th string down a whole step), and Open G, Open D, and DADGAD, where open strings alone sound a chord. If you play songs in an unusual tuning, use this to relearn the neck for it.
+            
+            
+        </p>
+
+        <!-- #handedness -->
+        <h2 id="handedness">Handedness</h2>
+
+        <p class="manual-lead">
+            
+            <strong>Pick whichever matches the guitar you play.</strong> Right-handed for a right-handed guitar, Left-handed for a left-handed one — choose it once and leave it.
+            
+            
+        </p>
+
+        <p>
+            
+            This setting sets the orientation of the fretboard shown on screen. It does not change difficulty or content — it simply matches the display to your instrument. If your guitar and the on-screen layout disagree, you waste effort mentally flipping left and right when answering positions.
+            
+            
+        </p>
+
+        <div class="manual-options">
+            <div class="manual-option">
+                <div class="manual-option__name">Right-handed</div>
+                <div class="manual-option__desc">The standard display, matching how a right-handed guitar (fretted with the left hand) looks. This is fine for most players.</div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name">Left-handed</div>
+                <div class="manual-option__desc">Mirrors the fretboard left to right. Lets players of a left-handed guitar (fretted with the right hand) practice with the same view as their instrument.</div>
+            </div>
+        </div>
+
+        <!-- References -->
+        <section class="manual-refs">
+            <div class="manual-refs__title">References</div>
+            <ol>
+                <li id="ref-1">Karpinski, G. S. (2000). <em>Aural Skills Acquisition: The Development of Listening, Reading, and Performing Skills in College-Level Musicians.</em> Oxford University Press.</li>
+                <li id="ref-2">Sweller, J. (1988). Cognitive load during problem solving: Effects on learning. <em>Cognitive Science, 12</em>(2), 257–285.</li>
+            </ol>
+        </section>
+
+    </main>
+
+    <!-- Final CTA -->
+    <section class="article-cta">
+        <h2 class="article-cta__title">Settings Sorted? Give It a Try</h2>
+        <p class="article-cta__text">
+            
+            Once you understand each setting, the rest is hands-on practice.<br>When unsure, just follow the "when in doubt" lines on this page.<br>Find the settings that fit you in Solfege PRO's Fretboard Training.
+            
+            
+        </p>
+        <a href="https://apps.apple.com/us/app/id6756626617" class="app-store-link" aria-label="Download on the App Store">
+            
+            <img class="app-store-link__img" width="120" height="40" src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/en-us" alt="Download on the App Store">
+            
+            
+        </a>
+    </section>
+
+    <!-- Related Content -->
+    <div class="article-related">
+        <div class="article-related__title">Related Content</div>
+        <a href="/guides/fretboard-training/" class="article-related__link" style="margin-bottom: var(--space-md);">
+            <div class="article-related__link-title">What Is Fretboard Training? — Memorizing the Notes on the Guitar Neck</div>
+            <div class="article-related__link-desc">For those who want to understand what fretboard training is before adjusting settings — a guide to why memorizing note names on the neck accelerates progress, with step-by-step practice.</div>
+        </a>
+        <a href="/" class="article-related__link">
+            <div class="article-related__link-title">Solfege PRO Practice Guide</div>
+            <div class="article-related__link-desc">Challenge-based practice menus for guitar, bass, drums, piano, and vocals</div>
+        </a>
+    </div>
+
+    <!-- Article Note -->
+    <aside class="article-endnote">
+        <p class="article-endnote__text">
+            
+            This page is a reference explaining the app's in-app settings. The recommended progressions given here are general guidelines based on widely used practice methodology; the optimal settings vary with individual experience and goals. The cited studies report general learning findings and do not guarantee results within this app.
+            
+            
+        </p>
+    </aside>
+
+    <!-- Footer -->
+    <footer class="article-footer">
+        <p class="article-footer__text">
+            &copy; 2026 Solfege PRO &mdash;
+            <a href="https://apps.apple.com/us/app/id6756626617" class="article-footer__link">App Store</a>
+        </p>
+    </footer>
+    <script src="/bootstrap.js?v=3" defer></script>
+</body>
+</html>

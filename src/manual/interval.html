@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="ja"
+      data-title-ja="インターバル（音程）設定マニュアル — 各設定の選び方 | ソルフェージュPRO"
+      data-title-en="Interval Training Settings Manual — How to Choose Each Option | Solfege PRO"
+      data-title-fr="Manuel des réglages d'entraînement aux intervalles — Comment choisir chaque option | Solfege PRO"
+      data-title-de="Handbuch zu den Intervalltraining-Einstellungen — So wählen Sie jede Option | Solfege PRO">
+<head>
+    <meta charset="UTF-8">
+    <meta name="robots" content="index, follow">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#1A1A1E">
+    <title>インターバル（音程）設定マニュアル — 各設定の選び方 | ソルフェージュPRO</title>
+    <meta name="description" content="インターバル（音程）トレーニングの各設定（練習モード・難易度・練習するインターバル・再生モード・出題する音域・音の再生スピード・次の問題への進み方）を、何のための設定で、誰が、どう選ぶべきかまで丁寧に解説するリファレンスマニュアルです。">
+
+    <!-- Canonical -->
+    <link rel="canonical" href="https://solfegepro.com/manual/interval/">
+    <link rel="alternate" hreflang="ja" href="https://solfegepro.com/manual/interval/">
+    <link rel="alternate" hreflang="en" href="https://solfegepro.com/en/manual/interval/">
+    <link rel="alternate" hreflang="fr" href="https://solfegepro.com/fr/manual/interval/">
+    <link rel="alternate" hreflang="de" href="https://solfegepro.com/de/manual/interval/">
+    <link rel="alternate" hreflang="x-default" href="https://solfegepro.com/manual/interval/">
+
+    <!-- OGP -->
+    <meta property="og:title" content="インターバル（音程）設定マニュアル — 各設定の選び方">
+    <meta property="og:description" content="インターバル（音程）トレーニングの各設定（練習モード・難易度・練習するインターバル・再生モード・出題する音域・音の再生スピード・次の問題への進み方）を、何のための設定で、誰が、どう選ぶべきかまで丁寧に解説するリファレンスマニュアルです。">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://solfegepro.com/manual/interval/">
+    <meta property="og:site_name" content="ソルフェージュPRO">
+    <meta property="og:image" content="https://solfegepro.com/og-image.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Solfege PRO">
+    <meta property="og:locale" content="ja_JP">
+    <meta property="og:locale:alternate" content="en_US">
+    <meta property="og:locale:alternate" content="fr_FR">
+    <meta property="og:locale:alternate" content="de_DE">
+    <meta property="article:published_time" content="2026-06-05">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="インターバル（音程）設定マニュアル — 各設定の選び方">
+    <meta name="twitter:description" content="インターバル（音程）トレーニングの各設定（練習モード・難易度・練習するインターバル・再生モード・出題する音域・音の再生スピード・次の問題への進み方）を、何のための設定で、誰が、どう選ぶべきかまで丁寧に解説するリファレンスマニュアルです。">
+    <meta name="twitter:image" content="https://solfegepro.com/og-image.png">
+
+    <!-- Favicon -->
+    <link rel="icon" href="/favicon.ico" sizes="any">
+    <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap"></noscript>
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="/style.css?v=17">
+    <link rel="stylesheet" href="/guides/article.css?v=11">
+
+    <style>
+        /* Manual option reference — responsive, no fixed px widths */
+        .manual-options {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr);
+            gap: var(--space-sm);
+            margin: var(--space-lg) 0;
+        }
+        .manual-option {
+            background: var(--surface);
+            border: 1px solid var(--surface-light);
+            border-radius: var(--radius-lg);
+            padding: var(--space-md);
+        }
+        .manual-option__name {
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: var(--space-xs);
+        }
+        .manual-option__desc {
+            font-size: 13px;
+            color: var(--text-secondary);
+        }
+        /* Bottom-line callout (conclusion first) */
+        .manual-lead {
+            font-size: 14px;
+            line-height: 1.75;
+            color: var(--text-primary);
+            border-left: 3px solid var(--primary);
+            background: rgba(212, 175, 55, 0.06);
+            padding: var(--space-sm) var(--space-md);
+            border-radius: 0 var(--radius-md) var(--radius-md) 0;
+            margin: var(--space-md) 0;
+        }
+        /* Per-setting evidence note — deliberately styled as an editorial
+           aside, NOT as a settings card (no surface fill, no gold label),
+           so it is never mistaken for an in-app option. */
+        .manual-rationale {
+            margin: var(--space-md) 0 var(--space-2xl);
+            padding: var(--space-sm) 0 var(--space-sm) var(--space-md);
+            border-left: 2px solid var(--surface-light);
+        }
+        .manual-rationale__label {
+            display: block;
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            color: var(--text-secondary);
+            margin-bottom: 4px;
+            opacity: 0.75;
+        }
+        .manual-rationale p {
+            font-size: 13px;
+            line-height: 1.75;
+            color: var(--text-secondary);
+            margin: 0;
+        }
+        .manual-rationale__ref {
+            font-size: 12px;
+            font-style: italic;
+            margin-top: var(--space-xs) !important;
+            opacity: 0.7;
+        }
+        /* Citation number linking to the reference list */
+        .manual-ref-num {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-style: normal;
+        }
+        .manual-ref-num:hover { color: var(--primary); }
+        /* Full reference list at page end */
+        .manual-refs {
+            margin: var(--space-2xl) 0 0;
+            padding-top: var(--space-lg);
+            border-top: 1px solid var(--surface-light);
+        }
+        .manual-refs__title {
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: var(--space-sm);
+        }
+        .manual-refs ol {
+            margin: 0;
+            padding-left: 1.25em;
+        }
+        .manual-refs li {
+            font-size: 12px;
+            line-height: 1.7;
+            color: var(--text-secondary);
+            margin-bottom: var(--space-xs);
+            scroll-margin-top: 84px;
+        }
+        .manual-refs li:target {
+            color: var(--text-primary);
+        }
+    </style>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"インターバル（音程）設定マニュアル — 各設定の選び方","description":"インターバル（音程）トレーニングの各設定を、何のための設定で、誰が、どう選ぶべきかまで解説するリファレンスマニュアルです。","author":{"@type":"Organization","name":"ソルフェージュPRO"},"publisher":{"@type":"Organization","name":"ソルフェージュPRO","logo":{"@type":"ImageObject","url":"https://solfegepro.com/AppIcon.png"}},"datePublished":"2026-06-05","mainEntityOfPage":{"@type":"WebPage","@id":"https://solfegepro.com/manual/interval/"}}</script>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="nav__container">
+            <a href="/" class="nav__logo">
+                <img src="/AppIcon.png" alt="Solfege PRO" class="nav__logo-icon" width="32" height="32">
+                <span class="nav__logo-text"><span lang="ja">ソルフェージュPRO</span><span lang="en">Solfege PRO</span><span lang="fr">Solfege PRO</span><span lang="de">Solfege PRO</span></span>
+            </a>
+            <ul class="nav__list">
+                <li><a href="/" class="nav__link"><span lang="ja">練習ガイド</span><span lang="en">Practice Guide</span><span lang="fr">Guide d'entraînement</span><span lang="de">Übungsleitfaden</span></a></li>
+                <li><a href="/guides/" class="nav__link"><span lang="ja">ガイド一覧</span><span lang="en">Guides</span><span lang="fr">Guides</span><span lang="de">Leitfäden</span></a></li>
+                <li><a href="/manual/" class="nav__link active"><span lang="ja">マニュアル</span><span lang="en">Manual</span><span lang="fr">Manuel</span><span lang="de">Handbuch</span></a></li>
+                            <li><a href="/start-here/" class="nav__link"><span lang="ja">どこから始める？</span><span lang="en">Where to Start?</span><span lang="fr">Par où commencer ?</span><span lang="de">Wo anfangen?</span></a></li>
+            </ul>
+            <div class="nav__settings">
+                <button class="settings-btn" id="lang-toggle" title="Toggle language">
+                    <span id="lang-text">EN</span>
+                </button>
+                <button class="hamburger-btn" id="hamburger-btn" aria-label="Menu" aria-expanded="false" aria-controls="drawer">
+                    <span class="hamburger-btn__line"></span>
+                    <span class="hamburger-btn__line"></span>
+                    <span class="hamburger-btn__line"></span>
+                </button>
+            </div>
+        </div>
+    </nav>
+        <!-- Mobile drawer (hidden on desktop) -->
+        <div class="drawer-overlay" id="drawer-overlay"></div>
+        <aside class="drawer" id="drawer" aria-label="Mobile menu" aria-hidden="true" inert>
+            <div class="drawer__header">
+                <span class="drawer__title"><span lang="ja">メニュー</span><span lang="en">Menu</span><span lang="fr">Menu</span><span lang="de">Menü</span></span>
+                <button class="drawer__close" id="drawer-close" aria-label="Close menu">×</button>
+            </div>
+            <ul class="drawer__list">
+                    <li><a href="/" class="drawer__link"><span lang="ja">練習ガイド</span><span lang="en">Practice Guide</span><span lang="fr">Guide d'entraînement</span><span lang="de">Übungsleitfaden</span></a></li>
+                    <li><a href="/guides/" class="drawer__link"><span lang="ja">ガイド一覧</span><span lang="en">Guides</span><span lang="fr">Guides</span><span lang="de">Leitfäden</span></a></li>
+                    <li><a href="/manual/" class="drawer__link active"><span lang="ja">マニュアル</span><span lang="en">Manual</span><span lang="fr">Manuel</span><span lang="de">Handbuch</span></a></li>
+                    <li><a href="/start-here/" class="drawer__link"><span lang="ja">どこから始める？</span><span lang="en">Where to Start?</span><span lang="fr">Par où commencer ?</span><span lang="de">Wo anfangen?</span></a></li>
+            </ul>
+        </aside>
+
+
+    <!-- Article Header -->
+    <header class="page-header">
+        <div class="page-header__meta">
+            <span class="page-header__tag"><span lang="ja">マニュアル</span><span lang="en">Manual</span><span lang="fr">Manuel</span><span lang="de">Handbuch</span></span>
+            <span><span lang="ja">インターバル（音程）</span><span lang="en">Interval Recognition</span><span lang="fr">Reconnaissance d'intervalles</span><span lang="de">Intervallerkennung</span></span>
+        </div>
+        <h1 class="page-header__title">
+            <span lang="ja">インターバル（音程）設定マニュアル<br>各設定の意味と選び方</span>
+            <span lang="en">Interval Recognition Settings Manual<br>What Each Option Means and How to Choose</span>
+            <span lang="fr">Manuel des réglages de reconnaissance d'intervalles<br>Le sens de chaque option et comment la choisir</span>
+            <span lang="de">Handbuch zu den Einstellungen der Intervallerkennung<br>Was jede Option bedeutet und wie man sie wählt</span>
+        </h1>
+        <p class="page-header__subtitle">
+            <span lang="ja">設定画面のどの項目を、どんなときに、どう選べばよいか。インターバル（音程）トレーニングの各設定を 1 つずつ解説します。設定画面の「?」から飛んできた方は、目的の項目までスクロールしてください。</span>
+            <span lang="en">Which option to pick, when, and why. This page walks through each setting in interval training, one at a time. If you arrived from a "?" in the settings screen, scroll to the option you need.</span>
+            <span lang="fr">Quelle option choisir, quand et pourquoi. Cette page passe en revue chaque réglage de l'entraînement aux intervalles, un par un. Si vous arrivez depuis un « ? » de l'écran des réglages, faites défiler jusqu'à l'option qui vous intéresse.</span>
+            <span lang="de">Welche Option man wählt, wann und warum. Diese Seite geht jede Einstellung des Intervalltrainings einzeln durch. Wenn Sie über ein „?" im Einstellungsbildschirm hierhergekommen sind, scrollen Sie zur gewünschten Option.</span>
+        </p>
+    </header>
+
+    <!-- Top-of-article CTA -->
+    <aside class="article-top-cta" aria-label="App promotion">
+        <div class="article-top-cta__body">
+            <p class="article-top-cta__title">
+                <span lang="ja">ソルフェージュPRO でこの練習を試す</span>
+                <span lang="en">Try this in Solfege PRO</span>
+                <span lang="fr">Essayez cet exercice dans Solfege PRO</span>
+                <span lang="de">Probieren Sie diese Übung in Solfege PRO</span>
+            </p>
+            <p class="article-top-cta__sub">
+                <span lang="ja">月額 980 円 · 1 週間無料トライアル</span>
+                <span lang="en">¥980/month · 1-week free trial</span>
+                <span lang="fr">980 ¥/mois · essai gratuit d'une semaine</span>
+                <span lang="de">980 ¥/Monat · 1 Woche kostenlos testen</span>
+            </p>
+        </div>
+        <a href="https://apps.apple.com/jp/app/id6756626617" class="article-top-cta__button" data-cta-position="article_top">
+            <span lang="ja">App Store →</span>
+            <span lang="en">App Store →</span>
+            <span lang="fr">App Store →</span>
+            <span lang="de">App Store →</span>
+        </a>
+    </aside>
+
+    <!-- Article Body -->
+    <main class="article-body">
+
+        <!-- Intro -->
+        <p>
+            <span lang="ja">インターバル（音程）トレーニングは、2 つの音の高さの隔たり（=音程。たとえば完全 5 度や長 3 度）を耳だけで言い当てる練習です。音程はメロディーもハーモニーも聴き取るための土台で、すべてのイヤートレーニングの出発点になります。</span>
+            <span lang="en">Interval training is practice at naming, by ear alone, the distance in pitch between two notes (an "interval" — e.g. a perfect 5th or a major 3rd). Intervals are the foundation for hearing both melody and harmony, and the starting point of all ear training.</span>
+            <span lang="fr">L'entraînement aux intervalles consiste à nommer, à l'oreille seule, l'écart de hauteur entre deux notes (un « intervalle » — par exemple une quinte juste ou une tierce majeure). Les intervalles sont la base de l'écoute de la mélodie comme de l'harmonie, et le point de départ de toute l'éducation de l'oreille.</span>
+            <span lang="de">Beim Intervalltraining geht es darum, allein nach Gehör den Tonhöhenabstand zwischen zwei Tönen zu benennen (ein „Intervall" — z. B. eine reine Quinte oder eine große Terz). Intervalle sind die Grundlage, um sowohl Melodie als auch Harmonie zu hören, und der Ausgangspunkt jeder Gehörbildung.</span>
+        </p>
+        <p>
+            <span lang="ja">このページは設定の選び方をまとめたマニュアルです。各設定は音楽教育で確立された学習法にもとづいて設計しています。判断が要る設定について、<strong>おすすめの選び方・何のための設定か・鍛えられる力とその根拠</strong>を簡潔に示します。設定画面の「?」から来た方は、目的の項目までスクロールしてください。</span>
+            <span lang="en">This page is a manual for choosing the settings. Each setting is designed around established methods from music education. For each setting that calls for a decision, we give <strong>the recommended choice, what it is for, and what it trains — with the evidence behind it</strong>. If you arrived from a "?" in the settings screen, scroll to the option you need.</span>
+            <span lang="fr">Cette page est un manuel pour choisir les réglages. Chaque réglage s'appuie sur des méthodes établies de l'éducation musicale. Pour chaque réglage qui demande une décision, nous indiquons <strong>le choix recommandé, à quoi il sert et ce qu'il développe — avec les preuves à l'appui</strong>. Si vous arrivez depuis un « ? » de l'écran des réglages, faites défiler jusqu'à l'option qui vous intéresse.</span>
+            <span lang="de">Diese Seite ist ein Handbuch zur Wahl der Einstellungen. Jede Einstellung beruht auf etablierten Methoden der Musikpädagogik. Für jede Einstellung, die eine Entscheidung erfordert, nennen wir <strong>die empfohlene Wahl, wozu sie dient und was sie trainiert — samt der Belege dafür</strong>. Wenn Sie über ein „?" im Einstellungsbildschirm hierhergekommen sind, scrollen Sie zur gewünschten Option.</span>
+        </p>
+
+        <!-- #training-mode -->
+        <h2 id="training-mode"><span lang="ja">練習モード（トレーニングモード）</span><span lang="en">Training Mode</span><span lang="fr">Mode d'entraînement</span><span lang="de">Trainingsmodus</span></h2>
+
+        <p class="manual-lead">
+            <span lang="ja"><strong>まずは「通常」で十分。</strong> 特定の音程を狙うときだけ「カスタム」、成績がたまったら「忘れた頃に復習」「苦手克服」を使います。</span>
+            <span lang="en"><strong>Standard is enough to start.</strong> Use Custom only to target specific intervals, and reach for "Review When You Forget" and "Weak Point Focus" once your results accumulate.</span>
+            <span lang="fr"><strong>« Standard » suffit pour débuter.</strong> N'utilisez « Personnalisé » que pour viser des intervalles précis, et passez à « Réviser quand vous oubliez » et « Travailler les points faibles » une fois vos résultats accumulés.</span>
+            <span lang="de"><strong>„Standard" reicht für den Anfang.</strong> Nutze „Benutzerdefiniert" nur, um gezielt bestimmte Intervalle anzusteuern, und greife zu „Wiederholen, wenn du vergisst" und „Schwachstellen angehen", sobald sich Ergebnisse angesammelt haben.</span>
+        </p>
+
+        <p>
+            <span lang="ja">出題する音程をどの方針で選ぶかを決める設定です。4 つのモードがあります。</span>
+            <span lang="en">This setting decides the policy by which intervals are chosen for you. There are four modes.</span>
+            <span lang="fr">Ce réglage détermine selon quelle logique les intervalles vous sont proposés. Il existe quatre modes.</span>
+            <span lang="de">Diese Einstellung legt fest, nach welcher Logik die Intervalle für dich ausgewählt werden. Es gibt vier Modi.</span>
+        </p>
+
+        <div class="manual-options">
+            <div class="manual-option">
+                <div class="manual-option__name"><span lang="ja">通常</span><span lang="en">Standard</span><span lang="fr">Standard</span><span lang="de">Standard</span></div>
+                <div class="manual-option__desc"><span lang="ja">選んだ難易度に対応する音程群から出題します。特に狙いがなければこれで構いません。</span><span lang="en">Draws from the intervals matching your chosen difficulty. With no special intent, this is the one.</span><span lang="fr">Puise dans les intervalles correspondant à la difficulté choisie. Sans intention particulière, c'est celui-ci.</span><span lang="de">Wählt aus den Intervallen, die zur gewählten Schwierigkeit passen. Ohne besondere Absicht ist dies der richtige.</span></div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name"><span lang="ja">カスタム</span><span lang="en">Custom</span><span lang="fr">Personnalisé</span><span lang="de">Benutzerdefiniert</span></div>
+                <div class="manual-option__desc"><span lang="ja">出題する音程を 1 つずつ自分で指定します。狙った組み合わせだけを練習したいときに（最低 1 つ選択）。</span><span lang="en">You hand-pick which intervals appear. For drilling a targeted combination (select at least one).</span><span lang="fr">Vous choisissez vous-même chaque intervalle proposé. Pour travailler uniquement une combinaison ciblée (en sélectionner au moins un).</span><span lang="de">Du wählst selbst aus, welche Intervalle erscheinen. Um gezielt eine bestimmte Kombination zu üben (mindestens eines auswählen).</span></div>
+            </div>
+        </div>
+
+        <p>
+            <span lang="ja">残りの 2 つ — 忘れた頃に復習 と 苦手克服 — は成績データがたまってから効くモードです。考え方はどのトレーニングでも共通なので、下に展開します。</span>
+            <span lang="en">The other two — "Review When You Forget" and "Weak Point Focus" — pay off once your performance data accumulates. They work the same way across every training, so they appear inline below.</span>
+            <span lang="fr">Les deux autres — « Réviser quand vous oubliez » et « Travailler les points faibles » — prennent tout leur sens une fois vos données de performance accumulées. Comme leur principe est identique pour tous les entraînements, ils sont détaillés ci-dessous.</span>
+            <span lang="de">Die beiden anderen — „Wiederholen, wenn du vergisst" und „Schwachstellen angehen" — entfalten ihre Wirkung, sobald sich deine Leistungsdaten angesammelt haben. Da sie in jedem Training gleich funktionieren, werden sie unten erläutert.</span>
+        </p>
+
+        <!-- include: _partials/mode-spaced-repetition.html -->
+        <!-- include: _partials/mode-weak-point.html -->
+
+        <div class="manual-rationale">
+            <span class="manual-rationale__label"><span lang="ja">学習科学の裏づけ</span><span lang="en">The evidence behind it</span><span lang="fr">Les fondements scientifiques</span><span lang="de">Die wissenschaftliche Grundlage</span></span>
+            <p>
+                <span lang="ja">4 つのモードは「今の自分に必要な音程へ練習を集中させる」ためにあります。自分で思い出して答える出題形式そのものが、ただ聴き流すより記憶を強くします（テスト効果）。「忘れた頃に復習」「苦手克服」は、この効果を成績データで自動化したモードです。</span>
+                <span lang="en">The four modes exist to concentrate practice on the intervals you currently need. The quiz format itself — recalling the answer rather than listening passively — strengthens memory more than re-listening (the testing effect). "Review When You Forget" and "Weak Point Focus" automate this using your performance data.</span>
+                <span lang="fr">Les quatre modes servent à concentrer la pratique sur les intervalles dont vous avez besoin sur le moment. Le format quiz lui-même — rappeler la réponse plutôt qu'écouter passivement — ancre mieux la mémoire que la réécoute (l'effet test). « Réviser quand vous oubliez » et « Travailler les points faibles » automatisent cet effet à partir de vos données de performance.</span>
+                <span lang="de">Die vier Modi dienen dazu, das Üben auf die Intervalle zu konzentrieren, die du gerade brauchst. Das Quizformat selbst — die Antwort aktiv abzurufen statt passiv zuzuhören — festigt das Gedächtnis stärker als erneutes Hören (der Testeffekt). „Wiederholen, wenn du vergisst" und „Schwachstellen angehen" automatisieren dies anhand deiner Leistungsdaten.</span>
+            </p>
+            <p class="manual-rationale__ref"><span lang="ja">参考: </span><span lang="en">Ref.: </span><span lang="fr">Réf. : </span><span lang="de">Quelle: </span>Roediger &amp; Karpicke (2006) <a class="manual-ref-num" href="#ref-1">[1]</a></p>
+        </div>
+
+        <!-- #difficulty -->
+        <h2 id="difficulty"><span lang="ja">難易度</span><span lang="en">Difficulty</span><span lang="fr">Difficulté</span><span lang="de">Schwierigkeit</span></h2>
+
+        <p class="manual-lead">
+            <span lang="ja"><strong>迷ったら「初級」から。</strong> 今の難易度で正答率 80% 以上が安定したら、1 段ずつ上げます。</span>
+            <span lang="en"><strong>When unsure, start at Beginner.</strong> Step up one level once you reliably hold 80%+ at the current one.</span>
+            <span lang="fr"><strong>Dans le doute, commencez par « Débutant ».</strong> Montez d'un niveau une fois que vous tenez de façon stable 80 % ou plus au niveau actuel.</span>
+            <span lang="de"><strong>Im Zweifel mit „Anfänger" beginnen.</strong> Steige eine Stufe höher, sobald du auf der aktuellen Stufe verlässlich 80 % oder mehr hältst.</span>
+        </p>
+
+        <p>
+            <span lang="ja">出題される音程の範囲を決める設定です（通常モードで表示）。聴き分けやすい音程から始まり、段階的に難しい音程へ広がります。</span>
+            <span lang="en">Sets the range of intervals you'll be asked about (shown in Standard mode). It starts from the most distinguishable intervals and widens, step by step, to the harder ones.</span>
+            <span lang="fr">Définit l'éventail des intervalles qui vous seront proposés (affiché en mode Standard). Il part des intervalles les plus faciles à distinguer et s'élargit, étape par étape, vers les plus difficiles.</span>
+            <span lang="de">Legt den Umfang der Intervalle fest, die abgefragt werden (im Modus Standard sichtbar). Er beginnt bei den am leichtesten unterscheidbaren Intervallen und weitet sich Schritt für Schritt zu den schwierigeren aus.</span>
+        </p>
+
+        <div class="manual-options">
+            <div class="manual-option">
+                <div class="manual-option__name"><span lang="ja">初級</span><span lang="en">Beginner</span><span lang="fr">Débutant</span><span lang="de">Anfänger</span></div>
+                <div class="manual-option__desc"><span lang="ja">基本の 5 音程（長 2 度・長 3 度・完全 4 度・完全 5 度・オクターブ）。隔たりが大きく聴き分けやすい音程だけ。</span><span lang="en">Five fundamental intervals (M2, M3, P4, P5, octave) — only the wide, clearly distinguishable ones.</span><span lang="fr">Les 5 intervalles fondamentaux (M2, M3, P4, P5, octave) — uniquement les plus larges et les plus faciles à distinguer.</span><span lang="de">Die 5 grundlegenden Intervalle (M2, M3, P4, P5, Oktave) — nur die weiten, klar unterscheidbaren.</span></div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name"><span lang="ja">中級</span><span lang="en">Intermediate</span><span lang="fr">Intermédiaire</span><span lang="de">Mittelstufe</span></div>
+                <div class="manual-option__desc"><span lang="ja">8 音程。短 3 度・短 6 度・長 6 度が加わり、長短（明るい/暗い）の聴き分けが入ります。</span><span lang="en">Eight intervals; adds m3, m6, and M6, bringing in major-vs-minor (the bright-vs-dark quality).</span><span lang="fr">8 intervalles ; ajoute m3, m6 et M6, introduisant la distinction majeur/mineur (le caractère clair/sombre).</span><span lang="de">8 Intervalle; fügt m3, m6 und M6 hinzu und bringt die Unterscheidung Dur/Moll (der helle bzw. dunkle Klangcharakter) ins Spiel.</span></div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name"><span lang="ja">上級</span><span lang="en">Advanced</span><span lang="fr">Avancé</span><span lang="de">Fortgeschritten</span></div>
+                <div class="manual-option__desc"><span lang="ja">全 13 音程。短 2 度・トライトーン（増 4 度=半オクターブ）・短 7 度・長 7 度まで含む最上位。</span><span lang="en">All 13 intervals — including m2, the tritone (augmented 4th, half an octave), m7, and M7. The top tier.</span><span lang="fr">Les 13 intervalles — y compris m2, le triton (quarte augmentée = demi-octave), m7 et M7. Le niveau le plus élevé.</span><span lang="de">Alle 13 Intervalle — einschließlich m2, dem Tritonus (übermäßige Quarte = halbe Oktave), m7 und M7. Die höchste Stufe.</span></div>
+            </div>
+        </div>
+
+        <div class="manual-rationale">
+            <span class="manual-rationale__label"><span lang="ja">学習科学の裏づけ</span><span lang="en">The evidence behind it</span><span lang="fr">Les fondements scientifiques</span><span lang="de">Die wissenschaftliche Grundlage</span></span>
+            <p>
+                <span lang="ja">一度に扱う音程が少ないほど、耳が処理する情報量が減り、聴き分けの手がかりを確実に身につけられます。狭い範囲を確実にしてから広げるほうが、いきなり全部に挑むより速く上達します。新しい技能の初期は処理の負荷を抑えるほど学習が進む、という認知負荷の考え方にもとづく段階設計です。</span>
+                <span lang="en">The fewer intervals you handle at once, the less your ear must process, and the more reliably you fix the cues for telling them apart. Securing a narrow range before widening it gets you there faster than tackling everything at once. The tiers follow cognitive-load theory: keeping processing demands low early in a new skill aids learning.</span>
+                <span lang="fr">Moins vous traitez d'intervalles à la fois, moins votre oreille a d'informations à gérer, et plus vous fixez sûrement les indices qui permettent de les distinguer. Consolider un éventail restreint avant de l'élargir mène au résultat plus vite que de tout aborder d'un coup. Cette progression par paliers suit la théorie de la charge cognitive : limiter la charge de traitement au début d'une nouvelle compétence favorise l'apprentissage.</span>
+                <span lang="de">Je weniger Intervalle du auf einmal bearbeitest, desto weniger muss dein Gehör verarbeiten und desto sicherer prägst du dir die Merkmale ein, an denen du sie unterscheidest. Einen engen Bereich zu festigen, bevor man ihn erweitert, führt schneller zum Ziel, als alles auf einmal anzugehen. Die Stufen folgen der Cognitive-Load-Theorie: Eine geringe Verarbeitungslast zu Beginn einer neuen Fähigkeit fördert das Lernen.</span>
+            </p>
+            <p class="manual-rationale__ref"><span lang="ja">参考: </span><span lang="en">Ref.: </span><span lang="fr">Réf. : </span><span lang="de">Quelle: </span>Sweller (1988) <a class="manual-ref-num" href="#ref-2">[2]</a></p>
+        </div>
+
+        <!-- #target-intervals -->
+        <h2 id="target-intervals"><span lang="ja">練習するインターバル（対象音程）</span><span lang="en">Intervals to Practice</span><span lang="fr">Intervalles à travailler</span><span lang="de">Zu übende Intervalle</span></h2>
+
+        <p class="manual-lead">
+            <span lang="ja"><strong>基本は使わなくてOK。</strong> 統計で「いつも間違える音程」が見えたら、その 2〜3 種類だけをここで選んで集中します。</span>
+            <span lang="en"><strong>You usually don't need this.</strong> Once the statistics reveal "the interval I always miss," select just those two or three here and focus on them.</span>
+            <span lang="fr"><strong>En général, inutile d'y toucher.</strong> Quand les statistiques révèlent « l'intervalle que je rate toujours », sélectionnez ici uniquement ces deux ou trois-là et concentrez-vous dessus.</span>
+            <span lang="de"><strong>Normalerweise brauchst du das nicht.</strong> Sobald die Statistik „das Intervall, das ich immer verfehle" aufzeigt, wähle hier nur diese zwei oder drei aus und konzentriere dich darauf.</span>
+        </p>
+
+        <p>
+            <span lang="ja">出題に含める音程を自分で選ぶ設定です（カスタムモードで表示）。混同しやすいペア（例：長 3 度と完全 4 度、完全 4 度と完全 5 度）だけを並べると効果的です。最低 1 つ選択。</span>
+            <span lang="en">Lets you choose which intervals appear (shown in Custom mode). It works best when you line up just an easily confused pair — say M3 vs P4, or P4 vs P5. Select at least one.</span>
+            <span lang="fr">Vous laisse choisir les intervalles proposés (affiché en mode Personnalisé). C'est plus efficace en n'alignant qu'une paire facilement confondue — par exemple M3 / P4, ou P4 / P5. En sélectionner au moins un.</span>
+            <span lang="de">Lässt dich auswählen, welche Intervalle erscheinen (im Modus Benutzerdefiniert sichtbar). Am wirksamsten ist es, nur ein leicht zu verwechselndes Paar nebeneinanderzustellen — etwa M3 / P4 oder P4 / P5. Mindestens eines auswählen.</span>
+        </p>
+
+        <div class="manual-rationale">
+            <span class="manual-rationale__label"><span lang="ja">学習科学の裏づけ</span><span lang="en">The evidence behind it</span><span lang="fr">Les fondements scientifiques</span><span lang="de">Die wissenschaftliche Grundlage</span></span>
+            <p>
+                <span lang="ja">似た音程を隣り合わせて比べると「どこが違うか」に注意が向き、区別する力が育ちます。似たもの同士を混ぜて学ぶ練習（インターリービング）は、1 種類ずつ固める練習より長期的な定着が高いことがメタ分析で示されています。</span>
+                <span lang="en">Comparing similar intervals side by side directs attention to what differs, sharpening discrimination. Mixing similar items (interleaving) yields better long-term retention than blocking one type at a time, as shown by meta-analysis.</span>
+                <span lang="fr">Comparer côte à côte des intervalles proches dirige l'attention sur ce qui les différencie et affine la discrimination. Mélanger des éléments similaires (l'entraînement entrelacé) assure une meilleure rétention à long terme que de travailler un seul type à la fois, comme le montre une méta-analyse.</span>
+                <span lang="de">Ähnliche Intervalle nebeneinander zu vergleichen lenkt die Aufmerksamkeit auf das Unterscheidende und schärft die Differenzierung. Ähnliche Elemente zu mischen (verschränktes Lernen) sorgt für eine bessere langfristige Behaltensleistung als das blockweise Üben eines einzelnen Typs, wie eine Meta-Analyse zeigt.</span>
+            </p>
+            <p class="manual-rationale__ref"><span lang="ja">参考: </span><span lang="en">Ref.: </span><span lang="fr">Réf. : </span><span lang="de">Quelle: </span>Brunmair &amp; Richter (2019) <a class="manual-ref-num" href="#ref-3">[3]</a></p>
+        </div>
+
+        <!-- #playback-mode -->
+        <h2 id="playback-mode"><span lang="ja">再生モード</span><span lang="en">Playback Mode</span><span lang="fr">Mode de lecture</span><span lang="de">Wiedergabemodus</span></h2>
+
+        <p class="manual-lead">
+            <span lang="ja"><strong>新しい音程は「上昇」で覚え、慣れたら「下降」「和音」を足し、仕上げに「ランダム」。</strong></span>
+            <span lang="en"><strong>Learn a new interval in Ascending, add Descending and Harmonic as you get comfortable, and finish with Random.</strong></span>
+            <span lang="fr"><strong>Apprenez un nouvel intervalle en « Ascendant », ajoutez « Descendant » et « Harmonique » à mesure que vous êtes à l'aise, et terminez par « Aléatoire ».</strong></span>
+            <span lang="de"><strong>Lerne ein neues Intervall im Modus „Aufsteigend", füge „Absteigend" und „Harmonisch" hinzu, sobald du dich sicher fühlst, und schließe mit „Zufällig" ab.</strong></span>
+        </p>
+
+        <p>
+            <span lang="ja">2 音をどう鳴らすかを決めます。同じ音程でも鳴らし方で難しさが変わります。</span>
+            <span lang="en">Decides how the two notes are sounded. The same interval can be easier or harder depending on how it's played.</span>
+            <span lang="fr">Détermine comment les deux notes sont jouées. Un même intervalle peut être plus ou moins difficile selon la manière dont il est joué.</span>
+            <span lang="de">Legt fest, wie die beiden Töne erklingen. Ein und dasselbe Intervall kann je nach Spielweise leichter oder schwerer sein.</span>
+        </p>
+
+        <div class="manual-options">
+            <div class="manual-option">
+                <div class="manual-option__name"><span lang="ja">上昇</span><span lang="en">Ascending</span><span lang="fr">Ascendant</span><span lang="de">Aufsteigend</span></div>
+                <div class="manual-option__desc"><span lang="ja">低い音→高い音の順。最も馴染みやすく、歌で覚えた音程を思い出しやすいので学習初期向き。</span><span lang="en">Low note then high. The most familiar form; song-learned intervals come back easily, so it suits early learning.</span><span lang="fr">La note grave puis l'aiguë. La forme la plus familière ; les intervalles appris par des chansons reviennent facilement, ce qui convient au début de l'apprentissage.</span><span lang="de">Erst der tiefe, dann der hohe Ton. Die vertrauteste Form; über Lieder gelernte Intervalle kommen leicht zurück, daher gut für den Lernbeginn.</span></div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name"><span lang="ja">下降</span><span lang="en">Descending</span><span lang="fr">Descendant</span><span lang="de">Absteigend</span></div>
+                <div class="manual-option__desc"><span lang="ja">高い音→低い音の順。上行とは印象が変わり、急に難しく感じることが多い。</span><span lang="en">High note then low. It feels different from ascending and is often suddenly harder.</span><span lang="fr">La note aiguë puis la grave. L'impression diffère de l'ascendant et cela paraît souvent soudainement plus difficile.</span><span lang="de">Erst der hohe, dann der tiefe Ton. Es wirkt anders als aufsteigend und fühlt sich oft plötzlich schwerer an.</span></div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name"><span lang="ja">和音</span><span lang="en">Harmonic</span><span lang="fr">Harmonique</span><span lang="de">Harmonisch</span></div>
+                <div class="manual-option__desc"><span lang="ja">2 音を同時に。重なった響きが「溶け合うか／ぶつかるか」で判断。ハーモニーの耳に直結し、やや難しめ。</span><span lang="en">Both notes at once. You judge by whether the blend is consonant or dissonant; ties directly to a harmonic ear and is a bit harder.</span><span lang="fr">Les deux notes en même temps. On juge selon que le mélange est consonant ou dissonant ; cela développe directement l'oreille harmonique et c'est un peu plus difficile.</span><span lang="de">Beide Töne gleichzeitig. Du beurteilst, ob die Klangmischung konsonant oder dissonant ist; das schult unmittelbar das harmonische Gehör und ist etwas schwerer.</span></div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name"><span lang="ja">ランダム</span><span lang="en">Random</span><span lang="fr">Aléatoire</span><span lang="de">Zufällig</span></div>
+                <div class="manual-option__desc"><span lang="ja">出題ごとに上昇・下降・和音を切り替え。どの鳴らし方でも聴けるように。</span><span lang="en">Switches among the three each question, so you can identify intervals any way they're played.</span><span lang="fr">Alterne entre les trois à chaque question, pour savoir identifier les intervalles quelle que soit la manière dont ils sont joués.</span><span lang="de">Wechselt bei jeder Frage zwischen den dreien, damit du Intervalle erkennst, egal wie sie gespielt werden.</span></div>
+            </div>
+        </div>
+
+        <div class="manual-rationale">
+            <span class="manual-rationale__label"><span lang="ja">学習科学の裏づけ</span><span lang="en">The evidence behind it</span><span lang="fr">Les fondements scientifiques</span><span lang="de">Die wissenschaftliche Grundlage</span></span>
+            <p>
+                <span lang="ja">目的は、1 つの鳴り方に頼らず音程そのものを聴けるようにすることです。実際の音楽では上行・下行・同時のどれも出てきます。鳴らし方を変えて練習すると、上行の「歌い出し」のような特定の手がかりに依存せず、隔たり自体を聴き取る力が付きます。</span>
+                <span lang="en">The aim is to hear the interval itself without leaning on one presentation. Real music uses ascending, descending, and simultaneous forms alike. Varying how it's played stops you depending on a single cue (like an ascending "song opening") and builds the ability to hear the distance itself.</span>
+                <span lang="fr">L'objectif est d'entendre l'intervalle lui-même sans s'appuyer sur une seule présentation. La musique réelle utilise aussi bien les formes ascendantes, descendantes que simultanées. Varier la manière de jouer vous empêche de dépendre d'un indice unique (comme une « ouverture de chanson » ascendante) et développe la capacité à entendre l'écart en soi.</span>
+                <span lang="de">Ziel ist es, das Intervall selbst zu hören, ohne sich auf eine einzige Darbietung zu stützen. Reale Musik nutzt aufsteigende, absteigende und gleichzeitige Formen gleichermaßen. Die Spielweise zu variieren verhindert, dass du dich auf einen einzigen Anhaltspunkt (wie einen aufsteigenden „Liedanfang") verlässt, und baut die Fähigkeit auf, den Abstand selbst zu hören.</span>
+            </p>
+            <p class="manual-rationale__ref"><span lang="ja">参考: </span><span lang="en">Ref.: </span><span lang="fr">Réf. : </span><span lang="de">Quelle: </span>Brunmair &amp; Richter (2019) <a class="manual-ref-num" href="#ref-3">[3]</a>; Karpinski (2000) <a class="manual-ref-num" href="#ref-4">[4]</a></p>
+        </div>
+
+        <!-- #reference-pitch -->
+        <h2 id="reference-pitch"><span lang="ja">出題する音域（基準音 / ルート音）</span><span lang="en">Starting Pitch (Reference Pitch)</span><span lang="fr">Note de départ (note de référence)</span><span lang="de">Anfangston (Bezugston)</span></h2>
+
+        <p class="manual-lead">
+            <span lang="ja"><strong>初学者は「いつも同じ音から」(C4)、聴き分けが安定したら「違う音域から」。</strong></span>
+            <span lang="en"><strong>Beginners pick "Always same pitch" (C4); switch to "Different pitches" once your discrimination is stable.</strong></span>
+            <span lang="fr"><strong>Les débutants choisissent « Toujours la même note » (C4) ; passez à « Notes différentes » une fois votre discrimination stabilisée.</strong></span>
+            <span lang="de"><strong>Anfänger wählen „Immer derselbe Ton" (C4); wechsle zu „Verschiedene Töne", sobald deine Unterscheidung stabil ist.</strong></span>
+        </p>
+
+        <p>
+            <span lang="ja">音程を測る出発点（=最初に鳴る音、ルート音）を毎回どう決めるかの設定です。固定すると基準音を C4（中央ド）・E4（ギター 1 弦）・A4（440Hz）から選べます（迷ったら推奨の C4）。</span>
+            <span lang="en">Decides how the reference note — the first note sounded, from which the interval is measured (the root) — is chosen each time. If fixed, you can set it to C4 (Middle C), E4 (Guitar string 1), or A4 (440Hz) — when unsure, the recommended C4.</span>
+            <span lang="fr">Détermine comment la note de référence — la première note jouée, à partir de laquelle l'intervalle est mesuré (la fondamentale) — est choisie à chaque fois. Si elle est fixe, vous pouvez la régler sur C4 (do central), E4 (1re corde de guitare) ou A4 (440 Hz) — dans le doute, le C4 recommandé.</span>
+            <span lang="de">Legt fest, wie der Bezugston — der zuerst erklingende Ton, von dem aus das Intervall gemessen wird (der Grundton) — jedes Mal gewählt wird. Wenn fest, kannst du ihn auf C4 (eingestrichenes C), E4 (1. Gitarrensaite) oder A4 (440 Hz) einstellen — im Zweifel das empfohlene C4.</span>
+        </p>
+
+        <div class="manual-options">
+            <div class="manual-option">
+                <div class="manual-option__name"><span lang="ja">いつも同じ音から</span><span lang="en">Always same pitch</span><span lang="fr">Toujours la même note</span><span lang="de">Immer derselbe Ton</span></div>
+                <div class="manual-option__desc"><span lang="ja">基準音を 1 つに固定。出発点が一定で比較しやすく、音の高さに惑わされず音程の違いだけに集中できる。学習初期向き。</span><span lang="en">Locks the reference to one pitch. A constant start makes intervals easy to compare, so you focus on the difference, not absolute pitch. Good for early learning.</span><span lang="fr">Fixe la note de référence sur une seule hauteur. Un point de départ constant facilite la comparaison : vous vous concentrez sur la différence, sans vous laisser tromper par la hauteur absolue. Adapté au début de l'apprentissage.</span><span lang="de">Legt den Bezugston auf eine einzige Tonhöhe fest. Ein konstanter Startpunkt erleichtert den Vergleich: Du konzentrierst dich auf den Unterschied, ohne dich von der absoluten Tonhöhe ablenken zu lassen. Gut für den Lernbeginn.</span></div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name"><span lang="ja">違う音域から</span><span lang="en">Different pitches</span><span lang="fr">Notes différentes</span><span lang="de">Verschiedene Töne</span></div>
+                <div class="manual-option__desc"><span lang="ja">毎回基準音の高さを変える。どの調・どの高さでも当てられる、実践に近い力が付く。</span><span lang="en">Varies the reference each time. Builds a realistic ear that names intervals in any key or register.</span><span lang="fr">Change la hauteur de la note de référence à chaque fois. Développe une oreille proche de la pratique réelle, capable de reconnaître les intervalles dans n'importe quelle tonalité ou registre.</span><span lang="de">Ändert die Höhe des Bezugstons jedes Mal. Baut ein praxisnahes Gehör auf, das Intervalle in jeder Tonart und Lage erkennt.</span></div>
+            </div>
+        </div>
+
+        <div class="manual-rationale">
+            <span class="manual-rationale__label"><span lang="ja">学習科学の裏づけ</span><span lang="en">The evidence behind it</span><span lang="fr">Les fondements scientifiques</span><span lang="de">Die wissenschaftliche Grundlage</span></span>
+            <p>
+                <span lang="ja">段階を分けているのは、初期は条件を固定して負荷を下げ、慣れたら条件を変えて実践に近づけるためです。出発点を変える練習（条件のインターリービング）が単調な反復より定着するのは、メタ分析が示すとおりです。</span>
+                <span lang="en">The two stages exist so you can lower the load by fixing conditions early, then vary them later to approach real use. Varying the starting point (interleaving conditions) retains better than monotonous repetition, as meta-analysis shows.</span>
+                <span lang="fr">Les deux étapes existent pour que vous puissiez abaisser la charge en fixant les conditions au début, puis les faire varier ensuite pour vous rapprocher de l'usage réel. Varier le point de départ (entrelacer les conditions) assure une meilleure rétention qu'une répétition monotone, comme le montre une méta-analyse.</span>
+                <span lang="de">Die beiden Stufen gibt es, damit du die Last anfangs durch feste Bedingungen senken und sie später variieren kannst, um dich der realen Anwendung anzunähern. Den Startpunkt zu variieren (Bedingungen zu verschränken) sorgt für eine bessere Behaltensleistung als eintönige Wiederholung, wie eine Meta-Analyse zeigt.</span>
+            </p>
+            <p class="manual-rationale__ref"><span lang="ja">参考: </span><span lang="en">Ref.: </span><span lang="fr">Réf. : </span><span lang="de">Quelle: </span>Brunmair &amp; Richter (2019) <a class="manual-ref-num" href="#ref-3">[3]</a></p>
+        </div>
+
+        <!-- #playback-speed -->
+        <h2 id="playback-speed"><span lang="ja">音の再生スピード（再生速度）</span><span lang="en">Audio Playback Speed</span><span lang="fr">Vitesse de lecture du son</span><span lang="de">Wiedergabegeschwindigkeit</span></h2>
+
+        <p class="manual-lead">
+            <span lang="ja"><strong>基本は「普通」。</strong> 新しい音程でつまずくときだけ「ゆっくり」、安定したら「速い」。</span>
+            <span lang="en"><strong>Leave it on Normal.</strong> Drop to Slow only when a new interval trips you up; move to Fast once stable.</span>
+            <span lang="fr"><strong>Laissez sur « Normal ».</strong> Passez à « Lent » uniquement quand un nouvel intervalle vous fait trébucher ; passez à « Rapide » une fois stabilisé.</span>
+            <span lang="de"><strong>Belasse es auf „Normal".</strong> Wechsle nur dann zu „Langsam", wenn dich ein neues Intervall ins Stolpern bringt; gehe zu „Schnell" über, sobald es sitzt.</span>
+        </p>
+
+        <p>
+            <span lang="ja">2 音の鳴る速さ（1 音の長さと間隔）を調整します。順番に鳴らす上昇・下降で表示（和音は対象外）。ゆっくり／普通／速い の 3 段階です。「ゆっくり」は 1 音ずつじっくり聴け、「速い」は短時間で反復回数を稼げます。</span>
+            <span lang="en">Adjusts how fast the two notes play (note length and the gap between them). Appears in the sequential Ascending/Descending modes (not Harmonic). Slow, Normal, or Fast: Slow lets you listen to each note carefully, while Fast packs more repetitions into less time.</span>
+            <span lang="fr">Règle la vitesse à laquelle les deux notes sont jouées (durée d'une note et intervalle entre elles). Apparaît dans les modes séquentiels Ascendant / Descendant (pas en Harmonique). Lent, Normal ou Rapide : « Lent » permet d'écouter chaque note attentivement, tandis que « Rapide » concentre plus de répétitions en moins de temps.</span>
+            <span lang="de">Stellt ein, wie schnell die beiden Töne erklingen (Tondauer und Abstand dazwischen). Erscheint in den sequenziellen Modi Aufsteigend / Absteigend (nicht Harmonisch). Langsam, Normal oder Schnell: „Langsam" lässt dich jeden Ton sorgfältig hören, während „Schnell" mehr Wiederholungen in kürzerer Zeit ermöglicht.</span>
+        </p>
+
+        <div class="manual-rationale">
+            <span class="manual-rationale__label"><span lang="ja">学習科学の裏づけ</span><span lang="en">The evidence behind it</span><span lang="fr">Les fondements scientifiques</span><span lang="de">Die wissenschaftliche Grundlage</span></span>
+            <p>
+                <span lang="ja">速さを変えられるのは、学習の段階に処理の負荷を合わせるためです。新しい音程に慣れないうちはゆっくりで負荷を下げ、聴き分けが安定したら速くして瞬時の判断を鍛えます。初期ほど負荷を抑えると学習が進みやすい、という認知負荷の考え方に沿っています。</span>
+                <span lang="en">Speed is adjustable so you can match the processing load to your stage of learning. While a new interval is unfamiliar, Slow lowers the load; once discrimination is stable, Fast trains instant judgment. Keeping the load lower early follows cognitive-load theory.</span>
+                <span lang="fr">La vitesse est réglable pour ajuster la charge de traitement à votre niveau d'apprentissage. Tant qu'un nouvel intervalle ne vous est pas familier, « Lent » abaisse la charge ; une fois la discrimination stabilisée, « Rapide » entraîne le jugement instantané. Maintenir une charge plus faible au début suit la théorie de la charge cognitive.</span>
+                <span lang="de">Die Geschwindigkeit ist einstellbar, damit du die Verarbeitungslast an deinen Lernstand anpassen kannst. Solange ein neues Intervall ungewohnt ist, senkt „Langsam" die Last; sobald die Unterscheidung stabil ist, trainiert „Schnell" das blitzschnelle Urteil. Die Last zu Beginn niedrig zu halten folgt der Cognitive-Load-Theorie.</span>
+            </p>
+            <p class="manual-rationale__ref"><span lang="ja">参考: </span><span lang="en">Ref.: </span><span lang="fr">Réf. : </span><span lang="de">Quelle: </span>Sweller (1988) <a class="manual-ref-num" href="#ref-2">[2]</a></p>
+        </div>
+
+        <!-- #practice-speed -->
+        <h2 id="practice-speed"><span lang="ja">次の問題への進み方（自動進行）</span><span lang="en">Pace Between Questions</span><span lang="fr">Passage à la question suivante</span><span lang="de">Übergang zur nächsten Frage</span></h2>
+
+        <p class="manual-lead">
+            <span lang="ja"><strong>覚えたてのうちは「手動で進める」、数をこなしたくなったら「自動で進む」。</strong></span>
+            <span lang="en"><strong>Use Manual advance while intervals are still new; switch to Auto advance when you want volume.</strong></span>
+            <span lang="fr"><strong>Utilisez « Passage manuel » tant que les intervalles sont encore nouveaux ; passez à « Passage automatique » quand vous voulez enchaîner les répétitions.</strong></span>
+            <span lang="de"><strong>Nutze „Manuell weiter", solange die Intervalle noch neu sind; wechsle zu „Automatisch weiter", wenn du Menge willst.</strong></span>
+        </p>
+
+        <p>
+            <span lang="ja">1 問答えたあと、次の問題へどう移るかを決めます。手動／自動の 2 つです。</span>
+            <span lang="en">Decides how you move to the next question after answering. Manual or Auto.</span>
+            <span lang="fr">Détermine comment vous passez à la question suivante après avoir répondu. Manuel ou automatique.</span>
+            <span lang="de">Legt fest, wie du nach dem Antworten zur nächsten Frage übergehst. Manuell oder automatisch.</span>
+        </p>
+
+        <div class="manual-options">
+            <div class="manual-option">
+                <div class="manual-option__name"><span lang="ja">手動で進める</span><span lang="en">Manual advance</span><span lang="fr">Passage manuel</span><span lang="de">Manuell weiter</span></div>
+                <div class="manual-option__desc"><span lang="ja">「次へ」を押すまで止まる。正誤を自分のペースで確認したい、間違えた音を聴き直したいときに。</span><span lang="en">Waits until you tap Next. For checking right/wrong at your pace, or replaying a missed interval.</span><span lang="fr">Reste en attente jusqu'à ce que vous appuyiez sur « Suivant ». Pour vérifier vos réponses à votre rythme ou réécouter un intervalle manqué.</span><span lang="de">Wartet, bis du auf „Weiter" tippst. Um in deinem Tempo richtig/falsch zu prüfen oder ein verfehltes Intervall erneut zu hören.</span></div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name"><span lang="ja">自動で進む</span><span lang="en">Auto advance</span><span lang="fr">Passage automatique</span><span lang="de">Automatisch weiter</span></div>
+                <div class="manual-option__desc"><span lang="ja">答えると自動で次へ。テンポよく数をこなし、反射的な聴き取りを鍛えたいときに。</span><span lang="en">Moves on automatically. For a brisk pace and training reflexive listening.</span><span lang="fr">Passe automatiquement à la suite. Pour un rythme soutenu et entraîner une écoute réflexe.</span><span lang="de">Geht automatisch weiter. Für ein zügiges Tempo und das Training des reflexartigen Hörens.</span></div>
+            </div>
+        </div>
+
+        <div class="manual-rationale">
+            <span class="manual-rationale__label"><span lang="ja">学習科学の裏づけ</span><span lang="en">The evidence behind it</span><span lang="fr">Les fondements scientifiques</span><span lang="de">Die wissenschaftliche Grundlage</span></span>
+            <p>
+                <span lang="ja">どちらも「自分で答えを思い出す→確かめる」を繰り返すための設定です。思い出して答える反復（テスト形式）は、ただ聴き流すより記憶に強く残ります。手動は 1 問ずつの確認、自動は反復回数を増やす目的に向きます。</span>
+                <span lang="en">Both serve the same loop — recall the answer yourself, then verify. Retrieval (the quiz format) retains far better than passive re-listening. Manual is for per-question review; Auto is for raising the number of repetitions.</span>
+                <span lang="fr">Les deux servent la même boucle — rappeler soi-même la réponse, puis vérifier. La récupération en mémoire (le format quiz) retient bien mieux que la réécoute passive. Le mode manuel sert à la vérification question par question ; le mode automatique sert à augmenter le nombre de répétitions.</span>
+                <span lang="de">Beide dienen derselben Schleife — die Antwort selbst abrufen, dann überprüfen. Das Abrufen (das Quizformat) bleibt weitaus besser haften als passives erneutes Hören. „Manuell" dient der Überprüfung Frage für Frage; „Automatisch" dient dazu, die Zahl der Wiederholungen zu erhöhen.</span>
+            </p>
+            <p class="manual-rationale__ref"><span lang="ja">参考: </span><span lang="en">Ref.: </span><span lang="fr">Réf. : </span><span lang="de">Quelle: </span>Roediger &amp; Karpicke (2006) <a class="manual-ref-num" href="#ref-1">[1]</a></p>
+        </div>
+
+        <!-- References -->
+        <section class="manual-refs">
+            <div class="manual-refs__title"><span lang="ja">参考文献</span><span lang="en">References</span><span lang="fr">Références</span><span lang="de">Quellen</span></div>
+            <ol>
+                <li id="ref-1">Roediger, H. L., &amp; Karpicke, J. D. (2006). Test-enhanced learning: Taking memory tests improves long-term retention. <em>Psychological Science, 17</em>(3), 249–255.</li>
+                <li id="ref-2">Sweller, J. (1988). Cognitive load during problem solving: Effects on learning. <em>Cognitive Science, 12</em>(2), 257–285.</li>
+                <li id="ref-3">Brunmair, M., &amp; Richter, T. (2019). Similarity matters: A meta-analysis of interleaved learning and its moderators. <em>Psychological Bulletin, 145</em>(11), 1029–1052.</li>
+                <li id="ref-4">Karpinski, G. S. (2000). <em>Aural Skills Acquisition: The Development of Listening, Reading, and Performing Skills in College-Level Musicians.</em> Oxford University Press.</li>
+            </ol>
+        </section>
+
+    </main>
+
+    <!-- Final CTA -->
+    <section class="article-cta">
+        <h2 class="article-cta__title"><span lang="ja">設定を決めたら、さっそく試してみよう</span><span lang="en">Settings Sorted? Give It a Try</span><span lang="fr">Réglages décidés ? Essayez sans attendre</span><span lang="de">Einstellungen geklärt? Probieren Sie es aus</span></h2>
+        <p class="article-cta__text">
+            <span lang="ja">各設定の意味がわかれば、あとは実際に手を動かすだけです。<br>迷ったら本ページの「迷ったら…」をなぞって始めてみてください。<br>ソルフェージュPRO の インターバル（音程）トレーニング で、自分に合った設定を見つけましょう。</span>
+            <span lang="en">Once you understand each setting, the rest is hands-on practice.<br>When unsure, just follow the "when in doubt" lines on this page.<br>Find the settings that fit you in Solfege PRO's Interval Recognition.</span>
+            <span lang="fr">Une fois chaque réglage compris, il ne reste plus qu'à pratiquer.<br>En cas de doute, suivez simplement les lignes « En cas de doute… » de cette page.<br>Trouvez les réglages qui vous conviennent dans la Reconnaissance d'intervalles de Solfege PRO.</span>
+            <span lang="de">Sobald Sie jede Einstellung verstanden haben, bleibt nur noch das praktische Üben.<br>Folgen Sie im Zweifel einfach den Zeilen „Im Zweifel…" auf dieser Seite.<br>Finden Sie die für Sie passenden Einstellungen in der Intervallerkennung von Solfege PRO.</span>
+        </p>
+        <a href="https://apps.apple.com/jp/app/id6756626617" class="app-store-link" aria-label="Download on the App Store">
+            <span lang="ja"><img class="app-store-link__img" width="109" height="40" src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/ja-jp" alt="App Storeで入手"></span>
+            <span lang="en"><img class="app-store-link__img" width="120" height="40" src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/en-us" alt="Download on the App Store"></span>
+            <span lang="fr"><img class="app-store-link__img" width="127" height="40" src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/fr-fr" alt="Télécharger dans l'App Store"></span>
+            <span lang="de"><img class="app-store-link__img" width="120" height="40" src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/de-de" alt="Laden im App Store"></span>
+        </a>
+    </section>
+
+    <!-- Related Content -->
+    <div class="article-related">
+        <div class="article-related__title"><span lang="ja">関連コンテンツ</span><span lang="en">Related Content</span><span lang="fr">Contenu associé</span><span lang="de">Verwandte Inhalte</span></div>
+        <a href="/guides/interval-training/" class="article-related__link" style="margin-bottom: var(--space-md);">
+            <div class="article-related__link-title"><span lang="ja">音程を聴き分ける力とは何か — インターバルの聴き取りを理解する</span><span lang="en">What Is Interval Recognition? — Understanding How to Hear Intervals</span><span lang="fr">Qu'est-ce que la reconnaissance d'intervalles ? — Comprendre les intervalles pour former l'oreille</span><span lang="de">Was ist Intervallerkennung? — Intervalle verstehen und das Gehör schulen</span></div>
+            <div class="article-related__link-desc"><span lang="ja">設定の前に、そもそも音程とは何かを知りたい方へ。2 音の隔たりの違いと段階的な練習法を解説したガイド。</span><span lang="en">For those who want to understand what an interval is before adjusting settings — a guide to the difference in distance between two notes and step-by-step practice.</span><span lang="fr">Pour celles et ceux qui veulent comprendre ce qu'est un intervalle avant d'ajuster les réglages — un guide sur la différence d'écart entre deux notes et une pratique progressive.</span><span lang="de">Für alle, die verstehen möchten, was ein Intervall ist, bevor sie die Einstellungen anpassen — ein Leitfaden zum Abstandsunterschied zwischen zwei Tönen und schrittweisem Üben.</span></div>
+        </a>
+        <a href="/" class="article-related__link">
+            <div class="article-related__link-title"><span lang="ja">ソルフェージュPRO 練習ガイド</span><span lang="en">Solfege PRO Practice Guide</span><span lang="fr">Guide d'entraînement Solfege PRO</span><span lang="de">Solfege PRO Übungsleitfaden</span></div>
+            <div class="article-related__link-desc"><span lang="ja">ギター・ベース・ドラム・ピアノ・ボーカル向けの課題別練習メニュー</span><span lang="en">Challenge-based practice menus for guitar, bass, drums, piano, and vocals</span><span lang="fr">Programmes d'entraînement par problématique pour guitare, basse, batterie, piano et chant</span><span lang="de">Problem­bezogene Übungsmenüs für Gitarre, Bass, Schlagzeug, Klavier und Gesang</span></div>
+        </a>
+    </div>
+
+    <!-- Article Note -->
+    <aside class="article-endnote">
+        <p class="article-endnote__text">
+            <span lang="ja">本ページはアプリ内の設定項目の解説を目的としたリファレンスです。記載した推奨の進め方は、音楽教育で広く用いられるイヤートレーニングの方法論をもとにした一般的な目安であり、最適な設定は個人の経験や目的によって異なります。引用した研究は学習一般の知見であり、本アプリでの効果を保証するものではありません。</span>
+            <span lang="en">This page is a reference explaining the app's in-app settings. The recommended progressions given here are general guidelines based on widely used ear-training methodology; the optimal settings vary with individual experience and goals. The cited studies report general learning findings and do not guarantee results within this app.</span>
+            <span lang="fr">Cette page est une référence expliquant les réglages internes de l'application. Les progressions recommandées ici sont des repères généraux fondés sur une méthodologie d'entraînement de l'oreille largement répandue ; les réglages optimaux varient selon l'expérience et les objectifs de chacun. Les études citées rapportent des résultats généraux sur l'apprentissage et ne garantissent pas de résultats au sein de cette application.</span>
+            <span lang="de">Diese Seite ist eine Referenz, die die in der App enthaltenen Einstellungen erläutert. Die hier empfohlenen Abfolgen sind allgemeine Richtwerte, die auf einer weit verbreiteten Methodik des Gehörtrainings beruhen; die optimalen Einstellungen hängen von der individuellen Erfahrung und den Zielen ab. Die zitierten Studien berichten allgemeine Erkenntnisse zum Lernen und garantieren keine Ergebnisse innerhalb dieser App.</span>
+        </p>
+    </aside>
+
+    <!-- Footer -->
+    <footer class="article-footer">
+        <p class="article-footer__text">
+            &copy; 2026 <span lang="ja">ソルフェージュPRO</span><span lang="en">Solfege PRO</span><span lang="fr">Solfege PRO</span><span lang="de">Solfege PRO</span> &mdash;
+            <a href="https://apps.apple.com/jp/app/id6756626617" class="article-footer__link">App Store</a>
+        </p>
+    </footer>
+    <script src="/bootstrap.js?v=3" defer></script>
+</body>
+</html>

@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="en"
+      data-title-ja="コード進行認識 設定マニュアル — 各設定の選び方 | ソルフェージュPRO"
+      data-title-en="Chord Progression Settings Manual — How to Choose Each Option | Solfege PRO"
+      data-title-fr="Manuel des réglages — Reconnaissance des progressions d'accords — Comment choisir chaque option | Solfege PRO"
+      data-title-de="Einstellungshandbuch — Akkordfolgen-Erkennung — So wählst du jede Option | Solfege PRO">
+<head>
+    <meta charset="UTF-8">
+    <meta name="robots" content="index, follow">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#1A1A1E">
+    <title>Chord Progression Settings Manual — How to Choose Each Option | Solfege PRO</title>
+    <meta name="description" content="Reference manual for Chord Progression settings — training mode, difficulty, progression length, key mode: what each is for and how to choose it.">
+
+    <!-- Canonical -->
+    <link rel="canonical" href="https://solfegepro.com/en/manual/progression/">
+    <link rel="alternate" hreflang="ja" href="https://solfegepro.com/manual/progression/">
+    <link rel="alternate" hreflang="en" href="https://solfegepro.com/en/manual/progression/">
+    <link rel="alternate" hreflang="fr" href="https://solfegepro.com/fr/manual/progression/">
+    <link rel="alternate" hreflang="de" href="https://solfegepro.com/de/manual/progression/">
+    <link rel="alternate" hreflang="x-default" href="https://solfegepro.com/manual/progression/">
+<!-- OGP -->
+    <meta property="og:title" content="Chord Progression Settings Manual — How to Choose Each Option">
+    <meta property="og:description" content="Reference manual for Chord Progression settings — training mode, difficulty, progression length, key mode: what each is for and how to choose it.">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://solfegepro.com/en/manual/progression/">
+    <meta property="og:site_name" content="Solfege PRO">
+    <meta property="og:image" content="https://solfegepro.com/og-image.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Solfege PRO">
+    <meta property="og:locale" content="en_US">
+    <meta property="og:locale:alternate" content="ja_JP">
+    <meta property="og:locale:alternate" content="fr_FR">
+    <meta property="og:locale:alternate" content="de_DE">
+    <meta property="article:published_time" content="2026-06-05">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Chord Progression Settings Manual — How to Choose Each Option">
+    <meta name="twitter:description" content="Reference manual for Chord Progression settings — training mode, difficulty, progression length, key mode: what each is for and how to choose it.">
+    <meta name="twitter:image" content="https://solfegepro.com/og-image.png">
+
+    <!-- Favicon -->
+    <link rel="icon" href="/favicon.ico" sizes="any">
+    <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap"></noscript>
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="/style.css?v=17">
+    <link rel="stylesheet" href="/guides/article.css?v=11">
+
+    <style>
+        /* Manual option reference — responsive, no fixed px widths */
+        .manual-options {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr);
+            gap: var(--space-sm);
+            margin: var(--space-lg) 0;
+        }
+        .manual-option {
+            background: var(--surface);
+            border: 1px solid var(--surface-light);
+            border-radius: var(--radius-lg);
+            padding: var(--space-md);
+        }
+        .manual-option__name {
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: var(--space-xs);
+        }
+        .manual-option__desc {
+            font-size: 13px;
+            color: var(--text-secondary);
+        }
+        /* Bottom-line callout (conclusion first) */
+        .manual-lead {
+            font-size: 14px;
+            line-height: 1.75;
+            color: var(--text-primary);
+            border-left: 3px solid var(--primary);
+            background: rgba(212, 175, 55, 0.06);
+            padding: var(--space-sm) var(--space-md);
+            border-radius: 0 var(--radius-md) var(--radius-md) 0;
+            margin: var(--space-md) 0;
+        }
+        /* Per-setting evidence note — deliberately styled as an editorial
+           aside, NOT as a settings card (no surface fill, no gold label),
+           so it is never mistaken for an in-app option. */
+        .manual-rationale {
+            margin: var(--space-md) 0 var(--space-2xl);
+            padding: var(--space-sm) 0 var(--space-sm) var(--space-md);
+            border-left: 2px solid var(--surface-light);
+        }
+        .manual-rationale__label {
+            display: block;
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            color: var(--text-secondary);
+            margin-bottom: 4px;
+            opacity: 0.75;
+        }
+        .manual-rationale p {
+            font-size: 13px;
+            line-height: 1.75;
+            color: var(--text-secondary);
+            margin: 0;
+        }
+        .manual-rationale__ref {
+            font-size: 12px;
+            font-style: italic;
+            margin-top: var(--space-xs) !important;
+            opacity: 0.7;
+        }
+        /* Citation number linking to the reference list */
+        .manual-ref-num {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-style: normal;
+        }
+        .manual-ref-num:hover { color: var(--primary); }
+        /* Full reference list at page end */
+        .manual-refs {
+            margin: var(--space-2xl) 0 0;
+            padding-top: var(--space-lg);
+            border-top: 1px solid var(--surface-light);
+        }
+        .manual-refs__title {
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: var(--space-sm);
+        }
+        .manual-refs ol {
+            margin: 0;
+            padding-left: 1.25em;
+        }
+        .manual-refs li {
+            font-size: 12px;
+            line-height: 1.7;
+            color: var(--text-secondary);
+            margin-bottom: var(--space-xs);
+            scroll-margin-top: 84px;
+        }
+        .manual-refs li:target {
+            color: var(--text-primary);
+        }
+    </style>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Chord Progression Settings Manual — How to Choose Each Option","description":"Reference manual for Chord Progression settings — training mode, difficulty, progression length, key mode: what each is for and how to choose it.","author":{"@type":"Organization","name":"Solfege PRO"},"publisher":{"@type":"Organization","name":"Solfege PRO","logo":{"@type":"ImageObject","url":"https://solfegepro.com/AppIcon.png"}},"datePublished":"2026-06-05","mainEntityOfPage":{"@type":"WebPage","@id":"https://solfegepro.com/en/manual/progression/"}}</script>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://solfegepro.com/en/"},{"@type":"ListItem","position":2,"name":"Manual","item":"https://solfegepro.com/en/manual/"},{"@type":"ListItem","position":3,"name":"Chord Progression Settings Manual — How to Choose Each Option","item":"https://solfegepro.com/en/manual/progression/"}]}</script>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="nav__container">
+            <a href="/" class="nav__logo">
+                <img src="/AppIcon.png" alt="Solfege PRO" class="nav__logo-icon" width="32" height="32">
+                <span class="nav__logo-text">Solfege PRO</span>
+            </a>
+            <ul class="nav__list">
+                <li><a href="/" class="nav__link">Practice Guide</a></li>
+                <li><a href="/guides/" class="nav__link">Guides</a></li>
+                <li><a href="/manual/" class="nav__link active">Manual</a></li>
+                            <li><a href="/start-here/" class="nav__link">Where to Start?</a></li>
+            </ul>
+            <div class="nav__settings">
+                <button class="settings-btn" id="lang-toggle" title="Toggle language">
+                    <span id="lang-text">EN</span>
+                </button>
+                <button class="hamburger-btn" id="hamburger-btn" aria-label="Menu" aria-expanded="false" aria-controls="drawer">
+                    <span class="hamburger-btn__line"></span>
+                    <span class="hamburger-btn__line"></span>
+                    <span class="hamburger-btn__line"></span>
+                </button>
+            </div>
+        </div>
+    </nav>
+        <!-- Mobile drawer (hidden on desktop) -->
+        <div class="drawer-overlay" id="drawer-overlay"></div>
+        <aside class="drawer" id="drawer" aria-label="Mobile menu" aria-hidden="true" inert>
+            <div class="drawer__header">
+                <span class="drawer__title">Menu</span>
+                <button class="drawer__close" id="drawer-close" aria-label="Close menu">×</button>
+            </div>
+            <ul class="drawer__list">
+                    <li><a href="/" class="drawer__link">Practice Guide</a></li>
+                    <li><a href="/guides/" class="drawer__link">Guides</a></li>
+                    <li><a href="/manual/" class="drawer__link active">Manual</a></li>
+                    <li><a href="/start-here/" class="drawer__link">Where to Start?</a></li>
+            </ul>
+        </aside>
+
+
+    <!-- Article Header -->
+    <header class="page-header">
+        <div class="page-header__meta">
+            <span class="page-header__tag">Manual</span>
+            <span>Chord Progression</span>
+        </div>
+        <h1 class="page-header__title">
+            
+            Chord Progression Settings Manual<br>What Each Option Means and How to Choose
+            
+            
+        </h1>
+        <p class="page-header__subtitle">
+            
+            Which option to pick, when, and why. This page walks through each setting in chord progression training, one at a time. If you arrived from a "?" in the settings screen, scroll to the option you need.
+            
+            
+        </p>
+    </header>
+
+    <!-- Top-of-article CTA -->
+    <aside class="article-top-cta" aria-label="App promotion">
+        <div class="article-top-cta__body">
+            <p class="article-top-cta__title">
+                
+                Try this in Solfege PRO
+                
+                
+            </p>
+            <p class="article-top-cta__sub">
+                
+                ¥980/month · 1-week free trial
+                
+                
+            </p>
+        </div>
+        <a href="https://apps.apple.com/us/app/id6756626617" class="article-top-cta__button" data-cta-position="article_top">
+            
+            App Store →
+            
+            
+        </a>
+    </aside>
+
+    <!-- Article Body -->
+    <main class="article-body">
+
+        <!-- Intro -->
+        <p>
+            
+            Chord progression training is practice at hearing several chords played in a row and following their sequence — the progression, i.e. how harmonies connect — by ear alone. The goal is not just the type of each chord but the ear for context: "this chord moves to that one." Hearing progressions is the foundation for playing songs by ear, transcribing, and improvising.
+            
+            
+        </p>
+        <p>
+            
+            This page is a manual for choosing the settings. Each setting is designed around established methods from music education. For each setting that calls for a decision, we give <strong>the recommended choice, what it is for, and what it trains — with the evidence behind it</strong>. If you arrived from a "?" in the settings screen, scroll to the option you need.
+            
+            
+        </p>
+
+        <!-- #training-mode -->
+        <h2 id="training-mode">Training Mode</h2>
+
+        <p class="manual-lead">
+            
+            <strong>Normal is enough to start.</strong> Reach for "Review When You Forget" and "Weak-Point Focus" once your results accumulate.
+            
+            
+        </p>
+
+        <p>
+            
+            This setting decides the policy by which progressions are chosen for you. There are three modes.
+            
+            
+        </p>
+
+        <div class="manual-options">
+            <div class="manual-option">
+                <div class="manual-option__name">Normal</div>
+                <div class="manual-option__desc">Draws evenly from the progressions that match your chosen difficulty, length, and key. With no special intent, this is the one. The settings explained below directly set the question pool.</div>
+            </div>
+        </div>
+
+        <p>
+            
+            The other two — "Review When You Forget" and "Weak-Point Focus" — pay off once your performance data accumulates. "Weak-Point Focus" stays unavailable until weak progressions have been identified (that is, until you have enough answer history). They work the same way across every training, so they appear inline below.
+            
+            
+        </p>
+
+        <!-- TODO i18n: fr/de spans are interim English; translate after ja voice approval -->
+<!-- Reusable mode partial. Training-agnostic: do NOT mention chord/scale/etc. -->
+<section class="article-mode" id="mode-spaced-repetition">
+    <h3 class="article-mode__title">"Review When You Forget" mode (spaced repetition)</h3>
+
+    <p>
+        
+        Spaced repetition means an item you have already studied comes back just as you are about to forget it. The more reliably you answer something, the longer the gap before it returns; the items you miss come back sooner. It rests on the idea that recall is more durable when you space the reviews out rather than cramming the same item back-to-back.
+        
+        
+    </p>
+
+    <p>
+        
+        This mode suits you once the pool of items has grown and you start noticing that things you once knew have slipped. The app handles the scheduling automatically, so you do not have to track what needs reviewing. It rewards short, daily sessions more than occasional long ones.
+        
+        
+    </p>
+
+    <p>
+        
+        When in doubt, reach for it in the "maintenance" phase, after you have worked through the items once. Use the normal mode to build the foundation when everything is new, then let spaced repetition move that knowledge into long-term memory — a comfortable two-step approach. <em>The benefit of spacing reviews for long-term retention was synthesized at scale by Cepeda et al. (2006), and the finding that the act of retrieval itself strengthens memory comes from Roediger &amp; Karpicke (2006).</em>
+        
+        
+    </p>
+</section>
+
+        <!-- TODO i18n: fr/de spans are interim English; translate after ja voice approval -->
+<!-- Reusable mode partial. Training-agnostic: do NOT mention chord/scale/etc. -->
+<section class="article-mode" id="mode-weak-point">
+    <h3 class="article-mode__title">Weak-Point Focus Mode</h3>
+
+    <p>
+        
+        Weak-point focus looks at your answer history, identifies the items with the lowest accuracy, and serves those to you more often. Instead of spending time on what you already answer reliably, it concentrates practice on exactly the places you keep missing. The app picks the targets automatically from your own results.
+        
+        
+    </p>
+
+    <p>
+        
+        This mode suits the stage where your overall accuracy is climbing but a specific few items still trip you up every time. Because it keeps returning to your weak spots, it feels harder — and that controlled extra effort is precisely where the learning happens (the principle of desirable difficulties). It needs enough answer history before candidates appear, so play the normal mode for a while first.
+        
+        
+    </p>
+
+    <p>
+        
+        When in doubt, drop in for a few concentrated sessions whenever you plateau at a given level and feel you "keep losing the same handful of items right before it would stabilize." Once the weak spots clear, return to the normal mode to keep your overall balance. <em>Deliberately making yourself retrieve the items you tend to miss — the "testing effect" — was shown by Roediger &amp; Karpicke (2006) to strongly benefit later retention.</em>
+        
+        
+    </p>
+</section>
+
+
+        <div class="manual-rationale">
+            <span class="manual-rationale__label">The evidence behind it</span>
+            <p>
+                
+                The three modes exist to concentrate practice on the progressions you currently need. The quiz format itself — recalling the answer rather than listening passively — strengthens memory more than re-listening (the testing effect). "Review When You Forget" and "Weak-Point Focus" automate this using your performance data.
+                
+                
+            </p>
+            <p class="manual-rationale__ref">Ref.: Roediger &amp; Karpicke (2006) <a class="manual-ref-num" href="#ref-1">[1]</a></p>
+        </div>
+
+        <!-- #difficulty (also the notation / answer-style choice) -->
+        <h2 id="difficulty">Difficulty (answer notation)</h2>
+
+        <p class="manual-lead">
+            
+            <strong>When unsure, start at Function Basic (T/SD/D).</strong> Once the "rest → move → tension → resolution" skeleton is stable, step up to Function Advanced → Roman Numerals → Chord Symbols.
+            
+            
+        </p>
+
+        <p>
+            
+            Not merely "easy vs. hard" — it decides <strong>the notation in which you answer</strong> a progression. Answering by function (T/SD/D — a chord's harmonic role), by Roman numerals, or by concrete chord names trains a different ear and requires different knowledge. It moves step by step from the most abstract — Function — toward the most concrete — Chord Symbols.
+            
+            
+        </p>
+
+        <div class="manual-options" id="notation">
+            <div class="manual-option">
+                <div class="manual-option__name">Function Basic (T/SD/D)</div>
+                <div class="manual-option__desc">You answer only each chord's function — three labels: T = tonic (rest), SD = subdominant (setting off), D = dominant (tension wanting resolution). Basic uses only I=T, IV=SD, V=D. The entry stage for hearing the flow of roles, even without chord names.</div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name">Function Advanced (T/SD/D)</div>
+                <div class="manual-option__desc">Same function-based answers, but the scope widens: several chords share one function (I/vi/iii=T, IV/ii=SD, V/vii=D). You learn to hear, e.g., vi standing in for I as a tonic — the sound of substitution.</div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name">Roman Numerals</div>
+                <div class="manual-option__desc">You answer with Roman numerals such as I, IV, V, vi (the scale degree within the key). One step finer than function: you pinpoint which numbered chord it is, building a transposable "map" of progressions that holds in any key.</div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name">Chord Symbols</div>
+                <div class="manual-option__desc">You answer with concrete chord names such as C, Dm, G — the most practical level, mapping directly onto charts and lead sheets. It demands connecting both the key and the Roman numeral in your head, so it is the top tier.</div>
+            </div>
+        </div>
+
+        <div class="manual-rationale">
+            <span class="manual-rationale__label">The evidence behind it</span>
+            <p>
+                
+                Starting by hearing a progression in terms of function (its harmonic role) narrows the information to process and lowers the load, building a secure foundation. Hearing the "rest → move → tension → resolution" skeleton before memorizing concrete chord names — functional harmony — is an established procedure in college-level ear training, and beginning at the more abstract tier keeps early processing demands low.
+                
+                
+            </p>
+            <p class="manual-rationale__ref">Ref.: Karpinski (2000) <a class="manual-ref-num" href="#ref-2">[2]</a>; Sweller (1988) <a class="manual-ref-num" href="#ref-3">[3]</a></p>
+        </div>
+
+        <!-- #length -->
+        <h2 id="length">Progression Length</h2>
+
+        <p class="manual-lead">
+            
+            <strong>When unsure, pick 3 chords.</strong> Drop to 2 chords to lock in a single motion, or move up to 4 chords to take on whole-song flows.
+            
+            
+        </p>
+
+        <p>
+            
+            Sets how many chords play in a row per question. You can choose 2, 3, or 4 chords. The more chords, the more you must hold in memory and the more relationships you must track — so it gets harder. As you change length or difficulty, the number of patterns available for that combination appears at the top-right of the screen.
+            
+            
+        </p>
+
+        <div class="manual-options">
+            <div class="manual-option">
+                <div class="manual-option__name">2 chords</div>
+                <div class="manual-option__desc">You hear a single "move" between two chords. You can focus on the smallest unit — V→I (resolution), IV→I — ideal for firmly learning the sound of one motion. The first step.</div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name">3 chords</div>
+                <div class="manual-option__desc">Three chords give a "go-and-return" shape, including the most familiar staples — I→IV→V, ii→V→I. A well-balanced length for learning the typical contours of a progression.</div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name">4 chords</div>
+                <div class="manual-option__desc">Four chords give a progression close to a complete phrase — real-song flows like I→vi→IV→V or I→V→vi→IV. The memory load is high — the top tier of difficulty.</div>
+            </div>
+        </div>
+
+        <div class="manual-rationale">
+            <span class="manual-rationale__label">The evidence behind it</span>
+            <p>
+                
+                You can start from short progressions so as to hold fewer chords at once and keep the load on your ear low. Securing the sound of the motion with few chords before lengthening gets you there faster than tackling four chords at once. The tiers follow cognitive-load theory: keeping processing demands low early in a new skill aids learning.
+                
+                
+            </p>
+            <p class="manual-rationale__ref">Ref.: Sweller (1988) <a class="manual-ref-num" href="#ref-3">[3]</a></p>
+        </div>
+
+        <!-- #key-quality -->
+        <h2 id="key-quality">Key Mode (Major / Minor)</h2>
+
+        <p class="manual-lead">
+            
+            <strong>When unsure, start with Major.</strong> Once it feels stable, add Minor to extend your ear so you can read progressions in keys of either character.
+            
+            
+        </p>
+
+        <p>
+            
+            Decides whether progressions come in a major key or a minor key. Major and minor give the same scale-degree progression a very different bright-or-dark character, and the set of chords that appears changes too.
+            
+            
+        </p>
+
+        <div class="manual-options">
+            <div class="manual-option">
+                <div class="manual-option__name">Major</div>
+                <div class="manual-option__desc">Practice in major keys — a bright, stable sound centered on the progressions you hear most in pop (I→IV→V, ii→V→I). The default when you begin learning progression recognition.</div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name">Minor</div>
+                <div class="manual-option__desc">Practice in minor keys — a darker, shadowed sound, training you to hear minor-specific progressions such as i→iv→V or i→VI→VII. Add it once major feels stable, and the contrast makes the difference clear.</div>
+            </div>
+        </div>
+
+        <div class="manual-rationale">
+            <span class="manual-rationale__label">The evidence behind it</span>
+            <p>
+                
+                Starting with major works because its familiar, bright progressions make it easier to grasp the feel of function (T/SD/D) and Roman numerals. Telling apart the harmonic flow of major and minor and hearing each chord's role in context is exactly the functional listening that college-level ear training treats as foundational.
+                
+                
+            </p>
+            <p class="manual-rationale__ref">Ref.: Karpinski (2000) <a class="manual-ref-num" href="#ref-2">[2]</a></p>
+        </div>
+
+        <!-- References -->
+        <section class="manual-refs">
+            <div class="manual-refs__title">References</div>
+            <ol>
+                <li id="ref-1">Roediger, H. L., &amp; Karpicke, J. D. (2006). Test-enhanced learning: Taking memory tests improves long-term retention. <em>Psychological Science, 17</em>(3), 249–255.</li>
+                <li id="ref-2">Karpinski, G. S. (2000). <em>Aural Skills Acquisition: The Development of Listening, Reading, and Performing Skills in College-Level Musicians.</em> Oxford University Press.</li>
+                <li id="ref-3">Sweller, J. (1988). Cognitive load during problem solving: Effects on learning. <em>Cognitive Science, 12</em>(2), 257–285.</li>
+            </ol>
+        </section>
+
+    </main>
+
+    <!-- Final CTA -->
+    <section class="article-cta">
+        <h2 class="article-cta__title">Settings Sorted? Give It a Try</h2>
+        <p class="article-cta__text">
+            
+            Once you understand each setting, the rest is hands-on practice.<br>When unsure, just follow the "when in doubt" lines on this page.<br>Find the settings that fit you in Solfege PRO's Chord Progression.
+            
+            
+        </p>
+        <a href="https://apps.apple.com/us/app/id6756626617" class="app-store-link" aria-label="Download on the App Store">
+            
+            <img class="app-store-link__img" width="120" height="40" src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/en-us" alt="Download on the App Store">
+            
+            
+        </a>
+    </section>
+
+    <!-- Related Content -->
+    <div class="article-related">
+        <div class="article-related__title">Related Content</div>
+        <a href="/manual/chord/" class="article-related__link" style="margin-bottom: var(--space-md);">
+            <div class="article-related__link-title">Chord Recognition Settings Manual — What Each Option Means</div>
+            <div class="article-related__link-desc">For those who want to identify single chords before progressions — a manual covering each setting in chord recognition training.</div>
+        </a>
+        <a href="/" class="article-related__link">
+            <div class="article-related__link-title">Solfege PRO Practice Guide</div>
+            <div class="article-related__link-desc">Challenge-based practice menus for guitar, bass, drums, piano, and vocals</div>
+        </a>
+    </div>
+
+    <!-- Article Note -->
+    <aside class="article-endnote">
+        <p class="article-endnote__text">
+            
+            This page is a reference explaining the app's in-app settings. The recommended progressions given here are general guidelines based on widely used ear-training methodology; the optimal settings vary with individual experience and goals. The cited studies report general learning findings and do not guarantee results within this app.
+            
+            
+        </p>
+    </aside>
+
+    <!-- Footer -->
+    <footer class="article-footer">
+        <p class="article-footer__text">
+            &copy; 2026 Solfege PRO &mdash;
+            <a href="https://apps.apple.com/us/app/id6756626617" class="article-footer__link">App Store</a>
+        </p>
+    </footer>
+    <script src="/bootstrap.js?v=3" defer></script>
+</body>
+</html>
