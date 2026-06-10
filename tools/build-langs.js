@@ -429,6 +429,30 @@ function injectBreadcrumbJsonLd(html, srcPath, lang) {
 // Core: transform multi-lang source → single-lang output for new URL scheme
 // --------------------------------------------------------------------
 
+// Native language names for the on-page language switcher.
+const LANG_NATIVE = { ja: '日本語', en: 'English', fr: 'Français', de: 'Deutsch' };
+
+// Build a small static language switcher: real <a href> links to every
+// language version of this page. Crucial for SEO — without it the en/fr/de
+// variants are reachable only via sitemap + hreflang, which a low-authority
+// domain deprioritises crawling (Search Console: "Discovered – not indexed").
+// Inline styles use existing CSS vars so it renders correctly even against a
+// cached style.css.
+function buildLangSwitch(srcPath, currentLang) {
+    const items = LANGS_ALL.map((l) => {
+        const name = LANG_NATIVE[l];
+        if (l === currentLang) {
+            return `<span style="color:var(--primary);font-weight:600" aria-current="true">${name}</span>`;
+        }
+        // NB: no lang="" attribute — the site's language-toggle CSS hides
+        // elements whose lang doesn't match the page, which would hide these
+        // switcher links. hreflang still declares each target page's language.
+        const url = srcPathToUrlPath(srcPath, l);
+        return `<a href="${url}" hreflang="${l}" style="color:var(--text-secondary);text-decoration:none">${name}</a>`;
+    }).join('\n        <span aria-hidden="true" style="color:var(--surface-light)">·</span>\n        ');
+    return `    <nav aria-label="Language" style="display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:0.5rem;padding:var(--space-lg) var(--space-md);border-top:1px solid var(--surface-light);font-size:13px">\n        ${items}\n    </nav>`;
+}
+
 function buildHreflangBlock(srcPath, currentLang) {
     const url = (l) => SITE_ORIGIN + srcPathToUrlPath(srcPath, l);
     return [
@@ -535,6 +559,13 @@ function transformToLang(html, srcPath, lang) {
     // 12. Inject BreadcrumbList JSON-LD on guide article pages (Home > Guides >
     //     article). No-op for non-guide / index pages.
     out = injectBreadcrumbJsonLd(out, srcPath, lang);
+
+    // 13. Static language switcher before </body>: crawlable internal links to
+    //     each language version, so the en/fr/de variants are no longer
+    //     reachable only via sitemap/hreflang.
+    if (out.includes('</body>')) {
+        out = out.replace('</body>', `${buildLangSwitch(srcPath, lang)}\n</body>`);
+    }
 
     return out;
 }
