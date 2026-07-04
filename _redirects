@@ -1,5 +1,11 @@
-# Cloudflare Pages serves this repo's builds at https://solfege-pro.pages.dev/
-# in addition to the canonical https://solfegepro.com/ (GitHub Pages + custom
-# domain). Force any traffic that lands on the old pages.dev host over to the
-# canonical domain, preserving the full path.
-https://solfege-pro.pages.dev/*  https://solfegepro.com/:splat  301
+# Cloudflare Pages redirect rules — https://developers.cloudflare.com/pages/configuration/redirects/
+#
+# This CF Pages project serves ONLY https://solfege-pro.pages.dev/ (the
+# canonical https://solfegepro.com/ is GitHub Pages + Fastly, a separate
+# origin), so a blanket path rule below cannot loop: it fires only for
+# traffic that lands on the stale pages.dev host and 301s it to the
+# canonical domain, preserving the path.
+#
+# NOTE: CF Pages does NOT support hostnames in the source field (that is
+# Netlify syntax) — source must be a path starting with "/".
+/*  https://solfegepro.com/:splat  301
