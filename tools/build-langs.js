@@ -170,8 +170,11 @@ function sanityCheckPrices(data, source) {
         if (!entry || typeof entry.price !== 'string' || !entry.price.trim()) {
             throw new Error(`${source}: missing/empty ${lang}.price`);
         }
-        if (typeof entry.trial !== 'string' || !entry.trial.trim()) {
-            throw new Error(`${source}: missing/empty ${lang}.trial`);
+        // trial may be EMPTY: the monthly introductory offer was permanently
+        // removed on 2026-07-07 (app-side owner decision), so an empty string
+        // is the expected steady state. It must still be a string.
+        if (typeof entry.trial !== 'string') {
+            throw new Error(`${source}: missing ${lang}.trial (string, may be empty)`);
         }
         if (entry.price.length > 80 || entry.trial.length > 80) {
             throw new Error(`${source}: ${lang} field suspiciously long`);

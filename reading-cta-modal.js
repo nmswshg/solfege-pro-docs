@@ -59,10 +59,10 @@
     // logic exposes via <html lang> (build emits one lang per output file).
     var lang = (document.documentElement.getAttribute('lang') || 'ja').slice(0, 2);
     var COPY = {
-        ja: { title: 'ここまで読んでいただきありがとうございます', text: '読むだけでなく、実際に耳と指で試すと定着します。Solfege PRO なら、この記事の内容をそのまま日々の練習に落とし込めます。', price: '月額 980 円（1 週間無料トライアル）', badge: 'ja-jp', alt: 'App Storeで入手', close: '閉じる' },
-        en: { title: 'Thanks for reading to the end', text: 'Reading helps — but it sticks when you actually train your ear and hands. Solfege PRO turns what you just read into daily practice.', price: '¥980/month (1-week free trial)', badge: 'en-us', alt: 'Download on the App Store', close: 'Close' },
-        fr: { title: "Merci d'avoir lu jusqu'au bout", text: "Lire aide — mais cela s'ancre quand on entraîne vraiment l'oreille et les mains. Solfege PRO transforme cette lecture en pratique quotidienne.", price: "¥980/mois (1 semaine d'essai gratuite)", badge: 'fr-fr', alt: "Télécharger dans l'App Store", close: 'Fermer' },
-        de: { title: 'Danke fürs Lesen bis zum Ende', text: 'Lesen hilft — aber es bleibt, wenn du Ohr und Hände wirklich trainierst. Solfege PRO macht aus dem Gelesenen tägliche Übung.', price: '¥980/Monat (1 Woche Gratistestphase)', badge: 'de-de', alt: 'Laden im App Store', close: 'Schließen' }
+        ja: { title: 'ここまで読んでいただきありがとうございます', text: '読むだけでなく、実際に耳と指で試すと定着します。Solfege PRO なら、この記事の内容をそのまま日々の練習に落とし込めます。', price: '月額 980 円', badge: 'ja-jp', alt: 'App Storeで入手', close: '閉じる' },
+        en: { title: 'Thanks for reading to the end', text: 'Reading helps — but it sticks when you actually train your ear and hands. Solfege PRO turns what you just read into daily practice.', price: '¥980/month', badge: 'en-us', alt: 'Download on the App Store', close: 'Close' },
+        fr: { title: "Merci d'avoir lu jusqu'au bout", text: "Lire aide — mais cela s'ancre quand on entraîne vraiment l'oreille et les mains. Solfege PRO transforme cette lecture en pratique quotidienne.", price: "¥980/mois", badge: 'fr-fr', alt: "Télécharger dans l'App Store", close: 'Fermer' },
+        de: { title: 'Danke fürs Lesen bis zum Ende', text: 'Lesen hilft — aber es bleibt, wenn du Ohr und Hände wirklich trainierst. Solfege PRO macht aus dem Gelesenen tägliche Übung.', price: '¥980/Monat', badge: 'de-de', alt: 'Laden im App Store', close: 'Schließen' }
     };
     var c = COPY[lang] || COPY.ja;
 
