@@ -55,7 +55,7 @@
     <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap"></noscript>
 
     <!-- Stylesheets -->
-    <link rel="stylesheet" href="/style.css?v=20">
+    <link rel="stylesheet" href="/style.css?v=21">
     <link rel="stylesheet" href="/guides/article.css?v=14">
 
     <!-- Mermaid.js for flowcharts (renders only the active-language block;
@@ -90,6 +90,171 @@
         }
         window.addEventListener('langchange', renderActiveMermaid);
     </script>
+    <style>
+        /* Tap-timing consistency test — page-scoped, per this repo's convention
+           of keeping single-page styles in the page. Gold + dark only. */
+        .tap-test {
+            background: var(--surface);
+            border: 1px solid var(--surface-light);
+            border-left: 3px solid var(--primary);
+            border-radius: var(--radius-lg);
+            padding: var(--space-xl);
+            margin: var(--space-2xl) 0;
+        }
+        .tap-test__title {
+            font-size: 17px;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: var(--space-md);
+        }
+        .tap-test__lead {
+            font-size: 14px;
+            line-height: 1.9;
+            color: var(--text-secondary);
+            margin-bottom: var(--space-lg);
+            text-wrap: pretty;
+        }
+        /* Reserve a floor so switching panels does not jump the article.
+           min-HEIGHT, not min-width — the responsive hard rule is about width. */
+        .tap-test__body { min-height: 132px; }
+
+        .tap-test__panel { display: none; }
+        .tap-test[data-state="nojs"]        .tap-test__panel--nojs,
+        .tap-test[data-state="unsupported"] .tap-test__panel--unsupported,
+        .tap-test[data-state="idle"]        .tap-test__panel--idle,
+        .tap-test[data-state="running"]     .tap-test__panel--running,
+        .tap-test[data-state="done"]        .tap-test__panel--done { display: block; }
+
+        .tap-test__btn {
+            font: inherit;
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--text-primary);
+            background: transparent;
+            border: 1px solid var(--surface-light);
+            border-radius: var(--radius-md);
+            padding: var(--space-sm) var(--space-lg);
+            cursor: pointer;
+            transition: border-color var(--dur-ui) var(--ease-house),
+                        color var(--dur-ui) var(--ease-house);
+        }
+        .tap-test__btn--primary {
+            color: var(--background);
+            background: var(--primary);
+            border-color: var(--primary);
+        }
+        @media (hover: hover) and (pointer: fine) {
+            .tap-test__btn:hover { border-color: var(--primary); color: var(--primary); }
+            .tap-test__btn--primary:hover { color: var(--background); }
+        }
+
+        /* The tap target. 44px+ tall everywhere; `touch-action: manipulation`
+           stops iOS double-tap-to-zoom firing mid-measurement, and no text
+           selection so a fast repeated tap never starts a drag-select. */
+        .tap-test__tap {
+            display: block;
+            width: 100%;
+            font: inherit;
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--primary);
+            background: rgba(212, 175, 55, 0.08);
+            border: 1px solid var(--primary);
+            border-radius: var(--radius-lg);
+            padding: var(--space-xl) var(--space-lg);
+            cursor: pointer;
+            touch-action: manipulation;
+            user-select: none;
+            -webkit-user-select: none;
+            -webkit-tap-highlight-color: transparent;
+        }
+        .tap-test__tap:active {
+            background: rgba(212, 175, 55, 0.18);
+            transform: scale(0.99);
+        }
+        .tap-test__count {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--text-primary);
+            text-align: center;
+            margin: var(--space-md) 0;
+            font-variant-numeric: tabular-nums;
+        }
+        .tap-test__note {
+            font-size: 13px;
+            line-height: 1.8;
+            color: var(--text-secondary);
+            margin-top: var(--space-md);
+        }
+
+        .tap-test__result {
+            display: flex;
+            align-items: baseline;
+            gap: var(--space-md);
+            flex-wrap: wrap;
+            margin-bottom: var(--space-sm);
+        }
+        .tap-test__figure {
+            font-size: 30px;
+            font-weight: 700;
+            color: var(--primary);
+            font-variant-numeric: tabular-nums;
+        }
+        .tap-test__figure-label { font-size: 13px; color: var(--text-secondary); }
+        .tap-test__range,
+        .tap-test__limit {
+            font-size: 13px;
+            line-height: 1.8;
+            color: var(--text-secondary);
+            text-wrap: pretty;
+        }
+        .tap-test__limit { margin: var(--space-lg) 0; }
+
+        /* Deviation strip. overflow: clip (never auto) clips a stray tick
+           without creating a scroll port, so the no-overflow-x rule holds. */
+        .tap-test__strip {
+            position: relative;
+            height: 56px;
+            margin-top: var(--space-lg);
+            background: var(--background);
+            border: 1px solid var(--surface-light);
+            border-radius: var(--radius-md);
+            overflow: clip;
+        }
+        .tap-test__strip::before {
+            content: "";
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 1px;
+            background: rgba(212, 175, 55, 0.45);
+        }
+        .tt-tick {
+            position: absolute;
+            top: 50%;
+            width: 2px;
+            height: 26px;
+            margin-top: -13px;
+            background: var(--primary);
+            border-radius: 1px;
+            opacity: 0.85;
+        }
+        .tap-test__scale {
+            display: flex;
+            justify-content: space-between;
+            font-size: 11px;
+            color: var(--text-secondary);
+            margin-top: var(--space-xs);
+            font-variant-numeric: tabular-nums;
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .tap-test__btn,
+            .tap-test__tap:active { transition: none; transform: none; }
+        }
+    </style>
+
     <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"リズム感とは何か — 前乗り・後乗り・ばらつき・ポケットを分解して理解する","description":"リズム感は1つの才能ではなく、複数の要素に分解できます。タイミング精度を改善するための練習法を紹介します。","author":{"@type":"Organization","name":"ソルフェージュPRO"},"publisher":{"@type":"Organization","name":"ソルフェージュPRO","logo":{"@type":"ImageObject","url":"https://solfegepro.com/AppIcon.png"}},"datePublished":"2026-03-31","dateModified":"2026-04-11","mainEntityOfPage":{"@type":"WebPage","@id":"https://solfegepro.com/guides/rhythm-training.html"}}</script>
 </head>
 <body>
@@ -459,6 +624,54 @@
             <span lang="fr">Avant de corriger le rushing ou le dragging, il est essentiel d'obtenir d'abord un timing constant<sup>[3]</sup>. Corriger une tendance est peu efficace si les frappes restent dispersées. Construisez une base stable à tempo lent, faible difficulté, tous les temps.</span>
             <span lang="de">Bevor du Vorlauf oder Nachlauf korrigierst, ist es wichtig, zuerst gleichmäßiges Anschlags-Timing zu erreichen<sup>[3]</sup>. Streuende Anschläge machen Tendenzkorrekturen wirkungslos. Baue eine stabile Basis bei niedrigem Tempo, geringer Schwierigkeit und allen Schlägen auf.</span>
         </p>
+
+        <!-- Try it here: the one timing statistic a browser can honestly produce -->
+        <div class="tap-test" data-tap-test data-state="nojs">
+            <h3 class="tap-test__title"><span lang="ja">ここで測ってみる — 自分の「ばらつき」</span><span lang="en">Measure it here — your own spread</span><span lang="fr">Mesurez ici — votre propre dispersion</span><span lang="de">Hier messen — deine eigene Streuung</span></h3>
+
+            <p class="tap-test__lead">
+                <span lang="ja">クリックに合わせて <span data-tt="total">24</span> 回タップすると、打点の<strong>ばらつき（標準偏差）</strong>を表示します。ブラウザは自分の入力遅延も音の出力遅延も知り得ないため、「何 ms 早い／遅い」は原理的に出せません。一方でばらつきは、一定のズレが全体に等しく乗っても変わらない量なので、ここでも測れます<sup>[1]</sup><sup>[3]</sup>。</span>
+                <span lang="en">Tap <span data-tt="total">24</span> times along with the click and this shows the <strong>standard deviation</strong> of your hits. A browser cannot know its own input latency or its audio output latency, so "you are X ms early/late" is not something it can honestly produce. Spread, however, is unchanged by a constant offset applied to every hit — so that part is measurable right here<sup>[1]</sup><sup>[3]</sup>.</span>
+                <span lang="fr">Tapez <span data-tt="total">24</span> fois avec le clic et l'écart-type de vos frappes s'affiche. Un navigateur ignore sa propre latence d'entrée et de sortie audio : « vous avez X ms d'avance/retard » n'est donc pas une mesure honnête ici. La dispersion, elle, ne change pas si un décalage constant s'applique à toutes les frappes — elle est donc mesurable<sup>[1]</sup><sup>[3]</sup>.</span>
+                <span lang="de">Tippe <span data-tt="total">24</span> Mal zum Klick, und die <strong>Standardabweichung</strong> deiner Anschläge erscheint. Ein Browser kennt weder seine Eingabelatenz noch seine Audio-Ausgabelatenz — „du bist X ms zu früh/spät" lässt sich hier also nicht seriös sagen. Die Streuung dagegen bleibt gleich, wenn alle Anschläge um denselben Betrag verschoben sind — sie ist hier messbar<sup>[1]</sup><sup>[3]</sup>.</span>
+            </p>
+
+            <div class="tap-test__body">
+                <div class="tap-test__panel tap-test__panel--nojs">
+                    <p class="tap-test__note"><span lang="ja">この計測には JavaScript が必要です。記事の続きはそのまま読めます。</span><span lang="en">This measurement needs JavaScript. The rest of the article reads normally.</span><span lang="fr">Cette mesure nécessite JavaScript. La suite de l'article se lit normalement.</span><span lang="de">Diese Messung braucht JavaScript. Der restliche Artikel ist normal lesbar.</span></p>
+                </div>
+
+                <div class="tap-test__panel tap-test__panel--unsupported">
+                    <p class="tap-test__note"><span lang="ja">このブラウザは Web Audio に対応していないため、計測できません。</span><span lang="en">This browser has no Web Audio support, so the measurement cannot run.</span><span lang="fr">Ce navigateur ne prend pas en charge Web Audio : la mesure ne peut pas s'exécuter.</span><span lang="de">Dieser Browser unterstützt kein Web Audio — die Messung kann nicht laufen.</span></p>
+                </div>
+
+                <div class="tap-test__panel tap-test__panel--idle">
+                    <button type="button" class="tap-test__btn tap-test__btn--primary" data-tt="start"><span lang="ja">計測をはじめる</span><span lang="en">Start the measurement</span><span lang="fr">Démarrer la mesure</span><span lang="de">Messung starten</span></button>
+                    <p class="tap-test__note"><span lang="ja">音が鳴ります（<span data-tt="bpm">100</span> BPM）。イヤホンを推奨します。最初の 4 拍は数え、最初の 4 タップは慣らしとして捨てます。</span><span lang="en">It plays sound (<span data-tt="bpm">100</span> BPM); headphones recommended. The first 4 beats are a count-in and the first 4 taps are discarded as warm-up.</span><span lang="fr">Du son est joué (<span data-tt="bpm">100</span> BPM) ; casque recommandé. Les 4 premiers temps servent de décompte et les 4 premières frappes sont écartées.</span><span lang="de">Es wird Ton abgespielt (<span data-tt="bpm">100</span> BPM); Kopfhörer empfohlen. Die ersten 4 Schläge sind ein Vorzähler, die ersten 4 Taps werden als Aufwärmen verworfen.</span></p>
+                </div>
+
+                <div class="tap-test__panel tap-test__panel--running">
+                    <button type="button" class="tap-test__tap" data-tt="tap"><span lang="ja">クリックに合わせてタップ</span><span lang="en">Tap along with the click</span><span lang="fr">Tapez avec le clic</span><span lang="de">Tippe zum Klick</span></button>
+                    <p class="tap-test__count"><span data-tt="progress">0</span> / <span data-tt="total">24</span></p>
+                    <button type="button" class="tap-test__btn" data-tt="stop"><span lang="ja">やめる</span><span lang="en">Stop</span><span lang="fr">Arrêter</span><span lang="de">Abbrechen</span></button>
+                </div>
+
+                <div class="tap-test__panel tap-test__panel--done" aria-live="polite">
+                    <p class="tap-test__result">
+                        <span class="tap-test__figure"><span data-tt="sd">—</span> ms</span>
+                        <span class="tap-test__figure-label"><span lang="ja">ばらつき（標準偏差）</span><span lang="en">spread (standard deviation)</span><span lang="fr">dispersion (écart-type)</span><span lang="de">Streuung (Standardabweichung)</span></span>
+                    </p>
+                    <p class="tap-test__range"><span lang="ja">おおよそ <span data-tt="low">—</span>〜<span data-tt="high">—</span> ms の範囲（<span data-tt="n">24</span> 回の計測）。標準偏差そのものにも誤差があり、この回数では約 ±29% です。1 回の結果を確定値として扱わないでください。</span><span lang="en">Roughly <span data-tt="low">—</span>–<span data-tt="high">—</span> ms (<span data-tt="n">24</span> taps). The standard deviation is itself an estimate, and at this sample size its own error is about ±29%. Do not read a single run as a fixed value.</span><span lang="fr">Environ <span data-tt="low">—</span>–<span data-tt="high">—</span> ms (<span data-tt="n">24</span> frappes). L'écart-type est lui-même une estimation ; à ce nombre de frappes, son erreur propre est d'environ ±29 %. Ne prenez pas un seul essai pour une valeur définitive.</span><span lang="de">Etwa <span data-tt="low">—</span>–<span data-tt="high">—</span> ms (<span data-tt="n">24</span> Taps). Die Standardabweichung ist selbst eine Schätzung; bei dieser Anzahl liegt ihr eigener Fehler bei rund ±29 %. Nimm einen einzelnen Durchgang nicht als festen Wert.</span></p>
+
+                    <div class="tap-test__strip" data-tt="strip" aria-hidden="true"></div>
+                    <p class="tap-test__scale"><span>−60 ms</span><span>0</span><span>+60 ms</span></p>
+
+                    <p class="tap-test__limit"><span lang="ja"><strong>ここで出せないもの：早い／遅いの傾向。</strong>ブラウザは自分の入力遅延と出力経路（スピーカー／有線／Bluetooth）を知らないため、± の値は推測にしかなりません。アプリはこの遅延を端末ごとに補正した上で、平均誤差として表示します。</span><span lang="en"><strong>What this cannot give you: whether you rush or drag.</strong> A browser does not know its own input latency or output route (speaker / wired / Bluetooth), so any ± figure would be a guess. The app compensates for that latency per device and reports it as an average deviation.</span><span lang="fr"><strong>Ce que ceci ne peut pas donner : si vous précipitez ou traînez.</strong> Le navigateur ignore sa latence d'entrée et sa sortie audio (haut-parleur / filaire / Bluetooth) ; toute valeur ± serait une supposition. L'app compense cette latence par appareil et l'affiche comme écart moyen.</span><span lang="de"><strong>Was das hier nicht liefert: ob du vorziehst oder nachhängst.</strong> Der Browser kennt weder seine Eingabelatenz noch den Ausgabeweg (Lautsprecher / Kabel / Bluetooth) — jeder ±-Wert wäre geraten. Die App kompensiert diese Latenz pro Gerät und zeigt sie als durchschnittliche Abweichung.</span></p>
+
+                    <button type="button" class="tap-test__btn" data-tt="again"><span lang="ja">もう一度</span><span lang="en">Run it again</span><span lang="fr">Recommencer</span><span lang="de">Nochmal</span></button>
+                </div>
+            </div>
+        </div>
 
         <!-- Section 5 -->
         <h2 id="what-app-can-do"><span lang="ja">ソルフェージュPROでできること</span><span lang="en">What Solfege PRO Can Do</span><span lang="fr">Ce que Solfege PRO peut faire</span><span lang="de">Was Solfege PRO leisten kann</span></h2>
@@ -838,6 +1051,7 @@ flowchart TD
             <a href="https://apps.apple.com/jp/app/id6756626617" class="article-footer__link">App Store</a>
         </p>
     </footer>
-    <script src="/bootstrap.js?v=6" defer></script>
+    <script src="/bootstrap.js?v=7" defer></script>
+    <script src="/tap-tempo.js?v=1" defer></script>
 </body>
 </html>

@@ -25,7 +25,7 @@
         'analytics.js?v=1',
         'lang-toggle.js?v=2',
         'drawer.js?v=1',
-        'animations.js?v=4',
+        'animations.js?v=5',
         'reading-cta-modal.js?v=3'
     ];
 

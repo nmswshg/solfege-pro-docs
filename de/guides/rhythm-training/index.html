@@ -54,7 +54,7 @@
     <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap"></noscript>
 
     <!-- Stylesheets -->
-    <link rel="stylesheet" href="/style.css?v=20">
+    <link rel="stylesheet" href="/style.css?v=21">
     <link rel="stylesheet" href="/guides/article.css?v=14">
 
     <!-- Mermaid.js for flowcharts (renders only the active-language block;
@@ -89,6 +89,171 @@
         }
         window.addEventListener('langchange', renderActiveMermaid);
     </script>
+    <style>
+        /* Tap-timing consistency test — page-scoped, per this repo's convention
+           of keeping single-page styles in the page. Gold + dark only. */
+        .tap-test {
+            background: var(--surface);
+            border: 1px solid var(--surface-light);
+            border-left: 3px solid var(--primary);
+            border-radius: var(--radius-lg);
+            padding: var(--space-xl);
+            margin: var(--space-2xl) 0;
+        }
+        .tap-test__title {
+            font-size: 17px;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: var(--space-md);
+        }
+        .tap-test__lead {
+            font-size: 14px;
+            line-height: 1.9;
+            color: var(--text-secondary);
+            margin-bottom: var(--space-lg);
+            text-wrap: pretty;
+        }
+        /* Reserve a floor so switching panels does not jump the article.
+           min-HEIGHT, not min-width — the responsive hard rule is about width. */
+        .tap-test__body { min-height: 132px; }
+
+        .tap-test__panel { display: none; }
+        .tap-test[data-state="nojs"]        .tap-test__panel--nojs,
+        .tap-test[data-state="unsupported"] .tap-test__panel--unsupported,
+        .tap-test[data-state="idle"]        .tap-test__panel--idle,
+        .tap-test[data-state="running"]     .tap-test__panel--running,
+        .tap-test[data-state="done"]        .tap-test__panel--done { display: block; }
+
+        .tap-test__btn {
+            font: inherit;
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--text-primary);
+            background: transparent;
+            border: 1px solid var(--surface-light);
+            border-radius: var(--radius-md);
+            padding: var(--space-sm) var(--space-lg);
+            cursor: pointer;
+            transition: border-color var(--dur-ui) var(--ease-house),
+                        color var(--dur-ui) var(--ease-house);
+        }
+        .tap-test__btn--primary {
+            color: var(--background);
+            background: var(--primary);
+            border-color: var(--primary);
+        }
+        @media (hover: hover) and (pointer: fine) {
+            .tap-test__btn:hover { border-color: var(--primary); color: var(--primary); }
+            .tap-test__btn--primary:hover { color: var(--background); }
+        }
+
+        /* The tap target. 44px+ tall everywhere; `touch-action: manipulation`
+           stops iOS double-tap-to-zoom firing mid-measurement, and no text
+           selection so a fast repeated tap never starts a drag-select. */
+        .tap-test__tap {
+            display: block;
+            width: 100%;
+            font: inherit;
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--primary);
+            background: rgba(212, 175, 55, 0.08);
+            border: 1px solid var(--primary);
+            border-radius: var(--radius-lg);
+            padding: var(--space-xl) var(--space-lg);
+            cursor: pointer;
+            touch-action: manipulation;
+            user-select: none;
+            -webkit-user-select: none;
+            -webkit-tap-highlight-color: transparent;
+        }
+        .tap-test__tap:active {
+            background: rgba(212, 175, 55, 0.18);
+            transform: scale(0.99);
+        }
+        .tap-test__count {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--text-primary);
+            text-align: center;
+            margin: var(--space-md) 0;
+            font-variant-numeric: tabular-nums;
+        }
+        .tap-test__note {
+            font-size: 13px;
+            line-height: 1.8;
+            color: var(--text-secondary);
+            margin-top: var(--space-md);
+        }
+
+        .tap-test__result {
+            display: flex;
+            align-items: baseline;
+            gap: var(--space-md);
+            flex-wrap: wrap;
+            margin-bottom: var(--space-sm);
+        }
+        .tap-test__figure {
+            font-size: 30px;
+            font-weight: 700;
+            color: var(--primary);
+            font-variant-numeric: tabular-nums;
+        }
+        .tap-test__figure-label { font-size: 13px; color: var(--text-secondary); }
+        .tap-test__range,
+        .tap-test__limit {
+            font-size: 13px;
+            line-height: 1.8;
+            color: var(--text-secondary);
+            text-wrap: pretty;
+        }
+        .tap-test__limit { margin: var(--space-lg) 0; }
+
+        /* Deviation strip. overflow: clip (never auto) clips a stray tick
+           without creating a scroll port, so the no-overflow-x rule holds. */
+        .tap-test__strip {
+            position: relative;
+            height: 56px;
+            margin-top: var(--space-lg);
+            background: var(--background);
+            border: 1px solid var(--surface-light);
+            border-radius: var(--radius-md);
+            overflow: clip;
+        }
+        .tap-test__strip::before {
+            content: "";
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 1px;
+            background: rgba(212, 175, 55, 0.45);
+        }
+        .tt-tick {
+            position: absolute;
+            top: 50%;
+            width: 2px;
+            height: 26px;
+            margin-top: -13px;
+            background: var(--primary);
+            border-radius: 1px;
+            opacity: 0.85;
+        }
+        .tap-test__scale {
+            display: flex;
+            justify-content: space-between;
+            font-size: 11px;
+            color: var(--text-secondary);
+            margin-top: var(--space-xs);
+            font-variant-numeric: tabular-nums;
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .tap-test__btn,
+            .tap-test__tap:active { transition: none; transform: none; }
+        }
+    </style>
+
     <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Rhythmustraining — Vorlauf, Nachlauf, Pocket","description":"Zerlege „schlechten Rhythmus\" in vier Eigenschaften: Vorlauf, Nachlauf, Streuung, Pocket. Diagnose plus stufenweiser Plan.","author":{"@type":"Organization","name":"Solfege PRO"},"publisher":{"@type":"Organization","name":"Solfege PRO","logo":{"@type":"ImageObject","url":"https://solfegepro.com/AppIcon.png"}},"datePublished":"2026-03-31","dateModified":"2026-04-11","mainEntityOfPage":{"@type":"WebPage","@id":"https://solfegepro.com/de/guides/rhythm-training/"}}</script>
     <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Startseite","item":"https://solfegepro.com/de/"},{"@type":"ListItem","position":2,"name":"Übungsleitfäden","item":"https://solfegepro.com/de/guides/"},{"@type":"ListItem","position":3,"name":"Was ist rhythmisches Empfinden? — Vorlauf, Nachlauf, Streuung und Pocket aufschlüsseln","item":"https://solfegepro.com/de/guides/rhythm-training/"}]}</script>
 </head>
@@ -460,6 +625,54 @@
             Bevor du Vorlauf oder Nachlauf korrigierst, ist es wichtig, zuerst gleichmäßiges Anschlags-Timing zu erreichen<sup>[3]</sup>. Streuende Anschläge machen Tendenzkorrekturen wirkungslos. Baue eine stabile Basis bei niedrigem Tempo, geringer Schwierigkeit und allen Schlägen auf.
         </p>
 
+        <!-- Try it here: the one timing statistic a browser can honestly produce -->
+        <div class="tap-test" data-tap-test data-state="nojs">
+            <h3 class="tap-test__title">Hier messen — deine eigene Streuung</h3>
+
+            <p class="tap-test__lead">
+                
+                
+                
+                Tippe <span data-tt="total">24</span> Mal zum Klick, und die <strong>Standardabweichung</strong> deiner Anschläge erscheint. Ein Browser kennt weder seine Eingabelatenz noch seine Audio-Ausgabelatenz — „du bist X ms zu früh/spät" lässt sich hier also nicht seriös sagen. Die Streuung dagegen bleibt gleich, wenn alle Anschläge um denselben Betrag verschoben sind — sie ist hier messbar<sup>[1]</sup><sup>[3]</sup>.
+            </p>
+
+            <div class="tap-test__body">
+                <div class="tap-test__panel tap-test__panel--nojs">
+                    <p class="tap-test__note">Diese Messung braucht JavaScript. Der restliche Artikel ist normal lesbar.</p>
+                </div>
+
+                <div class="tap-test__panel tap-test__panel--unsupported">
+                    <p class="tap-test__note">Dieser Browser unterstützt kein Web Audio — die Messung kann nicht laufen.</p>
+                </div>
+
+                <div class="tap-test__panel tap-test__panel--idle">
+                    <button type="button" class="tap-test__btn tap-test__btn--primary" data-tt="start">Messung starten</button>
+                    <p class="tap-test__note">Es wird Ton abgespielt (<span data-tt="bpm">100</span> BPM); Kopfhörer empfohlen. Die ersten 4 Schläge sind ein Vorzähler, die ersten 4 Taps werden als Aufwärmen verworfen.</p>
+                </div>
+
+                <div class="tap-test__panel tap-test__panel--running">
+                    <button type="button" class="tap-test__tap" data-tt="tap">Tippe zum Klick</button>
+                    <p class="tap-test__count"><span data-tt="progress">0</span> / <span data-tt="total">24</span></p>
+                    <button type="button" class="tap-test__btn" data-tt="stop">Abbrechen</button>
+                </div>
+
+                <div class="tap-test__panel tap-test__panel--done" aria-live="polite">
+                    <p class="tap-test__result">
+                        <span class="tap-test__figure"><span data-tt="sd">—</span> ms</span>
+                        <span class="tap-test__figure-label">Streuung (Standardabweichung)</span>
+                    </p>
+                    <p class="tap-test__range">Etwa <span data-tt="low">—</span>–<span data-tt="high">—</span> ms (<span data-tt="n">24</span> Taps). Die Standardabweichung ist selbst eine Schätzung; bei dieser Anzahl liegt ihr eigener Fehler bei rund ±29 %. Nimm einen einzelnen Durchgang nicht als festen Wert.</p>
+
+                    <div class="tap-test__strip" data-tt="strip" aria-hidden="true"></div>
+                    <p class="tap-test__scale"><span>−60 ms</span><span>0</span><span>+60 ms</span></p>
+
+                    <p class="tap-test__limit"><strong>Was das hier nicht liefert: ob du vorziehst oder nachhängst.</strong> Der Browser kennt weder seine Eingabelatenz noch den Ausgabeweg (Lautsprecher / Kabel / Bluetooth) — jeder ±-Wert wäre geraten. Die App kompensiert diese Latenz pro Gerät und zeigt sie als durchschnittliche Abweichung.</p>
+
+                    <button type="button" class="tap-test__btn" data-tt="again">Nochmal</button>
+                </div>
+            </div>
+        </div>
+
         <!-- Section 5 -->
         <h2 id="what-app-can-do">Was Solfege PRO leisten kann</h2>
 
@@ -772,7 +985,8 @@ flowchart TD
             <a href="https://apps.apple.com/de/app/id6756626617" class="article-footer__link">App Store</a>
         </p>
     </footer>
-    <script src="/bootstrap.js?v=6" defer></script>
+    <script src="/bootstrap.js?v=7" defer></script>
+    <script src="/tap-tempo.js?v=1" defer></script>
     <nav aria-label="Language" style="display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:0.5rem;padding:var(--space-lg) var(--space-md);border-top:1px solid var(--surface-light);font-size:13px">
         <a href="/guides/rhythm-training/" hreflang="ja" style="color:var(--text-secondary);text-decoration:none">日本語</a>
         <span aria-hidden="true" style="color:var(--surface-light)">·</span>

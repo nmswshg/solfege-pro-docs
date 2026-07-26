@@ -95,3 +95,35 @@ for (const lang of LANGS) {
         }
     }
 }
+
+/**
+ * Component baseline: the tap-timing widget on guides/rhythm-training.
+ *
+ * This one is captured as an ELEMENT, not fullPage, and deliberately so.
+ * That page renders four Mermaid diagrams from a CDN module, and their
+ * async layout makes the document height wobble by up to ~9px between
+ * loads (measured 2026-07-26: five loads gave 11320/11329/11320/11320/11320,
+ * versus a spread of exactly 0 on interval-training). A full-page baseline
+ * there is therefore permanently flaky at maxDiffPixels: 0 — but the widget
+ * itself is static markup and screenshots cleanly.
+ *
+ * The idle state is what gets captured: the measurement is user-initiated,
+ * so there is nothing running at rest.
+ */
+for (const lang of LANGS) {
+    for (const vp of VIEWPORTS) {
+        test(`visual ${lang.name} tap-test widget @${vp.name}`, async ({ page }) => {
+            await page.emulateMedia({ reducedMotion: 'reduce' });
+            await page.setViewportSize({ width: vp.width, height: 900 });
+            await page.goto(lang.prefix + '/guides/rhythm-training/', { waitUntil: 'networkidle' });
+            await page.evaluate(() => (document.fonts ? document.fonts.ready.then(() => true) : true));
+            await page.waitForTimeout(250);
+
+            const widget = page.locator('.tap-test');
+            await expect(widget).toHaveScreenshot(`${lang.name}__tap-test__${vp.name}.png`, {
+                animations: 'disabled',
+                maxDiffPixels: 0,
+            });
+        });
+    }
+}

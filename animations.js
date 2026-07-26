@@ -2,8 +2,8 @@
     'use strict';
 
     // Reduced-motion handling is per-feature (informational features like the
-    // reading-progress bar stay on; decorative reveals + count-ups are
-    // skipped). Avoid a blanket early return.
+    // reading-progress bar stay on; decorative reveals are skipped). Avoid a
+    // blanket early return.
     var REDUCED_MOTION = window.matchMedia &&
         window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
@@ -51,7 +51,6 @@
     ready(function() {
         initRevealOnScroll();
         initStickyCtaReveal();
-        initCountUp();
         initReadingProgress();
     });
 
@@ -152,43 +151,6 @@
                 observer.observe(anchor);
             }
         });
-    }
-
-    // D: Count-up on hero stats — only on elements explicitly tagged with
-    // data-count-up. Triggers once when the element enters the viewport.
-    function initCountUp() {
-        if (REDUCED_MOTION) return; // decorative — static number stays visible
-        if (!('IntersectionObserver' in window)) return;
-        var observer = new IntersectionObserver(function(entries) {
-            entries.forEach(function(entry) {
-                if (entry.isIntersecting) {
-                    animateCount(entry.target);
-                    observer.unobserve(entry.target);
-                }
-            });
-        }, { threshold: 0.5 });
-        document.querySelectorAll('[data-count-up]').forEach(function(el) {
-            observer.observe(el);
-        });
-    }
-
-    function animateCount(el) {
-        var attr = el.getAttribute('data-count-up');
-        var target = attr !== null && attr !== ''
-            ? parseInt(attr, 10)
-            : parseInt(el.textContent, 10);
-        if (isNaN(target)) return;
-        var duration = 700;
-        var startTime = null;
-        function tick(now) {
-            if (startTime === null) startTime = now;
-            var t = Math.min(1, (now - startTime) / duration);
-            // ease-out cubic
-            var eased = 1 - Math.pow(1 - t, 3);
-            el.textContent = String(Math.round(target * eased));
-            if (t < 1) requestAnimationFrame(tick);
-        }
-        requestAnimationFrame(tick);
     }
 
     // E: Reading progress bar — auto-injected on pages that include
