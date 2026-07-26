@@ -49,7 +49,7 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" media="print" onload="this.media='all'">
     <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap"></noscript>
 
-    <link rel="stylesheet" href="/style.css?v=17">
+    <link rel="stylesheet" href="/style.css?v=20">
 
     <style>
         /* Hub-specific styles */
@@ -81,10 +81,41 @@
                hero suppresses the top margin via :first-of-type below. */
             margin: var(--space-3xl) 0 var(--space-lg);
             padding-bottom: var(--space-md);
-            border-bottom: 2px solid var(--primary);
+            /* Rule moved to ::after so it can be drawn on scroll; the border stays
+               at the same 2px, transparent, so the box height never changes. */
+            border-bottom: 2px solid transparent;
+            position: relative;
             display: flex;
             align-items: center;
             gap: var(--space-sm);
+        }
+
+        /* Drawn full-width by default (settled state). The pseudo-element is
+           absolutely positioned, so it is not a flex item of this flex container. */
+        .hub-section-title::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: -2px;
+            height: 2px;
+            background: var(--primary);
+            transform-origin: left center;
+        }
+
+        @supports (animation-timeline: view()) {
+            @media not (prefers-reduced-motion: reduce) {
+                .hub-section-title::after {
+                    animation: rule-draw linear both;
+                    animation-range: cover 22% cover 46%;
+                    animation-timeline: view(block);
+                }
+            }
+        }
+
+        @keyframes rule-draw {
+            from { transform: scaleX(0); }
+            to   { transform: scaleX(1); }
         }
 
         .hub-section-title:first-of-type {
@@ -108,15 +139,24 @@
             border-radius: var(--radius-xl);
             padding: var(--space-xl);
             text-decoration: none;
-            transition: all 0.25s ease;
+            /* Explicit property list, not `all`: `transition: all` here also
+               animated every unrelated property and, at equal specificity from a
+               later-parsed stylesheet, replaced the shared reveal transition in
+               /style.css outright. */
+            transition: border-color 0.25s var(--ease-house),
+                        transform 0.25s var(--ease-house),
+                        box-shadow 0.25s var(--ease-house);
             position: relative;
             overflow: hidden;
         }
 
-        .instrument-card:hover {
-            border-color: var(--primary);
-            transform: translateY(-4px);
-            box-shadow: 0 12px 32px rgba(0, 0, 0, 0.3);
+        /* Hover transform gated on a real pointer — on touch it sticks after the tap. */
+        @media (hover: hover) and (pointer: fine) {
+            .instrument-card:hover {
+                border-color: var(--primary);
+                transform: translateY(-4px);
+                box-shadow: 0 12px 32px rgba(0, 0, 0, 0.3);
+            }
         }
 
         .instrument-card__icon {
@@ -189,13 +229,19 @@
             border-radius: var(--radius-lg);
             padding: var(--space-lg);
             text-decoration: none;
-            transition: all 0.2s ease;
+            /* Explicit list — see .instrument-card above. `transition: all` here
+               is what silently disabled the staggered reveal on this page. */
+            transition: border-color 0.2s var(--ease-house),
+                        transform 0.2s var(--ease-house),
+                        box-shadow 0.2s var(--ease-house);
         }
 
-        .guide-card:hover {
-            border-color: var(--primary);
-            transform: translateY(-3px);
-            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+        @media (hover: hover) and (pointer: fine) {
+            .guide-card:hover {
+                border-color: var(--primary);
+                transform: translateY(-3px);
+                box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+            }
         }
 
         .guide-card__icon { font-size: 32px; margin-bottom: var(--space-md); }
@@ -260,11 +306,14 @@
             text-decoration: none;
             font-weight: 700;
             font-size: 15px;
-            transition: all 0.2s ease;
+            transition: transform 0.2s var(--ease-house),
+                        box-shadow 0.2s var(--ease-house);
         }
-        .hub-cta__button:hover {
-            transform: scale(1.03);
-            box-shadow: 0 4px 20px rgba(212, 175, 55, 0.3);
+        @media (hover: hover) and (pointer: fine) {
+            .hub-cta__button:hover {
+                transform: scale(1.03);
+                box-shadow: 0 4px 20px rgba(212, 175, 55, 0.3);
+            }
         }
 
         .hub-footer {
@@ -275,6 +324,155 @@
         }
         .hub-footer__text { color: var(--text-secondary); font-size: 14px; }
         .hub-footer__link { color: var(--primary); text-decoration: none; }
+
+        /* =========================================================
+           Product tour — measure -> diagnose -> prescribe -> log
+           ---------------------------------------------------------
+           EACH BEAT OWNS ITS SCREEN. The caption and the device live in the
+           same <li>, so they stay paired at every width.
+           (The first version kept all four devices in one pinned stage and
+           all four captions in a separate list. Below the two-column
+           breakpoint that collapsed into "four screenshots, then four
+           paragraphs" — the reader had to scroll past every image before
+           reaching any of the text. This structure makes that impossible.)
+           Wide viewports turn each beat into caption | device and pin BOTH
+           while that beat is being read, then hand off to the next beat.
+           position: sticky only — no scroll-driven timeline is needed, so
+           Firefox, iOS 18 and reduced-motion readers get the same layout and
+           the same handoff. The only progressive enhancement here is the gold
+           rail drawing itself in.
+           ========================================================= */
+        .tour { margin-bottom: var(--space-3xl); }
+
+        .tour__beats {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .tour__beat {
+            display: grid;
+            gap: var(--space-lg);
+            margin-bottom: var(--space-3xl);
+        }
+        .tour__beat:last-child { margin-bottom: 0; }
+
+        .tour__beat-body {
+            position: relative;
+            padding-left: var(--space-lg);
+        }
+
+        /* Track rail + the drawn segment. The segment is fully drawn by
+           default; the enhanced block animates it from zero as the beat
+           reaches reading position. Text is never dimmed — a progress signal
+           must not cost contrast. */
+        .tour__beat-body::before,
+        .tour__beat-body::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            border-radius: 1px;
+        }
+        .tour__beat-body::before { background: var(--surface-light); }
+        .tour__beat-body::after {
+            background: var(--primary);
+            transform-origin: top center;
+        }
+
+        .tour__beat-step {
+            display: block;
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            color: var(--primary);
+            margin-bottom: var(--space-xs);
+        }
+        .tour__beat-title {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: var(--space-sm);
+            line-height: 1.5;
+        }
+        .tour__beat-text {
+            font-size: 15px;
+            color: var(--text-secondary);
+            line-height: 1.9;
+            text-wrap: pretty;
+        }
+
+        /* Our own bezel in brand tokens. The source composites ship a promo
+           frame in a different gold (#C9A962) with two radial glows; that is
+           cropped away and replaced with this. */
+        .tour__phone {
+            width: 100%;
+            max-width: 300px;
+            margin: 0 auto;
+            background: #000;
+            border: 1px solid rgba(212, 175, 55, 0.16);
+            border-radius: 30px;
+            padding: 6px;
+            box-shadow: 0 30px 60px -34px rgba(0, 0, 0, 0.9);
+            overflow: clip;
+        }
+
+        .tour__phone img {
+            display: block;
+            width: 100%;
+            height: auto;
+            /* Show the WHOLE screen at every width. An earlier version cropped
+               this to 1028/1180 with object-fit: cover to keep the stacked
+               layout short, which read as a broken screenshot — the device was
+               visibly sliced through its content. Measured 2026-07-25: the
+               source composite embeds the app screen at 0.779x (1028px wide of
+               a 1320px native capture), so ~99% of the screen height is present
+               and there is nothing to hide. aspect-ratio, not a px height, so
+               CLS stays at zero across the 375-1440 sweep. */
+            aspect-ratio: 1028 / 2086;
+            border-radius: 24px;
+            /* Only the last ~1% of the device is missing (the composite's own
+               bottom edge). A 4% fade makes that edge read as "the screen
+               scrolls on" instead of as a cut. */
+            mask-image: linear-gradient(to bottom, #000 96%, transparent 100%);
+        }
+
+        /* Two columns + pinning. Starts above the existing 1024px breakpoint,
+           so no new max-width query and no dead zone. */
+        @media (min-width: 1025px) {
+            .tour__beat {
+                grid-template-columns: minmax(0, 1fr) minmax(0, 300px);
+                gap: var(--space-3xl);
+                align-items: start;
+                /* svh, not vh: on iOS a collapsing address bar would otherwise
+                   resize every beat mid-scroll. Taller than the device, which is
+                   what gives sticky something to travel through. */
+                min-height: 92svh;
+                margin-bottom: 0;
+            }
+            .tour__beat-body,
+            .tour__media {
+                position: sticky;
+                top: calc(var(--nav-height) + var(--space-xl));
+            }
+        }
+
+        @supports (animation-timeline: view()) {
+            @media not (prefers-reduced-motion: reduce) {
+                .tour__beat-body::after {
+                    animation: tour-rule linear both;
+                    animation-range: cover 18% cover 58%;
+                    animation-timeline: view(block);
+                }
+            }
+        }
+
+        @keyframes tour-rule {
+            from { transform: scaleY(0); }
+            to   { transform: scaleY(1); }
+        }
 
         /* Responsive */
         @media (max-width: 1024px) {
@@ -383,6 +581,74 @@
                 </li>
             </ul>
             <!-- TODO: App Store rating widget when reviews accumulate -->
+        </section>
+
+        <!-- Product tour: what the app actually does, shown in real app screens -->
+        <h2 class="hub-section-title" id="tour-title">Mesurer → Diagnostiquer → Prescrire → Consigner</h2>
+
+        <section class="tour" aria-labelledby="tour-title">
+            <ol class="tour__beats">
+                <li class="tour__beat">
+                    <div class="tour__beat-body">
+                        <span class="tour__beat-step">01</span>
+                        <h3 class="tour__beat-title">D'abord, mesurer</h3>
+                        <p class="tour__beat-text">L'entraînement rythmique enregistre l'écart de chaque frappe en millisecondes. Après la session : écart moyen, constance, et votre tendance à précipiter ou à traîner.</p>
+                    </div>
+                    <div class="tour__media">
+                        <div class="tour__phone">
+                            
+                            
+                            <img src="/assets/tour/fr/tour-1.640.webp" srcset="/assets/tour/fr/tour-1.320.webp 320w, /assets/tour/fr/tour-1.640.webp 640w" sizes="288px" width="640" height="1299" fetchpriority="high" decoding="async" alt="Écran d'entraînement rythmique : graphique de précision du timing, score, écart moyen de 16,0 ms et constance de 17,5 ms">
+                            
+                        </div>
+                    </div>
+                </li>
+                <li class="tour__beat">
+                    <div class="tour__beat-body">
+                        <span class="tour__beat-step">02</span>
+                        <h3 class="tour__beat-title">Le Résumé des points faibles nomme la cause</h3>
+                        <p class="tour__beat-text">Il analyse votre historique et attribue à chaque faiblesse une gravité et une confiance. Comme c'est précis — confondre tierce mineure et tierce majeure, par exemple — vous savez quoi corriger ensuite.</p>
+                    </div>
+                    <div class="tour__media">
+                        <div class="tour__phone">
+                            
+                            
+                            <img src="/assets/tour/fr/tour-2.640.webp" srcset="/assets/tour/fr/tour-2.320.webp 320w, /assets/tour/fr/tour-2.640.webp 640w" sizes="288px" width="640" height="1299" loading="lazy" decoding="async" alt="Écran Résumé des points faibles : chaque faiblesse avec sa gravité et sa confiance, puis quoi travailler ensuite">
+                            
+                        </div>
+                    </div>
+                </li>
+                <li class="tour__beat">
+                    <div class="tour__beat-body">
+                        <span class="tour__beat-step">03</span>
+                        <h3 class="tour__beat-title">Le Rapport hebdomadaire décide de la suite</h3>
+                        <p class="tour__beat-text">Le diagnostic devient un menu concret pour la semaine — jusqu'au nombre de questions et de mesures — et se transforme directement en plan d'exercices.</p>
+                    </div>
+                    <div class="tour__media">
+                        <div class="tour__phone">
+                            
+                            
+                            <img src="/assets/tour/fr/tour-3.640.webp" srcset="/assets/tour/fr/tour-3.320.webp 320w, /assets/tour/fr/tour-3.640.webp 640w" sizes="288px" width="640" height="1299" loading="lazy" decoding="async" alt="Écran Rapport hebdomadaire : le menu de la semaine avec nombre de questions et de mesures, et un bouton pour en faire un plan">
+                            
+                        </div>
+                    </div>
+                </li>
+                <li class="tour__beat">
+                    <div class="tour__beat-body">
+                        <span class="tour__beat-step">04</span>
+                        <h3 class="tour__beat-title">Suivre l'écart, pas une impression</h3>
+                        <p class="tour__beat-text">L'écran de fin compare score, écart moyen et constance à la session précédente et enregistre un record personnel. Le détail des jugements est conservé frappe par frappe, pour retracer où ça a lâché.</p>
+                    </div>
+                    <div class="tour__media">
+                        <div class="tour__phone">
+                            
+                            
+                            <img src="/assets/tour/fr/tour-4.640.webp" srcset="/assets/tour/fr/tour-4.320.webp 320w, /assets/tour/fr/tour-4.640.webp 640w" sizes="288px" width="640" height="1299" loading="lazy" decoding="async" alt="Écran de fin de session : comparaison avec la session précédente, analyse de précision, détail des jugements et record personnel">
+                            
+                        </div>
+                    </div>
+                </li>
+            </ol>
         </section>
 
         <!-- Instrument Cards -->
@@ -577,7 +843,7 @@
         </div>
         <a href="https://apps.apple.com/fr/app/id6756626617" class="sticky-cta__button">Obtenir</a>
     </div>
-    <script src="/bootstrap.js?v=4" defer></script>
+    <script src="/bootstrap.js?v=6" defer></script>
     <nav aria-label="Language" style="display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:0.5rem;padding:var(--space-lg) var(--space-md);border-top:1px solid var(--surface-light);font-size:13px">
         <a href="/" hreflang="ja" style="color:var(--text-secondary);text-decoration:none">日本語</a>
         <span aria-hidden="true" style="color:var(--surface-light)">·</span>

@@ -37,6 +37,35 @@
 
     /* Navigation Height */
     --nav-height: 56px;
+
+    /* Motion tokens
+       ---------------------------------------------------------------
+       One house curve, reused everywhere, plus a duration SCALE rather
+       than ad-hoc milliseconds. Modelled on how Apple's own product
+       pages are built: a single dominant easing (they use one curve 122
+       times on a single page) and three duration bands. New motion
+       rules should reference these tokens instead of raw values.
+
+       --ease-house is the existing curve already used 10+ times in this
+       file, promoted to a token; it is NOT a new look.
+
+       --dur-enter-fade / --dur-enter-move are deliberately DIFFERENT:
+       decoupling the opacity duration from the transform duration is
+       what makes an element read as "settling into place" rather than
+       "sliding in". Movement finishes first, the fade catches up. */
+    --ease-house: cubic-bezier(0.2, 0.8, 0.2, 1);
+    /* Entrances get their own curve. --ease-house is a strong ease-out: it is
+       ~60% done in the first 20% of its duration, which makes an arrival read as
+       a POP rather than a fade. Apple's dominant curve is an ease-in-out
+       (it appears 122 times on a single product page) — it starts gently, so the
+       opacity ramp is what the eye notices instead of the movement. */
+    --ease-entrance: cubic-bezier(0.4, 0, 0.6, 1);
+    --dur-micro: 100ms;   /* pressed states, tiny affordances */
+    --dur-ui: 240ms;      /* menus, drawers, component state changes */
+    /* Apple's shipped entrance values, verbatim: transform finishes ~200ms
+       before the fade does, so the element settles while still fading up. */
+    --dur-enter-move: 700ms;
+    --dur-enter-fade: 900ms;
 }
 
 /* =============================================
@@ -893,7 +922,7 @@ body {
     background: rgba(0, 0, 0, 0.5);
     z-index: 1999;
     opacity: 0;
-    transition: opacity 0.3s ease;
+    transition: opacity var(--dur-ui) ease;
 }
 
 .drawer-overlay.active {
@@ -901,22 +930,45 @@ body {
     opacity: 1;
 }
 
+/* This fade never actually ran: `display` flipped from none to block in the
+   same frame that opacity went 0 -> 1, and a display change is not
+   interpolable, so the element simply appeared at full opacity (and vanished
+   instantly on close). `allow-discrete` + @starting-style is the fix: display
+   flips at the START of the open transition and at the END of the close one,
+   and @starting-style supplies the opacity:0 the transition needs to start
+   from. Placed AFTER the base rules on purpose — @starting-style has the same
+   specificity, so source order decides. */
+@supports (transition-behavior: allow-discrete) {
+    .drawer-overlay {
+        transition: opacity var(--dur-ui) ease,
+                    display var(--dur-ui) allow-discrete;
+    }
+    @starting-style {
+        .drawer-overlay.active { opacity: 0; }
+    }
+}
+
 .drawer {
     position: fixed;
     top: 0;
-    right: -280px;
+    /* Slide with transform, not `right`. Animating `right` forced a layout
+       pass on every frame of every drawer open/close; translateX is
+       compositor-only. Geometry is unchanged: the panel still sits flush to
+       the right edge, just translated fully off-screen when closed. */
+    right: 0;
     width: 280px;
     height: 100vh;
     background: var(--surface);
     z-index: 2000;
-    transition: right 0.3s ease;
+    transform: translateX(100%);
+    transition: transform var(--dur-ui) var(--ease-house);
     display: flex;
     flex-direction: column;
     box-shadow: -4px 0 20px rgba(0, 0, 0, 0.3);
 }
 
 .drawer.active {
-    right: 0;
+    transform: none;
 }
 
 .drawer__header {
@@ -1558,8 +1610,19 @@ body {
     -webkit-text-fill-color: transparent;
     background-clip: text;
     line-height: 1.3;
-    /* Distribute line breaks evenly across all lines (avoids the
-       awkward fr-only 4-line H1 with a break after "intervalles ?"). */
+}
+/* Distribute line breaks evenly across all lines (avoids the awkward
+   fr-only 4-line H1 with a break after "intervalles ?").
+   SCOPED AWAY FROM JAPANESE ON PURPOSE: `balance` was added for a French
+   headline but was applying to every language, and in Japanese — which has
+   no word boundaries — it inserts breaks mid-phrase in the largest type on
+   the page. Japanese keeps the browser's default line breaking.
+   The selector is html[lang="…"] rather than :lang() because lang-toggle.js
+   mutates document.documentElement.lang at runtime and the build unwraps all
+   per-language spans, so html[lang] is the only language signal in output. */
+html[lang="en"] .page-header__title,
+html[lang="fr"] .page-header__title,
+html[lang="de"] .page-header__title {
     text-wrap: balance;
 }
 .page-header__subtitle {
@@ -1610,18 +1673,60 @@ body {
    scroll-driven reveals. All respect prefers-reduced-motion.
    ======================================================================== */
 
-/* --- Scroll-driven reveal (applied by animations.js to .reveal elements) --- */
+/* --- Scroll-driven reveal (applied by animations.js to .reveal elements) ---
+
+   ANIMATION, NOT TRANSITION — and that is the bug fix, not a style choice.
+   Measured 2026-07-25: the previous transition-based reveal never ran on the
+   pages it mattered on. `.guide-card { transition: all 0.2s ease }` lives in
+   each hub page's inline <style>, which is parsed AFTER /style.css, so at
+   equal specificity it replaced the whole `transition` shorthand here —
+   discarding both the 450ms curve and the --reveal-delay that animations.js
+   was correctly writing (computed value on card 3 of the home page was
+   `transition: all 0.2s / delay 0s`). Keyframe animations occupy a different
+   property, so they cannot be clobbered by a page-level `transition`.
+
+   Two animations, not one, with DIFFERENT durations: the movement finishes
+   ~220ms before the fade does, which is what makes an element read as
+   settling into place instead of sliding in. Single axis (Y only) — the old
+   scale(0.985) resampled glyphs mid-animation and read soft.
+
+   BOTH ENDPOINTS ARE EXPLICIT — do not "simplify" these keyframes to a lone
+   `from`. An omitted `to` interpolates toward the element's OWN DECLARED VALUE,
+   and `.reveal` declares `opacity: 0`, so `@keyframes reveal-fade { from
+   { opacity: 0 } }` silently animated 0 -> 0: the card slid up while completely
+   invisible and then popped to opaque the instant .is-settled landed. Measured
+   2026-07-25 — the transform ramped 13.8px -> 0 over ~700ms while opacity read 0
+   at every sample until it jumped to 1 at ~1100ms. reveal-rise happened to work
+   only because its declared value is `none`. */
 .reveal {
     opacity: 0;
-    transform: translateY(12px);
-    transition: opacity 450ms cubic-bezier(0.2, 0.8, 0.2, 1),
-                transform 450ms cubic-bezier(0.2, 0.8, 0.2, 1);
-    transition-delay: var(--reveal-delay, 0ms);
-    will-change: opacity, transform;
 }
 .reveal.is-revealed {
+    animation: reveal-fade var(--dur-enter-fade) var(--ease-entrance) var(--reveal-delay, 0ms) both,
+               reveal-rise var(--dur-enter-move) var(--ease-entrance) var(--reveal-delay, 0ms) both;
+    will-change: opacity, transform;
+}
+@keyframes reveal-fade {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+/* Small travel on purpose: the FADE is the gesture, the lift is only there to
+   stop it reading as a light switch. 22px with a fast-out curve read as sliding;
+   14px with the entrance curve reads as a fade that settles. */
+@keyframes reveal-rise {
+    from { transform: translateY(14px); }
+    to   { transform: none; }
+}
+/* Settled state: release the compositor layer and drop the animation so the
+   element's own declared styles (including :hover) take over again. Promotion
+   is a loan, not a gift — `will-change` was previously held forever on every
+   card on the page (23 promoted layers on /guides/). opacity must be restated
+   here because removing the animation would otherwise expose `.reveal`'s
+   opacity: 0 underneath. */
+.reveal.is-settled {
+    animation: none;
     opacity: 1;
-    transform: translateY(0);
+    will-change: auto;
 }
 
 /* --- Gold accent: a slow, single-hue luminance "breath" on the nav logo only.
@@ -1638,50 +1743,64 @@ body {
     animation: gold-sheen 6s ease-in-out infinite;
 }
 
-/* --- App Store badge micro-interaction (CTA polish) --- */
+/* --- App Store badge micro-interaction (CTA polish) ---
+   This is the site's ONE rationed overshoot. Everything else uses the house
+   curve; the single most important element on the page gets a spring, declared
+   twice so the cubic-bezier is the fallback wherever linear() is unsupported
+   (Safari 17.2+). Hover scale stays at 1.02 — Apple's entire hover vocabulary
+   is 0.8%–1.6%, and anything past ~1.03 reads as a toy. */
 .app-store-link {
     display: inline-block;
-    transition: transform 180ms cubic-bezier(0.2, 0.8, 0.2, 1),
+    transition: transform 180ms var(--ease-house),
                 filter 180ms ease;
-    will-change: transform;
+    transition-timing-function: cubic-bezier(0.2, 0.8, 0.2, 1);
+    transition-timing-function: linear(0, 0.32 10%, 0.78 22%, 1.035 34%, 0.996 46%, 1.006 58%, 1);
 }
-.app-store-link:hover {
-    transform: translateY(-2px) scale(1.02);
-    filter: brightness(1.06);
+@media (hover: hover) and (pointer: fine) {
+    .app-store-link:hover {
+        transform: translateY(-2px) scale(1.02);
+        filter: brightness(1.06);
+    }
 }
 .app-store-link:active {
     transform: translateY(0) scale(0.98);
-    transition-duration: 80ms;
+    transition-duration: var(--dur-micro);
+    transition-timing-function: cubic-bezier(0.4, 0, 1, 1);
     filter: brightness(0.96);
 }
 
-/* --- Premium polish: deeper reveal + tactile card lift (brand-safe, gold/dark
-   only, layout-neutral via transform/shadow, all disabled for reduced motion).
-   The reveal distance/scale is a touch larger than the base .reveal so content
-   "arrives" with more presence without becoming a gimmick. --- */
-.reveal {
-    transform: translateY(18px) scale(0.985);
-}
-.reveal.is-revealed {
-    transform: translateY(0) scale(1);
-}
-
 /* Card lift: guide cards + related links rise and gain a gold-tinted shadow on
-   hover, signalling interactivity (helps funnel clicks toward the app). */
+   hover, signalling interactivity (helps funnel clicks toward the app).
+   Gated on a real pointer: a hover transform on a touch device sticks after the
+   tap (the classic stuck-hover artifact on iPad, a real share of this audience).
+   `border-color` is deliberately NOT gated — a colour change is harmless and
+   still useful on hybrid devices.
+   No standing `will-change` here: it was being held on every related link of
+   every article page for a transform that only fires on deliberate hover. */
 .article-related__link {
-    transition: border-color 200ms ease, transform 200ms cubic-bezier(0.2, 0.8, 0.2, 1),
+    transition: border-color 200ms ease,
+                transform 200ms var(--ease-house),
                 box-shadow 200ms ease;
-    will-change: transform;
 }
-.article-related__link:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 14px 34px -18px rgba(212, 175, 55, 0.45), 0 10px 30px -20px rgba(0, 0, 0, 0.6);
+@media (hover: hover) and (pointer: fine) {
+    .article-related__link:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 14px 34px -18px rgba(212, 175, 55, 0.45), 0 10px 30px -20px rgba(0, 0, 0, 0.6);
+    }
 }
 
-/* --- Sticky bottom CTA: hide above the fold, reveal after scroll --- */
+/* --- Sticky bottom CTA: hide above the fold, reveal after scroll ---
+   Asymmetric enter/exit, which is how physical objects behave and how Apple
+   tokenises its own sticky CTA (separate duration-enter / duration-exit values
+   per property). It arrives promptly and leaves calmly, so it never reads as a
+   mechanical there-and-back when you scroll past the header repeatedly. */
 .sticky-cta {
-    transition: transform 320ms cubic-bezier(0.2, 0.8, 0.2, 1),
+    transition: transform 320ms var(--ease-house),
                 opacity 200ms ease;
+}
+.sticky-cta--hidden {
+    transition: transform 420ms var(--ease-entrance) 60ms,
+                opacity 260ms ease 60ms;
 }
 .sticky-cta--hidden {
     transform: translateY(120%);
@@ -1776,6 +1895,71 @@ body {
     will-change: transform;
 }
 
+/* Weld the meter to the scroll position on the compositor. `scroll(root block)`
+   progress is exactly scrollY / (scrollHeight - innerHeight) — bit-for-bit the
+   value animations.js was computing — so this is a mechanism swap with no
+   behavioural change, and it deletes a passive scroll listener plus one rAF and
+   one style write per frame from every long-form page. It also removes the
+   120ms transition lag, which matters more than it sounds on a site whose
+   product claim is millisecond-accurate measurement.
+   animations.js skips its own driver only when this block is actually active.
+   NOTE: `animation-timeline` must be declared AFTER the `animation` shorthand —
+   it is reset-only in the shorthand and silently does nothing otherwise. */
+@supports (animation-timeline: scroll()) {
+    @media not (prefers-reduced-motion: reduce) {
+        .reading-progress__fill {
+            transition: none;
+            animation: read-progress linear both;
+            animation-timeline: scroll(root block);
+        }
+    }
+}
+@keyframes read-progress {
+    from { transform: scaleX(0); }
+    to   { transform: scaleX(1); }
+}
+
+/* --- Cross-document view transitions (whole-site navigation) ---------------
+   All 43 source pages link this stylesheet, so the at-rule is present in both
+   the outgoing and incoming document, which is what the feature requires.
+   Browsers without support (Firefox, Safari < 18.2) perform an ordinary
+   navigation — there is no fallback code to write and nothing to feature-detect.
+   Naming .nav lifts the shell out of the root snapshot: its geometry is
+   identical on every page so the group animation is a no-op, while its old/new
+   images cross-fade, which is what hands off the .nav__link.active state
+   instead of letting it jump. .reading-progress and .sticky-cta are
+   deliberately NOT named — they are JS-injected or bottom-anchored, and naming
+   an element that may not exist yet in the new document creates spurious
+   enter/exit animations.
+   Literal easing here rather than var(--ease-house): the ::view-transition tree
+   is a separate pseudo-element tree and custom-property inheritance into it is
+   not worth relying on. */
+@media (prefers-reduced-motion: no-preference) {
+    @view-transition {
+        navigation: auto;
+    }
+
+    ::view-transition-group(root) {
+        animation-duration: 260ms;
+    }
+    ::view-transition-old(root) {
+        animation: vt-fade-out 160ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
+    }
+    ::view-transition-new(root) {
+        animation: vt-fade-in 260ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
+    }
+
+    .nav {
+        view-transition-name: site-nav;
+    }
+}
+@keyframes vt-fade-out {
+    to { opacity: 0; }
+}
+@keyframes vt-fade-in {
+    from { opacity: 0; transform: translateY(8px); }
+}
+
 /* --- Reading-completion download modal -------------------------------------
    Shown once (localStorage-gated) when a reader reaches the end of a guide.
    Brand: gold/dark only, restrained. Accessible: role=dialog, Esc to close,
@@ -1866,11 +2050,16 @@ body {
     .diag-progress__step,
     .diag-progress__labels > span,
     .nav__logo-icon,
+    .drawer,
+    .drawer-overlay,
     .article-related__link,
     .article-related__link:hover {
         transition: none !important;
         animation: none !important;
     }
+    /* The reveal must land at its FINISHED state, not just stop animating:
+       animations.js skips the reveal path entirely under reduced motion, so
+       nothing would ever add .is-revealed / .is-settled. */
     .reveal {
         opacity: 1;
         transform: none;
@@ -1878,6 +2067,10 @@ body {
     .article-related__link:hover {
         transform: none;
         box-shadow: none;
+    }
+    /* Drawer still has to open — it just arrives instantly rather than sliding. */
+    .drawer.active {
+        transform: none;
     }
     .rc-modal__dialog,
     .rc-modal.is-open .rc-modal__dialog {

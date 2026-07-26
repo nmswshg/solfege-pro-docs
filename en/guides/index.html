@@ -52,7 +52,7 @@
     <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap"></noscript>
 
     <!-- Stylesheets -->
-    <link rel="stylesheet" href="/style.css?v=17">
+    <link rel="stylesheet" href="/style.css?v=20">
 
     <style>
 
@@ -78,13 +78,22 @@
             border-radius: var(--radius-lg);
             padding: var(--space-lg);
             text-decoration: none;
-            transition: all 0.2s ease;
+            /* Explicit list, not `all`: at equal specificity this rule is parsed
+               after /style.css and `transition: all` replaced the shared reveal
+               transition, silently disabling the staggered entrance on the 23
+               cards of this page. */
+            transition: border-color 0.2s var(--ease-house),
+                        transform 0.2s var(--ease-house),
+                        box-shadow 0.2s var(--ease-house);
         }
 
-        .guide-card:hover {
-            border-color: var(--primary);
-            transform: translateY(-3px);
-            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+        /* Hover transform gated on a real pointer — on touch it sticks after the tap. */
+        @media (hover: hover) and (pointer: fine) {
+            .guide-card:hover {
+                border-color: var(--primary);
+                transform: translateY(-3px);
+                box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+            }
         }
 
         .guide-card__icon {
@@ -214,12 +223,15 @@
             text-decoration: none;
             font-weight: 700;
             font-size: 15px;
-            transition: all 0.2s ease;
+            transition: transform 0.2s var(--ease-house),
+                        box-shadow 0.2s var(--ease-house);
         }
 
-        .guides-back__link:hover {
-            transform: scale(1.03);
-            box-shadow: 0 4px 20px rgba(212, 175, 55, 0.3);
+        @media (hover: hover) and (pointer: fine) {
+            .guides-back__link:hover {
+                transform: scale(1.03);
+                box-shadow: 0 4px 20px rgba(212, 175, 55, 0.3);
+            }
         }
 
         @media (max-width: 768px) {
@@ -484,7 +496,7 @@
             <a href="https://apps.apple.com/us/app/id6756626617" class="guides-footer__link">App Store</a>
         </p>
     </footer>
-    <script src="/bootstrap.js?v=4" defer></script>
+    <script src="/bootstrap.js?v=6" defer></script>
     <nav aria-label="Language" style="display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:0.5rem;padding:var(--space-lg) var(--space-md);border-top:1px solid var(--surface-light);font-size:13px">
         <a href="/guides/" hreflang="ja" style="color:var(--text-secondary);text-decoration:none">日本語</a>
         <span aria-hidden="true" style="color:var(--surface-light)">·</span>

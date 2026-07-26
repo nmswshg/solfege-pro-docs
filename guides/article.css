@@ -31,8 +31,53 @@
     margin-top: var(--space-3xl);
     margin-bottom: var(--space-lg);
     padding-bottom: var(--space-md);
-    border-bottom: 2px solid var(--primary);
+    /* The gold rule moves to ::after so it can be drawn on scroll. The border is
+       kept at the same 2px, transparent, so the box height is byte-identical to
+       before and nothing reflows. */
+    border-bottom: 2px solid transparent;
+    position: relative;
     scroll-margin-top: calc(var(--nav-height) + var(--space-lg));
+}
+
+/* Drawn full-width by DEFAULT — this is the settled state, so reduced-motion,
+   Firefox, iOS 18 and the screenshot baselines all see exactly today's design.
+   Absolutely positioned inside the padding box, so bottom: -2px lands precisely
+   on the 2px border it replaces.
+   The heading TEXT is never animated: revealing body headings risks one sitting
+   at opacity 0 mid-scroll on a long mobile page (the same reason animations.js
+   deliberately excludes .article-body h2 from .reveal). Only the rule moves. */
+.article-body h2::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -2px;
+    height: 2px;
+    background: var(--primary);
+    transform-origin: left center;
+}
+
+@supports (animation-timeline: view()) {
+    @media not (prefers-reduced-motion: reduce) {
+        .article-body h2::after {
+            animation: rule-draw linear both;
+            /* `cover`, not `entry`: a ~52px heading's entry range is only ~52px
+               of scroll, which snaps. cover 22%→46% is ~215px of scroll at a
+               900px viewport and ~160px at 667px.
+               animation-timeline MUST come after the shorthand — it is
+               reset-only in `animation` and silently does nothing otherwise. */
+            animation-range: cover 22% cover 46%;
+            animation-timeline: view(block);
+        }
+    }
+}
+
+/* Both endpoints explicit. An omitted `to` resolves to the element's own
+   declared value, which is a silent no-op whenever that value equals the `from`
+   (it bit reveal-fade in style.css on 2026-07-25). */
+@keyframes rule-draw {
+    from { transform: scaleX(0); }
+    to   { transform: scaleX(1); }
 }
 
 .article-body h3 {
@@ -57,6 +102,11 @@
     margin-bottom: var(--space-lg);
     line-height: 1.9;
     color: var(--text-primary);
+    /* Better ragged edge and fewer orphans, in all four languages. Unlike
+       `balance` this is safe for Japanese — WebKit evaluates the whole
+       paragraph and treats CJK as a no-op rather than forcing breaks. An
+       unsupported value is simply discarded, so no @supports guard is needed. */
+    text-wrap: pretty;
 }
 
 .article-body strong {
@@ -488,7 +538,13 @@
     border-radius: var(--radius-lg);
     padding: var(--space-lg);
     text-decoration: none;
-    transition: border-color 0.2s ease;
+    /* Must list transform and box-shadow too: this rule is parsed after
+       /style.css, so a border-color-only shorthand here was replacing the
+       shared card-lift transition and making the hover lift snap instead of
+       animate. */
+    transition: border-color 0.2s ease,
+                transform 200ms var(--ease-house),
+                box-shadow 200ms ease;
 }
 
 .article-related__link:hover {

@@ -26,6 +26,20 @@
         '.article-related__link'
     ].join(', ');
 
+    // Cards that are laid out in grids and should arrive as a ROW, not as N
+    // independent elements. Stagger is per-row and inversely proportional to
+    // element size (large cards get a longer beat than small links).
+    // MUST be declared above the ready() call below: bootstrap.js injects this
+    // file dynamically, so the document is usually already parsed and ready()
+    // runs its callback SYNCHRONOUSLY. `var` hoists the binding but not the
+    // assignment, so declaring these after the call left them undefined during
+    // init and silently skipped every row (measured 2026-07-25).
+    // Apple's two stagger scales, verbatim: ~150ms between large cards, ~50ms
+    // between small pills. Stagger is inversely proportional to element size —
+    // a flat value makes big cards feel rushed and small ones feel sluggish.
+    var GRID_ITEM_SELECTOR = '.guide-card, .article-related__link';
+    var STAGGER_MS = { '.guide-card': 150, '.article-related__link': 90 };
+
     var ready = function(cb) {
         if (document.readyState === 'loading') {
             document.addEventListener('DOMContentLoaded', cb, { once: true });
@@ -41,43 +55,101 @@
         initReadingProgress();
     });
 
+    // Release the compositor layer once the entrance is over, and drop the
+    // animation so the element's own declared styles — crucially :hover — take
+    // over again. Promotion is a loan, not a gift.
+    function settleOnFinish(el) {
+        var done = false;
+        function settle() {
+            if (done) return;
+            done = true;
+            el.classList.add('is-settled');
+        }
+        el.addEventListener('animationend', function(e) {
+            // Two animations run (fade + rise); only the longer one means done.
+            if (e.animationName === 'reveal-fade') settle();
+        });
+        // Guard: if the element is in a background tab or the animation is
+        // interrupted, animationend may never fire.
+        setTimeout(settle, 2200);
+    }
+
     function initRevealOnScroll() {
         if (REDUCED_MOTION) return; // decorative
         if (!('IntersectionObserver' in window)) return;
 
+        // Groups keyed by "anchor element" — the observed element — mapping to
+        // the full set of elements that should reveal together with it.
+        var groupFor = new WeakMap();
+
         var observer = new IntersectionObserver(function(entries) {
             entries.forEach(function(entry) {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('is-revealed');
-                    observer.unobserve(entry.target);
-                }
+                if (!entry.isIntersecting) return;
+                var group = groupFor.get(entry.target) || [entry.target];
+                group.forEach(function(member) {
+                    member.classList.add('is-revealed');
+                    settleOnFinish(member);
+                });
+                observer.unobserve(entry.target);
             });
         }, {
             threshold: 0.1,
             rootMargin: '0px 0px -40px 0px'
         });
 
-        document.querySelectorAll(REVEAL_SELECTORS).forEach(function(el) {
-            // Stagger cards within the same parent: each later sibling that is
-            // also a reveal target gets a small extra delay, so a grid "fans in"
-            // rather than popping all at once. Capped so it never feels slow.
-            if (el.matches('.guide-card, .article-related__link') && el.parentElement) {
-                var sibs = el.parentElement.children;
-                var idx = 0;
-                for (var i = 0; i < sibs.length; i++) {
-                    if (sibs[i] === el) break;
-                    if (sibs[i].matches && sibs[i].matches('.guide-card, .article-related__link')) idx++;
+        var all = [].slice.call(document.querySelectorAll(REVEAL_SELECTORS));
+
+        // Bucket grid items by (parent, row). offsetTop is quantised to absorb
+        // sub-pixel differences between cards of unequal text length that are
+        // nonetheless on the same visual row. On mobile the grids collapse to a
+        // single column, so each bucket holds one card and this degrades to
+        // per-element reveal — which is the correct behaviour there anyway.
+        var buckets = [];
+        var bucketOf = new WeakMap();
+        all.forEach(function(el) {
+            if (!el.matches(GRID_ITEM_SELECTOR) || !el.parentElement) return;
+            var row = Math.round(el.offsetTop / 8);
+            var found = null;
+            for (var i = 0; i < buckets.length; i++) {
+                if (buckets[i].parent === el.parentElement && buckets[i].row === row) {
+                    found = buckets[i];
+                    break;
                 }
-                el.style.setProperty('--reveal-delay', Math.min(idx, 6) * 60 + 'ms');
             }
-            var rect = el.getBoundingClientRect();
+            if (!found) {
+                found = { parent: el.parentElement, row: row, items: [] };
+                buckets.push(found);
+            }
+            found.items.push(el);
+            bucketOf.set(el, found);
+        });
+
+        buckets.forEach(function(bucket) {
+            var step = STAGGER_MS[bucket.items[0].matches('.guide-card') ? '.guide-card' : '.article-related__link'];
+            bucket.items.forEach(function(el, idx) {
+                el.style.setProperty('--reveal-delay', Math.min(idx, 3) * step + 'ms');
+            });
+        });
+
+        all.forEach(function(el) {
+            var bucket = bucketOf.get(el);
+            // A row reveals from its FIRST member's position, so the whole row
+            // arrives as one gesture instead of each card popping on its own.
+            var anchor = bucket ? bucket.items[0] : el;
+            var rect = anchor.getBoundingClientRect();
+
             if (rect.top < window.innerHeight) {
-                // Already in initial viewport: show immediately, skip animation
-                // to avoid an above-the-fold flash.
-                el.classList.add('reveal', 'is-revealed');
-            } else {
-                el.classList.add('reveal');
-                observer.observe(el);
+                // Already in the initial viewport: show immediately and skip the
+                // animation. This is also the LCP guard — Chrome excludes
+                // opacity:0 elements from LCP, so nothing above the fold may
+                // start hidden.
+                el.classList.add('reveal', 'is-revealed', 'is-settled');
+                return;
+            }
+            el.classList.add('reveal');
+            if (el === anchor) {
+                if (bucket) groupFor.set(anchor, bucket.items);
+                observer.observe(anchor);
             }
         });
     }
@@ -136,6 +208,15 @@
         bar.appendChild(fill);
         document.body.appendChild(bar);
 
+        // When the CSS `scroll(root block)` timeline is actually in force, the
+        // fill is driven on the compositor and this JS must not fight it. The
+        // check mirrors the CSS gate exactly (@supports AND not reduced-motion),
+        // because under reduced motion that CSS block is absent and the JS path
+        // is still the one doing the work.
+        var CSS_DRIVEN = !REDUCED_MOTION &&
+            window.CSS && CSS.supports &&
+            CSS.supports('animation-timeline', 'scroll()');
+
         var ticking = false;
         function update() {
             var max = document.documentElement.scrollHeight - window.innerHeight;
@@ -145,13 +226,18 @@
             // which happens after expansion thanks to the resize listener.
             if (max <= 0) {
                 bar.style.opacity = '0';
-                fill.style.transform = 'scaleX(0)';
+                // CSS_DRIVEN: don't write transform — an inline style would beat
+                // the animation. Hiding the whole bar is enough, and an inactive
+                // scroll timeline leaves the fill at its from-state anyway.
+                if (!CSS_DRIVEN) fill.style.transform = 'scaleX(0)';
                 ticking = false;
                 return;
             }
             bar.style.opacity = '';
-            var ratio = Math.min(1, Math.max(0, window.scrollY / max));
-            fill.style.transform = 'scaleX(' + ratio + ')';
+            if (!CSS_DRIVEN) {
+                var ratio = Math.min(1, Math.max(0, window.scrollY / max));
+                fill.style.transform = 'scaleX(' + ratio + ')';
+            }
             ticking = false;
         }
         function onScroll() {
@@ -160,7 +246,13 @@
                 ticking = true;
             }
         }
-        window.addEventListener('scroll', onScroll, { passive: true });
+        // The scrollability check (max <= 0) still has to run on resize and after
+        // accordion expansion — the CSS timeline cannot express "hide the bar on a
+        // page that doesn't scroll". But the per-frame scroll listener is only
+        // needed when JS owns the fill.
+        if (!CSS_DRIVEN) {
+            window.addEventListener('scroll', onScroll, { passive: true });
+        }
         window.addEventListener('resize', onScroll, { passive: true });
         // Re-evaluate height after accordion expansion or other DOM mutations
         // by hooking into the click handlers practice-features.js wires up.
