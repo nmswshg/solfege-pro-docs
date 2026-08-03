@@ -25,6 +25,8 @@ const { test, expect } = require('@playwright/test');
 const PAGES = [
     '/',
     '/start-here/',
+    '/support/',
+    '/privacy/',
     '/guides/interval-training/',
     '/guides/chord-function-curriculum/',
     '/guides/ear-training-progressions/',

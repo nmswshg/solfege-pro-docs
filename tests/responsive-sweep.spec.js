@@ -39,6 +39,9 @@ const PAGES = [
     // entry / top
     '/',
     '/start-here/',
+    // operational pages (ASC support/privacy URLs — added 2026-08-03)
+    '/support/',
+    '/privacy/',
     // manual/ — in-app help (per-training setting guides)
     '/manual/',
     '/manual/chord/',
