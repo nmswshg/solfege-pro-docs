@@ -42,6 +42,10 @@ const PAGES = [
     // operational pages (ASC support/privacy URLs — added 2026-08-03)
     '/support/',
     '/privacy/',
+    // operational pages batch 2 (M132-109 P2 — added 2026-08-03)
+    '/pricing/',
+    '/faq/',
+    '/release-history/',
     // manual/ — in-app help (per-training setting guides)
     '/manual/',
     '/manual/chord/',
