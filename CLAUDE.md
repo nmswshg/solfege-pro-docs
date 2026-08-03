@@ -133,7 +133,11 @@ Global にインストール済みの skill が auto-invoke される可能性�
 
 ## Pricing / Branding constraints
 
-- 自社アプリ Solfege PRO の価格は常に「月額 980 円」と明記。「App Store で要確認」のような曖昧表現禁止
+- 自社アプリ Solfege PRO の価格は**ページ言語のリンク先ストアフロントの実価格**を明記
+  （2026-08-03 改定: ja=月額980円 / en=$9.99/month (US) / fr・de=9,99 €。正本は
+  iOS リポの `store-catalog-truth-*.md`、サイト側の編集点は `data/prices.json` のみ）。
+  「App Store で要確認」のような曖昧表現禁止。旧ルール「常に月額980円」は en/fr/de
+  ページで実請求額と乖離した円表記を生んでいたため廃止
 - **無料トライアル文言は禁止（2026-07-25〜）**: 月額の introductory offer は 2026-07-07 に恒久廃止済み（アプリ側 `.claude/skills/storekit-safety/SKILL.md` に記録、オーナー指示）。「1 週間無料トライアル」等をサイトに書くと虚偽表示（Guideline 2.3.1 リスク）。ASC でオファーが復活した場合のみ `data/prices.json` の `trial` を復元しこの行を更新する
 - "Berklee" / "バークリー" は user-facing コンテンツで一切禁止
 - デザインは既存ブランド（gold #D4AF37 + dark + Noto Sans JP）を尊重。glassmorphism / 多色 / 装飾的 SVG アニメ等の「AI 風デザイン」追加禁止

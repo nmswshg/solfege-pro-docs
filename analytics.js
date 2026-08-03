@@ -302,7 +302,11 @@
     // click-through. Content-based detection (no markup change required).
     function setupPricingViewTracking() {
         if (!('IntersectionObserver' in window)) return;
-        var matcher = /(?:980\s*円|JPY\s*980|980\s*JPY)/;
+        // Must match the price strings of ALL locales (data/prices.json):
+        // ja 「月額 980 円」 / en "$9.99/month" / fr・de "9,99 €". The old
+        // yen-only matcher meant pricing_view never fired on en/fr/de pages
+        // (fixed 2026-08-03, M132-109 audit).
+        var matcher = /(?:980\s*円|JPY\s*980|980\s*JPY|\$9\.99|9,99\s*€)/;
         var candidates = [];
         document.querySelectorAll('p').forEach(function(p) {
             var text = (p.textContent || '');
