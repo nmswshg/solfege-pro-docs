@@ -51,6 +51,18 @@ const LANGS_VARIANT = ['en', 'fr', 'de'];          // ja is the source-language 
 const OG_LOCALE = { ja: 'ja_JP', en: 'en_US', fr: 'fr_FR', de: 'de_DE' };
 const APP_STORE_LOCALE = { ja: 'jp', en: 'us', fr: 'fr', de: 'de' };
 
+// ---- App Store campaign attribution (pt / ct / mt) ----------------------
+// Every App Store href in generated OUTPUT html gets Apple campaign params
+// appended at build time (?pt=...&ct=...&mt=8). Source files under src/
+// stay param-free; the ct section is derived from the OUTPUT file path.
+// APP_STORE_PT is Apple's provider token — a PUBLIC value that appears in
+// marketing URLs (not a secret). Rotate it here, in this one constant.
+// ct naming is FIXED by the iOS repo's campaign ledger (musicman-tool-kit
+// .claude analytics docs): web_home / web_start / web_guides / web_manual /
+// web_practice / web_support. Do NOT invent new ct values here.
+const APP_STORE_PT = '6749158383';
+const APP_STORE_MT = '8';
+
 const SRC_DIR = 'src';
 const PRICES_PATH = 'data/prices.json';
 const PRICES_FALLBACK = 'data/prices.fallback.json';
@@ -818,6 +830,51 @@ function expandIncludes(html) {
     });
 }
 
+// --------------------------------------------------------------------
+// App Store link tagging (campaign attribution)
+// --------------------------------------------------------------------
+
+/**
+ * Derive the Apple campaign token (ct) from an OUTPUT file path
+ * (repo-root-relative, e.g. 'en/guides/foo/index.html'). The language
+ * prefix is irrelevant to the section, so strip it first.
+ */
+function appStoreCtForOutput(outPath) {
+    const p = outPath.replace(/^(en|fr|de)\//, '');
+    if (p.startsWith('start-here/')) return 'web_start';
+    if (p.startsWith('guides/')) return 'web_guides';
+    if (p.startsWith('manual/')) return 'web_manual';
+    if (p.startsWith('practice/')) return 'web_practice';
+    if (p.startsWith('support/') || p.startsWith('privacy/')) return 'web_support';
+    return 'web_home'; // root index pages (and 404-class pages)
+}
+
+const appStoreTagStats = { tagged: 0, skipped: 0 };
+
+/**
+ * Append ?pt=<provider>&ct=<section>&mt=8 to every App Store href
+ * (any storefront) in an output HTML string. Only touches href
+ * attributes — JSON-LD `sameAs` etc. stay canonical/param-free. A link
+ * that already carries query params (unexpected: sources are param-free)
+ * is left unchanged with a warning.
+ */
+function tagAppStoreLinks(html, outPath) {
+    const ct = appStoreCtForOutput(outPath);
+    const params = `?pt=${APP_STORE_PT}&amp;ct=${ct}&amp;mt=${APP_STORE_MT}`;
+    return html.replace(
+        /href="(https:\/\/apps\.apple\.com\/[a-z]{2}\/app\/[^"]*)"/g,
+        (m, url) => {
+            if (url.includes('?')) {
+                console.warn(`[appstore] WARN: link already has query params, left unchanged in ${outPath}: ${url}`);
+                appStoreTagStats.skipped++;
+                return m;
+            }
+            appStoreTagStats.tagged++;
+            return `href="${url}${params}"`;
+        },
+    );
+}
+
 function processSource(srcRelPath) {
     const srcFsPath = path.join(SRC_DIR, srcRelPath);
     let raw = fs.readFileSync(srcFsPath, 'utf8');
@@ -838,9 +895,10 @@ function processSource(srcRelPath) {
 
     // Generate all four language outputs.
     for (const lang of LANGS_ALL) {
+        const outPath = srcPathToOutputPath(srcRelPath, lang);
         let out = transformToLang(raw, srcRelPath, lang);
         out = applyPageMetadata(out, srcRelPath, lang);
-        const outPath = srcPathToOutputPath(srcRelPath, lang);
+        out = tagAppStoreLinks(out, outPath);
         ensureDir(outPath);
         fs.writeFileSync(outPath, out, 'utf8');
     }
@@ -959,6 +1017,8 @@ function main() {
         // 2. Build the new directory structure.
         console.log(`Building ${sources.length} source(s) × 4 langs = ${sources.length * 4} outputs.`);
         for (const src of sources) processSource(src);
+        console.log(`[appstore] tagged ${appStoreTagStats.tagged} link(s) with pt/ct/mt`
+            + (appStoreTagStats.skipped ? ` (${appStoreTagStats.skipped} left unchanged — pre-existing query params)` : ''));
 
         // 3. Wallpaper old URL paths with redirect stubs (idempotent).
         generateRedirectStubs(allSources);
