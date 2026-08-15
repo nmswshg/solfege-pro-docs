@@ -273,7 +273,7 @@
             
         </p>
         <div class="page-header__meta">
-            <span class="page-header__badge">8 Trainings</span>
+            <span class="page-header__badge">9 Trainings</span>
         </div>
     </header>
 
@@ -323,6 +323,8 @@
             All Trainings
         </h2>
 
+        <p style="font-size:14px; color:var(--text-secondary); line-height:1.7;">All nine trainings below are available in the app. A card's publication status refers only to whether its detailed reference article is available on this site.</p>
+
         <div class="training-grid">
 
             <a href="/practice/training-menu/interval/" class="training-card">
@@ -346,7 +348,7 @@
                 </div>
                 <div class="training-card__effect">Hearing harmony</div>
                 <div class="training-card__desc">Identifying chord qualities by ear, from triads to extensions — the basis for transcription and arrangement.</div>
-                <div class="training-card__cta">Read full reference →<span class="training-card__status">Coming soon</span></div>
+                <div class="training-card__cta"><span class="training-card__status">Reference guide in preparation</span></div>
             </div>
 
             <div class="training-card training-card--coming" aria-disabled="true" style="opacity:0.6; pointer-events:none;">
@@ -358,7 +360,7 @@
                 </div>
                 <div class="training-card__effect">Tonal & modal sense</div>
                 <div class="training-card__desc">Distinguishing major / minor / church modes / pentatonic — foundational for improvisation.</div>
-                <div class="training-card__cta">Read full reference →<span class="training-card__status">Coming soon</span></div>
+                <div class="training-card__cta"><span class="training-card__status">Reference guide in preparation</span></div>
             </div>
 
             <div class="training-card training-card--coming" aria-disabled="true" style="opacity:0.6; pointer-events:none;">
@@ -370,7 +372,7 @@
                 </div>
                 <div class="training-card__effect">Hearing harmonic motion</div>
                 <div class="training-card__desc">Tracking T / SD / D movement by ear — read the structure of a whole song.</div>
-                <div class="training-card__cta">Read full reference →<span class="training-card__status">Coming soon</span></div>
+                <div class="training-card__cta"><span class="training-card__status">Reference guide in preparation</span></div>
             </div>
 
             <div class="training-card training-card--coming" aria-disabled="true" style="opacity:0.6; pointer-events:none;">
@@ -382,7 +384,7 @@
                 </div>
                 <div class="training-card__effect">Timing accuracy & consistency</div>
                 <div class="training-card__desc">Per-millisecond hit measurement, surfacing rushing / dragging / inconsistency — the foundation of ensemble playing.</div>
-                <div class="training-card__cta">Read full reference →<span class="training-card__status">Coming soon</span></div>
+                <div class="training-card__cta"><span class="training-card__status">Reference guide in preparation</span></div>
             </div>
 
             <div class="training-card training-card--coming" aria-disabled="true" style="opacity:0.6; pointer-events:none;">
@@ -394,7 +396,7 @@
                 </div>
                 <div class="training-card__effect">Sight-reading rhythm notation</div>
                 <div class="training-card__desc">Reading rhythm notation and tapping it as written — bridges rhythm skill and notation reading.</div>
-                <div class="training-card__cta">Read full reference →<span class="training-card__status">Coming soon</span></div>
+                <div class="training-card__cta"><span class="training-card__status">Reference guide in preparation</span></div>
             </div>
 
             <div class="training-card training-card--coming" aria-disabled="true" style="opacity:0.6; pointer-events:none;">
@@ -406,7 +408,7 @@
                 </div>
                 <div class="training-card__effect">Fast note identification</div>
                 <div class="training-card__desc">Reading staff notation reflexively — built up progressively via the landmark method.</div>
-                <div class="training-card__cta">Read full reference →<span class="training-card__status">Coming soon</span></div>
+                <div class="training-card__cta"><span class="training-card__status">Reference guide in preparation</span></div>
             </div>
 
             <div class="training-card training-card--coming" aria-disabled="true" style="opacity:0.6; pointer-events:none;">
@@ -418,7 +420,19 @@
                 </div>
                 <div class="training-card__effect">Guitar/bass note mastery</div>
                 <div class="training-card__desc">Translating instantly between string/fret position and note name — bridges ear and instrument.</div>
-                <div class="training-card__cta">Read full reference →<span class="training-card__status">Coming soon</span></div>
+                <div class="training-card__cta"><span class="training-card__status">Reference guide in preparation</span></div>
+            </div>
+
+            <div class="training-card training-card--coming" aria-disabled="true" style="opacity:0.6; pointer-events:none;">
+                <div class="training-card__head">
+                    <span class="training-card__icon"><svg class="icon" aria-hidden="true"><use href="/assets/icons.svg#icon-microphone"></use></svg></span>
+                    <div>
+                        <div class="training-card__title">Vocal Solfege</div>
+                    </div>
+                </div>
+                <div class="training-card__effect">Connecting pitch and rhythm through voice</div>
+                <div class="training-card__desc">Sing from notation while pitch and rhythm are measured in real time — turning inner hearing into voice.</div>
+                <div class="training-card__cta"><span class="training-card__status">Reference guide in preparation</span></div>
             </div>
 
         </div>
@@ -430,7 +444,7 @@
         </h2>
         <p style="font-size:14px; color:var(--text-secondary); line-height:1.7;">
             
-            The eight trainings are not independent. <strong>Downstream trainings</strong> assume the skills built <strong>upstream</strong>. Following the flow improves transfer to real-world playing.
+            The nine trainings are not independent. <strong>Downstream trainings</strong> assume the skills built <strong>upstream</strong>. Following the flow improves transfer to real-world playing.
             
             
         </p>
@@ -448,6 +462,7 @@ flowchart LR
     RhythmSR["Rhythm Sight<br/>Reading"]
     SightRead["Sight<br/>Reading"]
     Fretboard["Fretboard"]
+    Vocal["Vocal<br/>Solfege"]
 
     Interval --> Chord
     Interval --> Scale
@@ -457,6 +472,9 @@ flowchart LR
     Rhythm --> RhythmSR
     Fretboard <--> Interval
     SightRead -.->|"applies to"| Progression
+    Interval --> Vocal
+    Rhythm --> Vocal
+    SightRead --> Vocal
 
     style Interval     fill:#2A2A30,stroke:#D4AF37,color:#F5F5F0
     style Chord        fill:#2A2A30,stroke:#60A5FA,color:#F5F5F0
@@ -466,6 +484,7 @@ flowchart LR
     style RhythmSR     fill:#2A2A30,stroke:#4ADE80,color:#F5F5F0
     style SightRead    fill:#2A2A30,stroke:#FBBF24,color:#F5F5F0
     style Fretboard    fill:#2A2A30,stroke:#D4AF37,color:#F5F5F0
+    style Vocal        fill:#2A2A30,stroke:#C084FC,color:#F5F5F0
                 </pre>
             </div>
             
@@ -487,14 +506,14 @@ flowchart LR
         </h2>
         <p style="font-size:14px; color:var(--text-secondary); line-height:1.7;">
             
-            Pick by your role. Focus on <strong>one or two</strong> trainings at a time, not all eight in parallel.
+            Pick by your role. Focus on <strong>one or two</strong> trainings at a time, not all nine in parallel.
             
             
         </p>
         <div class="howto-list" style="grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));">
             <div>
                 <div class="howto-list__title">🎤 Vocal / Chorus</div>
-                <div class="howto-list__desc">Interval → Chord (focus on 3rds/6ths)</div>
+                <div class="howto-list__desc">Interval → Vocal Solfege → Chord (focus on 3rds/6ths)</div>
             </div>
             <div>
                 <div class="howto-list__title">🎸 Guitar / Bass</div>
