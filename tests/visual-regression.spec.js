@@ -28,6 +28,8 @@ const PAGES = [
     '/support/',
     '/privacy/',
     '/pricing/',
+    '/features/',
+    '/free-vs-pro/',
     '/faq/',
     '/release-history/',
     '/guides/interval-training/',

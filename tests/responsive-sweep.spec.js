@@ -38,7 +38,11 @@ const PAGES = [
     '/practice/features/',
     // entry / top
     '/',
+    '/app/',
     '/start-here/',
+    // product pages (feature list + free/Pro comparison grids)
+    '/features/',
+    '/free-vs-pro/',
     // operational pages (ASC support/privacy URLs — added 2026-08-03)
     '/support/',
     '/privacy/',

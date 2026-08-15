@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="fr"
+      data-title-ja="FoundationとPROの違い | ソルフェージュPRO"
+      data-title-en="Foundation vs Pro | Solfege PRO"
+      data-title-fr="Foundation ou Pro | Solfege PRO"
+      data-title-de="Foundation oder Pro | Solfege PRO">
+<head>
+    <meta charset="UTF-8">
+    <meta name="robots" content="index, follow">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#1A1A1E">
+    <title>Foundation ou Pro | Solfege PRO</title>
+    <meta name="description" content="Comparez Foundation et Pro dans Solfege PRO : neuf entraînements, 10 crédits communs, pratique fondamentale illimitée et abonnements mensuel ou annuel.">
+
+    <link rel="canonical" href="https://solfegepro.com/fr/free-vs-pro/">
+    <link rel="alternate" hreflang="ja" href="https://solfegepro.com/free-vs-pro/">
+    <link rel="alternate" hreflang="en" href="https://solfegepro.com/en/free-vs-pro/">
+    <link rel="alternate" hreflang="fr" href="https://solfegepro.com/fr/free-vs-pro/">
+    <link rel="alternate" hreflang="de" href="https://solfegepro.com/de/free-vs-pro/">
+    <link rel="alternate" hreflang="x-default" href="https://solfegepro.com/free-vs-pro/">
+<link rel="icon" href="/favicon.ico" sizes="any">
+    <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+    <meta property="og:title" content="Foundation ou Pro">
+    <meta property="og:description" content="Comparez Foundation et Pro dans Solfege PRO : neuf entraînements, 10 crédits communs, pratique fondamentale illimitée et abonnements mensuel ou annuel.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://solfegepro.com/fr/free-vs-pro/">
+    <meta property="og:site_name" content="Solfege PRO">
+    <meta property="og:image" content="https://solfegepro.com/og-image.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Solfege PRO">
+    <meta property="og:locale" content="fr_FR">
+    <meta property="og:locale:alternate" content="ja_JP">
+    <meta property="og:locale:alternate" content="en_US">
+    <meta property="og:locale:alternate" content="de_DE">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Foundation ou Pro">
+    <meta name="twitter:description" content="Comparez Foundation et Pro dans Solfege PRO : neuf entraînements, 10 crédits communs, pratique fondamentale illimitée et abonnements mensuel ou annuel.">
+    <meta name="twitter:image" content="https://solfegepro.com/og-image.png">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap"></noscript>
+
+    <link rel="stylesheet" href="/style.css?v=21">
+    <link rel="stylesheet" href="/guides/article.css?v=14">
+    <style>
+        /* Operational pages use plain in-body anchors (guides only use
+           classed CTA links), which otherwise fall back to UA blue on the
+           dark background (2026-08-03 visual review). */
+        .article-body a:not([class]) {
+            color: var(--primary);
+            text-decoration: underline;
+            text-underline-offset: 3px;
+        }
+        .article-body a:not([class]):hover { opacity: 0.85; }
+
+        /* Comparison grid.
+           Hard rule #1: grid with minmax(0, 1fr) columns — never fixed-px
+           flex cells, and no overflow-x scroller. Cells stay terse so all
+           three columns fit at 375px; the long explanations live in the
+           prose below the table. */
+        .compare {
+            border: 1px solid var(--surface-light);
+            border-radius: var(--radius-lg);
+            margin: var(--space-lg) 0;
+            overflow: hidden;
+        }
+        .compare__row {
+            display: grid;
+            grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr) minmax(0, 1fr);
+        }
+        .compare__row + .compare__row { border-top: 1px solid var(--surface-light); }
+        .compare__cell {
+            padding: var(--space-md) var(--space-sm);
+            font-size: 14px;
+            line-height: 1.7;
+            overflow-wrap: anywhere;
+        }
+        .compare__cell--label {
+            padding-left: var(--space-md);
+            font-weight: 500;
+        }
+        .compare__cell--free,
+        .compare__cell--pro {
+            text-align: center;
+            border-left: 1px solid var(--surface-light);
+        }
+        .compare__row--head .compare__cell {
+            background: var(--surface-light);
+            color: var(--text-secondary);
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+        .compare__row--head .compare__cell--pro { color: var(--primary); }
+        .compare__mark {
+            display: block;
+            font-weight: 700;
+        }
+        .compare__mark--yes { color: var(--success); }
+        .compare__mark--limited { color: var(--warning); font-size: 13px; }
+        .compare__mark--no { color: var(--text-secondary); }
+        .compare__note {
+            display: block;
+            font-size: 12px;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        /* Per-module table for the Free Foundation preview: two columns,
+           each row a self-contained container so a collapse can never
+           separate a training name from the limits that describe it. */
+        .tiers {
+            border: 1px solid var(--surface-light);
+            border-radius: var(--radius-lg);
+            margin: var(--space-lg) 0;
+            overflow: hidden;
+        }
+        .tiers__row {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr) minmax(0, 1.2fr);
+        }
+        .tiers__row + .tiers__row { border-top: 1px solid var(--surface-light); }
+        .tiers__cell {
+            padding: var(--space-md) var(--space-sm);
+            font-size: 13px;
+            line-height: 1.7;
+            overflow-wrap: anywhere;
+        }
+        .tiers__cell:first-child { padding-left: var(--space-md); font-weight: 500; }
+        .tiers__cell + .tiers__cell { border-left: 1px solid var(--surface-light); }
+        .tiers__row--head .tiers__cell {
+            background: var(--surface-light);
+            color: var(--text-secondary);
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        @media (max-width: 600px) {
+            .compare__cell { font-size: 13px; padding: var(--space-sm) 6px; }
+            .compare__cell--label { padding-left: var(--space-sm); }
+            .compare__note { font-size: 11px; }
+            .tiers__cell { font-size: 12px; padding: var(--space-sm) 6px; }
+            .tiers__cell:first-child { padding-left: var(--space-sm); }
+            /* Three narrow columns force German training names to hyphenate
+               ("Akkorderken-nung"). Give the name its own full-width line
+               INSIDE the same row container — the row still holds the name
+               and both limit descriptions together, so a collapse can never
+               orphan a description from the training it belongs to. */
+            .tiers__row { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
+            .tiers__cell:first-child {
+                grid-column: 1 / -1;
+                color: var(--primary);
+                border-bottom: 1px solid var(--surface-light);
+            }
+            .tiers__cell + .tiers__cell { border-left: none; }
+            .tiers__cell:nth-child(3) { border-left: 1px solid var(--surface-light); }
+        }
+    </style>
+</head>
+<body>
+    <nav class="nav">
+        <div class="nav__container">
+            <a href="/" class="nav__logo">
+                <img src="/AppIcon.png" alt="Solfege PRO" class="nav__logo-icon" width="32" height="32">
+                <span class="nav__logo-text">Solfege PRO</span>
+            </a>
+            <ul class="nav__list">
+                <li><a href="/" class="nav__link">Guide d'entraînement</a></li>
+                <li><a href="/guides/" class="nav__link">Guides</a></li>
+                <li><a href="/start-here/" class="nav__link">Par où commencer ?</a></li>
+                <li><a href="/manual/" class="nav__link">Manuel</a></li>
+            </ul>
+            <div class="nav__settings">
+                <button class="settings-btn" id="lang-toggle" title="Toggle language">
+                    <span id="lang-text">EN</span>
+                </button>
+                <button class="hamburger-btn" id="hamburger-btn" aria-label="Menu" aria-expanded="false" aria-controls="drawer">
+                    <span class="hamburger-btn__line"></span>
+                    <span class="hamburger-btn__line"></span>
+                    <span class="hamburger-btn__line"></span>
+                </button>
+            </div>
+        </div>
+    </nav>
+    <!-- Mobile drawer (hidden on desktop) -->
+    <div class="drawer-overlay" id="drawer-overlay"></div>
+    <aside class="drawer" id="drawer" aria-label="Mobile menu" aria-hidden="true" inert>
+        <div class="drawer__header">
+            <span class="drawer__title">Menu</span>
+            <button class="drawer__close" id="drawer-close" aria-label="Close menu">×</button>
+        </div>
+        <ul class="drawer__list">
+            <li><a href="/" class="drawer__link">Guide d'entraînement</a></li>
+            <li><a href="/guides/" class="drawer__link">Guides</a></li>
+            <li><a href="/start-here/" class="drawer__link">Par où commencer ?</a></li>
+            <li><a href="/manual/" class="drawer__link">Manuel</a></li>
+        </ul>
+    </aside>
+
+    <!-- Page Header -->
+    <header class="page-header">
+        <h1 class="page-header__title">Foundation ou Pro</h1>
+        <p class="page-header__subtitle">Comparez les bases accessibles après 10 crédits avec la liberté offerte par Pro.</p>
+    </header>
+
+    <main class="article-body">
+
+        <h2 id="free-allowance">Ce que donne la version gratuite</h2>
+
+        <p>
+            
+            
+            L'app se télécharge gratuitement et permet d'essayer <strong>les neuf entraînements</strong> sans carte bancaire. Les <strong>10 premiers crédits sont communs à tous les entraînements</strong> et donnent accès aux mêmes réglages détaillés que Pro.
+            
+        </p>
+
+        <p>
+            
+            
+            Les 10 crédits n'expirent pas et ne constituent pas un essai limité dans le temps. Une fois utilisés, chaque entraînement reste accessible <strong>sans limite de sessions avec les réglages Foundation</strong> consacrés aux bases.
+            
+        </p>
+
+        <h2 id="table">Comparatif des fonctionnalités</h2>
+
+        <div class="compare">
+            <div class="compare__row compare__row--head">
+                <div class="compare__cell compare__cell--label">Fonctionnalité</div>
+                <div class="compare__cell compare__cell--free">Gratuit / Foundation</div>
+                <div class="compare__cell compare__cell--pro">PRO</div>
+            </div>
+
+            <div class="compare__row">
+                <div class="compare__cell compare__cell--label">Les 9 entraînements</div>
+                <div class="compare__cell compare__cell--free">
+                    <span class="compare__mark compare__mark--yes">✓</span>
+                    <span class="compare__note">tous</span>
+                </div>
+                <div class="compare__cell compare__cell--pro"><span class="compare__mark compare__mark--yes">✓</span></div>
+            </div>
+
+            <div class="compare__row">
+                <div class="compare__cell compare__cell--label">Sessions d'entraînement</div>
+                <div class="compare__cell compare__cell--free">
+                    <span class="compare__mark compare__mark--yes">✓</span>
+                    <span class="compare__note">Foundation illimité après 10 crédits</span>
+                </div>
+                <div class="compare__cell compare__cell--pro">
+                    <span class="compare__mark compare__mark--yes">✓</span>
+                    <span class="compare__note">illimité</span>
+                </div>
+            </div>
+
+            <div class="compare__row">
+                <div class="compare__cell compare__cell--label">Tous les niveaux, sélections personnalisées, mode point faible, préréglages</div>
+                <div class="compare__cell compare__cell--free">
+                    <span class="compare__mark compare__mark--limited">À essayer</span>
+                    <span class="compare__note">10 premiers crédits</span>
+                </div>
+                <div class="compare__cell compare__cell--pro"><span class="compare__mark compare__mark--yes">✓</span></div>
+            </div>
+
+            <div class="compare__row">
+                <div class="compare__cell compare__cell--label">Métronome</div>
+                <div class="compare__cell compare__cell--free">
+                    <span class="compare__mark compare__mark--yes">✓</span>
+                    <span class="compare__note">sans limite</span>
+                </div>
+                <div class="compare__cell compare__cell--pro"><span class="compare__mark compare__mark--yes">✓</span></div>
+            </div>
+
+            <div class="compare__row">
+                <div class="compare__cell compare__cell--label">Historique, statistiques, analyse d'erreurs</div>
+                <div class="compare__cell compare__cell--free"><span class="compare__mark compare__mark--yes">✓</span></div>
+                <div class="compare__cell compare__cell--pro"><span class="compare__mark compare__mark--yes">✓</span></div>
+            </div>
+
+            <div class="compare__row">
+                <div class="compare__cell compare__cell--label">Rapport hebdomadaire, calendrier, analyse des faiblesses</div>
+                <div class="compare__cell compare__cell--free"><span class="compare__mark compare__mark--yes">✓</span></div>
+                <div class="compare__cell compare__cell--pro"><span class="compare__mark compare__mark--yes">✓</span></div>
+            </div>
+
+            <div class="compare__row">
+                <div class="compare__cell compare__cell--label">Menu recommandé de la semaine</div>
+                <div class="compare__cell compare__cell--free">
+                    <span class="compare__mark compare__mark--limited">Limité</span>
+                    <span class="compare__note">1 seul</span>
+                </div>
+                <div class="compare__cell compare__cell--pro">
+                    <span class="compare__mark compare__mark--yes">✓</span>
+                    <span class="compare__note">tous</span>
+                </div>
+            </div>
+
+            <div class="compare__row">
+                <div class="compare__cell compare__cell--label">Création de plans</div>
+                <div class="compare__cell compare__cell--free">
+                    <span class="compare__mark compare__mark--limited">Limité</span>
+                    <span class="compare__note">3 maximum</span>
+                </div>
+                <div class="compare__cell compare__cell--pro">
+                    <span class="compare__mark compare__mark--yes">✓</span>
+                    <span class="compare__note">illimité</span>
+                </div>
+            </div>
+
+            <div class="compare__row">
+                <div class="compare__cell compare__cell--label">Widgets, écran verrouillé, centre de contrôle</div>
+                <div class="compare__cell compare__cell--free"><span class="compare__mark compare__mark--yes">✓</span></div>
+                <div class="compare__cell compare__cell--pro"><span class="compare__mark compare__mark--yes">✓</span></div>
+            </div>
+
+            <div class="compare__row">
+                <div class="compare__cell compare__cell--label">Tutoriels par écran et aide intégrée</div>
+                <div class="compare__cell compare__cell--free"><span class="compare__mark compare__mark--yes">✓</span></div>
+                <div class="compare__cell compare__cell--pro"><span class="compare__mark compare__mark--yes">✓</span></div>
+            </div>
+
+            <div class="compare__row">
+                <div class="compare__cell compare__cell--label">Paiement</div>
+                <div class="compare__cell compare__cell--free">
+                    <span class="compare__mark compare__mark--no">Aucun</span>
+                    <span class="compare__note">sans carte</span>
+                </div>
+                <div class="compare__cell compare__cell--pro">
+                    <span class="compare__note">mensuel / annuel</span>
+                </div>
+            </div>
+        </div>
+
+        <p>
+            
+            
+            Avec Foundation, tout exercice recommandé contenant des réglages Pro est automatiquement converti en réglages Foundation au démarrage. Le plan enregistré reste intact et retrouve ses réglages d'origine avec Pro.
+            
+        </p>
+
+        <h2 id="pro">Choisir une formule Pro</h2>
+
+        <p>
+            
+            
+            Les formules Pro actuellement disponibles sont les <strong>abonnements mensuel et annuel</strong>. Les prix à jour de votre région figurent sur la <a href="/pricing/">page Tarifs</a> et sur l'écran d'achat dans l'app.
+            
+        </p>
+
+        <p>
+            
+            
+            Achat, résiliation et restauration passent tous par l'App Store (votre identifiant Apple). Les étapes sont sur la page <a href="/support/">Assistance</a>.
+            
+        </p>
+
+        <h2 id="foundation">Les bases qui restent accessibles avec Foundation</h2>
+
+        <p>
+            
+            
+            Une fois les 10 crédits utilisés, les neuf entraînements restent accessibles sans limite de sessions avec les réglages Foundation. Pro permet de choisir les niveaux avancés, les contenus, les modes de lecture, le nombre de questions, les modes ciblant les points faibles, etc.
+            
+        </p>
+
+        <div class="tiers">
+            <div class="tiers__row tiers__row--head">
+                <div class="tiers__cell">Entraînement</div>
+                <div class="tiers__cell">Réglages Foundation</div>
+                <div class="tiers__cell">Débloqué par Pro</div>
+            </div>
+
+            <div class="tiers__row">
+                <div class="tiers__cell">Reconnaissance d'intervalles</div>
+                <div class="tiers__cell">Débutant, lecture ascendante, note de départ fixe, avance manuelle, 6 intervalles</div>
+                <div class="tiers__cell">Difficulté, intervalles à travailler, mode de lecture, vitesse de lecture, enchaînement, mode d'entraînement</div>
+            </div>
+
+            <div class="tiers__row">
+                <div class="tiers__cell">Reconnaissance d'accords</div>
+                <div class="tiers__cell">Triades de base, sans renversements, accords plaqués ou arpégés, lecture lente, avance manuelle</div>
+                <div class="tiers__cell">Difficulté, accords, renversements, type de question, vitesse, lecture aléatoire, avance automatique, mode</div>
+            </div>
+
+            <div class="tiers__row">
+                <div class="tiers__cell">Reconnaissance de gammes</div>
+                <div class="tiers__cell">Débutant (majeur/mineur), vitesse normale, avance manuelle</div>
+                <div class="tiers__cell">Difficulté, gammes à travailler, style de mineur mélodique, mode d'entraînement, enchaînement</div>
+            </div>
+
+            <div class="tiers__row">
+                <div class="tiers__cell">Progressions d'accords</div>
+                <div class="tiers__cell">Fonctions de base (T/SD/D), tonalités majeures, 5 questions, avance manuelle</div>
+                <div class="tiers__cell">Difficulté, tonalités mineures, variété des degrés, nombre de questions, mode, avance automatique</div>
+            </div>
+
+            <div class="tiers__row">
+                <div class="tiers__cell">Lecture à vue</div>
+                <div class="tiers__cell">Débutant, clé de sol, do majeur, vitesse normale, sans lignes supplémentaires, durées non affichées/notées</div>
+                <div class="tiers__cell">Difficulté, clés, tonalités, altérations, lignes supplémentaires, durées, vitesse, mode</div>
+            </div>
+
+            <div class="tiers__row">
+                <div class="tiers__cell">Entraînement Manche</div>
+                <div class="tiers__cell">Note → position, notes naturelles, cases 0–5, accordage standard, 5 questions</div>
+                <div class="tiers__cell">Les 6 modes, accordages, notes proposées, plage de cases, réglages de focus, préréglages</div>
+            </div>
+
+            <div class="tiers__row">
+                <div class="tiers__cell">Formation rythmique</div>
+                <div class="tiers__cell">4 mesures, 80 BPM, débutant ; saisie par tap ou microphone</div>
+                <div class="tiers__cell">Nombre de mesures, tempo, difficulté, chiffrage, subdivision, densité de clic, préréglages</div>
+            </div>
+
+            <div class="tiers__row">
+                <div class="tiers__cell">Lecture rythmique</div>
+                <div class="tiers__cell">Intermédiaire, 3 motifs fondamentaux (B-001 à B-003), 80 BPM</div>
+                <div class="tiers__cell">Source des exercices (génération personnalisée), les 24 motifs, tempo, sévérité</div>
+            </div>
+
+            <div class="tiers__row">
+                <div class="tiers__cell">Solfège vocal</div>
+                <div class="tiers__cell">Débutant, do majeur, 8 mesures, pause toutes les 4 mesures, 60–120 BPM ; échauffement par défaut</div>
+                <div class="tiers__cell">Difficulté, tonalité, 8–64 mesures, fréquence des pauses, tessiture/portée, tous les réglages d'échauffement</div>
+            </div>
+        </div>
+
+        <p>
+            
+            
+            Voir aussi : <a href="/features/">Ce que vous pouvez faire</a> · <a href="/pricing/">Tarifs</a> · <a href="/faq/">FAQ</a> · <a href="/support/">Assistance</a>
+            
+        </p>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="article-footer">
+        <p class="article-footer__text">
+            &copy; 2026 Solfege PRO &mdash;
+            <a href="https://apps.apple.com/fr/app/id6756626617?pt=6749158383&amp;ct=web_home&amp;mt=8" class="article-footer__link">App Store</a>
+        </p>
+    </footer>
+    <script src="/bootstrap.js?v=7" defer></script>
+    <nav aria-label="Language" style="display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:0.5rem;padding:var(--space-lg) var(--space-md);border-top:1px solid var(--surface-light);font-size:13px">
+        <a href="/free-vs-pro/" hreflang="ja" style="color:var(--text-secondary);text-decoration:none">日本語</a>
+        <span aria-hidden="true" style="color:var(--surface-light)">·</span>
+        <a href="/en/free-vs-pro/" hreflang="en" style="color:var(--text-secondary);text-decoration:none">English</a>
+        <span aria-hidden="true" style="color:var(--surface-light)">·</span>
+        <span style="color:var(--primary);font-weight:600" aria-current="true">Français</span>
+        <span aria-hidden="true" style="color:var(--surface-light)">·</span>
+        <a href="/de/free-vs-pro/" hreflang="de" style="color:var(--text-secondary);text-decoration:none">Deutsch</a>
+    </nav>
+</body>
+</html>
