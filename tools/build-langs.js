@@ -50,6 +50,7 @@ const LANGS_ALL = ['ja', 'en', 'fr', 'de'];
 const LANGS_VARIANT = ['en', 'fr', 'de'];          // ja is the source-language baseline
 const OG_LOCALE = { ja: 'ja_JP', en: 'en_US', fr: 'fr_FR', de: 'de_DE' };
 const APP_STORE_LOCALE = { ja: 'jp', en: 'us', fr: 'fr', de: 'de' };
+const PRICE_CURRENCY = { ja: 'JPY', en: 'USD', fr: 'EUR', de: 'EUR' };
 
 // ---- App Store campaign attribution (pt / ct / mt) ----------------------
 // Every App Store href in generated OUTPUT html gets Apple campaign params
@@ -382,6 +383,21 @@ function localizeJsonLd(html, srcPath, lang) {
                 if (node.mainEntityOfPage && typeof node.mainEntityOfPage === 'object') node.mainEntityOfPage['@id'] = canonicalId;
             }
             if (type === 'Organization' && typeof node.name === 'string') node.name = brand;
+            if (type === 'WebSite') {
+                node.name = brand;
+                node.url = canonicalId;
+                node.inLanguage = lang;
+            }
+            if (type === 'SoftwareApplication') {
+                node.name = brand;
+                node.url = canonicalId;
+                node.inLanguage = lang;
+                node.downloadUrl = `https://apps.apple.com/${APP_STORE_LOCALE[lang]}/app/id6756626617`;
+                if (entry && entry.description && entry.description[lang]) node.description = entry.description[lang];
+                if (node.offers && typeof node.offers === 'object') {
+                    node.offers.priceCurrency = PRICE_CURRENCY[lang];
+                }
+            }
             for (const k of Object.keys(node)) {
                 const v = node[k];
                 if (Array.isArray(v)) v.forEach(visit);
@@ -446,6 +462,84 @@ function injectBreadcrumbJsonLd(html, srcPath, lang) {
 
 // Native language names for the on-page language switcher.
 const LANG_NATIVE = { ja: '日本語', en: 'English', fr: 'Français', de: 'Deutsch' };
+
+// Shared primary navigation. Source pages historically copied this markup,
+// which let old and new menus drift apart. The build now replaces every page's
+// desktop nav and mobile drawer from this single definition.
+const NAV_COPY = {
+    ja: { about: 'ソルフェージュPROとは？', training: 'トレーニング', guides: '練習ガイド', manual: 'マニュアル', menu: 'メニュー', close: 'メニューを閉じる', open: 'メニューを開く', language: '言語を選択', primary: 'メインメニュー' },
+    en: { about: 'About Solfege PRO', training: 'Trainings', guides: 'Practice Guides', manual: 'Manual', menu: 'Menu', close: 'Close menu', open: 'Open menu', language: 'Select language', primary: 'Main menu' },
+    fr: { about: 'Découvrir Solfege PRO', training: 'Entraînements', guides: 'Guides pratiques', manual: 'Manuel', menu: 'Menu', close: 'Fermer le menu', open: 'Ouvrir le menu', language: 'Choisir la langue', primary: 'Menu principal' },
+    de: { about: 'Über Solfege PRO', training: 'Trainings', guides: 'Übungsleitfäden', manual: 'Handbuch', menu: 'Menü', close: 'Menü schließen', open: 'Menü öffnen', language: 'Sprache wählen', primary: 'Hauptmenü' },
+};
+
+function localizedNavUrl(basePath, lang) {
+    const prefix = lang === 'ja' ? '' : `/${lang}`;
+    if (basePath === '/') return `${prefix}/`;
+    return `${prefix}${basePath}`;
+}
+
+function activeNavSection(srcPath) {
+    if (srcPath === 'index.html') return 'about';
+    if (srcPath === 'features.html' || srcPath === 'free-vs-pro.html' || srcPath === 'pricing.html') return 'training';
+    if (srcPath === 'manual/index.html' || srcPath.startsWith('manual/')) return 'manual';
+    if (srcPath === 'start-here.html' || srcPath === 'guides/index.html' || srcPath.startsWith('guides/') || srcPath === 'practice/index.html' || srcPath.startsWith('practice/')) return 'guides';
+    return null;
+}
+
+function buildSharedNavigation(srcPath, lang) {
+    const copy = NAV_COPY[lang];
+    const active = activeNavSection(srcPath);
+    const items = [
+        { key: 'about', path: '/', label: copy.about },
+        { key: 'training', path: '/features/', label: copy.training },
+        { key: 'guides', path: '/guides/', label: copy.guides },
+        { key: 'manual', path: '/manual/', label: copy.manual },
+    ];
+    const link = (item, className) => {
+        const isActive = active === item.key;
+        return `<a href="${localizedNavUrl(item.path, lang)}" class="${className}${isActive ? ' active' : ''}"${isActive ? ' aria-current="page"' : ''}>${item.label}</a>`;
+    };
+    const desktopItems = items.map((item) => `                <li>${link(item, 'nav__link')}</li>`).join('\n');
+    const drawerItems = items.map((item) => `            <li>${link(item, 'drawer__link')}</li>`).join('\n');
+    const homeUrl = localizedNavUrl('/', lang);
+    const brand = lang === 'ja' ? 'ソルフェージュPRO' : 'Solfege PRO';
+    const nav = `    <nav class="nav" aria-label="${copy.primary}">
+        <div class="nav__container">
+            <a href="${homeUrl}" class="nav__logo" aria-label="${brand}">
+                <img src="/AppIcon.png" alt="" class="nav__logo-icon" width="32" height="32">
+                <span class="nav__logo-text">${brand}</span>
+            </a>
+            <ul class="nav__list">
+${desktopItems}
+            </ul>
+            <div class="nav__settings">
+                <button class="settings-btn" id="lang-toggle" title="${copy.language}"><span id="lang-text">${lang.toUpperCase()}</span></button>
+                <button class="hamburger-btn" id="hamburger-btn" aria-label="${copy.open}" aria-expanded="false" aria-controls="drawer">
+                    <span class="hamburger-btn__line"></span><span class="hamburger-btn__line"></span><span class="hamburger-btn__line"></span>
+                </button>
+            </div>
+        </div>
+    </nav>`;
+    const drawer = `    <div class="drawer-overlay" id="drawer-overlay"></div>
+    <aside class="drawer" id="drawer" aria-label="${copy.menu}" aria-hidden="true" inert>
+        <div class="drawer__header">
+            <span class="drawer__title">${copy.menu}</span>
+            <button class="drawer__close" id="drawer-close" aria-label="${copy.close}">×</button>
+        </div>
+        <ul class="drawer__list">
+${drawerItems}
+        </ul>
+    </aside>`;
+    return { nav, drawer };
+}
+
+function applySharedNavigation(html, srcPath, lang) {
+    const shared = buildSharedNavigation(srcPath, lang);
+    let out = html.replace(/<nav class="nav"(?:\s[^>]*)?>[\s\S]*?<\/nav>/, shared.nav);
+    out = out.replace(/<div class="drawer-overlay" id="drawer-overlay"><\/div>\s*<aside class="drawer"[\s\S]*?<\/aside>/, shared.drawer);
+    return out;
+}
 
 // Build a small static language switcher: real <a href> links to every
 // language version of this page. Crucial for SEO — without it the en/fr/de
@@ -575,12 +669,20 @@ function transformToLang(html, srcPath, lang) {
     //     article). No-op for non-guide / index pages.
     out = injectBreadcrumbJsonLd(out, srcPath, lang);
 
+    // 12b. Replace copied legacy headers with the site-wide current menu.
+    out = applySharedNavigation(out, srcPath, lang);
+
     // 13. Static language switcher before </body>: crawlable internal links to
     //     each language version, so the en/fr/de variants are no longer
     //     reachable only via sitemap/hreflang.
     if (out.includes('</body>')) {
         out = out.replace('</body>', `${buildLangSwitch(srcPath, lang)}\n</body>`);
     }
+
+    // Removing a non-target language can leave indentation-only lines behind.
+    // Keep generated HTML free of trailing whitespace so release diffs and
+    // pre-commit checks remain deterministic.
+    out = out.replace(/^[ \t]+$/gm, '');
 
     return out;
 }
@@ -808,6 +910,26 @@ function generateRedirectStubs(allSources) {
     if (stubCount > 0) console.log(`[redirects] wrote ${stubCount} stub(s) at old URL paths`);
 }
 
+// `/app/` was the temporary LP location. The canonical product page is now
+// the localized site root. GitHub Pages cannot emit server-side 301s, so use
+// the strongest static-host-compatible redirect signals: noindex, canonical,
+// meta refresh, and location.replace. Keep both directory and legacy .html
+// forms working.
+function generateAppToRootRedirects() {
+    let count = 0;
+    for (const lang of LANGS_ALL) {
+        const target = srcPathToUrlPath('index.html', lang);
+        const directoryOutput = lang === 'ja' ? 'app/index.html' : `${lang}/app/index.html`;
+        const legacyOutput = lang === 'ja' ? 'app.html' : `app.${lang}.html`;
+        for (const output of [directoryOutput, legacyOutput]) {
+            ensureDir(output);
+            fs.writeFileSync(output, buildRedirectStub(target), 'utf8');
+            count++;
+        }
+    }
+    console.log(`[redirects] wrote ${count} app-to-root redirect(s)`);
+}
+
 // --------------------------------------------------------------------
 // Per-source processing
 // --------------------------------------------------------------------
@@ -1022,6 +1144,7 @@ function main() {
 
         // 3. Wallpaper old URL paths with redirect stubs (idempotent).
         generateRedirectStubs(allSources);
+        generateAppToRootRedirects();
     }
 
     // 4. Sitemap.

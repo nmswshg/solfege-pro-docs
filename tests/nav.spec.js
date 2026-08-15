@@ -2,13 +2,22 @@
 const { test, expect } = require('@playwright/test');
 
 const PAGES = [
-    { path: '/',                                    activeIdx: 0, name: 'TOP' },
+    { path: '/',                                activeIdx: 0, name: 'TOP' },
+    { path: '/features/',                       activeIdx: 1, name: 'features' },
+    { path: '/free-vs-pro/',                    activeIdx: 1, name: 'free-vs-pro' },
     { path: '/start-here/',                     activeIdx: 2, name: 'start-here' },
-    { path: '/guides/',                             activeIdx: 1, name: 'guides-index' },
-    { path: '/guides/groove-training/',         activeIdx: 1, name: 'guide-article' },
-    { path: '/practice/drums/',                 activeIdx: 0, name: 'practice' },
+    { path: '/guides/',                         activeIdx: 2, name: 'guides-index' },
+    { path: '/guides/groove-training/',         activeIdx: 2, name: 'guide-article' },
+    { path: '/practice/',                       activeIdx: 2, name: 'practice-hub' },
+    { path: '/practice/drums/',                 activeIdx: 2, name: 'practice' },
+    { path: '/manual/',                         activeIdx: 3, name: 'manual' },
 ];
-const NAV_LABELS_JA = ['練習ガイド', 'ガイド一覧', 'どこから始める？'];
+const NAV_ITEMS_JA = [
+    { label: 'ソルフェージュPROとは？', href: '/' },
+    { label: 'トレーニング', href: '/features/' },
+    { label: '練習ガイド', href: '/guides/' },
+    { label: 'マニュアル', href: '/manual/' },
+];
 
 /**
  * Desktop nav (>= 769px): nav__list visible, hamburger hidden.
@@ -21,15 +30,18 @@ for (const page of PAGES) {
         const hamburger = p.locator('#hamburger-btn');
         await expect(navList).toBeVisible();
         await expect(hamburger).toBeHidden();
-        // 3 nav__link items
-        await expect(p.locator('.nav__list .nav__link')).toHaveCount(3);
+        await expect(p.locator('.nav__list .nav__link')).toHaveCount(NAV_ITEMS_JA.length);
         // active state
         const links = await p.locator('.nav__list .nav__link').all();
         for (let i = 0; i < links.length; i++) {
+            await expect(links[i]).toHaveText(NAV_ITEMS_JA[i].label);
+            await expect(links[i]).toHaveAttribute('href', NAV_ITEMS_JA[i].href);
             if (i === page.activeIdx) {
                 await expect(links[i]).toHaveClass(/active/);
+                await expect(links[i]).toHaveAttribute('aria-current', 'page');
             } else {
                 await expect(links[i]).not.toHaveClass(/active/);
+                await expect(links[i]).not.toHaveAttribute('aria-current', 'page');
             }
         }
     });
@@ -58,8 +70,7 @@ for (const page of PAGES) {
         await expect(drawer).toHaveClass(/active/);
         await expect(overlay).toHaveClass(/active/);
 
-        // 3 drawer links present
-        await expect(p.locator('.drawer__list .drawer__link')).toHaveCount(3);
+        await expect(p.locator('.drawer__list .drawer__link')).toHaveCount(NAV_ITEMS_JA.length);
 
         // close via dedicated close button (overlay click area is too small at 320px)
         await p.locator('#drawer-close').click();
@@ -94,6 +105,7 @@ test('nav HTML structurally identical across pages', async ({ page: p }) => {
             .replace(/href="[^"]*"/g, 'href="*"')
             .replace(/src="[^"]*"/g, 'src="*"')
             .replace(/\s+active(?=")/g, '')
+            .replace(/\s+aria-current="page"/g, '')
             .replace(/\s+/g, ' ').trim();
         navs.push(norm);
     }

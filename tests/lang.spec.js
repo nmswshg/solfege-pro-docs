@@ -14,6 +14,10 @@ const { test, expect } = require('@playwright/test');
 
 const PAGES = [
     '/',
+    '/practice/',
+    '/features/',
+    '/free-vs-pro/',
+    '/manual/',
     '/start-here/',
     '/guides/',
     '/guides/rhythm-training/',
@@ -186,4 +190,63 @@ test('old .en.html URLs redirect to /en/.../', async ({ page, viewport }) => {
     const response = await page.request.get('/guides/interval-training.en.html');
     const html = await response.text();
     expect(html).toMatch(/url=https:\/\/solfegepro\.com\/en\/guides\/interval-training\//);
+});
+
+// -----------------------------------------------------------------
+// 7. The former /app/ LP is consolidated into each localized root.
+// -----------------------------------------------------------------
+for (const lang of ['ja', 'en', 'fr', 'de']) {
+    test(`/app/ redirect signals point to the ${lang} root`, async ({ page, viewport }) => {
+        test.skip(!viewport || viewport.width <= 768, 'desktop only');
+        const prefix = lang === 'ja' ? '' : `/${lang}`;
+        const target = `https://solfegepro.com${prefix}/`;
+        const response = await page.request.get(`${prefix}/app/`);
+        const html = await response.text();
+        expect(html).toContain('<meta name="robots" content="noindex, follow">');
+        expect(html).toContain(`<link rel="canonical" href="${target}">`);
+        expect(html).toContain(`url=${target}`);
+        expect(html).toContain(`location.replace("${target}")`);
+    });
+}
+
+// -----------------------------------------------------------------
+// 8. Root SEO signals and SoftwareApplication data stay localized.
+// -----------------------------------------------------------------
+const ROOT_SEO = {
+    ja: { path: '/', locale: 'jp', currency: 'JPY' },
+    en: { path: '/en/', locale: 'us', currency: 'USD' },
+    fr: { path: '/fr/', locale: 'fr', currency: 'EUR' },
+    de: { path: '/de/', locale: 'de', currency: 'EUR' },
+};
+
+for (const [lang, expected] of Object.entries(ROOT_SEO)) {
+    test(`root canonical and SoftwareApplication are localized — ${lang}`, async ({ page, viewport }) => {
+        test.skip(!viewport || viewport.width <= 768, 'desktop only');
+        await page.goto(expected.path);
+        const canonical = `https://solfegepro.com${expected.path}`;
+        await expect(page.locator('link[rel="canonical"]')).toHaveAttribute('href', canonical);
+        const description = await page.locator('meta[name="description"]').getAttribute('content');
+        expect(description?.trim().length).toBeGreaterThan(40);
+        await expect(page.locator('h1')).toHaveCount(1);
+
+        const graph = await page.locator('script[type="application/ld+json"]').evaluateAll((scripts) =>
+            scripts.map((script) => JSON.parse(script.textContent || '{}')).find((data) => Array.isArray(data['@graph'])),
+        );
+        const app = graph['@graph'].find((node) => node['@type'] === 'SoftwareApplication');
+        expect(app.url).toBe(canonical);
+        expect(app.inLanguage).toBe(lang);
+        expect(app.downloadUrl).toContain(`apps.apple.com/${expected.locale}/`);
+        expect(app.offers.priceCurrency).toBe(expected.currency);
+    });
+}
+
+test('sitemap promotes roots and excludes the retired /app/ URLs', async ({ page, viewport }) => {
+    test.skip(!viewport || viewport.width <= 768, 'desktop only');
+    const response = await page.request.get('/sitemap.xml');
+    const xml = await response.text();
+    expect(xml).toContain('<loc>https://solfegepro.com/</loc>');
+    expect(xml).toContain('<loc>https://solfegepro.com/en/</loc>');
+    expect(xml).toContain('<loc>https://solfegepro.com/practice/</loc>');
+    expect(xml).not.toContain('solfegepro.com/app/');
+    expect(xml).not.toContain('solfegepro.com/en/app/');
 });

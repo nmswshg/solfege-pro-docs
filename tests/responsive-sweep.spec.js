@@ -38,7 +38,7 @@ const PAGES = [
     '/practice/features/',
     // entry / top
     '/',
-    '/app/',
+    '/practice/',
     '/start-here/',
     // product pages (feature list + free/Pro comparison grids)
     '/features/',
