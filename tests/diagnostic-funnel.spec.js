@@ -251,7 +251,7 @@ test.describe('Diagnostic funnel GA4 events', () => {
         const completeEvent = events.find(e => e.name === 'diagnostic_complete');
 
         // analytics.js track() auto-attaches these. Verify the chain still applies.
-        expect(completeEvent.params.site_language).toMatch(/^(ja|en|fr|de)$/);
+        expect(completeEvent.params.site_language).toMatch(/^(ja|en|fr|de|es|it|ko|pt-BR)$/);
         expect(completeEvent.params.page_path).toBe('/start-here/');
     });
 

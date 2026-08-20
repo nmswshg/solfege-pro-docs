@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="es"
+      data-title-ja="アプリマニュアル — 各トレーニングの設定と使い方 | ソルフェージュPRO"
+      data-title-en="App Manual — Settings & How to Use Each Training | Solfege PRO"
+      data-title-fr="Manuel de l'app — réglages et utilisation de chaque entraînement | Solfege PRO"
+      data-title-de="App-Handbuch — Einstellungen & Nutzung jeder Übung | Solfege PRO">
+<head>
+    <meta charset="UTF-8">
+    <meta name="robots" content="index, follow">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#1A1A1E">
+    <title>Manual de la app | Solfege PRO</title>
+    <meta name="description" content="Manual de aplicación para Solfege PRO's trainings — Interval, Chord, Scale, Progression, lectura a primera vista, diapasón, Rhythm: how to choose each setting and why.">
+
+    <!-- Canonical -->
+    <link rel="canonical" href="https://solfegepro.com/es/manual/">
+    <link rel="alternate" hreflang="ja" href="https://solfegepro.com/manual/">
+    <link rel="alternate" hreflang="en" href="https://solfegepro.com/en/manual/">
+    <link rel="alternate" hreflang="fr" href="https://solfegepro.com/fr/manual/">
+    <link rel="alternate" hreflang="de" href="https://solfegepro.com/de/manual/">
+    <link rel="alternate" hreflang="es" href="https://solfegepro.com/es/manual/">
+    <link rel="alternate" hreflang="it" href="https://solfegepro.com/it/manual/">
+    <link rel="alternate" hreflang="ko" href="https://solfegepro.com/ko/manual/">
+    <link rel="alternate" hreflang="pt-BR" href="https://solfegepro.com/pt-br/manual/">
+    <link rel="alternate" hreflang="x-default" href="https://solfegepro.com/manual/">
+<!-- Favicon -->
+    <link rel="icon" href="/favicon.ico" sizes="any">
+    <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+    <!-- OGP -->
+    <meta property="og:title" content="Manual de la app">
+    <meta property="og:description" content="Manual de aplicación para Solfege PRO's trainings — Interval, Chord, Scale, Progression, lectura a primera vista, diapasón, Rhythm: how to choose each setting and why.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://solfegepro.com/es/manual/">
+    <meta property="og:site_name" content="Solfege PRO">
+    <meta property="og:image" content="https://solfegepro.com/og-image.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Solfege PRO">
+    <meta property="og:locale" content="es_ES">
+    <meta property="og:locale:alternate" content="ja_JP">
+    <meta property="og:locale:alternate" content="en_US">
+    <meta property="og:locale:alternate" content="fr_FR">
+    <meta property="og:locale:alternate" content="de_DE">
+    <meta property="og:locale:alternate" content="it_IT">
+    <meta property="og:locale:alternate" content="ko_KR">
+    <meta property="og:locale:alternate" content="pt_BR">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Manual de la app">
+    <meta name="twitter:description" content="Manual de aplicación para Solfege PRO's trainings — Interval, Chord, Scale, Progression, lectura a primera vista, diapasón, Rhythm: how to choose each setting and why.">
+    <meta name="twitter:image" content="https://solfegepro.com/og-image.png">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap"></noscript>
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="/style.css?v=23">
+
+    <style>
+        .manual-main {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: var(--space-2xl) var(--space-lg);
+        }
+
+        .manual-intro {
+            font-size: 15px;
+            color: var(--text-secondary);
+            line-height: 1.8;
+            margin: 0 0 var(--space-2xl);
+            max-width: 760px;
+        }
+
+        .manual-grid {
+            display: grid;
+            /* Mobile: a single full-width column. (The previous
+               repeat(auto-fill, minmax(0,1fr)) collapsed every card to ~0
+               width on phones — auto-fill with a 0 minimum packs unlimited
+               columns. Widen to 2/3 cols via the breakpoints below.) */
+            grid-template-columns: 1fr;
+            gap: var(--space-lg);
+        }
+
+        @media (min-width: 560px) {
+            .manual-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+        }
+
+        @media (min-width: 900px) {
+            .manual-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+        }
+
+        .manual-card {
+            display: flex;
+            flex-direction: column;
+            background: var(--surface);
+            border: 1px solid var(--surface-light);
+            border-radius: var(--radius-lg);
+            padding: var(--space-lg);
+            text-decoration: none;
+            transition: all 0.2s ease;
+        }
+
+        a.manual-card:hover {
+            border-color: var(--primary);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+        }
+
+        .manual-card__icon {
+            font-size: 32px;
+            margin-bottom: var(--space-md);
+            /* Accent color, matching .guide-card__icon etc. Without this the
+               icon inherits the <a> link colour (blue, purple once visited). */
+            color: var(--primary);
+        }
+
+        .manual-card__title {
+            font-size: 15px;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: var(--space-sm);
+            line-height: 1.4;
+        }
+
+        .manual-card__desc {
+            font-size: 13px;
+            color: var(--text-secondary);
+            line-height: 1.6;
+            flex: 1;
+        }
+
+        /* "Coming soon" cards: dimmed and non-clickable */
+        .manual-card--coming {
+            opacity: 0.65;
+            cursor: default;
+        }
+
+        .manual-card__status {
+            display: inline-block;
+            font-size: 11px;
+            font-weight: 600;
+            color: var(--text-secondary);
+            background: rgba(154, 154, 154, 0.18);
+            padding: 2px 8px;
+            border-radius: var(--radius-sm);
+            margin-top: var(--space-md);
+            align-self: flex-start;
+            letter-spacing: 0.3px;
+        }
+
+        .manual-card__ready {
+            display: inline-block;
+            font-size: 12px;
+            font-weight: 500;
+            color: var(--primary);
+            background: rgba(212, 175, 55, 0.15);
+            padding: 2px 10px;
+            border-radius: var(--radius-sm);
+            margin-top: var(--space-md);
+            align-self: flex-start;
+        }
+
+        .manual-footer {
+            background: var(--surface);
+            padding: var(--space-xl) var(--space-lg);
+            text-align: center;
+            border-top: 1px solid var(--surface-light);
+        }
+        .manual-footer__text { color: var(--text-secondary); font-size: 14px; }
+        .manual-footer__link { color: var(--primary); text-decoration: none; }
+
+        @media (max-width: 768px) {
+            .manual-main { padding: var(--space-lg) var(--space-md); }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+        <nav class="nav" aria-label="Menú principal">
+        <div class="nav__container">
+            <a href="/es/" class="nav__logo" aria-label="Solfege PRO">
+                <img src="/AppIcon.png" alt="" class="nav__logo-icon" width="32" height="32">
+                <span class="nav__logo-text">Solfege PRO</span>
+            </a>
+            <ul class="nav__list">
+                <li><a href="/es/" class="nav__link">Acerca de Solfege PRO</a></li>
+                <li><a href="/es/features/" class="nav__link">Entrenamientos</a></li>
+                <li><a href="/es/guides/" class="nav__link">Guías de práctica</a></li>
+                <li><a href="/es/manual/" class="nav__link active" aria-current="page">Manual</a></li>
+            </ul>
+            <div class="nav__settings">
+                <button class="settings-btn" id="lang-toggle" title="Seleccionar idioma"><span id="lang-text">ES</span></button>
+                <button class="hamburger-btn" id="hamburger-btn" aria-label="Abrir menú" aria-expanded="false" aria-controls="drawer">
+                    <span class="hamburger-btn__line"></span><span class="hamburger-btn__line"></span><span class="hamburger-btn__line"></span>
+                </button>
+            </div>
+        </div>
+    </nav>
+        <!-- Mobile drawer (hidden on desktop) -->
+            <div class="drawer-overlay" id="drawer-overlay"></div>
+    <aside class="drawer" id="drawer" aria-label="Menú" aria-hidden="true" inert>
+        <div class="drawer__header">
+            <span class="drawer__title">Menú</span>
+            <button class="drawer__close" id="drawer-close" aria-label="Cerrar menú">×</button>
+        </div>
+        <ul class="drawer__list">
+            <li><a href="/es/" class="drawer__link">Acerca de Solfege PRO</a></li>
+            <li><a href="/es/features/" class="drawer__link">Entrenamientos</a></li>
+            <li><a href="/es/guides/" class="drawer__link">Guías de práctica</a></li>
+            <li><a href="/es/manual/" class="drawer__link active" aria-current="page">Manual</a></li>
+        </ul>
+    </aside>
+
+
+    <!-- Header -->
+    <header class="page-header">
+        <h1 class="page-header__title">Manual de aplicación</h1>
+        <p class="page-header__subtitle">
+
+            Este es el manual de aplicación: cómo elegir la configuración de cada entrenamiento, y lo que cada ajuste le ayuda a construir. Escoge un entrenamiento para ver qué significa cada opción y qué obtienes de ella.
+
+
+        </p>
+    </header>
+
+    <!-- Manual Grid -->
+    <main class="manual-main">
+
+        <div class="manual-grid">
+
+            <!-- Interval -->
+            <a href="/manual/interval/" class="manual-card">
+                <div class="manual-card__icon"><svg class="icon" aria-hidden="true"><use href="/assets/icons.svg#icon-music-note"></use></svg></div>
+                <div class="manual-card__title">Reconocimiento de intervaloso</div>
+                <div class="manual-card__desc">Cómo elegir los ajustes para intervalos auditivos y entrenamiento de oído relativo.</div>
+                <span class="manual-card__ready">Leer →</span>
+            </a>
+
+            <!-- Chord (active) -->
+            <a href="/manual/chord/" class="manual-card">
+                <div class="manual-card__icon"><svg class="icon" aria-hidden="true"><use href="/assets/icons.svg#icon-piano"></use></svg></div>
+                <div class="manual-card__title">Reconocimiento del Corto</div>
+                <div class="manual-card__desc">El significado y la selección de cada ajuste — dificultad, tipos de acordes, modo de reproducción, y más.</div>
+                <span class="manual-card__ready">Leer →</span>
+            </a>
+
+            <!-- Scale -->
+            <a href="/manual/scale/" class="manual-card">
+                <div class="manual-card__icon"><svg class="icon" aria-hidden="true"><use href="/assets/icons.svg#icon-music-staff"></use></svg></div>
+                <div class="manual-card__title">Reconocimiento de escala</div>
+                <div class="manual-card__desc">Cómo elegir los ajustes para distinguir las escalas y modos por el oído.</div>
+                <span class="manual-card__ready">Leer →</span>
+            </a>
+
+            <!-- Progression -->
+            <a href="/manual/progression/" class="manual-card">
+                <div class="manual-card__icon"><svg class="icon" aria-hidden="true"><use href="/assets/icons.svg#icon-music-notes"></use></svg></div>
+                <div class="manual-card__title">Capacitación para la progresión</div>
+                <div class="manual-card__desc">Cómo elegir los ajustes para escuchar el movimiento de armonía funcional (T/SD/D).</div>
+                <span class="manual-card__ready">Leer →</span>
+            </a>
+
+            <!-- Sight Reading -->
+            <a href="/manual/sight-reading/" class="manual-card">
+                <div class="manual-card__icon"><svg class="icon" aria-hidden="true"><use href="/assets/icons.svg#icon-book-open"></use></svg></div>
+                <div class="manual-card__title">lectura a primera vista</div>
+                <div class="manual-card__desc">Cómo elegir ajustes para identificar rápidamente nombres de notas en el personal.</div>
+                <span class="manual-card__ready">Leer →</span>
+            </a>
+
+            <!-- Fretboard -->
+            <a href="/manual/fretboard/" class="manual-card">
+                <div class="manual-card__icon"><svg class="icon" aria-hidden="true"><use href="/assets/icons.svg#icon-guitar"></use></svg></div>
+                <div class="manual-card__title">Formación de diapasón</div>
+                <div class="manual-card__desc">Cómo elegir la configuración para encontrar posiciones de nota en el diapasón de guitarra.</div>
+                <span class="manual-card__ready">Leer →</span>
+            </a>
+
+            <!-- Rhythm -->
+            <a href="/manual/rhythm/" class="manual-card">
+                <div class="manual-card__icon"><svg class="icon" aria-hidden="true"><use href="/assets/icons.svg#icon-drum"></use></svg></div>
+                <div class="manual-card__title">Formación de Rhythm</div>
+                <div class="manual-card__desc">Cómo elegir los ajustes para medir y mejorar la precisión de tiempo.</div>
+                <span class="manual-card__ready">Leer →</span>
+            </a>
+
+            <!-- Rhythm Sight Reading -->
+            <a href="/manual/rhythm-sight-reading/" class="manual-card">
+                <div class="manual-card__icon"><svg class="icon" aria-hidden="true"><use href="/assets/icons.svg#icon-timer"></use></svg></div>
+                <div class="manual-card__title">Ritmo lectura rítmica a primera vista</div>
+                <div class="manual-card__desc">Cómo elegir los ajustes para leer y tocar notación de ritmo.</div>
+                <span class="manual-card__ready">Leer →</span>
+            </a>
+
+        </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="manual-footer">
+        <p class="manual-footer__text">
+            &copy; 2026 Solfege PRO
+        </p>
+    </footer>
+    <script src="/bootstrap.js?v=10" defer></script>
+    <nav aria-label="Language" style="display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:0.5rem;padding:var(--space-lg) var(--space-md);border-top:1px solid var(--surface-light);font-size:13px">
+        <a href="/manual/" hreflang="ja" style="color:var(--text-secondary);text-decoration:none">日本語</a>
+        <span aria-hidden="true" style="color:var(--surface-light)">·</span>
+        <a href="/en/manual/" hreflang="en" style="color:var(--text-secondary);text-decoration:none">English</a>
+        <span aria-hidden="true" style="color:var(--surface-light)">·</span>
+        <a href="/fr/manual/" hreflang="fr" style="color:var(--text-secondary);text-decoration:none">Français</a>
+        <span aria-hidden="true" style="color:var(--surface-light)">·</span>
+        <a href="/de/manual/" hreflang="de" style="color:var(--text-secondary);text-decoration:none">Deutsch</a>
+        <span aria-hidden="true" style="color:var(--surface-light)">·</span>
+        <span style="color:var(--primary);font-weight:600" aria-current="true">Español</span>
+        <span aria-hidden="true" style="color:var(--surface-light)">·</span>
+        <a href="/it/manual/" hreflang="it" style="color:var(--text-secondary);text-decoration:none">Italiano</a>
+        <span aria-hidden="true" style="color:var(--surface-light)">·</span>
+        <a href="/ko/manual/" hreflang="ko" style="color:var(--text-secondary);text-decoration:none">한국어</a>
+        <span aria-hidden="true" style="color:var(--surface-light)">·</span>
+        <a href="/pt-br/manual/" hreflang="pt-BR" style="color:var(--text-secondary);text-decoration:none">Português (Brasil)</a>
+    </nav>
+</body>
+</html>

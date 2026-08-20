@@ -1,0 +1,743 @@
+<!DOCTYPE html>
+<html lang="ko"
+      data-title-ja="指板トレーニング 設定マニュアル — 各設定の選び方 | ソルフェージュPRO"
+      data-title-en="Fretboard Training Settings Manual — How to Choose Each Option | Solfege PRO"
+      data-title-fr="Manuel des réglages de l'entraînement au manche — comment choisir chaque option | Solfege PRO"
+      data-title-de="Handbuch zu den Einstellungen des Griffbrett-Trainings — wie Sie jede Option wählen | Solfege PRO">
+<head>
+    <meta charset="UTF-8">
+    <meta name="robots" content="index, follow">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#1A1A1E">
+    <title>지판 훈련 설정 설명서 | Solfege PRO</title>
+    <meta name="description" content="지판 훈련의 모드, 음, 프렛 범위, 현, 답변 방식, 힌트, 튜닝, 연주 손 설정과 선택 기준을 설명합니다.">
+
+    <!-- Canonical -->
+    <link rel="canonical" href="https://solfegepro.com/ko/manual/fretboard/">
+    <link rel="alternate" hreflang="ja" href="https://solfegepro.com/manual/fretboard/">
+    <link rel="alternate" hreflang="en" href="https://solfegepro.com/en/manual/fretboard/">
+    <link rel="alternate" hreflang="fr" href="https://solfegepro.com/fr/manual/fretboard/">
+    <link rel="alternate" hreflang="de" href="https://solfegepro.com/de/manual/fretboard/">
+    <link rel="alternate" hreflang="es" href="https://solfegepro.com/es/manual/fretboard/">
+    <link rel="alternate" hreflang="it" href="https://solfegepro.com/it/manual/fretboard/">
+    <link rel="alternate" hreflang="ko" href="https://solfegepro.com/ko/manual/fretboard/">
+    <link rel="alternate" hreflang="pt-BR" href="https://solfegepro.com/pt-br/manual/fretboard/">
+    <link rel="alternate" hreflang="x-default" href="https://solfegepro.com/manual/fretboard/">
+<!-- OGP -->
+    <meta property="og:title" content="지판 훈련 설정 설명서">
+    <meta property="og:description" content="지판 훈련의 모드, 음, 프렛 범위, 현, 답변 방식, 힌트, 튜닝, 연주 손 설정과 선택 기준을 설명합니다.">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://solfegepro.com/ko/manual/fretboard/">
+    <meta property="og:site_name" content="Solfege PRO">
+    <meta property="og:image" content="https://solfegepro.com/og-image.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Solfege PRO">
+    <meta property="og:locale" content="ko_KR">
+    <meta property="og:locale:alternate" content="ja_JP">
+    <meta property="og:locale:alternate" content="en_US">
+    <meta property="og:locale:alternate" content="fr_FR">
+    <meta property="og:locale:alternate" content="de_DE">
+    <meta property="og:locale:alternate" content="es_ES">
+    <meta property="og:locale:alternate" content="it_IT">
+    <meta property="og:locale:alternate" content="pt_BR">
+    <meta property="article:published_time" content="2026-06-05">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="지판 훈련 설정 설명서">
+    <meta name="twitter:description" content="지판 훈련의 모드, 음, 프렛 범위, 현, 답변 방식, 힌트, 튜닝, 연주 손 설정과 선택 기준을 설명합니다.">
+    <meta name="twitter:image" content="https://solfegepro.com/og-image.png">
+
+    <!-- Favicon -->
+    <link rel="icon" href="/favicon.ico" sizes="any">
+    <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap"></noscript>
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="/style.css?v=23">
+    <link rel="stylesheet" href="/guides/article.css?v=14">
+
+    <style>
+        /* Manual option reference — responsive, no fixed px widths */
+        .manual-options {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr);
+            gap: var(--space-sm);
+            margin: var(--space-lg) 0;
+        }
+        .manual-option {
+            background: var(--surface);
+            border: 1px solid var(--surface-light);
+            border-radius: var(--radius-lg);
+            padding: var(--space-md);
+        }
+        .manual-option__name {
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: var(--space-xs);
+        }
+        .manual-option__desc {
+            font-size: 13px;
+            color: var(--text-secondary);
+        }
+        /* Bottom-line callout (conclusion first) */
+        .manual-lead {
+            font-size: 14px;
+            line-height: 1.75;
+            color: var(--text-primary);
+            border-left: 3px solid var(--primary);
+            background: rgba(212, 175, 55, 0.06);
+            padding: var(--space-sm) var(--space-md);
+            border-radius: 0 var(--radius-md) var(--radius-md) 0;
+            margin: var(--space-md) 0;
+        }
+        /* Per-setting evidence note — deliberately styled as an editorial
+           aside, NOT as a settings card (no surface fill, no gold label),
+           so it is never mistaken for an in-app option. */
+        .manual-rationale {
+            margin: var(--space-md) 0 var(--space-2xl);
+            padding: var(--space-sm) 0 var(--space-sm) var(--space-md);
+            border-left: 2px solid var(--surface-light);
+        }
+        .manual-rationale__label {
+            display: block;
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            color: var(--text-secondary);
+            margin-bottom: 4px;
+            opacity: 0.75;
+        }
+        .manual-rationale p {
+            font-size: 13px;
+            line-height: 1.75;
+            color: var(--text-secondary);
+            margin: 0;
+        }
+        .manual-rationale__ref {
+            font-size: 12px;
+            font-style: italic;
+            margin-top: var(--space-xs) !important;
+            opacity: 0.7;
+        }
+        /* Citation number linking to the reference list */
+        .manual-ref-num {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-style: normal;
+        }
+        .manual-ref-num:hover { color: var(--primary); }
+        /* Full reference list at page end */
+        .manual-refs {
+            margin: var(--space-2xl) 0 0;
+            padding-top: var(--space-lg);
+            border-top: 1px solid var(--surface-light);
+        }
+        .manual-refs__title {
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: var(--space-sm);
+        }
+        .manual-refs ol {
+            margin: 0;
+            padding-left: 1.25em;
+        }
+        .manual-refs li {
+            font-size: 12px;
+            line-height: 1.7;
+            color: var(--text-secondary);
+            margin-bottom: var(--space-xs);
+            scroll-margin-top: 84px;
+        }
+        .manual-refs li:target {
+            color: var(--text-primary);
+        }
+    </style>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"지판 훈련 설정 설명서","description":"지판 훈련의 모드, 음, 프렛 범위, 현, 답변 방식, 힌트, 튜닝, 연주 손 설정과 선택 기준을 설명합니다.","author":{"@type":"Organization","name":"Solfege PRO"},"publisher":{"@type":"Organization","name":"Solfege PRO","logo":{"@type":"ImageObject","url":"https://solfegepro.com/AppIcon.png"}},"datePublished":"2026-06-05","mainEntityOfPage":{"@type":"WebPage","@id":"https://solfegepro.com/ko/manual/fretboard/"}}</script>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"홈","item":"https://solfegepro.com/ko/"},{"@type":"ListItem","position":2,"name":"매뉴얼","item":"https://solfegepro.com/ko/manual/"},{"@type":"ListItem","position":3,"name":"指板トレーニング 設定マニュアル — 各設定の選び方","item":"https://solfegepro.com/ko/manual/fretboard/"}]}</script>
+</head>
+<body>
+    <!-- Navigation -->
+        <nav class="nav" aria-label="기본 메뉴">
+        <div class="nav__container">
+            <a href="/ko/" class="nav__logo" aria-label="Solfege PRO">
+                <img src="/AppIcon.png" alt="" class="nav__logo-icon" width="32" height="32">
+                <span class="nav__logo-text">Solfege PRO</span>
+            </a>
+            <ul class="nav__list">
+                <li><a href="/ko/" class="nav__link">Solfege PRO 소개</a></li>
+                <li><a href="/ko/features/" class="nav__link">훈련</a></li>
+                <li><a href="/ko/guides/" class="nav__link">연습 가이드</a></li>
+                <li><a href="/ko/manual/" class="nav__link active" aria-current="page">매뉴얼</a></li>
+            </ul>
+            <div class="nav__settings">
+                <button class="settings-btn" id="lang-toggle" title="언어 선택"><span id="lang-text">KO</span></button>
+                <button class="hamburger-btn" id="hamburger-btn" aria-label="메뉴 열기" aria-expanded="false" aria-controls="drawer">
+                    <span class="hamburger-btn__line"></span><span class="hamburger-btn__line"></span><span class="hamburger-btn__line"></span>
+                </button>
+            </div>
+        </div>
+    </nav>
+        <!-- Mobile drawer (hidden on desktop) -->
+            <div class="drawer-overlay" id="drawer-overlay"></div>
+    <aside class="drawer" id="drawer" aria-label="메뉴" aria-hidden="true" inert>
+        <div class="drawer__header">
+            <span class="drawer__title">메뉴</span>
+            <button class="drawer__close" id="drawer-close" aria-label="메뉴 닫기">×</button>
+        </div>
+        <ul class="drawer__list">
+            <li><a href="/ko/" class="drawer__link">Solfege PRO 소개</a></li>
+            <li><a href="/ko/features/" class="drawer__link">훈련</a></li>
+            <li><a href="/ko/guides/" class="drawer__link">연습 가이드</a></li>
+            <li><a href="/ko/manual/" class="drawer__link active" aria-current="page">매뉴얼</a></li>
+        </ul>
+    </aside>
+
+
+    <!-- Article Header -->
+    <header class="page-header">
+        <div class="page-header__meta">
+            <span class="page-header__tag">매뉴얼</span>
+            <span>지판 교육</span>
+        </div>
+        <h1 class="page-header__title">
+
+            지판 교육 설정 설명서<br>각 옵션은 무엇을 의미하고 선택하는 방법
+
+
+        </h1>
+        <p class="page-header__subtitle">
+
+            언제, 그리고 왜 선택할 수 있는 어떤 선택권. 이 페이지는 지판 훈련에서 각 설정을 통해 도보, 한 번에. 설정 화면에서 "?"에 도착하면 필요한 옵션을 스크롤합니다.
+
+
+        </p>
+    </header>
+
+    <!-- Top-of-article CTA -->
+    <aside class="article-top-cta" aria-label="App promotion">
+        <div class="article-top-cta__body">
+            <p class="article-top-cta__title">
+
+                더 알아보기 Solfege PRO
+
+
+            </p>
+            <p class="article-top-cta__sub">
+
+                $9.99/월(미국 App Store 기준)(미국 App Store 기준)
+
+
+            </p>
+        </div>
+        <a href="https://apps.apple.com/kr/app/id6756626617?pt=6749158383&amp;ct=web_manual&amp;mt=8" class="article-top-cta__button app-store-link" data-cta-position="article_top" aria-label="App Store에서 다운로드"><img src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/ko-kr" class="app-store-link__img" alt="App Store에서 다운로드" loading="lazy"></a>
+    </aside>
+
+    <!-- Article Body -->
+    <main class="article-body">
+
+        <!-- Intro -->
+        <p>
+
+            지판 훈련은 생각없이 그것을 알 때까지 모든 fret에 당신의 손에 아래 메모의 이름을 드릴. 모양 잎으로만 크기와 합창화는 찔러지지만 목에 한 번 이름을 즉시, 즉흥연주, transposing, 그리고 귀에 의해 노래를 배우는 것은 훨씬 쉽게 얻을 수 있습니다.
+
+
+        </p>
+        <p>
+
+            이 페이지는 설정 선택을 위한 설명서입니다. 각 설정은 음악 교육에서 설치된 방법의 주위에 설계됩니다. 결정에 대한 호출 각 설정에 대해, 우리는 <strong>추천된 선택, 그것은 무엇을 위해, 그리고 그것이 기차 — 증거와 함께</strong>. 설정 화면에서 "?"에서 도착하면 필요한 옵션으로 스크롤하십시오. 앱 내부, 같은 "?"는 스크린 작동 방식 "이 화면이 어떻게 작동합니까"을 제공합니다. 즉, 화면의 단계별 튜토리얼을합니다.
+
+
+        </p>
+
+        <!-- Shared note: practice-plan item settings sheets show only the settings
+     persisted per item (v1.3.1 hides non-persisted controls in plan context).
+     Included by the 7 module manuals: interval / chord / scale / progression /
+     sight-reading / rhythm / fretboard. Rhythm Sight Reading is deliberately
+     excluded — its plan items do not embed module settings at all. -->
+<p>
+
+    이 페이지는 연습 홈에서 열린 독립 훈련의 설정 화면을 설명합니다. 연습 계획 항목에서 설정할 때, 그 항목에 저장 된 설정만 표시됩니다.
+
+
+</p>
+
+
+        <!-- #mode -->
+        <h2 id="mode">교육 모드</h2>
+
+        <p class="manual-lead">
+
+            <strong>음 → Position으로 시작하십시오.</strong> 안정되면, 위치 → 메모로 역방향을 확립하고, 목 전체에 어떻게 퍼지는지 내부화 할 때 현 운동으로 이동하십시오. 이어 기반 모드 - 프렛, 음정 to 프렛, Melody Echo - 3 개의 시각적 모드가 안정감을 느끼게하는 데 가장 잘 작동합니다.
+
+
+        </p>
+
+        <p>
+
+            이 설정은 각 질문의 방향을 결정합니다. — 당신이 표시하고 당신이 대답하는 것. 여섯 가지 모드가 있습니다. 목에 노트 이름을 가진 모든 거래가 있지만 방향은 당신이 빌드하는 기술을 결정합니다. 세 가지는 시각적입니다. 보 고 답변 — 세 가지는 귀 모드, 당신이 지판에 들어 무엇을 장소.
+
+
+        </p>
+
+        <div class="manual-options">
+            <div class="manual-option">
+                <div class="manual-option__name">주 → 위치 (noteToFret)</div>
+                <div class="manual-option__desc">주어진 메모 이름을 목에 살고있는 것을 탭합니다. 가장 기본적인 방향은 "노트 이름 → 어디를 눌러"회로를 구축하면 음계과 합창을 재생해야합니다. 이태리</div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name">위치 → 주 (fretToNote)</div>
+                <div class="manual-option__desc">역경: 단일 지점이 표시되어 있으며, 해당 주 이름을 선택합니다. 그것은 당신이 튀기고 양쪽에서 기억을 강화하고 있다는 것을 의미하는 주를 훈련합니다.</div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name">현 운동 (stringMovement)</div>
+                <div class="manual-option__desc">다른 한 현 뒤에 동일한 메모 이름을 사냥 고급 모드 (예 : 6, 5, 4th ...), 전체 목에 걸쳐 하나의 메모가 퍼지는 방법을 맵핑. 프렛 범위는 0-12에 조정됩니다.</div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name">귀에 떼 (earToFret)</div>
+                <div class="manual-option__desc">주의를 듣고 — 이름이 표시되지 않고 목에 사는 곳을 탭합니다. 이 귀 모드 와이어 "소리는 → 프레스 장소"를 직접 들어, 서면 메모 이름을 통해 이동하지 않고 : 귀에 의해 재생의 기초.</div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name">프렛 (음정ToFret)에 대한 간격</div>
+                <div class="manual-option__desc">두 개의 노트를 듣고 두 번째의 위치를 탭합니다. 이 모드는 목에 실제 거리로 간격 훈련을 내장 한 간격 보청기를 변환합니다.</div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name">멜로디 에코 (melodyEcho)</div>
+                <div class="manual-option__desc">짧은 멜로디를 듣고 지판에 주문합니다. melody는 실제적인 음높이에서 질문 범위 내에서 실제 위치에 재생됩니다. 자체 설정 — 멜로디 길이, 음계, 연습 영역 — 어려움을 조정 (실행 영역에 대한 프렛 Range 섹션 참조).</div>
+            </div>
+        </div>
+
+        <div class="manual-rationale">
+            <span class="manual-rationale__label">그 뒤에 증거</span>
+            <p>
+
+                다른 각도에서 3 개의 시각 방향 기차, 메모 이름과 목의 위치 사이의 양방향 링크가 필요합니다. 다른 방향으로 동일한 재료를 호출하면 재생 중에 사용할 수있는 지식으로 rote 모양을 회전합니다. 세 가지 귀 모드를 레이어로 표시된 소리를 음주 이름 기억, 신체 능력과 악기 취급을 강조합니다. 모든 것을 따르는 것은 지판를 마스터하기 위한 기계 및 aural-skills pedagogy를 설치했습니다.
+
+
+            </p>
+            <p class="manual-rationale__ref">참고 : Karpinski (2000) <a class="manual-ref-num" href="#ref-1">[1]</a></p>
+        </div>
+
+        <!-- #instrument -->
+        <h2 id="instrument">악기</h2>
+
+        <p class="manual-lead">
+
+            <strong>당신이 실제로 재생하는 악기를 선택합니다.</strong> 기타리스트에 대한 기타 (6-string); 베이스 (4-string) 또는베이스 (5-string)를 베이스로 일치시킵니다. 지판 자체 스위치를 일치합니다.
+
+
+        </p>
+
+        <p>
+
+            이 설정은 기타 지판 또는베이스 지판를 사용하는지 여부를 결정합니다. 현 카운트와 각 현 스위치에 주의 이름의지도 선택된 악기에, 이 모든 모드에서 적용. 현과 튜닝은 다른 선택 중에만 선택 될 수 있습니다. 기타 또는베이스 음색로 설정된 경우, 악기 스위치를 자동으로 (Piano 및 Sine Tone는 그들로 유지됩니다).
+
+
+        </p>
+
+        <div class="manual-options">
+            <div class="manual-option">
+                <div class="manual-option__name">기타 (6-string)</div>
+                <div class="manual-option__desc">표준 6-string 기타 지판를 사용합니다. 대상 현과 교체 튜닝을 선택하면 이 악기만 선택됩니다.</div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name">베이스 (4-string)</div>
+                <div class="manual-option__desc">4 개의 현베이스 지판 (EADG)를 사용합니다. 튜닝은 표준으로 고정되며, 항상 4개의 현에서 그리는 질문.</div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name">베이스 (5-string)</div>
+                <div class="manual-option__desc">낮은 B를 포함하여 5 개의 현베이스 지판 (BEADG)를 사용합니다. 튜닝은 표준으로 고정되며, 항상 모든 5개의 현에서 그리는 질문.</div>
+            </div>
+        </div>
+
+        <!-- #target-notes -->
+        <h2 id="target-notes">메모 (대상 노트)</h2>
+
+        <p class="manual-lead">
+
+            <strong>자연s로 시작하세요.</strong> 샤프 (또는 모든 노트)를 포함 하 여 넓은 한 번 당신은 80 % +에서 목에 7 자연을 어디에서나 이름을 수 있습니다. 플랫 맞춤법 만 사용 가능
+
+
+        </p>
+
+        <p>
+
+            이 설정은 이름 표시를 나타냅니다. 천연물만을 사용하는지 여부를 선택해 주십시오. (예프나 평평한 7개의 노트 — C D E F G A B) 또는 예리한 및 평평한을 포함해 주십시오. 범위를 좁히고, 학습하는 몇몇 노트; 더 넓은 것, 더 많은 것 모든 12 색의 노트를 다룹니다.
+
+
+        </p>
+
+        <div class="manual-options">
+            <div class="manual-option">
+                <div class="manual-option__name">자연 만</div>
+                <div class="manual-option__desc">7개의 노트 C, D, E, F, G, A, B만 요청합니다. 첫 번째 단계는 지판 메모리입니다. 목에 7 개의 이름을 붙여 넣을 수 있습니다 가장 빠른 경로 앞으로.</div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name">샤프 포함</div>
+                <div class="manual-option__desc">모든 12 노트를 커버, 날카로운 (C#, D#, ...). 자연이 단단히되면, 목을 완전히 커버하기 위해 인 Between semitones를 추가하십시오.</div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name">플랫 포함</div>
+                <div class="manual-option__desc">평평한 (Db, Eb, ...)로 작성된 모든 12 노트를 커버합니다. en화성s에 사용 하려면 - 같은 음높이는 C # 및 Db와 같은 두 가지 방법을 뿌렸습니다. 당신이 플랫 키에서 재생하는 경우 유용합니다.</div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name">모든 노트</div>
+                <div class="manual-option__desc">모든 12 노트를 요청하고, 날카로운 평평한 맞춤법 - 가장 넓은 설정. 전체 목을 성능 수준으로 닦은 단계.</div>
+            </div>
+        </div>
+
+        <div class="manual-rationale">
+            <span class="manual-rationale__label">그 뒤에 증거</span>
+            <p>
+
+                한 번에 학습하는 몇 가지 주 이름, 덜 처리해야하며, 각 주 위치를 수정할 수 있습니다. 모든 12번에 복용하기 전에 좁은 범위를 좁히기. tiers는 인지 로드 이론을 따릅니다: 새로운 기술 원조 학습에서 낮은 가공 요구를 유지.
+
+
+            </p>
+            <p class="manual-rationale__ref">참고 : Sweller (1988) <a class="manual-ref-num" href="#ref-2">[2]</a></p>
+        </div>
+
+        <!-- #fret-range -->
+        <h2 id="fret-range">프렛 범위</h2>
+
+        <p class="manual-lead">
+
+            <strong>0-5의 기초를, 그 후에 0-12 (표준)에 넓히십시오.</strong> 12 번째 fret의 위 레이아웃은 반복적으로 0-12를 목표로하는 것이 효율적인 목표입니다.
+
+
+        </p>
+
+        <p>
+
+            목의 섹션이 그려진이 설정 세트 - 효과적으로 어려움 다이얼. 좁은 그것과 더 적은 장소가 memorize; 그것을 넓고 당신은 전체적인 목을 취급합니다. String Movement Mode에서 0-12로 고정되어 있고 Melody Echo에서 연습 영역 설정은 우선적으로 진행됩니다. - 프렛 range는 연습 영역이 전체 범위일 때만 적용됩니다. 실습 영역 (전 범위 / 오픈 (0-4) / 중간 (5-9) / 높은 (9-13)은 멜로디 에코의 자신의 질문 영역 설정입니다.
+
+
+        </p>
+
+        <div class="manual-options">
+            <div class="manual-option">
+                <div class="manual-option__name">0-5 (초과)</div>
+                <div class="manual-option__desc">낮은 위치 만 (frets 0–5). 오픈 현에 가까운, 이것은 먼저 초창기를 학습 할 때 먼저 터치입니다. 그것의 좁은 경간은 당신의 첫번째 memorization를 위해 이상적입니다.</div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name">5-12 (중급)</div>
+                <div class="manual-option__desc">중간에 높은 위치 (frets 5-12). 낮은 위치에 못을 박았을 때 지금 목의 중간에 채우고 싶은, 약한 반점이 경향이.</div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name">0-12 (표준)</div>
+                <div class="manual-option__desc">0–12. 12 번째 fret에서 옥타브 반복, 그래서 당신이 지금까지 알고, 나머지는 반복입니다. 지판 기억을 위한 표준 표적 범위.</div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name">0-20 (확장 범위)</div>
+                <div class="manual-option__desc">0–20을 떼어냅니다. 가장 큰베이스의 프렛 count와 일치한 요소는 베이스에서 연습하는 경우 전체 목을 효과적으로 계산합니다. 또한 손톱이있는 기타리스트에 유용합니다 0-12 및 모든 방법을 0-24로 이동하기 전에 높은 위치를 추가하고 싶습니다.</div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name">0-24 (풀 프레타 보드)</div>
+                <div class="manual-option__desc">전체 목 (frets 0–24). 솔로와 리드 라인에서 높은 frets를 사용하는 플레이어. 상단 층 마무리 단계.</div>
+            </div>
+        </div>
+
+        <div class="manual-rationale">
+            <span class="manual-rationale__label">그 뒤에 증거</span>
+            <p>
+
+                범위를 좁은 한 번에 배울 수있는 위치의 수를 잘라, 그래서 당신은 그 섹션을 믿을 수. 넓이가 돋보이는 전 작은 지역을 떼어낸다. tiers는 인지 로드 이론을 따릅니다: 새로운 기술 원조 학습에서 낮은 가공 요구를 유지.
+
+
+            </p>
+            <p class="manual-rationale__ref">참고 : Sweller (1988) <a class="manual-ref-num" href="#ref-2">[2]</a></p>
+        </div>
+
+        <!-- #strings -->
+        <h2 id="strings">스트링</h2>
+
+        <p class="manual-lead">
+
+            <strong>모든 현에 남겨두십시오.</strong> 정확도에 한 현을 곱하면, 일시적으로 현에 좁아, 초점, 다음 6로 돌아갑니다.
+
+
+        </p>
+
+        <p>
+
+            6개의 현의 질문이 그려지는 이 설정은 (기본 설정 섹션에서 모든 모드로 공유). 그 밖에도 다른 점에서 선택된 점은, 항상 현 (4–5)의 모든에서 그려진 질문입니다. "모든 현 외에도"당신은 세 개의 곱창 또는 세 개의베이스 현에 제한 할 수 있습니다, 또는 하나의 현. Weak Notes는 노트 → 위치 모드의 초점 설정에서 발견 된 초점 만 자동 보호는 70 % 정확도 이하 노트 (비활성 한 번 데이터 축적)를 저장합니다.
+
+
+        </p>
+
+        <div class="manual-options">
+            <div class="manual-option">
+                <div class="manual-option__name">모든 현</div>
+                <div class="manual-option__desc">모든 6개의 현에서 그리기 — 종합적이고 현실적인 연습. 당신은 좁은 아래로 이유가없는 경우 여기에 남겨.</div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name">높은 현 (1-3) / 낮은 현 (4-6)</div>
+                <div class="manual-option__desc">3 그룹에 화살표. 베이스 현 (E A D) 직접 코드 루트를 찾는 데; 떨림 현 (G B E) melodies와 솔로를 배치. 당신의 필요 당 시간에 1 반을 단단하게 하기는 것은 핸디입니다.</div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name">1차–6차 현 (개인)</div>
+                <div class="manual-option__desc">단일 현에 제한. 가장 좁은 설정, 명확한 약한 자리 한 현을 시간에서 분쇄 — 말, "나는 항상 6 현의 메모 이름에 얽혀있다."</div>
+            </div>
+        </div>
+
+        <div class="manual-rationale">
+            <span class="manual-rationale__label">그 뒤에 증거</span>
+            <p>
+
+                현을 좁은 떼어낸다면 한 번에 처리하고 약한 자리를 채우도록 합시다. 단일 샤키 현은 모든 6을 연습 할 때 군중에서 잃어 져 냅니다. 부하를 낮추기 때문에 집중하고 스틱을 만들 수 있습니다. 이 인지 로드 이론: 낮은 유지 - 일찍 또는 약점을 걷기 때 - 보조 학습.
+
+
+            </p>
+            <p class="manual-rationale__ref">참고 : Sweller (1988) <a class="manual-ref-num" href="#ref-2">[2]</a></p>
+        </div>
+
+        <!-- #answer-mode -->
+        <h2 id="answer-mode">응답 형태</h2>
+
+        <p class="manual-lead">
+
+            <strong>단일 위치로 시작.</strong> 각 주의 위치가 머리에 대략되면, 목 전체에 퍼지는 방법의 전체 그림을 완료하기 위하여 모든 위치에 전환합니다.
+
+
+        </p>
+
+        <p>
+
+            이 설정은 목 (주 → 위치 모드)에 메모를 응답 할 때, 얼마나 올바른지 탭해야합니다. 한 가지 참고 이름은 몇 가지 반점에 존재하므로 모든 것을 발견하거나 어려움을 변경해야합니다.
+
+
+        </p>
+
+        <div class="manual-options">
+            <div class="manual-option">
+                <div class="manual-option__name">단일 위치</div>
+                <div class="manual-option__desc">한 가지 올바른 위치를 찾아 오른쪽입니다. 속도 중심. 한 번이 전진하기 때문에 반응 속도를 구축하기 위해 브리스크 tempo에서 많은 질문을 드릴 수 있습니다.</div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name">모든 위치</div>
+                <div class="manual-option__desc">범위 내에서 모든 정확한 위치를 찾아 탭합니다. 한 가지 참고 이름은 목 전체에 흩어져있는지도를 정확히 설정하는 완전성 지향. 더 많은 정보</div>
+            </div>
+        </div>
+
+        <div class="manual-rationale">
+            <span class="manual-rationale__label">그 뒤에 증거</span>
+            <p>
+
+                두 가지 설정 단계는 전체 목에 걸쳐 어떤 주목 이름의 지식입니다. 먼저 즉시 단일 지점 응답을 구축; 그 후, 한 번 편안, 모든 지점을 찾는 위치의 전체 세트를 찾습니다. 디자인은 지판를 마스터하기위한 기계 및 농약 pedagogy를 설치했습니다.
+
+
+            </p>
+            <p class="manual-rationale__ref">참고 : Karpinski (2000) <a class="manual-ref-num" href="#ref-1">[1]</a></p>
+        </div>
+
+        <!-- #hint-level -->
+        <h2 id="hint-level">힌트</h2>
+
+        <p class="manual-lead">
+
+            <strong>절대 초보자 사용 Show 옥타브 레이아웃을 파악하고, 다음 힌트로 전환합니다.</strong> 최종 목표는 힌트와 믿을 수 있는 대답입니다.
+
+
+        </p>
+
+        <p>
+
+            이 설정은 당신이 대답하면서 얼마나 많은 도움이 표시된지 결정합니다. 더 많은 도움은 쉽게 대답을 만들 수 있지만, 또한 자신의에 회신의 노력을 감소시킵니다. 그래서 기본 규칙은 당신이 편안하게 얻을 수 있도록 그것을 차단하는 것입니다.
+
+
+        </p>
+
+        <div class="manual-options">
+            <div class="manual-option">
+                <div class="manual-option__name">힌트 없음</div>
+                <div class="manual-option__desc">전혀 도움이되지 않습니다. - 당신은 당신의 자신에 완전히 대답합니다. 이 메모리에서 답을 끌어 당기는 노력이 극대화되어 가장 강력한 유지를 구동합니다. 이것은 궁극적 인 목표입니다.</div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name">옥타브의 인기 호텔</div>
+                <div class="manual-option__desc">같은 메모 이름의 팔브 위치가 강조됩니다. 한 사람이 더 쉽게 infer를 만들 수 있습니다. - 공간 관계가 아직 명확하지 않을 때 좋은 지원.</div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name">Remaining의 쇼</div>
+                <div class="manual-option__desc">많은 정확한 반점이 남아있는 방법을 보여줍니다. 모든 위치와 페어링, 그것은 당신에게 "그들은 여전히 남아있다," 놓친 명소를 방지.</div>
+            </div>
+        </div>
+
+        <div class="manual-rationale">
+            <span class="manual-rationale__label">그 뒤에 증거</span>
+            <p>
+
+                힌트는 가공 하중을 낮추는 비계이지만 목을 저어하지 않았습니다. 쇼 옥타브와 같은 원조는 cue를 공급하고, 짐을 아래로 붙들고, 파악하게 쉬운 배치를 만듭니다. 방이 한 번, 아이즈 제거를 제거하면 unaided를 호출의 전체 부하를 복원합니다. 이 인지 로드 이론: 로드 지원 초기 학습을 줄이기 위한 비계.
+
+
+            </p>
+            <p class="manual-rationale__ref">참고 : Sweller (1988) <a class="manual-ref-num" href="#ref-2">[2]</a></p>
+        </div>
+
+        <!-- #tuning -->
+        <h2 id="tuning">팟캐스트</h2>
+
+        <p class="manual-lead">
+
+            <strong>표준에 남겨두기 (EADGBE).</strong> 실제로 한 곳에서 재생할 필요가 있을 때만 교체하는 튜닝을 가져 가라.
+
+
+        </p>
+
+        <p>
+
+            이 설정은 각 현의 오픈 현 음높이를 설정합니다. 변경 및 동일한 프렛 위치는 다른 참고 이름을 생산, 그래서 목 이동에 메모 이름의 전체지도. 표준 (EADGBE) 외에도 Drop D (DADGBE, 6th 현 전체 단계) 및 Open G, Open D, DADGAD, 그리고 Open strings 혼자 코드 소리를 지원한다. 특별한 튜닝에서 노래를 연주하면 목을 다시 넓히는 데 사용합니다. 튜닝은 기타 선택이 가능하면서 선택될 수 있습니다. 베이스는 표준 튜닝(EADG on 4-string, BEADG on 5-string)으로 고정됩니다.
+
+
+        </p>
+
+        <!-- #handedness -->
+        <h2 id="handedness">손수레</h2>
+
+        <p class="manual-lead">
+
+            <strong>기타를 모두 일치시키십시오.</strong> 오른쪽 잡은 기타를 위해 오른쪽 잡은 왼쪽 손으로 손으로 손으로 - 한 번 선택하고 그것을 떠나십시오.
+
+
+        </p>
+
+        <p>
+
+            이 설정은 화면에 표시된 지판의 방향을 설정합니다. 그것은 어려움이나 콘텐츠를 변경하지 않습니다. - 그것은 단순히 악기에 디스플레이를 일치. 기타와 화면 레이아웃이 불멸하면, 당신은 마음으로 왼쪽과 오른쪽으로 펴고 위치를 응답 할 때.
+
+
+        </p>
+
+        <div class="manual-options">
+            <div class="manual-option">
+                <div class="manual-option__name">꽉 꽉</div>
+                <div class="manual-option__desc">표준 디스플레이, 오른쪽 손으로 기타 (왼손으로 압착)가 보이는 방법을 일치. 이것은 대부분의 선수에게 좋습니다.</div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name">좌손잡이</div>
+                <div class="manual-option__desc">지판를 오른쪽으로 왼쪽으로 미러합니다. 왼쪽 손으로 다른 플레이어를하자 (왼손으로 나타낸) 악기와 같은보기 연습.</div>
+            </div>
+        </div>
+
+        <!-- #sound-source -->
+        <h2 id="sound-source">Prompt 소리</h2>
+
+        <p class="manual-lead">
+
+            <strong>의심 할 여지없이, 자신의 악기의 음색 (Guitar/Bass)와 일치합니다.</strong> 특히 귀 모드에서, 당신은 당신이 원하는 매우 음색 연습. Sine를 선택하십시오 혼자 음높이에 초점을 맞추고 싶을 때 톤.
+
+
+        </p>
+
+        <p>
+
+            이 설정은 프롬버의 선명하고 탭 소리를 설정합니다. 톤 변경만 - 지판 자체를 전환 (guitar/bass) 위의 악기 설정으로 수행됩니다. 선택은 악기를 추적 :베이스 소스는 기타 지판 및 기타 소스에 표시되지 않습니다베이스에, 피아노와 사인 톤은 하나에 선택할 수 있습니다.
+
+
+        </p>
+
+        <div class="manual-options">
+            <div class="manual-option">
+                <div class="manual-option__name">한국어</div>
+                <div class="manual-option__desc">중립, 표준 음색는 지판에 유효합니다. 특정한 선호도가 없는 경우에 완전히 벌금.</div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name">기타</div>
+                <div class="manual-option__desc">실제 기타에서 샘플링. 기타 지판가 선택된 동안 선택 가능 - 실제로 듣는 기타 음색와 함께 귀 모드를 실행할 수 있습니다.</div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name">팟캐스트</div>
+                <div class="manual-option__desc">실제베이스에서 샘플링. 베이스 지판가 선택된 동안 선택 가능 - 실제베이스 음색와 낮은 등록을 연습 할 수 있습니다.</div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name">Sine 톤</div>
+                <div class="manual-option__desc">과톤이 없는 순수한 음색. 스트라이프를 위해 timbral cues와 음높이에 초점을 혼자.</div>
+            </div>
+        </div>
+
+        <!-- References -->
+        <section class="manual-refs">
+            <div class="manual-refs__title">이름 *</div>
+            <ol>
+                <li id="ref-1">Karpinski, G. S. (2000). <em>Aural Skills Acquisition: The Development of Listening, Reading, and Performing Skills in College-Level Musicians.</em> Oxford University Press.</li>
+                <li id="ref-2">Sweller, J. (1988). Cognitive load during problem solving: Effects on learning. <em>Cognitive Science, 12</em>(2), 257–285.</li>
+            </ol>
+        </section>
+
+    </main>
+
+    <!-- Final CTA -->
+    <section class="article-cta">
+        <h2 class="article-cta__title">설정 정렬? 그것을 시도</h2>
+        <p class="article-cta__text">
+
+            각 설정을 이해하면 나머지는 연습입니다.<br>불확실한 경우, 이 페이지의 " 의심스러운"줄을 따르십시오.<br>당신이 맞는 설정을 찾기 Solfege PRO's 지판 교육.
+
+
+        </p>
+        <a href="https://apps.apple.com/kr/app/id6756626617?pt=6749158383&amp;ct=web_manual&amp;mt=8" class="app-store-link" aria-label="App Store에서 다운로드">
+
+            <img class="app-store-link__img" width="120" height="40" src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/ko-kr" alt="App Store에서 다운로드">
+
+
+        </a>
+    </section>
+
+    <!-- Related Content -->
+    <div class="article-related">
+        <div class="article-related__title">관련 내용</div>
+        <a href="/guides/fretboard-training/" class="article-related__link" style="margin-bottom: var(--space-md);">
+            <div class="article-related__link-title">지판 훈련이란? — 기타 목에 메모를 메칭</div>
+            <div class="article-related__link-desc">설정 조정 전에 지판 훈련이 무엇인지 이해하려는 사람들을 위해 - 목에 메모 이름을 왜 측정하는 가이드는 단계별 연습과 함께 진행 상황을 가속합니다.</div>
+        </a>
+        <a href="/" class="article-related__link">
+            <div class="article-related__link-title">Solfege PRO 연습장</div>
+            <div class="article-related__link-desc">기타,베이스, 드럼, 피아노, 보컬을 위한 도전 기반 연습 메뉴</div>
+        </a>
+    </div>
+
+    <!-- Article Note -->
+    <aside class="article-endnote">
+        <p class="article-endnote__text">
+
+            이 페이지는 앱 내 설정을 설명하는 참고 자료입니다. 여기의 권장 진행은 널리 쓰이는 연습 방법론을 바탕으로 한 일반적인 지침이며, 최적의 설정은 개인의 경험과 목표에 따라 달라집니다. 인용된 연구는 일반적인 학습 결과를 다루며 이 앱에서의 성과를 보장하지 않습니다.
+
+
+        </p>
+    </aside>
+
+    <!-- Footer -->
+    <footer class="article-footer">
+        <p class="article-footer__text">
+            &copy; 2026 Solfege PRO
+        </p>
+    </footer>
+    <script src="/bootstrap.js?v=10" defer></script>
+    <nav aria-label="Language" style="display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:0.5rem;padding:var(--space-lg) var(--space-md);border-top:1px solid var(--surface-light);font-size:13px">
+        <a href="/manual/fretboard/" hreflang="ja" style="color:var(--text-secondary);text-decoration:none">日本語</a>
+        <span aria-hidden="true" style="color:var(--surface-light)">·</span>
+        <a href="/en/manual/fretboard/" hreflang="en" style="color:var(--text-secondary);text-decoration:none">English</a>
+        <span aria-hidden="true" style="color:var(--surface-light)">·</span>
+        <a href="/fr/manual/fretboard/" hreflang="fr" style="color:var(--text-secondary);text-decoration:none">Français</a>
+        <span aria-hidden="true" style="color:var(--surface-light)">·</span>
+        <a href="/de/manual/fretboard/" hreflang="de" style="color:var(--text-secondary);text-decoration:none">Deutsch</a>
+        <span aria-hidden="true" style="color:var(--surface-light)">·</span>
+        <a href="/es/manual/fretboard/" hreflang="es" style="color:var(--text-secondary);text-decoration:none">Español</a>
+        <span aria-hidden="true" style="color:var(--surface-light)">·</span>
+        <a href="/it/manual/fretboard/" hreflang="it" style="color:var(--text-secondary);text-decoration:none">Italiano</a>
+        <span aria-hidden="true" style="color:var(--surface-light)">·</span>
+        <span style="color:var(--primary);font-weight:600" aria-current="true">한국어</span>
+        <span aria-hidden="true" style="color:var(--surface-light)">·</span>
+        <a href="/pt-br/manual/fretboard/" hreflang="pt-BR" style="color:var(--text-secondary);text-decoration:none">Português (Brasil)</a>
+    </nav>
+</body>
+</html>

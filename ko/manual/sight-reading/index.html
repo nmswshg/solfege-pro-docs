@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html lang="ko"
+      data-title-ja="譜読み 設定マニュアル — 各設定の選び方 | ソルフェージュPRO"
+      data-title-en="Sight Reading Settings Manual — How to Choose Each Option | Solfege PRO"
+      data-title-fr="Manuel des réglages de Lecture à vue — Comment choisir chaque option | Solfege PRO"
+      data-title-de="Einstellungshandbuch Blattlesen — So wählen Sie jede Option | Solfege PRO">
+<head>
+    <meta charset="UTF-8">
+    <meta name="robots" content="index, follow">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#1A1A1E">
+    <title>초견 설정 설명서 | Solfege PRO</title>
+    <meta name="description" content="초견의 난이도, 연습 모드, 음자리표, 조표, 덧줄 설정이 무엇이며 목적에 따라 어떻게 선택하는지 설명합니다.">
+
+    <!-- Canonical -->
+    <link rel="canonical" href="https://solfegepro.com/ko/manual/sight-reading/">
+    <link rel="alternate" hreflang="ja" href="https://solfegepro.com/manual/sight-reading/">
+    <link rel="alternate" hreflang="en" href="https://solfegepro.com/en/manual/sight-reading/">
+    <link rel="alternate" hreflang="fr" href="https://solfegepro.com/fr/manual/sight-reading/">
+    <link rel="alternate" hreflang="de" href="https://solfegepro.com/de/manual/sight-reading/">
+    <link rel="alternate" hreflang="es" href="https://solfegepro.com/es/manual/sight-reading/">
+    <link rel="alternate" hreflang="it" href="https://solfegepro.com/it/manual/sight-reading/">
+    <link rel="alternate" hreflang="ko" href="https://solfegepro.com/ko/manual/sight-reading/">
+    <link rel="alternate" hreflang="pt-BR" href="https://solfegepro.com/pt-br/manual/sight-reading/">
+    <link rel="alternate" hreflang="x-default" href="https://solfegepro.com/manual/sight-reading/">
+<!-- OGP -->
+    <meta property="og:title" content="초견 설정 설명서">
+    <meta property="og:description" content="초견의 난이도, 연습 모드, 음자리표, 조표, 덧줄 설정이 무엇이며 목적에 따라 어떻게 선택하는지 설명합니다.">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://solfegepro.com/ko/manual/sight-reading/">
+    <meta property="og:site_name" content="Solfege PRO">
+    <meta property="og:image" content="https://solfegepro.com/og-image.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Solfege PRO">
+    <meta property="og:locale" content="ko_KR">
+    <meta property="og:locale:alternate" content="ja_JP">
+    <meta property="og:locale:alternate" content="en_US">
+    <meta property="og:locale:alternate" content="fr_FR">
+    <meta property="og:locale:alternate" content="de_DE">
+    <meta property="og:locale:alternate" content="es_ES">
+    <meta property="og:locale:alternate" content="it_IT">
+    <meta property="og:locale:alternate" content="pt_BR">
+    <meta property="article:published_time" content="2026-06-05">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="초견 설정 설명서">
+    <meta name="twitter:description" content="초견의 난이도, 연습 모드, 음자리표, 조표, 덧줄 설정이 무엇이며 목적에 따라 어떻게 선택하는지 설명합니다.">
+    <meta name="twitter:image" content="https://solfegepro.com/og-image.png">
+
+    <!-- Favicon -->
+    <link rel="icon" href="/favicon.ico" sizes="any">
+    <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap"></noscript>
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="/style.css?v=23">
+    <link rel="stylesheet" href="/guides/article.css?v=14">
+
+    <style>
+        /* Manual option reference — responsive, no fixed px widths */
+        .manual-options {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr);
+            gap: var(--space-sm);
+            margin: var(--space-lg) 0;
+        }
+        .manual-option {
+            background: var(--surface);
+            border: 1px solid var(--surface-light);
+            border-radius: var(--radius-lg);
+            padding: var(--space-md);
+        }
+        .manual-option__name {
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: var(--space-xs);
+        }
+        .manual-option__desc {
+            font-size: 13px;
+            color: var(--text-secondary);
+        }
+        /* Bottom-line callout (conclusion first) */
+        .manual-lead {
+            font-size: 14px;
+            line-height: 1.75;
+            color: var(--text-primary);
+            border-left: 3px solid var(--primary);
+            background: rgba(212, 175, 55, 0.06);
+            padding: var(--space-sm) var(--space-md);
+            border-radius: 0 var(--radius-md) var(--radius-md) 0;
+            margin: var(--space-md) 0;
+        }
+        /* Per-setting evidence note — deliberately styled as an editorial
+           aside, NOT as a settings card (no surface fill, no gold label),
+           so it is never mistaken for an in-app option. */
+        .manual-rationale {
+            margin: var(--space-md) 0 var(--space-2xl);
+            padding: var(--space-sm) 0 var(--space-sm) var(--space-md);
+            border-left: 2px solid var(--surface-light);
+        }
+        .manual-rationale__label {
+            display: block;
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            color: var(--text-secondary);
+            margin-bottom: 4px;
+            opacity: 0.75;
+        }
+        .manual-rationale p {
+            font-size: 13px;
+            line-height: 1.75;
+            color: var(--text-secondary);
+            margin: 0;
+        }
+        .manual-rationale__ref {
+            font-size: 12px;
+            font-style: italic;
+            margin-top: var(--space-xs) !important;
+            opacity: 0.7;
+        }
+        /* Citation number linking to the reference list */
+        .manual-ref-num {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-style: normal;
+        }
+        .manual-ref-num:hover { color: var(--primary); }
+        /* Full reference list at page end */
+        .manual-refs {
+            margin: var(--space-2xl) 0 0;
+            padding-top: var(--space-lg);
+            border-top: 1px solid var(--surface-light);
+        }
+        .manual-refs__title {
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: var(--space-sm);
+        }
+        .manual-refs ol {
+            margin: 0;
+            padding-left: 1.25em;
+        }
+        .manual-refs li {
+            font-size: 12px;
+            line-height: 1.7;
+            color: var(--text-secondary);
+            margin-bottom: var(--space-xs);
+            scroll-margin-top: 84px;
+        }
+        .manual-refs li:target {
+            color: var(--text-primary);
+        }
+    </style>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"초견 설정 설명서","description":"초견의 난이도, 연습 모드, 음자리표, 조표, 덧줄 설정이 무엇이며 목적에 따라 어떻게 선택하는지 설명합니다.","author":{"@type":"Organization","name":"Solfege PRO"},"publisher":{"@type":"Organization","name":"Solfege PRO","logo":{"@type":"ImageObject","url":"https://solfegepro.com/AppIcon.png"}},"datePublished":"2026-06-05","mainEntityOfPage":{"@type":"WebPage","@id":"https://solfegepro.com/ko/manual/sight-reading/"}}</script>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"홈","item":"https://solfegepro.com/ko/"},{"@type":"ListItem","position":2,"name":"매뉴얼","item":"https://solfegepro.com/ko/manual/"},{"@type":"ListItem","position":3,"name":"譜読み 設定マニュアル — 各設定の選び方","item":"https://solfegepro.com/ko/manual/sight-reading/"}]}</script>
+</head>
+<body>
+    <!-- Navigation -->
+        <nav class="nav" aria-label="기본 메뉴">
+        <div class="nav__container">
+            <a href="/ko/" class="nav__logo" aria-label="Solfege PRO">
+                <img src="/AppIcon.png" alt="" class="nav__logo-icon" width="32" height="32">
+                <span class="nav__logo-text">Solfege PRO</span>
+            </a>
+            <ul class="nav__list">
+                <li><a href="/ko/" class="nav__link">Solfege PRO 소개</a></li>
+                <li><a href="/ko/features/" class="nav__link">훈련</a></li>
+                <li><a href="/ko/guides/" class="nav__link">연습 가이드</a></li>
+                <li><a href="/ko/manual/" class="nav__link active" aria-current="page">매뉴얼</a></li>
+            </ul>
+            <div class="nav__settings">
+                <button class="settings-btn" id="lang-toggle" title="언어 선택"><span id="lang-text">KO</span></button>
+                <button class="hamburger-btn" id="hamburger-btn" aria-label="메뉴 열기" aria-expanded="false" aria-controls="drawer">
+                    <span class="hamburger-btn__line"></span><span class="hamburger-btn__line"></span><span class="hamburger-btn__line"></span>
+                </button>
+            </div>
+        </div>
+    </nav>
+        <!-- Mobile drawer (hidden on desktop) -->
+            <div class="drawer-overlay" id="drawer-overlay"></div>
+    <aside class="drawer" id="drawer" aria-label="메뉴" aria-hidden="true" inert>
+        <div class="drawer__header">
+            <span class="drawer__title">메뉴</span>
+            <button class="drawer__close" id="drawer-close" aria-label="메뉴 닫기">×</button>
+        </div>
+        <ul class="drawer__list">
+            <li><a href="/ko/" class="drawer__link">Solfege PRO 소개</a></li>
+            <li><a href="/ko/features/" class="drawer__link">훈련</a></li>
+            <li><a href="/ko/guides/" class="drawer__link">연습 가이드</a></li>
+            <li><a href="/ko/manual/" class="drawer__link active" aria-current="page">매뉴얼</a></li>
+        </ul>
+    </aside>
+
+
+    <!-- Article Header -->
+    <header class="page-header">
+        <div class="page-header__meta">
+            <span class="page-header__tag">매뉴얼</span>
+            <span>Sight 독서</span>
+        </div>
+        <h1 class="page-header__title">
+
+            초견 설정 설명서<br>각 옵션은 무엇을 의미하고 선택하는 방법
+
+
+        </h1>
+        <p class="page-header__subtitle">
+
+            언제, 그리고 왜 선택할 수 있는 어떤 선택권. 이 페이지는 각 설정을 통해 보자마자 독서 훈련, 한 번에. 설정 화면에서 "?"에 도착하면 필요한 옵션을 스크롤합니다.
+
+
+        </p>
+    </header>
+
+    <!-- Top-of-article CTA -->
+    <aside class="article-top-cta" aria-label="App promotion">
+        <div class="article-top-cta__body">
+            <p class="article-top-cta__title">
+
+                더 알아보기 Solfege PRO
+
+
+            </p>
+            <p class="article-top-cta__sub">
+
+                $9.99/월(미국 App Store 기준)(미국 App Store 기준)
+
+
+            </p>
+        </div>
+        <a href="https://apps.apple.com/kr/app/id6756626617?pt=6749158383&amp;ct=web_manual&amp;mt=8" class="article-top-cta__button app-store-link" data-cta-position="article_top" aria-label="App Store에서 다운로드"><img src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/ko-kr" class="app-store-link__img" alt="App Store에서 다운로드" loading="lazy"></a>
+    </aside>
+
+    <!-- Article Body -->
+    <main class="article-body">
+
+        <!-- Intro -->
+        <p>
+
+            읽는 훈련은 직원에 주의를 보고 그 이름을 읽는 능력을 빨리 그리고 정확하게 건설합니다 (Do, Re, Mi...). 직원을 읽는 것은 음악으로 점수를 돌리고, 악기를 연주하는 시작점입니다.
+
+
+        </p>
+        <p>
+
+            이 페이지는 설정 선택을 위한 설명서입니다. 각 설정은 음악 교육에서 설치된 방법의 주위에 설계됩니다. 결정에 대한 호출 각 설정에 대해, 우리는 <strong>추천된 선택, 그것은 무엇을 위해, 그리고 그것이 기차 — 증거와 함께</strong>. 설정 화면에서 "?"에서 도착하면 필요한 옵션으로 스크롤하십시오.
+
+
+        </p>
+
+        <!-- Shared note: practice-plan item settings sheets show only the settings
+     persisted per item (v1.3.1 hides non-persisted controls in plan context).
+     Included by the 7 module manuals: interval / chord / scale / progression /
+     sight-reading / rhythm / fretboard. Rhythm Sight Reading is deliberately
+     excluded — its plan items do not embed module settings at all. -->
+<p>
+
+    이 페이지는 연습 홈에서 열린 독립 훈련의 설정 화면을 설명합니다. 연습 계획 항목에서 설정할 때, 그 항목에 저장 된 설정만 표시됩니다.
+
+
+</p>
+
+
+        <!-- #difficulty -->
+        <h2 id="difficulty">뚱 베어</h2>
+
+        <p class="manual-lead">
+
+            <strong>불확실한 경우, 초급에서 시작하십시오.</strong> 한 번에 한 단계로 현재 한 번에 80 % +를 안정적으로 보유합니다.
+
+
+        </p>
+
+        <p>
+
+            읽을 수 있도록 요청할 수 있는 노트의 범위를 함께 묶습니다. 등록, 키 서명, 원장 라인이 나타날지 여부. 더 좁은 기호와 함께 더 쉽게; 더 넓은 기호는 더 열심히.
+
+
+        </p>
+
+        <div class="manual-options">
+            <div class="manual-option">
+                <div class="manual-option__name">뚱 베어</div>
+                <div class="manual-option__desc">중간 등록, 자연 노트 만 (무선 흰색 키 음높이), C의 키에 엄청난 직원의 중심 근처에 — 각 라인과 공간에 앉아있는 앵커링의 첫 번째 단계.</div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name">의논하기</div>
+                <div class="manual-option__desc">사고로 넓은 범위;베이스 clef는 3 개의 날카로운 또는 평평한 표시의 주요 서명에 가입하므로, 상당한 판독 범위가 있습니다.</div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name">의 특징</div>
+                <div class="manual-option__desc">원장 라인 포함 전체 범위 - 모든 키 서명 플러스 직원을 넘어 도달하는 노트; 최고 계층, 실제 점수에 가장 가까운.</div>
+            </div>
+        </div>
+
+        <div class="manual-rationale">
+            <span class="manual-rationale__label">그 뒤에 증거</span>
+            <p>
+
+                한 번에 손잡이 범위를 좁은, 눈이 덜 처리해야, 그리고 더 신뢰할 수 있는 당신은 각 선과 공간에 앉아 있는 것을 수정합니다. 즉시 회신에 힌지를 읽고, 그래서 더 빨리 얻을 수 있기 전에 좁은 범위를 확보. tiers는 인지 로드 이론을 따릅니다: 새로운 기술 원조 학습에서 낮은 가공 요구를 유지.
+
+
+            </p>
+            <p class="manual-rationale__ref">참고 : Sweller (1988) <a class="manual-ref-num" href="#ref-1">[1]</a></p>
+        </div>
+
+        <!-- #training-mode -->
+        <h2 id="training-mode">교육 모드</h2>
+
+        <p class="manual-lead">
+
+            <strong>표준은 시작에 충분합니다.</strong> 특정 키 서명을 대상으로 키 포커스를 사용하고 결과를 쌓은 "Weak Point Focus"에 도달하십시오.
+
+
+        </p>
+
+        <p>
+
+            이 설정은 메모가 당신을 위해 선택된 정책을 결정합니다. 3개의 형태가 있습니다.
+
+
+        </p>
+
+        <div class="manual-options">
+            <div class="manual-option">
+                <div class="manual-option__name">표준</div>
+                <div class="manual-option__desc">선택한 어려움과 일치하는 모든 노트에서 끌기. 특별한 의도가없는, 이것은 하나이다.</div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name">핵심 초점</div>
+                <div class="manual-option__desc">한 키에 대한 질문을 좁은, 당신이 열심히 찾을 키 서명을 드릴링 (선택 그것은 아래 연습 "키를 표시).</div>
+            </div>
+        </div>
+
+        <p>
+
+            나머지 모드 - "Weak Point Focus"- 한 번의 성능 데이터 축적을 지불합니다. 그것은 각 훈련의 맞은편에 동일한 방법을 작동하므로 아래 인라인으로 나타납니다.
+
+
+        </p>
+
+        <!-- TODO i18n: fr/de spans are interim English; translate after ja voice approval -->
+<!-- Reusable mode partial. Training-agnostic: do NOT mention chord/scale/etc. -->
+<section class="article-mode" id="mode-weak-point">
+    <h3 class="article-mode__title">Weak-Point 초점 모드</h3>
+
+    <p>
+
+        Weak-point 초점은 응답 역사에서 보입니다, 가장 낮은 정확도로 항목을 식별하고 더 자주 사람들을 봉사합니다. 대신 이미 대답에 시간을 소비하는 것은 믿을 수 없을 정도로, 당신이 누락한 장소를 정확하게 연습합니다. 앱은 자신의 결과를 자동으로 타겟을 선택합니다.
+
+
+    </p>
+
+    <p>
+
+        이 모드는 전체 정확도가 상승하지만 특정 몇 가지 항목이 항상 여행하는 단계에 적합합니다. 약한 장소에 돌아감하기 때문에 더 열심히 느끼고, 학습이 진행되는데, 학습이 어려운 어려움의 원리를 정확하게 통제하는 것이 중요합니다. 그것은 후보자 전에 충분한 응답 역사를 필요로하므로, 처음에는 일반 모드를 재생합니다.
+
+
+    </p>
+
+    <p>
+
+        의심 할 여지없이, 주어진 수준에서 판다 할 때마다 몇 가지 집중 세션을 드롭하고 "그 전에 동일한 항목을 잃게됩니다." 약한 반점이 명확하게되면, 당신의 전반적인 균형을 지키는 정상 형태에 돌려보내십시오. <em>자신을 자극하는 항목은 당신이 놓는 경향이 – "테스트 효과"- 로디거 &amp; Karpicke (2006)에 의해 표시되었습니다.</em>
+
+
+    </p>
+</section>
+
+
+        <div class="manual-rationale">
+            <span class="manual-rationale__label">그 뒤에 증거</span>
+            <p>
+
+                세 가지 모드는 현재 필요한 메모에 집중 연습이 존재합니다. 퀴즈 형식 자체 - 단지 찾고보다 오히려 대답을 호출 - 수동보기보다 더 많은 메모리를 강화 (테스트 효과). "Weak Point Focus"는 성능 데이터를 사용하여이 자동화됩니다.
+
+
+            </p>
+            <p class="manual-rationale__ref">참고 : Roediger &amp; Karpicke (2006) <a class="manual-ref-num" href="#ref-2">[2]</a></p>
+        </div>
+
+        <!-- #clef -->
+        <h2 id="clef">클레프 (Treble /베이스)</h2>
+
+        <p class="manual-lead">
+
+            <strong>악기 사용 clef로 시작.</strong> 기타 및 목소리에 대한 Treble,베이스; pianists는 두 가지로 이동하기 전에 각 clef를 안정화.
+
+
+        </p>
+
+        <p>
+
+            clef는 라인이 어느 음높이인지 고정 직원의 왼쪽 가장자리에 상징입니다. 같은 자리는 clef가 treble 또는 bass인지에 따라 완전히 다른 메모를 이름을 붙입니다.
+
+
+        </p>
+
+        <div class="manual-options">
+            <div class="manual-option">
+                <div class="manual-option__name">트라플 클리프</div>
+                <div class="manual-option__desc">높은 등록 음자리표 ( high); 그것의 두 번째 라인은 G입니다. 기타, 보컬, 피아노의 오른쪽 손, 대부분의 멜로디 악기에 대한 가장 기본적인 클라프.</div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name">베이스 음자리표</div>
+                <div class="manual-option__desc">저소득층 ( low); 네 번째 라인은 F. Essential for bass, 피아노의 왼쪽 손, 첼로, 다른 낮은 레지스터; 그것의 매핑은 백금의 다른, 그래서 별도의 시스템으로 배울.</div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name">두 배</div>
+                <div class="manual-option__desc">혼합과베이스 질문; 당신이 나타나지 않을 예측할 수 없기 때문에, 당신은 읽기 전에 왼쪽 가장자리의 쇠퇴를 검사의 습관을 구축 - 피아노와 다른 악기에 이상적입니다 모두 읽습니다.</div>
+            </div>
+        </div>
+
+        <div class="manual-rationale">
+            <span class="manual-rationale__label">그 뒤에 증거</span>
+            <p>
+
+                각 음자리표 maps가 다르게 투구하기 때문에, treble과 bass는 별도의 시스템으로 인수되어야 합니다. 다른 추가하기 전에 한 개의 clef를 Securing는 초견 명령에 설치 된 순서입니다. 모두는 당신이 읽기 전에 주요한 clef를 검사하는 근본적인 성과 습관을 건설합니다.
+
+
+            </p>
+            <p class="manual-rationale__ref">참고 : Karpinski (2000) <a class="manual-ref-num" href="#ref-3">[3]</a></p>
+        </div>
+
+        <!-- #key -->
+        <h2 id="key">연습 (조표)</h2>
+
+        <p class="manual-lead">
+
+            <strong>특정 키 서명 여행이되면, 그 것만큼 좁습니다.</strong> 그렇지 않으면 표준 모드에서 다양한 키에 맞습니다.
+
+
+        </p>
+
+        <p>
+
+            하나의 키에 대한 질문을 핀, 당신이 키 포커스를 훈련 모드로 선택할 때만 보여. 키 서명 - 직원의 왼쪽에 날카로운 또는 평평 - 노트가 변경되는 정의 (예 : G 전공은 한 날카로운, E-flat 장 3 평평). 선택 가능한 키는 어려움을 따릅니다 : 초보자 만 C 주요, 중급에서 3 명의 사고, 고급의 모든 12 키.
+
+
+        </p>
+
+        <div class="manual-rationale">
+            <span class="manual-rationale__label">그 뒤에 증거</span>
+            <p>
+
+                그 서명의 재발 패턴에 관심 하나의 키 집중을 좁은 - "이 노트는 항상 여기에 날카로운"- 그래서 그것은 안으로 싱크. 키 서명의 방법으로 읽기는 초견 교육에 대한 설립 된 접근 방식이며, 음높이의 각 키의 레이아웃을 내부화 할 수 있습니다.
+
+
+            </p>
+            <p class="manual-rationale__ref">참고 : Karpinski (2000) <a class="manual-ref-num" href="#ref-3">[3]</a></p>
+        </div>
+
+        <!-- #ledger -->
+        <h2 id="ledger">Ledger 라인 포함 (Ledger 라인)</h2>
+
+        <p class="manual-lead">
+
+            <strong>첫 번째에서 in-staff 노트를 확보하기 위해, 다음 한 번의 ledger 라인을 추가.</strong> 고급 난이도가 자동으로 포함되어 있음을 주의하십시오.
+
+
+        </p>
+
+        <p>
+
+            ledger 줄을 제어합니다. - 직원의 위 또는 아래 짧은 헬퍼 라인이 추가됩니다. - 나타날 수 있습니다. 5개의 선을 위해 너무 높거나 낮게 투구는 한 번에 선을 추가해서 (예를들면 중간 C, C4, 앉습니다 1개의 원장 선에 treble 직원의 밑에) 쓰입니다. 이 위치를 계산하는 것은 시간이 걸리고 일반적인 엄지점이지만, 원장 라인 노트는 실제 점수에 어디에나 있습니다. 따라서 그들은 긴 실행에서 비폭발적입니다.
+
+
+        </p>
+
+        <div class="manual-rationale">
+            <span class="manual-rationale__label">그 뒤에 증거</span>
+            <p>
+
+                첫 번째로 읽는 부하를 낮추는 턴닝 ledger 라인은 한 번에 처리해야 하는 방법을 제한하여 줄을 낮춥니다. 기초의 앞에 그들 섞는 것은 위치 표제에 더미를 놓고 혼란을 일으키는 경향이 있습니다. 원장 라인 추가하기 전에 인 태어 메모를 구부리고 초기 부하가 낮아지고 보조 학습을 유지하십시오. 인지 로드 이론으로 라인에서, 처리 요구가 새로운 기술에서 일찍 머물러야한다는 것을 보유합니다.
+
+
+            </p>
+            <p class="manual-rationale__ref">참고 : Sweller (1988) <a class="manual-ref-num" href="#ref-1">[1]</a></p>
+        </div>
+
+        <h2 id="note-value-scoring">점수 참고 값 Too</h2>
+
+        <p class="manual-lead">
+
+            <strong>먼저 주 이름을 지도록 하겠습니다. "Score 음가"를 켜십시오.</strong> 그것은 주 이름에서 별도로 점수, 그래서 그것은 당신의 이름 연습을 방해하지 않습니다.
+
+
+        </p>
+
+        <p>
+
+            직원에 대한 메모는 두 가지 정보를 제공합니다 : 어느 음높이 (주요 이름) 그리고 얼마나 오래 지속 (주요 값 - 전체, 절반, 분기...). 이 문서는 다음과 같습니다. 두 가지는 <strong>자주적으로 점수를 매기</strong>: 주의 이름 결과는 값이 맞지 않은지에 영향을 미치지 않습니다. 이름과 값을 모두 미리 선택합니다. Off (default)는 고전적인 메모 이름 전용 모드를 유지합니다.
+
+
+        </p>
+
+        <div class="manual-rationale">
+            <span class="manual-rationale__label">그 뒤에 증거</span>
+            <p>
+
+                Actively Answering the value — 그냥 본 것은 — 포인트입니다. Memory (retrieval)에서 답을 풀기 위해 수동식 보기보다 더 학습을 강화 (테스트 효과). 그리고 독서는 스킬 뿐만 아니라 음높이도 지속 (리듬), 그래서 두 차원을 별도로 넓히는 독서 기초.
+
+
+            </p>
+            <p class="manual-rationale__ref">참고 : Roediger &amp; Karpicke (2006) <a class="manual-ref-num" href="#ref-2">[2]</a>, Karpinski (2000) <a class="manual-ref-num" href="#ref-3">[3]</a></p>
+        </div>
+
+        <!-- References -->
+        <section class="manual-refs">
+            <div class="manual-refs__title">이름 *</div>
+            <ol>
+                <li id="ref-1">Sweller, J. (1988). Cognitive load during problem solving: Effects on learning. <em>Cognitive Science, 12</em>(2), 257–285.</li>
+                <li id="ref-2">Roediger, H. L., &amp; Karpicke, J. D. (2006). Test-enhanced learning: Taking memory tests improves long-term retention. <em>Psychological Science, 17</em>(3), 249–255.</li>
+                <li id="ref-3">Karpinski, G. S. (2000). <em>Aural Skills Acquisition: The Development of Listening, Reading, and Performing Skills in College-Level Musicians.</em> Oxford University Press.</li>
+            </ol>
+        </section>
+
+    </main>
+
+    <!-- Final CTA -->
+    <section class="article-cta">
+        <h2 class="article-cta__title">설정 정렬? 그것을 시도</h2>
+        <p class="article-cta__text">
+
+            각 설정을 이해하면 나머지는 연습입니다.<br>불확실한 경우, 이 페이지의 " 의심스러운"줄을 따르십시오.<br>당신이 맞는 설정을 찾기 Solfege PRO's 초견'의 장점
+
+
+        </p>
+        <a href="https://apps.apple.com/kr/app/id6756626617?pt=6749158383&amp;ct=web_manual&amp;mt=8" class="app-store-link" aria-label="App Store에서 다운로드">
+
+            <img class="app-store-link__img" width="120" height="40" src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/ko-kr" alt="App Store에서 다운로드">
+
+
+        </a>
+    </section>
+
+    <!-- Related Content -->
+    <div class="article-related">
+        <div class="article-related__title">관련 내용</div>
+        <a href="/guides/sight-reading/" class="article-related__link" style="margin-bottom: var(--space-md);">
+            <div class="article-related__link-title">음악을 읽는 방법 Faster — Fluent 초견</div>
+            <div class="article-related__link-desc">설정 조정 전에 초견를 수행하는 방법을 알고 싶은 사람들을 위해 - 랜드 마크 노트와 단계별 연습 가이드.</div>
+        </a>
+        <a href="/" class="article-related__link">
+            <div class="article-related__link-title">Solfege PRO 연습장</div>
+            <div class="article-related__link-desc">기타,베이스, 드럼, 피아노, 보컬을 위한 도전 기반 연습 메뉴</div>
+        </a>
+    </div>
+
+    <!-- Article Note -->
+    <aside class="article-endnote">
+        <p class="article-endnote__text">
+
+            이 페이지는 앱 내 설정을 설명하는 참고 자료입니다. 여기의 권장 진행은 널리 쓰이는 초견 훈련 방법론을 바탕으로 한 일반적인 지침이며, 최적의 설정은 개인의 경험과 목표에 따라 달라집니다. 인용된 연구는 일반적인 학습 결과를 다루며 이 앱에서의 성과를 보장하지 않습니다.
+
+
+        </p>
+    </aside>
+
+    <!-- Footer -->
+    <footer class="article-footer">
+        <p class="article-footer__text">
+            &copy; 2026 Solfege PRO
+        </p>
+    </footer>
+    <script src="/bootstrap.js?v=10" defer></script>
+    <nav aria-label="Language" style="display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:0.5rem;padding:var(--space-lg) var(--space-md);border-top:1px solid var(--surface-light);font-size:13px">
+        <a href="/manual/sight-reading/" hreflang="ja" style="color:var(--text-secondary);text-decoration:none">日本語</a>
+        <span aria-hidden="true" style="color:var(--surface-light)">·</span>
+        <a href="/en/manual/sight-reading/" hreflang="en" style="color:var(--text-secondary);text-decoration:none">English</a>
+        <span aria-hidden="true" style="color:var(--surface-light)">·</span>
+        <a href="/fr/manual/sight-reading/" hreflang="fr" style="color:var(--text-secondary);text-decoration:none">Français</a>
+        <span aria-hidden="true" style="color:var(--surface-light)">·</span>
+        <a href="/de/manual/sight-reading/" hreflang="de" style="color:var(--text-secondary);text-decoration:none">Deutsch</a>
+        <span aria-hidden="true" style="color:var(--surface-light)">·</span>
+        <a href="/es/manual/sight-reading/" hreflang="es" style="color:var(--text-secondary);text-decoration:none">Español</a>
+        <span aria-hidden="true" style="color:var(--surface-light)">·</span>
+        <a href="/it/manual/sight-reading/" hreflang="it" style="color:var(--text-secondary);text-decoration:none">Italiano</a>
+        <span aria-hidden="true" style="color:var(--surface-light)">·</span>
+        <span style="color:var(--primary);font-weight:600" aria-current="true">한국어</span>
+        <span aria-hidden="true" style="color:var(--surface-light)">·</span>
+        <a href="/pt-br/manual/sight-reading/" hreflang="pt-BR" style="color:var(--text-secondary);text-decoration:none">Português (Brasil)</a>
+    </nav>
+</body>
+</html>

@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="it"
+      data-title-ja="練習ガイド一覧 | ソルフェージュPRO"
+      data-title-en="Training Guides | Solfege PRO"
+      data-title-fr="Guides d'entraînement | Solfege PRO"
+      data-title-de="Übungsleitfäden | Solfege PRO">
+<head>
+    <meta charset="UTF-8">
+    <meta name="robots" content="index, follow">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#1A1A1E">
+    <title>Tutte le guide di pratica | Solfege PRO</title>
+    <meta name="description" content="Sfoglia oltre 20 guide di pratica di Solfege PRO: ritmo, lettura a prima vista, orecchio relativo, accordi, tastiera e pratica mentale, organizzate per obiettivo.">
+
+    <!-- Canonical -->
+    <link rel="canonical" href="https://solfegepro.com/it/guides/">
+    <link rel="alternate" hreflang="ja" href="https://solfegepro.com/guides/">
+    <link rel="alternate" hreflang="en" href="https://solfegepro.com/en/guides/">
+    <link rel="alternate" hreflang="fr" href="https://solfegepro.com/fr/guides/">
+    <link rel="alternate" hreflang="de" href="https://solfegepro.com/de/guides/">
+    <link rel="alternate" hreflang="es" href="https://solfegepro.com/es/guides/">
+    <link rel="alternate" hreflang="it" href="https://solfegepro.com/it/guides/">
+    <link rel="alternate" hreflang="ko" href="https://solfegepro.com/ko/guides/">
+    <link rel="alternate" hreflang="pt-BR" href="https://solfegepro.com/pt-br/guides/">
+    <link rel="alternate" hreflang="x-default" href="https://solfegepro.com/guides/">
+<!-- Favicon -->
+    <link rel="icon" href="/favicon.ico" sizes="any">
+    <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+    <!-- OGP -->
+    <meta property="og:title" content="Tutte le guide di pratica">
+    <meta property="og:description" content="Sfoglia oltre 20 guide di pratica di Solfege PRO: ritmo, lettura a prima vista, orecchio relativo, accordi, tastiera e pratica mentale, organizzate per obiettivo.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://solfegepro.com/it/guides/">
+    <meta property="og:site_name" content="Solfege PRO">
+    <meta property="og:image" content="https://solfegepro.com/og-image.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Solfege PRO">
+    <meta property="og:locale" content="it_IT">
+    <meta property="og:locale:alternate" content="ja_JP">
+    <meta property="og:locale:alternate" content="en_US">
+    <meta property="og:locale:alternate" content="fr_FR">
+    <meta property="og:locale:alternate" content="de_DE">
+    <meta property="og:locale:alternate" content="es_ES">
+    <meta property="og:locale:alternate" content="ko_KR">
+    <meta property="og:locale:alternate" content="pt_BR">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Tutte le guide di pratica">
+    <meta name="twitter:description" content="Sfoglia oltre 20 guide di pratica di Solfege PRO: ritmo, lettura a prima vista, orecchio relativo, accordi, tastiera e pratica mentale, organizzate per obiettivo.">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap"></noscript>
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="/style.css?v=23">
+
+    <style>
+
+
+
+        .guides-main {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: var(--space-2xl) var(--space-lg);
+        }
+
+        .guides-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            gap: var(--space-lg);
+        }
+
+        .guide-card {
+            display: flex;
+            flex-direction: column;
+            background: var(--surface);
+            border: 1px solid var(--surface-light);
+            border-radius: var(--radius-lg);
+            padding: var(--space-lg);
+            text-decoration: none;
+            /* Explicit list, not `all`: at equal specificity this rule is parsed
+               after /style.css and `transition: all` replaced the shared reveal
+               transition, silently disabling the staggered entrance on the 23
+               cards of this page. */
+            transition: border-color 0.2s var(--ease-house),
+                        transform 0.2s var(--ease-house),
+                        box-shadow 0.2s var(--ease-house);
+        }
+
+        /* Hover transform gated on a real pointer — on touch it sticks after the tap. */
+        @media (hover: hover) and (pointer: fine) {
+            .guide-card:hover {
+                border-color: var(--primary);
+                transform: translateY(-3px);
+                box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+            }
+        }
+
+        .guide-card__icon {
+            font-size: 32px;
+            margin-bottom: var(--space-md);
+        }
+
+        .guide-card__title {
+            font-size: 15px;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: var(--space-sm);
+            line-height: 1.4;
+        }
+
+        .guide-card__desc {
+            font-size: 13px;
+            color: var(--text-secondary);
+            line-height: 1.6;
+            flex: 1;
+        }
+
+        .guide-card__tag {
+            display: inline-block;
+            font-size: 12px;
+            font-weight: 500;
+            color: var(--primary);
+            background: rgba(212, 175, 55, 0.15);
+            padding: 2px 10px;
+            border-radius: var(--radius-sm);
+            margin-top: var(--space-md);
+            align-self: flex-start;
+        }
+
+        .guide-card__tag--deep-dive {
+            color: #60A5FA;
+            background: rgba(96, 165, 250, 0.15);
+            margin-left: 6px;
+        }
+
+        /* Multi-tag row */
+        .guide-card__tags {
+            display: flex;
+            gap: 6px;
+            flex-wrap: wrap;
+            margin-top: var(--space-md);
+        }
+        .guide-card__tags .guide-card__tag {
+            margin-top: 0;
+            margin-left: 0;
+        }
+
+        .guide-card__tag--science {
+            color: #A78BFA;
+            background: rgba(167, 139, 250, 0.15);
+            margin-left: 6px;
+        }
+
+        /* "Coming soon" cards: dimmed and non-clickable */
+        .guide-card--coming {
+            opacity: 0.65;
+            pointer-events: none;
+            position: relative;
+        }
+        .guide-card__status {
+            display: inline-block;
+            font-size: 11px;
+            font-weight: 600;
+            color: var(--text-secondary);
+            background: rgba(154, 154, 154, 0.18);
+            padding: 2px 8px;
+            border-radius: var(--radius-sm);
+            margin-top: var(--space-sm);
+            align-self: flex-start;
+            letter-spacing: 0.3px;
+        }
+
+        /* Subsection heading inside guides grid */
+        .guides-subhead {
+            grid-column: 1 / -1;
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin: var(--space-lg) 0 0;
+            padding-bottom: var(--space-sm);
+            border-bottom: 1px solid var(--surface-light);
+            display: flex;
+            align-items: center;
+            gap: var(--space-sm);
+        }
+        .guides-subhead:first-child { margin-top: 0; }
+        .guides-subhead__hint {
+            font-size: 12px;
+            font-weight: 400;
+            color: var(--text-secondary);
+            margin-left: auto;
+        }
+
+        .guides-footer {
+            background: var(--surface);
+            padding: var(--space-xl) var(--space-lg);
+            text-align: center;
+            border-top: 1px solid var(--surface-light);
+        }
+
+        .guides-footer__text {
+            color: var(--text-secondary);
+            font-size: 14px;
+        }
+
+        .guides-footer__link {
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        .guides-back {
+            text-align: center;
+            margin-top: var(--space-2xl);
+        }
+
+        .guides-back__link {
+            display: inline-block;
+            background: var(--primary);
+            color: var(--background);
+            padding: var(--space-md) var(--space-xl);
+            border-radius: var(--radius-lg);
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 15px;
+            transition: transform 0.2s var(--ease-house),
+                        box-shadow 0.2s var(--ease-house);
+        }
+
+        @media (hover: hover) and (pointer: fine) {
+            .guides-back__link:hover {
+                transform: scale(1.03);
+                box-shadow: 0 4px 20px rgba(212, 175, 55, 0.3);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .guides-main { padding: var(--space-lg) var(--space-md); }
+            .guides-grid { grid-template-columns: 1fr; gap: var(--space-md); }
+            .guide-card { padding: var(--space-lg); }
+        }
+
+        @media (max-width: 480px) {
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+        <nav class="nav" aria-label="Menu principale">
+        <div class="nav__container">
+            <a href="/it/" class="nav__logo" aria-label="Solfege PRO">
+                <img src="/AppIcon.png" alt="" class="nav__logo-icon" width="32" height="32">
+                <span class="nav__logo-text">Solfege PRO</span>
+            </a>
+            <ul class="nav__list">
+                <li><a href="/it/" class="nav__link">Informazioni su Solfege PRO</a></li>
+                <li><a href="/it/features/" class="nav__link">Allenamenti</a></li>
+                <li><a href="/it/guides/" class="nav__link active" aria-current="page">Guide pratiche</a></li>
+                <li><a href="/it/manual/" class="nav__link">Manuale</a></li>
+            </ul>
+            <div class="nav__settings">
+                <button class="settings-btn" id="lang-toggle" title="Seleziona lingua"><span id="lang-text">IT</span></button>
+                <button class="hamburger-btn" id="hamburger-btn" aria-label="Apri menu" aria-expanded="false" aria-controls="drawer">
+                    <span class="hamburger-btn__line"></span><span class="hamburger-btn__line"></span><span class="hamburger-btn__line"></span>
+                </button>
+            </div>
+        </div>
+    </nav>
+        <!-- Mobile drawer (hidden on desktop) -->
+            <div class="drawer-overlay" id="drawer-overlay"></div>
+    <aside class="drawer" id="drawer" aria-label="Menu" aria-hidden="true" inert>
+        <div class="drawer__header">
+            <span class="drawer__title">Menu</span>
+            <button class="drawer__close" id="drawer-close" aria-label="Chiudi menu">×</button>
+        </div>
+        <ul class="drawer__list">
+            <li><a href="/it/" class="drawer__link">Informazioni su Solfege PRO</a></li>
+            <li><a href="/it/features/" class="drawer__link">Allenamenti</a></li>
+            <li><a href="/it/guides/" class="drawer__link active" aria-current="page">Guide pratiche</a></li>
+            <li><a href="/it/manual/" class="drawer__link">Manuale</a></li>
+        </ul>
+    </aside>
+
+
+    <!-- Header -->
+    <header class="page-header">
+        <h1 class="page-header__title">Guide di allenamento</h1>
+        <p class="page-header__subtitle">
+
+            Spiegazioni oscure dei concetti di ogni allenamento, metodi di pratica efficaci, e ciò che l'app può e non può fare.
+
+
+        </p>
+    </header>
+
+    <!-- Guide Grid -->
+    <main class="guides-main">
+
+        <!-- Recommended reading order -->
+        <section style="background:var(--surface);border:1px solid var(--surface-light);border-left:4px solid var(--primary);border-radius:var(--radius-md);padding:var(--space-lg);margin-bottom:var(--space-xl);">
+            <div style="font-size:14px;font-weight:700;color:var(--text-primary);margin-bottom:var(--space-sm);">📍 Ordine di lettura consigliato</div>
+            <p style="font-size:13px;color:var(--text-secondary);line-height:1.8;margin:0;"><strong style="color:var(--text-primary);">Percorso di ritmo</strong>: 1 allenamento ritmo → 8 Groove (immersione profonda)<br><strong style="color:var(--text-primary);">altezza per il sentiero</strong>: 2 Intervallo → 3 Riconoscimento accordo → 4 Riconoscimento scala → 5 allenamento di Progressione<br><strong style="color:var(--text-primary);">Visuale / tastiera</strong>: 6 Lettura delle note / 7 allenamento del bordo (chitarra)<br><br>Se sei nuovo, inizia con il <a href="/" style="color:var(--primary);">Q&amp;A per strumenti</a> sul mozzo per identificare i punti di dolore, poi immergersi nelle guide correlate. O prendere il <a href="/start-here/" style="color:var(--primary);">"Dove cominciare?"</a> diagnostica.</p>
+        </section>
+
+        <div class="guides-grid">
+
+            <a href="/guides/rhythm-training/" class="guide-card">
+                <div class="guide-card__icon"><svg class="icon" aria-hidden="true"><use href="/assets/icons.svg#icon-drum"></use></svg></div>
+                <div class="guide-card__title">Guida all’allenamento ritmico</div>
+                <div class="guide-card__desc">Rompere giù corsa, trascinando, inconsistenza, e tasca. Misurazione e ciclo di miglioramento del temporizzazione.</div>
+                <span class="guide-card__tag">Rhythm Training</span>
+            </a>
+
+            <a href="/guides/how-to-count-rhythms/" class="guide-card">
+                <div class="guide-card__icon"><svg class="icon" aria-hidden="true"><use href="/assets/icons.svg#icon-timer"></use></svg></div>
+                <div class="guide-card__title">Come Contare i Ritmi</div>
+                <div class="guide-card__desc">L'abilità fondamentale di contare i valori di nota ad alta voce. Sottodivisione, note tratteggiate, legami, riposa, sincronopazione e sistemi di conteggio di ogni paese — passo dopo passo, ricerca-terra.</div>
+                <span class="guide-card__tag">Rhythm</span>
+            </a>
+
+            <a href="/guides/groove-training/" class="guide-card">
+                <div class="guide-card__icon"><svg class="icon" aria-hidden="true"><use href="/assets/icons.svg#icon-audio-lines"></use></svg></div>
+                <div class="guide-card__title">La natura del groove — Oltre "Accurate ma Stiff"</div>
+                <div class="guide-card__desc">Groove emerge dall'equilibrio della previsione e della tensione. Elementi e allenamento passo dopo passo sulla base della ricerca.</div>
+                <span class="guide-card__tag">Rhythm</span>
+                <span class="guide-card__tag guide-card__tag--deep-dive">Immersione profonda</span>
+            </a>
+
+            <a href="/guides/interval-training/" class="guide-card">
+                <div class="guide-card__icon"><svg class="icon" aria-hidden="true"><use href="/assets/icons.svg#icon-music-note"></use></svg></div>
+                <div class="guide-card__title">Guida al riconoscimento interattivo</div>
+                <div class="guide-card__desc">Comprendere 13 intervalli e formare il orecchio relativo. difficoltà passo-passo e punto debole messa a fuoco.</div>
+                <span class="guide-card__tag">Interval Training</span>
+            </a>
+
+            <a href="/guides/sight-reading/" class="guide-card">
+                <div class="guide-card__icon"><svg class="icon" aria-hidden="true"><use href="/assets/icons.svg#icon-book-open"></use></svg></div>
+                <div class="guide-card__title">Guida alla lettura a prima vista</div>
+                <div class="guide-card__desc">Fondazioni per la lettura della notazione musicale rapidamente. Metodo di nota di riferimento e passi di pratica progressiva.</div>
+                <span class="guide-card__tag">Sight Reading</span>
+            </a>
+
+            <a href="/guides/fretboard-training/" class="guide-card">
+                <div class="guide-card__icon"><svg class="icon" aria-hidden="true"><use href="/assets/icons.svg#icon-guitar"></use></svg></div>
+                <div class="guide-card__title">Guida all’allenamento della tastiera</div>
+                <div class="guide-card__desc">Impara efficacemente le posizioni delle note della chitarra. Forme di ottava e progressione basata su gamma.</div>
+                <span class="guide-card__tag">Fretboard Training</span>
+            </a>
+
+            <a href="/guides/ear-training-chords/" class="guide-card">
+                <div class="guide-card__icon"><svg class="icon" aria-hidden="true"><use href="/assets/icons.svg#icon-piano"></use></svg></div>
+                <div class="guide-card__title">Guida al riconoscimento degli accordi</div>
+                <div class="guide-card__desc">Comprendere il riconoscimento della qualità degli accordi. Da triadi a 7th accordi e tensioni, passo dopo passo.</div>
+                <span class="guide-card__tag">Chord Recognition</span>
+            </a>
+
+            <a href="/guides/ear-training-scales/" class="guide-card">
+                <div class="guide-card__icon"><svg class="icon" aria-hidden="true"><use href="/assets/icons.svg#icon-music-staff"></use></svg></div>
+                <div class="guide-card__title">Guida al riconoscimento delle scale</div>
+                <div class="guide-card__desc">Comprendere scale e modalità per orecchio. Caratteristiche della modalità Chiesa e della pratica progressiva.</div>
+                <span class="guide-card__tag">Scale Recognition</span>
+            </a>
+
+            <a href="/guides/ear-training-progressions/" class="guide-card">
+                <div class="guide-card__icon"><svg class="icon" aria-hidden="true"><use href="/assets/icons.svg#icon-music-notes"></use></svg></div>
+                <div class="guide-card__title">Guida all’allenamento delle progressioni</div>
+                <div class="guide-card__desc">Comprendere il movimento armonico. Concrezioni funzionali di armonia (T/SD/D) e pratica passo dopo passo.</div>
+                <span class="guide-card__tag">Progression Training</span>
+            </a>
+
+            <a href="/guides/chord-function-curriculum/" class="guide-card">
+                <div class="guide-card__icon"><svg class="icon" aria-hidden="true"><use href="/assets/icons.svg#icon-piano"></use></svg></div>
+                <div class="guide-card__title">Curriculum funzione degli accordi — T/SD/D in 4 fasi</div>
+                <div class="guide-card__desc">Un curriculum di quattro fasi per master funzione di accordo (tonico, subdominante, dominante) — dalla sensazione di risoluzione all'udito progressioni di quattro bar.</div>
+                <span class="guide-card__tag">Harmony</span>
+            </a>
+
+            <a href="/guides/movable-do-vs-fixed-do/" class="guide-card">
+                <div class="guide-card__icon"><svg class="icon" aria-hidden="true"><use href="/assets/icons.svg#icon-library"></use></svg></div>
+                <div class="guide-card__title">Movable-Do vs Fixed-Do</div>
+                <div class="guide-card__desc">Due sistemi di solfège con diverse tradizioni e punti di forza. La ricerca dichiara un "superiore" è scarsa; la risposta è in gran parte culturale. Quello che le prove mostrano, senza hype.</div>
+                <span class="guide-card__tag">Solfège</span>
+            </a>
+
+            <a href="/guides/find-key-by-ear/" class="guide-card">
+                <div class="guide-card__icon"><svg class="icon" aria-hidden="true"><use href="/assets/icons.svg#icon-compass"></use></svg></div>
+                <div class="guide-card__title">Trova una chiave di canzone da Ear</div>
+                <div class="guide-card__desc">Prima di trascrivere o copiare auricolare, prima sentire il tonico. Una procedura riproducibile, incluso il trucco per raccontare una chiave importante dal relativo minore.</div>
+                <span class="guide-card__tag">Ear Training</span>
+            </a>
+
+            <!-- Cognitive Science series (coming soon) -->
+            <div class="guides-subhead">
+                <svg class="icon" aria-hidden="true" style="width:1em; height:1em; color:#A78BFA;"><use href="/assets/icons.svg#icon-flask"></use></svg>
+                <span>Serie di scienze cognitive</span>
+                <span class="guides-subhead__hint">Lettura basata sulla ricerca</span>
+            </div>
+
+            <a href="/guides/practice-spacing/" class="guide-card">
+                <div class="guide-card__icon"><svg class="icon" aria-hidden="true"><use href="/assets/icons.svg#icon-flask"></use></svg></div>
+                <div class="guide-card__title">Scheduling di pratica ottimale</div>
+                <div class="guide-card__desc">Spacing, interleaving, effetto test — progetti di pianificazione che producono 2–3× di ritenzione dalle stesse ore.</div>
+                <div class="guide-card__tags"><span class="guide-card__tag">Cross-cutting</span><span class="guide-card__tag guide-card__tag--science">Scienza cognitiva</span></div>
+            </a>
+
+            <a href="/guides/eye-hand-span/" class="guide-card">
+                <div class="guide-card__icon"><svg class="icon" aria-hidden="true"><use href="/assets/icons.svg#icon-book-open"></use></svg></div>
+                <div class="guide-card__title">Il 3o sguardo-Ahead nella lettura a prima vista</div>
+                <div class="guide-card__desc">Disegnando la ricerca di un occhio-mano-pan: come i professionisti leggono davanti a ciò che giocano, e come addestrarlo.</div>
+                <div class="guide-card__tags"><span class="guide-card__tag">Reading</span><span class="guide-card__tag guide-card__tag--science">Scienza cognitiva</span></div>
+            </a>
+
+            <a href="/guides/bpm-60-wall/" class="guide-card">
+                <div class="guide-card__icon"><svg class="icon" aria-hidden="true"><use href="/assets/icons.svg#icon-audio-lines"></use></svg></div>
+                <div class="guide-card__title">Il muro dei 60 BPM</div>
+                <div class="guide-card__desc">"Il più basso è più facile" è un mito. Come tenere i battiti lunghi utilizzando la ricerca e la strategia di suddivisione preferiti-tempo.</div>
+                <div class="guide-card__tags"><span class="guide-card__tag">Rhythm</span><span class="guide-card__tag guide-card__tag--science">Scienza cognitiva</span></div>
+            </a>
+
+            <a href="/guides/mental-practice/" class="guide-card">
+                <div class="guide-card__icon"><svg class="icon" aria-hidden="true"><use href="/assets/icons.svg#icon-music-note"></use></svg></div>
+                <div class="guide-card__title">Pratica mentale</div>
+                <div class="guide-card__desc">Il cervello impara senza lo strumento. Immagini mentali efficaci sul pendolare, dagli esperimenti TMS di Pascual-Leone.</div>
+                <div class="guide-card__tags"><span class="guide-card__tag">Cross-cutting</span><span class="guide-card__tag guide-card__tag--science">Scienza cognitiva</span></div>
+            </a>
+
+            <a href="/guides/absolute-pitch-adult/" class="guide-card">
+                <div class="guide-card__icon"><svg class="icon" aria-hidden="true"><use href="/assets/icons.svg#icon-piano"></use></svg></div>
+                <div class="guide-card__title">Gli adulti possono acquistare il Altezza Assoluto?</div>
+                <div class="guide-card__desc">Ciò che la ricerca mostra che è possibile e non può formare. Di fronte alla trappola "chiave bianche" e ai recenti risultati di Van Hedger / Wong, pesata contro la ROI relativa-altezza.</div>
+                <div class="guide-card__tags"><span class="guide-card__tag">Interval / Pitch</span><span class="guide-card__tag guide-card__tag--science">Scienza cognitiva</span></div>
+            </a>
+
+            <a href="/guides/relative-pitch-adult-3months/" class="guide-card">
+                <div class="guide-card__icon"><svg class="icon" aria-hidden="true"><use href="/assets/icons.svg#icon-music-note"></use></svg></div>
+                <div class="guide-card__title">allenamento relativa per adulti — Un piano di 3 mesi per iniziare l'orecchio-copia</div>
+                <div class="guide-card__desc">La pezza relativa — non assoluta — è ciò che la musica richiede realmente. Piano settimanale (Month 1: intervalli, Mese 2: accordi, Mese 3: progressioni) porta la copia dell'orecchio a portata di mano in 3 mesi.</div>
+                <div class="guide-card__tags"><span class="guide-card__tag">Interval / Pitch</span><span class="guide-card__tag guide-card__tag--deep-dive">Piano di pratica</span></div>
+            </a>
+
+            <a href="/guides/piano-parent-home-support/" class="guide-card">
+                <div class="guide-card__icon"><svg class="icon" aria-hidden="true"><use href="/assets/icons.svg#icon-piano"></use></svg></div>
+                <div class="guide-card__title">Pratica di pianoforte per i bambini — Che cosa non-musician genitori possono effettivamente fare a casa</div>
+                <div class="guide-card__desc">La pratica domestica guida la maggior parte dei progressi. Costruisci la lettura delle note, il ritmo e l'allenamento dell'orecchio come routine "off-instrument". Guida a priorita' concreta per genitori non-musicisti.</div>
+                <div class="guide-card__tags"><span class="guide-card__tag">Piano</span><span class="guide-card__tag guide-card__tag--deep-dive">Piano di pratica</span></div>
+            </a>
+
+            <a href="/guides/guitar-10years-cant-ear-copy/" class="guide-card">
+                <div class="guide-card__icon"><svg class="icon" aria-hidden="true"><use href="/assets/icons.svg#icon-guitar"></use></svg></div>
+                <div class="guide-card__title">Dieci anni di chitarra, ancora non può ear-Copy — è l'ordine, non Talent</div>
+                <div class="guide-card__desc">I giocatori che possono eseguire ma non trascriversi sono mancanti l'addestramento ordinato: intervalli → triadi → 7ths → progressioni → canzoni reali. Gli adulti raggiungono il livello pratico in 3 mesi.</div>
+                <div class="guide-card__tags"><span class="guide-card__tag">Ear Training</span><span class="guide-card__tag guide-card__tag--deep-dive">Piano di pratica</span></div>
+            </a>
+
+            <a href="/guides/dtm-chord-progression-variety/" class="guide-card">
+                <div class="guide-card__icon"><svg class="icon" aria-hidden="true"><use href="/assets/icons.svg#icon-music-note"></use></svg></div>
+                <div class="guide-card__title">Perché? DTM Tracce Suono Monotono — Non Teoria, orecchio Vocabulary</div>
+                <div class="guide-card__desc">Le tracce del DAW suonano tutti uguali? Non è la teoria che ti manca — è un vocabolario dell'orecchio. Tre routine di addestramento dell'orecchio (riconoscimento diatonico, estrazione non diatonica, estrazione reale) espandere la tavolozza in 3 mesi.</div>
+                <div class="guide-card__tags"><span class="guide-card__tag">Composizione / DTM</span><span class="guide-card__tag guide-card__tag--deep-dive">Piano di pratica</span></div>
+            </a>
+
+            <a href="/guides/session-5min-checklist/" class="guide-card">
+                <div class="guide-card__icon"><svg class="icon" aria-hidden="true"><use href="/assets/icons.svg#icon-compass"></use></svg></div>
+                <div class="guide-card__title">Cinque minuti prima di una sessione di marmellata — 7 cose da controllare</div>
+                <div class="guide-card__desc">Una checklist pre-flight da 7-item che taglia bruscamente la frequenza di zero-mind-on-stage: controllo chiave, progressioni romano-numerali, vocalizzazione di chord-tone, modelli di recupero e altro ancora.</div>
+                <div class="guide-card__tags"><span class="guide-card__tag">Sessione / Improv</span><span class="guide-card__tag guide-card__tag--deep-dive">Lista dei risultati</span></div>
+            </a>
+
+            <a href="/guides/exam-solfege-6week-plan/" class="guide-card">
+                <div class="guide-card__icon"><svg class="icon" aria-hidden="true"><use href="/assets/icons.svg#icon-book-open"></use></svg></div>
+                <div class="guide-card__title">Prep di Solfege 6-Week — Per il college di musica e gli esami degli insegnanti</div>
+                <div class="guide-card__desc">Costruisci fino al conservatorio o al solfeggio dell'insegnante in 6 settimane. Piano settimanale che copre l'ascolto, l'Lettura a prima vista e la teoria — con 3 esami di mock e follow-up di punto debole.</div>
+                <div class="guide-card__tags"><span class="guide-card__tag">Preptazione di esame</span><span class="guide-card__tag guide-card__tag--deep-dive">Piano di pratica</span></div>
+            </a>
+
+        </div>
+
+        <div class="guides-back">
+            <a href="https://apps.apple.com/it/app/id6756626617?pt=6749158383&amp;ct=web_guides&amp;mt=8" class="app-store-link" aria-label="Scarica sull’App Store">
+
+                <img class="app-store-link__img" width="120" height="40" src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/it-it" alt="Scarica sull’App Store">
+
+
+            </a>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="guides-footer">
+        <p class="guides-footer__text">
+            &copy; 2026 Solfege PRO
+        </p>
+    </footer>
+    <script src="/bootstrap.js?v=10" defer></script>
+    <nav aria-label="Language" style="display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:0.5rem;padding:var(--space-lg) var(--space-md);border-top:1px solid var(--surface-light);font-size:13px">
+        <a href="/guides/" hreflang="ja" style="color:var(--text-secondary);text-decoration:none">日本語</a>
+        <span aria-hidden="true" style="color:var(--surface-light)">·</span>
+        <a href="/en/guides/" hreflang="en" style="color:var(--text-secondary);text-decoration:none">English</a>
+        <span aria-hidden="true" style="color:var(--surface-light)">·</span>
+        <a href="/fr/guides/" hreflang="fr" style="color:var(--text-secondary);text-decoration:none">Français</a>
+        <span aria-hidden="true" style="color:var(--surface-light)">·</span>
+        <a href="/de/guides/" hreflang="de" style="color:var(--text-secondary);text-decoration:none">Deutsch</a>
+        <span aria-hidden="true" style="color:var(--surface-light)">·</span>
+        <a href="/es/guides/" hreflang="es" style="color:var(--text-secondary);text-decoration:none">Español</a>
+        <span aria-hidden="true" style="color:var(--surface-light)">·</span>
+        <span style="color:var(--primary);font-weight:600" aria-current="true">Italiano</span>
+        <span aria-hidden="true" style="color:var(--surface-light)">·</span>
+        <a href="/ko/guides/" hreflang="ko" style="color:var(--text-secondary);text-decoration:none">한국어</a>
+        <span aria-hidden="true" style="color:var(--surface-light)">·</span>
+        <a href="/pt-br/guides/" hreflang="pt-BR" style="color:var(--text-secondary);text-decoration:none">Português (Brasil)</a>
+    </nav>
+</body>
+</html>

@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<html lang="ko"
+      data-title-ja="コードを聴き分ける — 3 度で Major/Minor を判別 | ソルフェージュPRO"
+      data-title-en="What Is Chord Recognition? — Understanding Harmonic Sounds | Solfege PRO"
+      data-title-fr="Qu'est-ce que la reconnaissance d'accords ? — Comprendre la sonorité des accords | Solfege PRO"
+      data-title-de="Was ist Akkorderkennung? — Den Klang von Harmonien verstehen | Solfege PRO">
+<head>
+    <meta charset="UTF-8">
+    <meta name="robots" content="index, follow">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#1A1A1E">
+    <title>코드 인식: 3도로 메이저와 마이너 구분하기 | Solfege PRO</title>
+    <meta name="description" content="코드 인식은 메이저와 마이너를 가르는 3도를 듣는 데서 시작합니다. 기본 3화음부터 모든 3화음, 7화음, 확장화음까지 단계별로 연습하세요.">
+
+    <!-- Canonical -->
+    <link rel="canonical" href="https://solfegepro.com/ko/guides/ear-training-chords/">
+    <link rel="alternate" hreflang="ja" href="https://solfegepro.com/guides/ear-training-chords/">
+    <link rel="alternate" hreflang="en" href="https://solfegepro.com/en/guides/ear-training-chords/">
+    <link rel="alternate" hreflang="fr" href="https://solfegepro.com/fr/guides/ear-training-chords/">
+    <link rel="alternate" hreflang="de" href="https://solfegepro.com/de/guides/ear-training-chords/">
+    <link rel="alternate" hreflang="es" href="https://solfegepro.com/es/guides/ear-training-chords/">
+    <link rel="alternate" hreflang="it" href="https://solfegepro.com/it/guides/ear-training-chords/">
+    <link rel="alternate" hreflang="ko" href="https://solfegepro.com/ko/guides/ear-training-chords/">
+    <link rel="alternate" hreflang="pt-BR" href="https://solfegepro.com/pt-br/guides/ear-training-chords/">
+    <link rel="alternate" hreflang="x-default" href="https://solfegepro.com/guides/ear-training-chords/">
+<!-- OGP -->
+    <meta property="og:title" content="코드 인식: 3도로 메이저와 마이너 구분하기">
+    <meta property="og:description" content="코드 인식은 메이저와 마이너를 가르는 3도를 듣는 데서 시작합니다. 기본 3화음부터 모든 3화음, 7화음, 확장화음까지 단계별로 연습하세요.">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://solfegepro.com/ko/guides/ear-training-chords/">
+    <meta property="og:site_name" content="Solfege PRO">
+    <meta property="og:image" content="https://solfegepro.com/og-image.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Solfege PRO">
+    <meta property="og:locale" content="ko_KR">
+    <meta property="og:locale:alternate" content="ja_JP">
+    <meta property="og:locale:alternate" content="en_US">
+    <meta property="og:locale:alternate" content="fr_FR">
+    <meta property="og:locale:alternate" content="de_DE">
+    <meta property="og:locale:alternate" content="es_ES">
+    <meta property="og:locale:alternate" content="it_IT">
+    <meta property="og:locale:alternate" content="pt_BR">
+    <meta property="article:published_time" content="2026-03-31">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="코드 인식: 3도로 메이저와 마이너 구분하기">
+    <meta name="twitter:description" content="코드 인식은 메이저와 마이너를 가르는 3도를 듣는 데서 시작합니다. 기본 3화음부터 모든 3화음, 7화음, 확장화음까지 단계별로 연습하세요.">
+    <meta name="twitter:image" content="https://solfegepro.com/og-image.png">
+
+    <!-- Favicon -->
+    <link rel="icon" href="/favicon.ico" sizes="any">
+    <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap"></noscript>
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="/style.css?v=23">
+    <link rel="stylesheet" href="/guides/article.css?v=14">
+
+    <style>
+        /* Chord Type Grid (intervals per chord ≤ ~7, fits in column) */
+        .chord-grid {
+            background: var(--surface);
+            border-radius: var(--radius-xl);
+            padding: var(--space-lg);
+            margin: var(--space-xl) 0;
+            border: 1px solid var(--surface-light);
+        }
+        .chord-grid__section-title {
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: var(--space-md);
+            margin-top: var(--space-lg);
+        }
+        .chord-grid__section-title:first-of-type {
+            margin-top: 0;
+        }
+        .chord-grid__row {
+            display: flex;
+            align-items: center;
+            margin-bottom: var(--space-sm);
+            gap: var(--space-sm);
+        }
+        .chord-grid__name {
+            min-width: 100px;
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--text-primary);
+            flex-shrink: 0;
+        }
+        .chord-grid__intervals {
+            display: flex;
+            gap: 3px;
+            flex: 1;
+        }
+        .chord-grid__interval {
+            padding: 4px 10px;
+            border-radius: var(--radius-sm);
+            font-size: 12px;
+            font-weight: 600;
+            text-align: center;
+            min-width: 44px;
+        }
+        .interval--root { background: var(--primary); color: var(--background); }
+        .interval--major { background: rgba(74, 222, 128, 0.25); color: #4ADE80; }
+        .interval--minor { background: rgba(96, 165, 250, 0.25); color: #60A5FA; }
+        .interval--perfect { background: rgba(251, 191, 36, 0.25); color: #FBBF24; }
+        .interval--dim { background: rgba(248, 113, 113, 0.25); color: #F87171; }
+        .interval--aug { background: rgba(192, 132, 252, 0.25); color: #C084FC; }
+
+        @media (max-width: 768px) {
+            .chord-grid { padding: var(--space-md); }
+            .chord-grid__row { flex-direction: column; align-items: flex-start; gap: var(--space-xs); }
+            .chord-grid__name { min-width: auto; }
+            .chord-grid__interval { min-width: 36px; padding: 3px 8px; font-size: 11px; }
+        }
+    </style>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"코드 인식: 3도로 메이저와 마이너 구분하기","description":"코드 인식은 메이저와 마이너를 가르는 3도를 듣는 데서 시작합니다. 기본 3화음부터 모든 3화음, 7화음, 확장화음까지 단계별로 연습하세요.","author":{"@type":"Organization","name":"Solfege PRO"},"publisher":{"@type":"Organization","name":"Solfege PRO","logo":{"@type":"ImageObject","url":"https://solfegepro.com/AppIcon.png"}},"datePublished":"2026-03-31","mainEntityOfPage":{"@type":"WebPage","@id":"https://solfegepro.com/ko/guides/ear-training-chords/"}}</script>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"홈","item":"https://solfegepro.com/ko/"},{"@type":"ListItem","position":2,"name":"연습 가이드","item":"https://solfegepro.com/ko/guides/"},{"@type":"ListItem","position":3,"name":"コードを聴き分ける — 3 度で Major/Minor を判別","item":"https://solfegepro.com/ko/guides/ear-training-chords/"}]}</script>
+</head>
+<body>
+    <!-- Navigation -->
+        <nav class="nav" aria-label="기본 메뉴">
+        <div class="nav__container">
+            <a href="/ko/" class="nav__logo" aria-label="Solfege PRO">
+                <img src="/AppIcon.png" alt="" class="nav__logo-icon" width="32" height="32">
+                <span class="nav__logo-text">Solfege PRO</span>
+            </a>
+            <ul class="nav__list">
+                <li><a href="/ko/" class="nav__link">Solfege PRO 소개</a></li>
+                <li><a href="/ko/features/" class="nav__link">훈련</a></li>
+                <li><a href="/ko/guides/" class="nav__link active" aria-current="page">연습 가이드</a></li>
+                <li><a href="/ko/manual/" class="nav__link">매뉴얼</a></li>
+            </ul>
+            <div class="nav__settings">
+                <button class="settings-btn" id="lang-toggle" title="언어 선택"><span id="lang-text">KO</span></button>
+                <button class="hamburger-btn" id="hamburger-btn" aria-label="메뉴 열기" aria-expanded="false" aria-controls="drawer">
+                    <span class="hamburger-btn__line"></span><span class="hamburger-btn__line"></span><span class="hamburger-btn__line"></span>
+                </button>
+            </div>
+        </div>
+    </nav>
+        <!-- Mobile drawer (hidden on desktop) -->
+            <div class="drawer-overlay" id="drawer-overlay"></div>
+    <aside class="drawer" id="drawer" aria-label="메뉴" aria-hidden="true" inert>
+        <div class="drawer__header">
+            <span class="drawer__title">메뉴</span>
+            <button class="drawer__close" id="drawer-close" aria-label="메뉴 닫기">×</button>
+        </div>
+        <ul class="drawer__list">
+            <li><a href="/ko/" class="drawer__link">Solfege PRO 소개</a></li>
+            <li><a href="/ko/features/" class="drawer__link">훈련</a></li>
+            <li><a href="/ko/guides/" class="drawer__link active" aria-current="page">연습 가이드</a></li>
+            <li><a href="/ko/manual/" class="drawer__link">매뉴얼</a></li>
+        </ul>
+    </aside>
+
+
+    <!-- Article Header -->
+    <header class="page-header">
+        <div class="page-header__meta">
+            <span class="page-header__tag">코드 인식</span>
+            <span>8 분 읽음</span>
+        </div>
+        <h1 class="page-header__title">
+
+            코드 인식은 무엇입니까?<br>화성 사운드 이해
+
+
+        </h1>
+        <p class="page-header__subtitle">
+
+            "그것은 밝은 어둠을 소리"에서 멈추지 마십시오. 코드 tones의 차이를 알아서 인식 정확도를 단계별로 구축하십시오.
+
+
+        </p>
+    </header>
+
+    <!-- Top-of-article CTA -->
+    <aside class="article-top-cta" aria-label="App promotion">
+        <div class="article-top-cta__body">
+            <p class="article-top-cta__title">
+
+                더 알아보기 Solfege PRO
+
+
+            </p>
+            <p class="article-top-cta__sub">
+
+                $9.99/월(미국 App Store 기준)(미국 App Store 기준)
+
+
+            </p>
+        </div>
+        <a href="https://apps.apple.com/kr/app/id6756626617?pt=6749158383&amp;ct=web_guides&amp;mt=8" class="article-top-cta__button app-store-link" data-cta-position="article_top" aria-label="App Store에서 다운로드"><img src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/ko-kr" class="app-store-link__img" alt="App Store에서 다운로드" loading="lazy"></a>
+    </aside>
+
+    <!-- Article Body -->
+    <main class="article-body">
+
+        <!-- Section 1 -->
+        <h2 id="what-is-chord-recognition">코드 인식은 무엇입니까?</h2>
+
+        <p>
+
+            코드 인식은 동시 메모의 그룹을 듣고 코드 품질을 확인합니다. 기타 또는 피아노가 합쳐지면 주요 또는 단인지 말해 줄 수 있습니까? 7을 포함합니까? 귀가 혼자서 판단하는 기술을 가지고 있습니다.
+
+
+        </p>
+
+        <p>
+
+            이것은 구성, 배열, 비문 및 잼 세션을위한 기초 기술입니다. 여러분의 음악을 듣고 있지 않은 코드를 이해할 수 있다면, 음악 자체가 바뀌는 방식.
+
+
+        </p>
+
+        <p>
+
+            즉, 코드 인식은 밤새 개발하지 않습니다. 음정 인식은 기초를 형성하고, 코드 질 이해는 그것의 정상에 건설됩니다.
+
+
+        </p>
+
+        <!-- Section 2 -->
+        <h2 id="chord-types">코드 유형 이해</h2>
+
+        <p>
+
+            코드의 품질은 루트 위에 겹쳐진 간격이 결정됩니다. 자연 학습 진행은 트리즈로 시작되며 7 번째 초로 이동하고 긴장을 연장합니다.
+
+
+        </p>
+
+        <!-- Chord Type Grid Visual -->
+        <div class="chord-grid">
+            <div class="diagram-title">코드 유형과 그들의 간격</div>
+
+            <div class="chord-grid__section-title">팟캐스트</div>
+
+            <div class="chord-grid__row">
+                <div class="chord-grid__name">Major</div>
+                <div class="chord-grid__intervals">
+                    <div class="chord-grid__interval interval--root">R</div>
+                    <div class="chord-grid__interval interval--major">M3</div>
+                    <div class="chord-grid__interval interval--perfect">P5</div>
+                </div>
+            </div>
+            <div class="chord-grid__row">
+                <div class="chord-grid__name">Minor</div>
+                <div class="chord-grid__intervals">
+                    <div class="chord-grid__interval interval--root">R</div>
+                    <div class="chord-grid__interval interval--minor">m3</div>
+                    <div class="chord-grid__interval interval--perfect">P5</div>
+                </div>
+            </div>
+            <div class="chord-grid__row">
+                <div class="chord-grid__name">Diminished</div>
+                <div class="chord-grid__intervals">
+                    <div class="chord-grid__interval interval--root">R</div>
+                    <div class="chord-grid__interval interval--minor">m3</div>
+                    <div class="chord-grid__interval interval--dim">dim5</div>
+                </div>
+            </div>
+            <div class="chord-grid__row">
+                <div class="chord-grid__name">Augmented</div>
+                <div class="chord-grid__intervals">
+                    <div class="chord-grid__interval interval--root">R</div>
+                    <div class="chord-grid__interval interval--major">M3</div>
+                    <div class="chord-grid__interval interval--aug">aug5</div>
+                </div>
+            </div>
+
+            <div class="chord-grid__section-title">7회 초이스</div>
+
+            <div class="chord-grid__row">
+                <div class="chord-grid__name">Maj7</div>
+                <div class="chord-grid__intervals">
+                    <div class="chord-grid__interval interval--root">R</div>
+                    <div class="chord-grid__interval interval--major">M3</div>
+                    <div class="chord-grid__interval interval--perfect">P5</div>
+                    <div class="chord-grid__interval interval--major">M7</div>
+                </div>
+            </div>
+            <div class="chord-grid__row">
+                <div class="chord-grid__name">m7</div>
+                <div class="chord-grid__intervals">
+                    <div class="chord-grid__interval interval--root">R</div>
+                    <div class="chord-grid__interval interval--minor">m3</div>
+                    <div class="chord-grid__interval interval--perfect">P5</div>
+                    <div class="chord-grid__interval interval--minor">m7</div>
+                </div>
+            </div>
+            <div class="chord-grid__row">
+                <div class="chord-grid__name">7 (dom)</div>
+                <div class="chord-grid__intervals">
+                    <div class="chord-grid__interval interval--root">R</div>
+                    <div class="chord-grid__interval interval--major">M3</div>
+                    <div class="chord-grid__interval interval--perfect">P5</div>
+                    <div class="chord-grid__interval interval--minor">m7</div>
+                </div>
+            </div>
+            <div class="chord-grid__row">
+                <div class="chord-grid__name">m7(b5)</div>
+                <div class="chord-grid__intervals">
+                    <div class="chord-grid__interval interval--root">R</div>
+                    <div class="chord-grid__interval interval--minor">m3</div>
+                    <div class="chord-grid__interval interval--dim">dim5</div>
+                    <div class="chord-grid__interval interval--minor">m7</div>
+                </div>
+            </div>
+            <div class="chord-grid__row">
+                <div class="chord-grid__name">dim7</div>
+                <div class="chord-grid__intervals">
+                    <div class="chord-grid__interval interval--root">R</div>
+                    <div class="chord-grid__interval interval--minor">m3</div>
+                    <div class="chord-grid__interval interval--dim">dim5</div>
+                    <div class="chord-grid__interval interval--dim">dim7</div>
+                </div>
+            </div>
+
+            <div class="chord-grid__section-title">확장된 코드</div>
+
+            <div class="chord-grid__row">
+                <div class="chord-grid__name">9th</div>
+                <div class="chord-grid__intervals">
+                    <div class="chord-grid__interval interval--root">R</div>
+                    <div class="chord-grid__interval interval--major">M3</div>
+                    <div class="chord-grid__interval interval--perfect">P5</div>
+                    <div class="chord-grid__interval interval--minor">m7</div>
+                    <div class="chord-grid__interval interval--major">M9</div>
+                </div>
+            </div>
+            <div class="chord-grid__row">
+                <div class="chord-grid__name">11th</div>
+                <div class="chord-grid__intervals">
+                    <div class="chord-grid__interval interval--root">R</div>
+                    <div class="chord-grid__interval interval--major">M3</div>
+                    <div class="chord-grid__interval interval--perfect">P5</div>
+                    <div class="chord-grid__interval interval--minor">m7</div>
+                    <div class="chord-grid__interval interval--perfect">P11</div>
+                </div>
+            </div>
+            <div class="chord-grid__row">
+                <div class="chord-grid__name">13th</div>
+                <div class="chord-grid__intervals">
+                    <div class="chord-grid__interval interval--root">R</div>
+                    <div class="chord-grid__interval interval--major">M3</div>
+                    <div class="chord-grid__interval interval--perfect">P5</div>
+                    <div class="chord-grid__interval interval--minor">m7</div>
+                    <div class="chord-grid__interval interval--major">M13</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="article-note">
+            <div class="article-note__title">키 포인트</div>
+            <p>주요 및 단의 유일한 차이점은 3rd는 M3 (장 3rd) 또는 m3 (단 3rd)인지 여부입니다. 이 "3rd의 품질"을 강조하는 것은 코드 인식을위한 가장 기본적인 시작점입니다.</p>
+        </div>
+
+        <!-- Section 3 -->
+        <h2 id="common-walls">일반 벽</h2>
+
+        <h3 id="major-minor">주요 대 단 Confusion</h3>
+        <p>
+
+            이것은 가장 기본적인 아직 일반적인 엄지 구획입니다. 설명 "bright = 장, dark = 단" 오른쪽 방향으로 포인트,하지만 연습, 밝기 또는 어둠의 인상은 템포, register, 음색와 함께 변경. 3차 간격의 품질을 직접 듣는 능력 훈련은 무엇인가.
+
+
+        </p>
+
+        <h3 id="seventh-confusion">7번째 초형 소리 유사한</h3>
+        <p>
+
+            Maj7, m7, 지배적 인 7. 일곱째는 소리를 풍성하게 했지만 그 차이는 미묘합니다. Maj7의 "전투", m7의 "소독", 지배적 인 7th의 "정격". 그것은 당신이 믿을 수 있는 triads를 구별할 수 있는 후에 이 촉촉하게 하는 것이 가장 효과적입니다.
+
+
+        </p>
+
+        <h3 id="inversions">전위 문자 변경</h3>
+        <p>
+
+            C 전공은 루트 위치(C-E-G)와 다른 소리도 처음 변환(E-G-C)를 versus 합니다. 베이스 노트가 변경되면 중력 이동의 전체 조화 센터가 동일하게 소리가 들 수 있으므로,
+
+
+        </p>
+
+        <h3 id="block-vs-arpeggiated">블록 대 Arpeggiated 인식</h3>
+        <p>
+
+            Block 재생 (모든 노트 동시에) 및 arpeggiated 재생 (시간에 한 번) 다른 어려움 수준이 있습니다. Arpeggio는 각 주를 개별적으로 추적하고 분석이 쉽게 할 수 있도록합니다. 하지만 블록 코드는 즉시 "소리의 질량"을 판단해야합니다. 실제 음악은 모두 듣는 형태를 요구합니다.
+
+
+        </p>
+
+        <!-- Section 4 -->
+        <h2 id="effective-practice">효과적인 연습 방법</h2>
+
+        <h3 id="start-major-minor">주요 및 단 만으로 시작</h3>
+        <p>
+
+            한 번에 많은 코드 유형으로 뛰어오르는 것은 계수입니다. 첫째, 주요 대 단 바이너리 선택에 90 % + 정확도를 도달, 어떤 등록 및 어떤 템포. 이 기초 없이, 7번째 코드에 advancing는 confusion만 추가할 것입니다.
+
+
+        </p>
+
+        <h3 id="hear-the-third">3rd를 듣고</h3>
+        <p>
+
+            제 3 장은 합창단의 "밝기"를 결정합니다. 코드를 듣는 경우, 뿌리와 3 사이의 관계에 초점을 맞춥니 다. arpeggiated 모드를 사용하여 두 번째 메모의 위치를 확인합니다 (제 3). 이 "3rd에 대한 이상"은 코드 인식의 핵심입니다.
+
+
+        </p>
+
+        <h3 id="add-seventh">7번째 초를 Gradually 추가하십시오</h3>
+        <p>
+
+            일단 트리즈가 안정되면 Maj7을 먼저 추가하십시오. 그때 m7, 그 후 지배 7. 한 번에 모든 것을 해제하지 마십시오. 한 가지 유형이 추가되고, 다음으로 이동하면 신뢰할 수 있습니다.
+
+
+        </p>
+
+        <h3 id="arpeggiated-then-block">분석을위한 Arpeggio, 속도 블록</h3>
+        <p>
+
+            새로운 코드 유형을 학습할 때, 각 노트를 확인하기 위해 arpeggiated 재생을 시작합니다. 소리의 문자를 파악하면 재생과 기차 인스턴트 인식을 차단합니다. 이 두 단계 접근법은 효과적입니다.
+
+
+        </p>
+
+        <!-- Section 5 -->
+        <h2 id="what-app-can-do">이름 * Solfege PRO 할 수 있습니다</h2>
+
+        <p>
+
+            Solfege PRO's 코드 인식은 단계별로 코드 자질을 구별하는 능력을 구축하기위한 훈련 도구입니다.
+
+
+        </p>
+
+        <h3>20개 이상의 초형</h3>
+        <p>
+
+            기본 삼선 (장, 단, Dim, Aug)에서 7 번째 초 및 긴장에 20 개 이상의 코드 유형이 적용됩니다. 한 번에 모든 것을 활성화 할 필요가 없습니다. - 현재 레벨을 기준으로 선택하십시오.
+
+
+        </p>
+
+        <h3>5 어려움 수준</h3>
+        <p>
+
+            음악 교육에 사용되는 단계별 접근법에 의해 시행 된 5 가지 어려움 수준은 진행 상황을 안내합니다. 기본 트리즈, 확장, 7 초, 고급 7 번째, 긴장 - 단계로 진행 단계는 압도없이 당신의 코드 어휘를 확장 할 수 있습니다.
+
+
+        </p>
+
+        <h3>블록 / Arpeggiated 재생</h3>
+        <p>
+
+            두 블록 (무수)과 arpeggiated (대략) 재생에서 동일한 코드를 깎습니다. arpeggio를 분석 모드로 사용하여 실제 모드로 블록을 차단합니다.
+
+
+        </p>
+
+        <h3>관련 재생</h3>
+        <p>
+
+            실수를 할 때, 당신은 당신의 대답을 듣고 올바른 코드는 다시 재생합니다. 음력에 "무엇이 다른"을 밝히고 음력에 대한 이해를 심화합니다.
+
+
+        </p>
+
+        <h3>Weak Point 포커스</h3>
+        <p>
+
+            자동적으로 당신이 투쟁 코드 유형의 빈도를 증가. 당신이 이미 알고있는 것에 지출 대신 약점에 당신의 시간을 집중하십시오.
+
+
+        </p>
+
+        <div class="cycle-diagram">
+            <div class="cycle-step">
+                <div class="cycle-step__label">팟캐스트</div>
+                <div class="cycle-step__desc">혜준</div>
+            </div>
+            <div class="cycle-arrow">&rarr;</div>
+            <div class="cycle-step">
+                <div class="cycle-step__label">이름 *</div>
+                <div class="cycle-step__desc">코드 유형 선택</div>
+            </div>
+            <div class="cycle-arrow">&rarr;</div>
+            <div class="cycle-step">
+                <div class="cycle-step__label">의 장점</div>
+                <div class="cycle-step__desc">차이를 깎아</div>
+            </div>
+            <div class="cycle-arrow">&rarr;</div>
+            <div class="cycle-step">
+                <div class="cycle-step__label">의 특징</div>
+                <div class="cycle-step__desc">정확도 & 약점</div>
+            </div>
+        </div>
+
+        <!-- Section 6 -->
+        <h2 id="limitations">이름 * Solfege PRO 직접 커버하지 않는</h2>
+
+        <p>
+
+            정직하다.
+
+
+        </p>
+
+        <div class="article-honest">
+            <div class="article-honest__title">App's Scope를 넘어 지역</div>
+            <p>
+                <strong>코드 기호 입력</strong> — 답변은 여러 선택만 있습니다. 타이핑 코드 이름은 지원되지 않습니다.
+            </p>
+            <p>
+                <strong>실제 악기 소리</strong> — 앱은 피아노 톤을 사용합니다. 기타, 기관, 또는 기타 실제 기기를 가진 훈련 음색는 사용할 수 없습니다.
+            </p>
+            <p>
+                <strong>전위-specific 교육</strong> - 기본 변환 설정 및 변환 식별 질문은 지원되지만, 전용 단계별 커리큘럼은 inversions에서만 집중되어 있습니다. 초등형 디자인은 코드 품질 식별에 초점을 맞추고 있습니다.
+            </p>
+            <p>
+                <strong>블리쉬 코드</strong> — C/E와 같은 슬래시 코드 표기는 지원되지 않습니다.
+            </p>
+            <p>
+                <strong>화성 컨텍스트</strong> — 코드는 고립에서 발표됩니다. "진행 중이 코드 함수는 코드 인식 혼자 덮지 않습니다 (프로그레시브 교육은 별도로 사용할 수 있습니다).
+            </p>
+            <p>
+                <strong>기능 (연도) 코드 듣기</strong> — 그들의 코드를 <em>의 특징</em> 키 내에서 (예: 같은 Cmaj7은 C 전공이지만 V/V in F 전공) - 로마-numeral / T-SD-D 함수는 이동식 -do 솔페주 전통 (Karpinski, Edlund 등)에서 가르치는 것과 같은 것을 듣습니다. - 코드 인식의 품질 기반 디자인 밖에 있습니다. 통합 이 보완적인 기술을 개발하기 위해 이동식도 연습을 가진 훈련.
+            </p>
+        </div>
+
+        <p>
+
+            이름 * Solfege PRO 직접 지원은 코드 특성을 구별 할 수있는 능력의 단계 별 건물입니다. 조화된 컨텍스트의 합창은 프로그레시브 트레이닝을 통해 보완적인 연습을 필요로 합니다.
+
+
+        </p>
+
+        <!-- Mid-article CTA -->
+        <div class="article-cta-subtle">
+            <p class="article-cta-subtle__text">$9.99/월(미국 App Store 기준)(미국 App Store 기준) — 코드 인식을 확인</p>
+            <a href="https://apps.apple.com/kr/app/id6756626617?pt=6749158383&amp;ct=web_guides&amp;mt=8" class="article-cta-subtle__button app-store-link" aria-label="App Store에서 다운로드"><img src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/ko-kr" class="app-store-link__img" alt="App Store에서 다운로드" loading="lazy"></a>
+        </div>
+
+        <!-- Section 7 -->
+        <h2 id="how-to-use">관련 상품</h2>
+
+        <p>
+
+            Solfege PRO's 코드 인식은 다음 진행 상황을 위해 설계되었습니다.
+
+
+        </p>
+
+        <ol>
+            <li><strong>Basic Triads로 시작</strong> — 주요 대 단 바이너리 선택에 안정적인 80 % + 정확도에 대한 Aim</li>
+            <li><strong>arpeggio를 사용하여 구조 이해</strong> — 새로운 코드 유형을 태울 때, 각 음을 확인하기 위해 arpeggiated 재생을 시작</li>
+            <li><strong>80%를 통과할 때의 사전</strong> — 현재 레벨에서 80%+를 연속적으로 명중할 때, 다음 단계로 이동</li>
+            <li><strong>약점 초점 형태를 사용하십시오</strong> - 특정 코드 유형의 축에 대한 정확성이 효과적인 경우</li>
+            <li><strong>실제 음악을 검증</strong> — 가장 좋아하는 곡을 가로지르는 귀를 테스트했습니다. 그 궁극적 인 목표</li>
+        </ol>
+
+        <div class="article-note">
+            <div class="article-note__title">사용법 팁</div>
+            <p>연습 코드 승인과 함께 간격 훈련은 효과적입니다. 간격 인식이 코드 인식의 기초를 형성하기 때문에, 당신의 이해를 깊이 깊어 두 사이에서 교체.</p>
+        </div>
+
+    </main>
+
+    <!-- Final CTA -->
+    <section class="article-cta">
+        <h2 class="article-cta__title">코드 인식 확인으로 시작</h2>
+        <p class="article-cta__text">
+
+            코드 인식은 "흑단 대 어두운"의 인상에만 의존하면 천장을 안타.<br>코드 톤의 차이를 이해하고 점차 구급차를 확장합니다.<br>자주 묻는 질문 Solfege PRO'초회 인식'
+
+
+        </p>
+        <a href="https://apps.apple.com/kr/app/id6756626617?pt=6749158383&amp;ct=web_guides&amp;mt=8" class="app-store-link" aria-label="App Store에서 다운로드">
+
+            <img class="app-store-link__img" width="120" height="40" src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/ko-kr" alt="App Store에서 다운로드">
+
+
+        </a>
+    </section>
+
+    <!-- Related Content -->
+    <div class="article-related">
+        <div class="article-related__title">관련 내용</div>
+        <a href="/guides/chord-function-curriculum/" class="article-related__link" style="margin-bottom: var(--space-md);">
+            <div class="article-related__link-title">코드 Function Curriculum — 4단계 T/SD/D</div>
+            <div class="article-related__link-desc">코드를 하나씩 식별 한 후 다음 단계 — 기능 (T/SD/D) 및 진행 중 역할 학습.</div>
+        </a>
+        <a href="/manual/chord/" class="article-related__link" style="margin-bottom: var(--space-md);">
+            <div class="article-related__link-title">코드 인식 설정 설명서</div>
+            <div class="article-related__link-desc">각 인앱 설정과 열차를 선택할 수있는 방법, 한 번에.</div>
+        </a>
+        <a href="/" class="article-related__link">
+            <div class="article-related__link-title">Solfege PRO 연습장</div>
+            <div class="article-related__link-desc">기타,베이스, 드럼, 피아노, 보컬을 위한 도전 기반 연습 메뉴</div>
+        </a>
+    </div>
+
+    <!-- Article Note -->
+    <aside class="article-endnote">
+        <p class="article-endnote__text">
+
+            이 문서는 널리 사용되는 청음 훈련 방법론 및 일반 음악 이론 지식에 따라 구성됩니다. 코드 품질의 인식은 개별 및 뮤지컬 배경에 따라 다르며, 여기에 제시된 범주는 모든 경우에 적용되지 않을 수 있습니다. 인앱 교육은 코드 품질 인식 향상을 지원하며 포괄적 인 조화적 이해를 보장하지 않습니다.
+
+
+        </p>
+    </aside>
+
+    <!-- Footer -->
+    <footer class="article-footer">
+        <p class="article-footer__text">
+            &copy; 2026 Solfege PRO
+        </p>
+    </footer>
+    <script src="/bootstrap.js?v=10" defer></script>
+    <nav aria-label="Language" style="display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:0.5rem;padding:var(--space-lg) var(--space-md);border-top:1px solid var(--surface-light);font-size:13px">
+        <a href="/guides/ear-training-chords/" hreflang="ja" style="color:var(--text-secondary);text-decoration:none">日本語</a>
+        <span aria-hidden="true" style="color:var(--surface-light)">·</span>
+        <a href="/en/guides/ear-training-chords/" hreflang="en" style="color:var(--text-secondary);text-decoration:none">English</a>
+        <span aria-hidden="true" style="color:var(--surface-light)">·</span>
+        <a href="/fr/guides/ear-training-chords/" hreflang="fr" style="color:var(--text-secondary);text-decoration:none">Français</a>
+        <span aria-hidden="true" style="color:var(--surface-light)">·</span>
+        <a href="/de/guides/ear-training-chords/" hreflang="de" style="color:var(--text-secondary);text-decoration:none">Deutsch</a>
+        <span aria-hidden="true" style="color:var(--surface-light)">·</span>
+        <a href="/es/guides/ear-training-chords/" hreflang="es" style="color:var(--text-secondary);text-decoration:none">Español</a>
+        <span aria-hidden="true" style="color:var(--surface-light)">·</span>
+        <a href="/it/guides/ear-training-chords/" hreflang="it" style="color:var(--text-secondary);text-decoration:none">Italiano</a>
+        <span aria-hidden="true" style="color:var(--surface-light)">·</span>
+        <span style="color:var(--primary);font-weight:600" aria-current="true">한국어</span>
+        <span aria-hidden="true" style="color:var(--surface-light)">·</span>
+        <a href="/pt-br/guides/ear-training-chords/" hreflang="pt-BR" style="color:var(--text-secondary);text-decoration:none">Português (Brasil)</a>
+    </nav>
+</body>
+</html>

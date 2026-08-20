@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="es"
+      data-title-ja="リズムトレーニング 設定マニュアル — 各設定の選び方 | ソルフェージュPRO"
+      data-title-en="Rhythm Training Settings Manual — How to Choose Each Option | Solfege PRO"
+      data-title-fr="Manuel des réglages de l'entraînement au rythme — Comment choisir chaque option | Solfege PRO"
+      data-title-de="Handbuch zu den Einstellungen des Rhythmustrainings — So wählst du jede Option | Solfege PRO">
+<head>
+    <meta charset="UTF-8">
+    <meta name="robots" content="index, follow">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#1A1A1E">
+    <title>Manual de entrenamiento rítmico | Solfege PRO</title>
+    <meta name="description" content="Manual de referencia para configuraciones de Rhythm Training — método de entrada, tempo, dificultad, firma de tiempo, densidad de clic: para lo que cada es y cómo elegirlo.">
+
+    <!-- Canonical -->
+    <link rel="canonical" href="https://solfegepro.com/es/manual/rhythm/">
+    <link rel="alternate" hreflang="ja" href="https://solfegepro.com/manual/rhythm/">
+    <link rel="alternate" hreflang="en" href="https://solfegepro.com/en/manual/rhythm/">
+    <link rel="alternate" hreflang="fr" href="https://solfegepro.com/fr/manual/rhythm/">
+    <link rel="alternate" hreflang="de" href="https://solfegepro.com/de/manual/rhythm/">
+    <link rel="alternate" hreflang="es" href="https://solfegepro.com/es/manual/rhythm/">
+    <link rel="alternate" hreflang="it" href="https://solfegepro.com/it/manual/rhythm/">
+    <link rel="alternate" hreflang="ko" href="https://solfegepro.com/ko/manual/rhythm/">
+    <link rel="alternate" hreflang="pt-BR" href="https://solfegepro.com/pt-br/manual/rhythm/">
+    <link rel="alternate" hreflang="x-default" href="https://solfegepro.com/manual/rhythm/">
+<!-- OGP -->
+    <meta property="og:title" content="Manual de entrenamiento rítmico">
+    <meta property="og:description" content="Manual de referencia para configuraciones de Rhythm Training — método de entrada, tempo, dificultad, firma de tiempo, densidad de clic: para lo que cada es y cómo elegirlo.">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://solfegepro.com/es/manual/rhythm/">
+    <meta property="og:site_name" content="Solfege PRO">
+    <meta property="og:image" content="https://solfegepro.com/og-image.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Solfege PRO">
+    <meta property="og:locale" content="es_ES">
+    <meta property="og:locale:alternate" content="ja_JP">
+    <meta property="og:locale:alternate" content="en_US">
+    <meta property="og:locale:alternate" content="fr_FR">
+    <meta property="og:locale:alternate" content="de_DE">
+    <meta property="og:locale:alternate" content="it_IT">
+    <meta property="og:locale:alternate" content="ko_KR">
+    <meta property="og:locale:alternate" content="pt_BR">
+    <meta property="article:published_time" content="2026-06-05">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Manual de entrenamiento rítmico">
+    <meta name="twitter:description" content="Manual de referencia para configuraciones de Rhythm Training — método de entrada, tempo, dificultad, firma de tiempo, densidad de clic: para lo que cada es y cómo elegirlo.">
+    <meta name="twitter:image" content="https://solfegepro.com/og-image.png">
+
+    <!-- Favicon -->
+    <link rel="icon" href="/favicon.ico" sizes="any">
+    <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap"></noscript>
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="/style.css?v=23">
+    <link rel="stylesheet" href="/guides/article.css?v=14">
+
+    <style>
+        /* Manual option reference — responsive, no fixed px widths */
+        .manual-options {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr);
+            gap: var(--space-sm);
+            margin: var(--space-lg) 0;
+        }
+        .manual-option {
+            background: var(--surface);
+            border: 1px solid var(--surface-light);
+            border-radius: var(--radius-lg);
+            padding: var(--space-md);
+        }
+        .manual-option__name {
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: var(--space-xs);
+        }
+        .manual-option__desc {
+            font-size: 13px;
+            color: var(--text-secondary);
+        }
+        /* Bottom-line callout (conclusion first) */
+        .manual-lead {
+            font-size: 14px;
+            line-height: 1.75;
+            color: var(--text-primary);
+            border-left: 3px solid var(--primary);
+            background: rgba(212, 175, 55, 0.06);
+            padding: var(--space-sm) var(--space-md);
+            border-radius: 0 var(--radius-md) var(--radius-md) 0;
+            margin: var(--space-md) 0;
+        }
+        /* Per-setting evidence note — deliberately styled as an editorial
+           aside, NOT as a settings card (no surface fill, no gold label),
+           so it is never mistaken for an in-app option. */
+        .manual-rationale {
+            margin: var(--space-md) 0 var(--space-2xl);
+            padding: var(--space-sm) 0 var(--space-sm) var(--space-md);
+            border-left: 2px solid var(--surface-light);
+        }
+        .manual-rationale__label {
+            display: block;
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            color: var(--text-secondary);
+            margin-bottom: 4px;
+            opacity: 0.75;
+        }
+        .manual-rationale p {
+            font-size: 13px;
+            line-height: 1.75;
+            color: var(--text-secondary);
+            margin: 0;
+        }
+        .manual-rationale__ref {
+            font-size: 12px;
+            font-style: italic;
+            margin-top: var(--space-xs) !important;
+            opacity: 0.7;
+        }
+        /* Citation number linking to the reference list */
+        .manual-ref-num {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-style: normal;
+        }
+        .manual-ref-num:hover { color: var(--primary); }
+        /* Full reference list at page end */
+        .manual-refs {
+            margin: var(--space-2xl) 0 0;
+            padding-top: var(--space-lg);
+            border-top: 1px solid var(--surface-light);
+        }
+        .manual-refs__title {
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: var(--space-sm);
+        }
+        .manual-refs ol {
+            margin: 0;
+            padding-left: 1.25em;
+        }
+        .manual-refs li {
+            font-size: 12px;
+            line-height: 1.7;
+            color: var(--text-secondary);
+            margin-bottom: var(--space-xs);
+            scroll-margin-top: 84px;
+        }
+        .manual-refs li:target {
+            color: var(--text-primary);
+        }
+    </style>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Manual de entrenamiento rítmico","description":"Manual de referencia para configuraciones de Rhythm Training — método de entrada, tempo, dificultad, firma de tiempo, densidad de clic: para lo que cada es y cómo elegirlo.","author":{"@type":"Organization","name":"Solfege PRO"},"publisher":{"@type":"Organization","name":"Solfege PRO","logo":{"@type":"ImageObject","url":"https://solfegepro.com/AppIcon.png"}},"datePublished":"2026-06-05","mainEntityOfPage":{"@type":"WebPage","@id":"https://solfegepro.com/es/manual/rhythm/"}}</script>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Inicio","item":"https://solfegepro.com/es/"},{"@type":"ListItem","position":2,"name":"Manual","item":"https://solfegepro.com/es/manual/"},{"@type":"ListItem","position":3,"name":"リズムトレーニング 設定マニュアル — 各設定の選び方","item":"https://solfegepro.com/es/manual/rhythm/"}]}</script>
+</head>
+<body>
+    <!-- Navigation -->
+        <nav class="nav" aria-label="Menú principal">
+        <div class="nav__container">
+            <a href="/es/" class="nav__logo" aria-label="Solfege PRO">
+                <img src="/AppIcon.png" alt="" class="nav__logo-icon" width="32" height="32">
+                <span class="nav__logo-text">Solfege PRO</span>
+            </a>
+            <ul class="nav__list">
+                <li><a href="/es/" class="nav__link">Acerca de Solfege PRO</a></li>
+                <li><a href="/es/features/" class="nav__link">Entrenamientos</a></li>
+                <li><a href="/es/guides/" class="nav__link">Guías de práctica</a></li>
+                <li><a href="/es/manual/" class="nav__link active" aria-current="page">Manual</a></li>
+            </ul>
+            <div class="nav__settings">
+                <button class="settings-btn" id="lang-toggle" title="Seleccionar idioma"><span id="lang-text">ES</span></button>
+                <button class="hamburger-btn" id="hamburger-btn" aria-label="Abrir menú" aria-expanded="false" aria-controls="drawer">
+                    <span class="hamburger-btn__line"></span><span class="hamburger-btn__line"></span><span class="hamburger-btn__line"></span>
+                </button>
+            </div>
+        </div>
+    </nav>
+        <!-- Mobile drawer (hidden on desktop) -->
+            <div class="drawer-overlay" id="drawer-overlay"></div>
+    <aside class="drawer" id="drawer" aria-label="Menú" aria-hidden="true" inert>
+        <div class="drawer__header">
+            <span class="drawer__title">Menú</span>
+            <button class="drawer__close" id="drawer-close" aria-label="Cerrar menú">×</button>
+        </div>
+        <ul class="drawer__list">
+            <li><a href="/es/" class="drawer__link">Acerca de Solfege PRO</a></li>
+            <li><a href="/es/features/" class="drawer__link">Entrenamientos</a></li>
+            <li><a href="/es/guides/" class="drawer__link">Guías de práctica</a></li>
+            <li><a href="/es/manual/" class="drawer__link active" aria-current="page">Manual</a></li>
+        </ul>
+    </aside>
+
+
+    <!-- Article Header -->
+    <header class="page-header">
+        <div class="page-header__meta">
+            <span class="page-header__tag">Manual</span>
+            <span>Formación de Rhythm</span>
+        </div>
+        <h1 class="page-header__title">
+
+            Manual de configuración de entrenamiento de Rhythm<br>Lo que cada opción significa y cómo elegir
+
+
+        </h1>
+        <p class="page-header__subtitle">
+
+            ¿Qué opción para elegir, cuándo y por qué? Esta página recorre cada escenario en el entrenamiento de ritmo, uno a la vez. Si llegas de un "?" en la pantalla de configuración, desplazate a la opción que necesitas.
+
+
+        </p>
+    </header>
+
+    <!-- Top-of-article CTA -->
+    <aside class="article-top-cta" aria-label="App promotion">
+        <div class="article-top-cta__body">
+            <p class="article-top-cta__title">
+
+                Prueba esto. Solfege PRO
+
+
+            </p>
+            <p class="article-top-cta__sub">
+
+                Consulta el precio en el App Store
+
+
+            </p>
+        </div>
+        <a href="https://apps.apple.com/es/app/id6756626617?pt=6749158383&amp;ct=web_manual&amp;mt=8" class="article-top-cta__button app-store-link" data-cta-position="article_top" aria-label="Descargar en el App Store"><img src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/es-es" class="app-store-link__img" alt="Descargar en el App Store" loading="lazy"></a>
+    </aside>
+
+    <!-- Article Body -->
+    <main class="article-body">
+
+        <!-- Intro -->
+        <p>
+
+            El entrenamiento de Rhythm tiene que pulsar la pantalla (o aplausos) a un clic de metronome y mide lo preciso que es su tiempo. A diferencia del entrenamiento de acordes o escalas, no estás contestando "¿qué nota es?" — agudizas cuántos milisegundos de la velocidad exacta que eres (su precisión de tiempo). Un sentido constante del ritmo es la base de jugar, ya sea en un conjunto o solo.
+
+
+        </p>
+        <p>
+
+            Esta página es un manual para elegir la configuración. Cada escenario está diseñado alrededor de los métodos establecidos de la educación musical. Para cada configuración que pide una decisión, damos <strong>la elección recomendada, lo que es, y lo que entrena — con la evidencia detrás de ella</strong>. Si llegas de un "?" en la pantalla de configuración, desplazate a la opción que necesitas. Dentro de la aplicación, la misma "?" también ofrece "Ver cómo funciona esta pantalla", que juega un tutorial paso a paso para la pantalla.
+
+
+        </p>
+
+        <!-- Shared note: practice-plan item settings sheets show only the settings
+     persisted per item (v1.3.1 hides non-persisted controls in plan context).
+     Included by the 7 module manuals: interval / chord / scale / progression /
+     sight-reading / rhythm / fretboard. Rhythm Sight Reading is deliberately
+     excluded — its plan items do not embed module settings at all. -->
+<p>
+
+    Esta página describe la pantalla de configuración del entrenamiento independiente abierto desde el hogar de la práctica. Cuando abres la configuración de un elemento de plan de práctica, solo se muestran los ajustes que se guardan con ese elemento.
+
+
+</p>
+
+
+        <!-- #input-mode -->
+        <h2 id="input-mode">Modo de entrada (Tap / Clap)</h2>
+
+        <p class="manual-lead">
+
+            <strong>Cuando esté en duda, elija Tap.</strong> Da la medición más estable. Cambia a Clap (Mic) sólo cuando quieres mover tu cuerpo o comprobar un instrumento de percusión real; con Clap, los auriculares a cable son más estables que el altavoz.
+
+
+        </p>
+
+        <p>
+
+            Este ajuste decide cómo entras en el ritmo. Es la opción más importante porque afecta directamente la precisión de medición. Elige entre Tap y Clap (Mic).
+
+
+        </p>
+
+        <div class="manual-options">
+            <div class="manual-option">
+                <div class="manual-option__name">Tap</div>
+                <div class="manual-option__desc">Toca la pantalla para entrar en el ritmo. La detección de toques es casi libre de demoras (bajo latencia), por lo que el ruido de medición es pequeño y no se necesitan auriculares, el predeterminado para medir su sentido del tiempo de forma limpia.</div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name">Clap (Mic)</div>
+                <div class="manual-option__desc">Detecta el sonido de aplausos o percusión a través del micrófono (clap = aplauso de mano). Está más cerca de la práctica encarnada, pero la entrada de micrófono lleva retraso dependiente del dispositivo (latencia), y revela advertencias y controles de compensación de latencia.</div>
+            </div>
+        </div>
+
+        <div class="manual-rationale">
+            <span class="manual-rationale__label">La evidencia detrás de ella</span>
+            <p>
+
+                O los trenes de entrada sincronización sensorimotor - alineando su movimiento al clic que escucha. El tap añade el menor retraso de entrada, por lo que refleja su propia desviación con precisión. La sincronización de tapping se puede medir sistemáticamente, como se muestra ampliamente en las revisiones de la literatura de tapping.
+
+
+            </p>
+            <p class="manual-rationale__ref">Ref.: Repp (2005) <a class="manual-ref-num" href="#ref-1">[1]</a></p>
+        </div>
+
+        <!-- #bpm -->
+        <h2 id="bpm">Tempo (Témo)BPM)</h2>
+
+        <p class="manual-lead">
+
+            <strong>Cuando en duda, empezar cerca de 90–100 BPM.</strong> Una vez estable allí, desacelerar antes de acelerar y comprobar que usted se mantiene estable en un tempo más lento — que construye un control subyacente real.
+
+
+        </p>
+
+        <p>
+
+            Es lo rápido que corre el metronomo. La unidad es BPM (aventos por minuto) y el deslizador cubre 40–200. Tempos rápidos (150+) te permiten reaccionar reflexivamente pero puedes sentirte "en" mientras estás descuidado; tempos lentos (alrededor de 60) deja largas brechas y prueba tu pulso interno (su propio sentido del tiempo). El tempos medio (90–120) es la banda práctica utilizada en la mayoría de la música.
+
+
+        </p>
+
+        <div class="manual-rationale">
+            <span class="manual-rationale__label">La evidencia detrás de ella</span>
+            <p>
+
+                Tempo es ajustable porque lo difícil que es bloquear los cambios con velocidad. La variabilidad de la época crece a medida que el tempo se desacelera (por lo que es realmente más lento para fingir), como se reporta repetidamente en los exámenes de la literatura de tapping. Comprobando que usted permanece estable en un tempo lento por lo tanto construye la capacidad subyacente de sincronizar.
+
+
+            </p>
+            <p class="manual-rationale__ref">Ref.: Repp (2005) <a class="manual-ref-num" href="#ref-1">[1]</a></p>
+        </div>
+
+        <!-- #difficulty -->
+        <h2 id="difficulty">Dificultad</h2>
+
+        <p class="manual-lead">
+
+            <strong>Cuando no esté seguro, empieza en el principiante.</strong> Sube un nivel una vez que usted fije de forma fiable alto. Especialmente con Clap (Mic), latencia del dispositivo se añade, así que no salte directamente a Advanced o Pro.
+
+
+        </p>
+
+        <p>
+
+            Decide lo estricto que es la "línea de paso" para el tiempo. La desviación tolerada del latido exacto (en milisegundos) se estrecha paso a paso, y los umbrales perfecto / grande / bueno se ajustan con él. Donde las dificultades de acordes y escalas cambian la amplitud de las preguntas, la dificultad del ritmo cambia la precisión del anotación.
+
+
+        </p>
+
+        <div class="manual-options">
+            <div class="manual-option">
+                <div class="manual-option__name">Principiante</div>
+                <div class="manual-option__desc">±100ms - tiempo básico. Una tolerancia amplia para empezar a sentir que aterrizar en el ritmo. Empieza aquí.</div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name">Intermediato</div>
+                <div class="manual-option__desc">±60ms - precisión estándar. El nivel de juzgar que se mantiene en conjunto cotidiano jugando para la mayoría de la gente.</div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name">Avances</div>
+                <div class="manual-option__desc">±40ms — alta precisión. Cerca del umbral en el que la gente comienza a percibir el tiempo como "off", surfacing fino irregularidad.</div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name">Pro</div>
+                <div class="manual-option__desc">±25ms - nivel de pro. Un estándar estricto que incluso los jugadores profesionales no pueden mantener todo el tiempo. Para aquellos que quieren empujar la precisión al límite.</div>
+            </div>
+        </div>
+
+        <div class="manual-rationale">
+            <span class="manual-rationale__label">La evidencia detrás de ella</span>
+            <p>
+
+                El apriete de la línea de paso en etapas le permite bajar la carga de procesamiento temprano — con un juicio indulgente— y luego presionar la precisión una vez que esté cómodo. Los niveles siguen la teoría de la carga cognitiva: mantener las demandas bajas temprano en un nuevo aprendizaje de ayudas de habilidad. Arreglar la sensación de aterrizaje en el ritmo bajo una amplia tolerancia antes de estrechar que te hace allí más rápido que empezar de un estándar estricto.
+
+
+            </p>
+            <p class="manual-rationale__ref">Ref.: Sweller (1988) <a class="manual-ref-num" href="#ref-2">[2]</a></p>
+        </div>
+
+        <!-- #time-signature -->
+        <h2 id="time-signature">Hora de la firma</h2>
+
+        <p class="manual-lead">
+
+            <strong>Cuando sea en duda, déjelo en 4/4.</strong> Construir el tiempo constante en 4/4 primero, ampliar a 3/4 y 6/8, y guardar los medidores impares 5/4 y 7/8 para último - que el orden es el más fácil de manejar.
+
+
+        </p>
+
+        <p>
+
+            Se establece cuántos golpes caben en un bar (y la unidad de latido). Por ejemplo, 4/4 es tiempo de cuatro latidos y 3/4 es la sensación de tres latidos de un vals; esto cambia donde las barras se dividen y donde caen los fuertes latidos. Las seis opciones son 4/4, 3/4, 6/8, 2/4, 5/4 y 7/8.
+
+
+        </p>
+
+        <div class="manual-options">
+            <div class="manual-option">
+                <div class="manual-option__name">4/4 y 2/4</div>
+                <div class="manual-option__desc">Los metros más comunes. La gran mayoría del pop y la roca está en 4/4. 2/4 es la luz de dos grandes sensaciones de marchas. Para construir fundamentos de ritmo, comience aquí.</div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name">3/4 y 6/8</div>
+                <div class="manual-option__desc">Medidores triples. 3/4 es un vals; 6/8 divide dos golpes en tripletes para un rodaje (balads, música irlandesa). Un buen próximo paso una vez que el tiempo de cuatro latidos se siente fácil.</div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name">5/4 y 7/8</div>
+                <div class="manual-option__desc">A unos metros. El recuento de los golpes no se divide uniformemente, por lo que los fuertes golpes llegan a intervalos irregulares. Usado en prog, jazz y tradiciones populares, un reto avanzado.</div>
+            </div>
+        </div>
+
+        <div class="manual-rationale">
+            <span class="manual-rationale__label">La evidencia detrás de ella</span>
+            <p>
+
+                Puede elegir el medidor para que la sincronización sensorimotor de alinear su movimiento al patrón de fuertes golpes (la jerarquía métrica) se entrene en diferentes marcos. Moviendo de 4/4 regular a metros impares, donde los fuertes golpes caen irregularmente, prueba su capacidad de sincronizar usando esa estructura de latido como un cue. Esa estructura métrica forma la sincronización se muestra en las revisiones de la literatura de tapping.
+
+
+            </p>
+            <p class="manual-rationale__ref">Ref.: Repp (2005) <a class="manual-ref-num" href="#ref-1">[1]</a></p>
+        </div>
+
+        <!-- #click-density -->
+        <h2 id="click-density">Haga clic en Densidad</h2>
+
+        <p class="manual-lead">
+
+            <strong>Cuando sea en duda, comienza en cada Beat.</strong> Una vez que aterrizas con precisión, recoge el backbeat con Beats 2 &amp; 4, y una vez estable, delgada — Beat 1 Only → Cada 2 Bares → Cada 4 Bares — para entrenar tu pulso interno. El truco es seguir contando en tu cabeza con los golpes silenciosos.
+
+
+        </p>
+
+        <p>
+
+            Decide cuánto el metronomo está "enlazado". Hacer clic en cada golpe es fácil de seguir; los menos golpes clic, más debe llenar los golpes silenciosos con su pulso interno. Es uno de los ajustes más eficaces para construir sensación rítmica, y un indicador de dificultad (1–5 puntos) muestra el nivel áspero.
+
+
+        </p>
+
+        <div class="manual-options">
+            <div class="manual-option">
+                <div class="manual-option__name">Cada golpe</div>
+                <div class="manual-option__desc">Principiante. El clic suena en cada golpe — la práctica básica sincronización a un clic externo, y el primer paso.</div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name">Beats 1 &amp; 3 (Downbeat)</div>
+                <div class="manual-option__desc">Sólo se hace clic en los labios (aventos 1 y 3) en la parte delantera de la medida. Practicar enfocando en los labios para mantener el ritmo.</div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name">Beats 2 &amp; 4 (Backbeat)</div>
+                <div class="manual-option__desc">Pulsa sobre los latidos 2 y 4, los latidos (retroalimentación – el núcleo del jazz y el sentimiento de funk). El peso del acento cambia de nuevo, haciendo esto ideal para entrenar a ranura.</div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name">Sólo vence 1 (Pulso interno)</div>
+                <div class="manual-option__desc">Sólo se hace clic en el latido 1 de cada medida. Mantenga los golpes restantes, desarrollando pulso interno y tiempo autosuficiente.</div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name">Cada 2 Bares (Phrase Feel)</div>
+                <div class="manual-option__desc">Clica una vez cada 2 barras. Debes mantener tu propio tempo en un largo tramo, fortaleciendo la conciencia de frases de 2 bar.</div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name">Cada 4 Bares (nivel de promoción)</div>
+                <div class="manual-option__desc">Clica una vez cada 4 barras. Formación avanzada que requiere mantener el tempo en 4 barras, el entorno más exigente.</div>
+            </div>
+        </div>
+
+        <div class="manual-rationale">
+            <span class="manual-rationale__label">La evidencia detrás de ella</span>
+            <p>
+
+                Hacer clic en cada golpe actúa como un andamio — un taco externo que baja la carga de procesamiento al entregarle la alineación. Mientras te sientas cómodo, menos golpes hacen clic, eliminando el andamio y aumentando gradualmente la carga de llenar los huecos con tu propio pulso interno. Bajar la carga temprano y reducir el andamio con maestría sigue la teoría de la carga cognitiva.
+
+
+            </p>
+            <p class="manual-rationale__ref">Ref.: Sweller (1988) <a class="manual-ref-num" href="#ref-2">[2]</a></p>
+        </div>
+
+        <!-- References -->
+        <section class="manual-refs">
+            <div class="manual-refs__title">Referencias</div>
+            <ol>
+                <li id="ref-1">Repp, B. H. (2005). Sensorimotor synchronization: A review of the tapping literature. <em>Psychonomic Bulletin &amp; Review, 12</em>(6), 969–992.</li>
+                <li id="ref-2">Sweller, J. (1988). Cognitive load during problem solving: Effects on learning. <em>Cognitive Science, 12</em>(2), 257–285.</li>
+            </ol>
+        </section>
+
+    </main>
+
+    <!-- Final CTA -->
+    <section class="article-cta">
+        <h2 class="article-cta__title">¿Configuración? Pruébalo.</h2>
+        <p class="article-cta__text">
+
+            Una vez que entiendas cada ajuste, el resto es práctica práctica práctica.<br>Cuando no esté seguro, siga las líneas "cuando en duda" en esta página.<br>Encontrar los ajustes que le caben la función de Solfege PRO: Rhythm Training.
+
+
+        </p>
+        <a href="https://apps.apple.com/es/app/id6756626617?pt=6749158383&amp;ct=web_manual&amp;mt=8" class="app-store-link" aria-label="Descargar en el App Store">
+
+            <img class="app-store-link__img" width="120" height="40" src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/es-es" alt="Descargar en el App Store">
+
+
+        </a>
+    </section>
+
+    <!-- Related Content -->
+    <div class="article-related">
+        <div class="article-related__title">Contenido relacionado</div>
+        <a href="/guides/rhythm-training/" class="article-related__link" style="margin-bottom: var(--space-md);">
+            <div class="article-related__link-title">¿Qué es el sentimiento rítmico? — Derribando empujando, retrocediendo, y el bolsillo</div>
+            <div class="article-related__link-desc">Para aquellos que quieren entender qué sensación rítmica es antes de ajustar la configuración — una guía para los offsets de tiempo y cómo entrenarlos.</div>
+        </a>
+        <a href="/" class="article-related__link">
+            <div class="article-related__link-title">Solfege PRO Guía de prácticas</div>
+            <div class="article-related__link-desc">Menús de práctica basados en desafíos para guitarra, bajo, tambores, piano y voces</div>
+        </a>
+    </div>
+
+    <!-- Article Note -->
+    <aside class="article-endnote">
+        <p class="article-endnote__text">
+
+            Esta página es una referencia que explica la configuración de la aplicación de la aplicación. Las progresiones recomendadas aquí son directrices generales basadas en una metodología de entrenamiento de ritmos ampliamente utilizada; los ajustes óptimos varían con experiencia y objetivos individuales. En la entrada Clap (Mic), latencia del dispositivo puede hacer que los valores medidos fluctúan. Los estudios citados reportan hallazgos de aprendizaje general y no garantizan resultados dentro de esta aplicación.
+
+
+        </p>
+    </aside>
+
+    <!-- Footer -->
+    <footer class="article-footer">
+        <p class="article-footer__text">
+            &copy; 2026 Solfege PRO
+        </p>
+    </footer>
+    <script src="/bootstrap.js?v=10" defer></script>
+    <nav aria-label="Language" style="display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:0.5rem;padding:var(--space-lg) var(--space-md);border-top:1px solid var(--surface-light);font-size:13px">
+        <a href="/manual/rhythm/" hreflang="ja" style="color:var(--text-secondary);text-decoration:none">日本語</a>
+        <span aria-hidden="true" style="color:var(--surface-light)">·</span>
+        <a href="/en/manual/rhythm/" hreflang="en" style="color:var(--text-secondary);text-decoration:none">English</a>
+        <span aria-hidden="true" style="color:var(--surface-light)">·</span>
+        <a href="/fr/manual/rhythm/" hreflang="fr" style="color:var(--text-secondary);text-decoration:none">Français</a>
+        <span aria-hidden="true" style="color:var(--surface-light)">·</span>
+        <a href="/de/manual/rhythm/" hreflang="de" style="color:var(--text-secondary);text-decoration:none">Deutsch</a>
+        <span aria-hidden="true" style="color:var(--surface-light)">·</span>
+        <span style="color:var(--primary);font-weight:600" aria-current="true">Español</span>
+        <span aria-hidden="true" style="color:var(--surface-light)">·</span>
+        <a href="/it/manual/rhythm/" hreflang="it" style="color:var(--text-secondary);text-decoration:none">Italiano</a>
+        <span aria-hidden="true" style="color:var(--surface-light)">·</span>
+        <a href="/ko/manual/rhythm/" hreflang="ko" style="color:var(--text-secondary);text-decoration:none">한국어</a>
+        <span aria-hidden="true" style="color:var(--surface-light)">·</span>
+        <a href="/pt-br/manual/rhythm/" hreflang="pt-BR" style="color:var(--text-secondary);text-decoration:none">Português (Brasil)</a>
+    </nav>
+</body>
+</html>

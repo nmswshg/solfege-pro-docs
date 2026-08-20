@@ -1,0 +1,963 @@
+<!DOCTYPE html>
+<html lang="ko"
+      data-title-ja="音程の聴き分け — インターバル認識を鍛える | ソルフェージュPRO"
+      data-title-en="What Is Interval Recognition? — Understanding Intervals to Train Your Ear | Solfege PRO"
+      data-title-fr="Qu'est-ce que la reconnaissance d'intervalles ? — Comprendre les intervalles pour former l'oreille | Solfege PRO"
+      data-title-de="Was ist Intervallerkennung? — Intervalle verstehen und das Gehör schulen | Solfege PRO">
+<head>
+    <meta charset="UTF-8">
+    <meta name="robots" content="index, follow">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#1A1A1E">
+    <title>음정 인식: 단계별 청음 훈련 | Solfege PRO</title>
+    <meta name="description" content="음정 인식은 절대음감이 아니라 상대음감을 기릅니다. 소리별 13가지 음정, 단계별 계획, 흔히 막히는 구간을 넘는 방법을 알아봅니다.">
+
+    <!-- Canonical -->
+    <link rel="canonical" href="https://solfegepro.com/ko/guides/interval-training/">
+    <link rel="alternate" hreflang="ja" href="https://solfegepro.com/guides/interval-training/">
+    <link rel="alternate" hreflang="en" href="https://solfegepro.com/en/guides/interval-training/">
+    <link rel="alternate" hreflang="fr" href="https://solfegepro.com/fr/guides/interval-training/">
+    <link rel="alternate" hreflang="de" href="https://solfegepro.com/de/guides/interval-training/">
+    <link rel="alternate" hreflang="es" href="https://solfegepro.com/es/guides/interval-training/">
+    <link rel="alternate" hreflang="it" href="https://solfegepro.com/it/guides/interval-training/">
+    <link rel="alternate" hreflang="ko" href="https://solfegepro.com/ko/guides/interval-training/">
+    <link rel="alternate" hreflang="pt-BR" href="https://solfegepro.com/pt-br/guides/interval-training/">
+    <link rel="alternate" hreflang="x-default" href="https://solfegepro.com/guides/interval-training/">
+<!-- OGP -->
+    <meta property="og:title" content="음정 인식: 단계별 청음 훈련">
+    <meta property="og:description" content="음정 인식은 절대음감이 아니라 상대음감을 기릅니다. 소리별 13가지 음정, 단계별 계획, 흔히 막히는 구간을 넘는 방법을 알아봅니다.">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://solfegepro.com/ko/guides/interval-training/">
+    <meta property="og:site_name" content="Solfege PRO">
+    <meta property="og:image" content="https://solfegepro.com/og-image.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Solfege PRO">
+    <meta property="og:locale" content="ko_KR">
+    <meta property="og:locale:alternate" content="ja_JP">
+    <meta property="og:locale:alternate" content="en_US">
+    <meta property="og:locale:alternate" content="fr_FR">
+    <meta property="og:locale:alternate" content="de_DE">
+    <meta property="og:locale:alternate" content="es_ES">
+    <meta property="og:locale:alternate" content="it_IT">
+    <meta property="og:locale:alternate" content="pt_BR">
+    <meta property="article:published_time" content="2026-03-31">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="음정 인식: 단계별 청음 훈련">
+    <meta name="twitter:description" content="음정 인식은 절대음감이 아니라 상대음감을 기릅니다. 소리별 13가지 음정, 단계별 계획, 흔히 막히는 구간을 넘는 방법을 알아봅니다.">
+    <meta name="twitter:image" content="https://solfegepro.com/og-image.png">
+
+    <!-- Favicon -->
+    <link rel="icon" href="/favicon.ico" sizes="any">
+    <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap"></noscript>
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="/style.css?v=23">
+    <link rel="stylesheet" href="/guides/article.css?v=14">
+
+    <!-- Page-specific styles for interval diagrams -->
+    <style>
+        /* Semitone Chart (responsive — 12 cells via grid) */
+        .semitone-chart {
+            background: var(--surface);
+            border-radius: var(--radius-xl);
+            padding: var(--space-lg);
+            margin: var(--space-xl) 0;
+            border: 1px solid var(--surface-light);
+        }
+
+        .semitone-track {
+            display: grid;
+            grid-template-columns: repeat(12, minmax(0, 1fr));
+            gap: 3px;
+            margin-top: var(--space-md);
+        }
+
+        .semitone-block {
+            min-width: 0;
+            background: var(--surface-light);
+            border-radius: var(--radius-sm);
+            padding: var(--space-sm) 2px;
+            text-align: center;
+            transition: transform 0.2s ease;
+            position: relative;
+        }
+
+        .semitone-block:hover {
+            transform: translateY(-2px);
+        }
+
+        .semitone-block__name {
+            font-size: 12px;
+            font-weight: 700;
+            color: var(--primary);
+            display: block;
+        }
+
+        .semitone-block__count {
+            font-size: 10px;
+            color: var(--text-secondary);
+            display: block;
+            margin-top: 2px;
+        }
+
+        .semitone-block--perfect {
+            background: rgba(74, 222, 128, 0.15);
+            border: 1px solid rgba(74, 222, 128, 0.3);
+        }
+
+        .semitone-block--major {
+            background: rgba(96, 165, 250, 0.15);
+            border: 1px solid rgba(96, 165, 250, 0.3);
+        }
+
+        .semitone-block--minor {
+            background: rgba(251, 191, 36, 0.15);
+            border: 1px solid rgba(251, 191, 36, 0.3);
+        }
+
+        .semitone-block--tritone {
+            background: rgba(248, 113, 113, 0.15);
+            border: 1px solid rgba(248, 113, 113, 0.3);
+        }
+
+        .semitone-legend {
+            display: flex;
+            gap: var(--space-lg);
+            margin-top: var(--space-md);
+            font-size: 12px;
+            color: var(--text-secondary);
+            flex-wrap: wrap;
+        }
+
+        .semitone-legend__item {
+            display: flex;
+            align-items: center;
+            gap: var(--space-xs);
+        }
+
+        .semitone-legend__dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 3px;
+            flex-shrink: 0;
+        }
+
+        /* Difficulty Grid (responsive — never horizontally scrolls) */
+        .difficulty-grid {
+            background: var(--surface);
+            border-radius: var(--radius-xl);
+            padding: var(--space-lg);
+            margin: var(--space-xl) 0;
+            border: 1px solid var(--surface-light);
+        }
+
+        .difficulty-row {
+            display: grid;
+            grid-template-columns: 72px 1fr 56px;
+            align-items: center;
+            margin-bottom: var(--space-md);
+            gap: var(--space-sm);
+        }
+
+        .difficulty-row:last-child {
+            margin-bottom: 0;
+        }
+
+        .difficulty-row__label {
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .difficulty-row__cells {
+            display: grid;
+            grid-template-columns: repeat(13, minmax(0, 1fr));
+            gap: 2px;
+            min-width: 0;
+        }
+
+        .interval-cell {
+            min-width: 0;
+            height: 30px;
+            border-radius: var(--radius-sm);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 10px;
+            font-weight: 700;
+        }
+
+        .interval-cell--on {
+            background: var(--primary);
+            color: var(--background);
+        }
+
+        .interval-cell--off {
+            background: var(--surface-light);
+            color: var(--text-secondary);
+            opacity: 0.4;
+        }
+
+        .difficulty-row__count {
+            font-size: 12px;
+            color: var(--text-secondary);
+            text-align: right;
+        }
+
+        /* Playback Mode Visual */
+        .playback-modes {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--space-md);
+            margin: var(--space-xl) 0;
+        }
+
+        .playback-mode-card {
+            background: var(--surface);
+            border: 1px solid var(--surface-light);
+            border-radius: var(--radius-lg);
+            padding: var(--space-lg);
+            text-align: center;
+        }
+
+        .playback-mode-card__icon {
+            font-size: 24px;
+            margin-bottom: var(--space-sm);
+            display: block;
+        }
+
+        .playback-mode-card__name {
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: var(--space-xs);
+        }
+
+        .playback-mode-card__desc {
+            font-size: 12px;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        /* Wall items (common struggles) */
+        .wall-list {
+            margin-bottom: var(--space-lg);
+        }
+
+        .wall-item {
+            display: flex;
+            gap: var(--space-md);
+            padding: var(--space-md);
+            background: var(--surface);
+            border-radius: var(--radius-md);
+            margin-bottom: var(--space-sm);
+            border: 1px solid var(--surface-light);
+        }
+
+        .wall-item__label {
+            font-weight: 700;
+            color: var(--primary);
+            min-width: 160px;
+            font-size: 14px;
+            flex-shrink: 0;
+        }
+
+        .wall-item__desc {
+            font-size: 14px;
+            color: var(--text-secondary);
+            line-height: 1.7;
+        }
+
+        @media (max-width: 768px) {
+            /* Narrow viewports: 12 semitones in 2 rows of 6 (avoids the
+               tiny single-row cells that would result at 375px). */
+            .semitone-track {
+                grid-template-columns: repeat(6, minmax(0, 1fr));
+            }
+            .semitone-block {
+                padding: 6px 2px;
+            }
+
+            .difficulty-row {
+                /* Stack: label on its own row, then full-width 13-cell row,
+                   then count on its own row. Keeps cells fitting any width. */
+                grid-template-columns: 1fr;
+                gap: 6px;
+            }
+
+            .difficulty-row__count {
+                text-align: left;
+            }
+
+            .interval-cell {
+                font-size: 9px;
+                height: 26px;
+            }
+
+            .playback-modes {
+                grid-template-columns: 1fr;
+            }
+
+            .wall-item {
+                flex-direction: column;
+                gap: var(--space-xs);
+            }
+
+            .wall-item__label {
+                min-width: auto;
+            }
+        }
+    </style>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"음정 인식: 단계별 청음 훈련","description":"음정 인식은 절대음감이 아니라 상대음감을 기릅니다. 소리별 13가지 음정, 단계별 계획, 흔히 막히는 구간을 넘는 방법을 알아봅니다.","author":{"@type":"Organization","name":"Solfege PRO"},"publisher":{"@type":"Organization","name":"Solfege PRO","logo":{"@type":"ImageObject","url":"https://solfegepro.com/AppIcon.png"}},"datePublished":"2026-03-31","mainEntityOfPage":{"@type":"WebPage","@id":"https://solfegepro.com/ko/guides/interval-training/"}}</script>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"홈","item":"https://solfegepro.com/ko/"},{"@type":"ListItem","position":2,"name":"연습 가이드","item":"https://solfegepro.com/ko/guides/"},{"@type":"ListItem","position":3,"name":"音程の聴き分け — インターバル認識を鍛える","item":"https://solfegepro.com/ko/guides/interval-training/"}]}</script>
+</head>
+<body>
+    <!-- Navigation -->
+        <nav class="nav" aria-label="기본 메뉴">
+        <div class="nav__container">
+            <a href="/ko/" class="nav__logo" aria-label="Solfege PRO">
+                <img src="/AppIcon.png" alt="" class="nav__logo-icon" width="32" height="32">
+                <span class="nav__logo-text">Solfege PRO</span>
+            </a>
+            <ul class="nav__list">
+                <li><a href="/ko/" class="nav__link">Solfege PRO 소개</a></li>
+                <li><a href="/ko/features/" class="nav__link">훈련</a></li>
+                <li><a href="/ko/guides/" class="nav__link active" aria-current="page">연습 가이드</a></li>
+                <li><a href="/ko/manual/" class="nav__link">매뉴얼</a></li>
+            </ul>
+            <div class="nav__settings">
+                <button class="settings-btn" id="lang-toggle" title="언어 선택"><span id="lang-text">KO</span></button>
+                <button class="hamburger-btn" id="hamburger-btn" aria-label="메뉴 열기" aria-expanded="false" aria-controls="drawer">
+                    <span class="hamburger-btn__line"></span><span class="hamburger-btn__line"></span><span class="hamburger-btn__line"></span>
+                </button>
+            </div>
+        </div>
+    </nav>
+        <!-- Mobile drawer (hidden on desktop) -->
+            <div class="drawer-overlay" id="drawer-overlay"></div>
+    <aside class="drawer" id="drawer" aria-label="메뉴" aria-hidden="true" inert>
+        <div class="drawer__header">
+            <span class="drawer__title">메뉴</span>
+            <button class="drawer__close" id="drawer-close" aria-label="메뉴 닫기">×</button>
+        </div>
+        <ul class="drawer__list">
+            <li><a href="/ko/" class="drawer__link">Solfege PRO 소개</a></li>
+            <li><a href="/ko/features/" class="drawer__link">훈련</a></li>
+            <li><a href="/ko/guides/" class="drawer__link active" aria-current="page">연습 가이드</a></li>
+            <li><a href="/ko/manual/" class="drawer__link">매뉴얼</a></li>
+        </ul>
+    </aside>
+
+
+    <!-- Article Header -->
+    <header class="page-header">
+        <div class="page-header__meta">
+            <span class="page-header__tag">음정 인식</span>
+            <span>읽는 데 10분</span>
+        </div>
+        <h1 class="page-header__title">
+
+            음정 인식이란?<br>음을 듣는 귀를 기르기 위한<br>음정의 이해
+
+
+        </h1>
+        <p class="page-header__subtitle">
+
+            음정 인식은 절대음감에 관한 능력이 아닙니다. 두 음 사이의 거리를 듣는 상대음감을 훈련하는 것입니다. 성인이 된 뒤에도 단계적으로 기를 수 있습니다.
+
+
+        </p>
+    </header>
+
+    <!-- Top-of-article CTA -->
+    <aside class="article-top-cta" aria-label="App promotion">
+        <div class="article-top-cta__body">
+            <p class="article-top-cta__title">
+
+                Solfege PRO에서 연습해 보세요
+
+
+            </p>
+            <p class="article-top-cta__sub">
+
+                $9.99/월(미국 App Store 기준)
+
+
+            </p>
+        </div>
+        <a href="https://apps.apple.com/kr/app/id6756626617?pt=6749158383&amp;ct=web_guides&amp;mt=8" class="article-top-cta__button app-store-link" data-cta-position="article_top" aria-label="App Store에서 다운로드"><img src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/ko-kr" class="app-store-link__img" alt="App Store에서 다운로드" loading="lazy"></a>
+    </aside>
+
+    <!-- Article Body -->
+    <main class="article-body">
+
+        <!-- Section 1 -->
+        <h2 id="what-is-interval-recognition">‘음정 인식’의 의미</h2>
+
+        <p>
+
+            음정 인식은 <strong>두 음이 얼마나 떨어져 있는지 귀로 알아내는 능력</strong>입니다. 도(C)와 솔(G)을 듣고 그 거리가 ‘완전5도’임을 알아내는 것이 바로 음정 인식입니다.
+
+
+        </p>
+
+        <p>
+
+            악기를 연습하다 보면 ‘귀로 연주하기’, ‘청음 훈련’ 같은 말을 자주 접합니다. 흔히 ‘귀가 좋다’, ‘음감이 뛰어나다’고 하는데, 실제로는 무엇을 뜻할까요?
+
+
+        </p>
+
+        <p>
+
+            중요한 점은 이것이 <strong>절대음감과 다른 능력</strong>이라는 사실입니다. 절대음감은 어떤 음을 듣고 ‘라(A)다’처럼 음이름을 알아내는 능력입니다. 반면 음정 인식은 ‘두 음 사이가 몇 도인가’를 판단합니다. 이는 <strong>상대음감</strong>의 영역입니다.
+
+
+        </p>
+
+        <p>
+
+            상대음감은 연습으로 기를 수 있습니다. 유아기 이후에는 습득하기 어려운 절대음감과 달리, 상대음감은 나이에 관계없이 향상될 수 있습니다. 귀로 연주하기, 합주, 작곡, 즉흥연주 등 음악의 거의 모든 영역에서 유용합니다.
+
+
+        </p>
+
+        <div class="article-note">
+            <div class="article-note__title">핵심</div>
+            <p>음정 인식 훈련은 절대음감이 아니라 상대음감을 기릅니다. 개별 음의 이름을 맞히는 것이 아니라 두 음 사이의 거리를 듣는 것이 목표입니다.</p>
+        </div>
+
+        <!-- Section 2 -->
+        <h2 id="interval-classification">음정 분류 — 완전1도부터 완전8도까지</h2>
+
+        <p>
+
+            한 옥타브 안에는 반음 수로 구분한 <strong>13가지 음정</strong>이 있습니다. 각 음정에는 이름이 있으며 ‘완전’, ‘장·단’, ‘증4도·감5도’의 세 부류로 나뉩니다.
+
+
+        </p>
+
+        <!-- Semitone Chart -->
+        <div class="semitone-chart">
+            <div class="diagram-title">반음 수에 따른 13가지 음정</div>
+            <div class="semitone-track">
+                <div class="semitone-block semitone-block--perfect">
+                    <span class="semitone-block__name">P1</span>
+                    <span class="semitone-block__count">0</span>
+                </div>
+                <div class="semitone-block semitone-block--minor">
+                    <span class="semitone-block__name">m2</span>
+                    <span class="semitone-block__count">1</span>
+                </div>
+                <div class="semitone-block semitone-block--major">
+                    <span class="semitone-block__name">M2</span>
+                    <span class="semitone-block__count">2</span>
+                </div>
+                <div class="semitone-block semitone-block--minor">
+                    <span class="semitone-block__name">m3</span>
+                    <span class="semitone-block__count">3</span>
+                </div>
+                <div class="semitone-block semitone-block--major">
+                    <span class="semitone-block__name">M3</span>
+                    <span class="semitone-block__count">4</span>
+                </div>
+                <div class="semitone-block semitone-block--perfect">
+                    <span class="semitone-block__name">P4</span>
+                    <span class="semitone-block__count">5</span>
+                </div>
+                <div class="semitone-block semitone-block--tritone">
+                    <span class="semitone-block__name">TT</span>
+                    <span class="semitone-block__count">6</span>
+                </div>
+                <div class="semitone-block semitone-block--perfect">
+                    <span class="semitone-block__name">P5</span>
+                    <span class="semitone-block__count">7</span>
+                </div>
+                <div class="semitone-block semitone-block--minor">
+                    <span class="semitone-block__name">m6</span>
+                    <span class="semitone-block__count">8</span>
+                </div>
+                <div class="semitone-block semitone-block--major">
+                    <span class="semitone-block__name">M6</span>
+                    <span class="semitone-block__count">9</span>
+                </div>
+                <div class="semitone-block semitone-block--minor">
+                    <span class="semitone-block__name">m7</span>
+                    <span class="semitone-block__count">10</span>
+                </div>
+                <div class="semitone-block semitone-block--major">
+                    <span class="semitone-block__name">M7</span>
+                    <span class="semitone-block__count">11</span>
+                </div>
+                <div class="semitone-block semitone-block--perfect">
+                    <span class="semitone-block__name">P8</span>
+                    <span class="semitone-block__count">12</span>
+                </div>
+            </div>
+            <div class="semitone-legend">
+                <div class="semitone-legend__item">
+                    <div class="semitone-legend__dot" style="background:rgba(74,222,128,0.4);border:1px solid rgba(74,222,128,0.6);"></div>
+                    <span>완전</span>
+                </div>
+                <div class="semitone-legend__item">
+                    <div class="semitone-legend__dot" style="background:rgba(96,165,250,0.4);border:1px solid rgba(96,165,250,0.6);"></div>
+                    <span>장</span>
+                </div>
+                <div class="semitone-legend__item">
+                    <div class="semitone-legend__dot" style="background:rgba(251,191,36,0.4);border:1px solid rgba(251,191,36,0.6);"></div>
+                    <span>단</span>
+                </div>
+                <div class="semitone-legend__item">
+                    <div class="semitone-legend__dot" style="background:rgba(248,113,113,0.4);border:1px solid rgba(248,113,113,0.6);"></div>
+                    <span>증4도·감5도</span>
+                </div>
+            </div>
+        </div>
+
+        <p>
+
+            반음 수가 가까운 음정일수록 구별하기 어렵습니다. 예를 들어 완전1도(같은 음)와 완전8도(옥타브)는 특징이 뚜렷해 기억하기 쉽지만, 단3도(반음 3개)와 장3도(반음 4개)는 반음 하나 차이라 흔히 혼동합니다.
+
+
+        </p>
+
+        <p>
+
+            각 음정을 기억하는 데 도움이 되는 ‘기준 곡’도 널리 쓰입니다. 예를 들어 완전5도는 「스타워즈」의 시작, 완전4도는 「올드 랭 사인」, 장3도는 「성자의 행진」의 시작 부분과 연결할 수 있습니다. 곡의 첫 부분을 마음속으로 흥얼거리면 음정의 거리를 잡는 데 도움이 됩니다.
+
+
+        </p>
+
+        <!-- Section 3 -->
+        <h2 id="difficulty-steps">난이도 — 음정을 단계별로 추가하기</h2>
+
+        <p>
+
+            13가지 음정을 한꺼번에 익히려 하면 오히려 혼란스러울 수 있습니다. 적은 수로 시작해 자신감이 생길 때마다 늘리는 것이 효과적입니다.
+
+
+        </p>
+
+        <!-- Difficulty Grid -->
+        <div class="difficulty-grid">
+            <div class="diagram-title">난이도별 음정</div>
+            <div class="difficulty-row">
+                <div class="difficulty-row__label">초급</div>
+                <div class="difficulty-row__cells">
+                    <div class="interval-cell interval-cell--off">P1</div>
+                    <div class="interval-cell interval-cell--off">m2</div>
+                    <div class="interval-cell interval-cell--on">M2</div>
+                    <div class="interval-cell interval-cell--off">m3</div>
+                    <div class="interval-cell interval-cell--on">M3</div>
+                    <div class="interval-cell interval-cell--on">P4</div>
+                    <div class="interval-cell interval-cell--off">TT</div>
+                    <div class="interval-cell interval-cell--on">P5</div>
+                    <div class="interval-cell interval-cell--off">m6</div>
+                    <div class="interval-cell interval-cell--off">M6</div>
+                    <div class="interval-cell interval-cell--off">m7</div>
+                    <div class="interval-cell interval-cell--off">M7</div>
+                    <div class="interval-cell interval-cell--on">P8</div>
+                </div>
+                <div class="difficulty-row__count">5종</div>
+            </div>
+            <div class="difficulty-row">
+                <div class="difficulty-row__label">중급</div>
+                <div class="difficulty-row__cells">
+                    <div class="interval-cell interval-cell--off">P1</div>
+                    <div class="interval-cell interval-cell--off">m2</div>
+                    <div class="interval-cell interval-cell--on">M2</div>
+                    <div class="interval-cell interval-cell--on">m3</div>
+                    <div class="interval-cell interval-cell--on">M3</div>
+                    <div class="interval-cell interval-cell--on">P4</div>
+                    <div class="interval-cell interval-cell--off">TT</div>
+                    <div class="interval-cell interval-cell--on">P5</div>
+                    <div class="interval-cell interval-cell--on">m6</div>
+                    <div class="interval-cell interval-cell--on">M6</div>
+                    <div class="interval-cell interval-cell--off">m7</div>
+                    <div class="interval-cell interval-cell--off">M7</div>
+                    <div class="interval-cell interval-cell--on">P8</div>
+                </div>
+                <div class="difficulty-row__count">8종</div>
+            </div>
+            <div class="difficulty-row">
+                <div class="difficulty-row__label">고급</div>
+                <div class="difficulty-row__cells">
+                    <div class="interval-cell interval-cell--on">P1</div>
+                    <div class="interval-cell interval-cell--on">m2</div>
+                    <div class="interval-cell interval-cell--on">M2</div>
+                    <div class="interval-cell interval-cell--on">m3</div>
+                    <div class="interval-cell interval-cell--on">M3</div>
+                    <div class="interval-cell interval-cell--on">P4</div>
+                    <div class="interval-cell interval-cell--on">TT</div>
+                    <div class="interval-cell interval-cell--on">P5</div>
+                    <div class="interval-cell interval-cell--on">m6</div>
+                    <div class="interval-cell interval-cell--on">M6</div>
+                    <div class="interval-cell interval-cell--on">m7</div>
+                    <div class="interval-cell interval-cell--on">M7</div>
+                    <div class="interval-cell interval-cell--on">P8</div>
+                </div>
+                <div class="difficulty-row__count">13종</div>
+            </div>
+        </div>
+
+        <p>
+
+            초급에서는 간격이 넓고 특징이 뚜렷한 장2도, 장3도, 완전4도, 완전5도, 완전8도로 시작합니다. 중급에서는 단3도, 단6도, 장6도를 추가합니다. 고급에서는 반음 차이의 음정과 증4도·감5도를 포함한 13가지를 모두 다룹니다.
+
+
+        </p>
+
+        <div class="article-note">
+            <div class="article-note__title">핵심</div>
+            <p>각 단계에서 정확도 90% 이상을 안정적으로 달성한 뒤 다음 단계로 넘어가세요. 서두르면 소리가 비슷한 음정이 섞일 때 혼란이 커질 수 있습니다.</p>
+        </div>
+
+        <!-- Section 4 -->
+        <h2 id="common-struggles">흔한 어려움 — 대부분이 막히는 지점</h2>
+
+        <p>
+
+            음정 인식 훈련에는 거의 누구나 부딪히는 벽이 있습니다. 나만 어려움을 겪는 것이 아니라는 점을 알면 꾸준히 연습하는 데 도움이 됩니다.
+
+
+        </p>
+
+        <div class="wall-list">
+            <div class="wall-item">
+                <span class="wall-item__label">단3도와 장3도의 혼동</span>
+                <span class="wall-item__desc">단3도와 장3도는 반음 하나밖에 차이 나지 않습니다. 단3도의 어두운 느낌과 장3도의 밝은 느낌을 구별하는 감각을 길러야 합니다. 기준 곡을 활용하면 차이를 더 분명하게 잡을 수 있습니다.</span>
+            </div>
+            <div class="wall-item">
+                <span class="wall-item__label">완전4도와 완전5도의 혼동</span>
+                <span class="wall-item__desc">두 음정 모두 안정적인 느낌이 있어 쉽게 헷갈립니다. 완전4도는 위로 끌리는 듯하고, 완전5도는 자리 잡은 듯 탁 트인 느낌이 납니다. 반복해서 들으며 직관적인 감각을 만드는 것이 중요합니다.</span>
+            </div>
+            <div class="wall-item">
+                <span class="wall-item__label">증4도·감5도 인식</span>
+                <span class="wall-item__desc">증4도·감5도는 특유의 불안정한 울림이 있지만 일상적인 음악에서 자주 듣지 못해 기억하기 어렵습니다. 의도적으로 반복 노출할 필요가 있습니다.</span>
+            </div>
+            <div class="wall-item">
+                <span class="wall-item__label">하행 음정</span>
+                <span class="wall-item__desc">낮은 음에서 높은 음으로 가는 상행 음정은 잘 맞히지만, 높은 음에서 낮은 음으로 가는 하행 음정은 어려워하는 사람이 많습니다. 상행용으로 익힌 기준 곡이 그대로 적용되지 않으므로 하행의 감각을 따로 길러야 합니다.</span>
+            </div>
+            <div class="wall-item">
+                <span class="wall-item__label">화성 모드의 어려움</span>
+                <span class="wall-item__desc">두 음이 차례로 나오면 알아듣지만 동시에 울리면 구별하기 어려울 수 있습니다. 선율적으로 듣기와 화성적으로 듣기는 서로 다른 능력입니다. 선율적 인식을 먼저 익힌 뒤 화성 모드에 도전하는 것이 자연스럽습니다.</span>
+            </div>
+        </div>
+
+        <!-- Section 5 -->
+        <h2 id="effective-practice">효과적인 연습법</h2>
+
+        <h3 id="start-wide">넓은 음정부터 시작하기</h3>
+        <p>
+
+            완전8도(옥타브)와 완전5도처럼 넓은 음정은 특징이 뚜렷해 기억하기 쉽습니다. 먼저 넓은 음정과 좁은 음정을 대략 구분하는 능력을 만든 뒤, 더 세밀한 차이를 연습하세요.
+
+
+        </p>
+
+        <h3 id="reference-songs">기준 곡 활용하기</h3>
+        <p>
+
+            각 음정을 잘 알려진 노래의 시작 부분과 연결하는 방법입니다. 예를 들어 완전5도를 듣고 ‘스타워즈 주제곡의 첫 두 음’이라고 떠올리면 판단이 빨라집니다. 다만 지나치게 의존하면 반응이 느려질 수 있습니다. 처음에는 보조 수단으로 쓰되, 궁극적으로는 음정 자체의 소리만으로 알아듣는 것을 목표로 하세요.
+
+
+        </p>
+
+        <h3 id="ascending-then-descending">상행부터 익힌 뒤 하행으로</h3>
+        <p>
+
+            상행과 하행을 동시에 연습하면 혼란이 생길 수 있습니다. 먼저 상행 모드로 각 음정의 특징을 익히고, 정확도가 안정되면 하행으로 전환하세요. 그다음 상행·하행·화성을 섞는 무작위 모드에 도전합니다.
+
+
+        </p>
+
+        <h3 id="focus-on-weakpoints">약점에 집중하기</h3>
+        <p>
+
+            모든 음정을 똑같이 연습하기보다 약한 음정에 더 많은 시간을 쓰는 편이 효율적입니다. 정확도가 낮은 음정을 확인하고 반복해 들으며 구별 능력을 다듬으세요.
+
+
+        </p>
+
+        <h3 id="dont-rush-levels">다음 단계로 서두르지 않기</h3>
+        <p>
+
+            초급에서 정확도 90% 이상을 안정적으로 달성한 뒤 중급으로 넘어가세요. 새 음정이 추가되면 이미 익숙한 음정도 헷갈릴 수 있습니다. 탄탄한 기초를 만든 뒤 진도 나가는 것이 결국 가장 빠른 길입니다.
+
+
+        </p>
+
+        <!-- Section 6 -->
+        <h2 id="what-app-can-do">Solfege PRO로 할 수 있는 것</h2>
+
+        <p>
+
+            Solfege PRO의 음정 인식 훈련은 <strong>‘문제 듣기 → 답하기 → 약점 시각화 → 집중 연습’</strong>의 순환으로 위 연습법을 지원합니다.
+
+
+        </p>
+
+        <h3>4가지 재생 모드</h3>
+        <p>
+
+            음정을 듣는 방식을 바꾸면 연습의 성격도 달라집니다.
+
+
+        </p>
+
+        <div class="playback-modes">
+            <div class="playback-mode-card">
+                <span class="playback-mode-card__icon">&#8593;</span>
+                <div class="playback-mode-card__name">상행</div>
+                <div class="playback-mode-card__desc">낮은 음 다음에 높은 음이 재생되는 가장 기본적인 모드입니다.</div>
+            </div>
+            <div class="playback-mode-card">
+                <span class="playback-mode-card__icon">&#8595;</span>
+                <div class="playback-mode-card__name">하행</div>
+                <div class="playback-mode-card__desc">높은 음 다음에 낮은 음이 재생됩니다. 상행과는 다른 감각이 필요합니다.</div>
+            </div>
+            <div class="playback-mode-card">
+                <span class="playback-mode-card__icon">&#9835;</span>
+                <div class="playback-mode-card__name">화성</div>
+                <div class="playback-mode-card__desc">두 음이 동시에 재생됩니다. 화성적으로 듣는 고급 모드입니다.</div>
+            </div>
+            <div class="playback-mode-card">
+                <span class="playback-mode-card__icon">&#8645;</span>
+                <div class="playback-mode-card__name">무작위</div>
+                <div class="playback-mode-card__desc">상행, 하행, 화성 모드가 무작위로 바뀝니다. 실전에 가까운 귀를 기릅니다.</div>
+            </div>
+        </div>
+
+        <h3>기준음 설정</h3>
+        <p>
+
+            기준음을 고정(C4 / E4 / A4)하거나 무작위로 바뀌게 설정할 수 있습니다. 고정 모드는 같은 기준음을 반복해서 듣기 때문에 입문 학습에 좋습니다. 이동 모드는 기준음이 G3~F4 사이에서 무작위로 바뀌어 특정 음높이에 기대지 않는 진정한 음정 인식을 훈련합니다.
+
+
+        </p>
+
+        <h3>약점 감지와 가중 출제</h3>
+        <p>
+
+            앱은 음정별 정확도를 기록합니다. <strong>3회 이상 시도하고 정확도가 70% 미만인 음정</strong>은 ‘약점’으로 표시됩니다. 약점 모드에서는 해당 음정이 최대 3배 자주 출제됩니다. 모든 음정을 똑같이 연습하는 것보다 약점에 집중하는 편이 더 빠르게 향상됩니다.
+
+
+        </p>
+
+        <h3>반응 시간 기록</h3>
+        <p>
+
+            정확도뿐 아니라 답하는 데 걸린 시간도 기록합니다. ‘시간을 들이면 맞힐 수 있음’과 ‘즉시 판단할 수 있음’은 실전에서 큰 차이가 있습니다. 반응 시간이 줄어드는 것은 음정 인식이 직관으로 자리 잡고 있다는 증거입니다.
+
+
+        </p>
+
+        <h3>숙련도 한눈에 보기</h3>
+        <p>
+
+            통계 화면에서 음정별 정확도, 시도 횟수, 숙련도(강함 / 양호 / 연습 필요 / 약함)를 확인할 수 있습니다. 전체 정답률뿐 아니라 어떤 음정이 약한지 보여 주므로 다음 연습 대상을 분명히 정할 수 있습니다.
+
+
+        </p>
+
+        <div class="cycle-diagram">
+            <div class="cycle-step">
+                <div class="cycle-step__label">문제</div>
+                <div class="cycle-step__desc">음정 듣기</div>
+            </div>
+            <div class="cycle-arrow">&rarr;</div>
+            <div class="cycle-step">
+                <div class="cycle-step__label">답하기</div>
+                <div class="cycle-step__desc">음정 선택</div>
+            </div>
+            <div class="cycle-arrow">&rarr;</div>
+            <div class="cycle-step">
+                <div class="cycle-step__label">분석</div>
+                <div class="cycle-step__desc">약점 시각화</div>
+            </div>
+            <div class="cycle-arrow">&rarr;</div>
+            <div class="cycle-step">
+                <div class="cycle-step__label">집중</div>
+                <div class="cycle-step__desc">약점 집중 연습</div>
+            </div>
+        </div>
+
+        <!-- Mid-article CTA -->
+        <div class="article-cta-subtle">
+            <p class="article-cta-subtle__text">어떤 음정이 약한지 확인해 보고 싶나요?</p>
+            <a href="https://apps.apple.com/kr/app/id6756626617?pt=6749158383&amp;ct=web_guides&amp;mt=8" class="article-cta-subtle__button app-store-link" aria-label="App Store에서 다운로드"><img src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/ko-kr" class="app-store-link__img" alt="App Store에서 다운로드" loading="lazy"></a>
+        </div>
+
+        <!-- Section 7 -->
+        <h2 id="limitations">Solfege PRO가 직접 다루지 않는 것</h2>
+
+        <p>
+
+            솔직하게 범위를 알려 드립니다.
+
+
+        </p>
+
+        <div class="article-honest">
+            <div class="article-honest__title">앱의 범위를 벗어나는 영역</div>
+            <p>
+                <strong>절대음감 훈련</strong> — 이 앱은 두 음 사이의 거리를 알아듣는 상대음감을 훈련합니다. 개별 음이름을 맞히는 절대음감 훈련은 아닙니다.
+            </p>
+            <p>
+                <strong>한 옥타브를 넘는 음정</strong> — 9도, 10도, 11도 같은 복합음정은 현재 훈련 범위에 포함되지 않습니다. 앱은 한 옥타브 안의 13가지 음정에 집중합니다.
+            </p>
+            <p>
+                <strong>실제 악기의 음색</strong> — 음원은 피아노만 제공합니다. 기타, 바이올린, 관악기 등 다른 음색을 사용한 훈련은 지원하지 않습니다. 피아노의 선명한 소리는 음높이를 구별하는 데 적합하지만, 악기마다 다른 공명에 익숙해지려면 별도 연습이 필요합니다.
+            </p>
+            <p>
+                <strong>화성적 맥락(코드와 코드 진행)</strong> — 코드 진행이나 조성 안에서 음정이 어떻게 기능하는지는 이 훈련의 범위 밖입니다. Solfege PRO에는 별도의 코드 인식과 코드 진행 훈련이 있지만 음정 인식과 통합되어 있지는 않습니다.
+            </p>
+            <p>
+                <strong>청음 받아쓰기</strong> — 선율을 듣고 악보로 옮기는 훈련은 포함되지 않습니다. 이 훈련은 두 음 사이의 거리 식별에 집중합니다.
+            </p>
+            <p>
+                <strong>조성 중심의 음도 듣기(이동도법)</strong> — Karpinski의 <em>Manual for Ear Training and Sight Singing</em>, Edlund의 <em>Modus Novus</em>처럼 각 음을 조성 안의 음도로 듣는 훈련은 이 기능의 범위 밖입니다. Solfege PRO의 음정 인식은 조성 맥락 없이 두 음의 거리만 다룹니다. 이동도법과 음도 연습은 선율 기능을 이해하는 데 강점이 있으므로, 음정 훈련과 함께하는 <strong>보완적 접근</strong>으로 가치가 있습니다.
+            </p>
+        </div>
+
+        <p>
+
+            Solfege PRO의 음정 인식이 직접 지원하는 것은 피아노 음색으로 한 옥타브 안의 두 음 사이를 알아듣는 연습입니다. 귀로 연주하기와 합주 같은 실전에 도움이 되는 기초이지만, 이것만으로 음악적 청취 능력이 모두 완성되는 것은 아닙니다.
+
+
+        </p>
+
+        <!-- Section 8 -->
+        <h2 id="how-to-use">권장 이용법</h2>
+
+        <ol>
+            <li><strong>초급부터 시작하기</strong> — 음정 인식이 처음이어도 5가지 음정은 부담 없이 시작할 수 있는 범위입니다. 여기서 기본 감각을 만드세요.</li>
+            <li><strong>상행 모드로 연습하기</strong> — 먼저 낮은 음에서 높은 음으로 가는 상행만 연습하며 각 음정의 소리에 집중하세요.</li>
+            <li><strong>정확도 90% 이상을 안정시킨 뒤 진급하기</strong> — 서둘러 중급으로 넘어가면 비슷한 음정이 추가되어 혼란이 생깁니다. 먼저 탄탄한 기초를 만드세요.</li>
+            <li><strong>약점 모드 활용하기</strong> — 통계 화면에서 약한 음정을 확인하고 집중 모드로 연습하세요. 모든 음정을 똑같이 반복하는 것보다 효율적입니다.</li>
+            <li><strong>재생 모드를 차례로 바꾸기</strong> — 상행 → 하행 → 무작위 → 화성 순서로 도전하세요. 음정을 더 입체적으로 듣는 감각을 기를 수 있습니다.</li>
+            <li><strong>실전 능력을 위해 이동 기준음으로 전환하기</strong> — 고정 기준음에 익숙해지면 이동 모드로 바꾸세요. 무작위 기준음은 특정 음에 기대지 않는 진정한 상대음감을 기릅니다.</li>
+        </ol>
+
+        <div class="comparison-visual">
+            <div class="comparison-card comparison-card--bad">
+                <div class="comparison-card__header">효율이 낮은 방법</div>
+                <div class="comparison-card__body">
+                    <p>처음부터 고급으로 시작하기, 모든 모드를 동시에 연습하기, 결과를 확인하지 않고 반복하기, 약한 음정은 피하고 쉬운 음정만 연습하기.</p>
+                </div>
+            </div>
+            <div class="comparison-card comparison-card--good">
+                <div class="comparison-card__header">효율이 높은 방법</div>
+                <div class="comparison-card__body">
+                    <p>초급에서 정확도 90%를 안정시킨 뒤 중급으로 넘어가기, 상행부터 익힌 뒤 하행을 연습하기, 통계에서 약한 음정을 찾아 집중하기, 줄어드는 반응 시간을 확인하기.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="article-note">
+            <div class="article-note__title">이용 팁</div>
+            <p>한 세션에 10~20문제를 권장합니다. 길고 산만한 연습보다 짧고 집중된 연습이 효과적입니다. 매일 조금씩 꾸준히 하는 것이 음정 인식을 직관으로 만드는 핵심입니다.</p>
+        </div>
+
+    </main>
+
+    <!-- Final CTA -->
+    <section class="article-cta">
+        <h2 class="article-cta__title">음정 인식 능력부터 확인해 보세요</h2>
+        <p class="article-cta__text">
+
+            음정 인식은 지식이 아니라 감각을 훈련하는 일입니다.<br>글을 읽는 것만으로는 충분하지 않습니다. 직접 듣고 답하며 약점을 찾아보세요.<br>Solfege PRO의 음정 인식으로 지금 내 귀가 어느 수준인지 확인해 보세요.
+
+
+        </p>
+                <p style="font-size: 14px; color: var(--text-secondary); margin-bottom: var(--space-md); text-align: center;">
+
+            $9.99/월(미국 App Store 기준)
+
+
+        </p>
+        <a href="https://apps.apple.com/kr/app/id6756626617?pt=6749158383&amp;ct=web_guides&amp;mt=8" class="app-store-link" aria-label="App Store에서 다운로드">
+
+            <img class="app-store-link__img" width="120" height="40" src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/ko-kr" alt="App Store에서 다운로드">
+
+
+        </a>
+    </section>
+
+    <!-- Related Content -->
+    <div class="article-related">
+        <div class="article-related__title">관련 콘텐츠</div>
+        <a href="/practice/vocal/" class="article-related__link" style="margin-bottom: var(--space-md);">
+            <div class="article-related__link-title">보컬 연습 가이드</div>
+            <div class="article-related__link-desc">음정 안정, 조 바꾸기, 화음까지 보컬을 위한 연습 메뉴</div>
+        </a>
+        <a href="/guides/exam-solfege-6week-plan/" class="article-related__link" style="margin-bottom: var(--space-md);">
+            <div class="article-related__link-title">6주 솔페주 준비 — 음대·교원 시험 대비</div>
+            <div class="article-related__link-desc">음대 입시와 교원 자격시험에서 다루는 솔페주(청음 받아쓰기, 초견창, 이론)는 독학으로 빈틈없이 준비하기 어렵습니다. 시험 6주 전부터 1주 차 기초, 2주 차 선율 받아쓰기, 3주 차 화성, 4주 차 리듬, 5주 차 모의시험, 6주 차 마무리로 이어지는 주별 계획입니다. 하루 30~45분의 가정 연습으로 합격권을 목표로 합니다.</div>
+        </a>
+        <a href="/guides/guitar-10years-cant-ear-copy/" class="article-related__link" style="margin-bottom: var(--space-md);">
+            <div class="article-related__link-title">기타 10년, 아직도 귀로 못 딴다면 — 재능이 아니라 순서의 문제</div>
+            <div class="article-related__link-desc">‘기타를 10년 쳤는데도 좋아하는 곡을 귀로 못 딴다’는 고민은 생각보다 흔합니다. 원인은 재능도 나이도 아니라 연습 순서입니다. 음정 → 3화음 → 7화음 → 코드 진행 → 실제 곡의 다섯 단계를 차례로 밟으면 3~6개월 안에 귀로 따기가 현실적인 목표가 됩니다. 이 가이드가 그 설계도입니다.</div>
+        </a>
+        <a href="/guides/rhythm-training/" class="article-related__link" style="margin-bottom: var(--space-md); display: block;">
+            <div class="article-related__link-title">리듬감이란? — 빨라짐, 느려짐, 불규칙함과 포켓 분석</div>
+            <div class="article-related__link-desc">리듬감을 5가지 요소로 나누고 타이밍 정확도를 높이는 연습법을 알아봅니다.</div>
+        </a>
+        <a href="/manual/interval/" class="article-related__link" style="margin-bottom: var(--space-md);">
+            <div class="article-related__link-title">음정 인식 설정 설명서</div>
+            <div class="article-related__link-desc">앱의 각 설정을 어떻게 선택하고 무엇을 훈련하는지 하나씩 설명합니다.</div>
+        </a>
+        <a href="/" class="article-related__link">
+            <div class="article-related__link-title">Solfege PRO 연습 가이드</div>
+            <div class="article-related__link-desc">기타, 베이스, 드럼, 피아노, 보컬의 고민별 연습 메뉴</div>
+        </a>
+    </div>
+
+    <!-- Article Note -->
+    <aside class="article-endnote">
+        <p class="article-endnote__text">
+
+            이 글은 음악 교육에서 널리 쓰이는 음정 인식 개념과 Solfege PRO의 기능 설계를 바탕으로 구성했습니다. 기준 곡 예시는 잘 알려진 곡을 사용했지만, 가장 잘 맞는 암기법은 사람마다 다릅니다. 앱의 약점 감지는 규칙 기반 집계이므로 개인의 음악적 맥락과 경험을 모두 반영하지는 않습니다.
+
+
+        </p>
+    </aside>
+
+    <!-- Footer -->
+    <footer class="article-footer">
+        <p class="article-footer__text">
+            &copy; 2026 Solfege PRO
+        </p>
+    </footer>
+    <script src="/bootstrap.js?v=10" defer></script>
+    <nav aria-label="Language" style="display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:0.5rem;padding:var(--space-lg) var(--space-md);border-top:1px solid var(--surface-light);font-size:13px">
+        <a href="/guides/interval-training/" hreflang="ja" style="color:var(--text-secondary);text-decoration:none">日本語</a>
+        <span aria-hidden="true" style="color:var(--surface-light)">·</span>
+        <a href="/en/guides/interval-training/" hreflang="en" style="color:var(--text-secondary);text-decoration:none">English</a>
+        <span aria-hidden="true" style="color:var(--surface-light)">·</span>
+        <a href="/fr/guides/interval-training/" hreflang="fr" style="color:var(--text-secondary);text-decoration:none">Français</a>
+        <span aria-hidden="true" style="color:var(--surface-light)">·</span>
+        <a href="/de/guides/interval-training/" hreflang="de" style="color:var(--text-secondary);text-decoration:none">Deutsch</a>
+        <span aria-hidden="true" style="color:var(--surface-light)">·</span>
+        <a href="/es/guides/interval-training/" hreflang="es" style="color:var(--text-secondary);text-decoration:none">Español</a>
+        <span aria-hidden="true" style="color:var(--surface-light)">·</span>
+        <a href="/it/guides/interval-training/" hreflang="it" style="color:var(--text-secondary);text-decoration:none">Italiano</a>
+        <span aria-hidden="true" style="color:var(--surface-light)">·</span>
+        <span style="color:var(--primary);font-weight:600" aria-current="true">한국어</span>
+        <span aria-hidden="true" style="color:var(--surface-light)">·</span>
+        <a href="/pt-br/guides/interval-training/" hreflang="pt-BR" style="color:var(--text-secondary);text-decoration:none">Português (Brasil)</a>
+    </nav>
+</body>
+</html>

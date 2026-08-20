@@ -17,6 +17,10 @@
     <link rel="alternate" hreflang="en" href="https://solfegepro.com/en/start-here/">
     <link rel="alternate" hreflang="fr" href="https://solfegepro.com/fr/start-here/">
     <link rel="alternate" hreflang="de" href="https://solfegepro.com/de/start-here/">
+    <link rel="alternate" hreflang="es" href="https://solfegepro.com/es/start-here/">
+    <link rel="alternate" hreflang="it" href="https://solfegepro.com/it/start-here/">
+    <link rel="alternate" hreflang="ko" href="https://solfegepro.com/ko/start-here/">
+    <link rel="alternate" hreflang="pt-BR" href="https://solfegepro.com/pt-br/start-here/">
     <link rel="alternate" hreflang="x-default" href="https://solfegepro.com/start-here/">
 <link rel="icon" href="/favicon.ico" sizes="any">
     <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
@@ -35,6 +39,10 @@
     <meta property="og:locale:alternate" content="ja_JP">
     <meta property="og:locale:alternate" content="en_US">
     <meta property="og:locale:alternate" content="de_DE">
+    <meta property="og:locale:alternate" content="es_ES">
+    <meta property="og:locale:alternate" content="it_IT">
+    <meta property="og:locale:alternate" content="ko_KR">
+    <meta property="og:locale:alternate" content="pt_BR">
 
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Par où commencer ? — Diagnostic 30 sec">
@@ -47,7 +55,7 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" media="print" onload="this.media='all'">
     <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap"></noscript>
 
-    <link rel="stylesheet" href="/style.css?v=21">
+    <link rel="stylesheet" href="/style.css?v=23">
 
     <style>
         /* diag-nav byte-identical to global .nav (style.css §4) */
@@ -453,16 +461,16 @@
             9,99 €/mois
 
         </p>
-        <a href="https://apps.apple.com/fr/app/id6756626617?pt=6749158383&amp;ct=web_start&amp;mt=8" class="app-store-link" aria-label="Download on the App Store">
+        <a href="https://apps.apple.com/fr/app/id6756626617?pt=6749158383&amp;ct=web_start&amp;mt=8" class="app-store-link" aria-label="Télécharger dans l’App Store">
 
 
-            <img class="app-store-link__img" width="127" height="40" src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/fr-fr" alt="Télécharger dans l'App Store">
+            <img class="app-store-link__img" width="127" height="40" src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/fr-fr" alt="Télécharger dans l’App Store">
 
         </a>
     </section>
 
     <footer class="diag-footer">
-        <p class="diag-footer__text">&copy; 2026 Solfege PRO &mdash; <a href="https://apps.apple.com/fr/app/id6756626617?pt=6749158383&amp;ct=web_start&amp;mt=8" class="diag-footer__link">App Store</a></p>
+        <p class="diag-footer__text">&copy; 2026 Solfege PRO</p>
     </footer>
 
     <!-- Sticky bottom CTA (mobile) -->
@@ -472,7 +480,7 @@
             <strong>Solfege PRO</strong>
             Diagnostiquer &amp; s'entraîner, par instrument
         </div>
-        <a href="https://apps.apple.com/fr/app/id6756626617?pt=6749158383&amp;ct=web_start&amp;mt=8" class="sticky-cta__button">Obtenir</a>
+        <a href="https://apps.apple.com/fr/app/id6756626617?pt=6749158383&amp;ct=web_start&amp;mt=8" class="sticky-cta__button app-store-link" aria-label="Télécharger dans l’App Store"><img src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/fr-fr" class="app-store-link__img" alt="Télécharger dans l’App Store" loading="lazy"></a>
     </div>
 
     <script>
@@ -1191,7 +1199,7 @@
             ]
         };
 
-        var LANG_CYCLE = ['ja', 'en', 'fr', 'de'];
+        var LANG_CYCLE = ['ja', 'en', 'fr', 'de', 'es', 'it', 'ko', 'pt-BR'];
         var RESULT_LABELS = {
             label:   { ja: '推奨ガイド',           en: 'Recommended guide', fr: 'Guide recommandé',     de: 'Empfohlener Leitfaden' },
             cta:     { ja: '読んでみる →',         en: 'Read it →',          fr: 'Lire le guide →',      de: 'Lesen →' },
@@ -1433,8 +1441,8 @@
             var pains = resolvePains(selectedPersona, instrument);
             var p = pains[painIndex];
             var lang = getLang();
-            var titleByLang = { ja: p.guideJa, en: p.guideEn, fr: p.guideFr, de: p.guideDe };
-            var descByLang  = { ja: p.descJa,  en: p.descEn,  fr: p.descFr,  de: p.descDe  };
+            var titleByLang = { ja: p.guideJa, en: p.guideEn, fr: p.guideFr, de: p.guideDe, es: p.guideEs, it: p.guideIt, ko: p.guideKo, 'pt-BR': p.guidePtBr };
+            var descByLang  = { ja: p.descJa,  en: p.descEn,  fr: p.descFr,  de: p.descDe,  es: p.descEs,  it: p.descIt,  ko: p.descKo,  'pt-BR': p.descPtBr };
             var title = titleByLang[lang];
             var desc = descByLang[lang];
             var label = RESULT_LABELS.label[lang];
@@ -1464,7 +1472,7 @@
                 '<div class="diag-result__title">' + title + '</div>' +
                 '<div class="diag-result__desc">' + desc + '</div>' +
                 '<a href="/' + p.guide + '" class="diag-result__cta" data-cta-type="guide">' + ctaText + '</a>' +
-                '<a href="https://apps.apple.com/fr/app/id6756626617?pt=6749158383&amp;ct=web_start&amp;mt=8" class="diag-result__cta diag-result__cta--secondary" data-cta-type="app">' + appText + '</a>';
+                '<a href="https://apps.apple.com/fr/app/id6756626617?pt=6749158383&amp;ct=web_start&amp;mt=8" class="diag-result__cta diag-result__cta--secondary app-store-link" data-cta-type="app" aria-label="Télécharger dans l’App Store"><img src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/fr-fr" class="app-store-link__img" alt="Télécharger dans l’App Store" loading="lazy"></a>';
 
             // Attach click handlers to the freshly-rendered result CTAs.
             // (innerHTML resets, so we re-bind each render.)
@@ -1560,7 +1568,7 @@
         });
     })();
     </script>
-    <script src="/bootstrap.js?v=7" defer></script>
+    <script src="/bootstrap.js?v=10" defer></script>
     <nav aria-label="Language" style="display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:0.5rem;padding:var(--space-lg) var(--space-md);border-top:1px solid var(--surface-light);font-size:13px">
         <a href="/start-here/" hreflang="ja" style="color:var(--text-secondary);text-decoration:none">日本語</a>
         <span aria-hidden="true" style="color:var(--surface-light)">·</span>
@@ -1569,6 +1577,14 @@
         <span style="color:var(--primary);font-weight:600" aria-current="true">Français</span>
         <span aria-hidden="true" style="color:var(--surface-light)">·</span>
         <a href="/de/start-here/" hreflang="de" style="color:var(--text-secondary);text-decoration:none">Deutsch</a>
+        <span aria-hidden="true" style="color:var(--surface-light)">·</span>
+        <a href="/es/start-here/" hreflang="es" style="color:var(--text-secondary);text-decoration:none">Español</a>
+        <span aria-hidden="true" style="color:var(--surface-light)">·</span>
+        <a href="/it/start-here/" hreflang="it" style="color:var(--text-secondary);text-decoration:none">Italiano</a>
+        <span aria-hidden="true" style="color:var(--surface-light)">·</span>
+        <a href="/ko/start-here/" hreflang="ko" style="color:var(--text-secondary);text-decoration:none">한국어</a>
+        <span aria-hidden="true" style="color:var(--surface-light)">·</span>
+        <a href="/pt-br/start-here/" hreflang="pt-BR" style="color:var(--text-secondary);text-decoration:none">Português (Brasil)</a>
     </nav>
 </body>
 </html>

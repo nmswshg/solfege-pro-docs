@@ -2,7 +2,7 @@
 """
 Find non-target-lang text leaking into language-specific output HTML.
 
-For each output file (ja, en, fr, de), scan the visible body text and flag
+For each localized output file, scan the visible body text and flag
 substantial blocks of "other-language" content. Allowed exceptions:
 - Academic citations / book titles (in <em>, <cite>, <i>)
 - Brand names (Solfege PRO)
@@ -20,6 +20,7 @@ REPO = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # Detect substantial blocks of each language in body text
 # Japanese: Hiragana (U+3040-309F), Katakana (U+30A0-30FF), CJK Unified (U+4E00-9FFF)
 JA_RE = re.compile(r'[぀-ゟ゠-ヿ一-鿿]')
+KO_RE = re.compile(r'[가-힣]')
 
 # French diacritics + common French words
 FR_INDICATORS = re.compile(r"\b(le|la|les|de|du|des|un|une|pour|avec|dans|sur|est|sont|ce|cette|ces|votre|vous|nous|qui|que|comment|plus|aux?|et|ou|à|été|être|peut|faire|comme|sans|chaque|fonction|reconnaissance|gamme|accord|intervalle|écoute|entraînement|exercice|niveau|méthode|musique|musical|musicien|jouer|écouter|entendre|comprendre|apprendre|développer|améliorer)\b", re.I)
@@ -72,7 +73,7 @@ def visible_text(html, target_lang):
 
 def find_outputs():
     """List all output HTML files grouped by target lang."""
-    outputs = {'ja': [], 'en': [], 'fr': [], 'de': []}
+    outputs = {lang: [] for lang in ('ja', 'en', 'fr', 'de', 'es', 'it', 'ko', 'pt-BR')}
     SKIP_DIRS = {'src', 'node_modules', '.git', '.claude', '.githooks', '.idea',
                  'data', 'tools', 'tests', 'assets', 'fastlane', 'test-results',
                  'playwright-report', '.tools', '.agents', '.bundle', '.github'}
@@ -85,8 +86,9 @@ def find_outputs():
             rel = os.path.relpath(full, REPO)
             # Determine lang from path
             parts = rel.split(os.sep)
-            if parts[0] in ('en', 'fr', 'de'):
-                lang = parts[0]
+            path_langs = {'en': 'en', 'fr': 'fr', 'de': 'de', 'es': 'es', 'it': 'it', 'ko': 'ko', 'pt-br': 'pt-BR'}
+            if parts[0] in path_langs:
+                lang = path_langs[parts[0]]
             elif fn == 'index.html' or fn.endswith('/index.html') or '/' not in rel:
                 lang = 'ja'
             else:
@@ -162,14 +164,36 @@ def scan_lang_purity(target_lang, files):
                 if m:
                     findings.append((rel, 'JA-in-de', m.group(0)[:160]))
 
+        elif target_lang in ('es', 'it', 'pt-BR'):
+            ja_hits = JA_RE.findall(scanned)
+            ko_hits = KO_RE.findall(scanned)
+            if len(ja_hits) > 5:
+                m = re.search(r'.{0,80}[぀-ゟ゠-ヿ一-鿿].{0,80}', scanned)
+                if m:
+                    findings.append((rel, f'JA-in-{target_lang}', m.group(0)[:160]))
+            if len(ko_hits) > 5:
+                m = re.search(r'.{0,80}[가-힣].{0,80}', scanned)
+                if m:
+                    findings.append((rel, f'KO-in-{target_lang}', m.group(0)[:160]))
+
+        elif target_lang == 'ko':
+            # Korean legitimately uses Latin product/service names, so focus
+            # on accidental Japanese kana leakage from the source document.
+            kana_hits = re.findall(r'[぀-ゟ゠-ヿ]', scanned)
+            if len(kana_hits) > 3:
+                m = re.search(r'.{0,80}[぀-ゟ゠-ヿ].{0,80}', scanned)
+                if m:
+                    findings.append((rel, 'JA-kana-in-ko', m.group(0)[:160]))
+
     return findings
 
+LANGS = ('ja', 'en', 'fr', 'de', 'es', 'it', 'ko', 'pt-BR')
 outputs = find_outputs()
-print(f"Discovered: ja={len(outputs['ja'])} en={len(outputs['en'])} fr={len(outputs['fr'])} de={len(outputs['de'])}")
+print('Discovered: ' + ' '.join(f'{lang}={len(outputs[lang])}' for lang in LANGS))
 print()
 
 all_findings = {}
-for lang in ['ja', 'en', 'fr', 'de']:
+for lang in LANGS:
     findings = scan_lang_purity(lang, outputs[lang])
     all_findings[lang] = findings
     print(f"=== {lang.upper()} outputs: {len(findings)} finding(s) ===")

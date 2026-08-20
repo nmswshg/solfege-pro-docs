@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<html lang="es"
+      data-title-ja="コードを聴き分ける — 3 度で Major/Minor を判別 | ソルフェージュPRO"
+      data-title-en="What Is Chord Recognition? — Understanding Harmonic Sounds | Solfege PRO"
+      data-title-fr="Qu'est-ce que la reconnaissance d'accords ? — Comprendre la sonorité des accords | Solfege PRO"
+      data-title-de="Was ist Akkorderkennung? — Den Klang von Harmonien verstehen | Solfege PRO">
+<head>
+    <meta charset="UTF-8">
+    <meta name="robots" content="index, follow">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#1A1A1E">
+    <title>Reconocimiento de acordes: mayor y menor | Solfege PRO</title>
+    <meta name="description" content="Entrenamiento auditivo de acordes: mayor/menor, inversiones, tipos de acorde y práctica progresiva, con diagnósticos y modos de práctica.">
+
+    <!-- Canonical -->
+    <link rel="canonical" href="https://solfegepro.com/es/guides/ear-training-chords/">
+    <link rel="alternate" hreflang="ja" href="https://solfegepro.com/guides/ear-training-chords/">
+    <link rel="alternate" hreflang="en" href="https://solfegepro.com/en/guides/ear-training-chords/">
+    <link rel="alternate" hreflang="fr" href="https://solfegepro.com/fr/guides/ear-training-chords/">
+    <link rel="alternate" hreflang="de" href="https://solfegepro.com/de/guides/ear-training-chords/">
+    <link rel="alternate" hreflang="es" href="https://solfegepro.com/es/guides/ear-training-chords/">
+    <link rel="alternate" hreflang="it" href="https://solfegepro.com/it/guides/ear-training-chords/">
+    <link rel="alternate" hreflang="ko" href="https://solfegepro.com/ko/guides/ear-training-chords/">
+    <link rel="alternate" hreflang="pt-BR" href="https://solfegepro.com/pt-br/guides/ear-training-chords/">
+    <link rel="alternate" hreflang="x-default" href="https://solfegepro.com/guides/ear-training-chords/">
+<!-- OGP -->
+    <meta property="og:title" content="Reconocimiento de acordes: mayor y menor">
+    <meta property="og:description" content="Entrenamiento auditivo de acordes: mayor/menor, inversiones, tipos de acorde y práctica progresiva, con diagnósticos y modos de práctica.">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://solfegepro.com/es/guides/ear-training-chords/">
+    <meta property="og:site_name" content="Solfege PRO">
+    <meta property="og:image" content="https://solfegepro.com/og-image.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Solfege PRO">
+    <meta property="og:locale" content="es_ES">
+    <meta property="og:locale:alternate" content="ja_JP">
+    <meta property="og:locale:alternate" content="en_US">
+    <meta property="og:locale:alternate" content="fr_FR">
+    <meta property="og:locale:alternate" content="de_DE">
+    <meta property="og:locale:alternate" content="it_IT">
+    <meta property="og:locale:alternate" content="ko_KR">
+    <meta property="og:locale:alternate" content="pt_BR">
+    <meta property="article:published_time" content="2026-03-31">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Reconocimiento de acordes: mayor y menor">
+    <meta name="twitter:description" content="Entrenamiento auditivo de acordes: mayor/menor, inversiones, tipos de acorde y práctica progresiva, con diagnósticos y modos de práctica.">
+    <meta name="twitter:image" content="https://solfegepro.com/og-image.png">
+
+    <!-- Favicon -->
+    <link rel="icon" href="/favicon.ico" sizes="any">
+    <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap"></noscript>
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="/style.css?v=23">
+    <link rel="stylesheet" href="/guides/article.css?v=14">
+
+    <style>
+        /* Chord Type Grid (intervals per chord ≤ ~7, fits in column) */
+        .chord-grid {
+            background: var(--surface);
+            border-radius: var(--radius-xl);
+            padding: var(--space-lg);
+            margin: var(--space-xl) 0;
+            border: 1px solid var(--surface-light);
+        }
+        .chord-grid__section-title {
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: var(--space-md);
+            margin-top: var(--space-lg);
+        }
+        .chord-grid__section-title:first-of-type {
+            margin-top: 0;
+        }
+        .chord-grid__row {
+            display: flex;
+            align-items: center;
+            margin-bottom: var(--space-sm);
+            gap: var(--space-sm);
+        }
+        .chord-grid__name {
+            min-width: 100px;
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--text-primary);
+            flex-shrink: 0;
+        }
+        .chord-grid__intervals {
+            display: flex;
+            gap: 3px;
+            flex: 1;
+        }
+        .chord-grid__interval {
+            padding: 4px 10px;
+            border-radius: var(--radius-sm);
+            font-size: 12px;
+            font-weight: 600;
+            text-align: center;
+            min-width: 44px;
+        }
+        .interval--root { background: var(--primary); color: var(--background); }
+        .interval--major { background: rgba(74, 222, 128, 0.25); color: #4ADE80; }
+        .interval--minor { background: rgba(96, 165, 250, 0.25); color: #60A5FA; }
+        .interval--perfect { background: rgba(251, 191, 36, 0.25); color: #FBBF24; }
+        .interval--dim { background: rgba(248, 113, 113, 0.25); color: #F87171; }
+        .interval--aug { background: rgba(192, 132, 252, 0.25); color: #C084FC; }
+
+        @media (max-width: 768px) {
+            .chord-grid { padding: var(--space-md); }
+            .chord-grid__row { flex-direction: column; align-items: flex-start; gap: var(--space-xs); }
+            .chord-grid__name { min-width: auto; }
+            .chord-grid__interval { min-width: 36px; padding: 3px 8px; font-size: 11px; }
+        }
+    </style>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Reconocimiento de acordes: mayor y menor","description":"Entrenamiento auditivo de acordes: mayor/menor, inversiones, tipos de acorde y práctica progresiva, con diagnósticos y modos de práctica.","author":{"@type":"Organization","name":"Solfege PRO"},"publisher":{"@type":"Organization","name":"Solfege PRO","logo":{"@type":"ImageObject","url":"https://solfegepro.com/AppIcon.png"}},"datePublished":"2026-03-31","mainEntityOfPage":{"@type":"WebPage","@id":"https://solfegepro.com/es/guides/ear-training-chords/"}}</script>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Inicio","item":"https://solfegepro.com/es/"},{"@type":"ListItem","position":2,"name":"Guías de práctica","item":"https://solfegepro.com/es/guides/"},{"@type":"ListItem","position":3,"name":"コードを聴き分ける — 3 度で Major/Minor を判別","item":"https://solfegepro.com/es/guides/ear-training-chords/"}]}</script>
+</head>
+<body>
+    <!-- Navigation -->
+        <nav class="nav" aria-label="Menú principal">
+        <div class="nav__container">
+            <a href="/es/" class="nav__logo" aria-label="Solfege PRO">
+                <img src="/AppIcon.png" alt="" class="nav__logo-icon" width="32" height="32">
+                <span class="nav__logo-text">Solfege PRO</span>
+            </a>
+            <ul class="nav__list">
+                <li><a href="/es/" class="nav__link">Acerca de Solfege PRO</a></li>
+                <li><a href="/es/features/" class="nav__link">Entrenamientos</a></li>
+                <li><a href="/es/guides/" class="nav__link active" aria-current="page">Guías de práctica</a></li>
+                <li><a href="/es/manual/" class="nav__link">Manual</a></li>
+            </ul>
+            <div class="nav__settings">
+                <button class="settings-btn" id="lang-toggle" title="Seleccionar idioma"><span id="lang-text">ES</span></button>
+                <button class="hamburger-btn" id="hamburger-btn" aria-label="Abrir menú" aria-expanded="false" aria-controls="drawer">
+                    <span class="hamburger-btn__line"></span><span class="hamburger-btn__line"></span><span class="hamburger-btn__line"></span>
+                </button>
+            </div>
+        </div>
+    </nav>
+        <!-- Mobile drawer (hidden on desktop) -->
+            <div class="drawer-overlay" id="drawer-overlay"></div>
+    <aside class="drawer" id="drawer" aria-label="Menú" aria-hidden="true" inert>
+        <div class="drawer__header">
+            <span class="drawer__title">Menú</span>
+            <button class="drawer__close" id="drawer-close" aria-label="Cerrar menú">×</button>
+        </div>
+        <ul class="drawer__list">
+            <li><a href="/es/" class="drawer__link">Acerca de Solfege PRO</a></li>
+            <li><a href="/es/features/" class="drawer__link">Entrenamientos</a></li>
+            <li><a href="/es/guides/" class="drawer__link active" aria-current="page">Guías de práctica</a></li>
+            <li><a href="/es/manual/" class="drawer__link">Manual</a></li>
+        </ul>
+    </aside>
+
+
+    <!-- Article Header -->
+    <header class="page-header">
+        <div class="page-header__meta">
+            <span class="page-header__tag">Reconocimiento del Corto</span>
+            <span>8 min.</span>
+        </div>
+        <h1 class="page-header__title">
+
+            ¿Qué es el reconocimiento del Corto?<br>Comprender los sonidos armónicos
+
+
+        </h1>
+        <p class="page-header__subtitle">
+
+            No te detengas en "suena un poco brillante o oscuro". Aprende las diferencias en los tonos de acorde y construye tu precisión de reconocimiento paso a paso.
+
+
+        </p>
+    </header>
+
+    <!-- Top-of-article CTA -->
+    <aside class="article-top-cta" aria-label="App promotion">
+        <div class="article-top-cta__body">
+            <p class="article-top-cta__title">
+
+                Prueba esto. Solfege PRO
+
+
+            </p>
+            <p class="article-top-cta__sub">
+
+                Consulta el precio en el App Store
+
+
+            </p>
+        </div>
+        <a href="https://apps.apple.com/es/app/id6756626617?pt=6749158383&amp;ct=web_guides&amp;mt=8" class="article-top-cta__button app-store-link" data-cta-position="article_top" aria-label="Descargar en el App Store"><img src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/es-es" class="app-store-link__img" alt="Descargar en el App Store" loading="lazy"></a>
+    </aside>
+
+    <!-- Article Body -->
+    <main class="article-body">
+
+        <!-- Section 1 -->
+        <h2 id="what-is-chord-recognition">¿Qué es el reconocimiento del Corto?</h2>
+
+        <p>
+
+            El reconocimiento de la cordura es la capacidad de escuchar un grupo de notas simultáneas e identificar la calidad del acorde. Cuando una guitarra o un piano golpea un acorde, ¿puedes decir si es Mayor o Menor? ¿Contiene un séptimo? Es la habilidad de hacer ese juicio solo por oído.
+
+
+        </p>
+
+        <p>
+
+            Esta es una habilidad fundamental para la composición, arreglo, transcripción y sesiones de mermelada. Si puedes entender los acordes que escuchas sin la música de la hoja, la forma en que escuchas la música cambia.
+
+
+        </p>
+
+        <p>
+
+            Dicho esto, el reconocimiento de acordes no se desarrolla de la noche a la mañana. El Reconocimiento de intervalosor forma la base, y el entendimiento de calidad acorde se construye sobre ella.
+
+
+        </p>
+
+        <!-- Section 2 -->
+        <h2 id="chord-types">Comprender los tipos de corcho</h2>
+
+        <p>
+
+            La calidad de un acorde se determina por qué intervalos se apilan por encima de la raíz. La progresión del aprendizaje natural comienza con triadas, se mueve a 7o acordes, y luego se extiende a las tensiones.
+
+
+        </p>
+
+        <!-- Chord Type Grid Visual -->
+        <div class="chord-grid">
+            <div class="diagram-title">Tipos de Chord y sus intervalaciones</div>
+
+            <div class="chord-grid__section-title">Triads</div>
+
+            <div class="chord-grid__row">
+                <div class="chord-grid__name">Major</div>
+                <div class="chord-grid__intervals">
+                    <div class="chord-grid__interval interval--root">R</div>
+                    <div class="chord-grid__interval interval--major">M3</div>
+                    <div class="chord-grid__interval interval--perfect">P5</div>
+                </div>
+            </div>
+            <div class="chord-grid__row">
+                <div class="chord-grid__name">Minor</div>
+                <div class="chord-grid__intervals">
+                    <div class="chord-grid__interval interval--root">R</div>
+                    <div class="chord-grid__interval interval--minor">m3</div>
+                    <div class="chord-grid__interval interval--perfect">P5</div>
+                </div>
+            </div>
+            <div class="chord-grid__row">
+                <div class="chord-grid__name">Diminished</div>
+                <div class="chord-grid__intervals">
+                    <div class="chord-grid__interval interval--root">R</div>
+                    <div class="chord-grid__interval interval--minor">m3</div>
+                    <div class="chord-grid__interval interval--dim">dim5</div>
+                </div>
+            </div>
+            <div class="chord-grid__row">
+                <div class="chord-grid__name">Augmented</div>
+                <div class="chord-grid__intervals">
+                    <div class="chord-grid__interval interval--root">R</div>
+                    <div class="chord-grid__interval interval--major">M3</div>
+                    <div class="chord-grid__interval interval--aug">aug5</div>
+                </div>
+            </div>
+
+            <div class="chord-grid__section-title">7o Corchos</div>
+
+            <div class="chord-grid__row">
+                <div class="chord-grid__name">Maj7</div>
+                <div class="chord-grid__intervals">
+                    <div class="chord-grid__interval interval--root">R</div>
+                    <div class="chord-grid__interval interval--major">M3</div>
+                    <div class="chord-grid__interval interval--perfect">P5</div>
+                    <div class="chord-grid__interval interval--major">M7</div>
+                </div>
+            </div>
+            <div class="chord-grid__row">
+                <div class="chord-grid__name">m7</div>
+                <div class="chord-grid__intervals">
+                    <div class="chord-grid__interval interval--root">R</div>
+                    <div class="chord-grid__interval interval--minor">m3</div>
+                    <div class="chord-grid__interval interval--perfect">P5</div>
+                    <div class="chord-grid__interval interval--minor">m7</div>
+                </div>
+            </div>
+            <div class="chord-grid__row">
+                <div class="chord-grid__name">7 (dom)</div>
+                <div class="chord-grid__intervals">
+                    <div class="chord-grid__interval interval--root">R</div>
+                    <div class="chord-grid__interval interval--major">M3</div>
+                    <div class="chord-grid__interval interval--perfect">P5</div>
+                    <div class="chord-grid__interval interval--minor">m7</div>
+                </div>
+            </div>
+            <div class="chord-grid__row">
+                <div class="chord-grid__name">m7(b5)</div>
+                <div class="chord-grid__intervals">
+                    <div class="chord-grid__interval interval--root">R</div>
+                    <div class="chord-grid__interval interval--minor">m3</div>
+                    <div class="chord-grid__interval interval--dim">dim5</div>
+                    <div class="chord-grid__interval interval--minor">m7</div>
+                </div>
+            </div>
+            <div class="chord-grid__row">
+                <div class="chord-grid__name">dim7</div>
+                <div class="chord-grid__intervals">
+                    <div class="chord-grid__interval interval--root">R</div>
+                    <div class="chord-grid__interval interval--minor">m3</div>
+                    <div class="chord-grid__interval interval--dim">dim5</div>
+                    <div class="chord-grid__interval interval--dim">dim7</div>
+                </div>
+            </div>
+
+            <div class="chord-grid__section-title">Corchos extendidos</div>
+
+            <div class="chord-grid__row">
+                <div class="chord-grid__name">9th</div>
+                <div class="chord-grid__intervals">
+                    <div class="chord-grid__interval interval--root">R</div>
+                    <div class="chord-grid__interval interval--major">M3</div>
+                    <div class="chord-grid__interval interval--perfect">P5</div>
+                    <div class="chord-grid__interval interval--minor">m7</div>
+                    <div class="chord-grid__interval interval--major">M9</div>
+                </div>
+            </div>
+            <div class="chord-grid__row">
+                <div class="chord-grid__name">11th</div>
+                <div class="chord-grid__intervals">
+                    <div class="chord-grid__interval interval--root">R</div>
+                    <div class="chord-grid__interval interval--major">M3</div>
+                    <div class="chord-grid__interval interval--perfect">P5</div>
+                    <div class="chord-grid__interval interval--minor">m7</div>
+                    <div class="chord-grid__interval interval--perfect">P11</div>
+                </div>
+            </div>
+            <div class="chord-grid__row">
+                <div class="chord-grid__name">13th</div>
+                <div class="chord-grid__intervals">
+                    <div class="chord-grid__interval interval--root">R</div>
+                    <div class="chord-grid__interval interval--major">M3</div>
+                    <div class="chord-grid__interval interval--perfect">P5</div>
+                    <div class="chord-grid__interval interval--minor">m7</div>
+                    <div class="chord-grid__interval interval--major">M13</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="article-note">
+            <div class="article-note__title">Punto clave</div>
+            <p>La única diferencia entre Major y Minor es si el tercero es M3 (el tercero mayor) o m3 (el tercero menor). Escuchar esta "calidad de la tercera" es el punto de partida más fundamental para el reconocimiento de acordes.</p>
+        </div>
+
+        <!-- Section 3 -->
+        <h2 id="common-walls">Muros comunes</h2>
+
+        <h3 id="major-minor">Major vs Minor Confusion</h3>
+        <p>
+
+            Este es el bloque más básico pero más común de tropiezos. La explicación "bright = Major, dark = Minor" apunta en la dirección correcta, pero en la práctica, la impresión de brillo o oscuridad cambia con tempo, registro y timbre. Lo que importa es entrenar su capacidad para escuchar directamente la calidad del tercer intervalo.
+
+
+        </p>
+
+        <h3 id="seventh-confusion">7th Chord Tipos Sonido Similar</h3>
+        <p>
+
+            Maj7, m7, 7o dominante. El séptimo enriquece el sonido, pero las diferencias entre ellos son sutiles. La "transparencia" de Maj7, la "suavidad" de m7, la "tensión" de dominante 7th. Es más eficaz abordar estos después de que pueda distinguir fiablemente las triadas.
+
+
+        </p>
+
+        <h3 id="inversions">Inversiones Cambiar el carácter</h3>
+        <p>
+
+            Incluso el mismo C Major suena diferente en posición de raíz (C-E-G) frente a primera inversión (E-G-C). Cuando el bajo nota cambia, todo el centro armónico de gravedad cambia, por lo que el mismo acorde puede no sonar el mismo hasta que usted está acostumbrado a las inversiones.
+
+
+        </p>
+
+        <h3 id="block-vs-arpeggiated">Bloque vs Reconocimiento Arpegido</h3>
+        <p>
+
+            La reproducción del bloque (todas las notas simultáneamente) y la reproducción arpegada (nota una a la vez) tienen diferentes niveles de dificultad. Arpeggio te permite rastrear cada nota individualmente, haciendo el análisis más fácil. Pero los acordes de bloque requieren que juzgues la "masa de sonido" al instante. La música real requiere ambos modos de escucha.
+
+
+        </p>
+
+        <!-- Section 4 -->
+        <h2 id="effective-practice">Métodos de práctica eficaces</h2>
+
+        <h3 id="start-major-minor">Comienza con Mayor y Menor Sólo</h3>
+        <p>
+
+            Saltar a muchos tipos de acordes a la vez es ineficiente. Primero, alcanza la precisión del 90%+ en la opción binaria Major vs Menor, en cualquier registro y en cualquier tempo. Sin esta fundación, avanzar a los 7o acordes sólo añadirá confusión.
+
+
+        </p>
+
+        <h3 id="hear-the-third">Aprende a escuchar el 3er</h3>
+        <p>
+
+            El 3o determina la "brightness" de un acorde. Cuando escuche un acorde, concéntrese en la relación entre root y 3er. Utilice el modo arpegio y confirme la posición de la segunda nota (la tercera). Este "aquí para el 3" es el núcleo del reconocimiento de acordes.
+
+
+        </p>
+
+        <h3 id="add-seventh">Añadir 7o Corchos Gradualmente</h3>
+        <p>
+
+            Una vez que las triadas estén estables, agregue el Maj7 primero. Luego m7, entonces dominante 7o. No lo desbloquees todo de una vez. Agregue un tipo a la vez, y sólo se mueva a la siguiente cuando pueda distinguirlo de forma fiable.
+
+
+        </p>
+
+        <h3 id="arpeggiated-then-block">Arpeggio para el análisis, bloque para la velocidad</h3>
+        <p>
+
+            Al aprender un nuevo tipo de acorde, comience con la reproducción arpegada para confirmar cada nota. Una vez que usted capta el carácter del sonido, cambie a bloquear la reproducción y entrenar el reconocimiento instantáneo. Este enfoque de dos etapas es eficaz.
+
+
+        </p>
+
+        <!-- Section 5 -->
+        <h2 id="what-app-can-do">¿Qué? Solfege PRO ¿Puede hacer</h2>
+
+        <p>
+
+            Solfege PRO's Chord Recognition es una herramienta de entrenamiento para construir su capacidad de distinguir las cualidades acordes paso a paso.
+
+
+        </p>
+
+        <h3>Más de 20 tipos de corcho</h3>
+        <p>
+
+            Cubre más de 20 tipos de acordes de triadas básicas (Major, Menor, Dim, Aug) a 7o acordes y tensiones. No es necesario habilitar a todos a la vez — seleccione basado en su nivel actual.
+
+
+        </p>
+
+        <h3>5 niveles de dificultad</h3>
+        <p>
+
+            Informado por el enfoque paso a paso utilizado en la educación musical, cinco niveles de dificultad guían su progresión. Triadas básicas, Extendidas, 7a Cordos, Avanzadas 7a, Tensiones — avanzar paso a paso le permite ampliar su vocabulario acorde sin abrumar.
+
+
+        </p>
+
+        <h3>Bloqueo / Retrocedimiento de orden</h3>
+        <p>
+
+            Oír el mismo acorde en la reproducción de bloque (simultaneo) y arpegio (spread). Utilice arpeggio como modo de análisis y bloque como modo práctico.
+
+
+        </p>
+
+        <h3>Comparative Playback</h3>
+        <p>
+
+            Cuando cometes un error, puedes escuchar tu respuesta y el acorde correcto jugado de nuevo a revés. Escuchar "lo que era diferente" en sonido profundiza su comprensión de las distinciones tonales.
+
+
+        </p>
+
+        <h3>Puntos de contacto</h3>
+        <p>
+
+            Aumenta automáticamente la frecuencia de los tipos de acordes con los que lucha. Enfóquese su tiempo en debilidades en lugar de gastarlo en lo que ya sabe.
+
+
+        </p>
+
+        <div class="cycle-diagram">
+            <div class="cycle-step">
+                <div class="cycle-step__label">Escucha.</div>
+                <div class="cycle-step__desc">Oír un acorde</div>
+            </div>
+            <div class="cycle-arrow">&rarr;</div>
+            <div class="cycle-step">
+                <div class="cycle-step__label">Respuesta</div>
+                <div class="cycle-step__desc">Elija el tipo de acordes</div>
+            </div>
+            <div class="cycle-arrow">&rarr;</div>
+            <div class="cycle-step">
+                <div class="cycle-step__label">Compare</div>
+                <div class="cycle-step__desc">Oí la diferencia</div>
+            </div>
+            <div class="cycle-arrow">&rarr;</div>
+            <div class="cycle-step">
+                <div class="cycle-step__label">Pista</div>
+                <div class="cycle-step__desc">Precisión &quot; puntos débiles</div>
+            </div>
+        </div>
+
+        <!-- Section 6 -->
+        <h2 id="limitations">¿Qué? Solfege PRO No cubre directamente</h2>
+
+        <p>
+
+            Seamos honestos.
+
+
+        </p>
+
+        <div class="article-honest">
+            <div class="article-honest__title">Áreas Más allá del alcance de la aplicación</div>
+            <p>
+                <strong>Entrada de símbolo de la coraza</strong> — Las respuestas son sólo opciones múltiples. Titular los nombres de acordes no es compatible.
+            </p>
+            <p>
+                <strong>Sonidos de instrumentos reales</strong> — La aplicación utiliza tonos de piano. No se dispone de formación con guitarra, órgano u otro instrumento real.
+            </p>
+            <p>
+                <strong>Capacitación específica para inversiones</strong> — Se admiten ajustes básicos de inversión y preguntas de identificación de la inversión, pero no hay un plan de estudios específico centrado exclusivamente en las inversiones. El diseño primario se centra en la identificación de calidad acorde.
+            </p>
+            <p>
+                <strong>Choques de choque</strong> — Notación de acordes Slash como C/E no es compatible.
+            </p>
+            <p>
+                <strong>Contexto armónico</strong> - Los corchos se presentan en forma aislada. "Cómo funciona este acorde dentro de una progresión" no está cubierto por el Reconocimiento Corto solo (La Formación de Progreso está disponible por separado).
+            </p>
+            <p>
+                <strong>Funal (de grado) escucha de acordes</strong> — Escuchar acordes por sus <em>función</em> dentro de una tonalidad (por ejemplo, el mismo Cmaj7 es I en C mayor pero V/V en F mayor) — función romana-numeral / T-SD-D escuchando como enseñado en la tradición de solfège de uso do móvil (Karpinski, Edlund, etc.) — está fuera del diseño de Chord Recognition basado en la calidad. Progresión de la combinación Formación con práctica de cantos desmontable para desarrollar esta habilidad complementaria.
+            </p>
+        </div>
+
+        <p>
+
+            ¿Qué? Solfege PRO directamente es el edificio paso a paso de su capacidad para distinguir las cualidades acordes. Comprender acordes en contexto armónico requiere práctica complementaria a través de la Formación Progresista o transcribiendo música real.
+
+
+        </p>
+
+        <!-- Mid-article CTA -->
+        <div class="article-cta-subtle">
+            <p class="article-cta-subtle__text">Consulta el precio en el App Store - comprobar su reconocimiento de acordes</p>
+            <a href="https://apps.apple.com/es/app/id6756626617?pt=6749158383&amp;ct=web_guides&amp;mt=8" class="article-cta-subtle__button app-store-link" aria-label="Descargar en el App Store"><img src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/es-es" class="app-store-link__img" alt="Descargar en el App Store" loading="lazy"></a>
+        </div>
+
+        <!-- Section 7 -->
+        <h2 id="how-to-use">Uso recomendado</h2>
+
+        <p>
+
+            Solfege PRO's Chord Recognition está diseñado para ser utilizado en la siguiente progresión.
+
+
+        </p>
+
+        <ol>
+            <li><strong>Comienzo con las Triadas Básicas</strong> — Objetivo para una precisión estable del 80%+ en la opción binaria Major vs Menor</li>
+            <li><strong>Usar arpeggio para entender la estructura</strong> — Al hacer un nuevo tipo de acorde, comience con la reproducción arpegada para confirmar cada tono</li>
+            <li><strong>Avance cuando pasas 80%</strong> — Cuando usted golpeó constantemente el 80%+ en el nivel actual, pasar a la siguiente etapa</li>
+            <li><strong>Usar el modo de enfoque de punto débil</strong> — Eficaz cuando tu precisión para los tipos de acordes específicos se detiene</li>
+            <li><strong>Verificar con música real</strong> — Prueba el oído que has entrenado transcribiendo tus canciones favoritas. Ese es el objetivo final.</li>
+        </ol>
+
+        <div class="article-note">
+            <div class="article-note__title">Tip de uso</div>
+            <p>Practicar el reconocimiento acorde junto con el entrenamiento de intervalos es eficaz. Dado que el reconocimiento de intervalos forma la base para el reconocimiento de acordes, alternando entre ambos profundiza su comprensión.</p>
+        </div>
+
+    </main>
+
+    <!-- Final CTA -->
+    <section class="article-cta">
+        <h2 class="article-cta__title">Comienza por comprobar tu reconocimiento de la cordura</h2>
+        <p class="article-cta__text">
+
+            El reconocimiento del corcho golpea un techo si confías sólo en impresiones "derecha contra oscuro".<br>Comprender las diferencias en los tonos de acorde y expandir gradualmente su vocabulario.<br>Compruebe dónde se encuentra con la función de Solfege PRO: Reconocimiento de Corto.
+
+
+        </p>
+        <a href="https://apps.apple.com/es/app/id6756626617?pt=6749158383&amp;ct=web_guides&amp;mt=8" class="app-store-link" aria-label="Descargar en el App Store">
+
+            <img class="app-store-link__img" width="120" height="40" src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/es-es" alt="Descargar en el App Store">
+
+
+        </a>
+    </section>
+
+    <!-- Related Content -->
+    <div class="article-related">
+        <div class="article-related__title">Contenido relacionado</div>
+        <a href="/guides/chord-function-curriculum/" class="article-related__link" style="margin-bottom: var(--space-md);">
+            <div class="article-related__link-title">Curriculum de la función del corcho — T/SD/D en 4 etapas</div>
+            <div class="article-related__link-desc">El siguiente paso después de identificar acordes uno por uno —aprendiendo su función (T/SD/D) y el papel dentro de una progresión.</div>
+        </a>
+        <a href="/manual/chord/" class="article-related__link" style="margin-bottom: var(--space-md);">
+            <div class="article-related__link-title">Manual de configuración de reconocimiento del acorde</div>
+            <div class="article-related__link-desc">Cómo elegir cada configuración de aplicación y lo que entrena, uno a la vez.</div>
+        </a>
+        <a href="/" class="article-related__link">
+            <div class="article-related__link-title">Solfege PRO Guía de prácticas</div>
+            <div class="article-related__link-desc">Menús de práctica basados en desafíos para guitarra, bajo, tambores, piano y voces</div>
+        </a>
+    </div>
+
+    <!-- Article Note -->
+    <aside class="article-endnote">
+        <p class="article-endnote__text">
+
+            Este artículo se organiza sobre la base de una metodología de entrenamiento auditivo ampliamente utilizada y de conocimientos de teoría de la música general. La percepción de la calidad de acorde varía según el fondo individual y musical, y las categorías presentadas aquí pueden no aplicarse a cada caso. La formación en aplicación permite mejorar el reconocimiento de calidad acorde y no garantiza un entendimiento armónico completo.
+
+
+        </p>
+    </aside>
+
+    <!-- Footer -->
+    <footer class="article-footer">
+        <p class="article-footer__text">
+            &copy; 2026 Solfege PRO
+        </p>
+    </footer>
+    <script src="/bootstrap.js?v=10" defer></script>
+    <nav aria-label="Language" style="display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:0.5rem;padding:var(--space-lg) var(--space-md);border-top:1px solid var(--surface-light);font-size:13px">
+        <a href="/guides/ear-training-chords/" hreflang="ja" style="color:var(--text-secondary);text-decoration:none">日本語</a>
+        <span aria-hidden="true" style="color:var(--surface-light)">·</span>
+        <a href="/en/guides/ear-training-chords/" hreflang="en" style="color:var(--text-secondary);text-decoration:none">English</a>
+        <span aria-hidden="true" style="color:var(--surface-light)">·</span>
+        <a href="/fr/guides/ear-training-chords/" hreflang="fr" style="color:var(--text-secondary);text-decoration:none">Français</a>
+        <span aria-hidden="true" style="color:var(--surface-light)">·</span>
+        <a href="/de/guides/ear-training-chords/" hreflang="de" style="color:var(--text-secondary);text-decoration:none">Deutsch</a>
+        <span aria-hidden="true" style="color:var(--surface-light)">·</span>
+        <span style="color:var(--primary);font-weight:600" aria-current="true">Español</span>
+        <span aria-hidden="true" style="color:var(--surface-light)">·</span>
+        <a href="/it/guides/ear-training-chords/" hreflang="it" style="color:var(--text-secondary);text-decoration:none">Italiano</a>
+        <span aria-hidden="true" style="color:var(--surface-light)">·</span>
+        <a href="/ko/guides/ear-training-chords/" hreflang="ko" style="color:var(--text-secondary);text-decoration:none">한국어</a>
+        <span aria-hidden="true" style="color:var(--surface-light)">·</span>
+        <a href="/pt-br/guides/ear-training-chords/" hreflang="pt-BR" style="color:var(--text-secondary);text-decoration:none">Português (Brasil)</a>
+    </nav>
+</body>
+</html>

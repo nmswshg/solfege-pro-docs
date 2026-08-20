@@ -1,7 +1,7 @@
 /* =============================================
    Solfege PRO - Shared Language Selector (dropdown)
-   Languages: ja / en / fr / de
-   Per-page titles via data-title-{ja,en,fr,de} on <html>
+   All pages: ja / en / fr / de / es / it / ko / pt-BR
+   Per-page titles are emitted by the language build.
 
    URL convention (directory-based, since 2026-05-26):
      ja: /                            → src/index.html
@@ -26,11 +26,19 @@
      search results that didn't get caught by the stub layer).
    ============================================= */
 (function() {
-    var LANGS = ['ja', 'en', 'fr', 'de'];
-    var LANG_LABEL = { ja: 'JA', en: 'EN', fr: 'FR', de: 'DE' };
-    var LANG_NAMES = { ja: '日本語', en: 'English', fr: 'Français', de: 'Deutsch' };
-    var APP_STORE_LOCALE = { ja: 'jp', en: 'us', fr: 'fr', de: 'de' };
-    var VARIANT_LANGS = { en: 1, fr: 1, de: 1 };
+    var ALL_LANGS = ['ja', 'en', 'fr', 'de', 'es', 'it', 'ko', 'pt-BR'];
+    var LANG_LABEL = { ja: 'JA', en: 'EN', fr: 'FR', de: 'DE', es: 'ES', it: 'IT', ko: 'KO', 'pt-BR': 'PT' };
+    var LANG_NAMES = { ja: '日本語', en: 'English', fr: 'Français', de: 'Deutsch', es: 'Español', it: 'Italiano', ko: '한국어', 'pt-BR': 'Português (Brasil)' };
+    var APP_STORE_LOCALE = { ja: 'jp', en: 'us', fr: 'fr', de: 'de', es: 'es', it: 'it', ko: 'kr', 'pt-BR': 'br' };
+    var APP_STORE_BADGE_LOCALE = { ja: 'ja-jp', en: 'en-us', fr: 'fr-fr', de: 'de-de', es: 'es-es', it: 'it-it', ko: 'ko-kr', 'pt-BR': 'pt-br' };
+    var APP_STORE_BADGE_ALT = { ja: 'App Storeからダウンロード', en: 'Download on the App Store', fr: 'Télécharger dans l’App Store', de: 'Laden im App Store', es: 'Descargar en el App Store', it: 'Scarica sull’App Store', ko: 'App Store에서 다운로드', 'pt-BR': 'Baixar na App Store' };
+    var URL_PREFIX = { ja: '', en: 'en', fr: 'fr', de: 'de', es: 'es', it: 'it', ko: 'ko', 'pt-BR': 'pt-br' };
+    var PREFIX_LANG = { en: 'en', fr: 'fr', de: 'de', es: 'es', it: 'it', ko: 'ko', 'pt-br': 'pt-BR' };
+    var declared = Array.prototype.map.call(document.querySelectorAll('link[rel="alternate"][hreflang]'), function(link) {
+        return link.getAttribute('hreflang');
+    });
+    var LANGS = ALL_LANGS.filter(function(lang) { return declared.indexOf(lang) !== -1; });
+    if (!LANGS.length) LANGS = ALL_LANGS.slice();
 
     function isValidLang(l) { return LANGS.indexOf(l) !== -1; }
 
@@ -46,8 +54,8 @@
      *   /guides/foo/                   → { lang: 'ja', basePath: '/guides/foo/' }
      */
     function parsePath(pathname) {
-        var m = pathname.match(/^\/(en|fr|de)(\/.*)?$/);
-        if (m) return { lang: m[1], basePath: m[2] || '/' };
+        var m = pathname.match(/^\/(en|fr|de|es|it|ko|pt-br)(\/.*)?$/);
+        if (m) return { lang: PREFIX_LANG[m[1]], basePath: m[2] || '/' };
         return { lang: 'ja', basePath: pathname };
     }
 
@@ -58,8 +66,8 @@
         if (!basePath || basePath[0] !== '/') basePath = '/' + (basePath || '');
         if (targetLang === 'ja') return basePath;
         // Concatenate /en + /guides/foo/ → /en/guides/foo/
-        if (basePath === '/') return '/' + targetLang + '/';
-        return '/' + targetLang + basePath;
+        if (basePath === '/') return '/' + URL_PREFIX[targetLang] + '/';
+        return '/' + URL_PREFIX[targetLang] + basePath;
     }
 
     // -----------------------------------------------------------------
@@ -148,12 +156,26 @@
         currentLang = lang;
 
         var storeLocale = APP_STORE_LOCALE[lang];
+        var badgeLocale = APP_STORE_BADGE_LOCALE[lang];
+        var badgeAlt = APP_STORE_BADGE_ALT[lang];
         document.querySelectorAll('a[href*="apps.apple.com"]').forEach(function(a) {
-            a.href = 'https://apps.apple.com/' + storeLocale + '/app/id6756626617';
+            a.href = a.href.replace(/apps\.apple\.com\/[a-z]{2}\//, 'apps.apple.com/' + storeLocale + '/');
+            var img = a.querySelector('img.app-store-link__img');
+            if (!img) {
+                a.textContent = '';
+                a.classList.add('app-store-link');
+                a.setAttribute('aria-label', badgeAlt);
+                img = document.createElement('img');
+                img.className = 'app-store-link__img';
+                img.loading = 'lazy';
+                a.appendChild(img);
+            }
+            img.src = 'https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/' + badgeLocale;
+            img.alt = badgeAlt;
         });
 
         var ds = document.documentElement.dataset;
-        var titleByLang = { ja: ds.titleJa, en: ds.titleEn, fr: ds.titleFr, de: ds.titleDe };
+        var titleByLang = { ja: ds.titleJa, en: ds.titleEn, fr: ds.titleFr, de: ds.titleDe, es: ds.titleEs, it: ds.titleIt, ko: ds.titleKo, 'pt-BR': ds.titlePtBr };
         if (titleByLang[lang]) document.title = titleByLang[lang];
 
         applyMermaidLang(lang);

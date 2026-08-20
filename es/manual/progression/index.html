@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html lang="es"
+      data-title-ja="コード進行認識 設定マニュアル — 各設定の選び方 | ソルフェージュPRO"
+      data-title-en="Chord Progression Settings Manual — How to Choose Each Option | Solfege PRO"
+      data-title-fr="Manuel des réglages — Reconnaissance des progressions d'accords — Comment choisir chaque option | Solfege PRO"
+      data-title-de="Einstellungshandbuch — Akkordfolgen-Erkennung — So wählst du jede Option | Solfege PRO">
+<head>
+    <meta charset="UTF-8">
+    <meta name="robots" content="index, follow">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#1A1A1E">
+    <title>Manual de progresiones de acordes | Solfege PRO</title>
+    <meta name="description" content="Manual de referencia para la configuración de la progresión del Corto: modo de entrenamiento, dificultad, duración de progresión, modo clave: para qué cada uno es y cómo elegirlo.">
+
+    <!-- Canonical -->
+    <link rel="canonical" href="https://solfegepro.com/es/manual/progression/">
+    <link rel="alternate" hreflang="ja" href="https://solfegepro.com/manual/progression/">
+    <link rel="alternate" hreflang="en" href="https://solfegepro.com/en/manual/progression/">
+    <link rel="alternate" hreflang="fr" href="https://solfegepro.com/fr/manual/progression/">
+    <link rel="alternate" hreflang="de" href="https://solfegepro.com/de/manual/progression/">
+    <link rel="alternate" hreflang="es" href="https://solfegepro.com/es/manual/progression/">
+    <link rel="alternate" hreflang="it" href="https://solfegepro.com/it/manual/progression/">
+    <link rel="alternate" hreflang="ko" href="https://solfegepro.com/ko/manual/progression/">
+    <link rel="alternate" hreflang="pt-BR" href="https://solfegepro.com/pt-br/manual/progression/">
+    <link rel="alternate" hreflang="x-default" href="https://solfegepro.com/manual/progression/">
+<!-- OGP -->
+    <meta property="og:title" content="Manual de progresiones de acordes">
+    <meta property="og:description" content="Manual de referencia para la configuración de la progresión del Corto: modo de entrenamiento, dificultad, duración de progresión, modo clave: para qué cada uno es y cómo elegirlo.">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://solfegepro.com/es/manual/progression/">
+    <meta property="og:site_name" content="Solfege PRO">
+    <meta property="og:image" content="https://solfegepro.com/og-image.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Solfege PRO">
+    <meta property="og:locale" content="es_ES">
+    <meta property="og:locale:alternate" content="ja_JP">
+    <meta property="og:locale:alternate" content="en_US">
+    <meta property="og:locale:alternate" content="fr_FR">
+    <meta property="og:locale:alternate" content="de_DE">
+    <meta property="og:locale:alternate" content="it_IT">
+    <meta property="og:locale:alternate" content="ko_KR">
+    <meta property="og:locale:alternate" content="pt_BR">
+    <meta property="article:published_time" content="2026-06-05">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Manual de progresiones de acordes">
+    <meta name="twitter:description" content="Manual de referencia para la configuración de la progresión del Corto: modo de entrenamiento, dificultad, duración de progresión, modo clave: para qué cada uno es y cómo elegirlo.">
+    <meta name="twitter:image" content="https://solfegepro.com/og-image.png">
+
+    <!-- Favicon -->
+    <link rel="icon" href="/favicon.ico" sizes="any">
+    <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap"></noscript>
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="/style.css?v=23">
+    <link rel="stylesheet" href="/guides/article.css?v=14">
+
+    <style>
+        /* Manual option reference — responsive, no fixed px widths */
+        .manual-options {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr);
+            gap: var(--space-sm);
+            margin: var(--space-lg) 0;
+        }
+        .manual-option {
+            background: var(--surface);
+            border: 1px solid var(--surface-light);
+            border-radius: var(--radius-lg);
+            padding: var(--space-md);
+        }
+        .manual-option__name {
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: var(--space-xs);
+        }
+        .manual-option__desc {
+            font-size: 13px;
+            color: var(--text-secondary);
+        }
+        /* Bottom-line callout (conclusion first) */
+        .manual-lead {
+            font-size: 14px;
+            line-height: 1.75;
+            color: var(--text-primary);
+            border-left: 3px solid var(--primary);
+            background: rgba(212, 175, 55, 0.06);
+            padding: var(--space-sm) var(--space-md);
+            border-radius: 0 var(--radius-md) var(--radius-md) 0;
+            margin: var(--space-md) 0;
+        }
+        /* Per-setting evidence note — deliberately styled as an editorial
+           aside, NOT as a settings card (no surface fill, no gold label),
+           so it is never mistaken for an in-app option. */
+        .manual-rationale {
+            margin: var(--space-md) 0 var(--space-2xl);
+            padding: var(--space-sm) 0 var(--space-sm) var(--space-md);
+            border-left: 2px solid var(--surface-light);
+        }
+        .manual-rationale__label {
+            display: block;
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            color: var(--text-secondary);
+            margin-bottom: 4px;
+            opacity: 0.75;
+        }
+        .manual-rationale p {
+            font-size: 13px;
+            line-height: 1.75;
+            color: var(--text-secondary);
+            margin: 0;
+        }
+        .manual-rationale__ref {
+            font-size: 12px;
+            font-style: italic;
+            margin-top: var(--space-xs) !important;
+            opacity: 0.7;
+        }
+        /* Citation number linking to the reference list */
+        .manual-ref-num {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-style: normal;
+        }
+        .manual-ref-num:hover { color: var(--primary); }
+        /* Full reference list at page end */
+        .manual-refs {
+            margin: var(--space-2xl) 0 0;
+            padding-top: var(--space-lg);
+            border-top: 1px solid var(--surface-light);
+        }
+        .manual-refs__title {
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: var(--space-sm);
+        }
+        .manual-refs ol {
+            margin: 0;
+            padding-left: 1.25em;
+        }
+        .manual-refs li {
+            font-size: 12px;
+            line-height: 1.7;
+            color: var(--text-secondary);
+            margin-bottom: var(--space-xs);
+            scroll-margin-top: 84px;
+        }
+        .manual-refs li:target {
+            color: var(--text-primary);
+        }
+    </style>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Manual de progresiones de acordes","description":"Manual de referencia para la configuración de la progresión del Corto: modo de entrenamiento, dificultad, duración de progresión, modo clave: para qué cada uno es y cómo elegirlo.","author":{"@type":"Organization","name":"Solfege PRO"},"publisher":{"@type":"Organization","name":"Solfege PRO","logo":{"@type":"ImageObject","url":"https://solfegepro.com/AppIcon.png"}},"datePublished":"2026-06-05","mainEntityOfPage":{"@type":"WebPage","@id":"https://solfegepro.com/es/manual/progression/"}}</script>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Inicio","item":"https://solfegepro.com/es/"},{"@type":"ListItem","position":2,"name":"Manual","item":"https://solfegepro.com/es/manual/"},{"@type":"ListItem","position":3,"name":"コード進行認識 設定マニュアル — 各設定の選び方","item":"https://solfegepro.com/es/manual/progression/"}]}</script>
+</head>
+<body>
+    <!-- Navigation -->
+        <nav class="nav" aria-label="Menú principal">
+        <div class="nav__container">
+            <a href="/es/" class="nav__logo" aria-label="Solfege PRO">
+                <img src="/AppIcon.png" alt="" class="nav__logo-icon" width="32" height="32">
+                <span class="nav__logo-text">Solfege PRO</span>
+            </a>
+            <ul class="nav__list">
+                <li><a href="/es/" class="nav__link">Acerca de Solfege PRO</a></li>
+                <li><a href="/es/features/" class="nav__link">Entrenamientos</a></li>
+                <li><a href="/es/guides/" class="nav__link">Guías de práctica</a></li>
+                <li><a href="/es/manual/" class="nav__link active" aria-current="page">Manual</a></li>
+            </ul>
+            <div class="nav__settings">
+                <button class="settings-btn" id="lang-toggle" title="Seleccionar idioma"><span id="lang-text">ES</span></button>
+                <button class="hamburger-btn" id="hamburger-btn" aria-label="Abrir menú" aria-expanded="false" aria-controls="drawer">
+                    <span class="hamburger-btn__line"></span><span class="hamburger-btn__line"></span><span class="hamburger-btn__line"></span>
+                </button>
+            </div>
+        </div>
+    </nav>
+        <!-- Mobile drawer (hidden on desktop) -->
+            <div class="drawer-overlay" id="drawer-overlay"></div>
+    <aside class="drawer" id="drawer" aria-label="Menú" aria-hidden="true" inert>
+        <div class="drawer__header">
+            <span class="drawer__title">Menú</span>
+            <button class="drawer__close" id="drawer-close" aria-label="Cerrar menú">×</button>
+        </div>
+        <ul class="drawer__list">
+            <li><a href="/es/" class="drawer__link">Acerca de Solfege PRO</a></li>
+            <li><a href="/es/features/" class="drawer__link">Entrenamientos</a></li>
+            <li><a href="/es/guides/" class="drawer__link">Guías de práctica</a></li>
+            <li><a href="/es/manual/" class="drawer__link active" aria-current="page">Manual</a></li>
+        </ul>
+    </aside>
+
+
+    <!-- Article Header -->
+    <header class="page-header">
+        <div class="page-header__meta">
+            <span class="page-header__tag">Manual</span>
+            <span>Chord Progresión</span>
+        </div>
+        <h1 class="page-header__title">
+
+            Manual de configuración de progresión del cordo<br>Lo que cada opción significa y cómo elegir
+
+
+        </h1>
+        <p class="page-header__subtitle">
+
+            ¿Qué opción para elegir, cuándo y por qué? Esta página recorre cada escenario en entrenamiento de progresión acorde, uno a la vez. Si llegas de un "?" en la pantalla de configuración, desplazate a la opción que necesitas.
+
+
+        </p>
+    </header>
+
+    <!-- Top-of-article CTA -->
+    <aside class="article-top-cta" aria-label="App promotion">
+        <div class="article-top-cta__body">
+            <p class="article-top-cta__title">
+
+                Prueba esto. Solfege PRO
+
+
+            </p>
+            <p class="article-top-cta__sub">
+
+                Consulta el precio en el App Store
+
+
+            </p>
+        </div>
+        <a href="https://apps.apple.com/es/app/id6756626617?pt=6749158383&amp;ct=web_manual&amp;mt=8" class="article-top-cta__button app-store-link" data-cta-position="article_top" aria-label="Descargar en el App Store"><img src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/es-es" class="app-store-link__img" alt="Descargar en el App Store" loading="lazy"></a>
+    </aside>
+
+    <!-- Article Body -->
+    <main class="article-body">
+
+        <!-- Intro -->
+        <p>
+
+            El entrenamiento de progresión de la coraza es práctica al escuchar varios acordes jugados en una fila y siguiendo su secuencia — la progresión, es decir, cómo se conectan las armonías — solo por el oído. El objetivo no es sólo el tipo de cada acorde sino el oído para el contexto: "este acorde se mueve a ese". Escuchar progresiones es la base para tocar canciones por oído, transcripción e improvisación.
+
+
+        </p>
+        <p>
+
+            Esta página es un manual para elegir la configuración. Cada escenario está diseñado alrededor de los métodos establecidos de la educación musical. Para cada configuración que pide una decisión, damos <strong>la elección recomendada, lo que es, y lo que entrena — con la evidencia detrás de ella</strong>. Si llegas de un "?" en la pantalla de configuración, desplazate a la opción que necesitas.
+
+
+        </p>
+
+        <!-- Shared note: practice-plan item settings sheets show only the settings
+     persisted per item (v1.3.1 hides non-persisted controls in plan context).
+     Included by the 7 module manuals: interval / chord / scale / progression /
+     sight-reading / rhythm / fretboard. Rhythm Sight Reading is deliberately
+     excluded — its plan items do not embed module settings at all. -->
+<p>
+
+    Esta página describe la pantalla de configuración del entrenamiento independiente abierto desde el hogar de la práctica. Cuando abres la configuración de un elemento de plan de práctica, solo se muestran los ajustes que se guardan con ese elemento.
+
+
+</p>
+
+
+        <!-- #training-mode -->
+        <h2 id="training-mode">Modo de capacitación</h2>
+
+        <p class="manual-lead">
+
+            <strong>Normal es suficiente para empezar.</strong> Alcance para "Revisar cuando se olvida" y "Cenco de Puntos de Puntos" una vez que se acumulan sus resultados.
+
+
+        </p>
+
+        <p>
+
+            Este escenario decide la política por la cual se eligen progresiones para usted. Hay tres modos.
+
+
+        </p>
+
+        <div class="manual-options">
+            <div class="manual-option">
+                <div class="manual-option__name">Normal</div>
+                <div class="manual-option__desc">Dibuja uniformemente de las progresiones que coinciden con su dificultad, longitud y clave elegida. Sin intención especial, éste es el único. Los ajustes que se explican a continuación establecen directamente el grupo de preguntas.</div>
+            </div>
+        </div>
+
+        <p>
+
+            Los otros dos — "Revisar cuando se olvida" y "Weak-Point Focus"— pagan una vez que se acumulan sus datos de rendimiento. "Weak-Point Focus" permanece indisponible hasta que se han identificado progresiones débiles (es decir, hasta que tengas suficiente historia de la respuesta). Trabajan de la misma manera en cada entrenamiento, por lo que aparecen en línea a continuación.
+
+
+        </p>
+
+        <!-- TODO i18n: fr/de spans are interim English; translate after ja voice approval -->
+<!-- Reusable mode partial. Training-agnostic: do NOT mention chord/scale/etc. -->
+<section class="article-mode" id="mode-spaced-repetition">
+    <h3 class="article-mode__title">"Revisar cuando se olvida" modo (repetición espaciada)</h3>
+
+    <p>
+
+        La repetición espaciada significa que un artículo que ya has estudiado vuelve tal como estás a punto de olvidarlo. Cuanto más confiable sea, más tiempo será la brecha antes de que regrese; los elementos que faltan vuelven antes. Se basa en la idea de que el recuerdo es más duradero cuando se espacian las reseñas en lugar de recortar el mismo artículo de vuelta a atrás.
+
+
+    </p>
+
+    <p>
+
+        Este modo te queda bien una vez que la piscina de elementos ha crecido y empiezas a notar que las cosas que una vez sabías se han resbalado. La aplicación maneja el programado automáticamente, por lo que no tiene que seguir lo que necesita revisar. Recibe sesiones cortas y diarias más que largas ocasionales.
+
+
+    </p>
+
+    <p>
+
+        Cuando en duda, acérquese a ella en la fase de "mantenimiento", después de haber trabajado a través de los elementos una vez. Utilice el modo normal para construir la base cuando todo es nuevo, y luego dejar que la repetición espacial mueva ese conocimiento a la memoria a largo plazo, un enfoque cómodo de dos pasos. <em>El beneficio de los exámenes de espaciamiento para la retención a largo plazo fue sintetizado a escala por Cepeda et al. (2006), y la conclusión de que el acto de la propia recuperación fortalece la memoria proviene de Roediger &amp; Karpicke (2006).</em>
+
+
+    </p>
+</section>
+
+        <!-- TODO i18n: fr/de spans are interim English; translate after ja voice approval -->
+<!-- Reusable mode partial. Training-agnostic: do NOT mention chord/scale/etc. -->
+<section class="article-mode" id="mode-weak-point">
+    <h3 class="article-mode__title">Modo de enfoque de puntos débiles</h3>
+
+    <p>
+
+        El enfoque de puntos débiles mira su historial de respuestas, identifica los elementos con la menor precisión, y los sirve a usted más a menudo. En lugar de pasar tiempo en lo que ya respondes de forma fiable, se concentra en la práctica exactamente en los lugares que sigues desaparecido. La aplicación elige los objetivos automáticamente de sus propios resultados.
+
+
+    </p>
+
+    <p>
+
+        Este modo se adapta al escenario donde su precisión general está subiendo pero algunos elementos específicos todavía te hacen subir cada vez. Debido a que sigue regresando a sus puntos débiles, se siente más difícil — y ese esfuerzo extra controlado es precisamente donde ocurre el aprendizaje (el principio de dificultades deseables). Necesita suficiente historia de respuesta antes de que aparezcan los candidatos, así que juega el modo normal por un tiempo primero.
+
+
+    </p>
+
+    <p>
+
+        Cuando en duda, desciende para unas cuantas sesiones concentradas cada vez que te mesetas a un nivel determinado y sientas que "todas perdiendo el mismo puñado de artículos justo antes de que se estabilice". Una vez que los puntos débiles se despejen, vuelva al modo normal para mantener su equilibrio general. <em>Deliberadamente, volviéndose a recuperar los elementos que tiende a perder —el "efecto de prueba"— fue mostrado por Roediger &amp; Karpicke (2006) para beneficiar fuertemente la retención posterior.</em>
+
+
+    </p>
+</section>
+
+
+        <div class="manual-rationale">
+            <span class="manual-rationale__label">La evidencia detrás de ella</span>
+            <p>
+
+                Los tres modos existen para concentrar la práctica en las progresiones que usted necesita actualmente. El formato de prueba en sí —recordando la respuesta en lugar de escuchar pasivamente— fortalece la memoria más que la reescritura (el efecto de prueba). "Revisar cuando se olvida" y "Weak-Point Focus" automatizan esto utilizando sus datos de rendimiento.
+
+
+            </p>
+            <p class="manual-rationale__ref">Ref.: Roediger &amp; Karpicke (2006) <a class="manual-ref-num" href="#ref-1">[1]</a></p>
+        </div>
+
+        <!-- #difficulty (also the notation / answer-style choice) -->
+        <h2 id="difficulty">Dificultad (reducción de notación)</h2>
+
+        <p class="manual-lead">
+
+            <strong>Cuando no esté seguro, comience en Función Básica (T/SD/D).</strong> Una vez que el "resto → movimiento → tensión → resolución" esqueleto es estable, sube a la función Avanzado → Numerales romanos → Símbolos de la cordura.
+
+
+        </p>
+
+        <p>
+
+            No sólo "fácil vs. duro" — decide <strong>la notación en la que respondes</strong> una progresión. Respondiendo por función (T/SD/D - el papel armónico de un acorde), por números romanos, o por nombres de acordes concretos entrenan un oído diferente y requiere conocimientos diferentes. Se mueve paso a paso de la más abstracta — Función — hacia los símbolos más concretos—.
+
+
+        </p>
+
+        <div class="manual-options" id="notation">
+            <div class="manual-option">
+                <div class="manual-option__name">Función básica (T/SD/D)</div>
+                <div class="manual-option__desc">Usted responde sólo la función de cada acorde — tres etiquetas: T = tónica (resto), SD = subdominio (ajuste), D = dominante (resolución de la tensión). Usos básicos sólo I=T, IV=SD, V=D. La etapa de entrada para escuchar el flujo de roles, incluso sin nombres de acordes. Esta asignación se aplica en tonalidad principales.</div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name">Función avanzada (T/SD/D)</div>
+                <div class="manual-option__desc">Las mismas respuestas basadas en la función, pero el alcance se ensancha: varios acordes comparten una función (I/vi/iii=T, IV/ii=SD, V/vii=D). Aprendes a escuchar, por ejemplo, vi parado en mí como tónica, el sonido de la sustitución. Esta asignación se aplica en tonalidad principales.</div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name">Números romanos</div>
+                <div class="manual-option__desc">Usted responde con números romanos como I, IV, V, vi (el grado de escala dentro de la tonalidad). Un paso más fino que la función: usted apunta qué acorde numerado es, construyendo una "mapa" transposable de progresiones que sostiene en cualquier tonalidad. En tonalidad menores las opciones cambian a i, ii°, III, iv, v, V, VI, VII, vii°.</div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name">Símbolos del Coro</div>
+                <div class="manual-option__desc">Usted responde con nombres de acordes concretos como C, Dm, G — el nivel más práctico, mapeando directamente en gráficos y hojas de plomo. Exige conectar tanto la tonalidad como el numeral romano en tu cabeza, por lo que es el nivel superior. En tonalidad menores las opciones son los acordes que suenan en esa tonalidad, como Am, Dm, E.</div>
+            </div>
+        </div>
+
+        <p>
+
+            En tonalidad menores, tanto la función básica como la función avanzada se marcan con la misma tabla de función de tonalidad menor — i, III, VI = T; ii°, iv = SD; v, V, VII, vii° = D. Véase <a href="#key-quality">Modo tonalidad (Major / Menor)</a> para detalles.
+
+
+        </p>
+
+        <div class="manual-rationale">
+            <span class="manual-rationale__label">La evidencia detrás de ella</span>
+            <p>
+
+                Comenzando por escuchar una progresión en términos de función (su papel armónico) estrecha la información para procesar y reduce la carga, construyendo una base segura. Escuchar el esqueleto "resto → movimiento → tensión → resolución" antes de memorizar los nombres de acordes concretos — la armonía funcional— es un procedimiento establecido en el entrenamiento auditivo de nivel universitario, y comenzar en el nivel más abstracto mantiene las demandas de procesamiento temprano baja.
+
+
+            </p>
+            <p class="manual-rationale__ref">Ref.: Karpinski (2000) <a class="manual-ref-num" href="#ref-2">[2]</a>; Sweller (1988) <a class="manual-ref-num" href="#ref-3">[3]</a></p>
+        </div>
+
+        <h2 id="functional-degree-variety">Grados funcionales de los Vary</h2>
+
+        <p class="manual-lead">
+
+            <strong>Encienda esto para formar la audición funcional (T/SD/D) de forma más amplia.</strong> Sólo aparece en Función (Advanced) × principal × modo normal.
+
+
+        </p>
+
+        <p>
+
+            Fuera, las preguntas vienen de un conjunto de progresiones llamadas. En, la misma función se presenta con <strong>diferentes grados de acordes</strong> (por ejemplo, el dominante como V y también vii°; el tónico como cualquiera de I, vi, iii). Esto te capacita para escuchar la función en sí mismo en lugar de memorizar acordes específicos.
+
+
+        </p>
+
+        <div class="manual-rationale">
+            <span class="manual-rationale__label">La evidencia detrás de ella</span>
+            <p>
+
+                Experimentar una función a través de diversos ejemplos te empuja a discriminar por la función subyacente en lugar de las cues de la superficie (una acorde específica). La habilidad aural incluye el sonido auditivo como función, por lo que variar los grados ayuda al concepto de función generalizar más allá de los ejemplos individuales.
+
+
+            </p>
+            <p class="manual-rationale__ref">Ref.: Karpinski (2000) <a class="manual-ref-num" href="#ref-2">[2]</a></p>
+        </div>
+
+        <!-- #length -->
+        <h2 id="length">Duración de la progresión</h2>
+
+        <p class="manual-lead">
+
+            <strong>Cuando no esté seguro, escoge 3 acordes.</strong> Suelta a 2 acordes para bloquear en un solo movimiento, o mueve hasta 4 acordes para tomar flujos de todo el largo.
+
+
+        </p>
+
+        <p>
+
+            Establece cuántos acordes juegan en una fila por pregunta. Puedes elegir 2, 3, o 4 acordes. Cuanto más acordes, más debes tener en memoria y más relaciones debes seguir, así que se hace más difícil. Al cambiar la longitud o dificultad, el número de patrones disponibles para esa combinación aparece en la parte superior derecha de la pantalla.
+
+
+        </p>
+
+        <div class="manual-options">
+            <div class="manual-option">
+                <div class="manual-option__name">2 acordes</div>
+                <div class="manual-option__desc">Oíste un solo "move" entre dos acordes. Puede centrarse en la unidad más pequeña — V→I (resolución), IV→I — ideal para aprender firmemente el sonido de un movimiento. El primer paso.</div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name">3 acordes</div>
+                <div class="manual-option__desc">Tres acordes dan una forma de "go-and-return", incluyendo los grapas más conocidos — I→IV→V, ii→V→I. Una longitud bien balanceada para aprender los contornos típicos de una progresión.</div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name">4 acordes</div>
+                <div class="manual-option__desc">Cuatro acordes dan una progresión cercana a una frase completa — flujos reales-song como I→vi→V o I→V→vi→IV. La carga de memoria es alta — la línea superior de dificultad.</div>
+            </div>
+        </div>
+
+        <div class="manual-rationale">
+            <span class="manual-rationale__label">La evidencia detrás de ella</span>
+            <p>
+
+                Puede comenzar de progresiones cortas para mantener menos acordes a la vez y mantener la carga en su oído bajo. Asegurar el sonido del movimiento con pocos acordes antes de alargar te hace más rápido que tocar cuatro acordes a la vez. Los niveles siguen la teoría de la carga cognitiva: mantener las demandas de procesamiento baja temprano en un nuevo aprendizaje de ayudas de habilidad.
+
+
+            </p>
+            <p class="manual-rationale__ref">Ref.: Sweller (1988) <a class="manual-ref-num" href="#ref-3">[3]</a></p>
+        </div>
+
+        <!-- #key-quality -->
+        <h2 id="key-quality">Modo clave (Major / Menor)</h2>
+
+        <p class="manual-lead">
+
+            <strong>Cuando no esté seguro, empieza con Major.</strong> Una vez que se siente estable, agregue Minor para extender su oído para que pueda leer progresiones en claves de cualquiera de los caracteres.
+
+
+        </p>
+
+        <p>
+
+            Decide si las progresiones se producen en una tonalidad importante o en una tonalidad menor. Mayor y menor da la misma progresión de grado-escala un carácter muy diferente brillante-o-o oscuro, y el conjunto de acordes que aparece también cambios.
+
+
+        </p>
+
+        <div class="manual-options">
+            <div class="manual-option">
+                <div class="manual-option__name">Mayor</div>
+                <div class="manual-option__desc">Práctica en tonalidad principales — un sonido brillante y estable centrado en las progresiones que más escucha en pop (I→IV→V, ii→V→I). El predeterminado cuando comienzas a aprender el reconocimiento de progresión.</div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name">Menores</div>
+                <div class="manual-option__desc">Practicar en tonalidad menores — un sonido más oscuro y sombreado, entrenando a escuchar progresiones específicas para menores como i→iv→V o i→VI→VII. Añádalo una vez que el mayor se siente estable, y el contraste hace la diferencia clara.</div>
+            </div>
+        </div>
+
+        <div class="manual-rationale">
+            <span class="manual-rationale__label">La evidencia detrás de ella</span>
+            <p>
+
+                Comenzando con obras importantes porque sus progresiones familiares y brillantes facilitan captar la sensación de función (T/SD/D) y números romanos. Denotar el flujo armónico de mayor y menor y escuchar el papel de cada acorde en el contexto es exactamente la escucha funcional que el entrenamiento auditivo de nivel universitario trata como fundamental.
+
+
+            </p>
+            <p class="manual-rationale__ref">Ref.: Karpinski (2000) <a class="manual-ref-num" href="#ref-2">[2]</a></p>
+        </div>
+
+        <!-- References -->
+        <section class="manual-refs">
+            <div class="manual-refs__title">Referencias</div>
+            <ol>
+                <li id="ref-1">Roediger, H. L., &amp; Karpicke, J. D. (2006). Test-enhanced learning: Taking memory tests improves long-term retention. <em>Psychological Science, 17</em>(3), 249–255.</li>
+                <li id="ref-2">Karpinski, G. S. (2000). <em>Aural Skills Acquisition: The Development of Listening, Reading, and Performing Skills in College-Level Musicians.</em> Oxford University Press.</li>
+                <li id="ref-3">Sweller, J. (1988). Cognitive load during problem solving: Effects on learning. <em>Cognitive Science, 12</em>(2), 257–285.</li>
+            </ol>
+        </section>
+
+    </main>
+
+    <!-- Final CTA -->
+    <section class="article-cta">
+        <h2 class="article-cta__title">¿Configuración? Pruébalo.</h2>
+        <p class="article-cta__text">
+
+            Una vez que entiendas cada ajuste, el resto es práctica práctica práctica.<br>Cuando no esté seguro, siga las líneas "cuando en duda" en esta página.<br>Encontrar los ajustes que le caben la función de Solfege PRO: la Progresión del Corto.
+
+
+        </p>
+        <a href="https://apps.apple.com/es/app/id6756626617?pt=6749158383&amp;ct=web_manual&amp;mt=8" class="app-store-link" aria-label="Descargar en el App Store">
+
+            <img class="app-store-link__img" width="120" height="40" src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/es-es" alt="Descargar en el App Store">
+
+
+        </a>
+    </section>
+
+    <!-- Related Content -->
+    <div class="article-related">
+        <div class="article-related__title">Contenido relacionado</div>
+        <a href="/manual/chord/" class="article-related__link" style="margin-bottom: var(--space-md);">
+            <div class="article-related__link-title">Manual de configuración de reconocimiento del acorde — Lo que cada opción significa</div>
+            <div class="article-related__link-desc">Para aquellos que quieren identificar acordes individuales antes de las progresiones, un manual que cubre cada ajuste en el entrenamiento de reconocimiento de acordes.</div>
+        </a>
+        <a href="/" class="article-related__link">
+            <div class="article-related__link-title">Solfege PRO Guía de prácticas</div>
+            <div class="article-related__link-desc">Menús de práctica basados en desafíos para guitarra, bajo, tambores, piano y voces</div>
+        </a>
+    </div>
+
+    <!-- Article Note -->
+    <aside class="article-endnote">
+        <p class="article-endnote__text">
+
+            Esta página es una referencia que explica la configuración de la aplicación de la aplicación. Las progresiones recomendadas aquí son directrices generales basadas en una metodología de formación de oídos ampliamente utilizada; los ajustes óptimos varían con experiencia y objetivos individuales. Los estudios citados reportan hallazgos de aprendizaje general y no garantizan resultados dentro de esta aplicación.
+
+
+        </p>
+    </aside>
+
+    <!-- Footer -->
+    <footer class="article-footer">
+        <p class="article-footer__text">
+            &copy; 2026 Solfege PRO
+        </p>
+    </footer>
+    <script src="/bootstrap.js?v=10" defer></script>
+    <nav aria-label="Language" style="display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:0.5rem;padding:var(--space-lg) var(--space-md);border-top:1px solid var(--surface-light);font-size:13px">
+        <a href="/manual/progression/" hreflang="ja" style="color:var(--text-secondary);text-decoration:none">日本語</a>
+        <span aria-hidden="true" style="color:var(--surface-light)">·</span>
+        <a href="/en/manual/progression/" hreflang="en" style="color:var(--text-secondary);text-decoration:none">English</a>
+        <span aria-hidden="true" style="color:var(--surface-light)">·</span>
+        <a href="/fr/manual/progression/" hreflang="fr" style="color:var(--text-secondary);text-decoration:none">Français</a>
+        <span aria-hidden="true" style="color:var(--surface-light)">·</span>
+        <a href="/de/manual/progression/" hreflang="de" style="color:var(--text-secondary);text-decoration:none">Deutsch</a>
+        <span aria-hidden="true" style="color:var(--surface-light)">·</span>
+        <span style="color:var(--primary);font-weight:600" aria-current="true">Español</span>
+        <span aria-hidden="true" style="color:var(--surface-light)">·</span>
+        <a href="/it/manual/progression/" hreflang="it" style="color:var(--text-secondary);text-decoration:none">Italiano</a>
+        <span aria-hidden="true" style="color:var(--surface-light)">·</span>
+        <a href="/ko/manual/progression/" hreflang="ko" style="color:var(--text-secondary);text-decoration:none">한국어</a>
+        <span aria-hidden="true" style="color:var(--surface-light)">·</span>
+        <a href="/pt-br/manual/progression/" hreflang="pt-BR" style="color:var(--text-secondary);text-decoration:none">Português (Brasil)</a>
+    </nav>
+</body>
+</html>

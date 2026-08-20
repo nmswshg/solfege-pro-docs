@@ -7,62 +7,48 @@ const { test, expect } = require('@playwright/test');
  *   en: /en/, /en/start-here/, /en/guides/foo/
  *   fr: /fr/...
  *   de: /de/...
+ *   es: /es/...  it: /it/...  ko: /ko/...  pt-BR: /pt-br/...
  *
  * Old URLs (foo.html, foo.X.html) serve meta-refresh redirect stubs.
  * Legacy ?lang=X query is auto-redirected by lang-toggle.js.
  */
 
-const PAGES = [
-    '/',
-    '/practice/',
-    '/features/',
-    '/free-vs-pro/',
-    '/manual/',
-    '/start-here/',
-    '/guides/',
-    '/guides/rhythm-training/',
-    '/guides/practice-spacing/',
-    '/guides/eye-hand-span/',
-    '/guides/bpm-60-wall/',
-    '/guides/mental-practice/',
-    '/guides/absolute-pitch-adult/',
-    '/guides/groove-training/',
-    '/guides/interval-training/',
-    '/guides/ear-training-chords/',
-    '/guides/ear-training-scales/',
-    '/guides/ear-training-progressions/',
-    '/guides/chord-function-curriculum/',
-    '/guides/sight-reading/',
-    '/guides/fretboard-training/',
-    '/practice/features/',
-    '/practice/training-menu/',
-    '/practice/training-menu/interval/',
-    '/practice/wind/',
-    '/practice/piano/',
-    '/practice/vocal/',
-    '/practice/drums/',
-    '/practice/guitar-bass/',
-];
+const translationSource = require('../data/translation-source.json');
+
+function sourcePathToJaPath(sourcePath) {
+    if (sourcePath === 'index.html') return '/';
+    return `/${sourcePath.replace(/index\.html$/, '').replace(/\.html$/, '/')}`;
+}
+
+// The translation source is extracted from every public source page. Deriving
+// this list prevents a newly added page from silently shipping in only four
+// languages because a hand-maintained test list was not updated.
+const PAGES = Object.keys(translationSource.pages).map(sourcePathToJaPath);
 
 /**
  * Convert a ja path to its /lang/ prefixed equivalent.
  */
 function pathForLang(jaPath, lang) {
     if (lang === 'ja') return jaPath;
-    if (jaPath === '/') return `/${lang}/`;
-    return `/${lang}${jaPath}`;
+    const prefix = lang === 'pt-BR' ? 'pt-br' : lang;
+    if (jaPath === '/') return `/${prefix}/`;
+    return `/${prefix}${jaPath}`;
 }
+
+const ALL_LANGS = ['ja', 'en', 'fr', 'de', 'es', 'it', 'ko', 'pt-BR'];
+const LANG_LABEL = { ja: 'JA', en: 'EN', fr: 'FR', de: 'DE', es: 'ES', it: 'IT', ko: 'KO', 'pt-BR': 'PT' };
 
 // -----------------------------------------------------------------
 // 1. Each per-language URL serves a single-lang page in that lang.
 // -----------------------------------------------------------------
 for (const path of PAGES) {
-    for (const lang of ['ja', 'en', 'fr', 'de']) {
+    for (const lang of ALL_LANGS) {
         test(`URL serves ${lang} — ${pathForLang(path, lang)}`, async ({ page, viewport }) => {
             test.skip(!viewport || viewport.width <= 768, 'desktop only');
             await page.goto(pathForLang(path, lang));
             await expect(page.locator('html')).toHaveAttribute('data-lang', lang);
-            await expect(page.locator('#lang-text')).toHaveText(lang.toUpperCase());
+            await expect(page.locator('#lang-text')).toHaveText(LANG_LABEL[lang]);
+            await expect(page.locator('footer a[href*="apps.apple.com"]')).toHaveCount(0);
         });
     }
 }
@@ -79,6 +65,7 @@ test('dropdown click navigates to sibling lang URL', async ({ page, viewport }) 
     const menu = page.locator('#lang-menu');
 
     await btn.click();
+    await expect(menu.locator('[data-lang]')).toHaveCount(8);
     await menu.locator('[data-lang="en"]').click();
     await page.waitForURL('**/en/guides/interval-training/');
     await expect(page.locator('html')).toHaveAttribute('data-lang', 'en');
@@ -92,6 +79,26 @@ test('dropdown click navigates to sibling lang URL', async ({ page, viewport }) 
     await menu.locator('[data-lang="de"]').click();
     await page.waitForURL('**/de/guides/interval-training/');
     await expect(page.locator('html')).toHaveAttribute('data-lang', 'de');
+
+    await btn.click();
+    await menu.locator('[data-lang="es"]').click();
+    await page.waitForURL('**/es/guides/interval-training/');
+    await expect(page.locator('html')).toHaveAttribute('data-lang', 'es');
+
+    await btn.click();
+    await menu.locator('[data-lang="it"]').click();
+    await page.waitForURL('**/it/guides/interval-training/');
+    await expect(page.locator('html')).toHaveAttribute('data-lang', 'it');
+
+    await btn.click();
+    await menu.locator('[data-lang="ko"]').click();
+    await page.waitForURL('**/ko/guides/interval-training/');
+    await expect(page.locator('html')).toHaveAttribute('data-lang', 'ko');
+
+    await btn.click();
+    await menu.locator('[data-lang="pt-BR"]').click();
+    await page.waitForURL('**/pt-br/guides/interval-training/');
+    await expect(page.locator('html')).toHaveAttribute('data-lang', 'pt-BR');
 
     await btn.click();
     await menu.locator('[data-lang="ja"]').click();
@@ -151,24 +158,25 @@ test('active item highlighted matches current URL lang', async ({ page, viewport
 });
 
 // -----------------------------------------------------------------
-// 5. hreflang block — all 4 langs present, pointing to new path-based URLs.
+// 5. hreflang block — all 8 langs present, pointing to new path-based URLs.
 // -----------------------------------------------------------------
 for (const path of PAGES) {
-    test(`hreflang ja/en/fr/de point to directory URLs — ${path}`, async ({ page, viewport }) => {
+    test(`hreflang all 8 languages point to directory URLs — ${path}`, async ({ page, viewport }) => {
         test.skip(!viewport || viewport.width <= 768, 'desktop only');
         await page.goto(path);
-        for (const lang of ['ja', 'en', 'fr', 'de']) {
+        for (const lang of ALL_LANGS) {
             const link = page.locator(`link[rel="alternate"][hreflang="${lang}"]`);
             await expect(link).toHaveCount(1);
             const href = await link.getAttribute('href');
             // No legacy patterns
             expect(href).not.toMatch(/\?lang=/);
-            expect(href).not.toMatch(/\.(en|fr|de)\.html$/);
+            expect(href).not.toMatch(/\.(en|fr|de|es|it|ko|pt-br)\.html$/);
             // Must be directory URL ending in /
             expect(href).toMatch(/\/$/);
             // Non-ja must have /lang/ prefix in the path
             if (lang !== 'ja') {
-                expect(href).toMatch(new RegExp(`/${lang}/`));
+                const prefix = lang === 'pt-BR' ? 'pt-br' : lang;
+                expect(href).toMatch(new RegExp(`/${prefix}/`));
             }
         }
     });
@@ -195,10 +203,10 @@ test('old .en.html URLs redirect to /en/.../', async ({ page, viewport }) => {
 // -----------------------------------------------------------------
 // 7. The former /app/ LP is consolidated into each localized root.
 // -----------------------------------------------------------------
-for (const lang of ['ja', 'en', 'fr', 'de']) {
+for (const lang of ALL_LANGS) {
     test(`/app/ redirect signals point to the ${lang} root`, async ({ page, viewport }) => {
         test.skip(!viewport || viewport.width <= 768, 'desktop only');
-        const prefix = lang === 'ja' ? '' : `/${lang}`;
+        const prefix = lang === 'ja' ? '' : `/${lang === 'pt-BR' ? 'pt-br' : lang}`;
         const target = `https://solfegepro.com${prefix}/`;
         const response = await page.request.get(`${prefix}/app/`);
         const html = await response.text();
@@ -217,6 +225,10 @@ const ROOT_SEO = {
     en: { path: '/en/', locale: 'us', currency: 'USD' },
     fr: { path: '/fr/', locale: 'fr', currency: 'EUR' },
     de: { path: '/de/', locale: 'de', currency: 'EUR' },
+    es: { path: '/es/', locale: 'es', currency: 'EUR' },
+    it: { path: '/it/', locale: 'it', currency: 'EUR' },
+    ko: { path: '/ko/', locale: 'kr', currency: 'KRW' },
+    'pt-BR': { path: '/pt-br/', locale: 'br', currency: 'BRL' },
 };
 
 for (const [lang, expected] of Object.entries(ROOT_SEO)) {
@@ -244,8 +256,13 @@ test('sitemap promotes roots and excludes the retired /app/ URLs', async ({ page
     test.skip(!viewport || viewport.width <= 768, 'desktop only');
     const response = await page.request.get('/sitemap.xml');
     const xml = await response.text();
+    expect((xml.match(/<loc>/g) || []).length).toBe(PAGES.length * ALL_LANGS.length);
     expect(xml).toContain('<loc>https://solfegepro.com/</loc>');
     expect(xml).toContain('<loc>https://solfegepro.com/en/</loc>');
+    expect(xml).toContain('<loc>https://solfegepro.com/es/</loc>');
+    expect(xml).toContain('<loc>https://solfegepro.com/it/</loc>');
+    expect(xml).toContain('<loc>https://solfegepro.com/ko/</loc>');
+    expect(xml).toContain('<loc>https://solfegepro.com/pt-br/</loc>');
     expect(xml).toContain('<loc>https://solfegepro.com/practice/</loc>');
     expect(xml).not.toContain('solfegepro.com/app/');
     expect(xml).not.toContain('solfegepro.com/en/app/');

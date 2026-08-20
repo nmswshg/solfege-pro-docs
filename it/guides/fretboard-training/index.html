@@ -1,0 +1,1111 @@
+<!DOCTYPE html>
+<html lang="it"
+      data-title-ja="指板トレーニング — ギターの音名を暗記する | ソルフェージュPRO"
+      data-title-en="Mastering the Fretboard — How to Efficiently Learn Guitar Note Positions | Solfege PRO"
+      data-title-fr="Maîtriser le manche — Apprendre efficacement les notes de la guitare | Solfege PRO"
+      data-title-de="Das Griffbrett beherrschen — Gitarrennoten effizient lernen | Solfege PRO">
+<head>
+    <meta charset="UTF-8">
+    <meta name="robots" content="index, follow">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#1A1A1E">
+    <title>Padronanza della tastiera — memorizzare le note della chitarra | Solfege PRO</title>
+    <meta name="description" content="Memorizza la tastiera della chitarra passo dopo passo: corde a vuoto, riferimento al quinto tasto, forme delle ottave e punto di riferimento dell’ottava al dodicesimo tasto.">
+
+    <!-- Canonical -->
+    <link rel="canonical" href="https://solfegepro.com/it/guides/fretboard-training/">
+    <link rel="alternate" hreflang="ja" href="https://solfegepro.com/guides/fretboard-training/">
+    <link rel="alternate" hreflang="en" href="https://solfegepro.com/en/guides/fretboard-training/">
+    <link rel="alternate" hreflang="fr" href="https://solfegepro.com/fr/guides/fretboard-training/">
+    <link rel="alternate" hreflang="de" href="https://solfegepro.com/de/guides/fretboard-training/">
+    <link rel="alternate" hreflang="es" href="https://solfegepro.com/es/guides/fretboard-training/">
+    <link rel="alternate" hreflang="it" href="https://solfegepro.com/it/guides/fretboard-training/">
+    <link rel="alternate" hreflang="ko" href="https://solfegepro.com/ko/guides/fretboard-training/">
+    <link rel="alternate" hreflang="pt-BR" href="https://solfegepro.com/pt-br/guides/fretboard-training/">
+    <link rel="alternate" hreflang="x-default" href="https://solfegepro.com/guides/fretboard-training/">
+<!-- OGP -->
+    <meta property="og:title" content="Padronanza della tastiera — memorizzare le note della chitarra">
+    <meta property="og:description" content="Memorizza la tastiera della chitarra passo dopo passo: corde a vuoto, riferimento al quinto tasto, forme delle ottave e punto di riferimento dell’ottava al dodicesimo tasto.">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://solfegepro.com/it/guides/fretboard-training/">
+    <meta property="og:site_name" content="Solfege PRO">
+    <meta property="og:image" content="https://solfegepro.com/og-image.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Solfege PRO">
+    <meta property="og:locale" content="it_IT">
+    <meta property="og:locale:alternate" content="ja_JP">
+    <meta property="og:locale:alternate" content="en_US">
+    <meta property="og:locale:alternate" content="fr_FR">
+    <meta property="og:locale:alternate" content="de_DE">
+    <meta property="og:locale:alternate" content="es_ES">
+    <meta property="og:locale:alternate" content="ko_KR">
+    <meta property="og:locale:alternate" content="pt_BR">
+    <meta property="article:published_time" content="2026-03-31">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Padronanza della tastiera — memorizzare le note della chitarra">
+    <meta name="twitter:description" content="Memorizza la tastiera della chitarra passo dopo passo: corde a vuoto, riferimento al quinto tasto, forme delle ottave e punto di riferimento dell’ottava al dodicesimo tasto.">
+    <meta name="twitter:image" content="https://solfegepro.com/og-image.png">
+
+    <!-- Favicon -->
+    <link rel="icon" href="/favicon.ico" sizes="any">
+    <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap"></noscript>
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="/style.css?v=23">
+    <link rel="stylesheet" href="/guides/article.css?v=14">
+
+    <!-- Fretboard diagram styles -->
+    <style>
+        /* Fretboard Grid Diagram (responsive — never horizontally scrolls) */
+        .fretboard-diagram {
+            background: var(--surface);
+            border-radius: var(--radius-xl);
+            padding: var(--space-lg);
+            margin: var(--space-xl) 0;
+            border: 1px solid var(--surface-light);
+        }
+
+        /* Shared 12-column template: string label (32px) + 11 fret cells. */
+        .fretboard-grid__header,
+        .fretboard-grid__row {
+            display: grid;
+            grid-template-columns: 32px repeat(11, minmax(0, 1fr));
+        }
+
+        .fretboard-grid__header {
+            margin-bottom: var(--space-sm);
+        }
+
+        .fretboard-grid__header-cell {
+            text-align: center;
+            font-size: 11px;
+            font-weight: 700;
+            color: var(--text-secondary);
+            min-width: 0;
+        }
+
+        .fretboard-grid__row {
+            align-items: center;
+            border-bottom: 2px solid var(--surface-light);
+        }
+
+        .fretboard-grid__row:last-child {
+            border-bottom: none;
+        }
+
+        .fretboard-grid__string-label {
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--primary);
+            text-align: center;
+        }
+
+        .fretboard-grid__cell {
+            height: 36px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--text-secondary);
+            position: relative;
+            min-width: 0;
+        }
+
+        .fretboard-grid__cell--note {
+            color: var(--text-primary);
+        }
+
+        .fretboard-grid__cell--note::after {
+            content: "";
+            position: absolute;
+            /* Scale with the cell — never exceed 28px, never below 20px. */
+            width: clamp(20px, 80%, 28px);
+            aspect-ratio: 1;
+            border-radius: 50%;
+            background: rgba(212, 175, 55, 0.15);
+            border: 1px solid rgba(212, 175, 55, 0.4);
+            z-index: 0;
+        }
+
+        .fretboard-grid__cell--highlight {
+            color: var(--primary);
+            font-weight: 700;
+        }
+
+        .fretboard-grid__cell--highlight::after {
+            background: rgba(212, 175, 55, 0.25);
+            border-color: var(--primary);
+        }
+
+        .fretboard-grid__nut {
+            width: 4px;
+            height: 36px;
+            background: var(--text-secondary);
+            flex-shrink: 0;
+            border-radius: 2px;
+        }
+
+        /* Octave Shape Diagram (inner .octave-grid handles responsiveness) */
+        .octave-diagram {
+            background: var(--surface);
+            border-radius: var(--radius-xl);
+            padding: var(--space-lg);
+            margin: var(--space-xl) 0;
+            border: 1px solid var(--surface-light);
+        }
+
+        /* Octave shape: 1 label + 6 fret columns (overrides the fretboard
+           template since the diagram only spans 6 frets). */
+        .octave-grid > .fretboard-grid__header,
+        .octave-grid__row {
+            display: grid;
+            grid-template-columns: 32px repeat(6, minmax(0, 1fr));
+        }
+        .octave-grid > .fretboard-grid__header > .fretboard-grid__header-cell {
+            /* Override the inline width attributes the HTML still ships
+               for backwards-compatibility — let the grid track govern. */
+            width: auto !important;
+        }
+
+        .octave-grid__row {
+            align-items: center;
+            border-bottom: 2px solid var(--surface-light);
+        }
+
+        .octave-grid__row:last-child {
+            border-bottom: none;
+        }
+
+        .octave-grid__label {
+            font-size: 12px;
+            font-weight: 700;
+            color: var(--text-secondary);
+            text-align: center;
+        }
+
+        .octave-grid__cell {
+            height: 34px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 11px;
+            color: var(--text-secondary);
+            position: relative;
+            min-width: 0;
+        }
+
+        .octave-grid__cell--root {
+            color: var(--primary);
+            font-weight: 700;
+        }
+
+        .octave-grid__cell--root::after {
+            content: "";
+            position: absolute;
+            width: clamp(18px, 80%, 26px);
+            aspect-ratio: 1;
+            border-radius: 50%;
+            background: rgba(212, 175, 55, 0.3);
+            border: 2px solid var(--primary);
+            z-index: 0;
+        }
+
+        .octave-grid__cell--octave {
+            color: #4ADE80;
+            font-weight: 700;
+        }
+
+        .octave-grid__cell--octave::after {
+            content: "";
+            position: absolute;
+            width: clamp(18px, 80%, 26px);
+            aspect-ratio: 1;
+            border-radius: 50%;
+            background: rgba(74, 222, 128, 0.2);
+            border: 2px solid #4ADE80;
+            z-index: 0;
+        }
+
+        .octave-arrow {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: var(--space-sm);
+            margin-top: var(--space-md);
+            font-size: 13px;
+            color: var(--text-secondary);
+        }
+
+        .octave-arrow__badge {
+            display: inline-flex;
+            align-items: center;
+            gap: var(--space-xs);
+            padding: 3px 10px;
+            border-radius: var(--radius-sm);
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .octave-arrow__badge--root {
+            background: rgba(212, 175, 55, 0.15);
+            color: var(--primary);
+            border: 1px solid rgba(212, 175, 55, 0.3);
+        }
+
+        .octave-arrow__badge--octave {
+            background: rgba(74, 222, 128, 0.15);
+            color: #4ADE80;
+            border: 1px solid rgba(74, 222, 128, 0.3);
+        }
+
+        /* Feature list for app section */
+        .feature-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--space-md);
+            margin: var(--space-lg) 0;
+        }
+
+        .feature-card {
+            background: var(--surface);
+            border: 1px solid var(--surface-light);
+            border-radius: var(--radius-lg);
+            padding: var(--space-md) var(--space-lg);
+        }
+
+        .feature-card__title {
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: var(--space-xs);
+        }
+
+        .feature-card__desc {
+            font-size: 13px;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        /* Progression steps */
+        .progression-steps {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-md);
+            margin: var(--space-lg) 0;
+        }
+
+        .progression-step {
+            display: flex;
+            align-items: flex-start;
+            gap: var(--space-md);
+            background: var(--surface);
+            border: 1px solid var(--surface-light);
+            border-radius: var(--radius-lg);
+            padding: var(--space-md) var(--space-lg);
+        }
+
+        .progression-step__number {
+            width: 28px;
+            height: 28px;
+            min-width: 28px;
+            background: var(--primary);
+            color: var(--background);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 13px;
+            font-weight: 700;
+            margin-top: 2px;
+        }
+
+        .progression-step__content {
+            flex: 1;
+        }
+
+        .progression-step__title {
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 2px;
+        }
+
+        .progression-step__desc {
+            font-size: 13px;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        @media (max-width: 768px) {
+            .feature-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .fretboard-grid__header-cell,
+            .fretboard-grid__cell {
+                width: 48px;
+            }
+
+            .octave-grid__cell {
+                width: 42px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .fretboard-grid__header-cell,
+            .fretboard-grid__cell {
+                width: 42px;
+                font-size: 10px;
+            }
+
+            .fretboard-grid__string-label {
+                width: 32px;
+                font-size: 11px;
+            }
+
+            .fretboard-grid__cell--note::after,
+            .fretboard-grid__cell--highlight::after {
+                width: 24px;
+                height: 24px;
+            }
+        }
+    </style>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Padronanza della tastiera — memorizzare le note della chitarra","description":"Memorizza la tastiera della chitarra passo dopo passo: corde a vuoto, riferimento al quinto tasto, forme delle ottave e punto di riferimento dell’ottava al dodicesimo tasto.","author":{"@type":"Organization","name":"Solfege PRO"},"publisher":{"@type":"Organization","name":"Solfege PRO","logo":{"@type":"ImageObject","url":"https://solfegepro.com/AppIcon.png"}},"datePublished":"2026-03-31","mainEntityOfPage":{"@type":"WebPage","@id":"https://solfegepro.com/it/guides/fretboard-training/"}}</script>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://solfegepro.com/it/"},{"@type":"ListItem","position":2,"name":"Guide pratiche","item":"https://solfegepro.com/it/guides/"},{"@type":"ListItem","position":3,"name":"指板トレーニング — ギターの音名を暗記する","item":"https://solfegepro.com/it/guides/fretboard-training/"}]}</script>
+</head>
+<body>
+    <!-- Navigation -->
+        <nav class="nav" aria-label="Menu principale">
+        <div class="nav__container">
+            <a href="/it/" class="nav__logo" aria-label="Solfege PRO">
+                <img src="/AppIcon.png" alt="" class="nav__logo-icon" width="32" height="32">
+                <span class="nav__logo-text">Solfege PRO</span>
+            </a>
+            <ul class="nav__list">
+                <li><a href="/it/" class="nav__link">Informazioni su Solfege PRO</a></li>
+                <li><a href="/it/features/" class="nav__link">Allenamenti</a></li>
+                <li><a href="/it/guides/" class="nav__link active" aria-current="page">Guide pratiche</a></li>
+                <li><a href="/it/manual/" class="nav__link">Manuale</a></li>
+            </ul>
+            <div class="nav__settings">
+                <button class="settings-btn" id="lang-toggle" title="Seleziona lingua"><span id="lang-text">IT</span></button>
+                <button class="hamburger-btn" id="hamburger-btn" aria-label="Apri menu" aria-expanded="false" aria-controls="drawer">
+                    <span class="hamburger-btn__line"></span><span class="hamburger-btn__line"></span><span class="hamburger-btn__line"></span>
+                </button>
+            </div>
+        </div>
+    </nav>
+        <!-- Mobile drawer (hidden on desktop) -->
+            <div class="drawer-overlay" id="drawer-overlay"></div>
+    <aside class="drawer" id="drawer" aria-label="Menu" aria-hidden="true" inert>
+        <div class="drawer__header">
+            <span class="drawer__title">Menu</span>
+            <button class="drawer__close" id="drawer-close" aria-label="Chiudi menu">×</button>
+        </div>
+        <ul class="drawer__list">
+            <li><a href="/it/" class="drawer__link">Informazioni su Solfege PRO</a></li>
+            <li><a href="/it/features/" class="drawer__link">Allenamenti</a></li>
+            <li><a href="/it/guides/" class="drawer__link active" aria-current="page">Guide pratiche</a></li>
+            <li><a href="/it/manual/" class="drawer__link">Manuale</a></li>
+        </ul>
+    </aside>
+
+
+    <!-- Article Header -->
+    <header class="page-header">
+        <div class="page-header__meta">
+            <span class="page-header__tag">Allenamento del bordo</span>
+            <span>10 min</span>
+        </div>
+        <h1 class="page-header__title">
+
+            Mastering il tastiera<br>Come Impararezzire il Tuo Nome<br>Posizione della nota della chitarra
+
+
+        </h1>
+        <p class="page-header__subtitle">
+
+            Una tastiera ha più di 100 posizioni di nota. Invece di una memorizzazione a forza bruta, impara come la comprensione della struttura rende la padronanza molto più efficiente.
+
+
+        </p>
+    </header>
+
+    <!-- Top-of-article CTA -->
+    <aside class="article-top-cta" aria-label="App promotion">
+        <div class="article-top-cta__body">
+            <p class="article-top-cta__title">
+
+                Prova questo Solfege PRO
+
+
+            </p>
+            <p class="article-top-cta__sub">
+
+                Consulta il prezzo sull’App Store
+
+
+            </p>
+        </div>
+        <a href="https://apps.apple.com/it/app/id6756626617?pt=6749158383&amp;ct=web_guides&amp;mt=8" class="article-top-cta__button app-store-link" data-cta-position="article_top" aria-label="Scarica sull’App Store"><img src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/it-it" class="app-store-link__img" alt="Scarica sull’App Store" loading="lazy"></a>
+    </aside>
+
+    <!-- Article Body -->
+    <main class="article-body">
+
+        <!-- Section 1: Why Learn the Fretboard -->
+        <h2 id="why-learn">Perché imparare il tastiera?</h2>
+
+        <p>
+
+            Chitarra ha una sfida unica che il pianoforte non lo fa. Su un piano, c'è solo una chiave per ogni "C" per ottava. Sulla chitarra, la stessa nota "C" esiste in più posizioni attraverso la tastiera.
+
+
+        </p>
+
+        <p>
+
+            Con 6 corde e 24 fret, ci sono 144 posizioni in teoria. Anche contando solo posizioni musicalmente significative, il numero supera 100. Pensare a questo come "memorizzazione" può sentirsi schiacciante.
+
+
+        </p>
+
+        <p>
+
+            Ma i benefici di conoscere la tastiera sono significativi.
+
+
+        </p>
+
+        <ul>
+            <li><strong>Miglioramento</strong> — Gioca senza pensare a dove mettere le dita accanto</li>
+            <li><strong>Votazione degli accordi</strong> — Gioca lo stesso accordo in più posizioni e vuoti</li>
+            <li><strong>Trasposizione</strong> — Adapt istantaneamente quando cambia la chiave</li>
+            <li><strong>Trascrizione</strong> — Trova rapidamente le note che sentite sulla tastiera</li>
+            <li><strong>Comunicazione</strong> — Quando qualcuno dice "gioca un Bb lì", puoi rispondere immediatamente</li>
+        </ul>
+
+        <p>
+
+            Un chitarrista che non sa che la tastiera è come se qualcuno si sentisse in una stanza buia. Un chitarrista che fa cammina con una mappa.
+
+
+        </p>
+
+        <!-- Section 2: Fretboard Structure -->
+        <h2 id="structure">Comprendere la struttura del bordo</h2>
+
+        <p>
+
+            Prima di memorizzare la tastiera, capire la sua struttura prima. Una volta che vedi i modelli, non dovrai memorizzare 144 posizioni come 144 fatti separati.
+
+
+        </p>
+
+        <h3 id="tuning">Tuning standard</h3>
+        <p>
+
+            Sintonizzazione standard della chitarra, dal basso al più alto della corda, è <strong>E - A - D - G - B - E</strong>. Ogni stringa aperta (fret 0) produce queste note.
+
+
+        </p>
+
+        <h3 id="fret-semitone">Un Fret = Un Semitone</h3>
+        <p>
+
+            Ogni fret alza il campo da un semitone. Quindi se la prima stringa aperta è E, la francese 1 è F, la francese 2 è F#/Gb, la francese 3 è G, e così via in un modello regolare.
+
+
+        </p>
+
+        <h3 id="12th-fret">12th Fret = Un ottava su</h3>
+        <p>
+
+            Il 12o francese è esattamente un ottavo sopra la corda aperta. Questo significa che il modello di nome della nota da fret 0-11 ripete da francese 12 in poi. Imparare fino al 12 ° fret, e il resto segue automaticamente.
+
+
+        </p>
+
+        <!-- Fretboard Diagram -->
+        <div class="fretboard-diagram">
+            <div class="diagram-title">tastiera Note Layout (Posizioni di Occhio)</div>
+            <div class="fretboard-grid">
+                <div class="fretboard-grid__header">
+                    <div class="fretboard-grid__header-cell"></div>
+                    <div class="fretboard-grid__header-cell">Aprire</div>
+                    <div class="fretboard-grid__header-cell">1</div>
+                    <div class="fretboard-grid__header-cell">2</div>
+                    <div class="fretboard-grid__header-cell">3</div>
+                    <div class="fretboard-grid__header-cell">4</div>
+                    <div class="fretboard-grid__header-cell">5</div>
+                    <div class="fretboard-grid__header-cell">7</div>
+                    <div class="fretboard-grid__header-cell">8</div>
+                    <div class="fretboard-grid__header-cell">9</div>
+                    <div class="fretboard-grid__header-cell">10</div>
+                    <div class="fretboard-grid__header-cell">12</div>
+                </div>
+                <!-- 1st string (high E) -->
+                <div class="fretboard-grid__row">
+                    <div class="fretboard-grid__string-label">1</div>
+                    <div class="fretboard-grid__cell fretboard-grid__cell--note fretboard-grid__cell--highlight">E</div>
+                    <div class="fretboard-grid__cell fretboard-grid__cell--note">F</div>
+                    <div class="fretboard-grid__cell"></div>
+                    <div class="fretboard-grid__cell fretboard-grid__cell--note">G</div>
+                    <div class="fretboard-grid__cell"></div>
+                    <div class="fretboard-grid__cell fretboard-grid__cell--note">A</div>
+                    <div class="fretboard-grid__cell fretboard-grid__cell--note">B</div>
+                    <div class="fretboard-grid__cell fretboard-grid__cell--note">C</div>
+                    <div class="fretboard-grid__cell"></div>
+                    <div class="fretboard-grid__cell fretboard-grid__cell--note">D</div>
+                    <div class="fretboard-grid__cell fretboard-grid__cell--note fretboard-grid__cell--highlight">E</div>
+                </div>
+                <!-- 2nd string (B) -->
+                <div class="fretboard-grid__row">
+                    <div class="fretboard-grid__string-label">2</div>
+                    <div class="fretboard-grid__cell fretboard-grid__cell--note fretboard-grid__cell--highlight">B</div>
+                    <div class="fretboard-grid__cell fretboard-grid__cell--note">C</div>
+                    <div class="fretboard-grid__cell"></div>
+                    <div class="fretboard-grid__cell fretboard-grid__cell--note">D</div>
+                    <div class="fretboard-grid__cell"></div>
+                    <div class="fretboard-grid__cell fretboard-grid__cell--note">E</div>
+                    <div class="fretboard-grid__cell fretboard-grid__cell--note">F#</div>
+                    <div class="fretboard-grid__cell fretboard-grid__cell--note">G</div>
+                    <div class="fretboard-grid__cell"></div>
+                    <div class="fretboard-grid__cell fretboard-grid__cell--note">A</div>
+                    <div class="fretboard-grid__cell fretboard-grid__cell--note fretboard-grid__cell--highlight">B</div>
+                </div>
+                <!-- 3rd string (G) -->
+                <div class="fretboard-grid__row">
+                    <div class="fretboard-grid__string-label">3</div>
+                    <div class="fretboard-grid__cell fretboard-grid__cell--note fretboard-grid__cell--highlight">G</div>
+                    <div class="fretboard-grid__cell"></div>
+                    <div class="fretboard-grid__cell fretboard-grid__cell--note">A</div>
+                    <div class="fretboard-grid__cell"></div>
+                    <div class="fretboard-grid__cell fretboard-grid__cell--note">B</div>
+                    <div class="fretboard-grid__cell fretboard-grid__cell--note">C</div>
+                    <div class="fretboard-grid__cell fretboard-grid__cell--note">D</div>
+                    <div class="fretboard-grid__cell"></div>
+                    <div class="fretboard-grid__cell fretboard-grid__cell--note">E</div>
+                    <div class="fretboard-grid__cell fretboard-grid__cell--note">F</div>
+                    <div class="fretboard-grid__cell fretboard-grid__cell--note fretboard-grid__cell--highlight">G</div>
+                </div>
+                <!-- 4th string (D) -->
+                <div class="fretboard-grid__row">
+                    <div class="fretboard-grid__string-label">4</div>
+                    <div class="fretboard-grid__cell fretboard-grid__cell--note fretboard-grid__cell--highlight">D</div>
+                    <div class="fretboard-grid__cell"></div>
+                    <div class="fretboard-grid__cell fretboard-grid__cell--note">E</div>
+                    <div class="fretboard-grid__cell fretboard-grid__cell--note">F</div>
+                    <div class="fretboard-grid__cell"></div>
+                    <div class="fretboard-grid__cell fretboard-grid__cell--note">G</div>
+                    <div class="fretboard-grid__cell fretboard-grid__cell--note">A</div>
+                    <div class="fretboard-grid__cell"></div>
+                    <div class="fretboard-grid__cell fretboard-grid__cell--note">B</div>
+                    <div class="fretboard-grid__cell fretboard-grid__cell--note">C</div>
+                    <div class="fretboard-grid__cell fretboard-grid__cell--note fretboard-grid__cell--highlight">D</div>
+                </div>
+                <!-- 5th string (A) -->
+                <div class="fretboard-grid__row">
+                    <div class="fretboard-grid__string-label">5</div>
+                    <div class="fretboard-grid__cell fretboard-grid__cell--note fretboard-grid__cell--highlight">A</div>
+                    <div class="fretboard-grid__cell"></div>
+                    <div class="fretboard-grid__cell fretboard-grid__cell--note">B</div>
+                    <div class="fretboard-grid__cell fretboard-grid__cell--note">C</div>
+                    <div class="fretboard-grid__cell"></div>
+                    <div class="fretboard-grid__cell fretboard-grid__cell--note">D</div>
+                    <div class="fretboard-grid__cell fretboard-grid__cell--note">E</div>
+                    <div class="fretboard-grid__cell fretboard-grid__cell--note">F</div>
+                    <div class="fretboard-grid__cell"></div>
+                    <div class="fretboard-grid__cell fretboard-grid__cell--note">G</div>
+                    <div class="fretboard-grid__cell fretboard-grid__cell--note fretboard-grid__cell--highlight">A</div>
+                </div>
+                <!-- 6th string (low E) -->
+                <div class="fretboard-grid__row">
+                    <div class="fretboard-grid__string-label">6</div>
+                    <div class="fretboard-grid__cell fretboard-grid__cell--note fretboard-grid__cell--highlight">E</div>
+                    <div class="fretboard-grid__cell fretboard-grid__cell--note">F</div>
+                    <div class="fretboard-grid__cell"></div>
+                    <div class="fretboard-grid__cell fretboard-grid__cell--note">G</div>
+                    <div class="fretboard-grid__cell"></div>
+                    <div class="fretboard-grid__cell fretboard-grid__cell--note">A</div>
+                    <div class="fretboard-grid__cell fretboard-grid__cell--note">B</div>
+                    <div class="fretboard-grid__cell fretboard-grid__cell--note">C</div>
+                    <div class="fretboard-grid__cell"></div>
+                    <div class="fretboard-grid__cell fretboard-grid__cell--note">D</div>
+                    <div class="fretboard-grid__cell fretboard-grid__cell--note fretboard-grid__cell--highlight">E</div>
+                </div>
+            </div>
+            <p style="font-size:12px;color:var(--text-secondary);margin-top:var(--space-md);text-align:center;">
+
+                Cerchi in oro = corde aperte / 12 ° fret (ottava). Le celle vuote sono note # / b.
+
+
+            </p>
+        </div>
+
+        <h3 id="same-note">La stessa nota in più posti</h3>
+        <p>
+
+            Guardando il diagramma sopra, la nota "C" appare al 1 ° stringa tasto 8, 2nd string tasto 1, 3rd string tasto 5, 4th string tasto 10, 5th string tasto 3, e altro ancora. Questo è sia il motivo principale che il bordo della tastiera sembra complesso e la ragione per cui offre tanta libertà.
+
+
+        </p>
+
+        <div class="article-note">
+            <div class="article-note__title">Punto chiave</div>
+            <p>Il tastiera non è "144 posizioni indipendenti", ma "un modello ripetitivo di 12 note su 6 corde". Capire la struttura riduce drasticamente ciò che è necessario memorizzare.</p>
+        </div>
+
+        <!-- Section 3: Common Struggles -->
+        <h2 id="common-struggles">Struggs comuni</h2>
+
+        <p>
+
+            Quando si cerca di imparare il tastiera, la maggior parte dei chitarristi ha colpito le stesse pareti.
+
+
+        </p>
+
+        <h3 id="unknown-territory">Frets Oltre 5-7 Sono Sconosciuto Territorio</h3>
+        <p>
+
+            Molti chitarristi conoscono i fret 0-5 perché hanno imparato le forme di corda aperta. Ma chiedi "che nota è questo?", e non possono rispondere. Tutto il tempo passato il 12esimo francese è spesso completamente inesplorato territorio.
+
+
+        </p>
+
+        <h3 id="sharps-flats">Non ricordiamo le posizioni affilate/frequenti</h3>
+        <p>
+
+            Si potrebbe conoscere approssimativamente le note naturali (C, D, E, F, G, A, B), ma le affilate e gli appartamenti rimangono fuzzy. È facile dimenticare la regola di base che non c'è un affilato/fiocco tra E e F, o tra B e C.
+
+
+        </p>
+
+        <h3 id="cross-string">Confusione Quando si incrociano le corde</h3>
+        <p>
+
+            Lungo una singola stringa, è semplice — ogni fret è un semitone più alto. Ma quando si attraversa una stringa adiacente, la diversa sintonia di ogni stringa rompe il modello mentale. Il divario tra le stringhe 2 e 3 è particolarmente difficile perché l'intervallo è un terzo importante (non un quarto come gli altri), rompendo il modello altrimenti coerente.
+
+
+        </p>
+
+        <h3 id="open-fret-disconnect">Non è possibile vedere la connessione tra le stringhe aperte e le note fretted</h3>
+        <p>
+
+            Si potrebbe sapere che "aprire la 5a corda è A" e "il 6o string tasto 5 è anche A", ma la sensazione che essi sono la stessa nota è debole. Quando si tratta di stringhe aperte e note fretted come cose separate, i collegamenti attraverso la tastiera diventano invisibili.
+
+
+        </p>
+
+        <!-- Section 4: Effective Learning Methods -->
+        <h2 id="effective-methods">Metodi di apprendimento efficaci</h2>
+
+        <p>
+
+            Ci sono diversi principi per imparare il tastiera in modo efficiente.
+
+
+        </p>
+
+        <h3 id="naturals-first">Inizia con Note Naturali Solo</h3>
+        <p>
+
+            Non cercare di imparare tutte e 12 le note contemporaneamente. Concentrati prima su solo 7 note naturali: C, D, E, F, G, A, B. Una volta che si sa dove sono i naturali, le nitide e gli appartamenti sono automaticamente "next a loro". Per esempio, "se questa è F e la successiva è G, allora la fret tra di loro deve essere F#/Gb".
+
+
+        </p>
+
+        <h3 id="one-string">Impara uno String a un tempo</h3>
+        <p>
+
+            Cercare di imparare tutte le 6 stringhe in una sola volta porta alla confusione. Inizia con la sesta stringa (bassa E), padroneggiala completamente, poi spostala alla 5a stringa (A), e così via. Poiché le stringhe 1 e 6 condividono gli stessi nomi delle note, mastering la 6a stringa ti dà il 1 ° gratuitamente.
+
+
+        </p>
+
+        <h3 id="octave-shapes">Utilizzare forme di ottava</h3>
+        <p>
+
+            La chitarra ha un modello in cui "lo stesso nome della nota appare 2 stringhe di distanza e 2 frets up" (tranne il 2 °-3 ° spazio di stringa). Imparare questa forma ottava consente di trovare posizioni note a catena da un unico luogo conosciuto.
+
+
+        </p>
+
+        <!-- Octave Shape Diagram -->
+        <div class="octave-diagram">
+            <div class="diagram-title">Forma di ottava: 6th→4th String / 5th→3rd String</div>
+            <div class="octave-grid">
+                <div class="fretboard-grid__header">
+                    <div class="fretboard-grid__header-cell" style="width:40px;"></div>
+                    <div class="fretboard-grid__header-cell" style="width:50px;">3</div>
+                    <div class="fretboard-grid__header-cell" style="width:50px;">4</div>
+                    <div class="fretboard-grid__header-cell" style="width:50px;">5</div>
+                    <div class="fretboard-grid__header-cell" style="width:50px;">6</div>
+                    <div class="fretboard-grid__header-cell" style="width:50px;">7</div>
+                    <div class="fretboard-grid__header-cell" style="width:50px;">8</div>
+                </div>
+                <div class="octave-grid__row">
+                    <div class="octave-grid__label">3</div>
+                    <div class="octave-grid__cell"></div>
+                    <div class="octave-grid__cell"></div>
+                    <div class="octave-grid__cell octave-grid__cell--octave">C</div>
+                    <div class="octave-grid__cell"></div>
+                    <div class="octave-grid__cell"></div>
+                    <div class="octave-grid__cell"></div>
+                </div>
+                <div class="octave-grid__row">
+                    <div class="octave-grid__label">4</div>
+                    <div class="octave-grid__cell"></div>
+                    <div class="octave-grid__cell"></div>
+                    <div class="octave-grid__cell octave-grid__cell--octave">G</div>
+                    <div class="octave-grid__cell"></div>
+                    <div class="octave-grid__cell"></div>
+                    <div class="octave-grid__cell"></div>
+                </div>
+                <div class="octave-grid__row">
+                    <div class="octave-grid__label">5</div>
+                    <div class="octave-grid__cell octave-grid__cell--root">C</div>
+                    <div class="octave-grid__cell"></div>
+                    <div class="octave-grid__cell"></div>
+                    <div class="octave-grid__cell"></div>
+                    <div class="octave-grid__cell"></div>
+                    <div class="octave-grid__cell"></div>
+                </div>
+                <div class="octave-grid__row">
+                    <div class="octave-grid__label">6</div>
+                    <div class="octave-grid__cell octave-grid__cell--root">G</div>
+                    <div class="octave-grid__cell"></div>
+                    <div class="octave-grid__cell"></div>
+                    <div class="octave-grid__cell"></div>
+                    <div class="octave-grid__cell"></div>
+                    <div class="octave-grid__cell"></div>
+                </div>
+            </div>
+            <div class="octave-arrow">
+                <span class="octave-arrow__badge octave-arrow__badge--root">Radice</span>
+                &rarr;
+                2 stringhe su + 2 frets up
+                &rarr;
+                <span class="octave-arrow__badge octave-arrow__badge--octave">Ottava</span>
+            </div>
+            <p style="font-size:12px;color:var(--text-secondary);margin-top:var(--space-md);text-align:center;">
+
+                Attraverso il 2 °-3 ° gap stringa, spostamento +3 frets up (a causa della terza sintonizzazione principale)
+
+
+            </p>
+        </div>
+
+        <h3 id="fret-ranges">Pratica in Gamma Fret</h3>
+        <p>
+
+            Invece di imparare l'intero cruscotto subito, dividerlo in intervalli e espandersi gradualmente.
+
+
+        </p>
+
+        <div class="progression-steps">
+            <div class="progression-step">
+                <div class="progression-step__number">1</div>
+                <div class="progression-step__content">
+                    <div class="progression-step__title">Frets 0-5</div>
+                    <div class="progression-step__desc">La gamma più familiare, comprese le stringhe aperte. Inizia qui e costruisci fiducia.</div>
+                </div>
+            </div>
+            <div class="progression-step">
+                <div class="progression-step__number">2</div>
+                <div class="progression-step__content">
+                    <div class="progression-step__title">Frets 5-12</div>
+                    <div class="progression-step__desc">La zona di media gamma dove la maggior parte dei chitarristi lotta. Conquistare questo fa una grande differenza.</div>
+                </div>
+            </div>
+            <div class="progression-step">
+                <div class="progression-step__number">3</div>
+                <div class="progression-step__content">
+                    <div class="progression-step__title">Fret 0-12 (integrazione completa gamma)</div>
+                    <div class="progression-step__desc">Integrare entrambi i estensione. Controlla se puoi muoverti senza soluzione di continuità tra le posizioni.</div>
+                </div>
+            </div>
+            <div class="progression-step">
+                <div class="progression-step__number">4</div>
+                <div class="progression-step__content">
+                    <div class="progression-step__title">Fret 0-24 (Gamma completa)</div>
+                    <div class="progression-step__desc">Poiché i frets 12+ ripetono il modello, raggiungendo questo stadio significa che sei nella fase di finitura.</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="article-note">
+            <div class="article-note__title">Punto chiave</div>
+            <p>"Solo note naturali, gamma stretta, espandersi gradualmente" è l'approccio più efficiente. Cercare di imparare tutto subito significa di solito niente si attacca correttamente.</p>
+        </div>
+
+        <!-- Section 5: What the App Can Do -->
+        <h2 id="what-app-can-do">Cosa? Solfege PRO Può fare</h2>
+
+        <p>
+
+            Solfege PRO's tastiera Training è uno strumento che supporta i metodi di apprendimento sopra descritti attraverso un <strong>ciclo "quiz, risposta, identificare debolezze, pratica focalizzata"</strong>.
+
+
+        </p>
+
+        <h3>Supporto per la lavorazione multipla</h3>
+        <p>
+
+            Oltre alla regolazione standard, l'applicazione supporta Drop D, Half Step Down, Open G e DADGAD. I giocatori che utilizzano sintonizzazione alternative possono praticare con la loro configurazione.
+
+
+        </p>
+
+        <h3>Selezione della gamma di fresatura</h3>
+        <p>
+
+            Scegli la tua gamma di fret pratica: 0-5 / 5-12 / 0-12 / 0-24. Questo sostiene direttamente l'approccio "espand gradualmente" descritto sopra.
+
+
+        </p>
+
+        <h3>Focus di stringa</h3>
+        <p>
+
+            Scegli tra tutte le stringhe, le stringhe alte (1-3), le stringhe basse (4-6), o le stringhe individuali. Questo consente direttamente il metodo di pratica "una stringa alla volta".
+
+
+        </p>
+
+        <h3>Modalità di nota</h3>
+        <p>
+
+            Scegli quali note appaiono in quizze: solo naturali, affilati, appartamenti o tutto. Inizia con i naturali solo e aggiungere taglienti / fiocchi mentre si guadagna fiducia.
+
+
+        </p>
+
+        <div class="feature-grid">
+            <div class="feature-card">
+                <div class="feature-card__title">Display a sinistra</div>
+                <div class="feature-card__desc">Flip il display della tastiera per i giocatori di sinistra. Pratica con un orientamento naturale.</div>
+            </div>
+            <div class="feature-card">
+                <div class="feature-card__title">Ottava illuminazione</div>
+                <div class="feature-card__desc">Evidenzia posizioni con lo stesso nome della nota sulla tastiera. Visivamente rafforza la comprensione della forma ottava.</div>
+            </div>
+            <div class="feature-card">
+                <div class="feature-card__title">Trova tutte le posizioni Modalità</div>
+                <div class="feature-card__desc">"Trova questa nota ovunque sulla tastiera." Rafforza la connessione tra i nomi delle note e le posizioni della tastiera.</div>
+            </div>
+            <div class="feature-card">
+                <div class="feature-card__title">Tracciamento punto debole</div>
+                <div class="feature-card__desc">Traccia l'accuratezza per nota, stringa e gamma di fret. Vedi esattamente dove sono i tuoi punti deboli.</div>
+            </div>
+            <div class="feature-card">
+                <div class="feature-card__title">Preimpostazioni personalizzate</div>
+                <div class="feature-card__desc">Salva le tue configurazioni di pratica preferite. Gestisci il tuo piano di apprendimento graduale come preset.</div>
+            </div>
+            <div class="feature-card">
+                <div class="feature-card__title">Risposta a scatto singolo</div>
+                <div class="feature-card__desc">Toccare la posizione corretta sulla tastiera per rispondere. Pratica fino a quando non si può rispondere in modo riflessivo.</div>
+            </div>
+        </div>
+
+        <!-- Cycle Diagram -->
+        <div class="cycle-diagram">
+            <div class="cycle-step">
+                <div class="cycle-step__label">Quiz</div>
+                <div class="cycle-step__desc">Mostra un biglietto</div>
+            </div>
+            <div class="cycle-arrow">&rarr;</div>
+            <div class="cycle-step">
+                <div class="cycle-step__label">Risposta</div>
+                <div class="cycle-step__desc">Toccare la tastiera</div>
+            </div>
+            <div class="cycle-arrow">&rarr;</div>
+            <div class="cycle-step">
+                <div class="cycle-step__label">Debolezza</div>
+                <div class="cycle-step__desc">Identificare le lacune</div>
+            </div>
+            <div class="cycle-arrow">&rarr;</div>
+            <div class="cycle-step">
+                <div class="cycle-step__label">Focus</div>
+                <div class="cycle-step__desc">Impostazioni e riprogetto del passero</div>
+            </div>
+        </div>
+
+        <!-- Mid-article CTA -->
+        <div class="article-cta-subtle">
+            <p class="article-cta-subtle__text">Perché non iniziare controllando dove la tua conoscenza del tastiera è più debole?</p>
+            <a href="https://apps.apple.com/it/app/id6756626617?pt=6749158383&amp;ct=web_guides&amp;mt=8" class="article-cta-subtle__button app-store-link" aria-label="Scarica sull’App Store"><img src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/it-it" class="app-store-link__img" alt="Scarica sull’App Store" loading="lazy"></a>
+        </div>
+
+        <!-- Section 6: Limitations (Honest) -->
+        <h2 id="limitations">Cosa? Solfege PRO Non copre direttamente</h2>
+
+        <p>
+
+            Siamo onesti.
+
+
+        </p>
+
+        <div class="article-honest">
+            <div class="article-honest__title">Aree oltre lo Scope dell'App</div>
+            <p>
+                <strong>allenamento del sistema CAGED</strong> — L'app non copre il sistema CAGED per comprendere il tastiera attraverso 5 forme di forma di accordi. Per l'apprendimento CAGED, utilizzare libri di testo o risorse di teoria degli accordi.
+            </p>
+            <p>
+                <strong>Visualizzazione del modello scala</strong> — L'app non visualizza modelli di scala (posizione fenografica, forme di scala maggiore, ecc.) sulla tastiera. La pratica della scala deve essere effettuata separatamente.
+            </p>
+            <p>
+                <strong>apprendimento della forma degli accordi</strong> — memorizzare le forme di accordi e imparare i vuoti di accordi in posizioni diverse è fuori dal campo di applicazione.
+            </p>
+            <p>
+                <strong>Tecniche multi-string</strong> — Bend, diapositive, martello, pull-off e altre tecniche di gioco non sono coperte. Queste sono competenze separate da "conoscere le posizioni delle note".
+            </p>
+            <p>
+                <strong>Contesto musicale</strong> — Praticare in contesti pratici come giocare insieme a canzoni o su tracce di supporto non è supportato.
+            </p>
+            <p>
+                <strong>Creazione di tuning personalizzato</strong> — Sono disponibili solo 5 sintonizzazione preimpostate. Non c'è alcuna caratteristica per definire le sintonature personalizzate liberamente.
+            </p>
+        </div>
+
+        <p>
+
+            Cosa? Solfege PRO supporti direttamente è <strong>costruire la capacità di identificare con precisione e rapidamente dove ogni nota è sulla tastiera</strong>. È uno strumento per costruire la "mappa" mentale della tastiera - quello che si gioca su quella mappa è fino alla vostra musica e pratica.
+
+
+        </p>
+
+        <!-- Section 7: Recommended Usage -->
+        <h2 id="recommended-usage">Uso consigliato</h2>
+
+        <p>
+
+            Ecco una progressione pratica efficace.
+
+
+        </p>
+
+        <ol>
+            <li><strong>Note naturali + Frets 0-5 + Tutte le stringhe</strong> - Inizia qui. Padroneggiare le 7 note naturali nella gamma di base, comprese le stringhe aperte.</li>
+            <li><strong>Note naturali + Frets 5-12 + Tutte le stringhe</strong> — Sfidare la sfida a metà raggio. Qui è dove vedrai la crescita più grande.</li>
+            <li><strong>Note naturali + Frets 0-12 + Tutte le stringhe</strong> — Integrare entrambi i estensione. Verificare che puoi rispondere senza problemi ai primi 12 fret.</li>
+            <li><strong>Aggiungere taglienti / appartamenti</strong> — Una volta che i naturali sono solidi, passare la modalità nota a "tutti" e espandersi a tutte le 12 note.</li>
+            <li><strong>Finire con la modalità "Find All Positions"</strong> — Sfidatevi di trovare immediatamente ogni posizione di una nota data sulla tastiera.</li>
+        </ol>
+
+        <!-- Good vs Bad Comparison -->
+        <div class="comparison-visual">
+            <div class="comparison-card comparison-card--bad">
+                <div class="comparison-card__header">Meno efficace</div>
+                <div class="comparison-card__body">
+                    <p>Quiz casuali attraverso tutti i frets e tutte le note dall'inizio. L'accuratezza è troppo bassa per qualsiasi cosa da attaccare. Sembra di iniziare ogni volta.</p>
+                </div>
+            </div>
+            <div class="comparison-card comparison-card--good">
+                <div class="comparison-card__header">Più efficace</div>
+                <div class="comparison-card__body">
+                    <p>Inizia con i naturali in una gamma stretta fino al 90%+ precisione, espandere la gamma, quindi aggiungere taglienti / piatti. Controllare il tracciamento dei punti deboli e concentrarsi su note e stringhe fastidiose.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="article-note">
+            <div class="article-note__title">Tipo di utilizzo</div>
+            <p>Ogni sessione può essere breve. Anche 5 minuti al giorno, e entro una settimana si dovrebbe avere le note naturali da stringhe aperte a fret 5 bloccato in. "Short, day, and gradual" è l'approccio più efficace.</p>
+        </div>
+
+    </main>
+
+    <!-- Final CTA -->
+    <section class="article-cta">
+        <h2 class="article-cta__title">Iniziare da Trovare il tuo tastiera Weak Spots</h2>
+        <p class="article-cta__text">
+
+            La memorizzazione della tastiera non è efficace.<br>Sapere quali stringhe e gamma di tasto sono il più debole è dove l'apprendimento efficiente inizia.<br>Provaci. Solfege PRO's tastiera Training e trovare i tuoi punti deboli prima.
+
+
+        </p>
+                <p style="font-size: 14px; color: var(--text-secondary); margin-bottom: var(--space-md); text-align: center;">
+
+            Consulta il prezzo sull’App Store
+
+
+        </p>
+        <a href="https://apps.apple.com/it/app/id6756626617?pt=6749158383&amp;ct=web_guides&amp;mt=8" class="app-store-link" aria-label="Scarica sull’App Store">
+
+            <img class="app-store-link__img" width="120" height="40" src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/it-it" alt="Scarica sull’App Store">
+
+
+        </a>
+    </section>
+
+    <!-- Related Content -->
+    <div class="article-related">
+        <div class="article-related__title">Contenuto</div>
+        <a href="/practice/guitar-bass/" class="article-related__link" style="margin-bottom: var(--space-md);">
+            <div class="article-related__link-title">Guida pratica chitarra e basso</div>
+            <div class="article-related__link-desc">Sessioni, trascrizione, frasi, progressioni — menu di pratica per chitarristi e bassisti</div>
+        </a>
+        <a href="/manual/fretboard/" class="article-related__link" style="margin-bottom: var(--space-md);">
+            <div class="article-related__link-title">Manuale delle impostazioni di allenamento del tagliere</div>
+            <div class="article-related__link-desc">Come scegliere ogni impostazione in-app e che cosa si allena, uno alla volta.</div>
+        </a>
+        <a href="/" class="article-related__link">
+            <div class="article-related__link-title">Solfege PRO Guida pratica</div>
+            <div class="article-related__link-desc">Menù di pratica basati su sfida per chitarra, basso, tamburi, pianoforte e voci</div>
+        </a>
+    </div>
+
+    <!-- Article End Note -->
+    <aside class="article-endnote">
+        <p class="article-endnote__text">
+
+            Questo articolo è organizzato sulla base di metodologie di apprendimento tastiera ampiamente utilizzate e la progettazione caratteristica di Solfege PRO. L'ordine di apprendimento ottimale e l'approccio variano a seconda dell'esperienza individuale e dello stile di gioco. L'allenamento in-app supporta la memorizzazione e il richiamo delle posizioni di nota, e non garantisce la padronanza della tecnica di gioco o della teoria della scala/cord.
+
+
+        </p>
+    </aside>
+
+    <!-- Footer -->
+    <footer class="article-footer">
+        <p class="article-footer__text">
+            &copy; 2026 Solfege PRO
+        </p>
+    </footer>
+
+    <!-- Language Toggle Script -->
+    <script src="/bootstrap.js?v=10" defer></script>
+    <nav aria-label="Language" style="display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:0.5rem;padding:var(--space-lg) var(--space-md);border-top:1px solid var(--surface-light);font-size:13px">
+        <a href="/guides/fretboard-training/" hreflang="ja" style="color:var(--text-secondary);text-decoration:none">日本語</a>
+        <span aria-hidden="true" style="color:var(--surface-light)">·</span>
+        <a href="/en/guides/fretboard-training/" hreflang="en" style="color:var(--text-secondary);text-decoration:none">English</a>
+        <span aria-hidden="true" style="color:var(--surface-light)">·</span>
+        <a href="/fr/guides/fretboard-training/" hreflang="fr" style="color:var(--text-secondary);text-decoration:none">Français</a>
+        <span aria-hidden="true" style="color:var(--surface-light)">·</span>
+        <a href="/de/guides/fretboard-training/" hreflang="de" style="color:var(--text-secondary);text-decoration:none">Deutsch</a>
+        <span aria-hidden="true" style="color:var(--surface-light)">·</span>
+        <a href="/es/guides/fretboard-training/" hreflang="es" style="color:var(--text-secondary);text-decoration:none">Español</a>
+        <span aria-hidden="true" style="color:var(--surface-light)">·</span>
+        <span style="color:var(--primary);font-weight:600" aria-current="true">Italiano</span>
+        <span aria-hidden="true" style="color:var(--surface-light)">·</span>
+        <a href="/ko/guides/fretboard-training/" hreflang="ko" style="color:var(--text-secondary);text-decoration:none">한국어</a>
+        <span aria-hidden="true" style="color:var(--surface-light)">·</span>
+        <a href="/pt-br/guides/fretboard-training/" hreflang="pt-BR" style="color:var(--text-secondary);text-decoration:none">Português (Brasil)</a>
+    </nav>
+</body>
+</html>

@@ -3,21 +3,25 @@
  * Generate language-suffixed directory output from multi-language source.
  *
  * Source files live under src/. For each source `src/<path>.html`, this
- * script generates four output files under the repo root:
+ * script generates eight output files under the repo root:
  *
  *   <path>/index.html          ← Japanese (e.g. guides/interval-training/index.html)
  *   en/<path>/index.html       ← English
  *   fr/<path>/index.html       ← French
  *   de/<path>/index.html       ← German
+ *   es/<path>/index.html       ← Spanish
+ *   it/<path>/index.html       ← Italian
+ *   ko/<path>/index.html       ← Korean
+ *   pt-br/<path>/index.html    ← Brazilian Portuguese
  *
  * Special cases:
  *   - src/index.html             → index.html  (root TOP for ja)
- *                                  en/index.html, fr/index.html, de/index.html
+ *                                  and each other localized root
  *   - src/guides/index.html      → guides/index.html  (ja guides listing)
  *                                  en/guides/index.html, etc.
  *
  * URLs (always end in /):
- *   src/index.html                       → /  + /en/  + /fr/  + /de/
+ *   src/index.html                       → / + all seven localized roots
  *   src/start-here.html                  → /start-here/  + /en/start-here/  + ...
  *   src/guides/index.html                → /guides/  + /en/guides/  + ...
  *   src/guides/interval-training.html    → /guides/interval-training/ + /en/...
@@ -26,7 +30,7 @@
  *                                          + /en/practice/training-menu/interval/
  *
  * Plus a redirect stub layer: every OLD URL from the previous .X.html scheme
- * (foo.html / foo.en.html / foo.fr.html / foo.de.html) gets a meta-refresh
+ * (foo.html / foo.en.html / foo.fr.html / foo.de.html, etc.) gets a meta-refresh
  * stub pointing to the new directory URL, so any inbound links / Google's
  * indexed pages don't 404.
  *
@@ -47,10 +51,21 @@ const path = require('path');
 
 const SITE_ORIGIN = 'https://solfegepro.com';
 const LANGS_ALL = ['ja', 'en', 'fr', 'de'];
-const LANGS_VARIANT = ['en', 'fr', 'de'];          // ja is the source-language baseline
-const OG_LOCALE = { ja: 'ja_JP', en: 'en_US', fr: 'fr_FR', de: 'de_DE' };
-const APP_STORE_LOCALE = { ja: 'jp', en: 'us', fr: 'fr', de: 'de' };
-const PRICE_CURRENCY = { ja: 'JPY', en: 'USD', fr: 'EUR', de: 'EUR' };
+const ADDITIONAL_LANGS = ['es', 'it', 'ko', 'pt-BR'];
+const KNOWN_LANGS = [...LANGS_ALL, ...ADDITIONAL_LANGS];
+const URL_LANG_PREFIX = { ja: '', en: 'en', fr: 'fr', de: 'de', es: 'es', it: 'it', ko: 'ko', 'pt-BR': 'pt-br' };
+const OG_LOCALE = { ja: 'ja_JP', en: 'en_US', fr: 'fr_FR', de: 'de_DE', es: 'es_ES', it: 'it_IT', ko: 'ko_KR', 'pt-BR': 'pt_BR' };
+const APP_STORE_LOCALE = { ja: 'jp', en: 'us', fr: 'fr', de: 'de', es: 'es', it: 'it', ko: 'kr', 'pt-BR': 'br' };
+const APP_STORE_BADGE_LOCALE = { ja: 'ja-jp', en: 'en-us', fr: 'fr-fr', de: 'de-de', es: 'es-es', it: 'it-it', ko: 'ko-kr', 'pt-BR': 'pt-br' };
+const APP_STORE_BADGE_ALT = {
+    ja: 'App Storeからダウンロード', en: 'Download on the App Store', fr: "Télécharger dans l’App Store", de: 'Laden im App Store',
+    es: 'Descargar en el App Store', it: 'Scarica sull’App Store', ko: 'App Store에서 다운로드', 'pt-BR': 'Baixar na App Store',
+};
+const PRICE_CURRENCY = { ja: 'JPY', en: 'USD', fr: 'EUR', de: 'EUR', es: 'EUR', it: 'EUR', ko: 'KRW', 'pt-BR': 'BRL' };
+
+function langsForSource(srcPath) {
+    return KNOWN_LANGS;
+}
 
 // ---- App Store campaign attribution (pt / ct / mt) ----------------------
 // Every App Store href in generated OUTPUT html gets Apple campaign params
@@ -72,6 +87,13 @@ const TRAINING_PATH = 'data/training-names.json';
 const TRAINING_FALLBACK = 'data/training-names.fallback.json';
 const PAGEMETA_PATH = 'data/page-metadata.json';
 const PAGEMETA_FALLBACK = 'data/page-metadata.fallback.json';
+const ACCESSIBILITY_TRANSLATIONS_PATH = 'data/accessibility-translations.json';
+const PAGE_TRANSLATION_PATHS = {
+    es: 'data/page-translations-es.json',
+    it: 'data/page-translations-it.json',
+    ko: 'data/page-translations-ko.json',
+    'pt-BR': 'data/page-translations-pt-br.json',
+};
 
 // --------------------------------------------------------------------
 // Source discovery
@@ -127,7 +149,9 @@ function srcPathToUrlPath(srcPath, lang) {
     p = p.replace(/\.html$/, '');                // drop extension
     p = p.replace(/\/index$/, '').replace(/^index$/, ''); // drop trailing /index AND its slash (guides/index -> guides; index -> '')
     // Now p is '' (was 'index.html') or 'start-here' or 'guides' or 'guides/foo' etc.
-    const langPrefix = lang === 'ja' ? '' : `/${lang}`;
+    const prefix = URL_LANG_PREFIX[lang];
+    if (prefix === undefined) throw new Error(`Unsupported language: ${lang}`);
+    const langPrefix = prefix ? `/${prefix}` : '';
     if (p === '') return `${langPrefix}/`;
     return `${langPrefix}/${p}/`;
 }
@@ -153,7 +177,9 @@ function srcPathToOutputPath(srcPath, lang) {
     } else {
         outPath = srcPath.replace(/\.html$/, '/index.html');
     }
-    return lang === 'ja' ? outPath : `${lang}/${outPath}`;
+    const prefix = URL_LANG_PREFIX[lang];
+    if (prefix === undefined) throw new Error(`Unsupported language: ${lang}`);
+    return lang === 'ja' ? outPath : `${prefix}/${outPath}`;
 }
 
 function ensureDir(filePath) {
@@ -320,6 +346,19 @@ function syncTrainingNamesInSources(sourceFsPaths) {
 // --------------------------------------------------------------------
 
 let _pageMetaCache = null;
+const _pageTranslationsCache = {};
+function loadPageTranslations(lang) {
+    if (_pageTranslationsCache[lang]) return _pageTranslationsCache[lang];
+    const translationPath = PAGE_TRANSLATION_PATHS[lang];
+    if (!translationPath) throw new Error(`No translation data path for ${lang}`);
+    const data = JSON.parse(fs.readFileSync(translationPath, 'utf8'));
+    if (!data.pages || typeof data.pages !== 'object') {
+        throw new Error(`${translationPath}: missing pages object`);
+    }
+    _pageTranslationsCache[lang] = data.pages;
+    return _pageTranslationsCache[lang];
+}
+
 function loadPageMetadata() {
     if (_pageMetaCache) return _pageMetaCache;
     try {
@@ -336,10 +375,14 @@ function escapeHtml(s) { return s.replace(/&/g, '&amp;').replace(/"/g, '&quot;')
 function stripSiteSuffix(t) { const i = t.lastIndexOf(' | '); return i === -1 ? t : t.slice(0, i); }
 
 function applyPageMetadata(html, srcPath, lang) {
+    const translatedEntry = ADDITIONAL_LANGS.includes(lang)
+        ? loadPageTranslations(lang)[srcPath]
+        : null;
     const meta = loadPageMetadata();
     const entry = meta[srcPath];
-    if (!entry || !entry.title || !entry.description) return html;
-    const newTitle = entry.title[lang], newDesc = entry.description[lang];
+    if (!translatedEntry && (!entry || !entry.title || !entry.description)) return html;
+    const newTitle = translatedEntry?.title || entry.title[lang];
+    const newDesc = translatedEntry?.description || entry.description[lang];
     if (!newTitle || !newDesc) return html;
     let out = html;
     const titleEsc = escapeHtml(newTitle);
@@ -358,7 +401,7 @@ function applyPageMetadata(html, srcPath, lang) {
 /**
  * Localize the Article JSON-LD for the output language and repair @id.
  * The source ships a single ja JSON-LD block per article; without this the
- * en/fr/de builds emit Japanese headline/description/publisher and a dead
+ * non-Japanese builds emit Japanese headline/description/publisher and a dead
  * legacy `.html` @id. Headline/description come from the per-lang
  * page-metadata (same source as <title>/<meta description>); the publisher/
  * author Organization name is romanized for non-ja; mainEntityOfPage.@id is
@@ -369,6 +412,9 @@ function applyPageMetadata(html, srcPath, lang) {
 function localizeJsonLd(html, srcPath, lang) {
     const brand = lang === 'ja' ? 'ソルフェージュPRO' : 'Solfege PRO';
     const entry = loadPageMetadata()[srcPath];
+    const translatedEntry = ADDITIONAL_LANGS.includes(lang) ? loadPageTranslations(lang)[srcPath] : null;
+    const localizedTitle = translatedEntry?.title || entry?.title?.[lang];
+    const localizedDescription = translatedEntry?.description || entry?.description?.[lang];
     const canonicalId = SITE_ORIGIN + srcPathToUrlPath(srcPath, lang);
     const ldRe = /<script type="application\/ld\+json">([\s\S]*?)<\/script>/g;
     return html.replace(ldRe, (block, json) => {
@@ -378,8 +424,8 @@ function localizeJsonLd(html, srcPath, lang) {
             if (!node || typeof node !== 'object') return;
             const type = node['@type'];
             if (type === 'Article' || type === 'BlogPosting') {
-                if (lang !== 'ja' && entry && entry.title && entry.title[lang]) node.headline = stripSiteSuffix(entry.title[lang]);
-                if (lang !== 'ja' && entry && entry.description && entry.description[lang]) node.description = entry.description[lang];
+                if (lang !== 'ja' && localizedTitle) node.headline = stripSiteSuffix(localizedTitle);
+                if (lang !== 'ja' && localizedDescription) node.description = localizedDescription;
                 if (node.mainEntityOfPage && typeof node.mainEntityOfPage === 'object') node.mainEntityOfPage['@id'] = canonicalId;
             }
             if (type === 'Organization' && typeof node.name === 'string') node.name = brand;
@@ -393,7 +439,7 @@ function localizeJsonLd(html, srcPath, lang) {
                 node.url = canonicalId;
                 node.inLanguage = lang;
                 node.downloadUrl = `https://apps.apple.com/${APP_STORE_LOCALE[lang]}/app/id6756626617`;
-                if (entry && entry.description && entry.description[lang]) node.description = entry.description[lang];
+                if (localizedDescription) node.description = localizedDescription;
                 if (node.offers && typeof node.offers === 'object') {
                     node.offers.priceCurrency = PRICE_CURRENCY[lang];
                 }
@@ -412,9 +458,9 @@ function localizeJsonLd(html, srcPath, lang) {
 // Per-language label for the "Guides" breadcrumb crumb (mirrors the guides
 // index <title>, suffix stripped). Source of truth is data-title on
 // src/guides/index.html; hard-coded here to avoid a second file read per page.
-const GUIDES_CRUMB = { ja: '練習ガイド一覧', en: 'Training Guides', fr: "Guides d'entraînement", de: 'Übungsleitfäden' };
-const HOME_CRUMB = { ja: 'ホーム', en: 'Home', fr: 'Accueil', de: 'Startseite' };
-const MANUAL_CRUMB = { ja: '設定マニュアル', en: 'Manual', fr: 'Manuel', de: 'Handbuch' };
+const GUIDES_CRUMB = { ja: '練習ガイド一覧', en: 'Training Guides', fr: "Guides d'entraînement", de: 'Übungsleitfäden', es: 'Guías de práctica', it: 'Guide pratiche', ko: '연습 가이드', 'pt-BR': 'Guias de prática' };
+const HOME_CRUMB = { ja: 'ホーム', en: 'Home', fr: 'Accueil', de: 'Startseite', es: 'Inicio', it: 'Home', ko: '홈', 'pt-BR': 'Início' };
+const MANUAL_CRUMB = { ja: '設定マニュアル', en: 'Manual', fr: 'Manuel', de: 'Handbuch', es: 'Manual', it: 'Manuale', ko: '매뉴얼', 'pt-BR': 'Manual' };
 
 // Inject a BreadcrumbList JSON-LD (Home > Guides > <article>) into guide article
 // pages. Only article pages under guides/ (NOT the guides index itself, NOT
@@ -461,7 +507,7 @@ function injectBreadcrumbJsonLd(html, srcPath, lang) {
 // --------------------------------------------------------------------
 
 // Native language names for the on-page language switcher.
-const LANG_NATIVE = { ja: '日本語', en: 'English', fr: 'Français', de: 'Deutsch' };
+const LANG_NATIVE = { ja: '日本語', en: 'English', fr: 'Français', de: 'Deutsch', es: 'Español', it: 'Italiano', ko: '한국어', 'pt-BR': 'Português (Brasil)' };
 
 // Shared primary navigation. Source pages historically copied this markup,
 // which let old and new menus drift apart. The build now replaces every page's
@@ -471,10 +517,14 @@ const NAV_COPY = {
     en: { about: 'About Solfege PRO', training: 'Trainings', guides: 'Practice Guides', manual: 'Manual', menu: 'Menu', close: 'Close menu', open: 'Open menu', language: 'Select language', primary: 'Main menu' },
     fr: { about: 'Découvrir Solfege PRO', training: 'Entraînements', guides: 'Guides pratiques', manual: 'Manuel', menu: 'Menu', close: 'Fermer le menu', open: 'Ouvrir le menu', language: 'Choisir la langue', primary: 'Menu principal' },
     de: { about: 'Über Solfege PRO', training: 'Trainings', guides: 'Übungsleitfäden', manual: 'Handbuch', menu: 'Menü', close: 'Menü schließen', open: 'Menü öffnen', language: 'Sprache wählen', primary: 'Hauptmenü' },
+    es: { about: 'Acerca de Solfege PRO', training: 'Entrenamientos', guides: 'Guías de práctica', manual: 'Manual', menu: 'Menú', close: 'Cerrar menú', open: 'Abrir menú', language: 'Seleccionar idioma', primary: 'Menú principal' },
+    it: { about: 'Informazioni su Solfege PRO', training: 'Allenamenti', guides: 'Guide pratiche', manual: 'Manuale', menu: 'Menu', close: 'Chiudi menu', open: 'Apri menu', language: 'Seleziona lingua', primary: 'Menu principale' },
+    ko: { about: 'Solfege PRO 소개', training: '훈련', guides: '연습 가이드', manual: '매뉴얼', menu: '메뉴', close: '메뉴 닫기', open: '메뉴 열기', language: '언어 선택', primary: '기본 메뉴' },
+    'pt-BR': { about: 'Sobre o Solfege PRO', training: 'Treinos', guides: 'Guias de prática', manual: 'Manual', menu: 'Menu', close: 'Fechar menu', open: 'Abrir menu', language: 'Selecionar idioma', primary: 'Menu principal' },
 };
 
 function localizedNavUrl(basePath, lang) {
-    const prefix = lang === 'ja' ? '' : `/${lang}`;
+    const prefix = lang === 'ja' ? '' : `/${URL_LANG_PREFIX[lang]}`;
     if (basePath === '/') return `${prefix}/`;
     return `${prefix}${basePath}`;
 }
@@ -542,13 +592,13 @@ function applySharedNavigation(html, srcPath, lang) {
 }
 
 // Build a small static language switcher: real <a href> links to every
-// language version of this page. Crucial for SEO — without it the en/fr/de
+// language version of this page. Crucial for SEO — without it localized
 // variants are reachable only via sitemap + hreflang, which a low-authority
 // domain deprioritises crawling (Search Console: "Discovered – not indexed").
 // Inline styles use existing CSS vars so it renders correctly even against a
 // cached style.css.
 function buildLangSwitch(srcPath, currentLang) {
-    const items = LANGS_ALL.map((l) => {
+    const items = langsForSource(srcPath).map((l) => {
         const name = LANG_NATIVE[l];
         if (l === currentLang) {
             return `<span style="color:var(--primary);font-weight:600" aria-current="true">${name}</span>`;
@@ -566,10 +616,7 @@ function buildHreflangBlock(srcPath, currentLang) {
     const url = (l) => SITE_ORIGIN + srcPathToUrlPath(srcPath, l);
     return [
         `    <link rel="canonical" href="${url(currentLang)}">`,
-        `    <link rel="alternate" hreflang="ja" href="${url('ja')}">`,
-        `    <link rel="alternate" hreflang="en" href="${url('en')}">`,
-        `    <link rel="alternate" hreflang="fr" href="${url('fr')}">`,
-        `    <link rel="alternate" hreflang="de" href="${url('de')}">`,
+        ...langsForSource(srcPath).map((l) => `    <link rel="alternate" hreflang="${l}" href="${url(l)}">`),
         `    <link rel="alternate" hreflang="x-default" href="${url('ja')}">`,
     ].join('\n');
 }
@@ -592,6 +639,155 @@ function injectVerificationMeta(html) {
     if (!token || /name="google-site-verification"/.test(html)) return html;
     const tag = `    <meta name="google-site-verification" content="${token}">`;
     return html.replace(/(<meta name="theme-color"[^>]*>)/, `$1\n${tag}`);
+}
+
+function injectPageTranslations(html, srcPath, lang) {
+    if (!ADDITIONAL_LANGS.includes(lang)) return html;
+    const translationPath = PAGE_TRANSLATION_PATHS[lang];
+    const page = loadPageTranslations(lang)[srcPath];
+    if (!page || !Array.isArray(page.spans)) {
+        throw new Error(`${translationPath}: missing pages.${srcPath}.spans`);
+    }
+
+    let index = 0;
+    let cursor = 0;
+    let out = '';
+    const startRe = /<span\s+lang="en">/g;
+    const openRe = /<span\b[^>]*>/g;
+    const closeRe = /<\/span>/g;
+
+    while (true) {
+        startRe.lastIndex = cursor;
+        const start = startRe.exec(html);
+        if (!start) break;
+        out += html.slice(cursor, start.index);
+
+        let depth = 1;
+        let scan = start.index + start[0].length;
+        let blockEnd = -1;
+        while (depth > 0) {
+            openRe.lastIndex = scan;
+            closeRe.lastIndex = scan;
+            const open = openRe.exec(html);
+            const close = closeRe.exec(html);
+            if (!close) throw new Error(`Unbalanced English span in ${srcPath}`);
+            if (open && open.index < close.index) {
+                depth += 1;
+                scan = open.index + open[0].length;
+            } else {
+                depth -= 1;
+                blockEnd = close.index + close[0].length;
+                scan = blockEnd;
+            }
+        }
+
+        const originalBlock = html.slice(start.index, blockEnd);
+        const translated = page.spans[index++];
+        if (translated === undefined) {
+            throw new Error(`${translationPath}: too few span translations for ${srcPath}`);
+        }
+        out += `${originalBlock}<span lang="${lang}">${translated}</span>`;
+        cursor = blockEnd;
+    }
+    out += html.slice(cursor);
+
+    if (index !== page.spans.length) {
+        throw new Error(`${translationPath}: ${srcPath} has ${page.spans.length} translations for ${index} English spans`);
+    }
+
+    const mermaidTranslations = page.mermaid || [];
+    let mermaidIndex = 0;
+    out = out.replace(/<div\s+class="mermaid-lang"\s+lang="en">[\s\S]*?<\/div>/g, (englishBlock) => {
+        let localizedBlock = englishBlock.replace('lang="en"', `lang="${lang}"`);
+        // The extraction source intentionally starts at the contents of the
+        // container, so it includes <pre class="mermaid"> but excludes the
+        // outer class/lang attributes. Consume that class token to stay aligned
+        // with translation-source.json, while preserving the CSS/JS hook.
+        const innerStart = localizedBlock.indexOf('>') + 1;
+        const innerEnd = localizedBlock.lastIndexOf('</div>');
+        const inner = localizedBlock.slice(innerStart, innerEnd).replace(/"([^"]+)"/g, (quoted, originalLabel) => {
+            const translated = mermaidTranslations[mermaidIndex++];
+            if (translated === undefined) {
+                throw new Error(`${translationPath}: too few Mermaid translations for ${srcPath}`);
+            }
+            if (originalLabel === 'mermaid') return quoted;
+            return `"${translated.replace(/"/g, '&quot;')}"`;
+        });
+        localizedBlock = localizedBlock.slice(0, innerStart) + inner + localizedBlock.slice(innerEnd);
+        return `${englishBlock}${localizedBlock}`;
+    });
+    if (mermaidIndex !== mermaidTranslations.length) {
+        throw new Error(`${translationPath}: ${srcPath} has ${mermaidTranslations.length} Mermaid translations for ${mermaidIndex} labels`);
+    }
+
+    const scriptTranslations = page.script || [];
+    const propertySuffix = { es: 'Es', it: 'It', ko: 'Ko', 'pt-BR': 'PtBr' }[lang];
+    let scriptIndex = 0;
+    const localizedValueRe = /\b(en|guideEn|descEn)\s*:\s*('(?:\\.|[^'\\])*'|"(?:\\.|[^"\\])*"|`(?:\\.|[^`\\])*`)/g;
+    out = out.replace(localizedValueRe, (englishProperty, propertyName) => {
+        const translated = scriptTranslations[scriptIndex++];
+        if (translated === undefined) {
+            throw new Error(`${translationPath}: too few script translations for ${srcPath}`);
+        }
+        const localizedProperty = propertyName === 'en'
+            ? JSON.stringify(lang)
+            : `${propertyName.slice(0, -2)}${propertySuffix}`;
+        return `${englishProperty}, ${localizedProperty}: ${JSON.stringify(translated)}`;
+    });
+    if (scriptIndex !== scriptTranslations.length) {
+        throw new Error(`${translationPath}: ${srcPath} has ${scriptTranslations.length} script translations for ${scriptIndex} strings`);
+    }
+    return out;
+}
+
+let _accessibilityTranslationsCache;
+function loadAccessibilityTranslations() {
+    if (_accessibilityTranslationsCache) return _accessibilityTranslationsCache;
+    _accessibilityTranslationsCache = JSON.parse(fs.readFileSync(ACCESSIBILITY_TRANSLATIONS_PATH, 'utf8'));
+    return _accessibilityTranslationsCache;
+}
+
+function localizeAccessibilityAttributes(html, lang) {
+    if (!ADDITIONAL_LANGS.includes(lang)) return html;
+    const translations = loadAccessibilityTranslations()[lang] || {};
+    let out = html;
+    for (const [source, localized] of Object.entries(translations)) {
+        for (const attribute of ['alt', 'title', 'aria-label']) {
+            const originalAttribute = `${attribute}="${source}"`;
+            const localizedAttribute = `${attribute}="${escapeHtml(localized)}"`;
+            out = out.split(originalAttribute).join(localizedAttribute);
+        }
+    }
+    return out;
+}
+
+function applyOfficialAppStoreBadges(html, lang) {
+    const locale = APP_STORE_BADGE_LOCALE[lang];
+    const alt = escapeHtml(APP_STORE_BADGE_ALT[lang]);
+    const src = `https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/${locale}`;
+    return html.replace(
+        /<a\b([^>]*\bhref="https:\/\/apps\.apple\.com\/[^"]+"[^>]*)>([\s\S]*?)<\/a>/g,
+        (match, attrs, body) => {
+            let nextAttrs = attrs;
+            if (/\baria-label="[^"]*"/.test(nextAttrs)) {
+                nextAttrs = nextAttrs.replace(/\baria-label="[^"]*"/, `aria-label="${alt}"`);
+            } else {
+                nextAttrs += ` aria-label="${alt}"`;
+            }
+            if (/<img\b/i.test(body)) {
+                const localizedBody = body
+                    .replace(/https:\/\/tools\.applemediaservices\.com\/api\/badges\/download-on-the-app-store\/black\/[a-z]{2}(?:-[a-z]{2})?/g, src)
+                    .replace(/(<img\b[^>]*\balt=")[^"]*(")/i, `$1${alt}$2`);
+                return `<a${nextAttrs}>${localizedBody}</a>`;
+            }
+            if (/\bclass="[^"]*"/.test(nextAttrs)) {
+                nextAttrs = nextAttrs.replace(/\bclass="([^"]*)"/, (m, classes) => `class="${classes} app-store-link"`);
+            } else {
+                nextAttrs += ' class="app-store-link"';
+            }
+            return `<a${nextAttrs}><img src="${src}" class="app-store-link__img" alt="${alt}" loading="lazy"></a>`;
+        },
+    );
 }
 
 function transformToLang(html, srcPath, lang) {
@@ -627,8 +823,8 @@ function transformToLang(html, srcPath, lang) {
     // 5c. Search Console verification meta (no-op unless a token is configured).
     out = injectVerificationMeta(out);
 
-    // 6. og:locale:alternate block — rebuild with the OTHER three locales.
-    const alternates = LANGS_ALL.filter((l) => l !== lang)
+    // 6. og:locale:alternate block — rebuild with every other locale.
+    const alternates = langsForSource(srcPath).filter((l) => l !== lang)
         .map((l) => `    <meta property="og:locale:alternate" content="${OG_LOCALE[l]}">`)
         .join('\n');
     out = out.replace(
@@ -645,6 +841,14 @@ function transformToLang(html, srcPath, lang) {
 
     // 8. App Store URL locale
     out = out.replace(/apps\.apple\.com\/jp\//g, `apps.apple.com/${APP_STORE_LOCALE[lang]}/`);
+
+    // 8b. Source files may use ../ for direct file:// previews. Published
+    // output always uses root-relative URLs so every language depth resolves
+    // the shared assets consistently.
+    out = out.replace(
+        /(href|src)="\.\.\/(favicon\.ico|favicon-96x96\.png|apple-touch-icon\.png|style\.css|guides\/article\.css|AppIcon\.png|bootstrap\.js)([^\"]*)"/g,
+        '$1="/$2$3"',
+    );
 
     // 9. Strip non-target <span lang="Y">...</span> blocks, unwrap target.
     //    CRITICAL: must handle NESTED <span> (e.g. <span lang="en">text
@@ -672,8 +876,15 @@ function transformToLang(html, srcPath, lang) {
     // 12b. Replace copied legacy headers with the site-wide current menu.
     out = applySharedNavigation(out, srcPath, lang);
 
+    // 12c. Translate user-facing values embedded in otherwise immutable tags
+    //      (primarily product-screenshot alt text).
+    out = localizeAccessibilityAttributes(out, lang);
+
+    // 12d. Every App Store destination uses Apple's official, localized badge.
+    out = applyOfficialAppStoreBadges(out, lang);
+
     // 13. Static language switcher before </body>: crawlable internal links to
-    //     each language version, so the en/fr/de variants are no longer
+    //     each language version, so localized variants are no longer
     //     reachable only via sitemap/hreflang.
     if (out.includes('</body>')) {
         out = out.replace('</body>', `${buildLangSwitch(srcPath, lang)}\n</body>`);
@@ -695,7 +906,7 @@ function transformToLang(html, srcPath, lang) {
  * Depth tracking handles arbitrary nested <span> tags inside the lang span.
  */
 function stripOrUnwrapLangSpans(html, targetLang) {
-    const langSpanRe = /<span\s+lang="(ja|en|fr|de)">/g;
+    const langSpanRe = /<span\s+lang="(ja|en|fr|de|es|it|ko|pt-BR)">/g;
     const openSpanRe = /<span\b[^>]*>/g;
     const closeSpanRe = /<\/span>/g;
     let result = '';
@@ -763,7 +974,7 @@ function stripOrUnwrapLangSpans(html, targetLang) {
  * but pre tags and others may be present in the future).
  */
 function stripOtherLangMermaid(html, targetLang) {
-    const containerRe = /<div\s+class="mermaid-lang"\s+lang="(ja|en|fr|de)">/g;
+    const containerRe = /<div\s+class="mermaid-lang"\s+lang="(ja|en|fr|de|es|it|ko|pt-BR)">/g;
     const openDivRe = /<div\b[^>]*>/g;
     const closeDivRe = /<\/div>/g;
     let result = '';
@@ -825,10 +1036,10 @@ function stripOtherLangMermaid(html, targetLang) {
  */
 function oldPathToNewUrlPath(oldRelPath) {
     // Handle the suffix forms first.
-    let m = oldRelPath.match(/^(.+?)\.(en|fr|de)\.html$/);
+    let m = oldRelPath.match(/^(.+?)\.(en|fr|de|es|it|ko|pt-br)\.html$/);
     if (m) {
         const base = m[1];           // e.g. 'guides/foo' or 'index'
-        const lang = m[2];
+        const lang = m[2] === 'pt-br' ? 'pt-BR' : m[2];
         const srcPath = base === 'index' ? 'index.html' : `${base}.html`;
         // index files (foo/index.html) → already handled correctly because base wouldn't end with /index
         if (base.endsWith('/index')) {
@@ -882,7 +1093,7 @@ function generateRedirectStubs(allSources) {
     // The set of NEW output paths — collision check.
     const newOutputs = new Set();
     for (const src of allSources) {
-        for (const lang of LANGS_ALL) {
+        for (const lang of KNOWN_LANGS) {
             newOutputs.add(srcPathToOutputPath(src, lang));
         }
     }
@@ -890,15 +1101,13 @@ function generateRedirectStubs(allSources) {
     let stubCount = 0;
     for (const src of allSources) {
         // ja old path = the source-relative path itself (e.g. 'guides/foo.html')
-        // en/fr/de old paths = '.X.html' suffix form
+        // All non-Japanese old paths use the '.X.html' suffix form.
         const base = src.replace(/\.html$/, '');
-        const oldPaths = {
-            ja: src,                          // 'guides/foo.html'
-            en: `${base}.en.html`,            // 'guides/foo.en.html'
-            fr: `${base}.fr.html`,
-            de: `${base}.de.html`,
-        };
-        for (const lang of LANGS_ALL) {
+        const oldPaths = Object.fromEntries(KNOWN_LANGS.map((lang) => [
+            lang,
+            lang === 'ja' ? src : `${base}.${URL_LANG_PREFIX[lang]}.html`,
+        ]));
+        for (const lang of KNOWN_LANGS) {
             const oldRel = oldPaths[lang];
             if (newOutputs.has(oldRel)) continue;  // index.html collision, skip
             const newUrl = srcPathToUrlPath(src, lang);
@@ -917,10 +1126,11 @@ function generateRedirectStubs(allSources) {
 // forms working.
 function generateAppToRootRedirects() {
     let count = 0;
-    for (const lang of LANGS_ALL) {
+    for (const lang of KNOWN_LANGS) {
         const target = srcPathToUrlPath('index.html', lang);
-        const directoryOutput = lang === 'ja' ? 'app/index.html' : `${lang}/app/index.html`;
-        const legacyOutput = lang === 'ja' ? 'app.html' : `app.${lang}.html`;
+        const prefix = URL_LANG_PREFIX[lang];
+        const directoryOutput = lang === 'ja' ? 'app/index.html' : `${prefix}/app/index.html`;
+        const legacyOutput = lang === 'ja' ? 'app.html' : `app.${prefix}.html`;
         for (const output of [directoryOutput, legacyOutput]) {
             ensureDir(output);
             fs.writeFileSync(output, buildRedirectStub(target), 'utf8');
@@ -962,12 +1172,12 @@ function expandIncludes(html) {
  * prefix is irrelevant to the section, so strip it first.
  */
 function appStoreCtForOutput(outPath) {
-    const p = outPath.replace(/^(en|fr|de)\//, '');
+    const p = outPath.replace(/^(en|fr|de|es|it|ko|pt-br)\//, '');
     if (p.startsWith('start-here/')) return 'web_start';
     if (p.startsWith('guides/')) return 'web_guides';
     if (p.startsWith('manual/')) return 'web_manual';
     if (p.startsWith('practice/')) return 'web_practice';
-    if (p.startsWith('support/') || p.startsWith('privacy/')) return 'web_support';
+    if (p.startsWith('support/') || p.startsWith('privacy/') || p.startsWith('terms/')) return 'web_support';
     return 'web_home'; // root index pages (and 404-class pages)
 }
 
@@ -1015,10 +1225,11 @@ function processSource(srcRelPath) {
     // inline page content.
     raw = expandIncludes(raw);
 
-    // Generate all four language outputs.
-    for (const lang of LANGS_ALL) {
+    // Every public page ships in all eight supported app languages.
+    for (const lang of langsForSource(srcRelPath)) {
         const outPath = srcPathToOutputPath(srcRelPath, lang);
-        let out = transformToLang(raw, srcRelPath, lang);
+        const localizedRaw = injectPageTranslations(raw, srcRelPath, lang);
+        let out = transformToLang(localizedRaw, srcRelPath, lang);
         out = applyPageMetadata(out, srcRelPath, lang);
         out = tagAppStoreLinks(out, outPath);
         ensureDir(outPath);
@@ -1053,7 +1264,7 @@ function loadExistingSitemapMeta() {
 // all <lastmod> to the build day (and re-stamping every URL on every CI build,
 // which Google reads as low-signal noise). A source with uncommitted changes
 // (being published in this build) gets today's date; a clean source gets its
-// last commit date. All 4 lang variants share the one source date by design.
+// last commit date. All eight language variants share one source date by design.
 function sourceLastmod(src) {
     const today = new Date().toISOString().slice(0, 10);
     const rel = path.join(SRC_DIR, src);
@@ -1079,13 +1290,13 @@ function generateSitemap(allSources) {
         const existing = meta[jaUrl] || {};
         const lastmod = sourceLastmod(src);
         const priority = existing.priority || '0.7';
-        for (const lang of LANGS_ALL) {
+        for (const lang of langsForSource(src)) {
             const url = SITE_ORIGIN + srcPathToUrlPath(src, lang);
             lines.push('  <url>');
             lines.push(`    <loc>${url}</loc>`);
             lines.push(`    <lastmod>${lastmod}</lastmod>`);
             lines.push(`    <priority>${priority}</priority>`);
-            for (const altLang of LANGS_ALL) {
+            for (const altLang of langsForSource(src)) {
                 const altUrl = SITE_ORIGIN + srcPathToUrlPath(src, altLang);
                 lines.push(`    <xhtml:link rel="alternate" hreflang="${altLang}" href="${altUrl}"/>`);
             }
@@ -1137,7 +1348,8 @@ function main() {
         }
 
         // 2. Build the new directory structure.
-        console.log(`Building ${sources.length} source(s) × 4 langs = ${sources.length * 4} outputs.`);
+        const outputCount = sources.reduce((sum, src) => sum + langsForSource(src).length, 0);
+        console.log(`Building ${sources.length} source(s) = ${outputCount} localized outputs.`);
         for (const src of sources) processSource(src);
         console.log(`[appstore] tagged ${appStoreTagStats.tagged} link(s) with pt/ct/mt`
             + (appStoreTagStats.skipped ? ` (${appStoreTagStats.skipped} left unchanged — pre-existing query params)` : ''));
@@ -1150,7 +1362,8 @@ function main() {
     // 4. Sitemap.
     const sitemap = generateSitemap(allSources);
     fs.writeFileSync('sitemap.xml', sitemap, 'utf8');
-    console.log(`Wrote sitemap.xml (${allSources.length * 4} URLs).`);
+    const sitemapUrlCount = allSources.reduce((sum, src) => sum + langsForSource(src).length, 0);
+    console.log(`Wrote sitemap.xml (${sitemapUrlCount} URLs).`);
 
     console.log('Done.');
 }

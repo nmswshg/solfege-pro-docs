@@ -1,0 +1,744 @@
+<!DOCTYPE html>
+<html lang="es"
+      data-title-ja="スケールを聴き分ける — モードの特性音 | ソルフェージュPRO"
+      data-title-en="What Is Scale Recognition? — Understanding Scales and Modes | Solfege PRO"
+      data-title-fr="Qu'est-ce que la reconnaissance des gammes ? — Comprendre les gammes et les modes | Solfege PRO"
+      data-title-de="Was ist Skalenerkennung? — Skalen und Modi verstehen | Solfege PRO">
+<head>
+    <meta charset="UTF-8">
+    <meta name="robots" content="index, follow">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#1A1A1E">
+    <title>Reconocimiento de escalas y modos | Solfege PRO</title>
+    <meta name="description" content="Desde Major/Minor hasta los modos de iglesia (Dorian, Phrygian, ...) y Pentatonic, aprende los tonos característicos de cada escala en un plan de práctica de nivel por nivel.">
+
+    <!-- Canonical -->
+    <link rel="canonical" href="https://solfegepro.com/es/guides/ear-training-scales/">
+    <link rel="alternate" hreflang="ja" href="https://solfegepro.com/guides/ear-training-scales/">
+    <link rel="alternate" hreflang="en" href="https://solfegepro.com/en/guides/ear-training-scales/">
+    <link rel="alternate" hreflang="fr" href="https://solfegepro.com/fr/guides/ear-training-scales/">
+    <link rel="alternate" hreflang="de" href="https://solfegepro.com/de/guides/ear-training-scales/">
+    <link rel="alternate" hreflang="es" href="https://solfegepro.com/es/guides/ear-training-scales/">
+    <link rel="alternate" hreflang="it" href="https://solfegepro.com/it/guides/ear-training-scales/">
+    <link rel="alternate" hreflang="ko" href="https://solfegepro.com/ko/guides/ear-training-scales/">
+    <link rel="alternate" hreflang="pt-BR" href="https://solfegepro.com/pt-br/guides/ear-training-scales/">
+    <link rel="alternate" hreflang="x-default" href="https://solfegepro.com/guides/ear-training-scales/">
+<!-- OGP -->
+    <meta property="og:title" content="Reconocimiento de escalas y modos">
+    <meta property="og:description" content="Desde Major/Minor hasta los modos de iglesia (Dorian, Phrygian, ...) y Pentatonic, aprende los tonos característicos de cada escala en un plan de práctica de nivel por nivel.">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://solfegepro.com/es/guides/ear-training-scales/">
+    <meta property="og:site_name" content="Solfege PRO">
+    <meta property="og:image" content="https://solfegepro.com/og-image.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Solfege PRO">
+    <meta property="og:locale" content="es_ES">
+    <meta property="og:locale:alternate" content="ja_JP">
+    <meta property="og:locale:alternate" content="en_US">
+    <meta property="og:locale:alternate" content="fr_FR">
+    <meta property="og:locale:alternate" content="de_DE">
+    <meta property="og:locale:alternate" content="it_IT">
+    <meta property="og:locale:alternate" content="ko_KR">
+    <meta property="og:locale:alternate" content="pt_BR">
+    <meta property="article:published_time" content="2026-03-31">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Reconocimiento de escalas y modos">
+    <meta name="twitter:description" content="Desde Major/Minor hasta los modos de iglesia (Dorian, Phrygian, ...) y Pentatonic, aprende los tonos característicos de cada escala en un plan de práctica de nivel por nivel.">
+    <meta name="twitter:image" content="https://solfegepro.com/og-image.png">
+
+    <!-- Favicon -->
+    <link rel="icon" href="/favicon.ico" sizes="any">
+    <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap"></noscript>
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="/style.css?v=23">
+    <link rel="stylesheet" href="/guides/article.css?v=14">
+
+    <style>
+        /* Mode Comparison Grid (responsive — never horizontally scrolls) */
+        .mode-grid {
+            background: var(--surface);
+            border-radius: var(--radius-xl);
+            padding: var(--space-lg);
+            margin: var(--space-xl) 0;
+            border: 1px solid var(--surface-light);
+        }
+        .mode-grid__row {
+            display: grid;
+            grid-template-columns: 110px 1fr 90px;
+            align-items: center;
+            margin-bottom: var(--space-sm);
+            gap: var(--space-sm);
+        }
+        .mode-grid__name {
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+        .mode-grid__degrees {
+            display: grid;
+            grid-template-columns: repeat(7, minmax(0, 1fr));
+            gap: 3px;
+            min-width: 0;
+        }
+        .mode-grid__degree {
+            height: 30px;
+            min-width: 0;
+            border-radius: var(--radius-sm);
+            font-size: 12px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .degree--normal { background: var(--surface-light); color: var(--text-secondary); }
+        .degree--flat { background: rgba(96, 165, 250, 0.25); color: #60A5FA; }
+        .degree--sharp { background: rgba(251, 191, 36, 0.25); color: #FBBF24; }
+        .degree--characteristic { background: rgba(248, 113, 113, 0.3); color: #F87171; border: 1px solid rgba(248, 113, 113, 0.5); }
+        .mode-grid__char {
+            font-size: 12px;
+            color: var(--text-secondary);
+        }
+        .mode-grid__section-title {
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: var(--space-md);
+            margin-top: var(--space-lg);
+        }
+        .mode-grid__section-title:first-of-type {
+            margin-top: 0;
+        }
+        .mode-grid__legend {
+            display: flex;
+            gap: var(--space-lg);
+            margin-top: var(--space-md);
+            font-size: 12px;
+            color: var(--text-secondary);
+        }
+        .mode-grid__legend-item {
+            display: flex;
+            align-items: center;
+            gap: var(--space-xs);
+        }
+        .mode-grid__legend-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: var(--radius-sm);
+            flex-shrink: 0;
+        }
+
+        @media (max-width: 768px) {
+            .mode-grid { padding: var(--space-md); }
+            .mode-grid__row {
+                /* Stack: name → degrees → char on separate rows. */
+                grid-template-columns: 1fr;
+                gap: 6px;
+            }
+            .mode-grid__degree { height: 26px; font-size: 11px; }
+            .mode-grid__legend { flex-wrap: wrap; gap: var(--space-sm); }
+        }
+    </style>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Reconocimiento de escalas y modos","description":"Desde Major/Minor hasta los modos de iglesia (Dorian, Phrygian, ...) y Pentatonic, aprende los tonos característicos de cada escala en un plan de práctica de nivel por nivel.","author":{"@type":"Organization","name":"Solfege PRO"},"publisher":{"@type":"Organization","name":"Solfege PRO","logo":{"@type":"ImageObject","url":"https://solfegepro.com/AppIcon.png"}},"datePublished":"2026-03-31","mainEntityOfPage":{"@type":"WebPage","@id":"https://solfegepro.com/es/guides/ear-training-scales/"}}</script>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Inicio","item":"https://solfegepro.com/es/"},{"@type":"ListItem","position":2,"name":"Guías de práctica","item":"https://solfegepro.com/es/guides/"},{"@type":"ListItem","position":3,"name":"スケールを聴き分ける — モードの特性音","item":"https://solfegepro.com/es/guides/ear-training-scales/"}]}</script>
+</head>
+<body>
+    <!-- Navigation -->
+        <nav class="nav" aria-label="Menú principal">
+        <div class="nav__container">
+            <a href="/es/" class="nav__logo" aria-label="Solfege PRO">
+                <img src="/AppIcon.png" alt="" class="nav__logo-icon" width="32" height="32">
+                <span class="nav__logo-text">Solfege PRO</span>
+            </a>
+            <ul class="nav__list">
+                <li><a href="/es/" class="nav__link">Acerca de Solfege PRO</a></li>
+                <li><a href="/es/features/" class="nav__link">Entrenamientos</a></li>
+                <li><a href="/es/guides/" class="nav__link active" aria-current="page">Guías de práctica</a></li>
+                <li><a href="/es/manual/" class="nav__link">Manual</a></li>
+            </ul>
+            <div class="nav__settings">
+                <button class="settings-btn" id="lang-toggle" title="Seleccionar idioma"><span id="lang-text">ES</span></button>
+                <button class="hamburger-btn" id="hamburger-btn" aria-label="Abrir menú" aria-expanded="false" aria-controls="drawer">
+                    <span class="hamburger-btn__line"></span><span class="hamburger-btn__line"></span><span class="hamburger-btn__line"></span>
+                </button>
+            </div>
+        </div>
+    </nav>
+        <!-- Mobile drawer (hidden on desktop) -->
+            <div class="drawer-overlay" id="drawer-overlay"></div>
+    <aside class="drawer" id="drawer" aria-label="Menú" aria-hidden="true" inert>
+        <div class="drawer__header">
+            <span class="drawer__title">Menú</span>
+            <button class="drawer__close" id="drawer-close" aria-label="Cerrar menú">×</button>
+        </div>
+        <ul class="drawer__list">
+            <li><a href="/es/" class="drawer__link">Acerca de Solfege PRO</a></li>
+            <li><a href="/es/features/" class="drawer__link">Entrenamientos</a></li>
+            <li><a href="/es/guides/" class="drawer__link active" aria-current="page">Guías de práctica</a></li>
+            <li><a href="/es/manual/" class="drawer__link">Manual</a></li>
+        </ul>
+    </aside>
+
+
+    <!-- Article Header -->
+    <header class="page-header">
+        <div class="page-header__meta">
+            <span class="page-header__tag">Reconocimiento de escala</span>
+            <span>8 min.</span>
+        </div>
+        <h1 class="page-header__title">
+
+            ¿Qué es el reconocimiento de escala?<br>Comprender los escalas y los modos
+
+
+        </h1>
+        <p class="page-header__subtitle">
+
+            La diferencia entre las escalas radica en sus "notas de carácter." Aprende los tonos que definen cada modo y construye tu precisión de reconocimiento paso a paso.
+
+
+        </p>
+    </header>
+
+    <!-- Top-of-article CTA -->
+    <aside class="article-top-cta" aria-label="App promotion">
+        <div class="article-top-cta__body">
+            <p class="article-top-cta__title">
+
+                Prueba esto. Solfege PRO
+
+
+            </p>
+            <p class="article-top-cta__sub">
+
+                Consulta el precio en el App Store
+
+
+            </p>
+        </div>
+        <a href="https://apps.apple.com/es/app/id6756626617?pt=6749158383&amp;ct=web_guides&amp;mt=8" class="article-top-cta__button app-store-link" data-cta-position="article_top" aria-label="Descargar en el App Store"><img src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/es-es" class="app-store-link__img" alt="Descargar en el App Store" loading="lazy"></a>
+    </aside>
+
+    <!-- Article Body -->
+    <main class="article-body">
+
+        <!-- Section 1 -->
+        <h2 id="what-is-scale-recognition">¿Qué es el reconocimiento de escala?</h2>
+
+        <p>
+
+            El reconocimiento de escala es la capacidad de escuchar una secuencia de notas e identificar el tipo de escala. El "sonido limpio y estable" de Major, el "sonido oscuro y melancólico" de Natural Minor, la "tío pero de alguna manera brillante" calidad de Dorian. Está escuchando el color distinto de cada uno.
+
+
+        </p>
+
+        <p>
+
+            Esta habilidad se conecta directamente a la improvisación y la composición. Cuando juegas un solo, si tu oído puede juzgar cuál escala encaja en un acorde, juegas con el conocimiento teórico y la percepción aural alineada. En composición también, entender los colores de escala es esencial para controlar el carácter melódico.
+
+
+        </p>
+
+        <!-- Section 2 -->
+        <h2 id="scale-types">Tipos de Escala</h2>
+
+        <p>
+
+            El tipo de escala se define por el patrón de intervalos desde la raíz. A continuación se presentan los tipos de escalas principales y las notas características que distinguen cada uno de la escala Mayor.
+
+
+        </p>
+
+        <!-- Mode Comparison Visual -->
+        <div class="mode-grid">
+            <div class="diagram-title">Comparación de modos - Diferencias de Mayor</div>
+
+            <div class="mode-grid__section-title">Escalas básicas</div>
+
+            <div class="mode-grid__row">
+                <div class="mode-grid__name">Major (Ionian)</div>
+                <div class="mode-grid__degrees">
+                    <div class="mode-grid__degree degree--normal">1</div>
+                    <div class="mode-grid__degree degree--normal">2</div>
+                    <div class="mode-grid__degree degree--normal">3</div>
+                    <div class="mode-grid__degree degree--normal">4</div>
+                    <div class="mode-grid__degree degree--normal">5</div>
+                    <div class="mode-grid__degree degree--normal">6</div>
+                    <div class="mode-grid__degree degree--normal">7</div>
+                </div>
+                <div class="mode-grid__char">Referencia</div>
+            </div>
+            <div class="mode-grid__row">
+                <div class="mode-grid__name">Natural Minor</div>
+                <div class="mode-grid__degrees">
+                    <div class="mode-grid__degree degree--normal">1</div>
+                    <div class="mode-grid__degree degree--normal">2</div>
+                    <div class="mode-grid__degree degree--characteristic">b3</div>
+                    <div class="mode-grid__degree degree--normal">4</div>
+                    <div class="mode-grid__degree degree--normal">5</div>
+                    <div class="mode-grid__degree degree--characteristic">b6</div>
+                    <div class="mode-grid__degree degree--characteristic">b7</div>
+                </div>
+                <div class="mode-grid__char">b3 b6 b7</div>
+            </div>
+            <div class="mode-grid__row">
+                <div class="mode-grid__name">Harmonic Minor</div>
+                <div class="mode-grid__degrees">
+                    <div class="mode-grid__degree degree--normal">1</div>
+                    <div class="mode-grid__degree degree--normal">2</div>
+                    <div class="mode-grid__degree degree--characteristic">b3</div>
+                    <div class="mode-grid__degree degree--normal">4</div>
+                    <div class="mode-grid__degree degree--normal">5</div>
+                    <div class="mode-grid__degree degree--characteristic">b6</div>
+                    <div class="mode-grid__degree degree--normal">7</div>
+                </div>
+                <div class="mode-grid__char">b3 b6</div>
+            </div>
+            <div class="mode-grid__row">
+                <div class="mode-grid__name">Melodic Minor</div>
+                <div class="mode-grid__degrees">
+                    <div class="mode-grid__degree degree--normal">1</div>
+                    <div class="mode-grid__degree degree--normal">2</div>
+                    <div class="mode-grid__degree degree--characteristic">b3</div>
+                    <div class="mode-grid__degree degree--normal">4</div>
+                    <div class="mode-grid__degree degree--normal">5</div>
+                    <div class="mode-grid__degree degree--normal">6</div>
+                    <div class="mode-grid__degree degree--normal">7</div>
+                </div>
+                <div class="mode-grid__char">b3</div>
+            </div>
+
+            <div class="mode-grid__section-title">Modos de la Iglesia</div>
+
+            <div class="mode-grid__row">
+                <div class="mode-grid__name">Dorian</div>
+                <div class="mode-grid__degrees">
+                    <div class="mode-grid__degree degree--normal">1</div>
+                    <div class="mode-grid__degree degree--normal">2</div>
+                    <div class="mode-grid__degree degree--flat">b3</div>
+                    <div class="mode-grid__degree degree--normal">4</div>
+                    <div class="mode-grid__degree degree--normal">5</div>
+                    <div class="mode-grid__degree degree--characteristic">6</div>
+                    <div class="mode-grid__degree degree--flat">b7</div>
+                </div>
+                <div class="mode-grid__char">b3 b7 + 6</div>
+            </div>
+            <div class="mode-grid__row">
+                <div class="mode-grid__name">Phrygian</div>
+                <div class="mode-grid__degrees">
+                    <div class="mode-grid__degree degree--normal">1</div>
+                    <div class="mode-grid__degree degree--characteristic">b2</div>
+                    <div class="mode-grid__degree degree--flat">b3</div>
+                    <div class="mode-grid__degree degree--normal">4</div>
+                    <div class="mode-grid__degree degree--normal">5</div>
+                    <div class="mode-grid__degree degree--flat">b6</div>
+                    <div class="mode-grid__degree degree--flat">b7</div>
+                </div>
+                <div class="mode-grid__char">b2 es clave</div>
+            </div>
+            <div class="mode-grid__row">
+                <div class="mode-grid__name">Lydian</div>
+                <div class="mode-grid__degrees">
+                    <div class="mode-grid__degree degree--normal">1</div>
+                    <div class="mode-grid__degree degree--normal">2</div>
+                    <div class="mode-grid__degree degree--normal">3</div>
+                    <div class="mode-grid__degree degree--characteristic">#4</div>
+                    <div class="mode-grid__degree degree--normal">5</div>
+                    <div class="mode-grid__degree degree--normal">6</div>
+                    <div class="mode-grid__degree degree--normal">7</div>
+                </div>
+                <div class="mode-grid__char">#4 is key</div>
+            </div>
+            <div class="mode-grid__row">
+                <div class="mode-grid__name">Mixolydian</div>
+                <div class="mode-grid__degrees">
+                    <div class="mode-grid__degree degree--normal">1</div>
+                    <div class="mode-grid__degree degree--normal">2</div>
+                    <div class="mode-grid__degree degree--normal">3</div>
+                    <div class="mode-grid__degree degree--normal">4</div>
+                    <div class="mode-grid__degree degree--normal">5</div>
+                    <div class="mode-grid__degree degree--normal">6</div>
+                    <div class="mode-grid__degree degree--characteristic">b7</div>
+                </div>
+                <div class="mode-grid__char">b7 es clave</div>
+            </div>
+            <div class="mode-grid__row">
+                <div class="mode-grid__name">Aeolian</div>
+                <div class="mode-grid__degrees">
+                    <div class="mode-grid__degree degree--normal">1</div>
+                    <div class="mode-grid__degree degree--normal">2</div>
+                    <div class="mode-grid__degree degree--flat">b3</div>
+                    <div class="mode-grid__degree degree--normal">4</div>
+                    <div class="mode-grid__degree degree--normal">5</div>
+                    <div class="mode-grid__degree degree--flat">b6</div>
+                    <div class="mode-grid__degree degree--flat">b7</div>
+                </div>
+                <div class="mode-grid__char">= Nat. Minor</div>
+            </div>
+            <div class="mode-grid__row">
+                <div class="mode-grid__name">Locrian</div>
+                <div class="mode-grid__degrees">
+                    <div class="mode-grid__degree degree--normal">1</div>
+                    <div class="mode-grid__degree degree--characteristic">b2</div>
+                    <div class="mode-grid__degree degree--flat">b3</div>
+                    <div class="mode-grid__degree degree--normal">4</div>
+                    <div class="mode-grid__degree degree--characteristic">b5</div>
+                    <div class="mode-grid__degree degree--flat">b6</div>
+                    <div class="mode-grid__degree degree--flat">b7</div>
+                </div>
+                <div class="mode-grid__char">b2 b5 son clave</div>
+            </div>
+
+            <div class="mode-grid__section-title">Pentatonic / Blues</div>
+
+            <div class="mode-grid__row">
+                <div class="mode-grid__name">Major Penta</div>
+                <div class="mode-grid__degrees">
+                    <div class="mode-grid__degree degree--normal">1</div>
+                    <div class="mode-grid__degree degree--normal">2</div>
+                    <div class="mode-grid__degree degree--normal">3</div>
+                    <div class="mode-grid__degree degree--normal">5</div>
+                    <div class="mode-grid__degree degree--normal">6</div>
+                </div>
+                <div class="mode-grid__char">No 4, 7</div>
+            </div>
+            <div class="mode-grid__row">
+                <div class="mode-grid__name">Minor Penta</div>
+                <div class="mode-grid__degrees">
+                    <div class="mode-grid__degree degree--normal">1</div>
+                    <div class="mode-grid__degree degree--flat">b3</div>
+                    <div class="mode-grid__degree degree--normal">4</div>
+                    <div class="mode-grid__degree degree--normal">5</div>
+                    <div class="mode-grid__degree degree--flat">b7</div>
+                </div>
+                <div class="mode-grid__char">No 2, 6</div>
+            </div>
+            <div class="mode-grid__row">
+                <div class="mode-grid__name">Blues</div>
+                <div class="mode-grid__degrees">
+                    <div class="mode-grid__degree degree--normal">1</div>
+                    <div class="mode-grid__degree degree--flat">b3</div>
+                    <div class="mode-grid__degree degree--normal">4</div>
+                    <div class="mode-grid__degree degree--characteristic">b5</div>
+                    <div class="mode-grid__degree degree--normal">5</div>
+                    <div class="mode-grid__degree degree--flat">b7</div>
+                </div>
+                <div class="mode-grid__char">b5 (nota azul)</div>
+            </div>
+
+            <div class="mode-grid__legend">
+                <div class="mode-grid__legend-item">
+                    <div class="mode-grid__legend-dot" style="background:var(--surface-light)"></div>
+                    <span>Igual que el Mayor</span>
+                </div>
+                <div class="mode-grid__legend-item">
+                    <div class="mode-grid__legend-dot" style="background:rgba(96,165,250,0.25);border:1px solid rgba(96,165,250,0.4)"></div>
+                    <span>Piso</span>
+                </div>
+                <div class="mode-grid__legend-item">
+                    <div class="mode-grid__legend-dot" style="background:rgba(248,113,113,0.3);border:1px solid rgba(248,113,113,0.5)"></div>
+                    <span>Características</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="article-note">
+            <div class="article-note__title">Punto clave</div>
+            <p>El factor más importante en el reconocimiento de modo es la "nota de caracteres". Dorian vs Aeolian difiere sólo en el 6o (6 vs b6). El mayor vs Mixolydian difiere sólo en el 7o (7 vs b7). La escucha consciente de las notas características es el núcleo del reconocimiento de modo.</p>
+        </div>
+
+        <!-- Section 3 -->
+        <h2 id="common-walls">Muros comunes</h2>
+
+        <h3 id="major-mixolydian">Mayor vs Mixolydian Confusion</h3>
+        <p>
+
+            Estas dos escalas difieren sólo en el séptimo grado. El mayor tiene un 7 natural (sensible), Mixolydian tiene b7. La diferencia es sólo una nota, pero distinguirlos a través de la escala completa es difícil. Enfócate en el momento en que los sonidos del séptimo grado — esa es la clave.
+
+
+        </p>
+
+        <h3 id="dorian-aeolian">Dorian vs Confusión Eolia</h3>
+        <p>
+
+            Ambos son modos "tipo menor" que comparten b3 y b7. La única diferencia es la sexta. Dorian tiene un color natural 6, dándole el color distintivo "aburrido pero de alguna manera brillante". El eolico tiene un b6, produciendo un sonido más puramente oscuro.
+
+
+        </p>
+
+        <h3 id="mode-names">Nombres del modo están confiando</h3>
+        <p>
+
+            Ionian, Dorian, Phrygian... Los nombres de origen griego son confusos hasta que te acostumbres a ellos. Memorizar nombres y reconocer sonidos son habilidades separadas. Enfócate en experimentar primero las diferencias sonoras: los nombres seguirán de forma natural.
+
+
+        </p>
+
+        <h3 id="pentatonic-similar">Los cráneos pentatónicos sonando demasiado similar</h3>
+        <p>
+
+            El mayor y menor de Pentatonic tienen menos notas (5), lo que puede hacer que las diferencias se sientan más pequeñas. El 3er (3 vs b3) es la clave, pero con sólo 5 notas hay menos información tonal, haciendo que algunas personas las encuentren más difíciles de distinguir que 7 escalas de notas.
+
+
+        </p>
+
+        <!-- Section 4 -->
+        <h2 id="effective-practice">Métodos de práctica eficaces</h2>
+
+        <h3 id="start-major-minor">Comienza con Major vs Natural Minor</h3>
+        <p>
+
+            Como el reconocimiento de acordes, empezar con la opción binaria más básica es eficaz. Ser capaz de distinguir de forma fiable Mayor de Menor Natural se convierte en la base para todo reconocimiento de modo.
+
+
+        </p>
+
+        <h3 id="characteristic-intervals">Aprender las intervalaciones características</h3>
+        <p>
+
+            Cada modo tiene una "nota de caracteres" que la define. Lydian tiene #4, Phrygian tiene b2, Dorian tiene natural 6. En lugar de escuchar toda la escala, concentre su atención en el momento en que suena la nota característica. Este enfoque de escucha acelera dramáticamente la identificación del modo.
+
+
+        </p>
+
+        <h3 id="ascending-then-both">Practicar Ascendiendo Primero, Luego ambas direcciones</h3>
+        <p>
+
+            La impresión de una escala puede diferir entre ascender y descender. Comience con ascender a practicar notas características auditivas, luego retrátese con la reproducción descendente y de dirección aleatoria una vez estable.
+
+
+        </p>
+
+        <h3 id="hear-the-color">Escucha el "Color" de cada modo</h3>
+        <p>
+
+            Más allá del análisis teórico, es importante la detección de la "color" o "atmósfera" general de cada modo. La calidad "flotante" de Lydian, la sensación "español" de Phrygian, la " oscuridad urbana" de Dorian. Verbalizar estas impresiones acelera el reconocimiento intuitivo.
+
+
+        </p>
+
+        <!-- Section 5 -->
+        <h2 id="what-app-can-do">¿Qué? Solfege PRO ¿Puede hacer</h2>
+
+        <p>
+
+            Solfege PRO's Scale Recognition es una herramienta de entrenamiento para construir su capacidad de distinguir las cualidades de escala paso a paso.
+
+
+        </p>
+
+        <h3>15+ Tipos de Escala</h3>
+        <p>
+
+            Cubre 15 tipos incluyendo Mayor, tres Menores (Natural/Harmonic/Melodic), siete modos de iglesia, Pentatonic y Azules. La piscina de preguntas se ajusta según su configuración de dificultad.
+
+
+        </p>
+
+        <h3>5 niveles de dificultad</h3>
+        <p>
+
+            Partiendo del Principiante (Major/Minor), progresando a través de Intermediate (tres tipos menores), Modos (Modos de la Iglesia), Pentatonic, a Avanzado (todas las escalas mezcladas). Comience a nivel que coincida con su capacidad actual.
+
+
+        </p>
+
+        <h3>Ascendente / Descendiente / Ambos Playback</h3>
+        <p>
+
+            Elija la dirección de reproducción. Ascendiendo solamente, descendiendo sólo, o preguntas aleatorias de ambas direcciones. Entrenar para entender cómo la dirección afecta la percepción.
+
+
+        </p>
+
+        <h3>3 Ajustes de velocidad</h3>
+        <p>
+
+            Ajuste la velocidad de reproducción a través de tres niveles: lento, normal y rápido. Analizar las notas individuales a velocidad lenta, y agarrar el color general a velocidad rápida.
+
+
+        </p>
+
+        <h3>Puntos de contacto</h3>
+        <p>
+
+            Aumenta automáticamente la frecuencia de los tipos de escala con los que lucha. Si confundes a menudo a Dorian y aeolian, esos dos aparecerán más frecuentemente.
+
+
+        </p>
+
+        <div class="cycle-diagram">
+            <div class="cycle-step">
+                <div class="cycle-step__label">Escucha.</div>
+                <div class="cycle-step__desc">Oír una escala</div>
+            </div>
+            <div class="cycle-arrow">&rarr;</div>
+            <div class="cycle-step">
+                <div class="cycle-step__label">Magistrado</div>
+                <div class="cycle-step__desc">Oír el personaje</div>
+            </div>
+            <div class="cycle-arrow">&rarr;</div>
+            <div class="cycle-step">
+                <div class="cycle-step__label">Respuesta</div>
+                <div class="cycle-step__desc">Elija tipo de escala</div>
+            </div>
+            <div class="cycle-arrow">&rarr;</div>
+            <div class="cycle-step">
+                <div class="cycle-step__label">Confirmación</div>
+                <div class="cycle-step__desc">Reencontra la respuesta</div>
+            </div>
+        </div>
+
+        <!-- Section 6 -->
+        <h2 id="limitations">¿Qué? Solfege PRO No cubre directamente</h2>
+
+        <p>
+
+            Seamos honestos.
+
+
+        </p>
+
+        <div class="article-honest">
+            <div class="article-honest__title">Áreas Más allá del alcance de la aplicación</div>
+            <p>
+                <strong>Contexto de improvisación</strong> - Reconocer un tipo de escala e improvisar con él son habilidades separadas. La aplicación entrena el reconocimiento, pero aplicarla a la actuación requiere práctica en su instrumento.
+            </p>
+            <p>
+                <strong>Creación de escalas aduaneras</strong> - Sólo se dispone de escalas preestablecidas. No hay ninguna característica para añadir escalas definidas por el usuario.
+            </p>
+            <p>
+                <strong>oído relativo dependiente de raíz</strong> - Los escalones siempre se reproducen desde la raíz. La aplicación no soporta el entrenamiento avanzado de oído relativo donde se identifica una escala desde el medio de un pasaje.
+            </p>
+            <p>
+                <strong>Variaciones de escala simétrica</strong> — Variaciones detalladas de escalas simétricas como Tono completo y Combinación de Diminished son limitadas.
+            </p>
+            <p>
+                <strong>Mejora garantizada</strong> — La aplicación proporciona dirección práctica, pero no puede garantizar mejoras. El reconocimiento de la escala de edificios también requiere el hábito de escuchar música real más allá de esta aplicación.
+            </p>
+            <p>
+                <strong>Cante de mueble y identificación de tono característico</strong> — En la tradición del solfege de Karpinski / Edlund, los modos se internalizan cantando cada modo <strong>tonos característicos</strong> en el do móvil (por ejemplo, ♮6 en Dorian, pondría4 en Lydian,  beber7 en Mixolydian,  beber2 en Phrygian). Solfege PRO's Scale Recognition se centra en escuchar carreras de escala completa; no incluye aislados de identificación de características o ejercicios de canto. Pare la práctica de escucha de la aplicación con cantos desmontables para una internalización más rápida.
+            </p>
+        </div>
+
+        <p>
+
+            ¿Qué? Solfege PRO directamente es el edificio paso a paso de su capacidad fundamental para distinguir las cualidades de escala. Aplicar esa capacidad de improvisación y composición requiere práctica instrumental y análisis de música real.
+
+
+        </p>
+
+        <!-- Mid-article CTA -->
+        <div class="article-cta-subtle">
+            <p class="article-cta-subtle__text">Consulta el precio en el App Store - comprobar su reconocimiento de escala</p>
+            <a href="https://apps.apple.com/es/app/id6756626617?pt=6749158383&amp;ct=web_guides&amp;mt=8" class="article-cta-subtle__button app-store-link" aria-label="Descargar en el App Store"><img src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/es-es" class="app-store-link__img" alt="Descargar en el App Store" loading="lazy"></a>
+        </div>
+
+        <!-- Section 7 -->
+        <h2 id="how-to-use">Uso recomendado</h2>
+
+        <p>
+
+            Solfege PRO's El reconocimiento de escala está diseñado para ser utilizado en la siguiente progresión.
+
+
+        </p>
+
+        <ol>
+            <li><strong>Principiante: Mayor y Menor</strong> — Maestro la opción binaria más básica en forma ascendente</li>
+            <li><strong>Intermedio: Tres tipos menores</strong> - Comprender las diferencias entre el menor natural/hórmeno/mélódico. Nota el movimiento distintivo b6 a 7 en el menor armónico</li>
+            <li><strong>Modos: Modos de la Iglesia</strong> — Práctica escuchando la nota característica de cada modo. Comience con Lydian (#4) y Phrygian (b2), sus personajes son los más fáciles de comprender</li>
+            <li><strong>Pentatonic: Escalas pentatónicas</strong> - Reto las diferencias sutiles en escalas de 5 notas. Enfóquese en el 3er</li>
+            <li><strong>Avanzadas: Todas las escalas mezcladas</strong> - Objetivo para una precisión estable con todos los tipos de escala mezclados</li>
+        </ol>
+
+        <div class="article-note">
+            <div class="article-note__title">Tip de uso</div>
+            <p>Si estás atascado en el reconocimiento de modos, comparar solo dos modos es eficaz. Por ejemplo, decidir "hoy es sólo Dorian y Eoli" y centrarse en la diferencia en el sexto grado. Eliminar la confusión un par a la vez es la ruta más rápida para moderar el dominio.</p>
+        </div>
+
+    </main>
+
+    <!-- Final CTA -->
+    <section class="article-cta">
+        <h2 class="article-cta__title">Comienza por comprobar su reconocimiento de escala</h2>
+        <p class="article-cta__text">
+
+            ¿Estás escuchando escalas con un sentido vago de diferencia?<br>Aprende las notas y experimenta el color de cada modo. Ahí es cuando el reconocimiento de escala comienza realmente.<br>Compruebe dónde se encuentra con la función de Solfege PRO: reconocimiento Escala.
+
+
+        </p>
+        <a href="https://apps.apple.com/es/app/id6756626617?pt=6749158383&amp;ct=web_guides&amp;mt=8" class="app-store-link" aria-label="Descargar en el App Store">
+
+            <img class="app-store-link__img" width="120" height="40" src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/es-es" alt="Descargar en el App Store">
+
+
+        </a>
+    </section>
+
+    <!-- Related Content -->
+    <div class="article-related">
+        <div class="article-related__title">Contenido relacionado</div>
+        <a href="/practice/wind/" class="article-related__link" style="margin-bottom: var(--space-md);">
+            <div class="article-related__link-title">Guía de prácticas de viento y cuerdas</div>
+            <div class="article-related__link-desc">Precisión de la altura, lectura a primera vista — menús de práctica para los jugadores de viento y cuerda</div>
+        </a>
+        <a href="/manual/scale/" class="article-related__link" style="margin-bottom: var(--space-md);">
+            <div class="article-related__link-title">Manual de configuración de reconocimiento de escala</div>
+            <div class="article-related__link-desc">Cómo elegir cada configuración de aplicación y lo que entrena, uno a la vez.</div>
+        </a>
+        <a href="/" class="article-related__link">
+            <div class="article-related__link-title">Solfege PRO Guía de prácticas</div>
+            <div class="article-related__link-desc">Menús de práctica basados en desafíos para guitarra, bajo, tambores, piano y voces</div>
+        </a>
+    </div>
+
+    <!-- Article Note -->
+    <aside class="article-endnote">
+        <p class="article-endnote__text">
+
+            Este artículo se organiza sobre la base de una metodología de entrenamiento auditivo ampliamente utilizada y de conocimientos de teoría de la música general. La percepción de las escalas y modos varía según el individuo y el género, y las categorías presentadas aquí pueden no aplicarse a cada caso. La formación en aplicación permite mejorar el reconocimiento de escala y no garantiza una mejora en la capacidad de improvisación o composición.
+
+
+        </p>
+    </aside>
+
+    <!-- Footer -->
+    <footer class="article-footer">
+        <p class="article-footer__text">
+            &copy; 2026 Solfege PRO
+        </p>
+    </footer>
+
+    <!-- Language Toggle Script -->
+    <script src="/bootstrap.js?v=10" defer></script>
+    <nav aria-label="Language" style="display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:0.5rem;padding:var(--space-lg) var(--space-md);border-top:1px solid var(--surface-light);font-size:13px">
+        <a href="/guides/ear-training-scales/" hreflang="ja" style="color:var(--text-secondary);text-decoration:none">日本語</a>
+        <span aria-hidden="true" style="color:var(--surface-light)">·</span>
+        <a href="/en/guides/ear-training-scales/" hreflang="en" style="color:var(--text-secondary);text-decoration:none">English</a>
+        <span aria-hidden="true" style="color:var(--surface-light)">·</span>
+        <a href="/fr/guides/ear-training-scales/" hreflang="fr" style="color:var(--text-secondary);text-decoration:none">Français</a>
+        <span aria-hidden="true" style="color:var(--surface-light)">·</span>
+        <a href="/de/guides/ear-training-scales/" hreflang="de" style="color:var(--text-secondary);text-decoration:none">Deutsch</a>
+        <span aria-hidden="true" style="color:var(--surface-light)">·</span>
+        <span style="color:var(--primary);font-weight:600" aria-current="true">Español</span>
+        <span aria-hidden="true" style="color:var(--surface-light)">·</span>
+        <a href="/it/guides/ear-training-scales/" hreflang="it" style="color:var(--text-secondary);text-decoration:none">Italiano</a>
+        <span aria-hidden="true" style="color:var(--surface-light)">·</span>
+        <a href="/ko/guides/ear-training-scales/" hreflang="ko" style="color:var(--text-secondary);text-decoration:none">한국어</a>
+        <span aria-hidden="true" style="color:var(--surface-light)">·</span>
+        <a href="/pt-br/guides/ear-training-scales/" hreflang="pt-BR" style="color:var(--text-secondary);text-decoration:none">Português (Brasil)</a>
+    </nav>
+</body>
+</html>

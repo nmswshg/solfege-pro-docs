@@ -1,0 +1,883 @@
+<!DOCTYPE html>
+<html lang="ko"
+      data-title-ja="譜読みの基礎 — 音名認識から先読みまで | ソルフェージュPRO"
+      data-title-en="What Is Sight Reading? — Foundations and Practice for Reading Music Notation | Solfege PRO"
+      data-title-fr="Qu'est-ce que la lecture à vue ? — Bases et entraînement pour lire la portée rapidement | Solfege PRO"
+      data-title-de="Was ist Vom-Blatt-Lesen? — Grundlagen und Übungen zum schnellen Notenlesen | Solfege PRO">
+<head>
+    <meta charset="UTF-8">
+    <meta name="robots" content="index, follow">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#1A1A1E">
+    <title>초견의 기초: 음표 읽기부터 예측 읽기까지 | Solfege PRO</title>
+    <meta name="description" content="높은음자리표·낮은음자리표의 음 이름부터 덧줄, 조표, 눈-손 간격까지 초견 속도를 높이는 단계별 계획을 소개합니다.">
+
+    <!-- Canonical -->
+    <link rel="canonical" href="https://solfegepro.com/ko/guides/sight-reading/">
+    <link rel="alternate" hreflang="ja" href="https://solfegepro.com/guides/sight-reading/">
+    <link rel="alternate" hreflang="en" href="https://solfegepro.com/en/guides/sight-reading/">
+    <link rel="alternate" hreflang="fr" href="https://solfegepro.com/fr/guides/sight-reading/">
+    <link rel="alternate" hreflang="de" href="https://solfegepro.com/de/guides/sight-reading/">
+    <link rel="alternate" hreflang="es" href="https://solfegepro.com/es/guides/sight-reading/">
+    <link rel="alternate" hreflang="it" href="https://solfegepro.com/it/guides/sight-reading/">
+    <link rel="alternate" hreflang="ko" href="https://solfegepro.com/ko/guides/sight-reading/">
+    <link rel="alternate" hreflang="pt-BR" href="https://solfegepro.com/pt-br/guides/sight-reading/">
+    <link rel="alternate" hreflang="x-default" href="https://solfegepro.com/guides/sight-reading/">
+<!-- OGP -->
+    <meta property="og:title" content="초견의 기초: 음표 읽기부터 예측 읽기까지">
+    <meta property="og:description" content="높은음자리표·낮은음자리표의 음 이름부터 덧줄, 조표, 눈-손 간격까지 초견 속도를 높이는 단계별 계획을 소개합니다.">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://solfegepro.com/ko/guides/sight-reading/">
+    <meta property="og:site_name" content="Solfege PRO">
+    <meta property="og:image" content="https://solfegepro.com/og-image.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Solfege PRO">
+    <meta property="og:locale" content="ko_KR">
+    <meta property="og:locale:alternate" content="ja_JP">
+    <meta property="og:locale:alternate" content="en_US">
+    <meta property="og:locale:alternate" content="fr_FR">
+    <meta property="og:locale:alternate" content="de_DE">
+    <meta property="og:locale:alternate" content="es_ES">
+    <meta property="og:locale:alternate" content="it_IT">
+    <meta property="og:locale:alternate" content="pt_BR">
+    <meta property="article:published_time" content="2026-03-31">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="초견의 기초: 음표 읽기부터 예측 읽기까지">
+    <meta name="twitter:description" content="높은음자리표·낮은음자리표의 음 이름부터 덧줄, 조표, 눈-손 간격까지 초견 속도를 높이는 단계별 계획을 소개합니다.">
+    <meta name="twitter:image" content="https://solfegepro.com/og-image.png">
+
+    <!-- Favicon -->
+    <link rel="icon" href="/favicon.ico" sizes="any">
+    <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap"></noscript>
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="/style.css?v=23">
+    <link rel="stylesheet" href="/guides/article.css?v=14">
+
+    <!-- Staff diagram styles -->
+    <style>
+        /* Staff Diagram */
+        .staff-diagram {
+            background: var(--surface);
+            border: 1px solid var(--surface-light);
+            border-radius: 12px;
+            padding: var(--space-xl) var(--space-lg);
+            margin: var(--space-xl) 0;
+            overflow-x: auto; /* lint-skip: musical staff notation is fixed-size visual */
+        }
+        .staff-diagram__title {
+            font-size: 13px;
+            color: var(--text-secondary);
+            text-align: center;
+            margin-bottom: var(--space-lg);
+            font-weight: 500;
+        }
+        .staff-container {
+            position: relative;
+            width: 100%;
+            max-width: 500px;
+            margin: 0 auto;
+            height: 160px;
+        }
+        .staff-line {
+            position: absolute;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: var(--text-secondary);
+            opacity: 0.4;
+        }
+        .staff-line:nth-child(1) { top: 20px; }
+        .staff-line:nth-child(2) { top: 40px; }
+        .staff-line:nth-child(3) { top: 60px; }
+        .staff-line:nth-child(4) { top: 80px; }
+        .staff-line:nth-child(5) { top: 100px; }
+        .staff-label {
+            position: absolute;
+            font-size: 10px;
+            color: var(--primary);
+            font-weight: 500;
+            white-space: nowrap;
+        }
+        .staff-note {
+            position: absolute;
+            width: 14px;
+            height: 10px;
+            background: var(--primary);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+        }
+        .staff-note-label {
+            position: absolute;
+            font-size: 11px;
+            color: var(--text-primary);
+            font-weight: 500;
+            transform: translateX(-50%);
+            white-space: nowrap;
+        }
+        .staff-clef {
+            position: absolute;
+            left: 8px;
+            font-size: 48px;
+            color: var(--text-secondary);
+            opacity: 0.7;
+            line-height: 1;
+        }
+        .staff-clef--treble { top: 18px; }
+        .staff-clef--bass { top: 10px; }
+        .staff-brace {
+            position: absolute;
+            left: 0;
+            top: 20px;
+            height: 80px;
+            width: 3px;
+            background: var(--text-secondary);
+            opacity: 0.4;
+            border-radius: 2px;
+        }
+        .ledger-line {
+            position: absolute;
+            width: 24px;
+            height: 1px;
+            background: var(--text-secondary);
+            opacity: 0.5;
+            transform: translateX(-50%);
+        }
+
+        /* Landmark Notes Diagram */
+        .landmark-diagram {
+            background: var(--surface);
+            border: 1px solid var(--surface-light);
+            border-radius: 12px;
+            padding: var(--space-xl) var(--space-lg);
+            margin: var(--space-xl) 0;
+        }
+        .landmark-diagram__title {
+            font-size: 13px;
+            color: var(--text-secondary);
+            text-align: center;
+            margin-bottom: var(--space-lg);
+            font-weight: 500;
+        }
+        .landmark-container {
+            position: relative;
+            width: 100%;
+            max-width: 500px;
+            margin: 0 auto;
+            height: 240px;
+        }
+        .landmark-note {
+            position: absolute;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+        }
+        .landmark-note__dot {
+            width: 16px;
+            height: 12px;
+            background: var(--primary);
+            border-radius: 50%;
+        }
+        .landmark-note__name {
+            font-size: 12px;
+            font-weight: 700;
+            color: var(--primary);
+        }
+        .landmark-note__desc {
+            font-size: 10px;
+            color: var(--text-secondary);
+            white-space: nowrap;
+        }
+
+        /* Skill Component List */
+        .skill-list {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--space-md);
+            margin: var(--space-lg) 0;
+        }
+        @media (max-width: 520px) {
+            .skill-list { grid-template-columns: 1fr; }
+        }
+        .skill-item {
+            background: var(--surface);
+            border: 1px solid var(--surface-light);
+            border-radius: 10px;
+            padding: var(--space-md) var(--space-lg);
+        }
+        .skill-item__name {
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 4px;
+        }
+        .skill-item__desc {
+            font-size: 12px;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        /* Difficulty Steps */
+        .difficulty-steps {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-sm);
+            margin: var(--space-lg) 0;
+        }
+        .difficulty-step {
+            display: flex;
+            align-items: center;
+            gap: var(--space-md);
+            background: var(--surface);
+            border: 1px solid var(--surface-light);
+            border-radius: 10px;
+            padding: var(--space-md) var(--space-lg);
+        }
+        .difficulty-step__number {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            background: var(--primary);
+            color: var(--background);
+            font-size: 13px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+        .difficulty-step__text {
+            font-size: 13px;
+            color: var(--text-primary);
+            line-height: 1.5;
+        }
+
+        /* Wall Item */
+        .wall-list {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-md);
+            margin: var(--space-lg) 0;
+        }
+        .wall-item {
+            background: var(--surface);
+            border-left: 3px solid var(--primary);
+            border-radius: 0 10px 10px 0;
+            padding: var(--space-md) var(--space-lg);
+        }
+        .wall-item__title {
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 4px;
+        }
+        .wall-item__desc {
+            font-size: 13px;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+    </style>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"초견의 기초: 음표 읽기부터 예측 읽기까지","description":"높은음자리표·낮은음자리표의 음 이름부터 덧줄, 조표, 눈-손 간격까지 초견 속도를 높이는 단계별 계획을 소개합니다.","author":{"@type":"Organization","name":"Solfege PRO"},"publisher":{"@type":"Organization","name":"Solfege PRO","logo":{"@type":"ImageObject","url":"https://solfegepro.com/AppIcon.png"}},"datePublished":"2026-03-31","mainEntityOfPage":{"@type":"WebPage","@id":"https://solfegepro.com/ko/guides/sight-reading/"}}</script>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"홈","item":"https://solfegepro.com/ko/"},{"@type":"ListItem","position":2,"name":"연습 가이드","item":"https://solfegepro.com/ko/guides/"},{"@type":"ListItem","position":3,"name":"譜読みの基礎 — 音名認識から先読みまで","item":"https://solfegepro.com/ko/guides/sight-reading/"}]}</script>
+</head>
+<body>
+    <!-- Navigation -->
+        <nav class="nav" aria-label="기본 메뉴">
+        <div class="nav__container">
+            <a href="/ko/" class="nav__logo" aria-label="Solfege PRO">
+                <img src="/AppIcon.png" alt="" class="nav__logo-icon" width="32" height="32">
+                <span class="nav__logo-text">Solfege PRO</span>
+            </a>
+            <ul class="nav__list">
+                <li><a href="/ko/" class="nav__link">Solfege PRO 소개</a></li>
+                <li><a href="/ko/features/" class="nav__link">훈련</a></li>
+                <li><a href="/ko/guides/" class="nav__link active" aria-current="page">연습 가이드</a></li>
+                <li><a href="/ko/manual/" class="nav__link">매뉴얼</a></li>
+            </ul>
+            <div class="nav__settings">
+                <button class="settings-btn" id="lang-toggle" title="언어 선택"><span id="lang-text">KO</span></button>
+                <button class="hamburger-btn" id="hamburger-btn" aria-label="메뉴 열기" aria-expanded="false" aria-controls="drawer">
+                    <span class="hamburger-btn__line"></span><span class="hamburger-btn__line"></span><span class="hamburger-btn__line"></span>
+                </button>
+            </div>
+        </div>
+    </nav>
+        <!-- Mobile drawer (hidden on desktop) -->
+            <div class="drawer-overlay" id="drawer-overlay"></div>
+    <aside class="drawer" id="drawer" aria-label="메뉴" aria-hidden="true" inert>
+        <div class="drawer__header">
+            <span class="drawer__title">메뉴</span>
+            <button class="drawer__close" id="drawer-close" aria-label="메뉴 닫기">×</button>
+        </div>
+        <ul class="drawer__list">
+            <li><a href="/ko/" class="drawer__link">Solfege PRO 소개</a></li>
+            <li><a href="/ko/features/" class="drawer__link">훈련</a></li>
+            <li><a href="/ko/guides/" class="drawer__link active" aria-current="page">연습 가이드</a></li>
+            <li><a href="/ko/manual/" class="drawer__link">매뉴얼</a></li>
+        </ul>
+    </aside>
+
+
+    <!-- Article Header -->
+    <header class="page-header">
+        <div class="page-header__meta">
+            <span class="page-header__tag">Sight 독서</span>
+            <span>10 분 읽기</span>
+        </div>
+        <h1 class="page-header__title">
+
+            초견은 무엇입니까?<br>재단 및 업무<br>음악 표기
+
+
+        </h1>
+        <p class="page-header__subtitle">
+
+            "나는 음악을 읽는 것은 나쁜거야." 직원에 stumble이 가장 정확히 알고있는 것은 첫 번째 단계입니다.
+
+
+        </p>
+    </header>
+
+    <!-- Top-of-article CTA -->
+    <aside class="article-top-cta" aria-label="App promotion">
+        <div class="article-top-cta__body">
+            <p class="article-top-cta__title">
+
+                더 알아보기 Solfege PRO
+
+
+            </p>
+            <p class="article-top-cta__sub">
+
+                $9.99/월(미국 App Store 기준)(미국 App Store 기준)
+
+
+            </p>
+        </div>
+        <a href="https://apps.apple.com/kr/app/id6756626617?pt=6749158383&amp;ct=web_guides&amp;mt=8" class="article-top-cta__button app-store-link" data-cta-position="article_top" aria-label="App Store에서 다운로드"><img src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/ko-kr" class="app-store-link__img" alt="App Store에서 다운로드" loading="lazy"></a>
+    </aside>
+
+    <!-- Article Body -->
+    <main class="article-body">
+
+        <!-- Section 1 -->
+        <h2 id="what-is-sight-reading">"초견"이란 무엇입니까?</h2>
+
+        <p>
+
+            읽는, 그것의 가득 차있는 감각에서, 실제 시간에 있는 표기에서 실행을 나타납니다 (Lehmann &amp; Ericsson, 1996). 의 의 <strong>기초 층</strong>그러나, 직원 위치에서 음높이 이름의 급속한 식별입니다 — 그리고 그 이 문서는 무엇인가 Solfege PRO's 초견 기능 집중력. 진정한 성능 기반 시야 읽기는 모터 실행, 손가락, 그리고 룩 - 머리 읽기를 추가로 통합합니다.
+
+
+        </p>
+
+        <p>
+
+            많은 음악가들이 "나는 음악을 읽을 수 없습니다"또는 "내 마음은 점수를 볼 때 공백 간다." 몇 년 동안 피아노 또는 기타를 연주 한 사람들은 직원에 의해 각 주를 계산 할 수 있습니다.
+
+
+        </p>
+
+        <p>
+
+            읽는 것은 청음 훈련 또는 리듬 감각에서 명백한 기술입니다. 시각적 패턴 인식에 더 가까이 있고, 올바른 연습과 함께, 꾸준한 개선은 성취할 수 있습니다. 효과적으로 연습하려면, 먼저 어떤 구성 요소를 읽고 표기의 기술을 확인해야합니다.
+
+
+        </p>
+
+        <!-- Section 2 -->
+        <h2 id="breakdown">끊기 아래로 Sight 독서</h2>
+
+        <p>
+
+            "나는 음악을 읽을 수 없습니다"는 사람에 따라 매우 다른 것을 의미 할 수 있습니다. 초견은 여러 가지 하위 스킬의 조합입니다.
+
+
+        </p>
+
+        <div class="skill-list">
+            <div class="skill-item">
+                <div class="skill-item__name">라인 vs. 우주</div>
+                <div class="skill-item__desc">해당 이용 후기에 달린 코멘트가 없습니다. 모든 표기의 시작점.</div>
+            </div>
+            <div class="skill-item">
+                <div class="skill-item__name">음자리표 인식</div>
+                <div class="skill-item__desc">동일한 직원 위치는 treble 대에 다른 노트를 의미합니다.베이스 음자리표. 그 사이에 전환할 수 있습니까?</div>
+            </div>
+            <div class="skill-item">
+                <div class="skill-item__name">채용 정보</div>
+                <div class="skill-item__desc">정확한 판독 예리한 ( ), 평평한 ( ), 자연 ( ). 자주 묻는 질문</div>
+            </div>
+            <div class="skill-item">
+                <div class="skill-item__name">키 서명</div>
+                <div class="skill-item__desc">조각을 통해 키 서명에 의해 지정된 날카로운 또는 평평을 적용. 주요 인식으로 읽기.</div>
+            </div>
+            <div class="skill-item">
+                <div class="skill-item__name">Ledger 라인</div>
+                <div class="skill-item__desc">5선 직원의 위 또는 아래를 확장하는 메모. 높은 저전 등록자 및 주요 속도 병목에서 공통.</div>
+            </div>
+            <div class="skill-item">
+                <div class="skill-item__name">위치 패턴</div>
+                <div class="skill-item__desc">당신은 "2 라인 = G (대략적인 음자리표)"를 의식적으로 계산하지 않고 다시 볼 수 있습니까? memorization에 본 승인.</div>
+            </div>
+        </div>
+
+        <!-- Staff Diagram -->
+        <div class="staff-diagram">
+            <div class="staff-diagram__title">Treble 음자리표 Staff — 라인과 공간에 대한 주 이름</div>
+            <div class="staff-container">
+                <!-- Brace -->
+                <div class="staff-brace"></div>
+                <!-- Clef symbol -->
+                <div class="staff-clef staff-clef--treble">&#119070;</div>
+                <!-- Five staff lines -->
+                <div class="staff-line" style="top:20px"></div>
+                <div class="staff-line" style="top:40px"></div>
+                <div class="staff-line" style="top:60px"></div>
+                <div class="staff-line" style="top:80px"></div>
+                <div class="staff-line" style="top:100px"></div>
+
+                <!-- Line notes (E, G, B, D, F) -->
+                <div class="staff-note" style="left:25%;top:100px"></div>
+                <div class="staff-note-label" style="left:25%;top:118px">E4</div>
+
+                <div class="staff-note" style="left:35%;top:80px"></div>
+                <div class="staff-note-label" style="left:35%;top:118px">G4</div>
+
+                <div class="staff-note" style="left:45%;top:60px"></div>
+                <div class="staff-note-label" style="left:45%;top:118px">B4</div>
+
+                <div class="staff-note" style="left:55%;top:40px"></div>
+                <div class="staff-note-label" style="left:55%;top:118px">D5</div>
+
+                <div class="staff-note" style="left:65%;top:20px"></div>
+                <div class="staff-note-label" style="left:65%;top:118px">F5</div>
+
+                <!-- Labels -->
+                <div class="staff-label" style="right:-40px;top:14px">5 선</div>
+                <div class="staff-label" style="right:-40px;top:94px">1라인</div>
+
+                <!-- Space note labels below -->
+                <div style="position:absolute;bottom:10px;left:0;right:0;text-align:center;font-size:11px;color:var(--text-secondary);">
+
+                    라인에 노트 : E - G - B - D - F (바닥 위에)
+
+
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 3 -->
+        <h2 id="common-walls">일반 벽</h2>
+
+        <p>
+
+            초견를 연습 할 때 대부분의 사람들은 동일한 점에서 stumble. 당신이 타격을 입은 벽을 알고있는 것은 효율적인 연습에 단축입니다.
+
+
+        </p>
+
+        <div class="wall-list">
+            <div class="wall-item">
+                <div class="wall-item__title">베이스 음자리표 Confusion</div>
+                <div class="wall-item__desc">당신의 treble 음자리표 근육 기억은 방해합니다. 베이스 클라프에서 2 라인은 B이지만 뇌는 대단한 clef에서 G로 읽습니다. 두 시스템 사이에 정신 "스위치"가 필요합니다. 특히 2 손으로 피아노 연주에 주목할만한.</div>
+            </div>
+            <div class="wall-item">
+                <div class="wall-item__title">Accidental 미시</div>
+                <div class="wall-item__desc">자연적인 노트로 날카로운 또는 평평을 읽으십시오. 특히 평면 키 (B , E , 등)에서 공통. autopilot에서 음악을 읽을 때, 사고는 놓칠 첫 번째 일입니다.</div>
+            </div>
+            <div class="wall-item">
+                <div class="wall-item__title">Ledger 라인 Hesitation</div>
+                <div class="wall-item__desc">5개의 선을 넘어갈 때 속도 하락 극적으로. 한 번에 한 번에 한 번의 ledger 라인을 계산 시작합니다. 특히 대변 직원 (A5+) 이상 또는베이스 직원 (C2 이하) 이하.</div>
+            </div>
+            <div class="wall-item">
+                <div class="wall-item__title">키 서명 잊어</div>
+                <div class="wall-item__desc">시작에 키 서명을 확인하지만 중간 성능을 잊지. 특히 3 개의 날카로운 또는 평평한 키에서 공통. F를 재생할 때 F를 재생하는 것은 고전적인 키 서명 함입니다.</div>
+            </div>
+        </div>
+
+        <div class="article-note">
+            <div class="article-note__title">키 포인트</div>
+            <p>이 벽은 재능에 대해 아닙니다. 그들은 익숙한 것에 대해 이야기합니다. 당신이 타격을 입는 벽을 식별하고, 연습을 집중하고, 당신의 독서 속도는 믿을 수 있습니다.</p>
+        </div>
+
+        <!-- Section 4 -->
+        <h2 id="effective-practice">효과적인 연습 방법</h2>
+
+        <p>
+
+            초견에서 개선은 특정 원칙을 따릅니다. 점수를 통해 무작위로 독서보다, 그것은 단계의 어려움을 제어하는 것이 중요합니다.
+
+
+        </p>
+
+        <h3 id="one-clef">1개의 Clef로 시작</h3>
+        <p>
+
+            전술과베이스 음자리표 동시에 정신 방해를 일으킬 수 있습니다. treble clef에 집중하여 라인과 공간 위치에 반사 인식을 구축하십시오. 일단 떨어져 clef는 안정, 별도의 연습 트랙으로베이스를 추가.
+
+
+        </p>
+
+        <h3 id="landmark-notes">랜드 마크 노트를 처음 사용</h3>
+        <p>
+
+            한 번에 직원에 모든 메모를 치우려고하는 것은 비효율적입니다. 대신 "landmark 음"로 시작하십시오. - 특정 사항과 알고있는 몇 가지 참조 포인트 -이 랜드 마크의 거리로 다른 노트를 결정합니다.
+
+
+        </p>
+
+        <!-- Landmark Notes Visual -->
+        <div class="landmark-diagram">
+            <div class="landmark-diagram__title">랜드마크 노트 — 이 다섯 시작</div>
+            <div class="landmark-container">
+                <!-- Treble Staff -->
+                <div style="position:absolute;top:0;left:0;right:0;height:110px;">
+                    <div style="position:absolute;left:5%;top:8px;font-size:11px;color:var(--text-secondary);font-weight:500;">트라플 클리프</div>
+                    <div class="staff-line" style="top:20px"></div>
+                    <div class="staff-line" style="top:32px"></div>
+                    <div class="staff-line" style="top:44px"></div>
+                    <div class="staff-line" style="top:56px"></div>
+                    <div class="staff-line" style="top:68px"></div>
+                    <!-- Middle C (ledger line below) -->
+                    <div class="ledger-line" style="left:25%;top:80px"></div>
+                    <div class="staff-note" style="left:25%;top:80px"></div>
+                    <div style="position:absolute;left:25%;top:92px;transform:translateX(-50%);text-align:center;">
+                        <div style="font-size:13px;font-weight:700;color:var(--primary);">C4</div>
+                        <div style="font-size:10px;color:var(--text-secondary);">중간 C (약)</div>
+                    </div>
+                    <!-- G on 2nd line -->
+                    <div class="staff-note" style="left:55%;top:56px"></div>
+                    <div style="position:absolute;left:55%;top:78px;transform:translateX(-50%);text-align:center;">
+                        <div style="font-size:13px;font-weight:700;color:var(--primary);">G4</div>
+                        <div style="font-size:10px;color:var(--text-secondary);">2차 라인</div>
+                    </div>
+                    <!-- F on top (5th) line -->
+                    <div class="staff-note" style="left:85%;top:20px"></div>
+                    <div style="position:absolute;left:85%;top:78px;transform:translateX(-50%);text-align:center;">
+                        <div style="font-size:13px;font-weight:700;color:var(--primary);">F5</div>
+                        <div style="font-size:10px;color:var(--text-secondary);">맨 위로</div>
+                    </div>
+                </div>
+                <!-- Bass Staff -->
+                <div style="position:absolute;top:130px;left:0;right:0;height:110px;">
+                    <div style="position:absolute;left:5%;top:8px;font-size:11px;color:var(--text-secondary);font-weight:500;">베이스 음자리표</div>
+                    <div class="staff-line" style="top:20px"></div>
+                    <div class="staff-line" style="top:32px"></div>
+                    <div class="staff-line" style="top:44px"></div>
+                    <div class="staff-line" style="top:56px"></div>
+                    <div class="staff-line" style="top:68px"></div>
+                    <!-- G on bottom (1st) line -->
+                    <div class="staff-note" style="left:25%;top:68px"></div>
+                    <div style="position:absolute;left:25%;top:78px;transform:translateX(-50%);text-align:center;">
+                        <div style="font-size:13px;font-weight:700;color:var(--primary);">G2</div>
+                        <div style="font-size:10px;color:var(--text-secondary);">하단 라인</div>
+                    </div>
+                    <!-- F on 4th line -->
+                    <div class="staff-note" style="left:55%;top:32px"></div>
+                    <div style="position:absolute;left:55%;top:78px;transform:translateX(-50%);text-align:center;">
+                        <div style="font-size:13px;font-weight:700;color:var(--primary);">F3</div>
+                        <div style="font-size:10px;color:var(--text-secondary);">4 라인</div>
+                    </div>
+                    <!-- Middle C (ledger line above) -->
+                    <div class="ledger-line" style="left:85%;top:8px"></div>
+                    <div class="staff-note" style="left:85%;top:8px"></div>
+                    <div style="position:absolute;left:85%;top:78px;transform:translateX(-50%);text-align:center;">
+                        <div style="font-size:13px;font-weight:700;color:var(--primary);">C4</div>
+                        <div style="font-size:10px;color:var(--text-secondary);">중간 C (약)</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <h3 id="no-accidentals-first">Accidentals 없이 연습</h3>
+        <p>
+
+            사고 ( , )와 메모는 자연 노트 (C, D, E, F, G, A, B)에 고체 후 있어야합니다. 당신이 반사되기 전에 사고를 추가하면 자연을 두 배로 읽을 수 있습니다. 7개의 자연 노트를 가진 C 전공에서 먼저 얻고, 다른 키로 진행합니다.
+
+
+        </p>
+
+        <h3 id="add-key-signatures">Gradually 키 서명 추가</h3>
+        <p>
+
+            C 전공 후, 1개의 날카로운 (G 전공) 또는 1개의 평평한 (F 전공)로 시작하십시오. 한 번에 여러 날카로운/평을 추가하지 마십시오 — 한 번에 한 번 증가하고 각 새로운 패턴을 정착하십시오. 각 키에서, 의식적으로 노트가 변경되는 통지.
+
+
+        </p>
+
+        <div class="difficulty-steps">
+            <div class="difficulty-step">
+                <div class="difficulty-step__number">1</div>
+                <div class="difficulty-step__text">Treble 음자리표, C 전공, 자연스럽고 — reflexive position-to-name mapping을 구축</div>
+            </div>
+            <div class="difficulty-step">
+                <div class="difficulty-step__number">2</div>
+                <div class="difficulty-step__text">한 번에 날카로운 / 평평을 추가하십시오 (G, F, D, Bnight ...) - 키 서명 인식을 구축</div>
+            </div>
+            <div class="difficulty-step">
+                <div class="difficulty-step__number">3</div>
+                <div class="difficulty-step__text">베이스 클라프 추가 — 별도의 시스템으로 연습 시작</div>
+            </div>
+            <div class="difficulty-step">
+                <div class="difficulty-step__number">4</div>
+                <div class="difficulty-step__text">ledger 라인 범위 확장 - 다섯 개 라인 이상 편안한</div>
+            </div>
+            <div class="difficulty-step">
+                <div class="difficulty-step__number">5</div>
+                <div class="difficulty-step__text">모든 노트 모드 (사우처 포함) - 즉시 모든 날카로운 또는 플랫에 응답</div>
+            </div>
+        </div>
+
+        <!-- Section 5 -->
+        <h2 id="what-app-can-do">이름 * Solfege PRO 할 수 있습니다</h2>
+
+        <p>
+
+            Solfege PRO's 초견은 직원에 대한 메모를 제시하고 이름을 묻습니다. 위에서 설명한 "gradually increase difficult" 접근 방식은 앱의 설정을 통해 유연하게 제어 할 수 있습니다.
+
+
+        </p>
+
+        <h3>모든 12의 열쇠</h3>
+        <p>
+
+            C 전공에서 B↔ 전공까지 12개의 키 연습, 정확한 샤프/평방 표기. 실제 시각과 대화 형 연습을 통해 각 키에서 변경하는 것을 배우십시오.
+
+
+        </p>
+
+        <h3>Treble 및 베이스 음자리표 지원</h3>
+        <p>
+
+            연습을 할 수 있는 CLef를 선택하십시오. treble 음자리표 만 시작하면, 준비 할 때베이스 clef를 추가합니다. - 단계별 접근 방식을 지원합니다.
+
+
+        </p>
+
+        <h3>Accidental 모드 토글</h3>
+        <p>
+
+            "음계 tones only"(키 서명 내에서 표기)와 "all 음"(사우처 포함). 자연 노트를 고집하기 위해 음계 톤을 시작, 다음 사고 읽는 기술을 구축하기 위해 모든 노트 모드로 전환.
+
+
+        </p>
+
+        <h3>Ledger 라인 토글</h3>
+        <p>
+
+            썬더글라스 라인 노트를 켜거나 멈춥니다. 5 선 직원 안에 단단히 닿을 때까지 그들을 유지하십시오. 핵심 범위에 집중하십시오.
+
+
+        </p>
+
+        <h3>Weak Point 초점 형태</h3>
+        <p>
+
+            자동으로 메모의 빈도를 증가시키는 모드는 잘못되었습니다. 대상이 되는 곳을 선택하지 않으실 수 없습니다. "나는 항상 D5와 B4"또는 "나는 F와 A를베이스 클라프에 섞는다"-이 모드는 효율적으로 이러한 습관을 수정합니다.
+
+
+        </p>
+
+        <h3>핵심특징</h3>
+        <p>
+
+            특정 키에 초점. 집중적으로 키는 모든 키의 읽기 능력을 점차적으로 구축하기 위해 어려운 (예 : 평평한 키)를 발견 할 수 있습니다.
+
+
+        </p>
+
+        <h3>오류 분석</h3>
+        <p>
+
+            오류 패턴 분석 : "위치 혼란"(접근 라인 / 공간 읽기), "오락 실수"(정확한 노트 이름하지만 잘못 팔이), "오염 잘못"(정밀하거나 평평). 오류의 원인을 파악하는 방법
+
+
+        </p>
+
+        <!-- Mid-article CTA -->
+        <div class="article-cta-subtle">
+            <p class="article-cta-subtle__text">$9.99/월(미국 App Store 기준)(미국 App Store 기준) - 당신의 표기법 읽기 능력을 확인</p>
+            <a href="https://apps.apple.com/kr/app/id6756626617?pt=6749158383&amp;ct=web_guides&amp;mt=8" class="article-cta-subtle__button app-store-link" aria-label="App Store에서 다운로드"><img src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/ko-kr" class="app-store-link__img" alt="App Store에서 다운로드" loading="lazy"></a>
+        </div>
+
+        <!-- Section 6 -->
+        <h2 id="limitations">이름 * Solfege PRO 직접 커버하지 않는</h2>
+
+        <p>
+
+            정직하다.
+
+
+        </p>
+
+        <div class="article-honest">
+            <div class="article-honest__title">App's Scope를 넘어 지역</div>
+            <p>
+                <strong>리듬 판독 (노트 기간)</strong> - 기본적으로 초견은 음높이 name ID에 초점을 맞추고 있습니다. 그러나 "Show 음가"와 "Score 음가 too"설정을 활성화하면 기간과 점수가 독립적으로 주어집니다.<a href="/manual/sight-reading/#note-value-scoring">자주 묻는 질문</a>). 전체 리듬 표기는 전용으로 취급됩니다. <a href="/manual/rhythm-sight-reading/">리듬 Sight 독서</a> 교육.
+            </p>
+            <p>
+                <strong>코드 독서 (다중 동시 노트)</strong> — 노트는 한 번에 발표됩니다. 한 눈에 읽는 코드 voicings는 실제 시트 음악과 연습해야합니다.
+            </p>
+            <p>
+                <strong>알토와 테너 음자리표</strong> — treble과 bass clefs만 지원됩니다. viola와 cello 플레이어가 필요로 한 C clefs는 사용할 수 없습니다.
+            </p>
+            <p>
+                <strong>단 키 서명</strong> - 연습은 주요 핵심 서명을 기반으로합니다. 단조 키별 패턴을 연습하는 전용 기능(소형 단조, 단조 단조 사고 패턴 등)
+            </p>
+            <p>
+                <strong>솔페주 naming (Do-Re-Mi)를 사용</strong> — 답변은 문자 이름 (C, D, E...)을 사용합니다. 고정도 또는 이동할 수 있는 할 수 있는 솔페주 syllables는 지원되지 않습니다.
+            </p>
+            <p>
+                <strong>템포 압력의 밑에 순간 초견</strong> — 노트는 tempo없이 한 번에 제공됩니다. 실제 초견 성능으로 실시간 흐름 점수를 읽을 수 없습니다. 앱은 실제 점수 판독에 적용한 음높이 name 인식 반사를 구축하도록 설계되었습니다.
+            </p>
+        </div>
+
+        <p>
+
+            이름 * Solfege PRO's 초견은 직접 지원이 직원의 음높이 이름 식별의 속도와 정확성을 개선하고 있습니다. "주의를 보고 이름을 아는"의 기초를 단단히 하기 위한 도구입니다. - 실제 세계 초견 성능 능력을 완료하지 않습니다.
+
+
+        </p>
+
+        <!-- Section 7 -->
+        <h2 id="how-to-use">관련 상품</h2>
+
+        <p>
+
+            Solfege PRO's 초견은 다음의 진보적인 순서로 사용될 수 있도록 설계되었습니다.
+
+
+        </p>
+
+        <ol>
+            <li><strong>Treble 음자리표 + C 주요 + 자연 단지</strong> — Reflexive line/space Reading을 빌드합니다. 이것은 모든 것을 위한 기초입니다.</li>
+            <li><strong>한 번에 키 추가</strong> — G 전공(1 선), F 전공(1 평평)으로 시작. 각 키로 변경되는 알림.</li>
+            <li><strong>베이스 clef를 추가</strong> — C 전공 시작. treble clef에서 별도의 시스템으로 연습하십시오.</li>
+            <li><strong>ledger 선에 회전</strong> — 직원을 넘어 노트와 함께 편안 할 때까지 반복.</li>
+            <li><strong>약점 초점 형태를 사용하십시오</strong> — 오류 패턴을 검토하고 약한 장소를 대상으로합니다.</li>
+            <li><strong>실제 시트 음악에 반환</strong> — 앱에서 실제 성능으로 다시 구축한 반사를 가져다.</li>
+        </ol>
+
+        <div class="article-note">
+            <div class="article-note__title">사용법 팁</div>
+            <p>세션은 단축 될 수 있습니다. 같은 설정에서 하루 5 분, 그리고 당신의 주 인식 속도 꾸준히 향상 될 것입니다. "가입을 즉시"에 "해킹"의 이동은 반복을 통해 자연스럽게 발생합니다.</p>
+        </div>
+
+        <!-- Visual: Good vs Bad Comparison -->
+        <div class="comparison-visual">
+            <div class="comparison-card comparison-card--bad">
+                <div class="comparison-card__header">더 적은 효과적인</div>
+                <div class="comparison-card__body">
+                    <p>모든 키로 시작, clefs, ledger 라인, 및 실수 시작. 너무 열심히, 붓기. 결과 화면을 검토하지 않고 닫습니다.</p>
+                </div>
+            </div>
+            <div class="comparison-card comparison-card--good">
+                <div class="comparison-card__header">더 효과적인</div>
+                <div class="comparison-card__body">
+                    <p>C 전공으로 시작, treble 음자리표 → 정확도가 안정될 때 1개의 열쇠를 추가하십시오 → 약한 반점을 위한 과실 분석 → 사용 약한 점 초점 형태 → Gradually 증가 어려움.</p>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Final CTA -->
+    <section class="article-cta">
+        <h2 class="article-cta__title">당신의 초견 능력을 확인하여 시작</h2>
+        <p class="article-cta__text">
+
+            읽는 것은 단순히 "할 수"또는 "할 수 없습니다"일 것입니다.<br>어느 음자리표, 어느 범위, 어느 키 여행 당신은? 끊어지고 약한 명소를 찾아보세요.<br>그것은 음악을 독감 읽는 첫 번째 단계입니다.<br>당신의 독서 능력을 시험하십시오 Solfege PRO's 초견'의 장점
+
+
+        </p>
+                <p style="font-size: 14px; color: var(--text-secondary); margin-bottom: var(--space-md); text-align: center;">
+
+            $9.99/월(미국 App Store 기준)(미국 App Store 기준)
+
+
+        </p>
+        <a href="https://apps.apple.com/kr/app/id6756626617?pt=6749158383&amp;ct=web_guides&amp;mt=8" class="app-store-link" aria-label="App Store에서 다운로드">
+
+            <img class="app-store-link__img" width="120" height="40" src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/ko-kr" alt="App Store에서 다운로드">
+
+
+        </a>
+    </section>
+
+    <!-- Related Content -->
+    <div class="article-related">
+        <div class="article-related__title">관련 내용</div>
+        <a href="/practice/wind/" class="article-related__link" style="margin-bottom: var(--space-md);">
+            <div class="article-related__link-title">Wind & Strings 연습 가이드</div>
+            <div class="article-related__link-desc">음높이 정확도, 초견 - 바람과 현 플레이어를위한 연습 메뉴</div>
+        </a>
+        <a href="/guides/eye-hand-span/" class="article-related__link" style="margin-bottom: var(--space-md);">
+            <div class="article-related__link-title">3 초 머리 읽기 - 눈 - 바람을 확장</div>
+            <div class="article-related__link-desc">스트레이트레드는 재능 때문에 스트레이트가 없습니다. 숙련 된 독자는 1 ~ 2가 앞서 자신의 손으로 재생하는 것을 보았습니다. - 눈 손. 눈 추적 연구의 Fifty 년, 플러스 "flash reading" 드릴, 그 간격을 확장하는 방법을 알려줍니다.</div>
+        </a>
+        <a href="/guides/piano-parent-home-support/" class="article-related__link" style="margin-bottom: var(--space-md);">
+            <div class="article-related__link-title">피아노 연습 - 어떤 음악 부모가 집에서 실제로 할 수있는</div>
+            <div class="article-related__link-desc">수업은 일주일에 한 번, 30 ~ 60 분입니다. 당시의 다른 99 %는 자녀가 집에 있습니다. 아이의 피아노 진도는 수업에 의해 결정되지만 홈 연습이 설계되었는지. 이 가이드는 우선 순위를 놓습니다. - 독서, 리듬, 귀, 손가락 - 그리고 4 개의 콘크리트 드릴은 어떤 비 음악 부모가 집에서 실행할 수 있습니다.</div>
+        </a>
+        <a href="/guides/rhythm-training/" class="article-related__link">
+            <div class="article-related__link-title">리듬ic Feel는 무엇입니까? — 러쉬닝, 처짐, Inconsistency 및 Pocket을 파괴</div>
+            <div class="article-related__link-desc">리듬 감각의 다섯 요소와 타이밍 정확도 향상을 위한 연습 방법</div>
+        </a>
+        <a href="/manual/sight-reading/" class="article-related__link" style="margin-bottom: var(--space-md);">
+            <div class="article-related__link-title">초견 설정 설명서</div>
+            <div class="article-related__link-desc">각 인앱 설정과 열차를 선택할 수있는 방법, 한 번에.</div>
+        </a>
+        <a href="/" class="article-related__link">
+            <div class="article-related__link-title">Solfege PRO 연습장</div>
+            <div class="article-related__link-desc">기타,베이스, 드럼, 피아노, 보컬을 위한 도전 기반 연습 메뉴</div>
+        </a>
+    </div>
+
+    <!-- Article Note -->
+    <aside class="article-endnote">
+        <p class="article-endnote__text">
+
+            이 문서는 음악 표기 교육 및 기능 설계의 널리 사용되는 기초 개념을 기반으로합니다. Solfege PRO. 보자마자 독서를 배우는 많은 접근법이 있고, 여기에서 제시된 방법은 각 학습자에게 최선이 아닐 수 없습니다. in-app 초견은 음높이 이름 식별의 속도와 정확도를 향상시키고 실제 성능에 대한 종합적인 초견 능력을 보장하지 않습니다.
+
+
+        </p>
+    </aside>
+
+    <!-- Footer -->
+    <footer class="article-footer">
+        <p class="article-footer__text">
+            &copy; 2026 Solfege PRO
+        </p>
+    </footer>
+    <script src="/bootstrap.js?v=10" defer></script>
+    <nav aria-label="Language" style="display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:0.5rem;padding:var(--space-lg) var(--space-md);border-top:1px solid var(--surface-light);font-size:13px">
+        <a href="/guides/sight-reading/" hreflang="ja" style="color:var(--text-secondary);text-decoration:none">日本語</a>
+        <span aria-hidden="true" style="color:var(--surface-light)">·</span>
+        <a href="/en/guides/sight-reading/" hreflang="en" style="color:var(--text-secondary);text-decoration:none">English</a>
+        <span aria-hidden="true" style="color:var(--surface-light)">·</span>
+        <a href="/fr/guides/sight-reading/" hreflang="fr" style="color:var(--text-secondary);text-decoration:none">Français</a>
+        <span aria-hidden="true" style="color:var(--surface-light)">·</span>
+        <a href="/de/guides/sight-reading/" hreflang="de" style="color:var(--text-secondary);text-decoration:none">Deutsch</a>
+        <span aria-hidden="true" style="color:var(--surface-light)">·</span>
+        <a href="/es/guides/sight-reading/" hreflang="es" style="color:var(--text-secondary);text-decoration:none">Español</a>
+        <span aria-hidden="true" style="color:var(--surface-light)">·</span>
+        <a href="/it/guides/sight-reading/" hreflang="it" style="color:var(--text-secondary);text-decoration:none">Italiano</a>
+        <span aria-hidden="true" style="color:var(--surface-light)">·</span>
+        <span style="color:var(--primary);font-weight:600" aria-current="true">한국어</span>
+        <span aria-hidden="true" style="color:var(--surface-light)">·</span>
+        <a href="/pt-br/guides/sight-reading/" hreflang="pt-BR" style="color:var(--text-secondary);text-decoration:none">Português (Brasil)</a>
+    </nav>
+</body>
+</html>

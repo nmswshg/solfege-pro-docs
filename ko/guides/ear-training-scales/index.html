@@ -1,0 +1,744 @@
+<!DOCTYPE html>
+<html lang="ko"
+      data-title-ja="スケールを聴き分ける — モードの特性音 | ソルフェージュPRO"
+      data-title-en="What Is Scale Recognition? — Understanding Scales and Modes | Solfege PRO"
+      data-title-fr="Qu'est-ce que la reconnaissance des gammes ? — Comprendre les gammes et les modes | Solfege PRO"
+      data-title-de="Was ist Skalenerkennung? — Skalen und Modi verstehen | Solfege PRO">
+<head>
+    <meta charset="UTF-8">
+    <meta name="robots" content="index, follow">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#1A1A1E">
+    <title>스케일·모드 인식: 특징음 듣기 | Solfege PRO</title>
+    <meta name="description" content="메이저·마이너부터 도리안, 프리지안 등 교회선법과 펜타토닉까지, 각 스케일의 특징음을 단계별 연습 계획으로 익힙니다.">
+
+    <!-- Canonical -->
+    <link rel="canonical" href="https://solfegepro.com/ko/guides/ear-training-scales/">
+    <link rel="alternate" hreflang="ja" href="https://solfegepro.com/guides/ear-training-scales/">
+    <link rel="alternate" hreflang="en" href="https://solfegepro.com/en/guides/ear-training-scales/">
+    <link rel="alternate" hreflang="fr" href="https://solfegepro.com/fr/guides/ear-training-scales/">
+    <link rel="alternate" hreflang="de" href="https://solfegepro.com/de/guides/ear-training-scales/">
+    <link rel="alternate" hreflang="es" href="https://solfegepro.com/es/guides/ear-training-scales/">
+    <link rel="alternate" hreflang="it" href="https://solfegepro.com/it/guides/ear-training-scales/">
+    <link rel="alternate" hreflang="ko" href="https://solfegepro.com/ko/guides/ear-training-scales/">
+    <link rel="alternate" hreflang="pt-BR" href="https://solfegepro.com/pt-br/guides/ear-training-scales/">
+    <link rel="alternate" hreflang="x-default" href="https://solfegepro.com/guides/ear-training-scales/">
+<!-- OGP -->
+    <meta property="og:title" content="스케일·모드 인식: 특징음 듣기">
+    <meta property="og:description" content="메이저·마이너부터 도리안, 프리지안 등 교회선법과 펜타토닉까지, 각 스케일의 특징음을 단계별 연습 계획으로 익힙니다.">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://solfegepro.com/ko/guides/ear-training-scales/">
+    <meta property="og:site_name" content="Solfege PRO">
+    <meta property="og:image" content="https://solfegepro.com/og-image.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Solfege PRO">
+    <meta property="og:locale" content="ko_KR">
+    <meta property="og:locale:alternate" content="ja_JP">
+    <meta property="og:locale:alternate" content="en_US">
+    <meta property="og:locale:alternate" content="fr_FR">
+    <meta property="og:locale:alternate" content="de_DE">
+    <meta property="og:locale:alternate" content="es_ES">
+    <meta property="og:locale:alternate" content="it_IT">
+    <meta property="og:locale:alternate" content="pt_BR">
+    <meta property="article:published_time" content="2026-03-31">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="스케일·모드 인식: 특징음 듣기">
+    <meta name="twitter:description" content="메이저·마이너부터 도리안, 프리지안 등 교회선법과 펜타토닉까지, 각 스케일의 특징음을 단계별 연습 계획으로 익힙니다.">
+    <meta name="twitter:image" content="https://solfegepro.com/og-image.png">
+
+    <!-- Favicon -->
+    <link rel="icon" href="/favicon.ico" sizes="any">
+    <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap"></noscript>
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="/style.css?v=23">
+    <link rel="stylesheet" href="/guides/article.css?v=14">
+
+    <style>
+        /* Mode Comparison Grid (responsive — never horizontally scrolls) */
+        .mode-grid {
+            background: var(--surface);
+            border-radius: var(--radius-xl);
+            padding: var(--space-lg);
+            margin: var(--space-xl) 0;
+            border: 1px solid var(--surface-light);
+        }
+        .mode-grid__row {
+            display: grid;
+            grid-template-columns: 110px 1fr 90px;
+            align-items: center;
+            margin-bottom: var(--space-sm);
+            gap: var(--space-sm);
+        }
+        .mode-grid__name {
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+        .mode-grid__degrees {
+            display: grid;
+            grid-template-columns: repeat(7, minmax(0, 1fr));
+            gap: 3px;
+            min-width: 0;
+        }
+        .mode-grid__degree {
+            height: 30px;
+            min-width: 0;
+            border-radius: var(--radius-sm);
+            font-size: 12px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .degree--normal { background: var(--surface-light); color: var(--text-secondary); }
+        .degree--flat { background: rgba(96, 165, 250, 0.25); color: #60A5FA; }
+        .degree--sharp { background: rgba(251, 191, 36, 0.25); color: #FBBF24; }
+        .degree--characteristic { background: rgba(248, 113, 113, 0.3); color: #F87171; border: 1px solid rgba(248, 113, 113, 0.5); }
+        .mode-grid__char {
+            font-size: 12px;
+            color: var(--text-secondary);
+        }
+        .mode-grid__section-title {
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: var(--space-md);
+            margin-top: var(--space-lg);
+        }
+        .mode-grid__section-title:first-of-type {
+            margin-top: 0;
+        }
+        .mode-grid__legend {
+            display: flex;
+            gap: var(--space-lg);
+            margin-top: var(--space-md);
+            font-size: 12px;
+            color: var(--text-secondary);
+        }
+        .mode-grid__legend-item {
+            display: flex;
+            align-items: center;
+            gap: var(--space-xs);
+        }
+        .mode-grid__legend-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: var(--radius-sm);
+            flex-shrink: 0;
+        }
+
+        @media (max-width: 768px) {
+            .mode-grid { padding: var(--space-md); }
+            .mode-grid__row {
+                /* Stack: name → degrees → char on separate rows. */
+                grid-template-columns: 1fr;
+                gap: 6px;
+            }
+            .mode-grid__degree { height: 26px; font-size: 11px; }
+            .mode-grid__legend { flex-wrap: wrap; gap: var(--space-sm); }
+        }
+    </style>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"스케일·모드 인식: 특징음 듣기","description":"메이저·마이너부터 도리안, 프리지안 등 교회선법과 펜타토닉까지, 각 스케일의 특징음을 단계별 연습 계획으로 익힙니다.","author":{"@type":"Organization","name":"Solfege PRO"},"publisher":{"@type":"Organization","name":"Solfege PRO","logo":{"@type":"ImageObject","url":"https://solfegepro.com/AppIcon.png"}},"datePublished":"2026-03-31","mainEntityOfPage":{"@type":"WebPage","@id":"https://solfegepro.com/ko/guides/ear-training-scales/"}}</script>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"홈","item":"https://solfegepro.com/ko/"},{"@type":"ListItem","position":2,"name":"연습 가이드","item":"https://solfegepro.com/ko/guides/"},{"@type":"ListItem","position":3,"name":"スケールを聴き分ける — モードの特性音","item":"https://solfegepro.com/ko/guides/ear-training-scales/"}]}</script>
+</head>
+<body>
+    <!-- Navigation -->
+        <nav class="nav" aria-label="기본 메뉴">
+        <div class="nav__container">
+            <a href="/ko/" class="nav__logo" aria-label="Solfege PRO">
+                <img src="/AppIcon.png" alt="" class="nav__logo-icon" width="32" height="32">
+                <span class="nav__logo-text">Solfege PRO</span>
+            </a>
+            <ul class="nav__list">
+                <li><a href="/ko/" class="nav__link">Solfege PRO 소개</a></li>
+                <li><a href="/ko/features/" class="nav__link">훈련</a></li>
+                <li><a href="/ko/guides/" class="nav__link active" aria-current="page">연습 가이드</a></li>
+                <li><a href="/ko/manual/" class="nav__link">매뉴얼</a></li>
+            </ul>
+            <div class="nav__settings">
+                <button class="settings-btn" id="lang-toggle" title="언어 선택"><span id="lang-text">KO</span></button>
+                <button class="hamburger-btn" id="hamburger-btn" aria-label="메뉴 열기" aria-expanded="false" aria-controls="drawer">
+                    <span class="hamburger-btn__line"></span><span class="hamburger-btn__line"></span><span class="hamburger-btn__line"></span>
+                </button>
+            </div>
+        </div>
+    </nav>
+        <!-- Mobile drawer (hidden on desktop) -->
+            <div class="drawer-overlay" id="drawer-overlay"></div>
+    <aside class="drawer" id="drawer" aria-label="메뉴" aria-hidden="true" inert>
+        <div class="drawer__header">
+            <span class="drawer__title">메뉴</span>
+            <button class="drawer__close" id="drawer-close" aria-label="메뉴 닫기">×</button>
+        </div>
+        <ul class="drawer__list">
+            <li><a href="/ko/" class="drawer__link">Solfege PRO 소개</a></li>
+            <li><a href="/ko/features/" class="drawer__link">훈련</a></li>
+            <li><a href="/ko/guides/" class="drawer__link active" aria-current="page">연습 가이드</a></li>
+            <li><a href="/ko/manual/" class="drawer__link">매뉴얼</a></li>
+        </ul>
+    </aside>
+
+
+    <!-- Article Header -->
+    <header class="page-header">
+        <div class="page-header__meta">
+            <span class="page-header__tag">음계 인식</span>
+            <span>8 분 읽음</span>
+        </div>
+        <h1 class="page-header__title">
+
+            가늠자 승인은 무엇입니까?<br>음계과 모드 이해
+
+
+        </h1>
+        <p class="page-header__subtitle">
+
+            가늠자의 차이는 "문자적 노트"에 속한다. 각 모드를 정의하고 인식 정확도 단계를 단계로 구축하는 톤을 알아보세요.
+
+
+        </p>
+    </header>
+
+    <!-- Top-of-article CTA -->
+    <aside class="article-top-cta" aria-label="App promotion">
+        <div class="article-top-cta__body">
+            <p class="article-top-cta__title">
+
+                더 알아보기 Solfege PRO
+
+
+            </p>
+            <p class="article-top-cta__sub">
+
+                $9.99/월(미국 App Store 기준)(미국 App Store 기준)
+
+
+            </p>
+        </div>
+        <a href="https://apps.apple.com/kr/app/id6756626617?pt=6749158383&amp;ct=web_guides&amp;mt=8" class="article-top-cta__button app-store-link" data-cta-position="article_top" aria-label="App Store에서 다운로드"><img src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/ko-kr" class="app-store-link__img" alt="App Store에서 다운로드" loading="lazy"></a>
+    </aside>
+
+    <!-- Article Body -->
+    <main class="article-body">
+
+        <!-- Section 1 -->
+        <h2 id="what-is-scale-recognition">가늠자 승인은 무엇입니까?</h2>
+
+        <p>
+
+            음계 인식은 노트의 순서와 음계 유형을 식별 할 수있는 능력입니다. 주요의 "밝고 안정적인 사운드", 자연 단의 "dark, melancholic 사운드", "dark 아직 약간의 밝은"의 품질. 그것은 각의 명백한 색깔을 청각합니다.
+
+
+        </p>
+
+        <p>
+
+            이 기술은 직접 즉흥연주 및 구성에 연결됩니다. 귀가 장악할 수 있다면, 당신은 이론적 지식과 농부 인식을 가진 연극을 할 수 있습니다. 구성도, 이해 음계 색상은 선율 문자를 제어하는 데 필수적입니다.
+
+
+        </p>
+
+        <!-- Section 2 -->
+        <h2 id="scale-types">제품 소개</h2>
+
+        <p>
+
+            음계의 유형은 루트의 간격 패턴에 의해 정의됩니다. 아래는 주요 규모 유형과 주요 규모에서 각각 구별되는 특성 노트입니다.
+
+
+        </p>
+
+        <!-- Mode Comparison Visual -->
+        <div class="mode-grid">
+            <div class="diagram-title">모드 비교 — 주요 차이점</div>
+
+            <div class="mode-grid__section-title">기본 규모</div>
+
+            <div class="mode-grid__row">
+                <div class="mode-grid__name">Major (Ionian)</div>
+                <div class="mode-grid__degrees">
+                    <div class="mode-grid__degree degree--normal">1</div>
+                    <div class="mode-grid__degree degree--normal">2</div>
+                    <div class="mode-grid__degree degree--normal">3</div>
+                    <div class="mode-grid__degree degree--normal">4</div>
+                    <div class="mode-grid__degree degree--normal">5</div>
+                    <div class="mode-grid__degree degree--normal">6</div>
+                    <div class="mode-grid__degree degree--normal">7</div>
+                </div>
+                <div class="mode-grid__char">이름 *</div>
+            </div>
+            <div class="mode-grid__row">
+                <div class="mode-grid__name">Natural Minor</div>
+                <div class="mode-grid__degrees">
+                    <div class="mode-grid__degree degree--normal">1</div>
+                    <div class="mode-grid__degree degree--normal">2</div>
+                    <div class="mode-grid__degree degree--characteristic">b3</div>
+                    <div class="mode-grid__degree degree--normal">4</div>
+                    <div class="mode-grid__degree degree--normal">5</div>
+                    <div class="mode-grid__degree degree--characteristic">b6</div>
+                    <div class="mode-grid__degree degree--characteristic">b7</div>
+                </div>
+                <div class="mode-grid__char">b3 b6 b7</div>
+            </div>
+            <div class="mode-grid__row">
+                <div class="mode-grid__name">Harmonic Minor</div>
+                <div class="mode-grid__degrees">
+                    <div class="mode-grid__degree degree--normal">1</div>
+                    <div class="mode-grid__degree degree--normal">2</div>
+                    <div class="mode-grid__degree degree--characteristic">b3</div>
+                    <div class="mode-grid__degree degree--normal">4</div>
+                    <div class="mode-grid__degree degree--normal">5</div>
+                    <div class="mode-grid__degree degree--characteristic">b6</div>
+                    <div class="mode-grid__degree degree--normal">7</div>
+                </div>
+                <div class="mode-grid__char">b3 b6</div>
+            </div>
+            <div class="mode-grid__row">
+                <div class="mode-grid__name">Melodic Minor</div>
+                <div class="mode-grid__degrees">
+                    <div class="mode-grid__degree degree--normal">1</div>
+                    <div class="mode-grid__degree degree--normal">2</div>
+                    <div class="mode-grid__degree degree--characteristic">b3</div>
+                    <div class="mode-grid__degree degree--normal">4</div>
+                    <div class="mode-grid__degree degree--normal">5</div>
+                    <div class="mode-grid__degree degree--normal">6</div>
+                    <div class="mode-grid__degree degree--normal">7</div>
+                </div>
+                <div class="mode-grid__char">b3</div>
+            </div>
+
+            <div class="mode-grid__section-title">교회 모드</div>
+
+            <div class="mode-grid__row">
+                <div class="mode-grid__name">Dorian</div>
+                <div class="mode-grid__degrees">
+                    <div class="mode-grid__degree degree--normal">1</div>
+                    <div class="mode-grid__degree degree--normal">2</div>
+                    <div class="mode-grid__degree degree--flat">b3</div>
+                    <div class="mode-grid__degree degree--normal">4</div>
+                    <div class="mode-grid__degree degree--normal">5</div>
+                    <div class="mode-grid__degree degree--characteristic">6</div>
+                    <div class="mode-grid__degree degree--flat">b7</div>
+                </div>
+                <div class="mode-grid__char">b3 b7 + 6의</div>
+            </div>
+            <div class="mode-grid__row">
+                <div class="mode-grid__name">Phrygian</div>
+                <div class="mode-grid__degrees">
+                    <div class="mode-grid__degree degree--normal">1</div>
+                    <div class="mode-grid__degree degree--characteristic">b2</div>
+                    <div class="mode-grid__degree degree--flat">b3</div>
+                    <div class="mode-grid__degree degree--normal">4</div>
+                    <div class="mode-grid__degree degree--normal">5</div>
+                    <div class="mode-grid__degree degree--flat">b6</div>
+                    <div class="mode-grid__degree degree--flat">b7</div>
+                </div>
+                <div class="mode-grid__char">b2는 열쇠입니다</div>
+            </div>
+            <div class="mode-grid__row">
+                <div class="mode-grid__name">Lydian</div>
+                <div class="mode-grid__degrees">
+                    <div class="mode-grid__degree degree--normal">1</div>
+                    <div class="mode-grid__degree degree--normal">2</div>
+                    <div class="mode-grid__degree degree--normal">3</div>
+                    <div class="mode-grid__degree degree--characteristic">#4</div>
+                    <div class="mode-grid__degree degree--normal">5</div>
+                    <div class="mode-grid__degree degree--normal">6</div>
+                    <div class="mode-grid__degree degree--normal">7</div>
+                </div>
+                <div class="mode-grid__char">#4는 열쇠입니다</div>
+            </div>
+            <div class="mode-grid__row">
+                <div class="mode-grid__name">Mixolydian</div>
+                <div class="mode-grid__degrees">
+                    <div class="mode-grid__degree degree--normal">1</div>
+                    <div class="mode-grid__degree degree--normal">2</div>
+                    <div class="mode-grid__degree degree--normal">3</div>
+                    <div class="mode-grid__degree degree--normal">4</div>
+                    <div class="mode-grid__degree degree--normal">5</div>
+                    <div class="mode-grid__degree degree--normal">6</div>
+                    <div class="mode-grid__degree degree--characteristic">b7</div>
+                </div>
+                <div class="mode-grid__char">b7는 열쇠입니다</div>
+            </div>
+            <div class="mode-grid__row">
+                <div class="mode-grid__name">Aeolian</div>
+                <div class="mode-grid__degrees">
+                    <div class="mode-grid__degree degree--normal">1</div>
+                    <div class="mode-grid__degree degree--normal">2</div>
+                    <div class="mode-grid__degree degree--flat">b3</div>
+                    <div class="mode-grid__degree degree--normal">4</div>
+                    <div class="mode-grid__degree degree--normal">5</div>
+                    <div class="mode-grid__degree degree--flat">b6</div>
+                    <div class="mode-grid__degree degree--flat">b7</div>
+                </div>
+                <div class="mode-grid__char">= Nat. Minor</div>
+            </div>
+            <div class="mode-grid__row">
+                <div class="mode-grid__name">Locrian</div>
+                <div class="mode-grid__degrees">
+                    <div class="mode-grid__degree degree--normal">1</div>
+                    <div class="mode-grid__degree degree--characteristic">b2</div>
+                    <div class="mode-grid__degree degree--flat">b3</div>
+                    <div class="mode-grid__degree degree--normal">4</div>
+                    <div class="mode-grid__degree degree--characteristic">b5</div>
+                    <div class="mode-grid__degree degree--flat">b6</div>
+                    <div class="mode-grid__degree degree--flat">b7</div>
+                </div>
+                <div class="mode-grid__char">b2 b5는 열쇠입니다</div>
+            </div>
+
+            <div class="mode-grid__section-title">Pentatonic / 블루스</div>
+
+            <div class="mode-grid__row">
+                <div class="mode-grid__name">Major Penta</div>
+                <div class="mode-grid__degrees">
+                    <div class="mode-grid__degree degree--normal">1</div>
+                    <div class="mode-grid__degree degree--normal">2</div>
+                    <div class="mode-grid__degree degree--normal">3</div>
+                    <div class="mode-grid__degree degree--normal">5</div>
+                    <div class="mode-grid__degree degree--normal">6</div>
+                </div>
+                <div class="mode-grid__char">4, 7 제외</div>
+            </div>
+            <div class="mode-grid__row">
+                <div class="mode-grid__name">Minor Penta</div>
+                <div class="mode-grid__degrees">
+                    <div class="mode-grid__degree degree--normal">1</div>
+                    <div class="mode-grid__degree degree--flat">b3</div>
+                    <div class="mode-grid__degree degree--normal">4</div>
+                    <div class="mode-grid__degree degree--normal">5</div>
+                    <div class="mode-grid__degree degree--flat">b7</div>
+                </div>
+                <div class="mode-grid__char">2, 6 제외</div>
+            </div>
+            <div class="mode-grid__row">
+                <div class="mode-grid__name">Blues</div>
+                <div class="mode-grid__degrees">
+                    <div class="mode-grid__degree degree--normal">1</div>
+                    <div class="mode-grid__degree degree--flat">b3</div>
+                    <div class="mode-grid__degree degree--normal">4</div>
+                    <div class="mode-grid__degree degree--characteristic">b5</div>
+                    <div class="mode-grid__degree degree--normal">5</div>
+                    <div class="mode-grid__degree degree--flat">b7</div>
+                </div>
+                <div class="mode-grid__char">b5 (파랑 참고)</div>
+            </div>
+
+            <div class="mode-grid__legend">
+                <div class="mode-grid__legend-item">
+                    <div class="mode-grid__legend-dot" style="background:var(--surface-light)"></div>
+                    <span>주요업무</span>
+                </div>
+                <div class="mode-grid__legend-item">
+                    <div class="mode-grid__legend-dot" style="background:rgba(96,165,250,0.25);border:1px solid rgba(96,165,250,0.4)"></div>
+                    <span>의논하기</span>
+                </div>
+                <div class="mode-grid__legend-item">
+                    <div class="mode-grid__legend-dot" style="background:rgba(248,113,113,0.3);border:1px solid rgba(248,113,113,0.5)"></div>
+                    <span>제품 설명</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="article-note">
+            <div class="article-note__title">키 포인트</div>
+            <p>가장 중요한 요소는 "문자주의주의"입니다. 도리안 vs 아오리안은 6에서 6 사이 (6 vs b6)와 동일합니다. 대 믹소리다드는 7(7 vs b7)에만 해당합니다. 특성 노트에 대한 소감을 소중히 듣는 것은 모드 인식의 핵심입니다.</p>
+        </div>
+
+        <!-- Section 3 -->
+        <h2 id="common-walls">일반 벽</h2>
+
+        <h3 id="major-mixolydian">주요 대 Mixolydian Confusion</h3>
+        <p>
+
+            이 두 가지 규모는 7도 만 다릅니다. 전공은 자연 7 (대륙 톤), Mixolydian는 b7을 가지고 있습니다. 차이는 단지 하나의 노트이지만 전체 음계의 차이는 어렵습니다. 7도 소리가 들리는 순간에 초점 — 그 열쇠입니다.
+
+
+        </p>
+
+        <h3 id="dorian-aeolian">도리안 vs Aeolian Confusion</h3>
+        <p>
+
+            둘 다 "단-type"모드를 공유 b3와 b7. 유일한 차이는 6입니다. 도리안은 자연 6을 가지고 있으며, 독특한 "dark 아직 약간의 밝은"색깔을 제공합니다. Aeolian는 b6를 가지고 있으며 더 순수한 어두운 소리를 생성합니다.
+
+
+        </p>
+
+        <h3 id="mode-names">형태 이름은 혼란스러워</h3>
+        <p>
+
+            Ionian, 도리안, Phrygian ... 그리스어로 이름을 쓸 때까지 혼란스럽습니다. 이름과 인식 소리를 기억하는 것은 분리된 기술입니다. 소닉 차이를 경험에 초점을 먼저 — 이름은 자연스럽게 따라갈 것이다.
+
+
+        </p>
+
+        <h3 id="pentatonic-similar">Pentatonic 음계 사운드 토오 유사</h3>
+        <p>
+
+            주요 및 단 Pentatonic에는 몇 가지 노트 (5)가 있으며 차이가 더 작아질 수 있습니다. 3rd (3 vs b3)는 키이지만, 5 노트는 더 적은 톤 정보이며, 일부 사람들이 7 노트 규모를 구별하기 위해 더 열심히 찾을 수 있습니다.
+
+
+        </p>
+
+        <!-- Section 4 -->
+        <h2 id="effective-practice">효과적인 연습 방법</h2>
+
+        <h3 id="start-major-minor">장음계와 자연단음계부터 시작하기</h3>
+        <p>
+
+            코드 인식과 마찬가지로, 가장 기본적인 두 가지 선택지부터 시작하는 것이 효과적입니다. 장음계와 자연단음계를 확실히 구별하는 능력은 모든 선법 인식의 기초가 됩니다.
+
+
+        </p>
+
+        <h3 id="characteristic-intervals">특기 음정s를 알아보세요</h3>
+        <p>
+
+            각 모드는 정의하는 "문자주의적 인 메모"를 가지고 있습니다. Lydian는 #4, Phrygian은 b2, 도리안은 자연 6.가 있습니다. 전체적인 규모에 대한 듣는 대신, 순간에 관심을 집중하십시오. 이 청취 접근은 극적으로 모드 식별 속도를 높입니다.
+
+
+        </p>
+
+        <h3 id="ascending-then-both">연습 첫 번째, 다음 두 방향</h3>
+        <p>
+
+            규모의 인상은 상승과 후손과 다를 수 있습니다. 청각 특성 노트를 연습하기 위해 ascending 시작, 그 후 자신에 도전 하 고 무작위 방향 재생 한 번 안정.
+
+
+        </p>
+
+        <h3 id="hear-the-color">각 모드의 "색상"을 들어보세요.</h3>
+        <p>
+
+            이론적 분석 외에도 각 모드의 전반적인 "색"또는 "atmosphere"를 감지하는 것이 중요합니다. "방울"의 질은 Lydian, "스페인어"의 느낌 Phrygian, "방울"의 도리안. 이 인상을 Verbalizing는 직관적 인 인식 속도를 가속화합니다.
+
+
+        </p>
+
+        <!-- Section 5 -->
+        <h2 id="what-app-can-do">이름 * Solfege PRO 할 수 있습니다</h2>
+
+        <p>
+
+            Solfege PRO's 음계 인식은 단계별로 음계 특성을 구별하는 능력을 구축하기위한 훈련 도구입니다.
+
+
+        </p>
+
+        <h3>15+ 가늠자 유형</h3>
+        <p>
+
+            15+가지 유형의 전공, 3개의 단(자연/열파/선율), 7개의 교회 형태, Pentatonic, 그리고 파랑을 포함하여 다룹니다. 질문 풀은 당신의 어려움 조정에 기초를 두었습니다.
+
+
+        </p>
+
+        <h3>5 어려움 수준</h3>
+        <p>
+
+            초급 (장/단)에서 시작, 중간 (three 단 유형), 모드 (Church 형태), Pentatonic, 고급 (모든 가늠자 혼합)를 통해 진행. 현재 능력을 일치하는 수준에서 시작하십시오.
+
+
+        </p>
+
+        <h3>종료 / 종료 / 모두 재생</h3>
+        <p>
+
+            재생 방향을 선택하십시오. 단지, 단지, 또는 무작위 두 방향 질문 후속. 기차는 어떻게 방향이 인식에 영향을 미치는지 이해합니다.
+
+
+        </p>
+
+        <h3>3 속도 설정</h3>
+        <p>
+
+            3단계에서 재생 속도를 조정하십시오: 느리고, 정상, 및 빠른. 느린 속도로 개별 노트를 분석하고, 빠른 속도로 전체 색상을 파악합니다.
+
+
+        </p>
+
+        <h3>Weak Point 포커스</h3>
+        <p>
+
+            자동적으로 당신이 투쟁하는 가늠자 유형의 빈도를 증가합니다. 당신은 종종 도리안과 아오리아를  confuse 경우, 그 두는 더 자주 나타납니다.
+
+
+        </p>
+
+        <div class="cycle-diagram">
+            <div class="cycle-step">
+                <div class="cycle-step__label">팟캐스트</div>
+                <div class="cycle-step__desc">규모를 높이다</div>
+            </div>
+            <div class="cycle-arrow">&rarr;</div>
+            <div class="cycle-step">
+                <div class="cycle-step__label">의정부</div>
+                <div class="cycle-step__desc">문자를</div>
+            </div>
+            <div class="cycle-arrow">&rarr;</div>
+            <div class="cycle-step">
+                <div class="cycle-step__label">이름 *</div>
+                <div class="cycle-step__desc">음계 유형</div>
+            </div>
+            <div class="cycle-arrow">&rarr;</div>
+            <div class="cycle-step">
+                <div class="cycle-step__label">확인</div>
+                <div class="cycle-step__desc">답변을 다시</div>
+            </div>
+        </div>
+
+        <!-- Section 6 -->
+        <h2 id="limitations">이름 * Solfege PRO 직접 커버하지 않는</h2>
+
+        <p>
+
+            정직하다.
+
+
+        </p>
+
+        <div class="article-honest">
+            <div class="article-honest__title">App's Scope를 넘어 지역</div>
+            <p>
+                <strong>즉흥연주 컨텍스트</strong> — 음계 유형 인식 및 별도의 기술로 개선. 앱은 인식을 훈련하지만 성능에 적용하면 기기에서 연습해야합니다.
+            </p>
+            <p>
+                <strong>사용자 정의 음계 생성</strong> — 사전 설정된 음계만 사용할 수 있습니다. 사용자 정의 음계을 추가하는 기능은 없습니다.
+            </p>
+            <p>
+                <strong>Root-independent 상대음감</strong> — 음계은 항상 뿌리에서 재생됩니다. 앱은 통로의 중간에서 음계을 식별하는 고급 상대음감 훈련을 지원하지 않습니다.
+            </p>
+            <p>
+                <strong>Symmetric 음계 변형</strong> - 전체 톤과 Diminished의 조합과 같은 대칭 음계의 상세한 변형은 제한됩니다.
+            </p>
+            <p>
+                <strong>보증된 개선</strong> - 앱은 연습 방향을 제공하지만 개선을 보장 할 수 없습니다. 건물 규모 인식은 또한이 응용 프로그램을 넘어 실제 음악을 듣는 습관을 필요로한다.
+            </p>
+            <p>
+                <strong>이동할 수 있는 도 노래 &amp; 특성 톤 ID</strong> — Karpinski / Edlund 솔페주 전통에서 모드는 각 모드의 노래로 내부화됩니다. <strong>특성 톤</strong> 이동식도 (예 : 도리안의 ☸ 6, Δ4, Δ7, Δ2, Phrygian에서 Δ2. Solfege PRO's 음계 인식은 보청기 또는 싱싱 운동을 포함하지 않습니다. 앱의 청취 연습을 보다 빠른 내부화에 대해 동기화 할 수 있습니다.
+            </p>
+        </div>
+
+        <p>
+
+            이름 * Solfege PRO 직접 지원은 음계 특성을 구별하는 기본 능력의 단계별 건물입니다. 개선 및 구성 능력이 장비 연습 및 실제 음악 분석이 필요합니다.
+
+
+        </p>
+
+        <!-- Mid-article CTA -->
+        <div class="article-cta-subtle">
+            <p class="article-cta-subtle__text">$9.99/월(미국 App Store 기준)(미국 App Store 기준) — 당신의 가늠자 승인을 검사하십시오</p>
+            <a href="https://apps.apple.com/kr/app/id6756626617?pt=6749158383&amp;ct=web_guides&amp;mt=8" class="article-cta-subtle__button app-store-link" aria-label="App Store에서 다운로드"><img src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/ko-kr" class="app-store-link__img" alt="App Store에서 다운로드" loading="lazy"></a>
+        </div>
+
+        <!-- Section 7 -->
+        <h2 id="how-to-use">관련 상품</h2>
+
+        <p>
+
+            Solfege PRO's 음계 인식은 다음 진행 상황을 위해 설계되었습니다.
+
+
+        </p>
+
+        <ol>
+            <li><strong>초보자: 전공 및 분</strong> — 마스터 ascending 형태로 가장 기본적인 바이너리 선택</li>
+            <li><strong>중간: 3개의 단 유형</strong> — 자연단음계·화성단음계·가락단음계의 차이를 이해합니다. 화성단음계에서 ♭6에서 7로 진행할 때 생기는 독특한 움직임에 주목하세요.</li>
+            <li><strong>형태: 교회 형태</strong> — 각 모드의 특성 노트를 연습. Lydian (#4)와 Phrygian (b2)로 시작 - 문자는 가장 쉽게 파악할 수 있습니다</li>
+            <li><strong>Pentatonic: Pentatonic 가늠자</strong> — 5개의 기초 가늠자에 있는 미묘한 다름을 도전하십시오. 3위에 초점</li>
+            <li><strong>고급: 혼합된 모든 가늠자</strong> — 모든 음계 유형과 안정된 정확도를 위한 Aim</li>
+        </ol>
+
+        <div class="article-note">
+            <div class="article-note__title">사용법 팁</div>
+            <p>모드 인식에 붙어 있다면, 두 가지 모드를 비교하면 효과적입니다. 예를 들어, "오늘은 Dorian과 Aeolian"을 결정하고 6th 정도의 차이에 초점을 결정합니다. 한 쌍을 한 번에 섞어 가장 빠른 경로 모드 마스터리입니다.</p>
+        </div>
+
+    </main>
+
+    <!-- Final CTA -->
+    <section class="article-cta">
+        <h2 class="article-cta__title">당신의 가늠자 인식을 확인해서 시작</h2>
+        <p class="article-cta__text">
+
+            차이의 단지 vague 감각과 음계을 듣는가?<br>각 모드의 색상을 경험하는 특성 노트와 경험을 알아보세요. 그것은 가늠자 승인이 진실한 시작될 때입니다.<br>자주 묻는 질문 Solfege PRO's 음계 인식'의 의미
+
+
+        </p>
+        <a href="https://apps.apple.com/kr/app/id6756626617?pt=6749158383&amp;ct=web_guides&amp;mt=8" class="app-store-link" aria-label="App Store에서 다운로드">
+
+            <img class="app-store-link__img" width="120" height="40" src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/ko-kr" alt="App Store에서 다운로드">
+
+
+        </a>
+    </section>
+
+    <!-- Related Content -->
+    <div class="article-related">
+        <div class="article-related__title">관련 내용</div>
+        <a href="/practice/wind/" class="article-related__link" style="margin-bottom: var(--space-md);">
+            <div class="article-related__link-title">Wind & Strings 연습 가이드</div>
+            <div class="article-related__link-desc">음높이 정확도, 초견 - 바람과 현 플레이어를위한 연습 메뉴</div>
+        </a>
+        <a href="/manual/scale/" class="article-related__link" style="margin-bottom: var(--space-md);">
+            <div class="article-related__link-title">음계 인식 설정 설명서</div>
+            <div class="article-related__link-desc">각 인앱 설정과 열차를 선택할 수있는 방법, 한 번에.</div>
+        </a>
+        <a href="/" class="article-related__link">
+            <div class="article-related__link-title">Solfege PRO 연습장</div>
+            <div class="article-related__link-desc">기타,베이스, 드럼, 피아노, 보컬을 위한 도전 기반 연습 메뉴</div>
+        </a>
+    </div>
+
+    <!-- Article Note -->
+    <aside class="article-endnote">
+        <p class="article-endnote__text">
+
+            이 문서는 널리 사용되는 청음 훈련 방법론 및 일반 음악 이론 지식에 따라 구성됩니다. 가늠자와 형태의 인식은 개인과 장르에 따라 변화하고, 여기에 제시된 범주는 각 케이스에 적용되지 않을 수 있습니다. in-app 교육은 음계 인식 향상을 지원하며, 즉흥연주 또는 구성 능력에서 개선을 보장하지 않습니다.
+
+
+        </p>
+    </aside>
+
+    <!-- Footer -->
+    <footer class="article-footer">
+        <p class="article-footer__text">
+            &copy; 2026 Solfege PRO
+        </p>
+    </footer>
+
+    <!-- Language Toggle Script -->
+    <script src="/bootstrap.js?v=10" defer></script>
+    <nav aria-label="Language" style="display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:0.5rem;padding:var(--space-lg) var(--space-md);border-top:1px solid var(--surface-light);font-size:13px">
+        <a href="/guides/ear-training-scales/" hreflang="ja" style="color:var(--text-secondary);text-decoration:none">日本語</a>
+        <span aria-hidden="true" style="color:var(--surface-light)">·</span>
+        <a href="/en/guides/ear-training-scales/" hreflang="en" style="color:var(--text-secondary);text-decoration:none">English</a>
+        <span aria-hidden="true" style="color:var(--surface-light)">·</span>
+        <a href="/fr/guides/ear-training-scales/" hreflang="fr" style="color:var(--text-secondary);text-decoration:none">Français</a>
+        <span aria-hidden="true" style="color:var(--surface-light)">·</span>
+        <a href="/de/guides/ear-training-scales/" hreflang="de" style="color:var(--text-secondary);text-decoration:none">Deutsch</a>
+        <span aria-hidden="true" style="color:var(--surface-light)">·</span>
+        <a href="/es/guides/ear-training-scales/" hreflang="es" style="color:var(--text-secondary);text-decoration:none">Español</a>
+        <span aria-hidden="true" style="color:var(--surface-light)">·</span>
+        <a href="/it/guides/ear-training-scales/" hreflang="it" style="color:var(--text-secondary);text-decoration:none">Italiano</a>
+        <span aria-hidden="true" style="color:var(--surface-light)">·</span>
+        <span style="color:var(--primary);font-weight:600" aria-current="true">한국어</span>
+        <span aria-hidden="true" style="color:var(--surface-light)">·</span>
+        <a href="/pt-br/guides/ear-training-scales/" hreflang="pt-BR" style="color:var(--text-secondary);text-decoration:none">Português (Brasil)</a>
+    </nav>
+</body>
+</html>

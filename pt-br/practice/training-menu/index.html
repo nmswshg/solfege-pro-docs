@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html lang="pt-BR"
+      data-title-ja="練習メニュー詳細解説 | ソルフェージュPRO"
+      data-title-en="Practice Menu Reference | Solfege PRO"
+      data-title-fr="Référence des programmes d'entraînement | Solfege PRO"
+      data-title-de="Referenz der Übungsmenüs | Solfege PRO">
+<head>
+    <meta charset="UTF-8">
+    <meta name="robots" content="index, follow">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#1A1A1E">
+    <title>Referência do Menu de Prática | Solfege PRO</title>
+    <meta name="description" content="Manual de configuração dos treinamentos do Solfege PRO, organizado por objetivo: intervalos, acordes, escalas, progressões, ritmo e braço.">
+
+    <link rel="canonical" href="https://solfegepro.com/pt-br/practice/training-menu/">
+    <link rel="alternate" hreflang="ja" href="https://solfegepro.com/practice/training-menu/">
+    <link rel="alternate" hreflang="en" href="https://solfegepro.com/en/practice/training-menu/">
+    <link rel="alternate" hreflang="fr" href="https://solfegepro.com/fr/practice/training-menu/">
+    <link rel="alternate" hreflang="de" href="https://solfegepro.com/de/practice/training-menu/">
+    <link rel="alternate" hreflang="es" href="https://solfegepro.com/es/practice/training-menu/">
+    <link rel="alternate" hreflang="it" href="https://solfegepro.com/it/practice/training-menu/">
+    <link rel="alternate" hreflang="ko" href="https://solfegepro.com/ko/practice/training-menu/">
+    <link rel="alternate" hreflang="pt-BR" href="https://solfegepro.com/pt-br/practice/training-menu/">
+    <link rel="alternate" hreflang="x-default" href="https://solfegepro.com/practice/training-menu/">
+<link rel="icon" href="/favicon.ico" sizes="any">
+    <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+    <meta property="og:title" content="Referência do Menu de Prática">
+    <meta property="og:description" content="Manual de configuração dos treinamentos do Solfege PRO, organizado por objetivo: intervalos, acordes, escalas, progressões, ritmo e braço.">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://solfegepro.com/pt-br/practice/training-menu/">
+    <meta property="og:site_name" content="Solfege PRO">
+    <meta property="og:image" content="https://solfegepro.com/og-image.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Solfege PRO">
+    <meta property="og:locale" content="pt_BR">
+    <meta property="og:locale:alternate" content="ja_JP">
+    <meta property="og:locale:alternate" content="en_US">
+    <meta property="og:locale:alternate" content="fr_FR">
+    <meta property="og:locale:alternate" content="de_DE">
+    <meta property="og:locale:alternate" content="es_ES">
+    <meta property="og:locale:alternate" content="it_IT">
+    <meta property="og:locale:alternate" content="ko_KR">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Referência do Menu de Prática">
+    <meta name="twitter:description" content="Manual de configuração dos treinamentos do Solfege PRO, organizado por objetivo: intervalos, acordes, escalas, progressões, ritmo e braço.">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap"></noscript>
+
+    <link rel="stylesheet" href="/style.css?v=23">
+
+    <!-- Mermaid for cross-training dependency map -->
+    <script type="module">
+        import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+        mermaid.initialize({
+            startOnLoad: false, theme: 'dark',
+            themeVariables: {
+                primaryColor: '#2A2A30', primaryTextColor: '#F5F5F0',
+                primaryBorderColor: '#D4AF37', lineColor: '#D4AF37',
+                secondaryColor: '#3A3A42', tertiaryColor: '#1A1A1E',
+                fontFamily: 'Noto Sans JP, sans-serif', fontSize: '13px'
+            }
+        });
+        function renderActiveMermaid() {
+            const lang = document.documentElement.getAttribute('data-lang') || 'ja';
+            const nodes = Array.from(document.querySelectorAll(`.mermaid-lang[lang="${lang}"] .mermaid`))
+                .filter(n => !n.getAttribute('data-processed'));
+            if (nodes.length) mermaid.run({ nodes });
+        }
+        if (document.readyState === 'loading') {
+            window.addEventListener('DOMContentLoaded', renderActiveMermaid);
+        } else { renderActiveMermaid(); }
+        window.addEventListener('langchange', renderActiveMermaid);
+    </script>
+
+    <style>
+        .menu-hub {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 var(--space-lg) var(--space-2xl);
+        }
+        @media (max-width: 768px) {
+            .menu-hub { padding: 0 var(--space-md) var(--space-xl); }
+        }
+
+        /* Section heading */
+        .menu-hub__h2 {
+            font-size: 18px; font-weight: 700;
+            color: var(--text-primary);
+            margin: var(--space-2xl) 0 var(--space-md);
+            padding-bottom: var(--space-sm);
+            border-bottom: 2px solid var(--primary);
+            display: flex; align-items: center; gap: var(--space-sm);
+        }
+
+        /* Training cards (link to detail pages) */
+        .training-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            gap: var(--space-md);
+            align-items: stretch;
+        }
+        .training-card {
+            display: flex; flex-direction: column;
+            background: var(--surface);
+            border: 1px solid var(--surface-light);
+            border-radius: var(--radius-lg);
+            padding: var(--space-lg);
+            text-decoration: none;
+            transition: all 0.2s ease;
+        }
+        .training-card:hover {
+            border-color: var(--primary);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+            color: inherit;
+        }
+        .training-card__head {
+            display: flex; align-items: center; gap: var(--space-sm);
+            margin-bottom: var(--space-sm);
+        }
+        .training-card__icon {
+            color: var(--primary);
+            font-size: 28px;
+            flex-shrink: 0;
+        }
+        .training-card__title {
+            font-size: 15px;
+            font-weight: 700;
+            color: var(--text-primary);
+            line-height: 1.3;
+        }
+        .training-card__effect {
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--primary);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 4px;
+        }
+        .training-card__desc {
+            font-size: 13px;
+            color: var(--text-secondary);
+            line-height: 1.6;
+            flex: 1;
+            margin-bottom: var(--space-sm);
+        }
+        .training-card__cta {
+            font-size: 12px;
+            color: var(--primary);
+            font-weight: 600;
+            display: inline-flex; align-items: center; gap: 4px;
+        }
+        .training-card__status {
+            display: inline-block;
+            font-size: 10px;
+            background: rgba(154, 154, 154, 0.15);
+            color: var(--text-secondary);
+            padding: 1px 6px;
+            border-radius: 3px;
+            font-weight: 500;
+            margin-left: 6px;
+        }
+        .training-card__status--ready {
+            background: rgba(74, 222, 128, 0.15);
+            color: #4ADE80;
+        }
+
+        /* Cross-training dependency map */
+        .deps-wrap {
+            background: var(--surface);
+            border: 1px solid var(--surface-light);
+            border-radius: var(--radius-lg);
+            padding: var(--space-md);
+            margin-top: var(--space-md);
+            overflow-x: auto; /* lint-skip: Mermaid SVG diagram is fixed-size */
+        }
+        .deps-wrap .mermaid { display: flex; justify-content: center; }
+        .mermaid-lang { display: block; }
+        .mermaid-lang.mermaid-hidden { display: none; }
+        .deps-legend {
+            font-size: 12px;
+            color: var(--text-secondary);
+            margin-top: var(--space-sm);
+            line-height: 1.7;
+        }
+        .deps-legend strong { color: var(--text-primary); }
+
+        /* How-to-read */
+        .howto-list {
+            list-style: none;
+            padding: 0;
+            margin: var(--space-md) 0;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: var(--space-sm);
+        }
+        .howto-list li {
+            background: var(--surface);
+            border: 1px solid var(--surface-light);
+            border-radius: var(--radius-md);
+            padding: var(--space-md);
+        }
+        .howto-list__num {
+            display: inline-flex; align-items: center; justify-content: center;
+            width: 22px; height: 22px;
+            border-radius: 50%;
+            background: var(--primary);
+            color: var(--background);
+            font-size: 11px;
+            font-weight: 700;
+            margin-right: 6px;
+        }
+        .howto-list__title {
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 4px;
+        }
+        .howto-list__desc {
+            font-size: 12px;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+    </style>
+</head>
+<body>
+        <nav class="nav" aria-label="Menu principal">
+        <div class="nav__container">
+            <a href="/pt-br/" class="nav__logo" aria-label="Solfege PRO">
+                <img src="/AppIcon.png" alt="" class="nav__logo-icon" width="32" height="32">
+                <span class="nav__logo-text">Solfege PRO</span>
+            </a>
+            <ul class="nav__list">
+                <li><a href="/pt-br/" class="nav__link">Sobre o Solfege PRO</a></li>
+                <li><a href="/pt-br/features/" class="nav__link">Treinos</a></li>
+                <li><a href="/pt-br/guides/" class="nav__link active" aria-current="page">Guias de prática</a></li>
+                <li><a href="/pt-br/manual/" class="nav__link">Manual</a></li>
+            </ul>
+            <div class="nav__settings">
+                <button class="settings-btn" id="lang-toggle" title="Selecionar idioma"><span id="lang-text">PT-BR</span></button>
+                <button class="hamburger-btn" id="hamburger-btn" aria-label="Abrir menu" aria-expanded="false" aria-controls="drawer">
+                    <span class="hamburger-btn__line"></span><span class="hamburger-btn__line"></span><span class="hamburger-btn__line"></span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+        <div class="drawer-overlay" id="drawer-overlay"></div>
+    <aside class="drawer" id="drawer" aria-label="Menu" aria-hidden="true" inert>
+        <div class="drawer__header">
+            <span class="drawer__title">Menu</span>
+            <button class="drawer__close" id="drawer-close" aria-label="Fechar menu">×</button>
+        </div>
+        <ul class="drawer__list">
+            <li><a href="/pt-br/" class="drawer__link">Sobre o Solfege PRO</a></li>
+            <li><a href="/pt-br/features/" class="drawer__link">Treinos</a></li>
+            <li><a href="/pt-br/guides/" class="drawer__link active" aria-current="page">Guias de prática</a></li>
+            <li><a href="/pt-br/manual/" class="drawer__link">Manual</a></li>
+        </ul>
+    </aside>
+
+    <header class="page-header">
+        <div class="page-header__icon"><svg class="icon" aria-hidden="true"><use href="/assets/icons.svg#icon-book-open"></use></svg></div>
+        <h1 class="page-header__title">Referência do Menu de Prática</h1>
+        <p class="page-header__subtitle">
+
+            Uma referência que abrange o propósito de cada treinamento, os resultados esperados, o protocolo de prática e as opções de ambiente — em um só lugar.
+
+
+        </p>
+        <div class="page-header__meta">
+            <span class="page-header__badge">9 Treinamentos</span>
+        </div>
+    </header>
+
+    <main class="menu-hub">
+
+        <!-- Section 1: How to read -->
+        <h2 class="menu-hub__h2">
+            <svg class="icon" aria-hidden="true" style="width:1em; height:1em; color:var(--primary);"><use href="/assets/icons.svg#icon-compass"></use></svg>
+            Como usar esta referência
+        </h2>
+        <p style="font-size:14px; color:var(--text-secondary); line-height:1.7;">
+
+            Cada página de treinamento é estruturada de forma que a <strong>ordem de leitura corresponda à ordem de prática</strong>. Siga os passos abaixo e você não ficará preso.
+
+
+        </p>
+        <ol class="howto-list" style="counter-reset:none;">
+            <li>
+                <div class="howto-list__title"><span class="howto-list__num">1</span>Verifique a finalidade</div>
+                <div class="howto-list__desc">Que habilidades este treinamento desenvolve? Corresponde ao seu objetivo?</div>
+            </li>
+            <li>
+                <div class="howto-list__title"><span class="howto-list__num">2</span>Verificação pré-início</div>
+                <div class="howto-list__desc">Não mergulhe no fundo do poço. Diagnosticar primeiro o seu nível inicial.</div>
+            </li>
+            <li>
+                <div class="howto-list__title"><span class="howto-list__num">3</span>Comece com a predefinição da Semana 1</div>
+                <div class="howto-list__desc">Ignore a sobrecarga de configuração – use a predefinição da Semana 1 como está.</div>
+            </li>
+            <li>
+                <div class="howto-list__title"><span class="howto-list__num">4</span>Prática sobre protocolo</div>
+                <div class="howto-list__desc">Honre a frequência, duração e descanso. A sobrecarga sustentada sai pela culatra.</div>
+            </li>
+            <li>
+                <div class="howto-list__title"><span class="howto-list__num">5</span>Use critérios de domínio</div>
+                <div class="howto-list__desc">Promova-se por critérios mensuráveis, não por "sentir-se realizado".</div>
+            </li>
+            <li>
+                <div class="howto-list__title"><span class="howto-list__num">6</span>Quando travado → DICAS</div>
+                <div class="howto-list__desc">Leia os protocolos de correção. A referência completa de configurações é para ajuste avançado, por último.</div>
+            </li>
+        </ol>
+
+        <!-- Section 2: Training Cards -->
+        <h2 class="menu-hub__h2">
+            <svg class="icon" aria-hidden="true" style="width:1em; height:1em; color:var(--primary);"><use href="/assets/icons.svg#icon-library"></use></svg>
+            Todos os treinamentos
+        </h2>
+
+        <p style="font-size:14px; color:var(--text-secondary); line-height:1.7;">Todos os nove treinamentos abaixo estão disponíveis no aplicativo. O status de publicação de um cartão refere-se apenas à disponibilidade do artigo de referência detalhado neste site.</p>
+
+        <div class="training-grid">
+
+            <a href="/practice/training-menu/interval/" class="training-card">
+                <div class="training-card__head">
+                    <span class="training-card__icon"><svg class="icon" aria-hidden="true"><use href="/assets/icons.svg#icon-music-note"></use></svg></span>
+                    <div>
+                        <div class="training-card__title">Intervalo</div>
+                    </div>
+                </div>
+                <div class="training-card__effect">Base do ouvido relativo</div>
+                <div class="training-card__desc">Nomeando a distância entre duas notas - o ponto de partida para tirar músicas de ouvido, improvisação e harmonização.</div>
+                <div class="training-card__cta">Leia a referência completa →<span class="training-card__status training-card__status--ready">Ao vivo</span></div>
+            </a>
+
+            <div class="training-card training-card--coming" aria-disabled="true" style="opacity:0.6; pointer-events:none;">
+                <div class="training-card__head">
+                    <span class="training-card__icon"><svg class="icon" aria-hidden="true"><use href="/assets/icons.svg#icon-piano"></use></svg></span>
+                    <div>
+                        <div class="training-card__title">Reconhecimento de acordes</div>
+                    </div>
+                </div>
+                <div class="training-card__effect">Harmonia auditiva</div>
+                <div class="training-card__desc">Identificando qualidades de acordes de ouvido, de tríades a extensões — a base para transcrição e arranjo.</div>
+                <div class="training-card__cta"><span class="training-card__status">Guia de referência em preparação</span></div>
+            </div>
+
+            <div class="training-card training-card--coming" aria-disabled="true" style="opacity:0.6; pointer-events:none;">
+                <div class="training-card__head">
+                    <span class="training-card__icon"><svg class="icon" aria-hidden="true"><use href="/assets/icons.svg#icon-music-staff"></use></svg></span>
+                    <div>
+                        <div class="training-card__title">Reconhecimento de escala</div>
+                    </div>
+                </div>
+                <div class="training-card__effect">Sentido tonal e modal</div>
+                <div class="training-card__desc">Distinguir os modos maior/menor/igreja/pentatônico — fundamental para a improvisação.</div>
+                <div class="training-card__cta"><span class="training-card__status">Guia de referência em preparação</span></div>
+            </div>
+
+            <div class="training-card training-card--coming" aria-disabled="true" style="opacity:0.6; pointer-events:none;">
+                <div class="training-card__head">
+                    <span class="training-card__icon"><svg class="icon" aria-hidden="true"><use href="/assets/icons.svg#icon-music-notes"></use></svg></span>
+                    <div>
+                        <div class="training-card__title">Progressão</div>
+                    </div>
+                </div>
+                <div class="training-card__effect">Ouvindo movimento harmônico</div>
+                <div class="training-card__desc">Rastreando o movimento T / SD / D de ouvido - leia a estrutura de uma música inteira.</div>
+                <div class="training-card__cta"><span class="training-card__status">Guia de referência em preparação</span></div>
+            </div>
+
+            <div class="training-card training-card--coming" aria-disabled="true" style="opacity:0.6; pointer-events:none;">
+                <div class="training-card__head">
+                    <span class="training-card__icon"><svg class="icon" aria-hidden="true"><use href="/assets/icons.svg#icon-drum"></use></svg></span>
+                    <div>
+                        <div class="training-card__title">Ritmo</div>
+                    </div>
+                </div>
+                <div class="training-card__effect">Precisão e consistência do tempo</div>
+                <div class="training-card__desc">Medição de acertos por milissegundo, trazendo à tona pressa / arrastamento / inconsistência - a base da execução em conjunto.</div>
+                <div class="training-card__cta"><span class="training-card__status">Guia de referência em preparação</span></div>
+            </div>
+
+            <div class="training-card training-card--coming" aria-disabled="true" style="opacity:0.6; pointer-events:none;">
+                <div class="training-card__head">
+                    <span class="training-card__icon"><svg class="icon" aria-hidden="true"><use href="/assets/icons.svg#icon-timer"></use></svg></span>
+                    <div>
+                        <div class="training-card__title">Leitura visual de ritmo</div>
+                    </div>
+                </div>
+                <div class="training-card__effect">Notação de ritmo de leitura à primeira vista</div>
+                <div class="training-card__desc">Ler a notação rítmica e tocá-la conforme escrita - une a habilidade rítmica e a leitura da notação.</div>
+                <div class="training-card__cta"><span class="training-card__status">Guia de referência em preparação</span></div>
+            </div>
+
+            <div class="training-card training-card--coming" aria-disabled="true" style="opacity:0.6; pointer-events:none;">
+                <div class="training-card__head">
+                    <span class="training-card__icon"><svg class="icon" aria-hidden="true"><use href="/assets/icons.svg#icon-book-open"></use></svg></span>
+                    <div>
+                        <div class="training-card__title">Leitura à primeira vista</div>
+                    </div>
+                </div>
+                <div class="training-card__effect">Identificação rápida de notas</div>
+                <div class="training-card__desc">Leitura reflexiva da notação da pauta - construída progressivamente através do método de referência.</div>
+                <div class="training-card__cta"><span class="training-card__status">Guia de referência em preparação</span></div>
+            </div>
+
+            <div class="training-card training-card--coming" aria-disabled="true" style="opacity:0.6; pointer-events:none;">
+                <div class="training-card__head">
+                    <span class="training-card__icon"><svg class="icon" aria-hidden="true"><use href="/assets/icons.svg#icon-guitar"></use></svg></span>
+                    <div>
+                        <div class="training-card__title">Braço da guitarra</div>
+                    </div>
+                </div>
+                <div class="training-card__effect">Domínio de notas de guitarra/baixo</div>
+                <div class="training-card__desc">Traduzindo instantaneamente entre a posição da corda/traste e o nome da nota — conecta o ouvido e o instrumento.</div>
+                <div class="training-card__cta"><span class="training-card__status">Guia de referência em preparação</span></div>
+            </div>
+
+            <div class="training-card training-card--coming" aria-disabled="true" style="opacity:0.6; pointer-events:none;">
+                <div class="training-card__head">
+                    <span class="training-card__icon"><svg class="icon" aria-hidden="true"><use href="/assets/icons.svg#icon-microphone"></use></svg></span>
+                    <div>
+                        <div class="training-card__title">Solfejo Vocal</div>
+                    </div>
+                </div>
+                <div class="training-card__effect">Conectando tom e ritmo por meio da voz</div>
+                <div class="training-card__desc">Cante a partir da notação enquanto o tom e o ritmo são medidos em tempo real - transformando a audição interna em voz.</div>
+                <div class="training-card__cta"><span class="training-card__status">Guia de referência em preparação</span></div>
+            </div>
+
+        </div>
+
+        <!-- Section 3: Dependency map -->
+        <h2 class="menu-hub__h2">
+            <svg class="icon" aria-hidden="true" style="width:1em; height:1em; color:var(--primary);"><use href="/assets/icons.svg#icon-music-notes"></use></svg>
+            Relacionamentos de treinamento cruzado
+        </h2>
+        <p style="font-size:14px; color:var(--text-secondary); line-height:1.7;">
+
+            Os nove treinamentos não são independentes. <strong>Os treinamentos downstream</strong> pressupõem as habilidades desenvolvidas <strong>upstream</strong>. Seguir o fluxo melhora a transferência para o jogo no mundo real.
+
+
+        </p>
+
+        <div class="deps-wrap">
+
+            <div class="mermaid-lang" lang="pt-BR">
+                <pre class="mermaid">
+flowchart LR
+    Interval["Intervalo<br/>(ouvido relativo)"]
+    Chord["Acorde<br/>Reconhecimento"]
+    Scale["Escala<br/>Reconhecimento"]
+    Progression["Progressão"]
+    Rhythm["Ritmo"]
+    RhythmSR["Visão do Ritmo<br/>Leitura"]
+    SightRead["Visão<br/>Leitura"]
+    Fretboard["Braço da guitarra"]
+    Vocal["Solfejo<br/>vocal"]
+
+    Interval --> Chord
+    Interval --> Scale
+    Chord --> Progression
+    Scale --> Progression
+    Rhythm --> SightRead
+    Rhythm --> RhythmSR
+    Fretboard <--> Interval
+    SightRead -.->|"aplica-se a"| Progression
+    Interval --> Vocal
+    Rhythm --> Vocal
+    SightRead --> Vocal
+
+    style Interval     fill:#2A2A30,stroke:#D4AF37,color:#F5F5F0
+    style Chord        fill:#2A2A30,stroke:#60A5FA,color:#F5F5F0
+    style Scale        fill:#2A2A30,stroke:#60A5FA,color:#F5F5F0
+    style Progression  fill:#2A2A30,stroke:#F87171,color:#F5F5F0
+    style Rhythm       fill:#2A2A30,stroke:#4ADE80,color:#F5F5F0
+    style RhythmSR     fill:#2A2A30,stroke:#4ADE80,color:#F5F5F0
+    style SightRead    fill:#2A2A30,stroke:#FBBF24,color:#F5F5F0
+    style Fretboard    fill:#2A2A30,stroke:#D4AF37,color:#F5F5F0
+    style Vocal        fill:#2A2A30,stroke:#C084FC,color:#F5F5F0
+                </pre>
+            </div>
+
+
+            <div class="deps-legend">
+
+                <strong>Como ler</strong>: as setas apontam para cima → para baixo. Por exemplo, pular para o <strong>Reconhecimento de acordes</strong> antes que o <strong>Intervalo</strong> esteja estável deixa a base harmônica fraca - as notas do acorde precisam ser ouvidas como "conjuntos de intervalos". <strong>Fretboard</strong> e <strong>Interval</strong> reforçam-se mutuamente para guitarristas/baixistas. A <strong>leitura à primeira vista</strong> exige precisão rítmica porque a análise da duração das notas depende disso.
+
+
+            </div>
+        </div>
+
+        <!-- Recommended starting order -->
+        <h2 class="menu-hub__h2">
+            <svg class="icon" aria-hidden="true" style="width:1em; height:1em; color:var(--primary);"><use href="/assets/icons.svg#icon-flask"></use></svg>
+            Ordem inicial recomendada
+        </h2>
+        <p style="font-size:14px; color:var(--text-secondary); line-height:1.7;">
+
+            Escolha por sua função. Concentre-se em <strong>um ou dois</strong> treinamentos por vez, e não em todos os nove em paralelo.
+
+
+        </p>
+        <div class="howto-list" style="grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));">
+            <div>
+                <div class="howto-list__title">🎤 Vocal / Refrão</div>
+                <div class="howto-list__desc">Intervalo → Solfejo Vocal → Acorde (foco em 3ª/6ª)</div>
+            </div>
+            <div>
+                <div class="howto-list__title">🎸 Guitarra / Baixo</div>
+                <div class="howto-list__desc">Braço da guitarra + Intervalo → Acorde</div>
+            </div>
+            <div>
+                <div class="howto-list__title">🎹 Piano / Teclado</div>
+                <div class="howto-list__desc">Leitura à primeira vista → Acorde → Progressão</div>
+            </div>
+            <div>
+                <div class="howto-list__title">🥁 Bateria</div>
+                <div class="howto-list__desc">Apenas ritmo (perfurar profundamente)</div>
+            </div>
+            <div>
+                <div class="howto-list__title">🎷 Orientado para jazz</div>
+                <div class="howto-list__desc">Intervalo (7ªs/b9) → Escala (modos) → Progressão</div>
+            </div>
+            <div>
+                <div class="howto-list__title">📖 Leitor → Treinamento auditivo</div>
+                <div class="howto-list__desc">Intervalo → Acorde (assume que a leitura já é forte)</div>
+            </div>
+        </div>
+
+        <!-- CTA -->
+        <div class="cta" style="margin-top: var(--space-2xl);">
+            <h2 class="cta__title">Comece hoje</h2>
+            <p class="cta__text">
+
+                Treine deliberadamente com Solfege PRO.
+
+
+            </p>
+            <a href="https://apps.apple.com/br/app/id6756626617?pt=6749158383&amp;ct=web_practice&amp;mt=8" class="app-store-link" aria-label="Baixar na App Store">
+
+                <img class="app-store-link__img" width="120" height="40" src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/pt-br" alt="Baixar na App Store">
+
+
+            </a>
+        </div>
+
+    </main>
+
+    <footer class="practice-footer" style="background: var(--surface); padding: var(--space-xl) var(--space-lg); text-align: center; border-top: 1px solid var(--surface-light);">
+        <p style="color: var(--text-secondary); font-size: 14px;">
+            &copy; 2026 Solfege PRO
+        </p>
+    </footer>
+
+    <script src="/practice/practice-features.js?v=2"></script>
+    <!-- Re-render Mermaid on language toggle -->
+    <script>
+        (function() {
+            var t = document.getElementById('lang-toggle');
+            if (t) t.addEventListener('click', function() {
+                setTimeout(function() { window.dispatchEvent(new Event('langchange')); }, 10);
+            });
+        })();
+    </script>
+    <script src="/bootstrap.js?v=10" defer></script>
+    <nav aria-label="Language" style="display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:0.5rem;padding:var(--space-lg) var(--space-md);border-top:1px solid var(--surface-light);font-size:13px">
+        <a href="/practice/training-menu/" hreflang="ja" style="color:var(--text-secondary);text-decoration:none">日本語</a>
+        <span aria-hidden="true" style="color:var(--surface-light)">·</span>
+        <a href="/en/practice/training-menu/" hreflang="en" style="color:var(--text-secondary);text-decoration:none">English</a>
+        <span aria-hidden="true" style="color:var(--surface-light)">·</span>
+        <a href="/fr/practice/training-menu/" hreflang="fr" style="color:var(--text-secondary);text-decoration:none">Français</a>
+        <span aria-hidden="true" style="color:var(--surface-light)">·</span>
+        <a href="/de/practice/training-menu/" hreflang="de" style="color:var(--text-secondary);text-decoration:none">Deutsch</a>
+        <span aria-hidden="true" style="color:var(--surface-light)">·</span>
+        <a href="/es/practice/training-menu/" hreflang="es" style="color:var(--text-secondary);text-decoration:none">Español</a>
+        <span aria-hidden="true" style="color:var(--surface-light)">·</span>
+        <a href="/it/practice/training-menu/" hreflang="it" style="color:var(--text-secondary);text-decoration:none">Italiano</a>
+        <span aria-hidden="true" style="color:var(--surface-light)">·</span>
+        <a href="/ko/practice/training-menu/" hreflang="ko" style="color:var(--text-secondary);text-decoration:none">한국어</a>
+        <span aria-hidden="true" style="color:var(--surface-light)">·</span>
+        <span style="color:var(--primary);font-weight:600" aria-current="true">Português (Brasil)</span>
+    </nav>
+</body>
+</html>

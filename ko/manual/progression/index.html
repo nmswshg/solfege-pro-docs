@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html lang="ko"
+      data-title-ja="コード進行認識 設定マニュアル — 各設定の選び方 | ソルフェージュPRO"
+      data-title-en="Chord Progression Settings Manual — How to Choose Each Option | Solfege PRO"
+      data-title-fr="Manuel des réglages — Reconnaissance des progressions d'accords — Comment choisir chaque option | Solfege PRO"
+      data-title-de="Einstellungshandbuch — Akkordfolgen-Erkennung — So wählst du jede Option | Solfege PRO">
+<head>
+    <meta charset="UTF-8">
+    <meta name="robots" content="index, follow">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#1A1A1E">
+    <title>코드 진행 설정 설명서 | Solfege PRO</title>
+    <meta name="description" content="코드 진행 훈련의 모드, 난이도, 진행 길이, 조성 모드가 무엇이며 목적에 따라 어떻게 선택하는지 설명합니다.">
+
+    <!-- Canonical -->
+    <link rel="canonical" href="https://solfegepro.com/ko/manual/progression/">
+    <link rel="alternate" hreflang="ja" href="https://solfegepro.com/manual/progression/">
+    <link rel="alternate" hreflang="en" href="https://solfegepro.com/en/manual/progression/">
+    <link rel="alternate" hreflang="fr" href="https://solfegepro.com/fr/manual/progression/">
+    <link rel="alternate" hreflang="de" href="https://solfegepro.com/de/manual/progression/">
+    <link rel="alternate" hreflang="es" href="https://solfegepro.com/es/manual/progression/">
+    <link rel="alternate" hreflang="it" href="https://solfegepro.com/it/manual/progression/">
+    <link rel="alternate" hreflang="ko" href="https://solfegepro.com/ko/manual/progression/">
+    <link rel="alternate" hreflang="pt-BR" href="https://solfegepro.com/pt-br/manual/progression/">
+    <link rel="alternate" hreflang="x-default" href="https://solfegepro.com/manual/progression/">
+<!-- OGP -->
+    <meta property="og:title" content="코드 진행 설정 설명서">
+    <meta property="og:description" content="코드 진행 훈련의 모드, 난이도, 진행 길이, 조성 모드가 무엇이며 목적에 따라 어떻게 선택하는지 설명합니다.">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://solfegepro.com/ko/manual/progression/">
+    <meta property="og:site_name" content="Solfege PRO">
+    <meta property="og:image" content="https://solfegepro.com/og-image.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Solfege PRO">
+    <meta property="og:locale" content="ko_KR">
+    <meta property="og:locale:alternate" content="ja_JP">
+    <meta property="og:locale:alternate" content="en_US">
+    <meta property="og:locale:alternate" content="fr_FR">
+    <meta property="og:locale:alternate" content="de_DE">
+    <meta property="og:locale:alternate" content="es_ES">
+    <meta property="og:locale:alternate" content="it_IT">
+    <meta property="og:locale:alternate" content="pt_BR">
+    <meta property="article:published_time" content="2026-06-05">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="코드 진행 설정 설명서">
+    <meta name="twitter:description" content="코드 진행 훈련의 모드, 난이도, 진행 길이, 조성 모드가 무엇이며 목적에 따라 어떻게 선택하는지 설명합니다.">
+    <meta name="twitter:image" content="https://solfegepro.com/og-image.png">
+
+    <!-- Favicon -->
+    <link rel="icon" href="/favicon.ico" sizes="any">
+    <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap"></noscript>
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="/style.css?v=23">
+    <link rel="stylesheet" href="/guides/article.css?v=14">
+
+    <style>
+        /* Manual option reference — responsive, no fixed px widths */
+        .manual-options {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr);
+            gap: var(--space-sm);
+            margin: var(--space-lg) 0;
+        }
+        .manual-option {
+            background: var(--surface);
+            border: 1px solid var(--surface-light);
+            border-radius: var(--radius-lg);
+            padding: var(--space-md);
+        }
+        .manual-option__name {
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: var(--space-xs);
+        }
+        .manual-option__desc {
+            font-size: 13px;
+            color: var(--text-secondary);
+        }
+        /* Bottom-line callout (conclusion first) */
+        .manual-lead {
+            font-size: 14px;
+            line-height: 1.75;
+            color: var(--text-primary);
+            border-left: 3px solid var(--primary);
+            background: rgba(212, 175, 55, 0.06);
+            padding: var(--space-sm) var(--space-md);
+            border-radius: 0 var(--radius-md) var(--radius-md) 0;
+            margin: var(--space-md) 0;
+        }
+        /* Per-setting evidence note — deliberately styled as an editorial
+           aside, NOT as a settings card (no surface fill, no gold label),
+           so it is never mistaken for an in-app option. */
+        .manual-rationale {
+            margin: var(--space-md) 0 var(--space-2xl);
+            padding: var(--space-sm) 0 var(--space-sm) var(--space-md);
+            border-left: 2px solid var(--surface-light);
+        }
+        .manual-rationale__label {
+            display: block;
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            color: var(--text-secondary);
+            margin-bottom: 4px;
+            opacity: 0.75;
+        }
+        .manual-rationale p {
+            font-size: 13px;
+            line-height: 1.75;
+            color: var(--text-secondary);
+            margin: 0;
+        }
+        .manual-rationale__ref {
+            font-size: 12px;
+            font-style: italic;
+            margin-top: var(--space-xs) !important;
+            opacity: 0.7;
+        }
+        /* Citation number linking to the reference list */
+        .manual-ref-num {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-style: normal;
+        }
+        .manual-ref-num:hover { color: var(--primary); }
+        /* Full reference list at page end */
+        .manual-refs {
+            margin: var(--space-2xl) 0 0;
+            padding-top: var(--space-lg);
+            border-top: 1px solid var(--surface-light);
+        }
+        .manual-refs__title {
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: var(--space-sm);
+        }
+        .manual-refs ol {
+            margin: 0;
+            padding-left: 1.25em;
+        }
+        .manual-refs li {
+            font-size: 12px;
+            line-height: 1.7;
+            color: var(--text-secondary);
+            margin-bottom: var(--space-xs);
+            scroll-margin-top: 84px;
+        }
+        .manual-refs li:target {
+            color: var(--text-primary);
+        }
+    </style>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"코드 진행 설정 설명서","description":"코드 진행 훈련의 모드, 난이도, 진행 길이, 조성 모드가 무엇이며 목적에 따라 어떻게 선택하는지 설명합니다.","author":{"@type":"Organization","name":"Solfege PRO"},"publisher":{"@type":"Organization","name":"Solfege PRO","logo":{"@type":"ImageObject","url":"https://solfegepro.com/AppIcon.png"}},"datePublished":"2026-06-05","mainEntityOfPage":{"@type":"WebPage","@id":"https://solfegepro.com/ko/manual/progression/"}}</script>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"홈","item":"https://solfegepro.com/ko/"},{"@type":"ListItem","position":2,"name":"매뉴얼","item":"https://solfegepro.com/ko/manual/"},{"@type":"ListItem","position":3,"name":"コード進行認識 設定マニュアル — 各設定の選び方","item":"https://solfegepro.com/ko/manual/progression/"}]}</script>
+</head>
+<body>
+    <!-- Navigation -->
+        <nav class="nav" aria-label="기본 메뉴">
+        <div class="nav__container">
+            <a href="/ko/" class="nav__logo" aria-label="Solfege PRO">
+                <img src="/AppIcon.png" alt="" class="nav__logo-icon" width="32" height="32">
+                <span class="nav__logo-text">Solfege PRO</span>
+            </a>
+            <ul class="nav__list">
+                <li><a href="/ko/" class="nav__link">Solfege PRO 소개</a></li>
+                <li><a href="/ko/features/" class="nav__link">훈련</a></li>
+                <li><a href="/ko/guides/" class="nav__link">연습 가이드</a></li>
+                <li><a href="/ko/manual/" class="nav__link active" aria-current="page">매뉴얼</a></li>
+            </ul>
+            <div class="nav__settings">
+                <button class="settings-btn" id="lang-toggle" title="언어 선택"><span id="lang-text">KO</span></button>
+                <button class="hamburger-btn" id="hamburger-btn" aria-label="메뉴 열기" aria-expanded="false" aria-controls="drawer">
+                    <span class="hamburger-btn__line"></span><span class="hamburger-btn__line"></span><span class="hamburger-btn__line"></span>
+                </button>
+            </div>
+        </div>
+    </nav>
+        <!-- Mobile drawer (hidden on desktop) -->
+            <div class="drawer-overlay" id="drawer-overlay"></div>
+    <aside class="drawer" id="drawer" aria-label="메뉴" aria-hidden="true" inert>
+        <div class="drawer__header">
+            <span class="drawer__title">메뉴</span>
+            <button class="drawer__close" id="drawer-close" aria-label="메뉴 닫기">×</button>
+        </div>
+        <ul class="drawer__list">
+            <li><a href="/ko/" class="drawer__link">Solfege PRO 소개</a></li>
+            <li><a href="/ko/features/" class="drawer__link">훈련</a></li>
+            <li><a href="/ko/guides/" class="drawer__link">연습 가이드</a></li>
+            <li><a href="/ko/manual/" class="drawer__link active" aria-current="page">매뉴얼</a></li>
+        </ul>
+    </aside>
+
+
+    <!-- Article Header -->
+    <header class="page-header">
+        <div class="page-header__meta">
+            <span class="page-header__tag">매뉴얼</span>
+            <span>코드 진행</span>
+        </div>
+        <h1 class="page-header__title">
+
+            코드 진행 설정 설명서<br>각 옵션은 무엇을 의미하고 선택하는 방법
+
+
+        </h1>
+        <p class="page-header__subtitle">
+
+            언제, 그리고 왜 선택할 수 있는 어떤 선택권. 이 페이지는 각 설정에서 코드 진행 훈련, 한 번에 걸린다. 설정 화면에서 "?"에 도착하면 필요한 옵션을 스크롤합니다.
+
+
+        </p>
+    </header>
+
+    <!-- Top-of-article CTA -->
+    <aside class="article-top-cta" aria-label="App promotion">
+        <div class="article-top-cta__body">
+            <p class="article-top-cta__title">
+
+                더 알아보기 Solfege PRO
+
+
+            </p>
+            <p class="article-top-cta__sub">
+
+                $9.99/월(미국 App Store 기준)(미국 App Store 기준)
+
+
+            </p>
+        </div>
+        <a href="https://apps.apple.com/kr/app/id6756626617?pt=6749158383&amp;ct=web_manual&amp;mt=8" class="article-top-cta__button app-store-link" data-cta-position="article_top" aria-label="App Store에서 다운로드"><img src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/ko-kr" class="app-store-link__img" alt="App Store에서 다운로드" loading="lazy"></a>
+    </aside>
+
+    <!-- Article Body -->
+    <main class="article-body">
+
+        <!-- Intro -->
+        <p>
+
+            코드 진행 훈련은 여러 개의 코드가 행에서 연주하고 그 순서에 따라 연습합니다. 진행, 즉, 해론이 연결되는 방법을 - 혼자 귀에 의해. 목표는 각 코드의 유형이 아니라 문맥의 귀가 아닙니다. "이 코드는 그 것을 이동합니다." 청중은 귀, 귀, 그리고 불신에 의해 노래를 연주하는 기초입니다.
+
+
+        </p>
+        <p>
+
+            이 페이지는 설정 선택을 위한 설명서입니다. 각 설정은 음악 교육에서 설치된 방법의 주위에 설계됩니다. 결정에 대한 호출 각 설정에 대해, 우리는 <strong>추천된 선택, 그것은 무엇을 위해, 그리고 그것이 기차 — 증거와 함께</strong>. 설정 화면에서 "?"에서 도착하면 필요한 옵션으로 스크롤하십시오.
+
+
+        </p>
+
+        <!-- Shared note: practice-plan item settings sheets show only the settings
+     persisted per item (v1.3.1 hides non-persisted controls in plan context).
+     Included by the 7 module manuals: interval / chord / scale / progression /
+     sight-reading / rhythm / fretboard. Rhythm Sight Reading is deliberately
+     excluded — its plan items do not embed module settings at all. -->
+<p>
+
+    이 페이지는 연습 홈에서 열린 독립 훈련의 설정 화면을 설명합니다. 연습 계획 항목에서 설정할 때, 그 항목에 저장 된 설정만 표시됩니다.
+
+
+</p>
+
+
+        <!-- #training-mode -->
+        <h2 id="training-mode">교육 모드</h2>
+
+        <p class="manual-lead">
+
+            <strong>정상은 시작에 충분합니다.</strong> "Review when You Forget"과 "Weak-Point Focus"에 도달하면 결과가 축적됩니다.
+
+
+        </p>
+
+        <p>
+
+            이 설정은 귀하가 선택한 진행 상황을 결정합니다. 3개의 형태가 있습니다.
+
+
+        </p>
+
+        <div class="manual-options">
+            <div class="manual-option">
+                <div class="manual-option__name">의 의</div>
+                <div class="manual-option__desc">선택된 어려움, 길이, 키와 일치하는 진행 상황을 통해 균등하게 그릴. 특별한 의도가없는, 이것은 하나이다. 아래 설명된 설정은 직접 질문 풀을 설정한다.</div>
+            </div>
+        </div>
+
+        <p>
+
+            다른 두 가지 — "Review when You Forget" 과 "Weak-Point Focus" — 한 번의 성능 데이터 축적을 지불합니다. "Weak-Point Focus"는 약한 진행이 확인 될 때까지 사용할 수 없습니다 (그, 당신이 충분한 답변 역사를 가질 때까지). 그들은 모든 훈련을 통해 동일한 방법을 작동, 그래서 그들은 아래에 인라인 나타납니다.
+
+
+        </p>
+
+        <!-- TODO i18n: fr/de spans are interim English; translate after ja voice approval -->
+<!-- Reusable mode partial. Training-agnostic: do NOT mention chord/scale/etc. -->
+<section class="article-mode" id="mode-spaced-repetition">
+    <h3 class="article-mode__title">"Review when You Forget"모드 (공간 반복)</h3>
+
+    <p>
+
+        Spaced 반복은 이미 공부한 아이템을 잊으려는 것을 잊지 못할 것입니다. 더 신뢰할 수 있는 당신은 뭔가를 응답, 더 긴 간격 전에 반환; 당신이 놓은 항목은 빨리 돌아옵니다. 그것은 당신이 동일한 품목 back-to-back를 cramming 보다는 오히려 리뷰를 밖으로 공간 때 recall가 더 튼튼한 아이디어에 휴식합니다.
+
+
+    </p>
+
+    <p>
+
+        이 모드는 한 번에 한 번 아이템의 풀이 자랐고 한 번 알고있는 것들을 주목하지 못하게 시작합니다. 앱은 스케줄링을 자동으로 처리하므로 어떤 필요도 검토할 수 없습니다. 긴 한 번 이상, 매일 세션을 보상합니다.
+
+
+    </p>
+
+    <p>
+
+        의심 할 여지없이, "주요"단계에서 도달하면 한 번 아이템을 통해 일했습니다. 모든 것이 새로운 때 기초를 구축하기 위해 정상 모드를 사용하여, 다음 공간 반복은 장기 기억에 대한 지식을 이동 - 편안한 두 단계 접근. <em>장기 유지를위한 스파싱 리뷰의 이점은 Cepeda et al. (2006)에 의해 규모로 합성되었으며, Retrieval 자체의 행동은 Roediger &amp; Karpicke (2006)에서 메모리가 온다는 것을 발견합니다.</em>
+
+
+    </p>
+</section>
+
+        <!-- TODO i18n: fr/de spans are interim English; translate after ja voice approval -->
+<!-- Reusable mode partial. Training-agnostic: do NOT mention chord/scale/etc. -->
+<section class="article-mode" id="mode-weak-point">
+    <h3 class="article-mode__title">Weak-Point 초점 모드</h3>
+
+    <p>
+
+        Weak-point 초점은 응답 역사에서 보입니다, 가장 낮은 정확도로 항목을 식별하고 더 자주 사람들을 봉사합니다. 대신 이미 대답에 시간을 소비하는 것은 믿을 수 없을 정도로, 당신이 누락한 장소를 정확하게 연습합니다. 앱은 자신의 결과를 자동으로 타겟을 선택합니다.
+
+
+    </p>
+
+    <p>
+
+        이 모드는 전체 정확도가 상승하지만 특정 몇 가지 항목이 항상 여행하는 단계에 적합합니다. 약한 장소에 돌아감하기 때문에 더 열심히 느끼고, 학습이 진행되는데, 학습이 어려운 어려움의 원리를 정확하게 통제하는 것이 중요합니다. 그것은 후보자 전에 충분한 응답 역사를 필요로하므로, 처음에는 일반 모드를 재생합니다.
+
+
+    </p>
+
+    <p>
+
+        의심 할 여지없이, 주어진 수준에서 판다 할 때마다 몇 가지 집중 세션을 드롭하고 "그 전에 동일한 항목을 잃게됩니다." 약한 반점이 명확하게되면, 당신의 전반적인 균형을 지키는 정상 형태에 돌려보내십시오. <em>자신을 자극하는 항목은 당신이 놓는 경향이 – "테스트 효과"- 로디거 &amp; Karpicke (2006)에 의해 표시되었습니다.</em>
+
+
+    </p>
+</section>
+
+
+        <div class="manual-rationale">
+            <span class="manual-rationale__label">그 뒤에 증거</span>
+            <p>
+
+                세 가지 모드는 현재 필요한 진행 상황을 집중하는 데 있습니다. 퀴즈 형식 자체 - 수동으로 듣는 것보다 응답을 호출 - 메모리를 다시 목록화보다 더 강화 (테스트 효과). "Review when You Forget" 과 "Weak-Point Focus"는 성능 데이터를 사용하여이 자동화합니다.
+
+
+            </p>
+            <p class="manual-rationale__ref">참고 : Roediger &amp; Karpicke (2006) <a class="manual-ref-num" href="#ref-1">[1]</a></p>
+        </div>
+
+        <!-- #difficulty (also the notation / answer-style choice) -->
+        <h2 id="difficulty">난이도 (근육적 인 표기)</h2>
+
+        <p class="manual-lead">
+
+            <strong>unsure 때, Function Basic (T/SD/D)에서 시작하십시오.</strong> "rest → 이동 → 긴장 → resolution"음계이 안정되면, 기능 고급 → 로마 숫자 → 초드 기호로 단계.
+
+
+        </p>
+
+        <p>
+
+            "easy vs. hard"는 아닙니다. — 그것은 결정합니다. <strong>당신이 대답하는 표기</strong> 진행 중. 기능 (T/SD/D — 코드의 조화된 역할)에 의해 응답, 로마 숫자로, 또는 구체적인 코드 이름에 의하여 훈련은 다른 귀를 훈련하고 다른 지식이 요구합니다. 가장 추상적인 기능에서 단계로 이동합니다 — 가장 구체적인 - 코드 Symbols.
+
+
+        </p>
+
+        <div class="manual-options" id="notation">
+            <div class="manual-option">
+                <div class="manual-option__name">기능 기본 (T/SD/D)</div>
+                <div class="manual-option__desc">각 코드의 함수만 응답합니다. — 세 가지 레이블: T = 으뜸음 (rest), SD = sub 지배적 (set off), D = 지배적 (tension wanting resolution). 기본은 I=T, IV=SD, V=D만 사용합니다. 의 흐름을 듣고, 심지어 코드 이름없이. 이 매핑은 주요 키에 적용됩니다.</div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name">기능 고급 (T/SD/D)</div>
+                <div class="manual-option__desc">동일한 기능 기반 답변이지만 범위를 넓히는 것 : 여러 개의 코드는 하나의 함수 (I /vi / iii = T, IV / ii = SD, V /vii = D)를 공유합니다. 듣고, 예를 들어, 나는 음으로 서있는 vi - 대용의 소리. 이 매핑은 주요 키에 적용됩니다.</div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name">로마 Numerals</div>
+                <div class="manual-option__desc">I, IV, V, vi (키 내의 음계도)와 같은 로마 숫자로 응답합니다. 기능보다 한 단계 더 미세한 : 당신은 어떤 키에 붙은 진행의 transposable "map"을 구축 할 수 있 는 코드를 번호가 핀 포인트. 단조 키에서 선택은 i, ii°, III, iv, v, V, VI, VII, vii°로 변경됩니다.</div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name">코드 기호</div>
+                <div class="manual-option__desc">C, Dm, G와 같은 콘크리트 합창단 이름을 가진 응답 - 가장 실용적인 수준, 차트와 리드 시트에 직접 매핑. 그것은 열쇠와 로마 숫자 둘 다 연결해 당신의 머리에, 그래서 최고 층입니다. 소수의 키에서 선택은 실제로 Am, Dm, E와 같은 그 키에 소리입니다.</div>
+            </div>
+        </div>
+
+        <p>
+
+            단조 키에서, 모두 기능 기본 및 기능 고급은 동일한 단조 키 기능 테이블과 점수가됩니다. 즉, III, VI = T; ii°, iv = SD; v, V, VII, vii° = D. 참조 <a href="#key-quality">키 모드 (장 / 단)</a> 상세 정보
+
+
+        </p>
+
+        <div class="manual-rationale">
+            <span class="manual-rationale__label">그 뒤에 증거</span>
+            <p>
+
+                기능 측면에서 진행 상황을 듣고 (그들의 조화 역할)는 처리하고 부하를 낮추는 정보를 좁은, 안전한 기반을 구축. 콘크리트 합창단 이름 - 기능 조화 - 대학 수준의 청음 훈련에 설립 된 절차이며, 더 많은 추상 계층에서 시작은 조기 처리 요구가 낮은 것을 유지.
+
+
+            </p>
+            <p class="manual-rationale__ref">참고 : Karpinski (2000) <a class="manual-ref-num" href="#ref-2">[2]</a>; Sweller (1988) <a class="manual-ref-num" href="#ref-3">[3]</a></p>
+        </div>
+
+        <h2 id="functional-degree-variety">Vary 기능적인 정도</h2>
+
+        <p class="manual-lead">
+
+            <strong>기능 보청기 (T/SD/D)를 더 넓게 훈련하기 위하여 이것을 켜십시오.</strong> 그것은 기능 (Advanced) × 주요 × 정상 모드에서만 나타납니다.
+
+
+        </p>
+
+        <p>
+
+            오프, 질문은 지정된 진행 중 집합에서 온다. On, 같은 기능은 다음과 같이 표시됩니다. <strong>다른 코드 도</strong> (예. V와 vii°로 지배하는; I, vi, iii의 어떤과 음). 이 열차는 특정 콜드보다는 기능 자체를 듣는 것입니다.
+
+
+        </p>
+
+        <div class="manual-rationale">
+            <span class="manual-rationale__label">그 뒤에 증거</span>
+            <p>
+
+                다양한 예제를 통해 하나의 기능을 Experiencing하면 표면 큐 (특히 코드)보다는 언더링 기능에 의해 삭제됩니다. Aural Skill은 기능으로 보청기 소리를 포함하므로, 각도는 개별 사례를 넘어 기능의 개념을 일반화하는 데 도움이됩니다.
+
+
+            </p>
+            <p class="manual-rationale__ref">참고 : Karpinski (2000) <a class="manual-ref-num" href="#ref-2">[2]</a></p>
+        </div>
+
+        <!-- #length -->
+        <h2 id="length">진행 길이</h2>
+
+        <p class="manual-lead">
+
+            <strong>3개의 코드를 끄는 것은 언제.</strong> 단일 모션에 잠그는 2개의 코드에 하락하거나, 전체적인 노래 교류에 가지고 가기 위하여 4개의 코드까지 이동하십시오.
+
+
+        </p>
+
+        <p>
+
+            몇 개의 코드가 질문에 대한 행에서 재생하는 방법을 설정한다. 2, 3, 4개의 합창단을 선택할 수 있습니다. 더 많은 코드, 더 많은 당신은 메모리에 보유해야하고 더 많은 관계는 추적해야 — 그래서 더 열심히 얻을. 길이 또는 어려움을 변경하면 조합이 화면의 오른쪽 상단에 나타납니다.
+
+
+        </p>
+
+        <div class="manual-options">
+            <div class="manual-option">
+                <div class="manual-option__name">2개의 코드</div>
+                <div class="manual-option__desc">두 개의 합창단 사이에 하나의 "모브"를 듣습니다. 가장 작은 단위에 집중할 수 있습니다 — V→I (해결), IV→I — 1개의 동의의 소리를 쌓아가는 이상. 첫 번째 단계.</div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name">3개의 코드</div>
+                <div class="manual-option__desc">세 개의 코드는 가장 익숙한 요소 인 I→IV→V, ii→V→I를 포함하여 "go-and-return" 모양을 제공합니다. 진도의 전형적인 윤곽을 배우는 잘 균형있는 길이.</div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name">4개의 코드</div>
+                <div class="manual-option__desc">4개의 코드는 완전한 구문에 진전을 줍니다 — I→vi→IV→V 또는 I→V→vi→IV 같이 진짜 노래 교류. 메모리로드는 높다 — 어려움의 최고 층.</div>
+            </div>
+        </div>
+
+        <div class="manual-rationale">
+            <span class="manual-rationale__label">그 뒤에 증거</span>
+            <p>
+
+                짧은 진행 상황을 한 번에 몇 초의 초를 잡고 귀에 부하를 유지하면서 시작할 수 있습니다. 두 번에 4 개의 코드를 태우는 것보다 더 빨리 길게하기 전에 몇 개의 코드와 모션의 소리를 끄는. tiers는 인지 로드 이론을 따릅니다: 새로운 기술 원조 학습에서 낮은 가공 요구를 유지.
+
+
+            </p>
+            <p class="manual-rationale__ref">참고 : Sweller (1988) <a class="manual-ref-num" href="#ref-3">[3]</a></p>
+        </div>
+
+        <!-- #key-quality -->
+        <h2 id="key-quality">키 모드 (장 / 단)</h2>
+
+        <p class="manual-lead">
+
+            <strong>불확실한 경우, 장로 시작하십시오.</strong> 안정감을 느끼면, 귀를 확장하기 위해 단를 추가하여 문자 키의 진행 상황을 읽을 수 있습니다.
+
+
+        </p>
+
+        <p>
+
+            진도가 주요 열쇠 또는 단조 열쇠에 올지 여부를 결정합니다. 주요 및 단조는 매우 다른 밝은 또는 어두운 문자를 진행하는 동일한 음계 정도를 제공합니다. 그리고 변경 사항을 표시하는 코드의 세트.
+
+
+        </p>
+
+        <div class="manual-options">
+            <div class="manual-option">
+                <div class="manual-option__name">주요연혁</div>
+                <div class="manual-option__desc">주요 키에서 연습 - 밝은, 안정적인 사운드는 팝업에서 가장 많이 듣는 진행 상황을 중심으로 (I→IV→V, ii→V→I). 진전 인식을 학습하기 시작할 때 기본입니다.</div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name">단</div>
+                <div class="manual-option__desc">단조 키 연습 - 어둠 속에서, 그림자 소리, i→iv→V 또는 i→VI→VII와 같은 단조 특정 발전을 듣고 훈련. 한 번의 주요 느낌을 안정시키고, 대조는 차이를 명확하게합니다.</div>
+            </div>
+        </div>
+
+        <div class="manual-rationale">
+            <span class="manual-rationale__label">그 뒤에 증거</span>
+            <p>
+
+                익숙한, 밝은 진행이 더 쉽게 기능 (T/SD/D) 및 로마 수염의 느낌을 파악하기 때문에 중요한 작품으로 시작. 주요 및 단조 및 청력의 조화 흐름을 알리는 것은 맥락의 각 코드의 역할은 대학 수준의 청음 훈련이 기초로 치료하는 것을 정확히 이해하는 기능입니다.
+
+
+            </p>
+            <p class="manual-rationale__ref">참고 : Karpinski (2000) <a class="manual-ref-num" href="#ref-2">[2]</a></p>
+        </div>
+
+        <!-- References -->
+        <section class="manual-refs">
+            <div class="manual-refs__title">이름 *</div>
+            <ol>
+                <li id="ref-1">Roediger, H. L., &amp; Karpicke, J. D. (2006). Test-enhanced learning: Taking memory tests improves long-term retention. <em>Psychological Science, 17</em>(3), 249–255.</li>
+                <li id="ref-2">Karpinski, G. S. (2000). <em>Aural Skills Acquisition: The Development of Listening, Reading, and Performing Skills in College-Level Musicians.</em> Oxford University Press.</li>
+                <li id="ref-3">Sweller, J. (1988). Cognitive load during problem solving: Effects on learning. <em>Cognitive Science, 12</em>(2), 257–285.</li>
+            </ol>
+        </section>
+
+    </main>
+
+    <!-- Final CTA -->
+    <section class="article-cta">
+        <h2 class="article-cta__title">설정 정렬? 그것을 시도</h2>
+        <p class="article-cta__text">
+
+            각 설정을 이해하면 나머지는 연습입니다.<br>불확실한 경우, 이 페이지의 " 의심스러운"줄을 따르십시오.<br>당신이 맞는 설정을 찾기 Solfege PRO'초록 진행'
+
+
+        </p>
+        <a href="https://apps.apple.com/kr/app/id6756626617?pt=6749158383&amp;ct=web_manual&amp;mt=8" class="app-store-link" aria-label="App Store에서 다운로드">
+
+            <img class="app-store-link__img" width="120" height="40" src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/ko-kr" alt="App Store에서 다운로드">
+
+
+        </a>
+    </section>
+
+    <!-- Related Content -->
+    <div class="article-related">
+        <div class="article-related__title">관련 내용</div>
+        <a href="/manual/chord/" class="article-related__link" style="margin-bottom: var(--space-md);">
+            <div class="article-related__link-title">코드 인식 설정 설명서 - 각 옵션은 무엇을 의미합니까?</div>
+            <div class="article-related__link-desc">진행 전의 단일 콜드를 식별하려는 사람들을 위해 - 코드 인식 교육의 각 설정을 덮는 수동.</div>
+        </a>
+        <a href="/" class="article-related__link">
+            <div class="article-related__link-title">Solfege PRO 연습장</div>
+            <div class="article-related__link-desc">기타,베이스, 드럼, 피아노, 보컬을 위한 도전 기반 연습 메뉴</div>
+        </a>
+    </div>
+
+    <!-- Article Note -->
+    <aside class="article-endnote">
+        <p class="article-endnote__text">
+
+            이 페이지는 앱 내 설정을 설명하는 참고 자료입니다. 여기의 권장 진행은 널리 쓰이는 청음 훈련 방법론을 바탕으로 한 일반적인 지침이며, 최적의 설정은 개인의 경험과 목표에 따라 달라집니다. 인용된 연구는 일반적인 학습 결과를 다루며 이 앱에서의 성과를 보장하지 않습니다.
+
+
+        </p>
+    </aside>
+
+    <!-- Footer -->
+    <footer class="article-footer">
+        <p class="article-footer__text">
+            &copy; 2026 Solfege PRO
+        </p>
+    </footer>
+    <script src="/bootstrap.js?v=10" defer></script>
+    <nav aria-label="Language" style="display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:0.5rem;padding:var(--space-lg) var(--space-md);border-top:1px solid var(--surface-light);font-size:13px">
+        <a href="/manual/progression/" hreflang="ja" style="color:var(--text-secondary);text-decoration:none">日本語</a>
+        <span aria-hidden="true" style="color:var(--surface-light)">·</span>
+        <a href="/en/manual/progression/" hreflang="en" style="color:var(--text-secondary);text-decoration:none">English</a>
+        <span aria-hidden="true" style="color:var(--surface-light)">·</span>
+        <a href="/fr/manual/progression/" hreflang="fr" style="color:var(--text-secondary);text-decoration:none">Français</a>
+        <span aria-hidden="true" style="color:var(--surface-light)">·</span>
+        <a href="/de/manual/progression/" hreflang="de" style="color:var(--text-secondary);text-decoration:none">Deutsch</a>
+        <span aria-hidden="true" style="color:var(--surface-light)">·</span>
+        <a href="/es/manual/progression/" hreflang="es" style="color:var(--text-secondary);text-decoration:none">Español</a>
+        <span aria-hidden="true" style="color:var(--surface-light)">·</span>
+        <a href="/it/manual/progression/" hreflang="it" style="color:var(--text-secondary);text-decoration:none">Italiano</a>
+        <span aria-hidden="true" style="color:var(--surface-light)">·</span>
+        <span style="color:var(--primary);font-weight:600" aria-current="true">한국어</span>
+        <span aria-hidden="true" style="color:var(--surface-light)">·</span>
+        <a href="/pt-br/manual/progression/" hreflang="pt-BR" style="color:var(--text-secondary);text-decoration:none">Português (Brasil)</a>
+    </nav>
+</body>
+</html>

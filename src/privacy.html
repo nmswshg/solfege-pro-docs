@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- DRAFT 2026-08-03: owner review required before publish (replaces Notion privacy/support) -->
+<!-- Privacy source of truth: owner-provided ASC/Notion draft, reconciled with shipped iOS/Android data handling on 2026-08-20. -->
 <html lang="ja"
       data-title-ja="プライバシーポリシー | ソルフェージュPRO"
       data-title-en="Privacy Policy | Solfege PRO"
@@ -11,7 +11,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="theme-color" content="#1A1A1E">
     <title>プライバシーポリシー | ソルフェージュPRO</title>
-    <meta name="description" content="ソルフェージュPROのプライバシーポリシー。アカウント登録は不要で、氏名やメールアドレスは収集しません。利用状況データ・クラッシュ情報・マイク・購入情報の扱いを説明します。">
+    <meta name="description" content="ソルフェージュPROのプライバシーポリシー。アプリ内の情報、外部フォーム、利用状況・クラッシュ情報の取り扱いを説明します。">
 
     <link rel="canonical" href="https://solfegepro.com/privacy.html">
     <link rel="alternate" hreflang="ja" href="https://solfegepro.com/privacy.html">
@@ -19,12 +19,12 @@
     <link rel="alternate" hreflang="fr" href="https://solfegepro.com/privacy.fr.html">
     <link rel="alternate" hreflang="de" href="https://solfegepro.com/privacy.de.html">
     <link rel="alternate" hreflang="x-default" href="https://solfegepro.com/privacy.html">
-    <link rel="icon" href="/favicon.ico" sizes="any">
-    <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
-    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+    <link rel="icon" href="../favicon.ico" sizes="any">
+    <link rel="icon" type="image/png" sizes="96x96" href="../favicon-96x96.png">
+    <link rel="apple-touch-icon" href="../apple-touch-icon.png">
 
     <meta property="og:title" content="プライバシーポリシー">
-    <meta property="og:description" content="ソルフェージュPROのプライバシーポリシー。アカウント登録は不要で、氏名やメールアドレスは収集しません。利用状況データ・クラッシュ情報・マイク・購入情報の扱いを説明します。">
+    <meta property="og:description" content="ソルフェージュPROのプライバシーポリシー。アプリ内の情報、外部フォーム、利用状況・クラッシュ情報の取り扱いを説明します。">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://solfegepro.com/privacy.html">
     <meta property="og:site_name" content="ソルフェージュPRO">
@@ -39,7 +39,7 @@
 
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="プライバシーポリシー">
-    <meta name="twitter:description" content="ソルフェージュPROのプライバシーポリシー。アカウント登録は不要で、氏名やメールアドレスは収集しません。利用状況データ・クラッシュ情報・マイク・購入情報の扱いを説明します。">
+    <meta name="twitter:description" content="ソルフェージュPROのプライバシーポリシー。アプリ内の情報、外部フォーム、利用状況・クラッシュ情報の取り扱いを説明します。">
     <meta name="twitter:image" content="https://solfegepro.com/og-image.png">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -48,8 +48,8 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" media="print" onload="this.media='all'">
     <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap"></noscript>
 
-    <link rel="stylesheet" href="/style.css?v=21">
-    <link rel="stylesheet" href="/guides/article.css?v=14">
+    <link rel="stylesheet" href="../style.css?v=23">
+    <link rel="stylesheet" href="../guides/article.css?v=14">
     <style>
         /* Operational pages use plain in-body anchors (guides only use
            classed CTA links), which otherwise fall back to UA blue on the
@@ -60,13 +60,15 @@
             text-underline-offset: 3px;
         }
         .article-body a:not([class]):hover { opacity: 0.85; }
+        /* Legal documents must remain visually stable while reading or printing. */
+        .article-body h2::after { animation: none; transform: scaleX(1); }
     </style>
 </head>
 <body>
     <nav class="nav">
         <div class="nav__container">
             <a href="/" class="nav__logo">
-                <img src="/AppIcon.png" alt="Solfege PRO" class="nav__logo-icon" width="32" height="32">
+                <img src="../AppIcon.png" alt="Solfege PRO" class="nav__logo-icon" width="32" height="32">
                 <span class="nav__logo-text"><span lang="ja">ソルフェージュPRO</span><span lang="en">Solfege PRO</span><span lang="fr">Solfege PRO</span><span lang="de">Solfege PRO</span></span>
             </a>
             <ul class="nav__list">
@@ -105,38 +107,39 @@
     <!-- Page Header -->
     <header class="page-header">
         <h1 class="page-header__title"><span lang="ja">プライバシーポリシー</span><span lang="en">Privacy Policy</span><span lang="fr">Politique de confidentialité</span><span lang="de">Datenschutzerklärung</span></h1>
-        <p class="page-header__subtitle"><span lang="ja">ソルフェージュPROが扱う情報と、その利用目的について説明します。</span><span lang="en">What information Solfege PRO handles, and what it is used for.</span><span lang="fr">Les informations traitées par Solfege PRO et leur finalité.</span><span lang="de">Welche Informationen Solfege PRO verarbeitet und wozu.</span></p>
     </header>
 
     <main class="article-body">
 
-        <h2 id="principles"><span lang="ja">基本方針</span><span lang="en">Overview</span><span lang="fr">Principes</span><span lang="de">Grundsätze</span></h2>
+        <p><strong><span lang="ja">最終更新日: 2026年8月20日</span><span lang="en">Last updated: August 20, 2026</span><span lang="fr">Dernière mise à jour : 20 août 2026</span><span lang="de">Letzte Aktualisierung: 20. August 2026</span></strong></p>
+
+        <h2 id="introduction"><span lang="ja">1. はじめに</span><span lang="en">1. Introduction</span><span lang="fr">1. Introduction</span><span lang="de">1. Einleitung</span></h2>
 
         <p>
-            <span lang="ja">ソルフェージュPROにアカウント登録はありません。氏名・メールアドレスなどの個人情報をアプリ内で収集することはありません。</span>
-            <span lang="en">Solfege PRO has no account registration. The app does not collect personal information such as your name or email address.</span>
-            <span lang="fr">Solfege PRO ne comporte aucune création de compte. L'app ne collecte pas d'informations personnelles telles que votre nom ou votre adresse e-mail.</span>
-            <span lang="de">Solfege PRO hat keine Kontoregistrierung. Die App erhebt keine persönlichen Daten wie Namen oder E-Mail-Adressen.</span>
+            <span lang="ja">本プライバシーポリシーは、「ソルフェージュPRO」（以下「本アプリ」）のiOS版およびAndroid版におけるユーザー情報の取り扱いについて定めるものです。本アプリにアカウント登録はなく、氏名・メールアドレスをアプリ内で入力させることはありません。</span>
+            <span lang="en">This Privacy Policy describes how the iOS and Android versions of “Solfege PRO” (the “App”) handle user information. The App has no account registration and does not ask you to enter your name or email address within the App.</span>
+            <span lang="fr">La présente Politique de confidentialité décrit la manière dont les versions iOS et Android de « Solfege PRO » (l'« Application ») traitent les informations des utilisateurs. L'Application ne nécessite aucune création de compte et ne vous demande pas de saisir votre nom ou votre adresse e-mail dans l'Application.</span>
+            <span lang="de">Diese Datenschutzerklärung beschreibt, wie die iOS- und Android-Versionen von „Solfege PRO“ (die „App“) mit Nutzerinformationen umgehen. Die App erfordert keine Kontoregistrierung und fordert dich in der App nicht zur Eingabe deines Namens oder deiner E-Mail-Adresse auf.</span>
         </p>
 
-        <h2 id="collected"><span lang="ja">収集する情報</span><span lang="en">Information We Collect</span><span lang="fr">Informations collectées</span><span lang="de">Erhobene Informationen</span></h2>
+        <h2 id="collected"><span lang="ja">2. 取り扱う情報</span><span lang="en">2. Information We Handle</span><span lang="fr">2. Informations traitées</span><span lang="de">2. Verarbeitete Informationen</span></h2>
 
         <h3 id="usage"><span lang="ja">利用状況データ</span><span lang="en">Usage Data</span><span lang="fr">Données d'utilisation</span><span lang="de">Nutzungsdaten</span></h3>
 
         <p>
-            <span lang="ja">アプリの改善のため、Google Firebase Analytics による匿名の利用イベントを収集します。内容は、画面やトレーニングの利用状況、正答率などの練習統計、デバイスモデル・OSバージョン・アプリバージョン・言語設定です。これらのデータからユーザー個人を特定することはありません。</span>
-            <span lang="en">To improve the app, we collect anonymous usage events via Google Firebase Analytics: which screens and trainings are used, practice statistics such as accuracy, plus device model, OS version, app version, and language. This data does not identify you personally.</span>
-            <span lang="fr">Pour améliorer l'app, nous collectons des événements d'utilisation anonymes via Google Firebase Analytics : écrans et entraînements utilisés, statistiques de pratique (précision, etc.), ainsi que le modèle d'appareil, la version du système, la version de l'app et la langue. Ces données ne permettent pas de vous identifier personnellement.</span>
-            <span lang="de">Zur Verbesserung der App erfassen wir anonyme Nutzungsereignisse über Google Firebase Analytics: genutzte Bildschirme und Trainings, Übungsstatistiken wie Trefferquoten sowie Gerätemodell, OS-Version, App-Version und Sprache. Diese Daten identifizieren dich nicht persönlich.</span>
+            <span lang="ja">本アプリは、アプリ内でユーザーの氏名・メールアドレス等を収集しません。サービス改善および不具合調査のため、Google Firebase AnalyticsおよびFirebase Crashlyticsにより、アプリの利用状況、端末・OS・アプリの情報、クラッシュ情報を収集する場合があります。これらは広告目的のトラッキングには使用しません。利用状況の収集はアプリ内の設定で無効にできます。</span>
+            <span lang="en">The App does not collect your name, email address, or similar information within the App. To improve the App and investigate issues, Google Firebase Analytics and Firebase Crashlytics may collect app usage, device, OS and app information, and crash information. This information is not used for advertising tracking. You can disable usage collection in the App's settings.</span>
+            <span lang="fr">L'Application ne collecte pas votre nom, votre adresse e-mail ou des informations similaires dans l'Application. Afin d'améliorer l'Application et d'analyser les problèmes, Google Firebase Analytics et Firebase Crashlytics peuvent collecter des données d'utilisation ainsi que des informations sur l'appareil, le système, l'Application et les plantages. Ces informations ne servent pas au suivi publicitaire. Vous pouvez désactiver la collecte des données d'utilisation dans les réglages de l'Application.</span>
+            <span lang="de">Die App erhebt in der App weder deinen Namen noch deine E-Mail-Adresse oder vergleichbare Angaben. Zur Verbesserung der App und Untersuchung von Fehlern können Google Firebase Analytics und Firebase Crashlytics Nutzungsdaten sowie Informationen zu Gerät, Betriebssystem, App und Abstürzen erfassen. Diese Informationen werden nicht für Werbe-Tracking verwendet. Die Erfassung von Nutzungsdaten kann in den App-Einstellungen deaktiviert werden.</span>
         </p>
 
         <h3 id="crash"><span lang="ja">クラッシュ情報</span><span lang="en">Crash Reports</span><span lang="fr">Rapports de plantage</span><span lang="de">Absturzberichte</span></h3>
 
         <p>
-            <span lang="ja">不具合の修正のため、Firebase Crashlytics によるクラッシュレポートを収集します。</span>
-            <span lang="en">To fix defects, we collect crash reports via Firebase Crashlytics.</span>
-            <span lang="fr">Pour corriger les dysfonctionnements, nous collectons des rapports de plantage via Firebase Crashlytics.</span>
-            <span lang="de">Zur Fehlerbehebung erfassen wir Absturzberichte über Firebase Crashlytics.</span>
+            <span lang="ja">不具合の調査・修正のため、Firebase Crashlyticsを利用して、クラッシュ時のスタックトレース、端末・OS・アプリの情報、およびインストール識別子を含むクラッシュレポートを収集します。</span>
+            <span lang="en">To investigate and fix defects, we use Firebase Crashlytics to collect crash reports that may include stack traces, device, OS, and app information, and installation identifiers.</span>
+            <span lang="fr">Afin d'analyser et de corriger les dysfonctionnements, nous utilisons Firebase Crashlytics pour collecter des rapports pouvant contenir des traces d'erreur, des informations sur l'appareil, le système et l'Application, ainsi que des identifiants d'installation.</span>
+            <span lang="de">Zur Untersuchung und Behebung von Fehlern verwenden wir Firebase Crashlytics. Absturzberichte können Stack-Traces, Informationen zu Gerät, Betriebssystem und App sowie Installationskennungen enthalten.</span>
         </p>
 
         <h3 id="microphone"><span lang="ja">マイク</span><span lang="en">Microphone</span><span lang="fr">Micro</span><span lang="de">Mikrofon</span></h3>
@@ -148,81 +151,86 @@
             <span lang="de">Das Mikrofon dient ausschließlich der Erkennung von Klatschen und Tippgeräuschen in den Rhythmus-Trainings. Der Ton wird auf deinem Gerät verarbeitet — er wird weder als Aufnahme gespeichert noch an einen Server gesendet.</span>
         </p>
 
-        <h3 id="purchases"><span lang="ja">購入情報</span><span lang="en">Purchases</span><span lang="fr">Achats</span><span lang="de">Käufe</span></h3>
-
-        <p>
-            <span lang="ja">課金はAppleが処理します。当方がクレジットカード情報などの決済情報にアクセスすることは一切ありません。</span>
-            <span lang="en">Payments are processed by Apple. We never have access to your payment details, such as credit card numbers.</span>
-            <span lang="fr">Les paiements sont traités par Apple. Nous n'avons jamais accès à vos données de paiement, comme les numéros de carte bancaire.</span>
-            <span lang="de">Zahlungen werden von Apple abgewickelt. Wir haben zu keinem Zeitpunkt Zugriff auf deine Zahlungsdaten wie Kreditkartennummern.</span>
-        </p>
-
         <h3 id="contact-form"><span lang="ja">お問い合わせフォーム</span><span lang="en">Contact Form</span><span lang="fr">Formulaire de contact</span><span lang="de">Kontaktformular</span></h3>
 
         <p>
-            <span lang="ja">お問い合わせフォームに送信された内容（および任意で記入された連絡先）は、サポート対応の目的にのみ使用します。</span>
-            <span lang="en">Anything you submit through the contact form (including any contact details you choose to provide) is used only to respond to your inquiry.</span>
-            <span lang="fr">Le contenu envoyé via le formulaire de contact (y compris les coordonnées que vous choisissez d'indiquer) n'est utilisé que pour traiter votre demande.</span>
-            <span lang="de">Inhalte, die du über das Kontaktformular sendest (einschließlich freiwillig angegebener Kontaktdaten), werden nur zur Bearbeitung deiner Anfrage verwendet.</span>
+            <span lang="ja">お問い合わせ・バグ報告のために外部サービス（Googleフォーム）へ遷移する場合があります。Googleフォーム上でユーザーが入力した情報は、当該外部サービス上で送信・管理されます。</span>
+            <span lang="en">The App may open an external service (Google Forms) for inquiries and bug reports. Any information you enter in Google Forms is submitted and managed on that external service.</span>
+            <span lang="fr">L'Application peut ouvrir un service externe (Google Forms) pour les demandes et signalements de bugs. Toute information saisie dans Google Forms est envoyée et gérée par ce service externe.</span>
+            <span lang="de">Für Anfragen und Fehlerberichte kann die App einen externen Dienst (Google Forms) öffnen. Angaben, die du in Google Forms eingibst, werden über diesen externen Dienst übermittelt und verwaltet.</span>
         </p>
 
-        <h2 id="deletion"><span lang="ja">データの削除・ご質問</span><span lang="en">Data Deletion &amp; Questions</span><span lang="fr">Suppression des données et questions</span><span lang="de">Datenlöschung und Fragen</span></h2>
+        <h2 id="purpose"><span lang="ja">3. 利用目的</span><span lang="en">3. Purpose of Use</span><span lang="fr">3. Finalités</span><span lang="de">3. Verwendungszwecke</span></h2>
 
         <p>
-            <span lang="ja">データ削除のご依頼やご質問は、以下のお問い合わせフォームからご連絡ください。アプリを削除すると、端末上のデータは消去されます。Firebase の識別子は、アプリを再インストールするとリセットされます。</span>
-            <span lang="en">For data-deletion requests or questions, please use the contact form below. Deleting the app erases the data stored on your device. Firebase identifiers are reset when the app is reinstalled.</span>
-            <span lang="fr">Pour toute demande de suppression de données ou question, utilisez le formulaire de contact ci-dessous. Supprimer l'app efface les données stockées sur votre appareil. Les identifiants Firebase sont réinitialisés à la réinstallation de l'app.</span>
-            <span lang="de">Für Löschanfragen oder Fragen nutze bitte das folgende Kontaktformular. Das Löschen der App entfernt die auf deinem Gerät gespeicherten Daten. Firebase-Kennungen werden bei einer Neuinstallation der App zurückgesetzt.</span>
+            <span lang="ja">外部フォーム上でユーザーが任意に入力した情報（例: お問い合わせ内容、発生状況、端末・OS情報等）および上記の利用状況・クラッシュ情報は、以下の目的で利用します。</span>
+            <span lang="en">Information you voluntarily enter in the external form (for example, inquiry details, reproduction steps, and device or OS information), together with the usage and crash information described above, is used only for:</span>
+            <span lang="fr">Les informations que vous saisissez volontairement dans le formulaire externe (par exemple, contenu de la demande, circonstances, appareil et système), ainsi que les données d'utilisation et de plantage décrites ci-dessus, sont utilisées uniquement aux fins suivantes :</span>
+            <span lang="de">Freiwillig im externen Formular eingegebene Angaben (zum Beispiel Anfrageinhalt, Umstände sowie Geräte- und Betriebssysteminformationen) sowie die oben beschriebenen Nutzungs- und Absturzinformationen werden nur für folgende Zwecke verwendet:</span>
         </p>
-
-        <p>
-            <span lang="ja"><a href="https://docs.google.com/forms/d/e/1FAIpQLSfg3malJfxLyBQuKrsQ5pVD0wRlSkEyv3cwjTwL39x13T-_eg/viewform">→ お問い合わせフォームを開く（Google フォーム）</a></span>
-            <span lang="en"><a href="https://docs.google.com/forms/d/e/1FAIpQLSfg3malJfxLyBQuKrsQ5pVD0wRlSkEyv3cwjTwL39x13T-_eg/viewform">→ Open the contact form (Google Forms)</a></span>
-            <span lang="fr"><a href="https://docs.google.com/forms/d/e/1FAIpQLSfg3malJfxLyBQuKrsQ5pVD0wRlSkEyv3cwjTwL39x13T-_eg/viewform">→ Ouvrir le formulaire de contact (Google Forms)</a></span>
-            <span lang="de"><a href="https://docs.google.com/forms/d/e/1FAIpQLSfg3malJfxLyBQuKrsQ5pVD0wRlSkEyv3cwjTwL39x13T-_eg/viewform">→ Kontaktformular öffnen (Google Forms)</a></span>
-        </p>
-
-        <h2 id="third-party"><span lang="ja">第三者サービス</span><span lang="en">Third-Party Services</span><span lang="fr">Services tiers</span><span lang="de">Drittanbieter-Dienste</span></h2>
 
         <ul>
-            <li><span lang="ja">Google Firebase — 詳細は <a href="https://firebase.google.com/support/privacy">Firebase のプライバシーとセキュリティ</a> を参照</span><span lang="en">Google Firebase — see <a href="https://firebase.google.com/support/privacy">Privacy and Security in Firebase</a></span><span lang="fr">Google Firebase — voir <a href="https://firebase.google.com/support/privacy">Confidentialité et sécurité dans Firebase</a></span><span lang="de">Google Firebase — siehe <a href="https://firebase.google.com/support/privacy">Datenschutz und Sicherheit in Firebase</a></span></li>
-            <li><span lang="ja">Apple（App Store での配信・決済処理）</span><span lang="en">Apple (App Store distribution and payment processing)</span><span lang="fr">Apple (distribution via l'App Store et traitement des paiements)</span><span lang="de">Apple (Vertrieb über den App Store und Zahlungsabwicklung)</span></li>
+            <li><span lang="ja">お問い合わせへの対応</span><span lang="en">Responding to inquiries</span><span lang="fr">Répondre aux demandes</span><span lang="de">Bearbeitung von Anfragen</span></li>
+            <li><span lang="ja">不具合の調査・修正</span><span lang="en">Investigating and fixing issues</span><span lang="fr">Analyser et corriger les problèmes</span><span lang="de">Untersuchung und Behebung von Fehlern</span></li>
+            <li><span lang="ja">サービス改善の参考</span><span lang="en">Improving the App</span><span lang="fr">Améliorer l'Application</span><span lang="de">Verbesserung der App</span></li>
         </ul>
 
-        <h2 id="changes"><span lang="ja">改定について</span><span lang="en">Changes to This Policy</span><span lang="fr">Modifications</span><span lang="de">Änderungen</span></h2>
-
         <p>
-            <span lang="ja">本ポリシーを変更した場合は、本ページで告知します。制定日: 2026年8月3日。</span>
-            <span lang="en">If this policy changes, the updated version will be posted on this page. Established: August 3, 2026.</span>
-            <span lang="fr">En cas de modification de cette politique, la version à jour sera publiée sur cette page. Date d'entrée en vigueur : 3 août 2026.</span>
-            <span lang="de">Änderungen an dieser Richtlinie werden auf dieser Seite veröffentlicht. In Kraft seit: 3. August 2026.</span>
+            <span lang="ja">原則として連絡先の提供は不要です（返信が必要な場合のみ、ユーザーの判断で入力してください）。</span>
+            <span lang="en">Providing contact information is generally not required. If you want a reply, you may choose to provide it.</span>
+            <span lang="fr">Il n'est généralement pas nécessaire de fournir des coordonnées. Si vous souhaitez une réponse, vous pouvez choisir de les indiquer.</span>
+            <span lang="de">Kontaktdaten sind grundsätzlich nicht erforderlich. Wenn du eine Antwort wünschst, kannst du sie freiwillig angeben.</span>
         </p>
 
-        <h2 id="operator"><span lang="ja">運営者</span><span lang="en">Operator</span><span lang="fr">Éditeur</span><span lang="de">Betreiber</span></h2>
+        <h2 id="third-party"><span lang="ja">4. 第三者提供</span><span lang="en">4. Sharing with Third Parties</span><span lang="fr">4. Transmission à des tiers</span><span lang="de">4. Weitergabe an Dritte</span></h2>
 
         <p>
-            <span lang="ja">ソルフェージュPRO 運営。ご連絡は上記のお問い合わせフォームからお願いします。</span>
-            <span lang="en">Operated by the Solfege PRO team. Please reach us via the contact form above.</span>
-            <span lang="fr">Édité par l'équipe Solfege PRO. Contactez-nous via le formulaire ci-dessus.</span>
-            <span lang="de">Betrieben vom Solfege-PRO-Team. Kontakt bitte über das obige Formular.</span>
+            <span lang="ja">本アプリは、収集した情報を第三者広告のために提供しません。ただし、利用状況分析・クラッシュ解析にはGoogle Firebaseを、お問い合わせ・バグ報告にはGoogleフォームを利用し、必要な範囲で各サービスが情報を処理します。詳細は<a href="https://firebase.google.com/support/privacy">Firebaseのプライバシーとセキュリティ</a>をご確認ください。</span>
+            <span lang="en">The App does not share collected information for third-party advertising. However, Google Firebase is used for usage analytics and crash diagnostics, and Google Forms is used for inquiries and bug reports; each service processes information as necessary. See <a href="https://firebase.google.com/support/privacy">Privacy and Security in Firebase</a> for details.</span>
+            <span lang="fr">L'Application ne transmet pas les informations collectées à des fins de publicité tierce. Toutefois, Google Firebase est utilisé pour l'analyse d'utilisation et des plantages, et Google Forms pour les demandes et signalements de bugs ; chaque service traite les informations nécessaires. Consultez <a href="https://firebase.google.com/support/privacy">Confidentialité et sécurité dans Firebase</a>.</span>
+            <span lang="de">Die App gibt erfasste Informationen nicht für Werbung Dritter weiter. Google Firebase wird jedoch für Nutzungsanalyse und Absturzdiagnose und Google Forms für Anfragen und Fehlerberichte eingesetzt; dabei verarbeitet der jeweilige Dienst die erforderlichen Informationen. Einzelheiten findest du unter <a href="https://firebase.google.com/support/privacy">Datenschutz und Sicherheit in Firebase</a>.</span>
+        </p>
+
+        <h2 id="external-links"><span lang="ja">5. 外部リンク</span><span lang="en">5. External Links</span><span lang="fr">5. Liens externes</span><span lang="de">5. Externe Links</span></h2>
+
+        <p>
+            <span lang="ja">本アプリおよび本サイトは、外部サイト・サービスへのリンクを含む場合があります。リンク先での情報の取り扱いは、リンク先のプライバシーポリシーをご確認ください。</span>
+            <span lang="en">The App and this website may contain links to external websites or services. Please review the privacy policies of those services for information about their data practices.</span>
+            <span lang="fr">L'Application et ce site peuvent contenir des liens vers des sites ou services externes. Consultez leurs politiques de confidentialité pour connaître leurs pratiques.</span>
+            <span lang="de">Die App und diese Website können Links zu externen Websites oder Diensten enthalten. Bitte beachte deren Datenschutzrichtlinien.</span>
+        </p>
+
+        <h2 id="changes"><span lang="ja">6. 改定</span><span lang="en">6. Changes</span><span lang="fr">6. Modifications</span><span lang="de">6. Änderungen</span></h2>
+
+        <p>
+            <span lang="ja">本ポリシーは必要に応じて改定されることがあります。改定後の内容は本ページにて公表します。</span>
+            <span lang="en">We may update this Privacy Policy as needed. The updated version will be posted on this page.</span>
+            <span lang="fr">Nous pouvons modifier la présente Politique de confidentialité si nécessaire. La version mise à jour sera publiée sur cette page.</span>
+            <span lang="de">Wir können diese Datenschutzerklärung bei Bedarf ändern. Die aktualisierte Fassung wird auf dieser Seite veröffentlicht.</span>
+        </p>
+
+        <h2 id="contact"><span lang="ja">7. お問い合わせ</span><span lang="en">7. Contact</span><span lang="fr">7. Contact</span><span lang="de">7. Kontakt</span></h2>
+
+        <p>
+            <span lang="ja">お問い合わせ・バグ報告は、サポートページに掲載しているフォームよりご連絡ください。</span>
+            <span lang="en">For inquiries and bug reports, please use the form linked on the Support page.</span>
+            <span lang="fr">Pour toute demande ou tout signalement de bug, utilisez le formulaire indiqué sur la page d'assistance.</span>
+            <span lang="de">Für Anfragen und Fehlerberichte nutze bitte das auf der Support-Seite verlinkte Formular.</span>
         </p>
 
         <p>
-            <span lang="ja">関連: <a href="/support/">サポート</a></span>
-            <span lang="en">Related: <a href="/support/">Support</a></span>
-            <span lang="fr">Voir aussi : <a href="/support/">Assistance</a></span>
-            <span lang="de">Siehe auch: <a href="/support/">Support</a></span>
+            <span lang="ja">関連: <a href="/terms/">利用規約</a> ・ <a href="/support/">サポート</a></span>
+            <span lang="en">Related: <a href="/terms/">Terms of Use</a> · <a href="/support/">Support</a></span>
+            <span lang="fr">Voir aussi : <a href="/terms/">Conditions d'utilisation</a> · <a href="/support/">Assistance</a></span>
+            <span lang="de">Siehe auch: <a href="/terms/">Nutzungsbedingungen</a> · <a href="/support/">Support</a></span>
         </p>
 
     </main>
 
     <!-- Footer -->
     <footer class="article-footer">
-        <p class="article-footer__text">
-            &copy; 2026 <span lang="ja">ソルフェージュPRO</span><span lang="en">Solfege PRO</span><span lang="fr">Solfege PRO</span><span lang="de">Solfege PRO</span> &mdash;
-            <a href="https://apps.apple.com/jp/app/id6756626617" class="article-footer__link">App Store</a>
-        </p>
+        <p class="article-footer__text">&copy; 2026 Solfege PRO</p>
     </footer>
-    <script src="/bootstrap.js?v=7" defer></script>
+    <script src="../bootstrap.js?v=10" defer></script>
 </body>
 </html>

@@ -36,13 +36,21 @@ document.addEventListener('DOMContentLoaded', function() {
         ja: 'すべて開く',
         en: 'Expand All',
         fr: 'Tout développer',
-        de: 'Alle aufklappen'
+        de: 'Alle aufklappen',
+        es: 'Expandir todo',
+        it: 'Espandi tutto',
+        ko: '모두 펼치기',
+        'pt-BR': 'Expandir tudo'
     };
     var COLLAPSE_LABEL = {
         ja: 'すべて閉じる',
         en: 'Collapse All',
         fr: 'Tout réduire',
-        de: 'Alle zuklappen'
+        de: 'Alle zuklappen',
+        es: 'Contraer todo',
+        it: 'Comprimi tutto',
+        ko: '모두 접기',
+        'pt-BR': 'Recolher tudo'
     };
     function currentLang() {
         return document.documentElement.getAttribute('data-lang') || 'ja';

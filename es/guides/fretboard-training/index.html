@@ -1,0 +1,1111 @@
+<!DOCTYPE html>
+<html lang="es"
+      data-title-ja="指板トレーニング — ギターの音名を暗記する | ソルフェージュPRO"
+      data-title-en="Mastering the Fretboard — How to Efficiently Learn Guitar Note Positions | Solfege PRO"
+      data-title-fr="Maîtriser le manche — Apprendre efficacement les notes de la guitare | Solfege PRO"
+      data-title-de="Das Griffbrett beherrschen — Gitarrennoten effizient lernen | Solfege PRO">
+<head>
+    <meta charset="UTF-8">
+    <meta name="robots" content="index, follow">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#1A1A1E">
+    <title>Domina el diapasón de la guitarra | Solfege PRO</title>
+    <meta name="description" content="Memoriza paso a paso el diapasón de la guitarra: cuerdas al aire, marcador del quinto traste, octavas y el traste 12.">
+
+    <!-- Canonical -->
+    <link rel="canonical" href="https://solfegepro.com/es/guides/fretboard-training/">
+    <link rel="alternate" hreflang="ja" href="https://solfegepro.com/guides/fretboard-training/">
+    <link rel="alternate" hreflang="en" href="https://solfegepro.com/en/guides/fretboard-training/">
+    <link rel="alternate" hreflang="fr" href="https://solfegepro.com/fr/guides/fretboard-training/">
+    <link rel="alternate" hreflang="de" href="https://solfegepro.com/de/guides/fretboard-training/">
+    <link rel="alternate" hreflang="es" href="https://solfegepro.com/es/guides/fretboard-training/">
+    <link rel="alternate" hreflang="it" href="https://solfegepro.com/it/guides/fretboard-training/">
+    <link rel="alternate" hreflang="ko" href="https://solfegepro.com/ko/guides/fretboard-training/">
+    <link rel="alternate" hreflang="pt-BR" href="https://solfegepro.com/pt-br/guides/fretboard-training/">
+    <link rel="alternate" hreflang="x-default" href="https://solfegepro.com/guides/fretboard-training/">
+<!-- OGP -->
+    <meta property="og:title" content="Domina el diapasón de la guitarra">
+    <meta property="og:description" content="Memoriza paso a paso el diapasón de la guitarra: cuerdas al aire, marcador del quinto traste, octavas y el traste 12.">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://solfegepro.com/es/guides/fretboard-training/">
+    <meta property="og:site_name" content="Solfege PRO">
+    <meta property="og:image" content="https://solfegepro.com/og-image.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Solfege PRO">
+    <meta property="og:locale" content="es_ES">
+    <meta property="og:locale:alternate" content="ja_JP">
+    <meta property="og:locale:alternate" content="en_US">
+    <meta property="og:locale:alternate" content="fr_FR">
+    <meta property="og:locale:alternate" content="de_DE">
+    <meta property="og:locale:alternate" content="it_IT">
+    <meta property="og:locale:alternate" content="ko_KR">
+    <meta property="og:locale:alternate" content="pt_BR">
+    <meta property="article:published_time" content="2026-03-31">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Domina el diapasón de la guitarra">
+    <meta name="twitter:description" content="Memoriza paso a paso el diapasón de la guitarra: cuerdas al aire, marcador del quinto traste, octavas y el traste 12.">
+    <meta name="twitter:image" content="https://solfegepro.com/og-image.png">
+
+    <!-- Favicon -->
+    <link rel="icon" href="/favicon.ico" sizes="any">
+    <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap"></noscript>
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="/style.css?v=23">
+    <link rel="stylesheet" href="/guides/article.css?v=14">
+
+    <!-- Fretboard diagram styles -->
+    <style>
+        /* Fretboard Grid Diagram (responsive — never horizontally scrolls) */
+        .fretboard-diagram {
+            background: var(--surface);
+            border-radius: var(--radius-xl);
+            padding: var(--space-lg);
+            margin: var(--space-xl) 0;
+            border: 1px solid var(--surface-light);
+        }
+
+        /* Shared 12-column template: string label (32px) + 11 fret cells. */
+        .fretboard-grid__header,
+        .fretboard-grid__row {
+            display: grid;
+            grid-template-columns: 32px repeat(11, minmax(0, 1fr));
+        }
+
+        .fretboard-grid__header {
+            margin-bottom: var(--space-sm);
+        }
+
+        .fretboard-grid__header-cell {
+            text-align: center;
+            font-size: 11px;
+            font-weight: 700;
+            color: var(--text-secondary);
+            min-width: 0;
+        }
+
+        .fretboard-grid__row {
+            align-items: center;
+            border-bottom: 2px solid var(--surface-light);
+        }
+
+        .fretboard-grid__row:last-child {
+            border-bottom: none;
+        }
+
+        .fretboard-grid__string-label {
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--primary);
+            text-align: center;
+        }
+
+        .fretboard-grid__cell {
+            height: 36px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--text-secondary);
+            position: relative;
+            min-width: 0;
+        }
+
+        .fretboard-grid__cell--note {
+            color: var(--text-primary);
+        }
+
+        .fretboard-grid__cell--note::after {
+            content: "";
+            position: absolute;
+            /* Scale with the cell — never exceed 28px, never below 20px. */
+            width: clamp(20px, 80%, 28px);
+            aspect-ratio: 1;
+            border-radius: 50%;
+            background: rgba(212, 175, 55, 0.15);
+            border: 1px solid rgba(212, 175, 55, 0.4);
+            z-index: 0;
+        }
+
+        .fretboard-grid__cell--highlight {
+            color: var(--primary);
+            font-weight: 700;
+        }
+
+        .fretboard-grid__cell--highlight::after {
+            background: rgba(212, 175, 55, 0.25);
+            border-color: var(--primary);
+        }
+
+        .fretboard-grid__nut {
+            width: 4px;
+            height: 36px;
+            background: var(--text-secondary);
+            flex-shrink: 0;
+            border-radius: 2px;
+        }
+
+        /* Octave Shape Diagram (inner .octave-grid handles responsiveness) */
+        .octave-diagram {
+            background: var(--surface);
+            border-radius: var(--radius-xl);
+            padding: var(--space-lg);
+            margin: var(--space-xl) 0;
+            border: 1px solid var(--surface-light);
+        }
+
+        /* Octave shape: 1 label + 6 fret columns (overrides the fretboard
+           template since the diagram only spans 6 frets). */
+        .octave-grid > .fretboard-grid__header,
+        .octave-grid__row {
+            display: grid;
+            grid-template-columns: 32px repeat(6, minmax(0, 1fr));
+        }
+        .octave-grid > .fretboard-grid__header > .fretboard-grid__header-cell {
+            /* Override the inline width attributes the HTML still ships
+               for backwards-compatibility — let the grid track govern. */
+            width: auto !important;
+        }
+
+        .octave-grid__row {
+            align-items: center;
+            border-bottom: 2px solid var(--surface-light);
+        }
+
+        .octave-grid__row:last-child {
+            border-bottom: none;
+        }
+
+        .octave-grid__label {
+            font-size: 12px;
+            font-weight: 700;
+            color: var(--text-secondary);
+            text-align: center;
+        }
+
+        .octave-grid__cell {
+            height: 34px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 11px;
+            color: var(--text-secondary);
+            position: relative;
+            min-width: 0;
+        }
+
+        .octave-grid__cell--root {
+            color: var(--primary);
+            font-weight: 700;
+        }
+
+        .octave-grid__cell--root::after {
+            content: "";
+            position: absolute;
+            width: clamp(18px, 80%, 26px);
+            aspect-ratio: 1;
+            border-radius: 50%;
+            background: rgba(212, 175, 55, 0.3);
+            border: 2px solid var(--primary);
+            z-index: 0;
+        }
+
+        .octave-grid__cell--octave {
+            color: #4ADE80;
+            font-weight: 700;
+        }
+
+        .octave-grid__cell--octave::after {
+            content: "";
+            position: absolute;
+            width: clamp(18px, 80%, 26px);
+            aspect-ratio: 1;
+            border-radius: 50%;
+            background: rgba(74, 222, 128, 0.2);
+            border: 2px solid #4ADE80;
+            z-index: 0;
+        }
+
+        .octave-arrow {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: var(--space-sm);
+            margin-top: var(--space-md);
+            font-size: 13px;
+            color: var(--text-secondary);
+        }
+
+        .octave-arrow__badge {
+            display: inline-flex;
+            align-items: center;
+            gap: var(--space-xs);
+            padding: 3px 10px;
+            border-radius: var(--radius-sm);
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .octave-arrow__badge--root {
+            background: rgba(212, 175, 55, 0.15);
+            color: var(--primary);
+            border: 1px solid rgba(212, 175, 55, 0.3);
+        }
+
+        .octave-arrow__badge--octave {
+            background: rgba(74, 222, 128, 0.15);
+            color: #4ADE80;
+            border: 1px solid rgba(74, 222, 128, 0.3);
+        }
+
+        /* Feature list for app section */
+        .feature-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--space-md);
+            margin: var(--space-lg) 0;
+        }
+
+        .feature-card {
+            background: var(--surface);
+            border: 1px solid var(--surface-light);
+            border-radius: var(--radius-lg);
+            padding: var(--space-md) var(--space-lg);
+        }
+
+        .feature-card__title {
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: var(--space-xs);
+        }
+
+        .feature-card__desc {
+            font-size: 13px;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        /* Progression steps */
+        .progression-steps {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-md);
+            margin: var(--space-lg) 0;
+        }
+
+        .progression-step {
+            display: flex;
+            align-items: flex-start;
+            gap: var(--space-md);
+            background: var(--surface);
+            border: 1px solid var(--surface-light);
+            border-radius: var(--radius-lg);
+            padding: var(--space-md) var(--space-lg);
+        }
+
+        .progression-step__number {
+            width: 28px;
+            height: 28px;
+            min-width: 28px;
+            background: var(--primary);
+            color: var(--background);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 13px;
+            font-weight: 700;
+            margin-top: 2px;
+        }
+
+        .progression-step__content {
+            flex: 1;
+        }
+
+        .progression-step__title {
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 2px;
+        }
+
+        .progression-step__desc {
+            font-size: 13px;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        @media (max-width: 768px) {
+            .feature-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .fretboard-grid__header-cell,
+            .fretboard-grid__cell {
+                width: 48px;
+            }
+
+            .octave-grid__cell {
+                width: 42px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .fretboard-grid__header-cell,
+            .fretboard-grid__cell {
+                width: 42px;
+                font-size: 10px;
+            }
+
+            .fretboard-grid__string-label {
+                width: 32px;
+                font-size: 11px;
+            }
+
+            .fretboard-grid__cell--note::after,
+            .fretboard-grid__cell--highlight::after {
+                width: 24px;
+                height: 24px;
+            }
+        }
+    </style>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Domina el diapasón de la guitarra","description":"Memoriza paso a paso el diapasón de la guitarra: cuerdas al aire, marcador del quinto traste, octavas y el traste 12.","author":{"@type":"Organization","name":"Solfege PRO"},"publisher":{"@type":"Organization","name":"Solfege PRO","logo":{"@type":"ImageObject","url":"https://solfegepro.com/AppIcon.png"}},"datePublished":"2026-03-31","mainEntityOfPage":{"@type":"WebPage","@id":"https://solfegepro.com/es/guides/fretboard-training/"}}</script>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Inicio","item":"https://solfegepro.com/es/"},{"@type":"ListItem","position":2,"name":"Guías de práctica","item":"https://solfegepro.com/es/guides/"},{"@type":"ListItem","position":3,"name":"指板トレーニング — ギターの音名を暗記する","item":"https://solfegepro.com/es/guides/fretboard-training/"}]}</script>
+</head>
+<body>
+    <!-- Navigation -->
+        <nav class="nav" aria-label="Menú principal">
+        <div class="nav__container">
+            <a href="/es/" class="nav__logo" aria-label="Solfege PRO">
+                <img src="/AppIcon.png" alt="" class="nav__logo-icon" width="32" height="32">
+                <span class="nav__logo-text">Solfege PRO</span>
+            </a>
+            <ul class="nav__list">
+                <li><a href="/es/" class="nav__link">Acerca de Solfege PRO</a></li>
+                <li><a href="/es/features/" class="nav__link">Entrenamientos</a></li>
+                <li><a href="/es/guides/" class="nav__link active" aria-current="page">Guías de práctica</a></li>
+                <li><a href="/es/manual/" class="nav__link">Manual</a></li>
+            </ul>
+            <div class="nav__settings">
+                <button class="settings-btn" id="lang-toggle" title="Seleccionar idioma"><span id="lang-text">ES</span></button>
+                <button class="hamburger-btn" id="hamburger-btn" aria-label="Abrir menú" aria-expanded="false" aria-controls="drawer">
+                    <span class="hamburger-btn__line"></span><span class="hamburger-btn__line"></span><span class="hamburger-btn__line"></span>
+                </button>
+            </div>
+        </div>
+    </nav>
+        <!-- Mobile drawer (hidden on desktop) -->
+            <div class="drawer-overlay" id="drawer-overlay"></div>
+    <aside class="drawer" id="drawer" aria-label="Menú" aria-hidden="true" inert>
+        <div class="drawer__header">
+            <span class="drawer__title">Menú</span>
+            <button class="drawer__close" id="drawer-close" aria-label="Cerrar menú">×</button>
+        </div>
+        <ul class="drawer__list">
+            <li><a href="/es/" class="drawer__link">Acerca de Solfege PRO</a></li>
+            <li><a href="/es/features/" class="drawer__link">Entrenamientos</a></li>
+            <li><a href="/es/guides/" class="drawer__link active" aria-current="page">Guías de práctica</a></li>
+            <li><a href="/es/manual/" class="drawer__link">Manual</a></li>
+        </ul>
+    </aside>
+
+
+    <!-- Article Header -->
+    <header class="page-header">
+        <div class="page-header__meta">
+            <span class="page-header__tag">Formación de diapasón</span>
+            <span>10 min.</span>
+        </div>
+        <h1 class="page-header__title">
+
+            Dominar el diapasón<br>Cómo aprender eficientemente<br>Posiciones de la nota de guitarra
+
+
+        </h1>
+        <p class="page-header__subtitle">
+
+            Un diapasón de guitarra tiene más de 100 posiciones de nota. En lugar de la memorización de la fuerza bruta, aprenda cómo entender la estructura hace que el dominio sea mucho más eficiente.
+
+
+        </p>
+    </header>
+
+    <!-- Top-of-article CTA -->
+    <aside class="article-top-cta" aria-label="App promotion">
+        <div class="article-top-cta__body">
+            <p class="article-top-cta__title">
+
+                Prueba esto. Solfege PRO
+
+
+            </p>
+            <p class="article-top-cta__sub">
+
+                Consulta el precio en el App Store
+
+
+            </p>
+        </div>
+        <a href="https://apps.apple.com/es/app/id6756626617?pt=6749158383&amp;ct=web_guides&amp;mt=8" class="article-top-cta__button app-store-link" data-cta-position="article_top" aria-label="Descargar en el App Store"><img src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/es-es" class="app-store-link__img" alt="Descargar en el App Store" loading="lazy"></a>
+    </aside>
+
+    <!-- Article Body -->
+    <main class="article-body">
+
+        <!-- Section 1: Why Learn the Fretboard -->
+        <h2 id="why-learn">¿Por qué aprendiste el diapasón?</h2>
+
+        <p>
+
+            Guitar tiene un desafío único que el piano no lo hace. En un piano, sólo hay una llave para cada "C" por octava. En la guitarra, la misma nota "C" existe en múltiples ubicaciones a través del diapasón.
+
+
+        </p>
+
+        <p>
+
+            Con 6 cuerdas y 24 frecuencias, hay 144 posiciones en teoría. Incluso contando sólo posiciones musicales significativas, el número supera los 100. Pensar en ello como "memorización" puede sentirse abrumadora.
+
+
+        </p>
+
+        <p>
+
+            Pero los beneficios de saber el diapasón son significativos.
+
+
+        </p>
+
+        <ul>
+            <li><strong>Improvización</strong> — Juega sin pensar en dónde poner tus dedos al lado</li>
+            <li><strong>Chord voicing</strong> — Juega el mismo acorde en múltiples posiciones y voicings</li>
+            <li><strong>Transposición</strong> — Adaptarse instantáneamente cuando la clave cambie</li>
+            <li><strong>Transcripción</strong> — Busque rápidamente las notas que escucha en el diapasón</li>
+            <li><strong>Comunicación</strong> Cuando alguien dice "jugar un Bb allí", puedes responder inmediatamente</li>
+        </ul>
+
+        <p>
+
+            Un guitarrista que no sabe que el diapasón es como alguien que se siente en un cuarto oscuro. Un guitarrista que lo hace camina con un mapa.
+
+
+        </p>
+
+        <!-- Section 2: Fretboard Structure -->
+        <h2 id="structure">Comprender la estructura de diapasón</h2>
+
+        <p>
+
+            Antes de memorizar el diapasón, entienda primero su estructura. Una vez que veas los patrones, no necesitarás memorizar 144 posiciones como 144 hechos separados.
+
+
+        </p>
+
+        <h3 id="tuning">Tuning estándar</h3>
+        <p>
+
+            Afinación de guitarra estándar, de la cuerda más baja a la más alta, es <strong>E - A - D - G - B - E</strong>Cada cadena abierta (freto 0) produce estas notas.
+
+
+        </p>
+
+        <h3 id="fret-semitone">Un Fret = un Semitone</h3>
+        <p>
+
+            Cada fret levanta el tono por un semitone. Así que si la primera cadena abierta es E, fret 1 es F, fret 2 es F#/Gb, fret 3 es G, y así sucesivamente en un patrón regular.
+
+
+        </p>
+
+        <h3 id="12th-fret">12 Fret = 1 Octave arriba</h3>
+        <p>
+
+            El 12o Fret es exactamente una octava por encima de la cuerda abierta. Esto significa que el patrón de nombre de nota de las frecuencias 0-11 repite de fret 12 en adelante. Aprende hasta el 12o Fret, y el resto sigue automáticamente.
+
+
+        </p>
+
+        <!-- Fretboard Diagram -->
+        <div class="fretboard-diagram">
+            <div class="diagram-title">Nota de diapasón Diseño (Posición de clave)</div>
+            <div class="fretboard-grid">
+                <div class="fretboard-grid__header">
+                    <div class="fretboard-grid__header-cell"></div>
+                    <div class="fretboard-grid__header-cell">Abierto</div>
+                    <div class="fretboard-grid__header-cell">1</div>
+                    <div class="fretboard-grid__header-cell">2</div>
+                    <div class="fretboard-grid__header-cell">3</div>
+                    <div class="fretboard-grid__header-cell">4</div>
+                    <div class="fretboard-grid__header-cell">5</div>
+                    <div class="fretboard-grid__header-cell">7</div>
+                    <div class="fretboard-grid__header-cell">8</div>
+                    <div class="fretboard-grid__header-cell">9</div>
+                    <div class="fretboard-grid__header-cell">10</div>
+                    <div class="fretboard-grid__header-cell">12</div>
+                </div>
+                <!-- 1st string (high E) -->
+                <div class="fretboard-grid__row">
+                    <div class="fretboard-grid__string-label">1</div>
+                    <div class="fretboard-grid__cell fretboard-grid__cell--note fretboard-grid__cell--highlight">E</div>
+                    <div class="fretboard-grid__cell fretboard-grid__cell--note">F</div>
+                    <div class="fretboard-grid__cell"></div>
+                    <div class="fretboard-grid__cell fretboard-grid__cell--note">G</div>
+                    <div class="fretboard-grid__cell"></div>
+                    <div class="fretboard-grid__cell fretboard-grid__cell--note">A</div>
+                    <div class="fretboard-grid__cell fretboard-grid__cell--note">B</div>
+                    <div class="fretboard-grid__cell fretboard-grid__cell--note">C</div>
+                    <div class="fretboard-grid__cell"></div>
+                    <div class="fretboard-grid__cell fretboard-grid__cell--note">D</div>
+                    <div class="fretboard-grid__cell fretboard-grid__cell--note fretboard-grid__cell--highlight">E</div>
+                </div>
+                <!-- 2nd string (B) -->
+                <div class="fretboard-grid__row">
+                    <div class="fretboard-grid__string-label">2</div>
+                    <div class="fretboard-grid__cell fretboard-grid__cell--note fretboard-grid__cell--highlight">B</div>
+                    <div class="fretboard-grid__cell fretboard-grid__cell--note">C</div>
+                    <div class="fretboard-grid__cell"></div>
+                    <div class="fretboard-grid__cell fretboard-grid__cell--note">D</div>
+                    <div class="fretboard-grid__cell"></div>
+                    <div class="fretboard-grid__cell fretboard-grid__cell--note">E</div>
+                    <div class="fretboard-grid__cell fretboard-grid__cell--note">F#</div>
+                    <div class="fretboard-grid__cell fretboard-grid__cell--note">G</div>
+                    <div class="fretboard-grid__cell"></div>
+                    <div class="fretboard-grid__cell fretboard-grid__cell--note">A</div>
+                    <div class="fretboard-grid__cell fretboard-grid__cell--note fretboard-grid__cell--highlight">B</div>
+                </div>
+                <!-- 3rd string (G) -->
+                <div class="fretboard-grid__row">
+                    <div class="fretboard-grid__string-label">3</div>
+                    <div class="fretboard-grid__cell fretboard-grid__cell--note fretboard-grid__cell--highlight">G</div>
+                    <div class="fretboard-grid__cell"></div>
+                    <div class="fretboard-grid__cell fretboard-grid__cell--note">A</div>
+                    <div class="fretboard-grid__cell"></div>
+                    <div class="fretboard-grid__cell fretboard-grid__cell--note">B</div>
+                    <div class="fretboard-grid__cell fretboard-grid__cell--note">C</div>
+                    <div class="fretboard-grid__cell fretboard-grid__cell--note">D</div>
+                    <div class="fretboard-grid__cell"></div>
+                    <div class="fretboard-grid__cell fretboard-grid__cell--note">E</div>
+                    <div class="fretboard-grid__cell fretboard-grid__cell--note">F</div>
+                    <div class="fretboard-grid__cell fretboard-grid__cell--note fretboard-grid__cell--highlight">G</div>
+                </div>
+                <!-- 4th string (D) -->
+                <div class="fretboard-grid__row">
+                    <div class="fretboard-grid__string-label">4</div>
+                    <div class="fretboard-grid__cell fretboard-grid__cell--note fretboard-grid__cell--highlight">D</div>
+                    <div class="fretboard-grid__cell"></div>
+                    <div class="fretboard-grid__cell fretboard-grid__cell--note">E</div>
+                    <div class="fretboard-grid__cell fretboard-grid__cell--note">F</div>
+                    <div class="fretboard-grid__cell"></div>
+                    <div class="fretboard-grid__cell fretboard-grid__cell--note">G</div>
+                    <div class="fretboard-grid__cell fretboard-grid__cell--note">A</div>
+                    <div class="fretboard-grid__cell"></div>
+                    <div class="fretboard-grid__cell fretboard-grid__cell--note">B</div>
+                    <div class="fretboard-grid__cell fretboard-grid__cell--note">C</div>
+                    <div class="fretboard-grid__cell fretboard-grid__cell--note fretboard-grid__cell--highlight">D</div>
+                </div>
+                <!-- 5th string (A) -->
+                <div class="fretboard-grid__row">
+                    <div class="fretboard-grid__string-label">5</div>
+                    <div class="fretboard-grid__cell fretboard-grid__cell--note fretboard-grid__cell--highlight">A</div>
+                    <div class="fretboard-grid__cell"></div>
+                    <div class="fretboard-grid__cell fretboard-grid__cell--note">B</div>
+                    <div class="fretboard-grid__cell fretboard-grid__cell--note">C</div>
+                    <div class="fretboard-grid__cell"></div>
+                    <div class="fretboard-grid__cell fretboard-grid__cell--note">D</div>
+                    <div class="fretboard-grid__cell fretboard-grid__cell--note">E</div>
+                    <div class="fretboard-grid__cell fretboard-grid__cell--note">F</div>
+                    <div class="fretboard-grid__cell"></div>
+                    <div class="fretboard-grid__cell fretboard-grid__cell--note">G</div>
+                    <div class="fretboard-grid__cell fretboard-grid__cell--note fretboard-grid__cell--highlight">A</div>
+                </div>
+                <!-- 6th string (low E) -->
+                <div class="fretboard-grid__row">
+                    <div class="fretboard-grid__string-label">6</div>
+                    <div class="fretboard-grid__cell fretboard-grid__cell--note fretboard-grid__cell--highlight">E</div>
+                    <div class="fretboard-grid__cell fretboard-grid__cell--note">F</div>
+                    <div class="fretboard-grid__cell"></div>
+                    <div class="fretboard-grid__cell fretboard-grid__cell--note">G</div>
+                    <div class="fretboard-grid__cell"></div>
+                    <div class="fretboard-grid__cell fretboard-grid__cell--note">A</div>
+                    <div class="fretboard-grid__cell fretboard-grid__cell--note">B</div>
+                    <div class="fretboard-grid__cell fretboard-grid__cell--note">C</div>
+                    <div class="fretboard-grid__cell"></div>
+                    <div class="fretboard-grid__cell fretboard-grid__cell--note">D</div>
+                    <div class="fretboard-grid__cell fretboard-grid__cell--note fretboard-grid__cell--highlight">E</div>
+                </div>
+            </div>
+            <p style="font-size:12px;color:var(--text-secondary);margin-top:var(--space-md);text-align:center;">
+
+                Círculos de oro = cadenas abiertas / 12o fret (octave). Las células vacías son notas # / b.
+
+
+            </p>
+        </div>
+
+        <h3 id="same-note">La misma nota en múltiples lugares</h3>
+        <p>
+
+            Mirando el diagrama anterior, la nota "C" aparece en 1a cuerda fret 8, 2a cuerda fret 1, 3a cuerda fret 5, 4a cuerda fret 10, 5a cuerda fret 3, y más. Esta es la razón principal por la que el diapasón se ve complejo y la razón por la que ofrece tanta libertad.
+
+
+        </p>
+
+        <div class="article-note">
+            <div class="article-note__title">Punto clave</div>
+            <p>El diapasón no es "144 posiciones independientes" sino "un patrón repetido de 12 notas a través de 6 cuerdas". Comprender la estructura reduce drásticamente lo que necesitas para memorizar.</p>
+        </div>
+
+        <!-- Section 3: Common Struggles -->
+        <h2 id="common-struggles">Luchas comunes</h2>
+
+        <p>
+
+            Cuando intentan aprender el diapasón, la mayoría de los guitarristas golpean las mismas paredes.
+
+
+        </p>
+
+        <h3 id="unknown-territory">Los trastes más allá del 5–7 son territorio desconocido</h3>
+        <p>
+
+            Muchos guitarristas saben frets 0-5 porque han aprendido formas de acordes abiertos. Pero pregunte "¿qué nota es esto?" pasado el día 7, y no pueden responder. Todo lo que pasa del 12o fret es a menudo territorio completamente inexplorado.
+
+
+        </p>
+
+        <h3 id="sharps-flats">No se puede recordar posiciones de afilar/función</h3>
+        <p>
+
+            Usted puede conocer duramente las notas naturales (C, D, E, F, G, A, B), pero los afilados y los planos siguen siendo borrosos. Es fácil olvidar la regla básica que no hay filoso/flato entre E y F, o entre B y C.
+
+
+        </p>
+
+        <h3 id="cross-string">Confusión al cruzar las cuerdas</h3>
+        <p>
+
+            A lo largo de una sola cuerda, es directo — cada fret es un semitone más alto. Pero cuando cruzas una cuerda adyacente, la diferente sintonía de cada cadena rompe tu modelo mental. La brecha entre las cuerdas 2 y 3 es particularmente difícil porque el intervalo es un tercio importante (no un cuarto como los otros), rompiendo el patrón de lo contrario consistente.
+
+
+        </p>
+
+        <h3 id="open-fret-disconnect">No se puede ver la conexión entre las cuerdas abiertas y las notas fretadas</h3>
+        <p>
+
+            Usted puede saber que "abrir 5a cuerda es A" y "6a cuerda fret 5 es también A", pero la sensación de que son la misma nota es débil. Cuando tratas las cuerdas abiertas y notas fretadas como cosas separadas, las conexiones a través del diapasón se vuelven invisibles.
+
+
+        </p>
+
+        <!-- Section 4: Effective Learning Methods -->
+        <h2 id="effective-methods">Métodos de aprendizaje eficaces</h2>
+
+        <p>
+
+            Hay varios principios para aprender el diapasón de manera eficiente.
+
+
+        </p>
+
+        <h3 id="naturals-first">Empieza con Notas Naturales</h3>
+        <p>
+
+            No trates de aprender las 12 notas a la vez. Enfóquese primero en las 7 notas naturales: C, D, E, F, G, A, B. Una vez que sepa dónde están los naturales, los afilados y los planos son automáticamente "en relación con ellos". Por ejemplo, "si esto es F y el siguiente es G, entonces el fret entre ellos debe ser F#/Gb."
+
+
+        </p>
+
+        <h3 id="one-string">Aprender una cuerda a la vez</h3>
+        <p>
+
+            Intentar aprender las 6 cuerdas a la vez conduce a la confusión. Comience con la 6a cuerda (bajo E), domine completamente, luego mueva a la 5a cadena (A), y así sucesivamente. Desde las cuerdas 1 y 6a comparten los mismos nombres de notas, dominando la 6a cadena le da la 1a gratis.
+
+
+        </p>
+
+        <h3 id="octave-shapes">Usar formas de octava</h3>
+        <p>
+
+            Guitar tiene un patrón donde "el mismo nombre de nota aparece 2 cuerdas de distancia y 2 se agita" (excepto en el 2o-3o intervalo de cadena). Aprender esta forma de octava le permite encontrar posiciones de notas en cadena desde una única ubicación conocida.
+
+
+        </p>
+
+        <!-- Octave Shape Diagram -->
+        <div class="octave-diagram">
+            <div class="diagram-title">Octave Shape: 6th→4th String / 5th→3rd String</div>
+            <div class="octave-grid">
+                <div class="fretboard-grid__header">
+                    <div class="fretboard-grid__header-cell" style="width:40px;"></div>
+                    <div class="fretboard-grid__header-cell" style="width:50px;">3</div>
+                    <div class="fretboard-grid__header-cell" style="width:50px;">4</div>
+                    <div class="fretboard-grid__header-cell" style="width:50px;">5</div>
+                    <div class="fretboard-grid__header-cell" style="width:50px;">6</div>
+                    <div class="fretboard-grid__header-cell" style="width:50px;">7</div>
+                    <div class="fretboard-grid__header-cell" style="width:50px;">8</div>
+                </div>
+                <div class="octave-grid__row">
+                    <div class="octave-grid__label">3</div>
+                    <div class="octave-grid__cell"></div>
+                    <div class="octave-grid__cell"></div>
+                    <div class="octave-grid__cell octave-grid__cell--octave">C</div>
+                    <div class="octave-grid__cell"></div>
+                    <div class="octave-grid__cell"></div>
+                    <div class="octave-grid__cell"></div>
+                </div>
+                <div class="octave-grid__row">
+                    <div class="octave-grid__label">4</div>
+                    <div class="octave-grid__cell"></div>
+                    <div class="octave-grid__cell"></div>
+                    <div class="octave-grid__cell octave-grid__cell--octave">G</div>
+                    <div class="octave-grid__cell"></div>
+                    <div class="octave-grid__cell"></div>
+                    <div class="octave-grid__cell"></div>
+                </div>
+                <div class="octave-grid__row">
+                    <div class="octave-grid__label">5</div>
+                    <div class="octave-grid__cell octave-grid__cell--root">C</div>
+                    <div class="octave-grid__cell"></div>
+                    <div class="octave-grid__cell"></div>
+                    <div class="octave-grid__cell"></div>
+                    <div class="octave-grid__cell"></div>
+                    <div class="octave-grid__cell"></div>
+                </div>
+                <div class="octave-grid__row">
+                    <div class="octave-grid__label">6</div>
+                    <div class="octave-grid__cell octave-grid__cell--root">G</div>
+                    <div class="octave-grid__cell"></div>
+                    <div class="octave-grid__cell"></div>
+                    <div class="octave-grid__cell"></div>
+                    <div class="octave-grid__cell"></div>
+                    <div class="octave-grid__cell"></div>
+                </div>
+            </div>
+            <div class="octave-arrow">
+                <span class="octave-arrow__badge octave-arrow__badge--root">Root</span>
+                &rarr;
+                2 cuerdas arriba + 2 frets arriba
+                &rarr;
+                <span class="octave-arrow__badge octave-arrow__badge--octave">Octave</span>
+            </div>
+            <p style="font-size:12px;color:var(--text-secondary);margin-top:var(--space-md);text-align:center;">
+
+                A través de la 2a-3a brecha de cadena, cambiar +3 frets arriba (debido a la 3a afinación principal)
+
+
+            </p>
+        </div>
+
+        <h3 id="fret-ranges">Práctica en rangos de frecuencias</h3>
+        <p>
+
+            En lugar de aprender todo el diapasón a la vez, dividirlo en rangos y expandirse gradualmente.
+
+
+        </p>
+
+        <div class="progression-steps">
+            <div class="progression-step">
+                <div class="progression-step__number">1</div>
+                <div class="progression-step__content">
+                    <div class="progression-step__title">Frets 0-5</div>
+                    <div class="progression-step__desc">El rango más familiar, incluyendo cadenas abiertas. Empieza aquí y construye confianza.</div>
+                </div>
+            </div>
+            <div class="progression-step">
+                <div class="progression-step__number">2</div>
+                <div class="progression-step__content">
+                    <div class="progression-step__title">Frets 5-12</div>
+                    <div class="progression-step__desc">La zona de gama media donde la mayoría de los guitarristas luchan. Conquistar esto hace una gran diferencia.</div>
+                </div>
+            </div>
+            <div class="progression-step">
+                <div class="progression-step__number">3</div>
+                <div class="progression-step__content">
+                    <div class="progression-step__title">Frets 0-12 (Intección de rango completo)</div>
+                    <div class="progression-step__desc">Integrar ambos rangos. Compruebe si puede moverse sin problemas entre posiciones.</div>
+                </div>
+            </div>
+            <div class="progression-step">
+                <div class="progression-step__number">4</div>
+                <div class="progression-step__content">
+                    <div class="progression-step__title">Frets 0-24 (Lista total)</div>
+                    <div class="progression-step__desc">Como los frets 12+ repiten el patrón, alcanzar esta etapa significa que estás en la fase de acabado.</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="article-note">
+            <div class="article-note__title">Punto clave</div>
+            <p>"Las notas naturales sólo, el alcance estrecho, la expansión gradual" es el enfoque más eficiente. Intentar aprender todo a la vez normalmente significa que nada se pega correctamente.</p>
+        </div>
+
+        <!-- Section 5: What the App Can Do -->
+        <h2 id="what-app-can-do">¿Qué? Solfege PRO ¿Puede hacer</h2>
+
+        <p>
+
+            Solfege PRO's diapasón Training es una herramienta que apoya los métodos de aprendizaje descritos anteriormente a través de un <strong>"quiz, respuesta, identificar debilidades, práctica enfocada" ciclo</strong>.
+
+
+        </p>
+
+        <h3>Soporte de múltiples Tuning</h3>
+        <p>
+
+            Más allá de la afinación estándar, la aplicación soporta Drop D, Half Step Down, Open G y DADGAD. Los jugadores que usan afinaciones alternas pueden practicar con su propia configuración.
+
+
+        </p>
+
+        <h3>Selección de rango de frecuencias</h3>
+        <p>
+
+            Elige tu rango de frecuencia de práctica: 0-5 / 5-12 / 0-12 / 0-24. Esto apoya directamente el enfoque "expand gradual" descrito anteriormente.
+
+
+        </p>
+
+        <h3>Enfoque de cuerda</h3>
+        <p>
+
+            Elija entre todas las cuerdas, cadenas altas (1-3), cuerdas bajas (4-6), o cadenas individuales. Esto permite directamente el método de práctica "una cadena a la vez".
+
+
+        </p>
+
+        <h3>Modo de nota</h3>
+        <p>
+
+            Elige las notas que aparecen en los cuestionarios: naturales solamente, afilados, planos o todo. Comience con los naturales solamente y agregue afilados/flats mientras usted gana confianza.
+
+
+        </p>
+
+        <div class="feature-grid">
+            <div class="feature-card">
+                <div class="feature-card__title">Pantalla de mano izquierda</div>
+                <div class="feature-card__desc">Flip la pantalla de diapasón para los jugadores de izquierda. Practica con una orientación natural.</div>
+            </div>
+            <div class="feature-card">
+                <div class="feature-card__title">Octave Highlighting</div>
+                <div class="feature-card__desc">Destaca posiciones con el mismo nombre de nota en el diapasón. Visualmente refuerza la comprensión de la forma de octava.</div>
+            </div>
+            <div class="feature-card">
+                <div class="feature-card__title">Encontrar todos los modos de posiciones</div>
+                <div class="feature-card__desc">"Encontrar esta nota en todas partes en el diapasón." Fortalece la conexión entre los nombres de las notas y los lugares de diapasón.</div>
+            </div>
+            <div class="feature-card">
+                <div class="feature-card__title">Puntos de Weak Tracking</div>
+                <div class="feature-card__desc">Rastrea la precisión por nota, cadena y rango de frecuencias. Mira exactamente dónde están tus puntos débiles.</div>
+            </div>
+            <div class="feature-card">
+                <div class="feature-card__title">Prestaciones personalizadas</div>
+                <div class="feature-card__desc">Guarda tus configuraciones de práctica favoritas. Gestione su plan de aprendizaje gradual como presets.</div>
+            </div>
+            <div class="feature-card">
+                <div class="feature-card__title">Respuesta de un solo golpe</div>
+                <div class="feature-card__desc">Toque la posición correcta en el diapasón para responder. Practica hasta que puedas responder reflexivamente.</div>
+            </div>
+        </div>
+
+        <!-- Cycle Diagram -->
+        <div class="cycle-diagram">
+            <div class="cycle-step">
+                <div class="cycle-step__label">Quiz</div>
+                <div class="cycle-step__desc">Mostrar una nota</div>
+            </div>
+            <div class="cycle-arrow">&rarr;</div>
+            <div class="cycle-step">
+                <div class="cycle-step__label">Respuesta</div>
+                <div class="cycle-step__desc">Toca el diapasón</div>
+            </div>
+            <div class="cycle-arrow">&rarr;</div>
+            <div class="cycle-step">
+                <div class="cycle-step__label">Debilidad</div>
+                <div class="cycle-step__desc">Determinación de las deficiencias</div>
+            </div>
+            <div class="cycle-arrow">&rarr;</div>
+            <div class="cycle-step">
+                <div class="cycle-step__label">Focus</div>
+                <div class="cycle-step__desc">Ajustes estrechos &quot; retry</div>
+            </div>
+        </div>
+
+        <!-- Mid-article CTA -->
+        <div class="article-cta-subtle">
+            <p class="article-cta-subtle__text">¿Por qué no empezar comprobando dónde es más débil su conocimiento de diapasón?</p>
+            <a href="https://apps.apple.com/es/app/id6756626617?pt=6749158383&amp;ct=web_guides&amp;mt=8" class="article-cta-subtle__button app-store-link" aria-label="Descargar en el App Store"><img src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/es-es" class="app-store-link__img" alt="Descargar en el App Store" loading="lazy"></a>
+        </div>
+
+        <!-- Section 6: Limitations (Honest) -->
+        <h2 id="limitations">¿Qué? Solfege PRO No cubre directamente</h2>
+
+        <p>
+
+            Seamos honestos.
+
+
+        </p>
+
+        <div class="article-honest">
+            <div class="article-honest__title">Áreas Más allá del alcance de la aplicación</div>
+            <p>
+                <strong>Capacitación en el sistema CAGED</strong> — La aplicación no cubre el sistema CAGED para entender el diapasón a través de 5 formas de forma acorde. Para el aprendizaje CAGED, utilice libros de texto o recursos de teoría de acordes.
+            </p>
+            <p>
+                <strong>Visualización de patrones de escala</strong> — La aplicación no muestra patrones de escala (posiciones pentatónicas, formas de escala mayor, etc.) en el diapasón. Es necesario hacer una práctica de escala por separado.
+            </p>
+            <p>
+                <strong>Forma de la corbata</strong> — La memorización de formas de acordes y el aprendizaje de voicings acordes en diferentes posiciones está fuera del alcance.
+            </p>
+            <p>
+                <strong>Técnicas de multi-estring</strong> — No se cubren las ventajas, las diapositivas, los martillos, las tiradas y otras técnicas de juego. Estas son habilidades separadas de "conocer posiciones de notas".
+            </p>
+            <p>
+                <strong>Contexto musical</strong> — Practicar en contextos prácticos como tocar junto con canciones o sobre pistas de respaldo no es compatible.
+            </p>
+            <p>
+                <strong>Creación de afinación personalizada</strong> - Sólo hay 5 afinaciones preestablecidas disponibles. No hay ninguna característica para definir los afinamientos personalizados libremente.
+            </p>
+        </div>
+
+        <p>
+
+            ¿Qué? Solfege PRO soportes directos <strong>construir la capacidad de identificar con precisión y rápidamente donde cada nota está en el diapasón</strong>Es una herramienta para construir la "mapa" mental del diapasón, lo que juegas en ese mapa depende de tu propia música y práctica.
+
+
+        </p>
+
+        <!-- Section 7: Recommended Usage -->
+        <h2 id="recommended-usage">Uso recomendado</h2>
+
+        <p>
+
+            Aquí hay una progresión práctica efectiva.
+
+
+        </p>
+
+        <ol>
+            <li><strong>Notas naturales + Frets 0-5 + Todas las cuerdas</strong> - Empieza aquí. Domine las 7 notas naturales en el rango básico incluyendo cadenas abiertas.</li>
+            <li><strong>Notas naturales + Frets 5-12 + Todas las cuerdas</strong> - Encadenó el reto de la mitad. Aquí es donde verás el mayor crecimiento.</li>
+            <li><strong>Notas naturales + Frets 0-12 + Todas las cuerdas</strong> - Integrar ambos rangos. Verifique que puede responder a través de los primeros 12 frets sin problemas.</li>
+            <li><strong>Añadir afilados / planos</strong> — Una vez que los naturales son sólidos, cambie el modo de nota a "todos" y amplíe a las 12 notas.</li>
+            <li><strong>Finalizar con el modo "Encontrar todas las posiciones"</strong> — Retráctate para encontrar instantáneamente cada posición de una nota dada en el diapasón.</li>
+        </ol>
+
+        <!-- Good vs Bad Comparison -->
+        <div class="comparison-visual">
+            <div class="comparison-card comparison-card--bad">
+                <div class="comparison-card__header">Menos Eficaz</div>
+                <div class="comparison-card__body">
+                    <p>Aleatorios a través de todos los frets y todas las notas desde el principio. La precisión es demasiado baja para que cualquier cosa se quede. Se siente como empezar cada vez.</p>
+                </div>
+            </div>
+            <div class="comparison-card comparison-card--good">
+                <div class="comparison-card__header">Más eficaz</div>
+                <div class="comparison-card__body">
+                    <p>Comience con los naturales en un rango estrecho hasta una precisión de 90%+, expanda el rango, luego agregue afilados/flats. Compruebe el seguimiento de puntos débiles y centrarse en notas y cuerdas problemáticos.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="article-note">
+            <div class="article-note__title">Tip de uso</div>
+            <p>Cada sesión puede ser corta. Incluso 5 minutos al día, y dentro de una semana usted debe tener las notas naturales de cadenas abiertas a fret 5 encerrado. "Corto, diario y gradual" es el enfoque más eficaz.</p>
+        </div>
+
+    </main>
+
+    <!-- Final CTA -->
+    <section class="article-cta">
+        <h2 class="article-cta__title">Comienza por encontrar sus puntos de boquilla</h2>
+        <p class="article-cta__text">
+
+            La memorización de la fuerza bruta del diapasón no es efectiva.<br>Saber qué cuerdas y rangos de frecuencia son tus más débiles es donde comienza el aprendizaje eficiente.<br>Pruébalo. la función de Solfege PRO: entrenamiento de diapasón y encontrar sus puntos débiles primero.
+
+
+        </p>
+                <p style="font-size: 14px; color: var(--text-secondary); margin-bottom: var(--space-md); text-align: center;">
+
+            Consulta el precio en el App Store
+
+
+        </p>
+        <a href="https://apps.apple.com/es/app/id6756626617?pt=6749158383&amp;ct=web_guides&amp;mt=8" class="app-store-link" aria-label="Descargar en el App Store">
+
+            <img class="app-store-link__img" width="120" height="40" src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/es-es" alt="Descargar en el App Store">
+
+
+        </a>
+    </section>
+
+    <!-- Related Content -->
+    <div class="article-related">
+        <div class="article-related__title">Contenido relacionado</div>
+        <a href="/practice/guitar-bass/" class="article-related__link" style="margin-bottom: var(--space-md);">
+            <div class="article-related__link-title">Guía de prácticas básicas</div>
+            <div class="article-related__link-desc">Sesiones, transcripción, frases, progresiones — menús de práctica para guitarristas y basistores</div>
+        </a>
+        <a href="/manual/fretboard/" class="article-related__link" style="margin-bottom: var(--space-md);">
+            <div class="article-related__link-title">Manual de configuración de entrenamiento de diapasón</div>
+            <div class="article-related__link-desc">Cómo elegir cada configuración de aplicación y lo que entrena, uno a la vez.</div>
+        </a>
+        <a href="/" class="article-related__link">
+            <div class="article-related__link-title">Solfege PRO Guía de prácticas</div>
+            <div class="article-related__link-desc">Menús de práctica basados en desafíos para guitarra, bajo, tambores, piano y voces</div>
+        </a>
+    </div>
+
+    <!-- Article End Note -->
+    <aside class="article-endnote">
+        <p class="article-endnote__text">
+
+            Este artículo se organiza sobre la base de metodologías de aprendizaje de diapasón ampliamente utilizadas y el diseño de características Solfege PRO. El orden y el enfoque de aprendizaje óptimos varían dependiendo de la experiencia individual y el estilo de juego. La formación en aplicación apoya la memorización y el recuerdo de las posiciones de nota, y no garantiza la maestría de la técnica de juego o la escala/teoría de la cadera.
+
+
+        </p>
+    </aside>
+
+    <!-- Footer -->
+    <footer class="article-footer">
+        <p class="article-footer__text">
+            &copy; 2026 Solfege PRO
+        </p>
+    </footer>
+
+    <!-- Language Toggle Script -->
+    <script src="/bootstrap.js?v=10" defer></script>
+    <nav aria-label="Language" style="display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:0.5rem;padding:var(--space-lg) var(--space-md);border-top:1px solid var(--surface-light);font-size:13px">
+        <a href="/guides/fretboard-training/" hreflang="ja" style="color:var(--text-secondary);text-decoration:none">日本語</a>
+        <span aria-hidden="true" style="color:var(--surface-light)">·</span>
+        <a href="/en/guides/fretboard-training/" hreflang="en" style="color:var(--text-secondary);text-decoration:none">English</a>
+        <span aria-hidden="true" style="color:var(--surface-light)">·</span>
+        <a href="/fr/guides/fretboard-training/" hreflang="fr" style="color:var(--text-secondary);text-decoration:none">Français</a>
+        <span aria-hidden="true" style="color:var(--surface-light)">·</span>
+        <a href="/de/guides/fretboard-training/" hreflang="de" style="color:var(--text-secondary);text-decoration:none">Deutsch</a>
+        <span aria-hidden="true" style="color:var(--surface-light)">·</span>
+        <span style="color:var(--primary);font-weight:600" aria-current="true">Español</span>
+        <span aria-hidden="true" style="color:var(--surface-light)">·</span>
+        <a href="/it/guides/fretboard-training/" hreflang="it" style="color:var(--text-secondary);text-decoration:none">Italiano</a>
+        <span aria-hidden="true" style="color:var(--surface-light)">·</span>
+        <a href="/ko/guides/fretboard-training/" hreflang="ko" style="color:var(--text-secondary);text-decoration:none">한국어</a>
+        <span aria-hidden="true" style="color:var(--surface-light)">·</span>
+        <a href="/pt-br/guides/fretboard-training/" hreflang="pt-BR" style="color:var(--text-secondary);text-decoration:none">Português (Brasil)</a>
+    </nav>
+</body>
+</html>

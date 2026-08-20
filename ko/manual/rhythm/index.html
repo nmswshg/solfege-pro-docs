@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="ko"
+      data-title-ja="リズムトレーニング 設定マニュアル — 各設定の選び方 | ソルフェージュPRO"
+      data-title-en="Rhythm Training Settings Manual — How to Choose Each Option | Solfege PRO"
+      data-title-fr="Manuel des réglages de l'entraînement au rythme — Comment choisir chaque option | Solfege PRO"
+      data-title-de="Handbuch zu den Einstellungen des Rhythmustrainings — So wählst du jede Option | Solfege PRO">
+<head>
+    <meta charset="UTF-8">
+    <meta name="robots" content="index, follow">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#1A1A1E">
+    <title>리듬 훈련 설정 설명서 | Solfege PRO</title>
+    <meta name="description" content="리듬 훈련의 입력 방식, 템포, 난이도, 박자표, 클릭 밀도가 무엇이며 목적에 따라 어떻게 선택하는지 설명합니다.">
+
+    <!-- Canonical -->
+    <link rel="canonical" href="https://solfegepro.com/ko/manual/rhythm/">
+    <link rel="alternate" hreflang="ja" href="https://solfegepro.com/manual/rhythm/">
+    <link rel="alternate" hreflang="en" href="https://solfegepro.com/en/manual/rhythm/">
+    <link rel="alternate" hreflang="fr" href="https://solfegepro.com/fr/manual/rhythm/">
+    <link rel="alternate" hreflang="de" href="https://solfegepro.com/de/manual/rhythm/">
+    <link rel="alternate" hreflang="es" href="https://solfegepro.com/es/manual/rhythm/">
+    <link rel="alternate" hreflang="it" href="https://solfegepro.com/it/manual/rhythm/">
+    <link rel="alternate" hreflang="ko" href="https://solfegepro.com/ko/manual/rhythm/">
+    <link rel="alternate" hreflang="pt-BR" href="https://solfegepro.com/pt-br/manual/rhythm/">
+    <link rel="alternate" hreflang="x-default" href="https://solfegepro.com/manual/rhythm/">
+<!-- OGP -->
+    <meta property="og:title" content="리듬 훈련 설정 설명서">
+    <meta property="og:description" content="리듬 훈련의 입력 방식, 템포, 난이도, 박자표, 클릭 밀도가 무엇이며 목적에 따라 어떻게 선택하는지 설명합니다.">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://solfegepro.com/ko/manual/rhythm/">
+    <meta property="og:site_name" content="Solfege PRO">
+    <meta property="og:image" content="https://solfegepro.com/og-image.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Solfege PRO">
+    <meta property="og:locale" content="ko_KR">
+    <meta property="og:locale:alternate" content="ja_JP">
+    <meta property="og:locale:alternate" content="en_US">
+    <meta property="og:locale:alternate" content="fr_FR">
+    <meta property="og:locale:alternate" content="de_DE">
+    <meta property="og:locale:alternate" content="es_ES">
+    <meta property="og:locale:alternate" content="it_IT">
+    <meta property="og:locale:alternate" content="pt_BR">
+    <meta property="article:published_time" content="2026-06-05">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="리듬 훈련 설정 설명서">
+    <meta name="twitter:description" content="리듬 훈련의 입력 방식, 템포, 난이도, 박자표, 클릭 밀도가 무엇이며 목적에 따라 어떻게 선택하는지 설명합니다.">
+    <meta name="twitter:image" content="https://solfegepro.com/og-image.png">
+
+    <!-- Favicon -->
+    <link rel="icon" href="/favicon.ico" sizes="any">
+    <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap"></noscript>
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="/style.css?v=23">
+    <link rel="stylesheet" href="/guides/article.css?v=14">
+
+    <style>
+        /* Manual option reference — responsive, no fixed px widths */
+        .manual-options {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr);
+            gap: var(--space-sm);
+            margin: var(--space-lg) 0;
+        }
+        .manual-option {
+            background: var(--surface);
+            border: 1px solid var(--surface-light);
+            border-radius: var(--radius-lg);
+            padding: var(--space-md);
+        }
+        .manual-option__name {
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: var(--space-xs);
+        }
+        .manual-option__desc {
+            font-size: 13px;
+            color: var(--text-secondary);
+        }
+        /* Bottom-line callout (conclusion first) */
+        .manual-lead {
+            font-size: 14px;
+            line-height: 1.75;
+            color: var(--text-primary);
+            border-left: 3px solid var(--primary);
+            background: rgba(212, 175, 55, 0.06);
+            padding: var(--space-sm) var(--space-md);
+            border-radius: 0 var(--radius-md) var(--radius-md) 0;
+            margin: var(--space-md) 0;
+        }
+        /* Per-setting evidence note — deliberately styled as an editorial
+           aside, NOT as a settings card (no surface fill, no gold label),
+           so it is never mistaken for an in-app option. */
+        .manual-rationale {
+            margin: var(--space-md) 0 var(--space-2xl);
+            padding: var(--space-sm) 0 var(--space-sm) var(--space-md);
+            border-left: 2px solid var(--surface-light);
+        }
+        .manual-rationale__label {
+            display: block;
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            color: var(--text-secondary);
+            margin-bottom: 4px;
+            opacity: 0.75;
+        }
+        .manual-rationale p {
+            font-size: 13px;
+            line-height: 1.75;
+            color: var(--text-secondary);
+            margin: 0;
+        }
+        .manual-rationale__ref {
+            font-size: 12px;
+            font-style: italic;
+            margin-top: var(--space-xs) !important;
+            opacity: 0.7;
+        }
+        /* Citation number linking to the reference list */
+        .manual-ref-num {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-style: normal;
+        }
+        .manual-ref-num:hover { color: var(--primary); }
+        /* Full reference list at page end */
+        .manual-refs {
+            margin: var(--space-2xl) 0 0;
+            padding-top: var(--space-lg);
+            border-top: 1px solid var(--surface-light);
+        }
+        .manual-refs__title {
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: var(--space-sm);
+        }
+        .manual-refs ol {
+            margin: 0;
+            padding-left: 1.25em;
+        }
+        .manual-refs li {
+            font-size: 12px;
+            line-height: 1.7;
+            color: var(--text-secondary);
+            margin-bottom: var(--space-xs);
+            scroll-margin-top: 84px;
+        }
+        .manual-refs li:target {
+            color: var(--text-primary);
+        }
+    </style>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"리듬 훈련 설정 설명서","description":"리듬 훈련의 입력 방식, 템포, 난이도, 박자표, 클릭 밀도가 무엇이며 목적에 따라 어떻게 선택하는지 설명합니다.","author":{"@type":"Organization","name":"Solfege PRO"},"publisher":{"@type":"Organization","name":"Solfege PRO","logo":{"@type":"ImageObject","url":"https://solfegepro.com/AppIcon.png"}},"datePublished":"2026-06-05","mainEntityOfPage":{"@type":"WebPage","@id":"https://solfegepro.com/ko/manual/rhythm/"}}</script>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"홈","item":"https://solfegepro.com/ko/"},{"@type":"ListItem","position":2,"name":"매뉴얼","item":"https://solfegepro.com/ko/manual/"},{"@type":"ListItem","position":3,"name":"リズムトレーニング 設定マニュアル — 各設定の選び方","item":"https://solfegepro.com/ko/manual/rhythm/"}]}</script>
+</head>
+<body>
+    <!-- Navigation -->
+        <nav class="nav" aria-label="기본 메뉴">
+        <div class="nav__container">
+            <a href="/ko/" class="nav__logo" aria-label="Solfege PRO">
+                <img src="/AppIcon.png" alt="" class="nav__logo-icon" width="32" height="32">
+                <span class="nav__logo-text">Solfege PRO</span>
+            </a>
+            <ul class="nav__list">
+                <li><a href="/ko/" class="nav__link">Solfege PRO 소개</a></li>
+                <li><a href="/ko/features/" class="nav__link">훈련</a></li>
+                <li><a href="/ko/guides/" class="nav__link">연습 가이드</a></li>
+                <li><a href="/ko/manual/" class="nav__link active" aria-current="page">매뉴얼</a></li>
+            </ul>
+            <div class="nav__settings">
+                <button class="settings-btn" id="lang-toggle" title="언어 선택"><span id="lang-text">KO</span></button>
+                <button class="hamburger-btn" id="hamburger-btn" aria-label="메뉴 열기" aria-expanded="false" aria-controls="drawer">
+                    <span class="hamburger-btn__line"></span><span class="hamburger-btn__line"></span><span class="hamburger-btn__line"></span>
+                </button>
+            </div>
+        </div>
+    </nav>
+        <!-- Mobile drawer (hidden on desktop) -->
+            <div class="drawer-overlay" id="drawer-overlay"></div>
+    <aside class="drawer" id="drawer" aria-label="메뉴" aria-hidden="true" inert>
+        <div class="drawer__header">
+            <span class="drawer__title">메뉴</span>
+            <button class="drawer__close" id="drawer-close" aria-label="메뉴 닫기">×</button>
+        </div>
+        <ul class="drawer__list">
+            <li><a href="/ko/" class="drawer__link">Solfege PRO 소개</a></li>
+            <li><a href="/ko/features/" class="drawer__link">훈련</a></li>
+            <li><a href="/ko/guides/" class="drawer__link">연습 가이드</a></li>
+            <li><a href="/ko/manual/" class="drawer__link active" aria-current="page">매뉴얼</a></li>
+        </ul>
+    </aside>
+
+
+    <!-- Article Header -->
+    <header class="page-header">
+        <div class="page-header__meta">
+            <span class="page-header__tag">매뉴얼</span>
+            <span>리듬 교육</span>
+        </div>
+        <h1 class="page-header__title">
+
+            리듬 교육 설정 설명서<br>각 옵션은 무엇을 의미하고 선택하는 방법
+
+
+        </h1>
+        <p class="page-header__subtitle">
+
+            언제, 그리고 왜 선택할 수 있는 어떤 선택권. 이 페이지는 리듬 훈련에서 각 설정을 통해 도보, 한 번에. 설정 화면에서 "?"에 도착하면 필요한 옵션을 스크롤합니다.
+
+
+        </p>
+    </header>
+
+    <!-- Top-of-article CTA -->
+    <aside class="article-top-cta" aria-label="App promotion">
+        <div class="article-top-cta__body">
+            <p class="article-top-cta__title">
+
+                더 알아보기 Solfege PRO
+
+
+            </p>
+            <p class="article-top-cta__sub">
+
+                $9.99/월(미국 App Store 기준)(미국 App Store 기준)
+
+
+            </p>
+        </div>
+        <a href="https://apps.apple.com/kr/app/id6756626617?pt=6749158383&amp;ct=web_manual&amp;mt=8" class="article-top-cta__button app-store-link" data-cta-position="article_top" aria-label="App Store에서 다운로드"><img src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/ko-kr" class="app-store-link__img" alt="App Store에서 다운로드" loading="lazy"></a>
+    </aside>
+
+    <!-- Article Body -->
+    <main class="article-body">
+
+        <!-- Intro -->
+        <p>
+
+            리듬 교육은 메트로놈 클릭으로 화면 (또는 clap)을 탭하고 타이밍이 정확한 방법을 측정합니다. 코드 또는 음계 교육과는 달리 "주의가되는 것은?"- 당신은 정확한 비트를 해제하는 방법을 날카롭게합니다 (당신의 타이밍 정확도). 리듬의 꾸준한 감은 합주 또는 혼자 여부를 연주의 기초입니다.
+
+
+        </p>
+        <p>
+
+            이 페이지는 설정 선택을 위한 설명서입니다. 각 설정은 음악 교육에서 설치된 방법의 주위에 설계됩니다. 결정에 대한 호출 각 설정에 대해, 우리는 <strong>추천된 선택, 그것은 무엇을 위해, 그리고 그것이 기차 — 증거와 함께</strong>. 설정 화면에서 "?"에서 도착하면 필요한 옵션으로 스크롤하십시오. 앱 내부, 같은 "?"는 스크린 작동 방식 "이 화면이 어떻게 작동합니까"을 제공합니다. 즉, 화면의 단계별 튜토리얼을합니다.
+
+
+        </p>
+
+        <!-- Shared note: practice-plan item settings sheets show only the settings
+     persisted per item (v1.3.1 hides non-persisted controls in plan context).
+     Included by the 7 module manuals: interval / chord / scale / progression /
+     sight-reading / rhythm / fretboard. Rhythm Sight Reading is deliberately
+     excluded — its plan items do not embed module settings at all. -->
+<p>
+
+    이 페이지는 연습 홈에서 열린 독립 훈련의 설정 화면을 설명합니다. 연습 계획 항목에서 설정할 때, 그 항목에 저장 된 설정만 표시됩니다.
+
+
+</p>
+
+
+        <!-- #input-mode -->
+        <h2 id="input-mode">입력 모드 (탭 / 찰)</h2>
+
+        <p class="manual-lead">
+
+            <strong>의심할 여지없이 탭을 선택합니다.</strong> 그것은 가장 안정적인 측정을 제공합니다. Clap (Mic)로 전환하면 몸이나 실제 percussion 악기를 검사 할 때만 전환하십시오. Clap, 유선 헤드폰과 스피커보다 더 안정됩니다.
+
+
+        </p>
+
+        <p>
+
+            이 설정은 리듬을 입력하는 방법을 결정합니다. 그것은 직접 측정 정확도에 영향을 미치는 때문에 가장 중요한 선택입니다. 탭과 클레프 사이를 선택 (Mic).
+
+
+        </p>
+
+        <div class="manual-options">
+            <div class="manual-option">
+                <div class="manual-option__name">팟캐스트</div>
+                <div class="manual-option__desc">화면을 입력하여 리듬을 입력합니다. 터치 감지는 거의 지연이 없습니다 (낮은 대기 시간), 그래서 측정 소음은 작고 헤드폰이 필요하지 않습니다 - 타이밍의 감각을 측정하기위한 기본.</div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name">찰 (Mic)</div>
+                <div class="manual-option__desc">mic(clap=hand clap)을 통해 claps 또는 percussion의 소리를 감지합니다. 그것은 연습을 포함하기에 더 가까이 있지만, mic 입력은 장치 의존 지연 (경도)을 운반하고 경고와 대기 시간 관리가 표시됩니다.</div>
+            </div>
+        </div>
+
+        <div class="manual-rationale">
+            <span class="manual-rationale__label">그 뒤에 증거</span>
+            <p>
+
+                어떤 입력 열차 sensorimotor 동기화 — 을 정렬 당신의 움직임을 클릭으로 듣습니다. 탭은 최소 입력 지연을 추가하므로 자신의 탈선을 정확하게 미러링합니다. 동기화를 태핑하면 체계적으로 측정할 수 있으며, 심문을 읽는 리뷰에서 널리 표시됩니다.
+
+
+            </p>
+            <p class="manual-rationale__ref">참고 : Repp (2005) <a class="manual-ref-num" href="#ref-1">[1]</a></p>
+        </div>
+
+        <!-- #bpm -->
+        <h2 id="bpm">템포 (템포)BPM)</h2>
+
+        <p class="manual-lead">
+
+            <strong>의심의 여지없이 90-100 근처 시작 BPM.</strong> 안정되면 속도가 늦어지고 느리게 tempo에서 꾸준히 유지되는 것을 확인하십시오. 실제 underlying 컨트롤을 구축하십시오.
+
+
+        </p>
+
+        <p>
+
+            metronome이 어떻게 실행되는지 설정한다. 단위는 입니다 BPM (분 당 기준), 슬라이더는 40-200를 커버합니다. 빠른 tempos (150+)는 반사로 반응하지만 "on"을 느낄 수 있습니다. 느린 tempos (약 60) 긴 간격을두고 내부 맥박 (당신의 자신의 감수)를 테스트합니다. 중형 온도 (90-120)은 대부분의 음악에 사용되는 실용적인 밴드입니다.
+
+
+        </p>
+
+        <div class="manual-rationale">
+            <span class="manual-rationale__label">그 뒤에 증거</span>
+            <p>
+
+                Tempo는 속도와 변화에 잠그기 때문에 조정가능합니다. 타이밍 가변성은 템포 느린 (그래서 느린 가짜에 정말 어렵습니다)로 성장하며, 반복적으로 태핑 문학의 리뷰에보고되었습니다. 느린 tempo에서 꾸준히 유지되는 것을 확인하여 동기화 할 수있는 능력을 구축합니다.
+
+
+            </p>
+            <p class="manual-rationale__ref">참고 : Repp (2005) <a class="manual-ref-num" href="#ref-1">[1]</a></p>
+        </div>
+
+        <!-- #difficulty -->
+        <h2 id="difficulty">뚱 베어</h2>
+
+        <p class="manual-lead">
+
+            <strong>불확실한 경우, 초급에서 시작하십시오.</strong> 한 번에 한 번에 한 번까지 높은 점수를 다시합니다. 특히 Clap (Mic), 장치 대기 시간은 추가되어 있으므로 고급 또는 프로로 직전하지 마십시오.
+
+
+        </p>
+
+        <p>
+
+            타이밍을 위한 "passing line"을 어떻게 엄격하게 결정합니다. 정확한 비트 (밀리 초에서)에서 침식 탈선은 단계로 좁고 / 그레이트 / 좋은 임계 값이 바뀝니다. 코드와 음계 어려움이 질문에 대한 폭을 변경하는 경우, 리듬 어려움은 득점의 정밀도를 변경합니다.
+
+
+        </p>
+
+        <div class="manual-options">
+            <div class="manual-option">
+                <div class="manual-option__name">뚱 베어</div>
+                <div class="manual-option__desc">±100ms - 기본 타이밍. 첫 번째 느낌을 얻는 넓은 공차는 비트에 착륙. 이태리</div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name">의논하기</div>
+                <div class="manual-option__desc">±60ms - 표준 정확도. 대부분의 사람들에게 매일 합주에서 개최되는 배심원의 수준.</div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name">의 특징</div>
+                <div class="manual-option__desc">±40ms - 고정확도. 어떤 사람들은 "off"로 타이밍을 감지하기 시작하면 좋은 언약을 서핑합니다.</div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name">- 광고</div>
+                <div class="manual-option__desc">±25ms - 프로 레벨. 전문 선수가 항상 붙들 수 없는 엄격한 기준. 한계에 정밀도를 밀어하려는 사람들을 위해.</div>
+            </div>
+        </div>
+
+        <div class="manual-rationale">
+            <span class="manual-rationale__label">그 뒤에 증거</span>
+            <p>
+
+                단계의 통과 라인을 꽉 넣으면 처리 하중을 일찍 낮추십시오. - lenient 판단으로 - 한 번 정밀도를 밀어줍니다. tiers는 인지 로드 이론을 따르고 있습니다. 새로운 기술 원조 학습에서 낮은 조기 유지. 좁히기 전에 넓은 공차에서 착륙의 느낌을 해결하면 엄격한 표준에서 시작보다 더 빨리 얻을 수 있습니다.
+
+
+            </p>
+            <p class="manual-rationale__ref">참고 : Sweller (1988) <a class="manual-ref-num" href="#ref-2">[2]</a></p>
+        </div>
+
+        <!-- #time-signature -->
+        <h2 id="time-signature">시간 서명</h2>
+
+        <p class="manual-lead">
+
+            <strong>의심의 여지없이 4/4에 떠나십시오.</strong> 4/4에서 꾸준한 타이밍을 첫째로 건설하고, 3/4 및 6/8에 확장하고, 마지막을 위해 확률 미터 5/4와 7/8를 저장합니다 — 그 순서는 취급하게 쉬운 입니다.
+
+
+        </p>
+
+        <p>
+
+            막대기에 얼마나 많은 비트를 놓는 (그리고 비트 단위). 예를 들어, 4/4은 4 베트 시간이며 3/4은 waltz의 세 베트 느낌입니다. 바 분할과 강력한 비트가 가을 어디에 있는지이 변경됩니다. 6개의 선택은 4/4, 3/4, 6/8, 2/4, 5/4 및 7/8입니다.
+
+
+        </p>
+
+        <div class="manual-options">
+            <div class="manual-option">
+                <div class="manual-option__name">4/4와 2/4</div>
+                <div class="manual-option__desc">가장 일반적인 미터. 대중과 바위의 광대한 대다수는 4/4에 있습니다. 2/4는 marches의 빛 2 방위 느낌입니다. 리듬을 구축하려면, 여기 시작.</div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name">3/4 및 6/8</div>
+                <div class="manual-option__desc">트리플 펄 미터. 3/4은 월트입니다; 6/8은 롤링 홈 (볼즈, 아일랜드 음악)에 대한 트리플트로 두 개의 비트를 분할합니다. 4번의 4번의 좋은 다음 단계가 쉽다.</div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name">5/4와 7/8</div>
+                <div class="manual-option__desc">Odd 미터. 비트 수는 균등하게 배당하지 않습니다, 그래서 강한 비트는 불규칙한 간격에 도착합니다. prog, jazz 및 민간 전통 - 고급 도전.</div>
+            </div>
+        </div>
+
+        <div class="manual-rationale">
+            <span class="manual-rationale__label">그 뒤에 증거</span>
+            <p>
+
+                센서가 모터 동기화가 강한 비트의 패턴에 맞출 때 움직임을 정렬하는 것을 선택할 수 있습니다 (미터 높이) 다른 프레임 워크를 통해 훈련됩니다. 일반 4/4에서 확률 미터로 이동, 강한 비트가 불규칙하게 떨어지는, 그 비트 구조를 cue로 동기화 할 수있는 능력을 테스트. 즉, 미터 구조 모양 동기화는 두드리는 문학의 리뷰에서 표시됩니다.
+
+
+            </p>
+            <p class="manual-rationale__ref">참고 : Repp (2005) <a class="manual-ref-num" href="#ref-1">[1]</a></p>
+        </div>
+
+        <!-- #click-density -->
+        <h2 id="click-density">을 클릭 밀도</h2>
+
+        <p class="manual-lead">
+
+            <strong>의심의 여지없이, 모든 Beat에서 시작.</strong> 정확히 착륙하면 Beats 2 &amp; 4, 그리고 한 번 꾸준한, 얇은 아웃 - 1 만 → 각 2 Bars → 각 4 Bars를 선택하여 내부 펄스를 훈련하십시오. 트릭은 침묵의 비트에 머리에서 계산을 계속하는 것입니다.
+
+
+        </p>
+
+        <p>
+
+            저론가가 "내가 밖으로"하는 방법을 결정합니다. 모든 비트를 클릭하면 쉽게 수행됩니다. 몇 번 클릭 클릭, 더 당신은 당신의 내부 펄스와 침묵 비트를 채울해야합니다. 리듬 느낌을 건축하는 가장 효과적인 설정 중 하나이며, 어려움 지표 (1–5 점)는 거친 수준을 보여줍니다.
+
+
+        </p>
+
+        <div class="manual-options">
+            <div class="manual-option">
+                <div class="manual-option__name">모든 Beat</div>
+                <div class="manual-option__desc">자주 묻는 질문 클릭은 모든 비트에 소리 — 기본 연습은 외부 클릭으로 동기화, 첫 번째 단계.</div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name">1 &amp; 3 (아래)를 이길</div>
+                <div class="manual-option__desc">아래쪽에 있는 클릭 (기본값 1과 3) 측정 앞의. 의향을 유지하려면 아래쪽에 집중하는 연습.</div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name">2 &amp; 4 (백베트)를 이길</div>
+                <div class="manual-option__desc">2와 4를 이길 수 있는 클릭, offbeats (backbeat — jazz와 funk 느낌의 핵심). 악센트의 무게는 뒤를 이동하고, 훈련 강저를 위해 이 이상을 만들기.</div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name">1을 끄십시오 (내부 맥박)</div>
+                <div class="manual-option__desc">각 측정의 1번을 이길만 클릭. 당신은 자신의 비트를 유지, 내부 펄스 및 자기 의존 타이밍 개발.</div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name">2 Bar (피라세 느낌)</div>
+                <div class="manual-option__desc">2개의 막대기를 한 번 클릭. 2bar 구문 인식을 강화하는 긴 스트레치 위에 자신의 tempo를 보유해야합니다.</div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name">4 Bars (프로 레벨)</div>
+                <div class="manual-option__desc">4개의 막대기를 한 번 클릭. 4 bar의 템포 유지를 필요로하는 고급 교육 - 가장 까다로운 설정.</div>
+            </div>
+        </div>
+
+        <div class="manual-rationale">
+            <span class="manual-rationale__label">그 뒤에 증거</span>
+            <p>
+
+                모든 비트에 클릭은 비계 역할을합니다. - 외부 큐는 처리 부하를 낮춰 정렬을 단축합니다. 당신이 편안하고, 약간의 클릭을 이길, 비계 제거하고 점차 자신의 내부 펄스와 간격을 채우기의 부하를 올리. 일찍로드를 낮추고 마스터리와 비계를 감소시키면 인지 로드 이론을 따르십시오.
+
+
+            </p>
+            <p class="manual-rationale__ref">참고 : Sweller (1988) <a class="manual-ref-num" href="#ref-2">[2]</a></p>
+        </div>
+
+        <!-- References -->
+        <section class="manual-refs">
+            <div class="manual-refs__title">이름 *</div>
+            <ol>
+                <li id="ref-1">Repp, B. H. (2005). Sensorimotor synchronization: A review of the tapping literature. <em>Psychonomic Bulletin &amp; Review, 12</em>(6), 969–992.</li>
+                <li id="ref-2">Sweller, J. (1988). Cognitive load during problem solving: Effects on learning. <em>Cognitive Science, 12</em>(2), 257–285.</li>
+            </ol>
+        </section>
+
+    </main>
+
+    <!-- Final CTA -->
+    <section class="article-cta">
+        <h2 class="article-cta__title">설정 정렬? 그것을 시도</h2>
+        <p class="article-cta__text">
+
+            각 설정을 이해하면 나머지는 연습입니다.<br>불확실한 경우, 이 페이지의 " 의심스러운"줄을 따르십시오.<br>당신이 맞는 설정을 찾기 Solfege PRO's 리듬 훈련'의 강점
+
+
+        </p>
+        <a href="https://apps.apple.com/kr/app/id6756626617?pt=6749158383&amp;ct=web_manual&amp;mt=8" class="app-store-link" aria-label="App Store에서 다운로드">
+
+            <img class="app-store-link__img" width="120" height="40" src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/ko-kr" alt="App Store에서 다운로드">
+
+
+        </a>
+    </section>
+
+    <!-- Related Content -->
+    <div class="article-related">
+        <div class="article-related__title">관련 내용</div>
+        <a href="/guides/rhythm-training/" class="article-related__link" style="margin-bottom: var(--space-md);">
+            <div class="article-related__link-title">리듬ic Feel는 무엇입니까? — 푸시를 끊고, 뒤를 끄고, 포켓</div>
+            <div class="article-related__link-desc">리듬 느낌이 조정하기 전에 이해하려는 사람들을 위해 - 타이밍 오프셋 가이드와 훈련 방법.</div>
+        </a>
+        <a href="/" class="article-related__link">
+            <div class="article-related__link-title">Solfege PRO 연습장</div>
+            <div class="article-related__link-desc">기타,베이스, 드럼, 피아노, 보컬을 위한 도전 기반 연습 메뉴</div>
+        </a>
+    </div>
+
+    <!-- Article Note -->
+    <aside class="article-endnote">
+        <p class="article-endnote__text">
+
+            이 페이지는 앱 내 설정을 설명하는 참고 자료입니다. 여기의 권장 진행은 널리 쓰이는 리듬 훈련 방법론을 바탕으로 한 일반적인 지침이며, 최적의 설정은 개인의 경험과 목표에 따라 달라집니다. 박수(마이크) 입력에서는 기기 지연으로 측정값이 달라질 수 있습니다. 인용된 연구는 일반적인 학습 결과를 다루며 이 앱에서의 성과를 보장하지 않습니다.
+
+
+        </p>
+    </aside>
+
+    <!-- Footer -->
+    <footer class="article-footer">
+        <p class="article-footer__text">
+            &copy; 2026 Solfege PRO
+        </p>
+    </footer>
+    <script src="/bootstrap.js?v=10" defer></script>
+    <nav aria-label="Language" style="display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:0.5rem;padding:var(--space-lg) var(--space-md);border-top:1px solid var(--surface-light);font-size:13px">
+        <a href="/manual/rhythm/" hreflang="ja" style="color:var(--text-secondary);text-decoration:none">日本語</a>
+        <span aria-hidden="true" style="color:var(--surface-light)">·</span>
+        <a href="/en/manual/rhythm/" hreflang="en" style="color:var(--text-secondary);text-decoration:none">English</a>
+        <span aria-hidden="true" style="color:var(--surface-light)">·</span>
+        <a href="/fr/manual/rhythm/" hreflang="fr" style="color:var(--text-secondary);text-decoration:none">Français</a>
+        <span aria-hidden="true" style="color:var(--surface-light)">·</span>
+        <a href="/de/manual/rhythm/" hreflang="de" style="color:var(--text-secondary);text-decoration:none">Deutsch</a>
+        <span aria-hidden="true" style="color:var(--surface-light)">·</span>
+        <a href="/es/manual/rhythm/" hreflang="es" style="color:var(--text-secondary);text-decoration:none">Español</a>
+        <span aria-hidden="true" style="color:var(--surface-light)">·</span>
+        <a href="/it/manual/rhythm/" hreflang="it" style="color:var(--text-secondary);text-decoration:none">Italiano</a>
+        <span aria-hidden="true" style="color:var(--surface-light)">·</span>
+        <span style="color:var(--primary);font-weight:600" aria-current="true">한국어</span>
+        <span aria-hidden="true" style="color:var(--surface-light)">·</span>
+        <a href="/pt-br/manual/rhythm/" hreflang="pt-BR" style="color:var(--text-secondary);text-decoration:none">Português (Brasil)</a>
+    </nav>
+</body>
+</html>

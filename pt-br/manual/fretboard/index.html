@@ -1,0 +1,743 @@
+<!DOCTYPE html>
+<html lang="pt-BR"
+      data-title-ja="指板トレーニング 設定マニュアル — 各設定の選び方 | ソルフェージュPRO"
+      data-title-en="Fretboard Training Settings Manual — How to Choose Each Option | Solfege PRO"
+      data-title-fr="Manuel des réglages de l'entraînement au manche — comment choisir chaque option | Solfege PRO"
+      data-title-de="Handbuch zu den Einstellungen des Griffbrett-Trainings — wie Sie jede Option wählen | Solfege PRO">
+<head>
+    <meta charset="UTF-8">
+    <meta name="robots" content="index, follow">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#1A1A1E">
+    <title>Manual de ajustes do braço | Solfege PRO</title>
+    <meta name="description" content="Manual de referência para configurações do Fretboard Training - modo, notas, intervalo de trastes, cordas, modo de resposta, dicas, afinação, lateralidade: quem escolhe o quê e por quê.">
+
+    <!-- Canonical -->
+    <link rel="canonical" href="https://solfegepro.com/pt-br/manual/fretboard/">
+    <link rel="alternate" hreflang="ja" href="https://solfegepro.com/manual/fretboard/">
+    <link rel="alternate" hreflang="en" href="https://solfegepro.com/en/manual/fretboard/">
+    <link rel="alternate" hreflang="fr" href="https://solfegepro.com/fr/manual/fretboard/">
+    <link rel="alternate" hreflang="de" href="https://solfegepro.com/de/manual/fretboard/">
+    <link rel="alternate" hreflang="es" href="https://solfegepro.com/es/manual/fretboard/">
+    <link rel="alternate" hreflang="it" href="https://solfegepro.com/it/manual/fretboard/">
+    <link rel="alternate" hreflang="ko" href="https://solfegepro.com/ko/manual/fretboard/">
+    <link rel="alternate" hreflang="pt-BR" href="https://solfegepro.com/pt-br/manual/fretboard/">
+    <link rel="alternate" hreflang="x-default" href="https://solfegepro.com/manual/fretboard/">
+<!-- OGP -->
+    <meta property="og:title" content="Manual de ajustes do braço">
+    <meta property="og:description" content="Manual de referência para configurações do Fretboard Training - modo, notas, intervalo de trastes, cordas, modo de resposta, dicas, afinação, lateralidade: quem escolhe o quê e por quê.">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://solfegepro.com/pt-br/manual/fretboard/">
+    <meta property="og:site_name" content="Solfege PRO">
+    <meta property="og:image" content="https://solfegepro.com/og-image.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Solfege PRO">
+    <meta property="og:locale" content="pt_BR">
+    <meta property="og:locale:alternate" content="ja_JP">
+    <meta property="og:locale:alternate" content="en_US">
+    <meta property="og:locale:alternate" content="fr_FR">
+    <meta property="og:locale:alternate" content="de_DE">
+    <meta property="og:locale:alternate" content="es_ES">
+    <meta property="og:locale:alternate" content="it_IT">
+    <meta property="og:locale:alternate" content="ko_KR">
+    <meta property="article:published_time" content="2026-06-05">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Manual de ajustes do braço">
+    <meta name="twitter:description" content="Manual de referência para configurações do Fretboard Training - modo, notas, intervalo de trastes, cordas, modo de resposta, dicas, afinação, lateralidade: quem escolhe o quê e por quê.">
+    <meta name="twitter:image" content="https://solfegepro.com/og-image.png">
+
+    <!-- Favicon -->
+    <link rel="icon" href="/favicon.ico" sizes="any">
+    <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap"></noscript>
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="/style.css?v=23">
+    <link rel="stylesheet" href="/guides/article.css?v=14">
+
+    <style>
+        /* Manual option reference — responsive, no fixed px widths */
+        .manual-options {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr);
+            gap: var(--space-sm);
+            margin: var(--space-lg) 0;
+        }
+        .manual-option {
+            background: var(--surface);
+            border: 1px solid var(--surface-light);
+            border-radius: var(--radius-lg);
+            padding: var(--space-md);
+        }
+        .manual-option__name {
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: var(--space-xs);
+        }
+        .manual-option__desc {
+            font-size: 13px;
+            color: var(--text-secondary);
+        }
+        /* Bottom-line callout (conclusion first) */
+        .manual-lead {
+            font-size: 14px;
+            line-height: 1.75;
+            color: var(--text-primary);
+            border-left: 3px solid var(--primary);
+            background: rgba(212, 175, 55, 0.06);
+            padding: var(--space-sm) var(--space-md);
+            border-radius: 0 var(--radius-md) var(--radius-md) 0;
+            margin: var(--space-md) 0;
+        }
+        /* Per-setting evidence note — deliberately styled as an editorial
+           aside, NOT as a settings card (no surface fill, no gold label),
+           so it is never mistaken for an in-app option. */
+        .manual-rationale {
+            margin: var(--space-md) 0 var(--space-2xl);
+            padding: var(--space-sm) 0 var(--space-sm) var(--space-md);
+            border-left: 2px solid var(--surface-light);
+        }
+        .manual-rationale__label {
+            display: block;
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            color: var(--text-secondary);
+            margin-bottom: 4px;
+            opacity: 0.75;
+        }
+        .manual-rationale p {
+            font-size: 13px;
+            line-height: 1.75;
+            color: var(--text-secondary);
+            margin: 0;
+        }
+        .manual-rationale__ref {
+            font-size: 12px;
+            font-style: italic;
+            margin-top: var(--space-xs) !important;
+            opacity: 0.7;
+        }
+        /* Citation number linking to the reference list */
+        .manual-ref-num {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-style: normal;
+        }
+        .manual-ref-num:hover { color: var(--primary); }
+        /* Full reference list at page end */
+        .manual-refs {
+            margin: var(--space-2xl) 0 0;
+            padding-top: var(--space-lg);
+            border-top: 1px solid var(--surface-light);
+        }
+        .manual-refs__title {
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: var(--space-sm);
+        }
+        .manual-refs ol {
+            margin: 0;
+            padding-left: 1.25em;
+        }
+        .manual-refs li {
+            font-size: 12px;
+            line-height: 1.7;
+            color: var(--text-secondary);
+            margin-bottom: var(--space-xs);
+            scroll-margin-top: 84px;
+        }
+        .manual-refs li:target {
+            color: var(--text-primary);
+        }
+    </style>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Manual de ajustes do braço","description":"Manual de referência para configurações do Fretboard Training - modo, notas, intervalo de trastes, cordas, modo de resposta, dicas, afinação, lateralidade: quem escolhe o quê e por quê.","author":{"@type":"Organization","name":"Solfege PRO"},"publisher":{"@type":"Organization","name":"Solfege PRO","logo":{"@type":"ImageObject","url":"https://solfegepro.com/AppIcon.png"}},"datePublished":"2026-06-05","mainEntityOfPage":{"@type":"WebPage","@id":"https://solfegepro.com/pt-br/manual/fretboard/"}}</script>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Início","item":"https://solfegepro.com/pt-br/"},{"@type":"ListItem","position":2,"name":"Manual","item":"https://solfegepro.com/pt-br/manual/"},{"@type":"ListItem","position":3,"name":"指板トレーニング 設定マニュアル — 各設定の選び方","item":"https://solfegepro.com/pt-br/manual/fretboard/"}]}</script>
+</head>
+<body>
+    <!-- Navigation -->
+        <nav class="nav" aria-label="Menu principal">
+        <div class="nav__container">
+            <a href="/pt-br/" class="nav__logo" aria-label="Solfege PRO">
+                <img src="/AppIcon.png" alt="" class="nav__logo-icon" width="32" height="32">
+                <span class="nav__logo-text">Solfege PRO</span>
+            </a>
+            <ul class="nav__list">
+                <li><a href="/pt-br/" class="nav__link">Sobre o Solfege PRO</a></li>
+                <li><a href="/pt-br/features/" class="nav__link">Treinos</a></li>
+                <li><a href="/pt-br/guides/" class="nav__link">Guias de prática</a></li>
+                <li><a href="/pt-br/manual/" class="nav__link active" aria-current="page">Manual</a></li>
+            </ul>
+            <div class="nav__settings">
+                <button class="settings-btn" id="lang-toggle" title="Selecionar idioma"><span id="lang-text">PT-BR</span></button>
+                <button class="hamburger-btn" id="hamburger-btn" aria-label="Abrir menu" aria-expanded="false" aria-controls="drawer">
+                    <span class="hamburger-btn__line"></span><span class="hamburger-btn__line"></span><span class="hamburger-btn__line"></span>
+                </button>
+            </div>
+        </div>
+    </nav>
+        <!-- Mobile drawer (hidden on desktop) -->
+            <div class="drawer-overlay" id="drawer-overlay"></div>
+    <aside class="drawer" id="drawer" aria-label="Menu" aria-hidden="true" inert>
+        <div class="drawer__header">
+            <span class="drawer__title">Menu</span>
+            <button class="drawer__close" id="drawer-close" aria-label="Fechar menu">×</button>
+        </div>
+        <ul class="drawer__list">
+            <li><a href="/pt-br/" class="drawer__link">Sobre o Solfege PRO</a></li>
+            <li><a href="/pt-br/features/" class="drawer__link">Treinos</a></li>
+            <li><a href="/pt-br/guides/" class="drawer__link">Guias de prática</a></li>
+            <li><a href="/pt-br/manual/" class="drawer__link active" aria-current="page">Manual</a></li>
+        </ul>
+    </aside>
+
+
+    <!-- Article Header -->
+    <header class="page-header">
+        <div class="page-header__meta">
+            <span class="page-header__tag">Manual</span>
+            <span>Treinamento de braço da guitarra</span>
+        </div>
+        <h1 class="page-header__title">
+
+            Manual de configurações de treinamento do braço da guitarra<br>O que cada opção significa e como escolher
+
+
+        </h1>
+        <p class="page-header__subtitle">
+
+            Qual opção escolher, quando e por quê. Esta página percorre cada configuração do treinamento do braço da guitarra, uma de cada vez. Se você chegou de um "?" na tela de configurações, vá até a opção necessária.
+
+
+        </p>
+    </header>
+
+    <!-- Top-of-article CTA -->
+    <aside class="article-top-cta" aria-label="App promotion">
+        <div class="article-top-cta__body">
+            <p class="article-top-cta__title">
+
+                Experimente isso no Solfege PRO
+
+
+            </p>
+            <p class="article-top-cta__sub">
+
+                Consulte o preço na App Store
+
+
+            </p>
+        </div>
+        <a href="https://apps.apple.com/br/app/id6756626617?pt=6749158383&amp;ct=web_manual&amp;mt=8" class="article-top-cta__button app-store-link" data-cta-position="article_top" aria-label="Baixar na App Store"><img src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/pt-br" class="app-store-link__img" alt="Baixar na App Store" loading="lazy"></a>
+    </aside>
+
+    <!-- Article Body -->
+    <main class="article-body">
+
+        <!-- Intro -->
+        <p>
+
+            O treinamento do braço da guitarra coloca o nome da nota em cada traste em suas mãos até que você saiba sem pensar. Memorizar escalas e acordes apenas como formas deixa você preso, mas uma vez que os nomes das notas no braço chegam até você instantaneamente, improvisar, transpor e aprender músicas de ouvido fica muito mais fácil.
+
+
+        </p>
+        <p>
+
+            Esta página é um manual para escolha das configurações. Cada ambiente é projetado em torno de métodos estabelecidos na educação musical. Para cada cenário que exige uma decisão, damos <strong>a escolha recomendada, para que serve e o que treina — com as evidências por trás disso</strong>. Se você chegou de um "?" na tela de configurações, vá até a opção necessária. Dentro do aplicativo, o mesmo "?" help também oferece "Veja como esta tela funciona", que reproduz um tutorial passo a passo da tela.
+
+
+        </p>
+
+        <!-- Shared note: practice-plan item settings sheets show only the settings
+     persisted per item (v1.3.1 hides non-persisted controls in plan context).
+     Included by the 7 module manuals: interval / chord / scale / progression /
+     sight-reading / rhythm / fretboard. Rhythm Sight Reading is deliberately
+     excluded — its plan items do not embed module settings at all. -->
+<p>
+
+    Esta página descreve a tela de configurações do treinamento autônomo aberto na página inicial de prática. Ao abrir as configurações de um item do plano prático, somente as configurações salvas com esse item serão mostradas.
+
+
+</p>
+
+
+        <!-- #mode -->
+        <h2 id="mode">Modo de treinamento</h2>
+
+        <p class="manual-lead">
+
+            <strong>Comece com Nota → Posição.</strong> Uma vez estável, firme o reverso com Posição → Nota, depois vá para o Movimento das Cordas quando quiser internalizar como uma nota se espalha pelo braço. Os modos baseados no ouvido – Ear to Fret, Interval to Fret e Melody Echo – funcionam melhor quando os três modos visuais parecem estáveis.
+
+
+        </p>
+
+        <p>
+
+            Esta configuração decide a direção de cada pergunta — o que é mostrado e o que você responde. Existem seis modos; mesmo que todos tratem de nomes de notas no braço, a direção determina a habilidade que você desenvolve. Três são visuais – você vê e responde – e três são modos auditivos, onde você coloca o que ouve no braço da guitarra.
+
+
+        </p>
+
+        <div class="manual-options">
+            <div class="manual-option">
+                <div class="manual-option__name">Nota → Posição (noteToFret)</div>
+                <div class="manual-option__desc">Você toca onde o nome de uma determinada nota fica no braço - a direção mais fundamental, construindo o circuito "nome da nota → onde pressionar" necessário para tocar escalas e acordes. Comece aqui.</div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name">Posição → Nota (fretToNote)</div>
+                <div class="manual-option__desc">A pesquisa inversa: um único spot é mostrado e você escolhe o nome da nota. Ele treina a nomeação da nota que você está preocupando e fortalece a memória de ambos os lados.</div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name">Movimento de cordas (stringMovement)</div>
+                <div class="manual-option__desc">Um modo avançado que busca o mesmo nome de nota em uma corda após a outra (por exemplo, "C" na 6ª, 5ª, 4ª…), mapeando como uma nota se espalha por todo o braço. A faixa do traste é fixada em 0–12.</div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name">Orelha ao traste (earToFret)</div>
+                <div class="manual-option__desc">Você ouve uma nota – nenhum nome mostrado – e toca onde ela fica no pescoço. Este modo de ouvido conecta "som ouvido → local para pressionar" diretamente, sem passar pelo nome da nota escrita: a base de tocar de ouvido.</div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name">Intervalo para Fret (intervalToFret)</div>
+                <div class="manual-option__desc">Você ouve duas notas e toca na posição da segunda. Este modo converte a audição intervalada que você construiu no treinamento intervalado em distâncias reais no pescoço.</div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name">Eco da melodia (melodyEcho)</div>
+                <div class="manual-option__desc">Você ouve uma melodia curta e a reproduz em ordem no braço da guitarra. A melodia é tocada nos tons reais das posições reais dentro da faixa de perguntas. Suas próprias configurações – duração da melodia, escala e área de prática – ajustam a dificuldade (consulte a seção Fret Range para saber a área de prática).</div>
+            </div>
+        </div>
+
+        <div class="manual-rationale">
+            <span class="manual-rationale__label">As evidências por trás disso</span>
+            <p>
+
+                As três direções visuais treinam, de diferentes ângulos, a ligação bidirecional entre nomes de notas e posições no braço que os instrumentistas necessitam. Lembrar o mesmo material em diferentes direções transforma formas mecânicas em conhecimento que você pode usar enquanto joga. Os três modos de ouvido colocam o som ouvido na memória do nome da nota, unindo habilidades auditivas e manuseio do instrumento. Todos seguem a pedagogia estabelecida de habilidades instrumentais e auditivas para dominar o braço da guitarra.
+
+
+            </p>
+            <p class="manual-rationale__ref">Ref.:Karpinski (2000) <a class="manual-ref-num" href="#ref-1">[1]</a></p>
+        </div>
+
+        <!-- #instrument -->
+        <h2 id="instrument">Instrumento</h2>
+
+        <p class="manual-lead">
+
+            <strong>Escolha o instrumento que você realmente toca.</strong> Guitarra (6 cordas) para guitarristas; Baixo (4 cordas) ou Baixo (5 cordas) para combinar com seu baixo. O próprio braço da guitarra muda para combinar.
+
+
+        </p>
+
+        <p>
+
+            Esta configuração decide se as perguntas usam braço de guitarra ou braço de baixo. A contagem de cordas e o mapa de nomes de notas em cada corda mudam para o instrumento escolhido, e isso se aplica a todos os modos. Cordas e afinação podem ser escolhidas somente enquanto Guitarra estiver selecionada. Se o som de prompt foi definido para o timbre de guitarra ou baixo, ele segue a troca de instrumento automaticamente (Piano e Sine Tone são mantidos como estão).
+
+
+        </p>
+
+        <div class="manual-options">
+            <div class="manual-option">
+                <div class="manual-option__name">Guitarra (6 cordas)</div>
+                <div class="manual-option__desc">Usa o braço padrão do violão de seis cordas. O estreitamento das cordas alvo e as afinações alternativas estão disponíveis apenas enquanto este instrumento está selecionado.</div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name">Baixo (4 cordas)</div>
+                <div class="manual-option__desc">Usa escala de baixo de quatro cordas (EADG). A afinação é fixa no padrão e as perguntas sempre vêm de todas as quatro cordas.</div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name">Baixo (5 cordas)</div>
+                <div class="manual-option__desc">Usa um braço de baixo de cinco cordas (BEADG), incluindo o B grave. A afinação é fixada no padrão e as perguntas sempre vêm de todas as cinco cordas.</div>
+            </div>
+        </div>
+
+        <!-- #target-notes -->
+        <h2 id="target-notes">Notas (Notas Alvo)</h2>
+
+        <p class="manual-lead">
+
+            <strong>Comece apenas com naturais.</strong> Amplie para incluir sustenidos (ou todas as notas) quando você puder nomear os sete naturais em qualquer lugar do braço em 80%+. Escolha Incluir Flats apenas se precisar de grafias planas.
+
+
+        </p>
+
+        <p>
+
+            Esta configuração define quais nomes de notas aparecem. Você escolhe se deseja usar apenas os naturais (as sete notas sem sustenido ou bemol - C D E F G A B) ou incluir sustenidos e bemóis. Quanto mais estreito for o intervalo, menos notas serão aprendidas; quanto mais amplo for, mais cobrirá todas as 12 notas cromáticas.
+
+
+        </p>
+
+        <div class="manual-options">
+            <div class="manual-option">
+                <div class="manual-option__name">Apenas naturais</div>
+                <div class="manual-option__desc">Pede apenas as sete notas C, D, E, F, G, A, B. O primeiro passo na memória do braço da guitarra. Ser capaz de nomear esses sete em qualquer lugar do pescoço é o caminho mais rápido a seguir.</div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name">Incluir perfurocortantes</div>
+                <div class="manual-option__desc">Abrange todas as 12 notas, escritas com sustenidos (C#, D#, …). Quando os naturais estiverem sólidos, adicione os semitons intermediários para cobrir completamente o braço.</div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name">Incluir apartamentos</div>
+                <div class="manual-option__desc">Abrange todas as 12 notas, escritas com bemóis (Db, Eb,…). Para se acostumar com enarmônicos – o mesmo tom escrito de duas maneiras, como C# e Db. Útil se você toca em tonalidades planas.</div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name">Todas as notas</div>
+                <div class="manual-option__desc">Solicita todas as 12 notas, reconhecendo grafias sustenidas e bemol - a configuração mais ampla. O estágio em que você lustra todo o braço até o nível de desempenho.</div>
+            </div>
+        </div>
+
+        <div class="manual-rationale">
+            <span class="manual-rationale__label">As evidências por trás disso</span>
+            <p>
+
+                Quanto menos nomes de notas você aprender de uma vez, menos você precisará processar e mais confiável será a correção da localização de cada nota. Proteger um alcance estreito antes de ampliá-lo é mais rápido do que enfrentar todos os 12 de uma vez. As camadas seguem a teoria da carga cognitiva: manter baixas as demandas de processamento no início de uma nova habilidade auxilia no aprendizado.
+
+
+            </p>
+            <p class="manual-rationale__ref">Ref.:Sweller (1988) <a class="manual-ref-num" href="#ref-2">[2]</a></p>
+        </div>
+
+        <!-- #fret-range -->
+        <h2 id="fret-range">Alcance do traste</h2>
+
+        <p class="manual-lead">
+
+            <strong>Construa a base em 0-5 e depois amplie para 0-12 (Padrão).</strong> O layout acima do 12º traste apenas se repete, portanto, mirar primeiro em 0-12 é o alvo eficiente.
+
+
+        </p>
+
+        <p>
+
+            Esta configuração define de qual seção do pescoço as perguntas são extraídas - efetivamente, o disco de dificuldade. Limite-o e haverá menos lugares para memorizar; alargue e você segura todo o pescoço. Observe que no modo String Movement ele é fixado em 0-12, e no Melody Echo a configuração da área de prática tem precedência - a faixa de trastes se aplica apenas quando a área de prática é Faixa completa. A área de prática (gama completa / aberta (0-4) / média (5-9) / alta (9-13)) é a configuração da zona de perguntas do próprio Melody Echo.
+
+
+        </p>
+
+        <div class="manual-options">
+            <div class="manual-option">
+                <div class="manual-option__name">0-5 (iniciante)</div>
+                <div class="manual-option__desc">Apenas posição baixa (trastes 0–5). Perto das cordas soltas, esta é a área que os iniciantes tocam primeiro ao aprender acordes. Sua extensão estreita o torna ideal para sua primeira memorização.</div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name">5-12 (Intermediário)</div>
+                <div class="manual-option__desc">Posição média a alta (trastes 5–12). Para jogadores que acertaram em cheio na posição baixa e agora querem preencher o meio do pescoço, que tende a ser um ponto fraco.</div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name">0-12 (Padrão)</div>
+                <div class="manual-option__desc">Trastes 0–12. A oitava se repete na 12ª casa, então, quando você souber até aqui, o resto será uma repetição. O intervalo alvo padrão para memória do braço da guitarra.</div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name">0-20 (intervalo estendido)</div>
+                <div class="manual-option__desc">Trastes 0–20. Uma faixa básica compatível com a contagem de trastes da maioria dos baixos - efetivamente o braço inteiro se você praticar baixo. Também é útil para guitarristas que acertaram em 0-12 e desejam adicionar as posições altas antes de chegar a 0-24.</div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name">0-24 (braço completo)</div>
+                <div class="manual-option__desc">O braço inteiro (trastes 0–24). Para músicos que usam trastes altos em solos e linhas principais. A fase de acabamento de primeira linha.</div>
+            </div>
+        </div>
+
+        <div class="manual-rationale">
+            <span class="manual-rationale__label">As evidências por trás disso</span>
+            <p>
+
+                Estreitar o intervalo reduz o número de posições que você aprende de uma vez, então você corrige essa seção de forma confiável. Proteger uma pequena região antes de alargar é mais rápido do que abordar todo o pescoço desde o início. As camadas seguem a teoria da carga cognitiva: manter baixas as demandas de processamento no início de uma nova habilidade auxilia no aprendizado.
+
+
+            </p>
+            <p class="manual-rationale__ref">Ref.:Sweller (1988) <a class="manual-ref-num" href="#ref-2">[2]</a></p>
+        </div>
+
+        <!-- #strings -->
+        <h2 id="strings">Sequências</h2>
+
+        <p class="manual-lead">
+
+            <strong>Deixe em Todas as sequências.</strong> Quando você notar que uma sequência está com atraso na precisão, restrinja temporariamente essa sequência, concentre-se e depois retorne para todas as seis.
+
+
+        </p>
+
+        <p>
+
+            Esta configuração restringe de qual das seis strings as perguntas são extraídas (na seção Configurações Básicas, compartilhada por todos os modos). Aplica-se apenas enquanto a guitarra está selecionada - em um baixo, as perguntas sempre surgem de todas as cordas (4–5). Além de "Todas as cordas", você pode limitar-se a três cordas agudas ou três graves, ou a uma única corda. O foco Apenas notas fracas, encontrado nas configurações de foco do modo Nota → Posição, atende automaticamente apenas as notas abaixo de 70% de precisão (ativo quando os dados são acumulados).
+
+
+        </p>
+
+        <div class="manual-options">
+            <div class="manual-option">
+                <div class="manual-option__name">Todas as sequências</div>
+                <div class="manual-option__desc">Extraído de todas as seis cordas — prática abrangente e realista. Deixe aqui, a menos que você tenha um motivo para restringir.</div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name">Cordas altas (1-3) / Cordas baixas (4-6)</div>
+                <div class="manual-option__desc">Limita-se a um grupo de três. As cordas do baixo (EAD) estão diretamente ligadas à localização das raízes dos acordes; as cordas agudas (G B E) para colocar melodias e solos. Solidificar metade de cada vez de acordo com suas necessidades é útil.</div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name">1ª a 6ª corda (individual)</div>
+                <div class="manual-option__desc">Limita a uma única string. A configuração mais restrita, para esmagar um ponto fraco claro, uma corda de cada vez - digamos, "Estou sempre trêmulo com os nomes das notas da 6ª corda".</div>
+            </div>
+        </div>
+
+        <div class="manual-rationale">
+            <span class="manual-rationale__label">As evidências por trás disso</span>
+            <p>
+
+                Estreitar as cordas permite que você reduza o quanto você aguenta de uma só vez e preencha com segurança um ponto fraco. Uma única corda trêmula se perde na multidão quando você pratica todas as seis; isolá-lo diminui a carga para que você possa se concentrar e mantê-la firme. Isto segue a teoria da carga cognitiva: manter as exigências baixas – logo no início ou quando reforça uma fraqueza – ajuda a aprendizagem.
+
+
+            </p>
+            <p class="manual-rationale__ref">Ref.:Sweller (1988) <a class="manual-ref-num" href="#ref-2">[2]</a></p>
+        </div>
+
+        <!-- #answer-mode -->
+        <h2 id="answer-mode">Modo de atendimento</h2>
+
+        <p class="manual-lead">
+
+            <strong>Comece com uma posição única.</strong> Quando a localização de cada nota estiver aproximadamente em sua cabeça, mude para Todas as posições para completar a imagem completa de como elas se espalham pelo braço.
+
+
+        </p>
+
+        <p>
+
+            Esta configuração decide, quando você responde uma nota no braço (modo Nota → Posição), quanto você deve tocar para acertar. O nome de uma nota existe em vários locais, então se você precisa encontrar todos ou apenas um muda a dificuldade.
+
+
+        </p>
+
+        <div class="manual-options">
+            <div class="manual-option">
+                <div class="manual-option__name">Posição única</div>
+                <div class="manual-option__desc">Encontre apenas um ponto correto e você estará certo. Orientado para a velocidade. Como uma é suficiente para avançar, é adequado fazer muitas perguntas em um ritmo acelerado para aumentar a velocidade de reação.</div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name">Todas as posições</div>
+                <div class="manual-option__desc">Encontre e toque em todos os pontos corretos dentro do intervalo. Uma configuração orientada para a integridade que mapeia exatamente onde o nome de uma nota está espalhado pelo braço. Mais difícil.</div>
+            </div>
+        </div>
+
+        <div class="manual-rationale">
+            <span class="manual-rationale__label">As evidências por trás disso</span>
+            <p>
+
+                As duas configurações mostram o conhecimento do instrumentista sobre onde o nome de uma nota reside em todo o braço. Primeiro você cria uma resposta instantânea e única; então, uma vez confortável, encontrar cada ponto mapeia o conjunto completo de posições. O design segue a pedagogia estabelecida de habilidades instrumentais e auditivas para dominar o braço da guitarra.
+
+
+            </p>
+            <p class="manual-rationale__ref">Ref.:Karpinski (2000) <a class="manual-ref-num" href="#ref-1">[1]</a></p>
+        </div>
+
+        <!-- #hint-level -->
+        <h2 id="hint-level">Dicas</h2>
+
+        <p class="manual-lead">
+
+            <strong>Principiantes usam Mostrar oitavas para entender o layout e depois mudam para Sem dicas.</strong> O objetivo final é responder de forma confiável com Sem dicas.
+
+
+        </p>
+
+        <p>
+
+            Esta configuração decide quanta assistência será mostrada enquanto você atende. Mais ajuda torna mais fácil responder, mas também reduz o esforço de lembrar por conta própria - portanto, a regra básica é diminuir o número conforme você se sentir confortável.
+
+
+        </p>
+
+        <div class="manual-options">
+            <div class="manual-option">
+                <div class="manual-option__name">Sem dicas</div>
+                <div class="manual-option__desc">Nenhuma ajuda — você responde inteiramente por conta própria. Isso maximiza o esforço de extrair a resposta da memória, o que gera a retenção mais forte. Este é o alvo final.</div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name">Mostrar oitavas</div>
+                <div class="manual-option__desc">Destaca as posições de oitava do mesmo nome de nota. Encontrar um torna os outros mais fáceis de inferir – um bom suporte desde o início, quando as relações espaciais ainda não estão claras.</div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name">Mostrar restante</div>
+                <div class="manual-option__desc">Mostra quantos pontos corretos restam. Emparelhado com Todas as posições, ele informa que “ainda restam algumas”, evitando pontos perdidos.</div>
+            </div>
+        </div>
+
+        <div class="manual-rationale">
+            <span class="manual-rationale__label">As evidências por trás disso</span>
+            <p>
+
+                As dicas são uma estrutura que diminui a carga de processamento enquanto um iniciante ainda não memorizou o braço. Auxílios como Show Octaves fornecem uma dica, mantêm a carga baixa e tornam o layout mais fácil de entender. Assim que você tiver espaço de sobra, a remoção dos auxílios restaura toda a carga de recall sem auxílio. Isto segue a teoria da carga cognitiva: estruturas que reduzem a carga apoiam a aprendizagem precoce.
+
+
+            </p>
+            <p class="manual-rationale__ref">Ref.:Sweller (1988) <a class="manual-ref-num" href="#ref-2">[2]</a></p>
+        </div>
+
+        <!-- #tuning -->
+        <h2 id="tuning">Ajuste</h2>
+
+        <p class="manual-lead">
+
+            <strong>Deixe no padrão (EADGBE).</strong> Escolha afinações alternativas apenas quando realmente precisar tocar em uma.
+
+
+        </p>
+
+        <p>
+
+            Esta configuração define a afinação da corda aberta de cada corda. Mude-o e a mesma posição do traste produz um nome de nota diferente, de modo que todo o mapa de nomes de notas no braço muda. Além do Standard (EADGBE), ele suporta Drop D (DADGBE, a 6ª corda abaixo de um tom inteiro) e Open G, Open D e DADGAD, onde apenas cordas abertas soam um acorde. Se você toca músicas em uma afinação incomum, use isso para reaprender o braço. A afinação só pode ser escolhida enquanto Guitarra estiver selecionada — um baixo é fixado em sua afinação padrão (EADG em 4 cordas, BEADG em 5 cordas).
+
+
+        </p>
+
+        <!-- #handedness -->
+        <h2 id="handedness">Lateralidade</h2>
+
+        <p class="manual-lead">
+
+            <strong>Escolha o que combina com a guitarra que você toca.</strong> Destro para uma guitarra para destros, Canhoto para uma guitarra para canhotos — escolha uma vez e deixe como está.
+
+
+        </p>
+
+        <p>
+
+            Esta configuração define a orientação do braço da guitarra mostrado na tela. Isso não altera a dificuldade ou o conteúdo – simplesmente combina o display com o seu instrumento. Se a sua guitarra e o layout na tela discordam, você desperdiça esforço girando mentalmente para a esquerda e para a direita ao responder às posições.
+
+
+        </p>
+
+        <div class="manual-options">
+            <div class="manual-option">
+                <div class="manual-option__name">Destro</div>
+                <div class="manual-option__desc">O display padrão, combinando com a aparência de uma guitarra para destros (com trastes para a mão esquerda). Isso é bom para a maioria dos jogadores.</div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name">Canhoto</div>
+                <div class="manual-option__desc">Espelha o braço da guitarra da esquerda para a direita. Permite que tocadores de violão canhoto (com a mão direita) pratiquem com a mesma visão de seu instrumento.</div>
+            </div>
+        </div>
+
+        <!-- #sound-source -->
+        <h2 id="sound-source">Som de aviso</h2>
+
+        <p class="manual-lead">
+
+            <strong>Em caso de dúvida, combine o timbre do seu próprio instrumento (guitarra/baixo).</strong> Especialmente nos modos de ouvido, você pratica com o timbre que deseja escolher. Escolha Sine Tone quando quiser focar apenas no tom.
+
+
+        </p>
+
+        <p>
+
+            Esta configuração define o timbre dos sons de prompt e toque. Apenas o tom muda – a troca do braço da guitarra (guitarra/baixo) é feita com a configuração do Instrumento acima. As escolhas acompanham o instrumento: a fonte do baixo não é mostrada no braço da guitarra e a fonte da guitarra não está no baixo, enquanto Piano e Sine Tone podem ser escolhidos em qualquer um deles.
+
+
+        </p>
+
+        <div class="manual-options">
+            <div class="manual-option">
+                <div class="manual-option__name">Piano</div>
+                <div class="manual-option__desc">Um timbre neutro e padrão disponível em qualquer braço da guitarra. Perfeitamente bem se você não tiver nenhuma preferência específica.</div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name">Guitarra</div>
+                <div class="manual-option__desc">Amostrado de uma guitarra real. Selecionável apenas enquanto o braço da guitarra estiver escolhido — permite executar os modos de ouvido com o timbre da guitarra que você realmente ouve.</div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name">Baixo</div>
+                <div class="manual-option__desc">Amostrado de um baixo real. Selecionável apenas quando um braço de baixo é escolhido – permite que você pratique ouvir o registro baixo com um timbre de baixo real.</div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name">Tom senoidal</div>
+                <div class="manual-option__desc">Um tom puro sem conotações. Para eliminar sinais de timbre e focar apenas no tom.</div>
+            </div>
+        </div>
+
+        <!-- References -->
+        <section class="manual-refs">
+            <div class="manual-refs__title">Referências</div>
+            <ol>
+                <li id="ref-1">Karpinski, G. S. (2000). <em>Aural Skills Acquisition: The Development of Listening, Reading, and Performing Skills in College-Level Musicians.</em> Oxford University Press.</li>
+                <li id="ref-2">Sweller, J. (1988). Cognitive load during problem solving: Effects on learning. <em>Cognitive Science, 12</em>(2), 257–285.</li>
+            </ol>
+        </section>
+
+    </main>
+
+    <!-- Final CTA -->
+    <section class="article-cta">
+        <h2 class="article-cta__title">Configurações ordenadas? Experimente</h2>
+        <p class="article-cta__text">
+
+            Depois de entender cada configuração, o resto é prática.<br>Quando não tiver certeza, basta seguir as linhas "em caso de dúvida" nesta página.<br>Encontre as configurações adequadas para você no treinamento de braço do Solfege PRO.
+
+
+        </p>
+        <a href="https://apps.apple.com/br/app/id6756626617?pt=6749158383&amp;ct=web_manual&amp;mt=8" class="app-store-link" aria-label="Baixar na App Store">
+
+            <img class="app-store-link__img" width="120" height="40" src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/pt-br" alt="Baixar na App Store">
+
+
+        </a>
+    </section>
+
+    <!-- Related Content -->
+    <div class="article-related">
+        <div class="article-related__title">Conteúdo relacionado</div>
+        <a href="/guides/fretboard-training/" class="article-related__link" style="margin-bottom: var(--space-md);">
+            <div class="article-related__link-title">O que é treinamento no braço da guitarra? — Memorizando as notas no braço da guitarra</div>
+            <div class="article-related__link-desc">Para aqueles que querem entender o que é o treinamento do braço da guitarra antes de ajustar as configurações - um guia sobre por que memorizar nomes de notas no braço acelera o progresso, com prática passo a passo.</div>
+        </a>
+        <a href="/" class="article-related__link">
+            <div class="article-related__link-title">Guia prático do Solfege PRO</div>
+            <div class="article-related__link-desc">Menus de prática baseados em desafios para guitarra, baixo, bateria, piano e voz</div>
+        </a>
+    </div>
+
+    <!-- Article Note -->
+    <aside class="article-endnote">
+        <p class="article-endnote__text">
+
+            Esta página é uma referência que explica as configurações do aplicativo. As progressões recomendadas aqui são diretrizes gerais baseadas em metodologia prática amplamente utilizada; as configurações ideais variam de acordo com a experiência e os objetivos individuais. Os estudos citados relatam resultados gerais de aprendizagem e não garantem resultados neste aplicativo.
+
+
+        </p>
+    </aside>
+
+    <!-- Footer -->
+    <footer class="article-footer">
+        <p class="article-footer__text">
+            &copy; 2026 Solfege PRO
+        </p>
+    </footer>
+    <script src="/bootstrap.js?v=10" defer></script>
+    <nav aria-label="Language" style="display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:0.5rem;padding:var(--space-lg) var(--space-md);border-top:1px solid var(--surface-light);font-size:13px">
+        <a href="/manual/fretboard/" hreflang="ja" style="color:var(--text-secondary);text-decoration:none">日本語</a>
+        <span aria-hidden="true" style="color:var(--surface-light)">·</span>
+        <a href="/en/manual/fretboard/" hreflang="en" style="color:var(--text-secondary);text-decoration:none">English</a>
+        <span aria-hidden="true" style="color:var(--surface-light)">·</span>
+        <a href="/fr/manual/fretboard/" hreflang="fr" style="color:var(--text-secondary);text-decoration:none">Français</a>
+        <span aria-hidden="true" style="color:var(--surface-light)">·</span>
+        <a href="/de/manual/fretboard/" hreflang="de" style="color:var(--text-secondary);text-decoration:none">Deutsch</a>
+        <span aria-hidden="true" style="color:var(--surface-light)">·</span>
+        <a href="/es/manual/fretboard/" hreflang="es" style="color:var(--text-secondary);text-decoration:none">Español</a>
+        <span aria-hidden="true" style="color:var(--surface-light)">·</span>
+        <a href="/it/manual/fretboard/" hreflang="it" style="color:var(--text-secondary);text-decoration:none">Italiano</a>
+        <span aria-hidden="true" style="color:var(--surface-light)">·</span>
+        <a href="/ko/manual/fretboard/" hreflang="ko" style="color:var(--text-secondary);text-decoration:none">한국어</a>
+        <span aria-hidden="true" style="color:var(--surface-light)">·</span>
+        <span style="color:var(--primary);font-weight:600" aria-current="true">Português (Brasil)</span>
+    </nav>
+</body>
+</html>

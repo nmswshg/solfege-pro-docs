@@ -1,0 +1,687 @@
+<!DOCTYPE html>
+<html lang="es"
+      data-title-ja="コード認識 設定マニュアル — 各設定の選び方 | ソルフェージュPRO"
+      data-title-en="Chord Recognition Settings Manual — How to Choose Each Option | Solfege PRO"
+      data-title-fr="Manuel des réglages de reconnaissance d'accords — Comment choisir chaque option | Solfege PRO"
+      data-title-de="Handbuch der Akkorderkennung-Einstellungen — So wählen Sie jede Option | Solfege PRO">
+<head>
+    <meta charset="UTF-8">
+    <meta name="robots" content="index, follow">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#1A1A1E">
+    <title>Manual de reconocimiento de acordes | Solfege PRO</title>
+    <meta name="description" content="Manual de referencia para los ajustes de reconocimiento del acorde — modo de entrenamiento, dificultad, reproducción, tipo de pregunta, nota raíz, inversiones, octava: quién elige qué.">
+
+    <!-- Canonical -->
+    <link rel="canonical" href="https://solfegepro.com/es/manual/chord/">
+    <link rel="alternate" hreflang="ja" href="https://solfegepro.com/manual/chord/">
+    <link rel="alternate" hreflang="en" href="https://solfegepro.com/en/manual/chord/">
+    <link rel="alternate" hreflang="fr" href="https://solfegepro.com/fr/manual/chord/">
+    <link rel="alternate" hreflang="de" href="https://solfegepro.com/de/manual/chord/">
+    <link rel="alternate" hreflang="es" href="https://solfegepro.com/es/manual/chord/">
+    <link rel="alternate" hreflang="it" href="https://solfegepro.com/it/manual/chord/">
+    <link rel="alternate" hreflang="ko" href="https://solfegepro.com/ko/manual/chord/">
+    <link rel="alternate" hreflang="pt-BR" href="https://solfegepro.com/pt-br/manual/chord/">
+    <link rel="alternate" hreflang="x-default" href="https://solfegepro.com/manual/chord/">
+<!-- OGP -->
+    <meta property="og:title" content="Manual de reconocimiento de acordes">
+    <meta property="og:description" content="Manual de referencia para los ajustes de reconocimiento del acorde — modo de entrenamiento, dificultad, reproducción, tipo de pregunta, nota raíz, inversiones, octava: quién elige qué.">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://solfegepro.com/es/manual/chord/">
+    <meta property="og:site_name" content="Solfege PRO">
+    <meta property="og:image" content="https://solfegepro.com/og-image.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Solfege PRO">
+    <meta property="og:locale" content="es_ES">
+    <meta property="og:locale:alternate" content="ja_JP">
+    <meta property="og:locale:alternate" content="en_US">
+    <meta property="og:locale:alternate" content="fr_FR">
+    <meta property="og:locale:alternate" content="de_DE">
+    <meta property="og:locale:alternate" content="it_IT">
+    <meta property="og:locale:alternate" content="ko_KR">
+    <meta property="og:locale:alternate" content="pt_BR">
+    <meta property="article:published_time" content="2026-06-05">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Manual de reconocimiento de acordes">
+    <meta name="twitter:description" content="Manual de referencia para los ajustes de reconocimiento del acorde — modo de entrenamiento, dificultad, reproducción, tipo de pregunta, nota raíz, inversiones, octava: quién elige qué.">
+    <meta name="twitter:image" content="https://solfegepro.com/og-image.png">
+
+    <!-- Favicon -->
+    <link rel="icon" href="/favicon.ico" sizes="any">
+    <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap"></noscript>
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="/style.css?v=23">
+    <link rel="stylesheet" href="/guides/article.css?v=14">
+
+    <style>
+        /* Manual option reference — responsive, no fixed px widths */
+        .manual-options {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr);
+            gap: var(--space-sm);
+            margin: var(--space-lg) 0;
+        }
+        .manual-option {
+            background: var(--surface);
+            border: 1px solid var(--surface-light);
+            border-radius: var(--radius-lg);
+            padding: var(--space-md);
+        }
+        .manual-option__name {
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: var(--space-xs);
+        }
+        .manual-option__desc {
+            font-size: 13px;
+            color: var(--text-secondary);
+        }
+        /* Bottom-line callout (conclusion first) */
+        .manual-lead {
+            font-size: 14px;
+            line-height: 1.75;
+            color: var(--text-primary);
+            border-left: 3px solid var(--primary);
+            background: rgba(212, 175, 55, 0.06);
+            padding: var(--space-sm) var(--space-md);
+            border-radius: 0 var(--radius-md) var(--radius-md) 0;
+            margin: var(--space-md) 0;
+        }
+        /* Per-setting evidence note — deliberately styled as an editorial
+           aside, NOT as a settings card (no surface fill, no gold label),
+           so it is never mistaken for an in-app option. */
+        .manual-rationale {
+            margin: var(--space-md) 0 var(--space-2xl);
+            padding: var(--space-sm) 0 var(--space-sm) var(--space-md);
+            border-left: 2px solid var(--surface-light);
+        }
+        .manual-rationale__label {
+            display: block;
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            color: var(--text-secondary);
+            margin-bottom: 4px;
+            opacity: 0.75;
+        }
+        .manual-rationale p {
+            font-size: 13px;
+            line-height: 1.75;
+            color: var(--text-secondary);
+            margin: 0;
+        }
+        .manual-rationale__ref {
+            font-size: 12px;
+            font-style: italic;
+            margin-top: var(--space-xs) !important;
+            opacity: 0.7;
+        }
+        /* Citation number linking to the reference list */
+        .manual-ref-num {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-style: normal;
+        }
+        .manual-ref-num:hover { color: var(--primary); }
+        /* Full reference list at page end */
+        .manual-refs {
+            margin: var(--space-2xl) 0 0;
+            padding-top: var(--space-lg);
+            border-top: 1px solid var(--surface-light);
+        }
+        .manual-refs__title {
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: var(--space-sm);
+        }
+        .manual-refs ol {
+            margin: 0;
+            padding-left: 1.25em;
+        }
+        .manual-refs li {
+            font-size: 12px;
+            line-height: 1.7;
+            color: var(--text-secondary);
+            margin-bottom: var(--space-xs);
+            scroll-margin-top: 84px;
+        }
+        .manual-refs li:target {
+            color: var(--text-primary);
+        }
+    </style>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Manual de reconocimiento de acordes","description":"Manual de referencia para los ajustes de reconocimiento del acorde — modo de entrenamiento, dificultad, reproducción, tipo de pregunta, nota raíz, inversiones, octava: quién elige qué.","author":{"@type":"Organization","name":"Solfege PRO"},"publisher":{"@type":"Organization","name":"Solfege PRO","logo":{"@type":"ImageObject","url":"https://solfegepro.com/AppIcon.png"}},"datePublished":"2026-06-05","mainEntityOfPage":{"@type":"WebPage","@id":"https://solfegepro.com/es/manual/chord/"}}</script>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Inicio","item":"https://solfegepro.com/es/"},{"@type":"ListItem","position":2,"name":"Manual","item":"https://solfegepro.com/es/manual/"},{"@type":"ListItem","position":3,"name":"コード認識 設定マニュアル — 各設定の選び方","item":"https://solfegepro.com/es/manual/chord/"}]}</script>
+</head>
+<body>
+    <!-- Navigation -->
+        <nav class="nav" aria-label="Menú principal">
+        <div class="nav__container">
+            <a href="/es/" class="nav__logo" aria-label="Solfege PRO">
+                <img src="/AppIcon.png" alt="" class="nav__logo-icon" width="32" height="32">
+                <span class="nav__logo-text">Solfege PRO</span>
+            </a>
+            <ul class="nav__list">
+                <li><a href="/es/" class="nav__link">Acerca de Solfege PRO</a></li>
+                <li><a href="/es/features/" class="nav__link">Entrenamientos</a></li>
+                <li><a href="/es/guides/" class="nav__link">Guías de práctica</a></li>
+                <li><a href="/es/manual/" class="nav__link active" aria-current="page">Manual</a></li>
+            </ul>
+            <div class="nav__settings">
+                <button class="settings-btn" id="lang-toggle" title="Seleccionar idioma"><span id="lang-text">ES</span></button>
+                <button class="hamburger-btn" id="hamburger-btn" aria-label="Abrir menú" aria-expanded="false" aria-controls="drawer">
+                    <span class="hamburger-btn__line"></span><span class="hamburger-btn__line"></span><span class="hamburger-btn__line"></span>
+                </button>
+            </div>
+        </div>
+    </nav>
+        <!-- Mobile drawer (hidden on desktop) -->
+            <div class="drawer-overlay" id="drawer-overlay"></div>
+    <aside class="drawer" id="drawer" aria-label="Menú" aria-hidden="true" inert>
+        <div class="drawer__header">
+            <span class="drawer__title">Menú</span>
+            <button class="drawer__close" id="drawer-close" aria-label="Cerrar menú">×</button>
+        </div>
+        <ul class="drawer__list">
+            <li><a href="/es/" class="drawer__link">Acerca de Solfege PRO</a></li>
+            <li><a href="/es/features/" class="drawer__link">Entrenamientos</a></li>
+            <li><a href="/es/guides/" class="drawer__link">Guías de práctica</a></li>
+            <li><a href="/es/manual/" class="drawer__link active" aria-current="page">Manual</a></li>
+        </ul>
+    </aside>
+
+
+    <!-- Article Header -->
+    <header class="page-header">
+        <div class="page-header__meta">
+            <span class="page-header__tag">Manual</span>
+            <span>Reconocimiento del Corto</span>
+        </div>
+        <h1 class="page-header__title">
+
+            Manual de configuración de reconocimiento del acorde<br>Lo que cada opción significa y cómo elegir
+
+
+        </h1>
+        <p class="page-header__subtitle">
+
+            ¿Qué opción para elegir, cuándo y por qué? Esta página recorre cada entorno en el entrenamiento de reconocimiento de acordes, uno a la vez. Si llegas de un "?" en la pantalla de configuración, desplazate a la opción que necesitas.
+
+
+        </p>
+    </header>
+
+    <!-- Top-of-article CTA -->
+    <aside class="article-top-cta" aria-label="App promotion">
+        <div class="article-top-cta__body">
+            <p class="article-top-cta__title">
+
+                Prueba esto. Solfege PRO
+
+
+            </p>
+            <p class="article-top-cta__sub">
+
+                Consulta el precio en el App Store
+
+
+            </p>
+        </div>
+        <a href="https://apps.apple.com/es/app/id6756626617?pt=6749158383&amp;ct=web_manual&amp;mt=8" class="article-top-cta__button app-store-link" data-cta-position="article_top" aria-label="Descargar en el App Store"><img src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/es-es" class="app-store-link__img" alt="Descargar en el App Store" loading="lazy"></a>
+    </aside>
+
+    <!-- Article Body -->
+    <main class="article-body">
+
+        <!-- Intro -->
+        <p>
+
+            El entrenamiento de reconocimiento de corcho es práctica al escuchar varias notas sonadas de inmediato y identificar la calidad del acorde (el personaje del acorde — Major / Minor / 7th, y así sucesivamente) solo por oído. Los acordes auditivos son la base para comprender la armonía, y la base de la copia del oído, la composición y el juego conjunto.
+
+
+        </p>
+        <p>
+
+            Esta página es un manual para elegir la configuración. Cada escenario está diseñado alrededor de los métodos establecidos de la educación musical. Para cada configuración que pide una decisión, damos <strong>la elección recomendada, lo que es, y lo que entrena — con la evidencia detrás de ella</strong>. Si llegas de un "?" en la pantalla de configuración, desplazate a la opción que necesitas.
+
+
+        </p>
+
+        <!-- Shared note: practice-plan item settings sheets show only the settings
+     persisted per item (v1.3.1 hides non-persisted controls in plan context).
+     Included by the 7 module manuals: interval / chord / scale / progression /
+     sight-reading / rhythm / fretboard. Rhythm Sight Reading is deliberately
+     excluded — its plan items do not embed module settings at all. -->
+<p>
+
+    Esta página describe la pantalla de configuración del entrenamiento independiente abierto desde el hogar de la práctica. Cuando abres la configuración de un elemento de plan de práctica, solo se muestran los ajustes que se guardan con ese elemento.
+
+
+</p>
+
+
+        <!-- #training-mode -->
+        <h2 id="training-mode">Modo de capacitación</h2>
+
+        <p class="manual-lead">
+
+            <strong>Normal es suficiente para empezar.</strong> Usar Personalizado sólo para apuntar acordes específicos, y alcanzar para "Revisar Cuando se olvide" y "Weak-Point Focus" una vez que sus resultados se acumulan.
+
+
+        </p>
+
+        <p>
+
+            Este escenario decide la política por la que se eligen acordes para usted. Hay cuatro modos.
+
+
+        </p>
+
+        <div class="manual-options">
+            <div class="manual-option">
+                <div class="manual-option__name">Normal</div>
+                <div class="manual-option__desc">Dibuja de los acordes que coinciden con su dificultad elegida. Sin intención especial, éste es el único.</div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name">Personal</div>
+                <div class="manual-option__desc">Te descubrirás qué tipos de acordes aparecen. Para perforar una combinación específica (por ejemplo, sólo Maj7 vs m7) — seleccione al menos uno.</div>
+            </div>
+        </div>
+
+        <p>
+
+            Los otros dos — "Revisar cuando se olvida" y "Weak-Point Focus"— pagan una vez que se acumulan sus datos de rendimiento. Trabajan de la misma manera en cada entrenamiento, por lo que aparecen en línea a continuación.
+
+
+        </p>
+
+        <!-- TODO i18n: fr/de spans are interim English; translate after ja voice approval -->
+<!-- Reusable mode partial. Training-agnostic: do NOT mention chord/scale/etc. -->
+<section class="article-mode" id="mode-spaced-repetition">
+    <h3 class="article-mode__title">"Revisar cuando se olvida" modo (repetición espaciada)</h3>
+
+    <p>
+
+        La repetición espaciada significa que un artículo que ya has estudiado vuelve tal como estás a punto de olvidarlo. Cuanto más confiable sea, más tiempo será la brecha antes de que regrese; los elementos que faltan vuelven antes. Se basa en la idea de que el recuerdo es más duradero cuando se espacian las reseñas en lugar de recortar el mismo artículo de vuelta a atrás.
+
+
+    </p>
+
+    <p>
+
+        Este modo te queda bien una vez que la piscina de elementos ha crecido y empiezas a notar que las cosas que una vez sabías se han resbalado. La aplicación maneja el programado automáticamente, por lo que no tiene que seguir lo que necesita revisar. Recibe sesiones cortas y diarias más que largas ocasionales.
+
+
+    </p>
+
+    <p>
+
+        Cuando en duda, acérquese a ella en la fase de "mantenimiento", después de haber trabajado a través de los elementos una vez. Utilice el modo normal para construir la base cuando todo es nuevo, y luego dejar que la repetición espacial mueva ese conocimiento a la memoria a largo plazo, un enfoque cómodo de dos pasos. <em>El beneficio de los exámenes de espaciamiento para la retención a largo plazo fue sintetizado a escala por Cepeda et al. (2006), y la conclusión de que el acto de la propia recuperación fortalece la memoria proviene de Roediger &amp; Karpicke (2006).</em>
+
+
+    </p>
+</section>
+
+        <!-- TODO i18n: fr/de spans are interim English; translate after ja voice approval -->
+<!-- Reusable mode partial. Training-agnostic: do NOT mention chord/scale/etc. -->
+<section class="article-mode" id="mode-weak-point">
+    <h3 class="article-mode__title">Modo de enfoque de puntos débiles</h3>
+
+    <p>
+
+        El enfoque de puntos débiles mira su historial de respuestas, identifica los elementos con la menor precisión, y los sirve a usted más a menudo. En lugar de pasar tiempo en lo que ya respondes de forma fiable, se concentra en la práctica exactamente en los lugares que sigues desaparecido. La aplicación elige los objetivos automáticamente de sus propios resultados.
+
+
+    </p>
+
+    <p>
+
+        Este modo se adapta al escenario donde su precisión general está subiendo pero algunos elementos específicos todavía te hacen subir cada vez. Debido a que sigue regresando a sus puntos débiles, se siente más difícil — y ese esfuerzo extra controlado es precisamente donde ocurre el aprendizaje (el principio de dificultades deseables). Necesita suficiente historia de respuesta antes de que aparezcan los candidatos, así que juega el modo normal por un tiempo primero.
+
+
+    </p>
+
+    <p>
+
+        Cuando en duda, desciende para unas cuantas sesiones concentradas cada vez que te mesetas a un nivel determinado y sientas que "todas perdiendo el mismo puñado de artículos justo antes de que se estabilice". Una vez que los puntos débiles se despejen, vuelva al modo normal para mantener su equilibrio general. <em>Deliberadamente, volviéndose a recuperar los elementos que tiende a perder —el "efecto de prueba"— fue mostrado por Roediger &amp; Karpicke (2006) para beneficiar fuertemente la retención posterior.</em>
+
+
+    </p>
+</section>
+
+
+        <div class="manual-rationale">
+            <span class="manual-rationale__label">La evidencia detrás de ella</span>
+            <p>
+
+                Los cuatro modos existen para concentrar la práctica en los acordes que usted necesita actualmente. El formato de prueba en sí —recordando la respuesta en lugar de escuchar pasivamente— fortalece la memoria más que la reescritura (el efecto de prueba). "Revisar cuando se olvida" y "Weak-Point Focus" automatizan esto utilizando sus datos de rendimiento.
+
+
+            </p>
+            <p class="manual-rationale__ref">Ref.: Roediger &amp; Karpicke (2006) <a class="manual-ref-num" href="#ref-1">[1]</a></p>
+        </div>
+
+        <!-- #difficulty -->
+        <h2 id="difficulty">Dificultad</h2>
+
+        <p class="manual-lead">
+
+            <strong>Cuando no esté seguro, comience en las Triadas Básicas.</strong> Sube un nivel una vez que usted confía fiablemente el 80%+ en el actual.
+
+
+        </p>
+
+        <p>
+
+            Establece la gama de tipos de acordes que se le preguntará (según el modo Estándar). Siguiendo un pedido también utilizado en los conservadores de música, la piscina se ensancha paso a paso: triads → 7o acordes → tensiones.
+
+
+        </p>
+
+        <div class="manual-options">
+            <div class="manual-option">
+                <div class="manual-option__name">Triadas básicas</div>
+                <div class="manual-option__desc">Mayor y Menor sólo. El primer paso, dejándote enfocar en escuchar el 3er (la nota dos pasos por encima de la raíz) que decide la calidad brillante o oscura de un acorde.</div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name">Todas las tribus</div>
+                <div class="manual-option__desc">Agrega Diminished y Augmented. Ahora aprendes a escuchar el 5to (dim) estrecho y el 5o (aug).</div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name">Básica 7a</div>
+                <div class="manual-option__desc">Maj7, m7, y 7 (dominante 7o). Cortinas de cuatro notas con una séptima pila en la triada. Los tres son subtly diferentes, así que muévete aquí sólo después de que las triadas se sientan estables.</div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name">Todos los 7ths</div>
+                <div class="manual-option__desc">Añada m7b5, dim7, y mMaj7 — los acordes 7 más tensos comunes en jazz.</div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name">Tensiones</div>
+                <div class="manual-option__desc">9o, 11o y 13o acordes. Cordos extendidos con otras notas apiladas en la parte superior, el nivel superior, tratando con ricas y coloridas sonoridades.</div>
+            </div>
+        </div>
+
+        <div class="manual-rationale">
+            <span class="manual-rationale__label">La evidencia detrás de ella</span>
+            <p>
+
+                Los tipos de acordes menos que manejas a la vez, menos tu oído debe procesar, y cuanto más fiablemente fijas las cues para descifrarlas. Asegurar un rango estrecho antes de ampliarlo te hace más rápido que tocar todo a la vez. Los niveles siguen la teoría de la carga cognitiva: mantener las demandas de procesamiento baja temprano en un nuevo aprendizaje de ayudas de habilidad.
+
+
+            </p>
+            <p class="manual-rationale__ref">Ref.: Sweller (1988) <a class="manual-ref-num" href="#ref-2">[2]</a></p>
+        </div>
+
+        <!-- #playback-mode -->
+        <h2 id="playback-mode">Modo de reproducción</h2>
+
+        <p class="manual-lead">
+
+            <strong>Aprende un nuevo acorde en Arpeggiated, cambia a Block mientras te sientes cómodo y termina con Random.</strong>
+
+
+        </p>
+
+        <p>
+
+            Decide cómo suena el acorde. El mismo acorde puede ser más fácil o más difícil de identificar dependiendo de cómo se juega.
+
+
+        </p>
+
+        <div class="manual-options">
+            <div class="manual-option">
+                <div class="manual-option__name">Bloque</div>
+                <div class="manual-option__desc">Todas las notas sonan de inmediato. Juzgamos la masa de sonido de todo el acorde en un instante, cerca de cómo llega la música real, y un poco más difícil.</div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name">Arpeggiated</div>
+                <div class="manual-option__desc">Las notas juegan una a la vez desde el fondo (un arpeggio, es decir, un acorde roto). Puede seguir cada nota individualmente, por lo que la estructura es fácil de analizar, ideal para localizar la tercera o séptima.</div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name">Aleatorio</div>
+                <div class="manual-option__desc">Interruptores entre bloque y arpegio cada pregunta, así que puedes identificar acordes de la manera que sean expresados.</div>
+            </div>
+        </div>
+
+        <div class="manual-rationale">
+            <span class="manual-rationale__label">La evidencia detrás de ella</span>
+            <p>
+
+                El objetivo es escuchar el acorde en sí sin apoyarse en una presentación. Arpeggiated te permite analizar la nota de estructura por nota, mientras que Block entrena juicio instantáneo sobre la masa de sonido del acorde, cerca de la música real. El ver cómo se juega te detiene dependiendo de un solo cue y construye la capacidad de identificar acordes sin embargo son expresados.
+
+
+            </p>
+            <p class="manual-rationale__ref">Ref.: Brunmair &amp; Richter (2019) <a class="manual-ref-num" href="#ref-3">[3]</a>; Karpinski (2000) <a class="manual-ref-num" href="#ref-4">[4]</a></p>
+        </div>
+
+        <!-- #question-type -->
+        <h2 id="question-type">Tipo de pregunta</h2>
+
+        <p class="manual-lead">
+
+            <strong>Deja que empiece con la calidad del acorde.</strong> Una vez que el reconocimiento de calidad es estable, el progreso a Bass Note, luego Inversión.
+
+
+        </p>
+
+        <p>
+
+            Decide lo que se le pide que responda. Incluso para el mismo acorde, lo que se le pregunta cambios que la habilidad de escuchar que construye.
+
+
+        </p>
+
+        <div class="manual-options">
+            <div class="manual-option">
+                <div class="manual-option__name">Calidad del acorde</div>
+                <div class="manual-option__desc">Identificar el tipo del acorde (Major, Menor, etc.). El corazón del reconocimiento de acordes y el tipo de pregunta predeterminado.</div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name">Nota de Bass</div>
+                <div class="manual-option__desc">Identificar la nota de sonido más baja (la nota bajo). Entrena el oído que subyace a las inversiones auditivas (bajo). Seleccionando las inversiones de auto-enables.</div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name">Inversión</div>
+                <div class="manual-option__desc">Identificar la inversión ( posición de raíz, 1a, 2a - formas hechas por intercambio de que tono es más bajo). Un oído más avanzado que escucha el centro de cambio de gravedad del mismo acorde. Inversiones auto-enables.</div>
+            </div>
+        </div>
+
+        <div class="manual-rationale">
+            <span class="manual-rationale__label">La evidencia detrás de ella</span>
+            <p>
+
+                El progreso a través de tipos de preguntas construye el elemento de habilidad de corazón acorde por elemento. Denotar la calidad (bright/dark, tensión) primero, luego la nota más baja, luego la inversión, desarrolla un oído que escucha la estructura de acordes desde varios ángulos. Esto sigue la evolución establecida de la calidad del aprendizaje y las inversiones a su vez.
+
+
+            </p>
+            <p class="manual-rationale__ref">Ref.: Karpinski (2000) <a class="manual-ref-num" href="#ref-4">[4]</a></p>
+        </div>
+
+        <!-- #root-mode -->
+        <h2 id="root-mode">Modo de arranque</h2>
+
+        <p class="manual-lead">
+
+            <strong>Default to "Random across all keys" (la recomendación de la aplicación).</strong> Arregla la raíz sólo temporalmente, como un principiante absoluto que quiere aislar la diferencia tipo acorde.
+
+
+        </p>
+
+        <p>
+
+            Decide cómo se elige la raíz del acorde (la nota de referencia más baja fundamental) cada vez. Elige "Rematar todas las llaves" o "Raíz fija".
+
+
+        </p>
+
+        <div class="manual-options">
+            <div class="manual-option">
+                <div class="manual-option__name">Aleatoriamente a través de todas las teclas (recomendadas)</div>
+                <div class="manual-option__desc">Escoge la raíz al azar de las 12 teclas cada pregunta. Oís la forma del acorde en vez de apoyarse en un tono — la práctica más realista.</div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name">Raíz fija</div>
+                <div class="manual-option__desc">Cierra la raíz a un solo altura (escogiendo esto revela un picador para qué nota). Una referencia constante hace que los acordes sean fáciles de comparar, buenos para el aprendizaje temprano cuando desea aislar la diferencia tipo acorde.</div>
+            </div>
+        </div>
+
+        <div class="manual-rationale">
+            <span class="manual-rationale__label">La evidencia detrás de ella</span>
+            <p>
+
+                Aleatoriamente a través de todas las teclas es el predeterminado por lo que construye la capacidad de escuchar la forma del acorde en sí mismo sin apoyarse en una altura de altura. Mezclando diferentes teclas (interleaving) se conserva mejor que bloquear la misma condición, como muestra el meta-análisis. La música real aparece en cada llave, por lo que esto construye un oído realista.
+
+
+            </p>
+            <p class="manual-rationale__ref">Ref.: Brunmair &amp; Richter (2019) <a class="manual-ref-num" href="#ref-3">[3]</a></p>
+        </div>
+
+        <!-- #inversions -->
+        <h2 id="inversions">Inversiones</h2>
+
+        <p class="manual-lead">
+
+            <strong>Déjalo al principio.</strong> Agregue inversiones sólo una vez que su reconocimiento de calidad es estable; mezclarlas antes de que se establezca la fundación tiende a causar confusión.
+
+
+        </p>
+
+        <p>
+
+            Controla si aparecen las inversiones —formas con una nota más baja modificada—. Por ejemplo, C Major (C-E-G) es la posición de la raíz; E-G-C (nota más baja E) es la primera inversión y G-C-E (nota más baja G) la segunda. Las notas son las mismas, pero que uno se sienta en el fondo cambia el centro de gravedad del acorde. Elegir la nota Bass o la inversión como el tipo de pregunta permite esto automáticamente.
+
+
+        </p>
+
+        <div class="manual-rationale">
+            <span class="manual-rationale__label">La evidencia detrás de ella</span>
+            <p>
+
+                Las inversiones se añaden más tarde para que primero asegure el sonido del acorde en la posición de la raíz, luego traiga la nueva señal de una nota más baja cambiada. Las inversiones están en todas partes en la música real y inevitables, pero se mantienen mejor una vez que se establece la fundación. Aprender calidad y luego las inversiones a su vez es una progresión establecida de entrenamiento de oídos.
+
+
+            </p>
+            <p class="manual-rationale__ref">Ref.: Karpinski (2000) <a class="manual-ref-num" href="#ref-4">[4]</a></p>
+        </div>
+
+        <!-- #octave -->
+        <h2 id="octave">Octave</h2>
+
+        <p class="manual-lead">
+
+            <strong>Déjalo en el Medio (C4).</strong> Una vez estable allí, prueba los registros bajos y altos también, construyendo un oído que no se mueve por registro.
+
+
+        </p>
+
+        <p>
+
+            Establece el registro (altura de altura) en el que se juegan los acordes: Bajo (C3), Medio (C4) o Alto (C5). En el registro bajo tonos de acordes se unen y son más difíciles de separar; en el registro alto las notas se extienden aparte y son más claras pero más delgadas. El medio (C4) se encuentra entre ellos y es el registro mejor balanceado para el reconocimiento de acordes.
+
+
+        </p>
+
+        <div class="manual-rationale">
+            <span class="manual-rationale__label">La evidencia detrás de ella</span>
+            <p>
+
+                Comenzar en el registro medio mantiene la carga de procesamiento del oído baja utilizando el rango donde los tonos de acorde son más fáciles de separar. Reducir dificultad innecesaria temprano te permite enfocarte en la diferencia tipo acorde; te ensancharás a otros registros más tarde para escuchar acordes a cualquier altura. Esto sigue la teoría de la carga cognitiva: mantener la carga baja de los primeros auxilios aprendiendo.
+
+
+            </p>
+            <p class="manual-rationale__ref">Ref.: Sweller (1988) <a class="manual-ref-num" href="#ref-2">[2]</a></p>
+        </div>
+
+        <!-- References -->
+        <section class="manual-refs">
+            <div class="manual-refs__title">Referencias</div>
+            <ol>
+                <li id="ref-1">Roediger, H. L., &amp; Karpicke, J. D. (2006). Test-enhanced learning: Taking memory tests improves long-term retention. <em>Psychological Science, 17</em>(3), 249–255.</li>
+                <li id="ref-2">Sweller, J. (1988). Cognitive load during problem solving: Effects on learning. <em>Cognitive Science, 12</em>(2), 257–285.</li>
+                <li id="ref-3">Brunmair, M., &amp; Richter, T. (2019). Similarity matters: A meta-analysis of interleaved learning and its moderators. <em>Psychological Bulletin, 145</em>(11), 1029–1052.</li>
+                <li id="ref-4">Karpinski, G. S. (2000). <em>Aural Skills Acquisition: The Development of Listening, Reading, and Performing Skills in College-Level Musicians.</em> Oxford University Press.</li>
+            </ol>
+        </section>
+
+    </main>
+
+    <!-- Final CTA -->
+    <section class="article-cta">
+        <h2 class="article-cta__title">¿Configuración? Pruébalo.</h2>
+        <p class="article-cta__text">
+
+            Una vez que entiendas cada ajuste, el resto es práctica práctica práctica.<br>Cuando no esté seguro, siga las líneas "cuando en duda" en esta página.<br>Encontrar los ajustes que le caben la función de Solfege PRO: Reconocimiento de Corto.
+
+
+        </p>
+        <a href="https://apps.apple.com/es/app/id6756626617?pt=6749158383&amp;ct=web_manual&amp;mt=8" class="app-store-link" aria-label="Descargar en el App Store">
+
+            <img class="app-store-link__img" width="120" height="40" src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/es-es" alt="Descargar en el App Store">
+
+
+        </a>
+    </section>
+
+    <!-- Related Content -->
+    <div class="article-related">
+        <div class="article-related__title">Contenido relacionado</div>
+        <a href="/guides/ear-training-chords/" class="article-related__link" style="margin-bottom: var(--space-md);">
+            <div class="article-related__link-title">¿Qué es el reconocimiento del coro? — Comprender sonidos armónicos</div>
+            <div class="article-related__link-desc">Para aquellos que quieren entender qué reconocimiento de acordes es antes de ajustar la configuración — una guía para las diferencias de tono de acorde y práctica paso a paso.</div>
+        </a>
+        <a href="/" class="article-related__link">
+            <div class="article-related__link-title">Solfege PRO Guía de prácticas</div>
+            <div class="article-related__link-desc">Menús de práctica basados en desafíos para guitarra, bajo, tambores, piano y voces</div>
+        </a>
+    </div>
+
+    <!-- Article Note -->
+    <aside class="article-endnote">
+        <p class="article-endnote__text">
+
+            Esta página es una referencia que explica la configuración de la aplicación de la aplicación. Las progresiones recomendadas aquí son directrices generales basadas en una metodología de formación de oídos ampliamente utilizada; los ajustes óptimos varían con experiencia y objetivos individuales. Los estudios citados reportan hallazgos de aprendizaje general y no garantizan resultados dentro de esta aplicación.
+
+
+        </p>
+    </aside>
+
+    <!-- Footer -->
+    <footer class="article-footer">
+        <p class="article-footer__text">
+            &copy; 2026 Solfege PRO
+        </p>
+    </footer>
+    <script src="/bootstrap.js?v=10" defer></script>
+    <nav aria-label="Language" style="display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:0.5rem;padding:var(--space-lg) var(--space-md);border-top:1px solid var(--surface-light);font-size:13px">
+        <a href="/manual/chord/" hreflang="ja" style="color:var(--text-secondary);text-decoration:none">日本語</a>
+        <span aria-hidden="true" style="color:var(--surface-light)">·</span>
+        <a href="/en/manual/chord/" hreflang="en" style="color:var(--text-secondary);text-decoration:none">English</a>
+        <span aria-hidden="true" style="color:var(--surface-light)">·</span>
+        <a href="/fr/manual/chord/" hreflang="fr" style="color:var(--text-secondary);text-decoration:none">Français</a>
+        <span aria-hidden="true" style="color:var(--surface-light)">·</span>
+        <a href="/de/manual/chord/" hreflang="de" style="color:var(--text-secondary);text-decoration:none">Deutsch</a>
+        <span aria-hidden="true" style="color:var(--surface-light)">·</span>
+        <span style="color:var(--primary);font-weight:600" aria-current="true">Español</span>
+        <span aria-hidden="true" style="color:var(--surface-light)">·</span>
+        <a href="/it/manual/chord/" hreflang="it" style="color:var(--text-secondary);text-decoration:none">Italiano</a>
+        <span aria-hidden="true" style="color:var(--surface-light)">·</span>
+        <a href="/ko/manual/chord/" hreflang="ko" style="color:var(--text-secondary);text-decoration:none">한국어</a>
+        <span aria-hidden="true" style="color:var(--surface-light)">·</span>
+        <a href="/pt-br/manual/chord/" hreflang="pt-BR" style="color:var(--text-secondary);text-decoration:none">Português (Brasil)</a>
+    </nav>
+</body>
+</html>

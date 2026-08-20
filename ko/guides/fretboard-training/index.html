@@ -1,0 +1,1111 @@
+<!DOCTYPE html>
+<html lang="ko"
+      data-title-ja="指板トレーニング — ギターの音名を暗記する | ソルフェージュPRO"
+      data-title-en="Mastering the Fretboard — How to Efficiently Learn Guitar Note Positions | Solfege PRO"
+      data-title-fr="Maîtriser le manche — Apprendre efficacement les notes de la guitare | Solfege PRO"
+      data-title-de="Das Griffbrett beherrschen — Gitarrennoten effizient lernen | Solfege PRO">
+<head>
+    <meta charset="UTF-8">
+    <meta name="robots" content="index, follow">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#1A1A1E">
+    <title>기타 지판 완전 정복: 음 위치 외우기 | Solfege PRO</title>
+    <meta name="description" content="개방현, 5프렛 기준점, 옥타브 모양, 12프렛 옥타브 기준점까지 기타 지판을 단계적으로 익히는 방법을 소개합니다.">
+
+    <!-- Canonical -->
+    <link rel="canonical" href="https://solfegepro.com/ko/guides/fretboard-training/">
+    <link rel="alternate" hreflang="ja" href="https://solfegepro.com/guides/fretboard-training/">
+    <link rel="alternate" hreflang="en" href="https://solfegepro.com/en/guides/fretboard-training/">
+    <link rel="alternate" hreflang="fr" href="https://solfegepro.com/fr/guides/fretboard-training/">
+    <link rel="alternate" hreflang="de" href="https://solfegepro.com/de/guides/fretboard-training/">
+    <link rel="alternate" hreflang="es" href="https://solfegepro.com/es/guides/fretboard-training/">
+    <link rel="alternate" hreflang="it" href="https://solfegepro.com/it/guides/fretboard-training/">
+    <link rel="alternate" hreflang="ko" href="https://solfegepro.com/ko/guides/fretboard-training/">
+    <link rel="alternate" hreflang="pt-BR" href="https://solfegepro.com/pt-br/guides/fretboard-training/">
+    <link rel="alternate" hreflang="x-default" href="https://solfegepro.com/guides/fretboard-training/">
+<!-- OGP -->
+    <meta property="og:title" content="기타 지판 완전 정복: 음 위치 외우기">
+    <meta property="og:description" content="개방현, 5프렛 기준점, 옥타브 모양, 12프렛 옥타브 기준점까지 기타 지판을 단계적으로 익히는 방법을 소개합니다.">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://solfegepro.com/ko/guides/fretboard-training/">
+    <meta property="og:site_name" content="Solfege PRO">
+    <meta property="og:image" content="https://solfegepro.com/og-image.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Solfege PRO">
+    <meta property="og:locale" content="ko_KR">
+    <meta property="og:locale:alternate" content="ja_JP">
+    <meta property="og:locale:alternate" content="en_US">
+    <meta property="og:locale:alternate" content="fr_FR">
+    <meta property="og:locale:alternate" content="de_DE">
+    <meta property="og:locale:alternate" content="es_ES">
+    <meta property="og:locale:alternate" content="it_IT">
+    <meta property="og:locale:alternate" content="pt_BR">
+    <meta property="article:published_time" content="2026-03-31">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="기타 지판 완전 정복: 음 위치 외우기">
+    <meta name="twitter:description" content="개방현, 5프렛 기준점, 옥타브 모양, 12프렛 옥타브 기준점까지 기타 지판을 단계적으로 익히는 방법을 소개합니다.">
+    <meta name="twitter:image" content="https://solfegepro.com/og-image.png">
+
+    <!-- Favicon -->
+    <link rel="icon" href="/favicon.ico" sizes="any">
+    <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap"></noscript>
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="/style.css?v=23">
+    <link rel="stylesheet" href="/guides/article.css?v=14">
+
+    <!-- Fretboard diagram styles -->
+    <style>
+        /* Fretboard Grid Diagram (responsive — never horizontally scrolls) */
+        .fretboard-diagram {
+            background: var(--surface);
+            border-radius: var(--radius-xl);
+            padding: var(--space-lg);
+            margin: var(--space-xl) 0;
+            border: 1px solid var(--surface-light);
+        }
+
+        /* Shared 12-column template: string label (32px) + 11 fret cells. */
+        .fretboard-grid__header,
+        .fretboard-grid__row {
+            display: grid;
+            grid-template-columns: 32px repeat(11, minmax(0, 1fr));
+        }
+
+        .fretboard-grid__header {
+            margin-bottom: var(--space-sm);
+        }
+
+        .fretboard-grid__header-cell {
+            text-align: center;
+            font-size: 11px;
+            font-weight: 700;
+            color: var(--text-secondary);
+            min-width: 0;
+        }
+
+        .fretboard-grid__row {
+            align-items: center;
+            border-bottom: 2px solid var(--surface-light);
+        }
+
+        .fretboard-grid__row:last-child {
+            border-bottom: none;
+        }
+
+        .fretboard-grid__string-label {
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--primary);
+            text-align: center;
+        }
+
+        .fretboard-grid__cell {
+            height: 36px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--text-secondary);
+            position: relative;
+            min-width: 0;
+        }
+
+        .fretboard-grid__cell--note {
+            color: var(--text-primary);
+        }
+
+        .fretboard-grid__cell--note::after {
+            content: "";
+            position: absolute;
+            /* Scale with the cell — never exceed 28px, never below 20px. */
+            width: clamp(20px, 80%, 28px);
+            aspect-ratio: 1;
+            border-radius: 50%;
+            background: rgba(212, 175, 55, 0.15);
+            border: 1px solid rgba(212, 175, 55, 0.4);
+            z-index: 0;
+        }
+
+        .fretboard-grid__cell--highlight {
+            color: var(--primary);
+            font-weight: 700;
+        }
+
+        .fretboard-grid__cell--highlight::after {
+            background: rgba(212, 175, 55, 0.25);
+            border-color: var(--primary);
+        }
+
+        .fretboard-grid__nut {
+            width: 4px;
+            height: 36px;
+            background: var(--text-secondary);
+            flex-shrink: 0;
+            border-radius: 2px;
+        }
+
+        /* Octave Shape Diagram (inner .octave-grid handles responsiveness) */
+        .octave-diagram {
+            background: var(--surface);
+            border-radius: var(--radius-xl);
+            padding: var(--space-lg);
+            margin: var(--space-xl) 0;
+            border: 1px solid var(--surface-light);
+        }
+
+        /* Octave shape: 1 label + 6 fret columns (overrides the fretboard
+           template since the diagram only spans 6 frets). */
+        .octave-grid > .fretboard-grid__header,
+        .octave-grid__row {
+            display: grid;
+            grid-template-columns: 32px repeat(6, minmax(0, 1fr));
+        }
+        .octave-grid > .fretboard-grid__header > .fretboard-grid__header-cell {
+            /* Override the inline width attributes the HTML still ships
+               for backwards-compatibility — let the grid track govern. */
+            width: auto !important;
+        }
+
+        .octave-grid__row {
+            align-items: center;
+            border-bottom: 2px solid var(--surface-light);
+        }
+
+        .octave-grid__row:last-child {
+            border-bottom: none;
+        }
+
+        .octave-grid__label {
+            font-size: 12px;
+            font-weight: 700;
+            color: var(--text-secondary);
+            text-align: center;
+        }
+
+        .octave-grid__cell {
+            height: 34px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 11px;
+            color: var(--text-secondary);
+            position: relative;
+            min-width: 0;
+        }
+
+        .octave-grid__cell--root {
+            color: var(--primary);
+            font-weight: 700;
+        }
+
+        .octave-grid__cell--root::after {
+            content: "";
+            position: absolute;
+            width: clamp(18px, 80%, 26px);
+            aspect-ratio: 1;
+            border-radius: 50%;
+            background: rgba(212, 175, 55, 0.3);
+            border: 2px solid var(--primary);
+            z-index: 0;
+        }
+
+        .octave-grid__cell--octave {
+            color: #4ADE80;
+            font-weight: 700;
+        }
+
+        .octave-grid__cell--octave::after {
+            content: "";
+            position: absolute;
+            width: clamp(18px, 80%, 26px);
+            aspect-ratio: 1;
+            border-radius: 50%;
+            background: rgba(74, 222, 128, 0.2);
+            border: 2px solid #4ADE80;
+            z-index: 0;
+        }
+
+        .octave-arrow {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: var(--space-sm);
+            margin-top: var(--space-md);
+            font-size: 13px;
+            color: var(--text-secondary);
+        }
+
+        .octave-arrow__badge {
+            display: inline-flex;
+            align-items: center;
+            gap: var(--space-xs);
+            padding: 3px 10px;
+            border-radius: var(--radius-sm);
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .octave-arrow__badge--root {
+            background: rgba(212, 175, 55, 0.15);
+            color: var(--primary);
+            border: 1px solid rgba(212, 175, 55, 0.3);
+        }
+
+        .octave-arrow__badge--octave {
+            background: rgba(74, 222, 128, 0.15);
+            color: #4ADE80;
+            border: 1px solid rgba(74, 222, 128, 0.3);
+        }
+
+        /* Feature list for app section */
+        .feature-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--space-md);
+            margin: var(--space-lg) 0;
+        }
+
+        .feature-card {
+            background: var(--surface);
+            border: 1px solid var(--surface-light);
+            border-radius: var(--radius-lg);
+            padding: var(--space-md) var(--space-lg);
+        }
+
+        .feature-card__title {
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: var(--space-xs);
+        }
+
+        .feature-card__desc {
+            font-size: 13px;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        /* Progression steps */
+        .progression-steps {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-md);
+            margin: var(--space-lg) 0;
+        }
+
+        .progression-step {
+            display: flex;
+            align-items: flex-start;
+            gap: var(--space-md);
+            background: var(--surface);
+            border: 1px solid var(--surface-light);
+            border-radius: var(--radius-lg);
+            padding: var(--space-md) var(--space-lg);
+        }
+
+        .progression-step__number {
+            width: 28px;
+            height: 28px;
+            min-width: 28px;
+            background: var(--primary);
+            color: var(--background);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 13px;
+            font-weight: 700;
+            margin-top: 2px;
+        }
+
+        .progression-step__content {
+            flex: 1;
+        }
+
+        .progression-step__title {
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 2px;
+        }
+
+        .progression-step__desc {
+            font-size: 13px;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        @media (max-width: 768px) {
+            .feature-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .fretboard-grid__header-cell,
+            .fretboard-grid__cell {
+                width: 48px;
+            }
+
+            .octave-grid__cell {
+                width: 42px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .fretboard-grid__header-cell,
+            .fretboard-grid__cell {
+                width: 42px;
+                font-size: 10px;
+            }
+
+            .fretboard-grid__string-label {
+                width: 32px;
+                font-size: 11px;
+            }
+
+            .fretboard-grid__cell--note::after,
+            .fretboard-grid__cell--highlight::after {
+                width: 24px;
+                height: 24px;
+            }
+        }
+    </style>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"기타 지판 완전 정복: 음 위치 외우기","description":"개방현, 5프렛 기준점, 옥타브 모양, 12프렛 옥타브 기준점까지 기타 지판을 단계적으로 익히는 방법을 소개합니다.","author":{"@type":"Organization","name":"Solfege PRO"},"publisher":{"@type":"Organization","name":"Solfege PRO","logo":{"@type":"ImageObject","url":"https://solfegepro.com/AppIcon.png"}},"datePublished":"2026-03-31","mainEntityOfPage":{"@type":"WebPage","@id":"https://solfegepro.com/ko/guides/fretboard-training/"}}</script>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"홈","item":"https://solfegepro.com/ko/"},{"@type":"ListItem","position":2,"name":"연습 가이드","item":"https://solfegepro.com/ko/guides/"},{"@type":"ListItem","position":3,"name":"指板トレーニング — ギターの音名を暗記する","item":"https://solfegepro.com/ko/guides/fretboard-training/"}]}</script>
+</head>
+<body>
+    <!-- Navigation -->
+        <nav class="nav" aria-label="기본 메뉴">
+        <div class="nav__container">
+            <a href="/ko/" class="nav__logo" aria-label="Solfege PRO">
+                <img src="/AppIcon.png" alt="" class="nav__logo-icon" width="32" height="32">
+                <span class="nav__logo-text">Solfege PRO</span>
+            </a>
+            <ul class="nav__list">
+                <li><a href="/ko/" class="nav__link">Solfege PRO 소개</a></li>
+                <li><a href="/ko/features/" class="nav__link">훈련</a></li>
+                <li><a href="/ko/guides/" class="nav__link active" aria-current="page">연습 가이드</a></li>
+                <li><a href="/ko/manual/" class="nav__link">매뉴얼</a></li>
+            </ul>
+            <div class="nav__settings">
+                <button class="settings-btn" id="lang-toggle" title="언어 선택"><span id="lang-text">KO</span></button>
+                <button class="hamburger-btn" id="hamburger-btn" aria-label="메뉴 열기" aria-expanded="false" aria-controls="drawer">
+                    <span class="hamburger-btn__line"></span><span class="hamburger-btn__line"></span><span class="hamburger-btn__line"></span>
+                </button>
+            </div>
+        </div>
+    </nav>
+        <!-- Mobile drawer (hidden on desktop) -->
+            <div class="drawer-overlay" id="drawer-overlay"></div>
+    <aside class="drawer" id="drawer" aria-label="메뉴" aria-hidden="true" inert>
+        <div class="drawer__header">
+            <span class="drawer__title">메뉴</span>
+            <button class="drawer__close" id="drawer-close" aria-label="메뉴 닫기">×</button>
+        </div>
+        <ul class="drawer__list">
+            <li><a href="/ko/" class="drawer__link">Solfege PRO 소개</a></li>
+            <li><a href="/ko/features/" class="drawer__link">훈련</a></li>
+            <li><a href="/ko/guides/" class="drawer__link active" aria-current="page">연습 가이드</a></li>
+            <li><a href="/ko/manual/" class="drawer__link">매뉴얼</a></li>
+        </ul>
+    </aside>
+
+
+    <!-- Article Header -->
+    <header class="page-header">
+        <div class="page-header__meta">
+            <span class="page-header__tag">지판 교육</span>
+            <span>10 분 읽기</span>
+        </div>
+        <h1 class="page-header__title">
+
+            지판 마스터<br>어떻게 효율적으로 학습<br>기타 참고 위치
+
+
+        </h1>
+        <p class="page-header__subtitle">
+
+            기타 지판에는 100개의 주 위치가 있습니다. brute-force memorization 대신 구조 이해를 배우는 방법을 알아 훨씬 더 효율적으로 만듭니다.
+
+
+        </p>
+    </header>
+
+    <!-- Top-of-article CTA -->
+    <aside class="article-top-cta" aria-label="App promotion">
+        <div class="article-top-cta__body">
+            <p class="article-top-cta__title">
+
+                더 알아보기 Solfege PRO
+
+
+            </p>
+            <p class="article-top-cta__sub">
+
+                $9.99/월(미국 App Store 기준)(미국 App Store 기준)
+
+
+            </p>
+        </div>
+        <a href="https://apps.apple.com/kr/app/id6756626617?pt=6749158383&amp;ct=web_guides&amp;mt=8" class="article-top-cta__button app-store-link" data-cta-position="article_top" aria-label="App Store에서 다운로드"><img src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/ko-kr" class="app-store-link__img" alt="App Store에서 다운로드" loading="lazy"></a>
+    </aside>
+
+    <!-- Article Body -->
+    <main class="article-body">
+
+        <!-- Section 1: Why Learn the Fretboard -->
+        <h2 id="why-learn">왜 지판를 알아?</h2>
+
+        <p>
+
+            기타에는 피아노가 없습니다. 피아노에는 옥타브당 각 "C"에 대한 하나의 키가 있습니다. 기타에서는, 같은 "C"주의는 지판의 여러 위치에 존재합니다.
+
+
+        </p>
+
+        <p>
+
+            6개의 현과 24개의 frets로, 이론에 있는 144개의 위치가 있습니다. 음악적 의미있는 위치를 계산하는 것은 100을 초과합니다. "memorization"로 생각하면 압도감을 느낄 수 있습니다.
+
+
+        </p>
+
+        <p>
+
+            그러나 지판를 아는 이점은 뜻깊습니다.
+
+
+        </p>
+
+        <ul>
+            <li><strong>관련 제품</strong> — 다음 손가락을 넣어 어디에 대해 생각하지 않고 재생</li>
+            <li><strong>조드 퐁싱</strong> — 여러 위치와 항해에서 동일한 코드를 재생</li>
+            <li><strong>연락처</strong> - 키 변경이 즉시 적응</li>
+            <li><strong>의논하기</strong> — 빨리 지판에 듣고 노트를 찾습니다</li>
+            <li><strong>의정부</strong> — 누군가가 "Bb를 재생할 때,"당신은 즉시 응답 할 수 있습니다</li>
+        </ul>
+
+        <p>
+
+            지판를 모르는 기타리스트는 어두운 방에서 누군가가 느끼고 있습니다. 지도로 걸어가는 기타리스트.
+
+
+        </p>
+
+        <!-- Section 2: Fretboard Structure -->
+        <h2 id="structure">지판 구조 이해</h2>
+
+        <p>
+
+            지판를 memorizing 전에, 그것의 구조를 첫째로 이해하십시오. 패턴을 보면 144개의 위치를 분리하는 것이 필요하지 않습니다.
+
+
+        </p>
+
+        <h3 id="tuning">표준 조정</h3>
+        <p>
+
+            표준 기타 튜닝은 가장 낮은 현부터 가장 높은 현까지 <strong>E - A - D - G - B - E</strong>입니다. 각 개방현(프렛 0)에서 이 음들이 납니다.
+
+
+        </p>
+
+        <h3 id="fret-semitone">1개의 프렛 = 1개의 반음</h3>
+        <p>
+
+            각 fret는 1개의 반음에 의하여 음높이를 올립니다. 그래서 열린 1st 현이 E, 프렛 1 F, 프렛 2는 F# / Gb, 프렛 3은 G이며, 일반 패턴에.
+
+
+        </p>
+
+        <h3 id="12th-fret">12번째 떼 = 1개의 맹세</h3>
+        <p>
+
+            12 번째 fret은 오픈 현 위에 정확히 하나의 옥타브입니다. 이것은 frets 0-11에서 주 이름 패턴을 프렛 12에서 반복합니다. 12 번째 fret까지 학습하고 나머지는 자동으로 따릅니다.
+
+
+        </p>
+
+        <!-- Fretboard Diagram -->
+        <div class="fretboard-diagram">
+            <div class="diagram-title">지판 참고 배치 (키 위치)</div>
+            <div class="fretboard-grid">
+                <div class="fretboard-grid__header">
+                    <div class="fretboard-grid__header-cell"></div>
+                    <div class="fretboard-grid__header-cell">개방현</div>
+                    <div class="fretboard-grid__header-cell">1</div>
+                    <div class="fretboard-grid__header-cell">2</div>
+                    <div class="fretboard-grid__header-cell">3</div>
+                    <div class="fretboard-grid__header-cell">4</div>
+                    <div class="fretboard-grid__header-cell">5</div>
+                    <div class="fretboard-grid__header-cell">7</div>
+                    <div class="fretboard-grid__header-cell">8</div>
+                    <div class="fretboard-grid__header-cell">9</div>
+                    <div class="fretboard-grid__header-cell">10</div>
+                    <div class="fretboard-grid__header-cell">12</div>
+                </div>
+                <!-- 1st string (high E) -->
+                <div class="fretboard-grid__row">
+                    <div class="fretboard-grid__string-label">1</div>
+                    <div class="fretboard-grid__cell fretboard-grid__cell--note fretboard-grid__cell--highlight">E</div>
+                    <div class="fretboard-grid__cell fretboard-grid__cell--note">F</div>
+                    <div class="fretboard-grid__cell"></div>
+                    <div class="fretboard-grid__cell fretboard-grid__cell--note">G</div>
+                    <div class="fretboard-grid__cell"></div>
+                    <div class="fretboard-grid__cell fretboard-grid__cell--note">A</div>
+                    <div class="fretboard-grid__cell fretboard-grid__cell--note">B</div>
+                    <div class="fretboard-grid__cell fretboard-grid__cell--note">C</div>
+                    <div class="fretboard-grid__cell"></div>
+                    <div class="fretboard-grid__cell fretboard-grid__cell--note">D</div>
+                    <div class="fretboard-grid__cell fretboard-grid__cell--note fretboard-grid__cell--highlight">E</div>
+                </div>
+                <!-- 2nd string (B) -->
+                <div class="fretboard-grid__row">
+                    <div class="fretboard-grid__string-label">2</div>
+                    <div class="fretboard-grid__cell fretboard-grid__cell--note fretboard-grid__cell--highlight">B</div>
+                    <div class="fretboard-grid__cell fretboard-grid__cell--note">C</div>
+                    <div class="fretboard-grid__cell"></div>
+                    <div class="fretboard-grid__cell fretboard-grid__cell--note">D</div>
+                    <div class="fretboard-grid__cell"></div>
+                    <div class="fretboard-grid__cell fretboard-grid__cell--note">E</div>
+                    <div class="fretboard-grid__cell fretboard-grid__cell--note">F#</div>
+                    <div class="fretboard-grid__cell fretboard-grid__cell--note">G</div>
+                    <div class="fretboard-grid__cell"></div>
+                    <div class="fretboard-grid__cell fretboard-grid__cell--note">A</div>
+                    <div class="fretboard-grid__cell fretboard-grid__cell--note fretboard-grid__cell--highlight">B</div>
+                </div>
+                <!-- 3rd string (G) -->
+                <div class="fretboard-grid__row">
+                    <div class="fretboard-grid__string-label">3</div>
+                    <div class="fretboard-grid__cell fretboard-grid__cell--note fretboard-grid__cell--highlight">G</div>
+                    <div class="fretboard-grid__cell"></div>
+                    <div class="fretboard-grid__cell fretboard-grid__cell--note">A</div>
+                    <div class="fretboard-grid__cell"></div>
+                    <div class="fretboard-grid__cell fretboard-grid__cell--note">B</div>
+                    <div class="fretboard-grid__cell fretboard-grid__cell--note">C</div>
+                    <div class="fretboard-grid__cell fretboard-grid__cell--note">D</div>
+                    <div class="fretboard-grid__cell"></div>
+                    <div class="fretboard-grid__cell fretboard-grid__cell--note">E</div>
+                    <div class="fretboard-grid__cell fretboard-grid__cell--note">F</div>
+                    <div class="fretboard-grid__cell fretboard-grid__cell--note fretboard-grid__cell--highlight">G</div>
+                </div>
+                <!-- 4th string (D) -->
+                <div class="fretboard-grid__row">
+                    <div class="fretboard-grid__string-label">4</div>
+                    <div class="fretboard-grid__cell fretboard-grid__cell--note fretboard-grid__cell--highlight">D</div>
+                    <div class="fretboard-grid__cell"></div>
+                    <div class="fretboard-grid__cell fretboard-grid__cell--note">E</div>
+                    <div class="fretboard-grid__cell fretboard-grid__cell--note">F</div>
+                    <div class="fretboard-grid__cell"></div>
+                    <div class="fretboard-grid__cell fretboard-grid__cell--note">G</div>
+                    <div class="fretboard-grid__cell fretboard-grid__cell--note">A</div>
+                    <div class="fretboard-grid__cell"></div>
+                    <div class="fretboard-grid__cell fretboard-grid__cell--note">B</div>
+                    <div class="fretboard-grid__cell fretboard-grid__cell--note">C</div>
+                    <div class="fretboard-grid__cell fretboard-grid__cell--note fretboard-grid__cell--highlight">D</div>
+                </div>
+                <!-- 5th string (A) -->
+                <div class="fretboard-grid__row">
+                    <div class="fretboard-grid__string-label">5</div>
+                    <div class="fretboard-grid__cell fretboard-grid__cell--note fretboard-grid__cell--highlight">A</div>
+                    <div class="fretboard-grid__cell"></div>
+                    <div class="fretboard-grid__cell fretboard-grid__cell--note">B</div>
+                    <div class="fretboard-grid__cell fretboard-grid__cell--note">C</div>
+                    <div class="fretboard-grid__cell"></div>
+                    <div class="fretboard-grid__cell fretboard-grid__cell--note">D</div>
+                    <div class="fretboard-grid__cell fretboard-grid__cell--note">E</div>
+                    <div class="fretboard-grid__cell fretboard-grid__cell--note">F</div>
+                    <div class="fretboard-grid__cell"></div>
+                    <div class="fretboard-grid__cell fretboard-grid__cell--note">G</div>
+                    <div class="fretboard-grid__cell fretboard-grid__cell--note fretboard-grid__cell--highlight">A</div>
+                </div>
+                <!-- 6th string (low E) -->
+                <div class="fretboard-grid__row">
+                    <div class="fretboard-grid__string-label">6</div>
+                    <div class="fretboard-grid__cell fretboard-grid__cell--note fretboard-grid__cell--highlight">E</div>
+                    <div class="fretboard-grid__cell fretboard-grid__cell--note">F</div>
+                    <div class="fretboard-grid__cell"></div>
+                    <div class="fretboard-grid__cell fretboard-grid__cell--note">G</div>
+                    <div class="fretboard-grid__cell"></div>
+                    <div class="fretboard-grid__cell fretboard-grid__cell--note">A</div>
+                    <div class="fretboard-grid__cell fretboard-grid__cell--note">B</div>
+                    <div class="fretboard-grid__cell fretboard-grid__cell--note">C</div>
+                    <div class="fretboard-grid__cell"></div>
+                    <div class="fretboard-grid__cell fretboard-grid__cell--note">D</div>
+                    <div class="fretboard-grid__cell fretboard-grid__cell--note fretboard-grid__cell--highlight">E</div>
+                </div>
+            </div>
+            <p style="font-size:12px;color:var(--text-secondary);margin-top:var(--space-md);text-align:center;">
+
+                골드 원 = 현 / 12 번째 프렛 (옥타브)을 엽니다. 빈 세포는 #/b 주입니다.
+
+
+            </p>
+        </div>
+
+        <h3 id="same-note">다중 장소에서 같은 참고</h3>
+        <p>
+
+            위의 다이어그램을 보면, "C"는 1st 현 프렛 8, 2nd 현 프렛 1, 3rd 현 프렛 5, 4th 현 프렛 10, 5th 현 프렛 3 및 더 많은 것에서 나타납니다. 이것은 지판가 복잡하고 이유가 너무 많은 자유를 제공합니다.
+
+
+        </p>
+
+        <div class="article-note">
+            <div class="article-note__title">키 포인트</div>
+            <p>지판는 "144 독립적 인 위치"가 아니라 "6 개의 현을 가로 질러 12 노트의 반복 패턴"이 아닙니다. 구조에 극적으로 영향을 미칩니다.</p>
+        </div>
+
+        <!-- Section 3: Common Struggles -->
+        <h2 id="common-struggles">일반 Struggles</h2>
+
+        <p>
+
+            지판를 배우려고 할 때, 대부분의 기타리스트는 동일한 벽을 명중합니다.
+
+
+        </p>
+
+        <h3 id="unknown-territory">5-7를 넘어 Frets는 알려지지 않은 Territory</h3>
+        <p>
+
+            많은 기타리스트는 0-5을 알고 있으므로 그들은 곤돌린 모양을 배웠습니다. 그러나 "이렇지 않다?" 과거 프렛 7, 그들은 응답 할 수 없습니다. 12 번째 fret의 모든 것은 종종 완전히 uncharted 영토입니다.
+
+
+        </p>
+
+        <h3 id="sharps-flats">샤프/플래티 포지션을 기억할 수 없습니다.</h3>
+        <p>
+
+            천연 노트 (C, D, E, F, G, A, B)를 알고 있지만 날카로운 평평한은 훈제 남아 있습니다. E와 F 사이 날카로운/평지가 없는 기본 규칙을 잊지 않거나 B와 C 사이를 잊게 쉬운 입니다.
+
+
+        </p>
+
+        <h3 id="cross-string">교차하는 끈을 때 혼란</h3>
+        <p>
+
+            단일 현을 확장, 그것은 바로 - 각 fret은 하나의 세미 톤 더 높은. 그러나 인접한 현로 건너면 각 현의 다른 튜닝은 당신의 정신 모델을 깰 수 있습니다. 현 2와 3 사이의 간격은 특히 간격이 다른 사람처럼 네 번째 (다른 사람처럼 네 번째)이기 때문에 까다로운입니다.
+
+
+        </p>
+
+        <h3 id="open-fret-disconnect">열린 현과 Fretted 음 사이 연결을 볼 수 없습니다.</h3>
+        <p>
+
+            "열려있는 5 현은 A"와 "6th 현 프렛 5는 A,"하지만 같은 메모가 약하다는 느낌을 알 수 있습니다. 열문자 및 fretted 노트를 분리하는 경우, 지판의 연결이 보이지 않습니다.
+
+
+        </p>
+
+        <!-- Section 4: Effective Learning Methods -->
+        <h2 id="effective-methods">효과적인 학습 방법</h2>
+
+        <p>
+
+            지판를 효율적으로 학습하는 몇 가지 원칙이 있습니다.
+
+
+        </p>
+
+        <h3 id="naturals-first">자연 Notes로 시작</h3>
+        <p>
+
+            한 번에 모든 12 노트를 배울 수 없습니다. 7개의 자연 노트에 처음 집중하십시오: C, D, E, F, G, A, B. 자연이 어디인지 알고 있으면 날카로운 평평은 자동적으로 "그것에 따르십시오." 예를 들어, "이 F 인 경우 다음 G 인 경우 F # / Gb이어야합니다."
+
+
+        </p>
+
+        <h3 id="one-string">한 번에 한 번의 현을 알아보세요.</h3>
+        <p>
+
+            한 번에 6개의 현을 배우려고 혼란에 빠릅니다. 6 현 (낮 E)로 시작하면 완전히 마스터 한 다음 5 현 (A)로 이동하여. 1과 6 현은 동일한 참고 이름을 공유하므로 6 현을 마스터하면 1st를 무료로 제공합니다.
+
+
+        </p>
+
+        <h3 id="octave-shapes">사용 옥타브 모양</h3>
+        <p>
+
+            기타에는 "같은 참고 이름은 2 개의 현을 멀리 나타나고 2 개의 frets up"(2nd-3rd 현 간격을 제외)가 나타납니다. 이 옥타브 모양을 학습하면 체인 Find 노트 포지션을 단일 알려진 위치에서 확인할 수 있습니다.
+
+
+        </p>
+
+        <!-- Octave Shape Diagram -->
+        <div class="octave-diagram">
+            <div class="diagram-title">10월 모양: 6th→4th 끈/5th→3rd 끈</div>
+            <div class="octave-grid">
+                <div class="fretboard-grid__header">
+                    <div class="fretboard-grid__header-cell" style="width:40px;"></div>
+                    <div class="fretboard-grid__header-cell" style="width:50px;">3</div>
+                    <div class="fretboard-grid__header-cell" style="width:50px;">4</div>
+                    <div class="fretboard-grid__header-cell" style="width:50px;">5</div>
+                    <div class="fretboard-grid__header-cell" style="width:50px;">6</div>
+                    <div class="fretboard-grid__header-cell" style="width:50px;">7</div>
+                    <div class="fretboard-grid__header-cell" style="width:50px;">8</div>
+                </div>
+                <div class="octave-grid__row">
+                    <div class="octave-grid__label">3</div>
+                    <div class="octave-grid__cell"></div>
+                    <div class="octave-grid__cell"></div>
+                    <div class="octave-grid__cell octave-grid__cell--octave">C</div>
+                    <div class="octave-grid__cell"></div>
+                    <div class="octave-grid__cell"></div>
+                    <div class="octave-grid__cell"></div>
+                </div>
+                <div class="octave-grid__row">
+                    <div class="octave-grid__label">4</div>
+                    <div class="octave-grid__cell"></div>
+                    <div class="octave-grid__cell"></div>
+                    <div class="octave-grid__cell octave-grid__cell--octave">G</div>
+                    <div class="octave-grid__cell"></div>
+                    <div class="octave-grid__cell"></div>
+                    <div class="octave-grid__cell"></div>
+                </div>
+                <div class="octave-grid__row">
+                    <div class="octave-grid__label">5</div>
+                    <div class="octave-grid__cell octave-grid__cell--root">C</div>
+                    <div class="octave-grid__cell"></div>
+                    <div class="octave-grid__cell"></div>
+                    <div class="octave-grid__cell"></div>
+                    <div class="octave-grid__cell"></div>
+                    <div class="octave-grid__cell"></div>
+                </div>
+                <div class="octave-grid__row">
+                    <div class="octave-grid__label">6</div>
+                    <div class="octave-grid__cell octave-grid__cell--root">G</div>
+                    <div class="octave-grid__cell"></div>
+                    <div class="octave-grid__cell"></div>
+                    <div class="octave-grid__cell"></div>
+                    <div class="octave-grid__cell"></div>
+                    <div class="octave-grid__cell"></div>
+                </div>
+            </div>
+            <div class="octave-arrow">
+                <span class="octave-arrow__badge octave-arrow__badge--root">의논하기</span>
+                &rarr;
+                2개의 현 + 2개의 frets 올라
+                &rarr;
+                <span class="octave-arrow__badge octave-arrow__badge--octave">팟캐스트</span>
+            </div>
+            <p style="font-size:12px;color:var(--text-secondary);margin-top:var(--space-md);text-align:center;">
+
+                2차 3차 현 간격을 가로지르며, +3개의 릿을 묶습니다 (주 3차 튜닝에 따라 다름)
+
+
+            </p>
+        </div>
+
+        <h3 id="fret-ranges">프렛 Ranges에서 연습</h3>
+        <p>
+
+            한 번에 전체 지판를 학습하는 대신 범위로 분할하고 점차 확대합니다.
+
+
+        </p>
+
+        <div class="progression-steps">
+            <div class="progression-step">
+                <div class="progression-step__number">1</div>
+                <div class="progression-step__content">
+                    <div class="progression-step__title">0-5의 볼트</div>
+                    <div class="progression-step__desc">오픈 현을 포함한 가장 익숙한 범위. 여기 시작과 신뢰를 구축.</div>
+                </div>
+            </div>
+            <div class="progression-step">
+                <div class="progression-step__number">2</div>
+                <div class="progression-step__content">
+                    <div class="progression-step__title">5-12를 떼어</div>
+                    <div class="progression-step__desc">기타리스트가 투쟁하는 중거리 지역. 이 큰 차이를 정복.</div>
+                </div>
+            </div>
+            <div class="progression-step">
+                <div class="progression-step__number">3</div>
+                <div class="progression-step__content">
+                    <div class="progression-step__title">Frets 0-12 (전체 범위 통합)</div>
+                    <div class="progression-step__desc">두 범위 모두 통합. 위치간에 원활하게 이동할 수 있는 경우 확인.</div>
+                </div>
+            </div>
+            <div class="progression-step">
+                <div class="progression-step__number">4</div>
+                <div class="progression-step__content">
+                    <div class="progression-step__title">Frets 0-24 (전체 범위)</div>
+                    <div class="progression-step__desc">frets 12+ 반복이 단계에 도달하면 마무리 단계에 있습니다.</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="article-note">
+            <div class="article-note__title">키 포인트</div>
+            <p>"자연적 노트 만 좁은 범위, 점차 확대"는 가장 효율적인 접근법입니다. 한 번에 모든 것을 배우려고하는 것은 제대로 아무것도 스틱하지 않습니다.</p>
+        </div>
+
+        <!-- Section 5: What the App Can Do -->
+        <h2 id="what-app-can-do">이름 * Solfege PRO 할 수 있습니다</h2>
+
+        <p>
+
+            Solfege PRO's 지판 훈련은 위에서 설명한 학습 방법을 지원하는 도구입니다. <strong>"quiz, 대답, 약점을 식별, 집중 연습"주기</strong>.
+
+
+        </p>
+
+        <h3>다중 조정 지원</h3>
+        <p>
+
+            표준 조정을 넘어, 앱은 드롭 D, Half Step Down, Open G 및 DADGAD를 지원합니다. 교체 튜닝을 사용하는 플레이어는 자신의 설정으로 연습 할 수 있습니다.
+
+
+        </p>
+
+        <h3>프렛 범위 선택</h3>
+        <p>
+
+            연습 프렛 범위를 선택하십시오: 0-5/5-12/0-12/0-24. 이 직접 위에 설명 된 "expand 점차" 접근 방식을 지원합니다.
+
+
+        </p>
+
+        <h3>현 초점</h3>
+        <p>
+
+            모든 현, 높은 현 (1-3), 낮은 현 (4-6), 또는 개별 현에서 선택하십시오. 이 직접 "한 번에 한 현"실행 방법을 활성화합니다.
+
+
+        </p>
+
+        <h3>주 형태</h3>
+        <p>
+
+            퀴즈에 표시된 노트를 선택하십시오: 자연스럽고 날카로운, 평평한, 또는 모두. 자연스럽고 자신감이 향상된 것처럼 날카로운/평을 추가하십시오.
+
+
+        </p>
+
+        <div class="feature-grid">
+            <div class="feature-card">
+                <div class="feature-card__title">왼쪽 손잡이 디스플레이</div>
+                <div class="feature-card__desc">왼쪽으로 왼손잡이 플레이어에 대한 지판 디스플레이를 플립. 자연의 방향을 연습합니다.</div>
+            </div>
+            <div class="feature-card">
+                <div class="feature-card__title">옥타브 높은 조명</div>
+                <div class="feature-card__desc">지판에 같은 참고 이름과 함께 강조 위치. 시각적으로 강화한 팔브 모양 이해.</div>
+            </div>
+            <div class="feature-card">
+                <div class="feature-card__title">모든 위치 모드 찾기</div>
+                <div class="feature-card__desc">"이 노트는 지판에 어디에 있습니까?" 참고 이름과 지판 위치 사이의 연결을 강화합니다.</div>
+            </div>
+            <div class="feature-card">
+                <div class="feature-card__title">Weak Point 추적</div>
+                <div class="feature-card__desc">주의, 현 및 프렛 범위로 정확도를 추적합니다. 약한 곳을 정확히 파악하십시오.</div>
+            </div>
+            <div class="feature-card">
+                <div class="feature-card__title">주문 Presets</div>
+                <div class="feature-card__desc">당신의 마음에 드는 연습 윤곽을 저장하십시오. 사전 설정으로 학습 계획을 관리합니다.</div>
+            </div>
+            <div class="feature-card">
+                <div class="feature-card__title">단일 탭 답변</div>
+                <div class="feature-card__desc">답을 위해 지판에 올바른 위치를 탭합니다. 재flexively 응답 할 수있을 때까지 연습.</div>
+            </div>
+        </div>
+
+        <!-- Cycle Diagram -->
+        <div class="cycle-diagram">
+            <div class="cycle-step">
+                <div class="cycle-step__label">팟캐스트</div>
+                <div class="cycle-step__desc">자주 묻는 질문</div>
+            </div>
+            <div class="cycle-arrow">&rarr;</div>
+            <div class="cycle-step">
+                <div class="cycle-step__label">이름 *</div>
+                <div class="cycle-step__desc">지판를 탭</div>
+            </div>
+            <div class="cycle-arrow">&rarr;</div>
+            <div class="cycle-step">
+                <div class="cycle-step__label">의약</div>
+                <div class="cycle-step__desc">틈을 식별</div>
+            </div>
+            <div class="cycle-arrow">&rarr;</div>
+            <div class="cycle-step">
+                <div class="cycle-step__label">의논하기</div>
+                <div class="cycle-step__desc">좁은 설정 및 재시</div>
+            </div>
+        </div>
+
+        <!-- Mid-article CTA -->
+        <div class="article-cta-subtle">
+            <p class="article-cta-subtle__text">왜 당신의 지판 지식이 약한지 검사해서 시작하지 않습니까?</p>
+            <a href="https://apps.apple.com/kr/app/id6756626617?pt=6749158383&amp;ct=web_guides&amp;mt=8" class="article-cta-subtle__button app-store-link" aria-label="App Store에서 다운로드"><img src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/ko-kr" class="app-store-link__img" alt="App Store에서 다운로드" loading="lazy"></a>
+        </div>
+
+        <!-- Section 6: Limitations (Honest) -->
+        <h2 id="limitations">이름 * Solfege PRO 직접 커버하지 않는</h2>
+
+        <p>
+
+            정직하다.
+
+
+        </p>
+
+        <div class="article-honest">
+            <div class="article-honest__title">App's Scope를 넘어 지역</div>
+            <p>
+                <strong>CAGED 시스템 교육</strong> — 앱은 5개의 콜드 형태로 지판를 이해하기 위한 CAGED 시스템을 커버하지 않습니다. CAGED 학습을 위해, textbooks 또는 코드 이론 리소스를 사용합니다.
+            </p>
+            <p>
+                <strong>음계 패턴 시각화</strong> - 앱은 플렛보드에 음계 패턴(pentatonic Position, 장 음계 Shape 등)을 표시하지 않습니다. 음계 Practice는 별도로 수행해야합니다.
+            </p>
+            <p>
+                <strong>코드 모양 학습</strong> — 다른 위치에 코드 형태와 학습 코드 voicings를 기억하는 것은 범위 밖에 있습니다.
+            </p>
+            <p>
+                <strong>멀티 스트링 기술</strong> - 벤드, 슬라이드, 햄머 - 온, 풀 오프, 그리고 다른 재생 기술은 커버되지 않습니다. "knowing 음 position"의 별도의 기술입니다.
+            </p>
+            <p>
+                <strong>음악적 맥락</strong> — 곡과 함께 연주하거나 뒤로 트랙을 통해 실제 상황에 대한 연습은 지원되지 않습니다.
+            </p>
+            <p>
+                <strong>사용자 정의 tuning 생성</strong> — 5개의 미리 설정된 튜닝만 가능합니다. 사용자 정의 tunings를 자유롭게 정의 할 수있는 기능은 없습니다.
+            </p>
+        </div>
+
+        <p>
+
+            이름 * Solfege PRO 직접 지원 <strong>정확하게 구축하고 각 메모가 지판에 있는지 신속하게 식별 할 수있는 능력을 구축</strong>. 그것은 지판의 정신 "지도"를 구축하기위한 도구입니다 - 당신이 그지도에 재생하는 것은 당신의 자신의 음악과 연습까지입니다.
+
+
+        </p>
+
+        <!-- Section 7: Recommended Usage -->
+        <h2 id="recommended-usage">관련 상품</h2>
+
+        <p>
+
+            효과적인 연습 진행입니다.
+
+
+        </p>
+
+        <ol>
+            <li><strong>자연 음 + Frets 0-5 + 모든 현</strong> — 여기 시작. 오픈 현을 포함한 기본 범위에서 7 개의 자연 노트를 마스터합니다.</li>
+            <li><strong>자연 음 + Frets 5-12 + 모든 현</strong> — 도전적인 중거리를 잡아. 이것은 당신이 가장 성장 볼 수있는 곳입니다.</li>
+            <li><strong>자연 음 + Frets 0-12 + 모든 현</strong> — 둘 다 범위를 통합합니다. 첫 번째 12 frets를 완벽하게 맞출 수 있습니다.</li>
+            <li><strong>날카로운 / 평평을 추가하십시오</strong> — 자연이 단단히되면, "all"에 메모 모드를 전환하고 모든 12 노트로 확장합니다.</li>
+            <li><strong>"Find All Positions"모드로 마무리</strong> — 즉시 지판에 주어진 주의의 각 위치를 발견하는 도전.</li>
+        </ol>
+
+        <!-- Good vs Bad Comparison -->
+        <div class="comparison-visual">
+            <div class="comparison-card comparison-card--bad">
+                <div class="comparison-card__header">더 적은 효과적인</div>
+                <div class="comparison-card__body">
+                    <p>모든 frets 및 시작의 모든 노트를 통해 랜덤 퀴즈. 정확도는 끈에 아무것도 너무 낮습니다. 매번 시작해 보세요.</p>
+                </div>
+            </div>
+            <div class="comparison-card comparison-card--good">
+                <div class="comparison-card__header">더 효과적인</div>
+                <div class="comparison-card__body">
+                    <p>90%+ 정확도까지 좁은 범위에 있는 자연으로 시작해서, 범위를 확장하고, 그 후에 날카로운/평지를 추가하십시오. 문제 같은 메모와 현에 약점 추적 및 초점 확인.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="article-note">
+            <div class="article-note__title">사용법 팁</div>
+            <p>각 세션은 단축될 수 있습니다. 하루 5 분, 일주일 안에 당신은 열린 현에서 자연 노트를 가지고 있어야 5 잠긴. "Short, 매일, 그리고 gradual"는 가장 효과적인 방법입니다.</p>
+        </div>
+
+    </main>
+
+    <!-- Final CTA -->
+    <section class="article-cta">
+        <h2 class="article-cta__title">지판 Weak Spots를 찾아서 시작하세요</h2>
+        <p class="article-cta__text">
+
+            지판을 무작정 외우는 방식은 효과적이지 않습니다.<br>어느 현과 프렛 구간이 가장 약한지 파악하는 데서 효율적인 학습이 시작됩니다.<br>Solfege PRO의 지판 훈련으로 먼저 약점을 찾아보세요.
+
+
+        </p>
+                <p style="font-size: 14px; color: var(--text-secondary); margin-bottom: var(--space-md); text-align: center;">
+
+            $9.99/월(미국 App Store 기준)(미국 App Store 기준)
+
+
+        </p>
+        <a href="https://apps.apple.com/kr/app/id6756626617?pt=6749158383&amp;ct=web_guides&amp;mt=8" class="app-store-link" aria-label="App Store에서 다운로드">
+
+            <img class="app-store-link__img" width="120" height="40" src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/ko-kr" alt="App Store에서 다운로드">
+
+
+        </a>
+    </section>
+
+    <!-- Related Content -->
+    <div class="article-related">
+        <div class="article-related__title">관련 내용</div>
+        <a href="/practice/guitar-bass/" class="article-related__link" style="margin-bottom: var(--space-md);">
+            <div class="article-related__link-title">기타 및베이스 연습 가이드</div>
+            <div class="article-related__link-desc">세션, 구독, 구문, 진행 - 기타리스트 및베이스에 대한 연습 메뉴</div>
+        </a>
+        <a href="/manual/fretboard/" class="article-related__link" style="margin-bottom: var(--space-md);">
+            <div class="article-related__link-title">지판 교육 설정 설명서</div>
+            <div class="article-related__link-desc">각 인앱 설정과 열차를 선택할 수있는 방법, 한 번에.</div>
+        </a>
+        <a href="/" class="article-related__link">
+            <div class="article-related__link-title">Solfege PRO 연습장</div>
+            <div class="article-related__link-desc">기타,베이스, 드럼, 피아노, 보컬을 위한 도전 기반 연습 메뉴</div>
+        </a>
+    </div>
+
+    <!-- Article End Note -->
+    <aside class="article-endnote">
+        <p class="article-endnote__text">
+
+            이 문서는 널리 사용되는 지판 학습 방법론 및 기능 설계를 기반으로 조직됩니다 Solfege PRO. 최적의 학습 순서와 접근은 개별 경험 및 연주 스타일에 따라 다릅니다. 인앱 교육은 메모 위치의 기억과 회고를 지원하며, 기술 또는 음계/초론 이론의 마스터리를 보장하지 않습니다.
+
+
+        </p>
+    </aside>
+
+    <!-- Footer -->
+    <footer class="article-footer">
+        <p class="article-footer__text">
+            &copy; 2026 Solfege PRO
+        </p>
+    </footer>
+
+    <!-- Language Toggle Script -->
+    <script src="/bootstrap.js?v=10" defer></script>
+    <nav aria-label="Language" style="display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:0.5rem;padding:var(--space-lg) var(--space-md);border-top:1px solid var(--surface-light);font-size:13px">
+        <a href="/guides/fretboard-training/" hreflang="ja" style="color:var(--text-secondary);text-decoration:none">日本語</a>
+        <span aria-hidden="true" style="color:var(--surface-light)">·</span>
+        <a href="/en/guides/fretboard-training/" hreflang="en" style="color:var(--text-secondary);text-decoration:none">English</a>
+        <span aria-hidden="true" style="color:var(--surface-light)">·</span>
+        <a href="/fr/guides/fretboard-training/" hreflang="fr" style="color:var(--text-secondary);text-decoration:none">Français</a>
+        <span aria-hidden="true" style="color:var(--surface-light)">·</span>
+        <a href="/de/guides/fretboard-training/" hreflang="de" style="color:var(--text-secondary);text-decoration:none">Deutsch</a>
+        <span aria-hidden="true" style="color:var(--surface-light)">·</span>
+        <a href="/es/guides/fretboard-training/" hreflang="es" style="color:var(--text-secondary);text-decoration:none">Español</a>
+        <span aria-hidden="true" style="color:var(--surface-light)">·</span>
+        <a href="/it/guides/fretboard-training/" hreflang="it" style="color:var(--text-secondary);text-decoration:none">Italiano</a>
+        <span aria-hidden="true" style="color:var(--surface-light)">·</span>
+        <span style="color:var(--primary);font-weight:600" aria-current="true">한국어</span>
+        <span aria-hidden="true" style="color:var(--surface-light)">·</span>
+        <a href="/pt-br/guides/fretboard-training/" hreflang="pt-BR" style="color:var(--text-secondary);text-decoration:none">Português (Brasil)</a>
+    </nav>
+</body>
+</html>

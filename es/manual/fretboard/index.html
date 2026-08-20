@@ -1,0 +1,743 @@
+<!DOCTYPE html>
+<html lang="es"
+      data-title-ja="指板トレーニング 設定マニュアル — 各設定の選び方 | ソルフェージュPRO"
+      data-title-en="Fretboard Training Settings Manual — How to Choose Each Option | Solfege PRO"
+      data-title-fr="Manuel des réglages de l'entraînement au manche — comment choisir chaque option | Solfege PRO"
+      data-title-de="Handbuch zu den Einstellungen des Griffbrett-Trainings — wie Sie jede Option wählen | Solfege PRO">
+<head>
+    <meta charset="UTF-8">
+    <meta name="robots" content="index, follow">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#1A1A1E">
+    <title>Manual del diapasón | Solfege PRO</title>
+    <meta name="description" content="Manual de referencia de la configuración del entrenamiento del diapasón: modo, notas, rango, cuerdas, respuestas, ayudas, afinación y mano dominante.">
+
+    <!-- Canonical -->
+    <link rel="canonical" href="https://solfegepro.com/es/manual/fretboard/">
+    <link rel="alternate" hreflang="ja" href="https://solfegepro.com/manual/fretboard/">
+    <link rel="alternate" hreflang="en" href="https://solfegepro.com/en/manual/fretboard/">
+    <link rel="alternate" hreflang="fr" href="https://solfegepro.com/fr/manual/fretboard/">
+    <link rel="alternate" hreflang="de" href="https://solfegepro.com/de/manual/fretboard/">
+    <link rel="alternate" hreflang="es" href="https://solfegepro.com/es/manual/fretboard/">
+    <link rel="alternate" hreflang="it" href="https://solfegepro.com/it/manual/fretboard/">
+    <link rel="alternate" hreflang="ko" href="https://solfegepro.com/ko/manual/fretboard/">
+    <link rel="alternate" hreflang="pt-BR" href="https://solfegepro.com/pt-br/manual/fretboard/">
+    <link rel="alternate" hreflang="x-default" href="https://solfegepro.com/manual/fretboard/">
+<!-- OGP -->
+    <meta property="og:title" content="Manual del diapasón">
+    <meta property="og:description" content="Manual de referencia de la configuración del entrenamiento del diapasón: modo, notas, rango, cuerdas, respuestas, ayudas, afinación y mano dominante.">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://solfegepro.com/es/manual/fretboard/">
+    <meta property="og:site_name" content="Solfege PRO">
+    <meta property="og:image" content="https://solfegepro.com/og-image.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Solfege PRO">
+    <meta property="og:locale" content="es_ES">
+    <meta property="og:locale:alternate" content="ja_JP">
+    <meta property="og:locale:alternate" content="en_US">
+    <meta property="og:locale:alternate" content="fr_FR">
+    <meta property="og:locale:alternate" content="de_DE">
+    <meta property="og:locale:alternate" content="it_IT">
+    <meta property="og:locale:alternate" content="ko_KR">
+    <meta property="og:locale:alternate" content="pt_BR">
+    <meta property="article:published_time" content="2026-06-05">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Manual del diapasón">
+    <meta name="twitter:description" content="Manual de referencia de la configuración del entrenamiento del diapasón: modo, notas, rango, cuerdas, respuestas, ayudas, afinación y mano dominante.">
+    <meta name="twitter:image" content="https://solfegepro.com/og-image.png">
+
+    <!-- Favicon -->
+    <link rel="icon" href="/favicon.ico" sizes="any">
+    <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap"></noscript>
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="/style.css?v=23">
+    <link rel="stylesheet" href="/guides/article.css?v=14">
+
+    <style>
+        /* Manual option reference — responsive, no fixed px widths */
+        .manual-options {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr);
+            gap: var(--space-sm);
+            margin: var(--space-lg) 0;
+        }
+        .manual-option {
+            background: var(--surface);
+            border: 1px solid var(--surface-light);
+            border-radius: var(--radius-lg);
+            padding: var(--space-md);
+        }
+        .manual-option__name {
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: var(--space-xs);
+        }
+        .manual-option__desc {
+            font-size: 13px;
+            color: var(--text-secondary);
+        }
+        /* Bottom-line callout (conclusion first) */
+        .manual-lead {
+            font-size: 14px;
+            line-height: 1.75;
+            color: var(--text-primary);
+            border-left: 3px solid var(--primary);
+            background: rgba(212, 175, 55, 0.06);
+            padding: var(--space-sm) var(--space-md);
+            border-radius: 0 var(--radius-md) var(--radius-md) 0;
+            margin: var(--space-md) 0;
+        }
+        /* Per-setting evidence note — deliberately styled as an editorial
+           aside, NOT as a settings card (no surface fill, no gold label),
+           so it is never mistaken for an in-app option. */
+        .manual-rationale {
+            margin: var(--space-md) 0 var(--space-2xl);
+            padding: var(--space-sm) 0 var(--space-sm) var(--space-md);
+            border-left: 2px solid var(--surface-light);
+        }
+        .manual-rationale__label {
+            display: block;
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            color: var(--text-secondary);
+            margin-bottom: 4px;
+            opacity: 0.75;
+        }
+        .manual-rationale p {
+            font-size: 13px;
+            line-height: 1.75;
+            color: var(--text-secondary);
+            margin: 0;
+        }
+        .manual-rationale__ref {
+            font-size: 12px;
+            font-style: italic;
+            margin-top: var(--space-xs) !important;
+            opacity: 0.7;
+        }
+        /* Citation number linking to the reference list */
+        .manual-ref-num {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-style: normal;
+        }
+        .manual-ref-num:hover { color: var(--primary); }
+        /* Full reference list at page end */
+        .manual-refs {
+            margin: var(--space-2xl) 0 0;
+            padding-top: var(--space-lg);
+            border-top: 1px solid var(--surface-light);
+        }
+        .manual-refs__title {
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: var(--space-sm);
+        }
+        .manual-refs ol {
+            margin: 0;
+            padding-left: 1.25em;
+        }
+        .manual-refs li {
+            font-size: 12px;
+            line-height: 1.7;
+            color: var(--text-secondary);
+            margin-bottom: var(--space-xs);
+            scroll-margin-top: 84px;
+        }
+        .manual-refs li:target {
+            color: var(--text-primary);
+        }
+    </style>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Manual del diapasón","description":"Manual de referencia de la configuración del entrenamiento del diapasón: modo, notas, rango, cuerdas, respuestas, ayudas, afinación y mano dominante.","author":{"@type":"Organization","name":"Solfege PRO"},"publisher":{"@type":"Organization","name":"Solfege PRO","logo":{"@type":"ImageObject","url":"https://solfegepro.com/AppIcon.png"}},"datePublished":"2026-06-05","mainEntityOfPage":{"@type":"WebPage","@id":"https://solfegepro.com/es/manual/fretboard/"}}</script>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Inicio","item":"https://solfegepro.com/es/"},{"@type":"ListItem","position":2,"name":"Manual","item":"https://solfegepro.com/es/manual/"},{"@type":"ListItem","position":3,"name":"指板トレーニング 設定マニュアル — 各設定の選び方","item":"https://solfegepro.com/es/manual/fretboard/"}]}</script>
+</head>
+<body>
+    <!-- Navigation -->
+        <nav class="nav" aria-label="Menú principal">
+        <div class="nav__container">
+            <a href="/es/" class="nav__logo" aria-label="Solfege PRO">
+                <img src="/AppIcon.png" alt="" class="nav__logo-icon" width="32" height="32">
+                <span class="nav__logo-text">Solfege PRO</span>
+            </a>
+            <ul class="nav__list">
+                <li><a href="/es/" class="nav__link">Acerca de Solfege PRO</a></li>
+                <li><a href="/es/features/" class="nav__link">Entrenamientos</a></li>
+                <li><a href="/es/guides/" class="nav__link">Guías de práctica</a></li>
+                <li><a href="/es/manual/" class="nav__link active" aria-current="page">Manual</a></li>
+            </ul>
+            <div class="nav__settings">
+                <button class="settings-btn" id="lang-toggle" title="Seleccionar idioma"><span id="lang-text">ES</span></button>
+                <button class="hamburger-btn" id="hamburger-btn" aria-label="Abrir menú" aria-expanded="false" aria-controls="drawer">
+                    <span class="hamburger-btn__line"></span><span class="hamburger-btn__line"></span><span class="hamburger-btn__line"></span>
+                </button>
+            </div>
+        </div>
+    </nav>
+        <!-- Mobile drawer (hidden on desktop) -->
+            <div class="drawer-overlay" id="drawer-overlay"></div>
+    <aside class="drawer" id="drawer" aria-label="Menú" aria-hidden="true" inert>
+        <div class="drawer__header">
+            <span class="drawer__title">Menú</span>
+            <button class="drawer__close" id="drawer-close" aria-label="Cerrar menú">×</button>
+        </div>
+        <ul class="drawer__list">
+            <li><a href="/es/" class="drawer__link">Acerca de Solfege PRO</a></li>
+            <li><a href="/es/features/" class="drawer__link">Entrenamientos</a></li>
+            <li><a href="/es/guides/" class="drawer__link">Guías de práctica</a></li>
+            <li><a href="/es/manual/" class="drawer__link active" aria-current="page">Manual</a></li>
+        </ul>
+    </aside>
+
+
+    <!-- Article Header -->
+    <header class="page-header">
+        <div class="page-header__meta">
+            <span class="page-header__tag">Manual</span>
+            <span>Formación de diapasón</span>
+        </div>
+        <h1 class="page-header__title">
+
+            Manual de configuración de entrenamiento de diapasón<br>Lo que cada opción significa y cómo elegir
+
+
+        </h1>
+        <p class="page-header__subtitle">
+
+            ¿Qué opción para elegir, cuándo y por qué? Esta página recorre cada entorno en el entrenamiento de diapasón, uno a la vez. Si llegas de un "?" en la pantalla de configuración, desplazate a la opción que necesitas.
+
+
+        </p>
+    </header>
+
+    <!-- Top-of-article CTA -->
+    <aside class="article-top-cta" aria-label="App promotion">
+        <div class="article-top-cta__body">
+            <p class="article-top-cta__title">
+
+                Prueba esto. Solfege PRO
+
+
+            </p>
+            <p class="article-top-cta__sub">
+
+                Consulta el precio en el App Store
+
+
+            </p>
+        </div>
+        <a href="https://apps.apple.com/es/app/id6756626617?pt=6749158383&amp;ct=web_manual&amp;mt=8" class="article-top-cta__button app-store-link" data-cta-position="article_top" aria-label="Descargar en el App Store"><img src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/es-es" class="app-store-link__img" alt="Descargar en el App Store" loading="lazy"></a>
+    </aside>
+
+    <!-- Article Body -->
+    <main class="article-body">
+
+        <!-- Intro -->
+        <p>
+
+            El entrenamiento de diapasón perfora el nombre de la nota bajo cada fret en sus manos hasta que lo sepas sin pensar. La memoria de escalas y acordes sólo como formas te deja pegado, pero una vez que los nombres de notas en el cuello llegan a ti instantáneamente, improvisando, transponiendo y aprendiendo canciones por oído todos se vuelven mucho más fáciles.
+
+
+        </p>
+        <p>
+
+            Esta página es un manual para elegir la configuración. Cada escenario está diseñado alrededor de los métodos establecidos de la educación musical. Para cada configuración que pide una decisión, damos <strong>la elección recomendada, lo que es, y lo que entrena — con la evidencia detrás de ella</strong>. Si llegas de un "?" en la pantalla de configuración, desplazate a la opción que necesitas. Dentro de la aplicación, la misma "?" también ofrece "Ver cómo funciona esta pantalla", que juega un tutorial paso a paso para la pantalla.
+
+
+        </p>
+
+        <!-- Shared note: practice-plan item settings sheets show only the settings
+     persisted per item (v1.3.1 hides non-persisted controls in plan context).
+     Included by the 7 module manuals: interval / chord / scale / progression /
+     sight-reading / rhythm / fretboard. Rhythm Sight Reading is deliberately
+     excluded — its plan items do not embed module settings at all. -->
+<p>
+
+    Esta página describe la pantalla de configuración del entrenamiento independiente abierto desde el hogar de la práctica. Cuando abres la configuración de un elemento de plan de práctica, solo se muestran los ajustes que se guardan con ese elemento.
+
+
+</p>
+
+
+        <!-- #mode -->
+        <h2 id="mode">Modo de capacitación</h2>
+
+        <p class="manual-lead">
+
+            <strong>Iniciar con Nota → Posición.</strong> Una vez estable, firme hacia atrás con la posición → Nota, luego pasar a String Movimiento cuando desea internalizar cómo una nota se extiende a través del cuello. Los modos de oreja – Oír a Fret, Interval a Fret y Melody Echo – funcionan mejor una vez que los tres modos visuales se sientan estables.
+
+
+        </p>
+
+        <p>
+
+            Este ajuste decide la dirección de cada pregunta — lo que se muestra y lo que responde. Hay seis modos; aunque todos traten con nombres de notas en el cuello, la dirección determina la habilidad que construyes. Tres son visuales —ya ves y respondes— y tres son modos de oído, donde colocas lo que escuchas en el diapasón.
+
+
+        </p>
+
+        <div class="manual-options">
+            <div class="manual-option">
+                <div class="manual-option__name">Nota → Posición (noteToFret)</div>
+                <div class="manual-option__desc">Se toca donde vive un nombre de nota dado en el cuello, la dirección más fundamental, construyendo el circuito "nombre de nota → dónde presionar" que necesita para jugar escalas y acordes. Empieza aquí.</div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name">Posición → Nota (fretToNote)</div>
+                <div class="manual-option__desc">La búsqueda inversa: se muestra un solo lugar y se elige su nombre de nota. Entrena nombrando la nota que estás frenando y fortalece la memoria de ambos lados.</div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name">Movimiento de cuerdas (stringMovement)</div>
+                <div class="manual-option__desc">Un modo avanzado de cazar el mismo nombre de nota a través de una cuerda tras otra (por ejemplo, "C" en el sexto, quinto, cuarto...), mapeando cómo una nota se extiende a través de todo el cuello. El rango de fret está fijado a 0–12.</div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name">Oído a Fret (arretirada)</div>
+                <div class="manual-option__desc">Usted escucha una nota —no se muestra nombre— y toca donde vive en el cuello. Este modo de oído "sonido escuchado → lugar a la prensa" directamente, sin pasar por el nombre de la nota escrita: la base de jugar por el oído.</div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name">Intervalo a Fret (intervalToFret)</div>
+                <div class="manual-option__desc">Oí dos notas y toca la posición del segundo. Este modo convierte la audición de intervalo que construyó en entrenamiento de intervalos en distancias reales en el cuello.</div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name">Melody Echo (melodyEcho)</div>
+                <div class="manual-option__desc">Oí una melodía corta y repetirla para que se ponga en el diapasón. La melodía se juega en los alturas reales de las posiciones dentro del rango de preguntas. Sus propios ajustes — longitud, escala y área de práctica melodía— ajustan la dificultad (ver la sección de Fret Range para el área de práctica).</div>
+            </div>
+        </div>
+
+        <div class="manual-rationale">
+            <span class="manual-rationale__label">La evidencia detrás de ella</span>
+            <p>
+
+                Las tres direcciones visuales se entrenan, desde diferentes ángulos, el enlace de dos vías entre los nombres de notas y las posiciones en el cuello que los instrumentistas necesitan. Recordando el mismo material en diferentes direcciones convierte las formas de rote en conocimiento que puedes utilizar mientras juegas. Los tres modos de oído entonces capa el sonido oído sobre ese nombre de nota memoria, recortando habilidades aurales y manejo de instrumentos. Todos siguen la pedagogía instrumental y aural-skills para dominar el diapasón.
+
+
+            </p>
+            <p class="manual-rationale__ref">Ref.: Karpinski (2000) <a class="manual-ref-num" href="#ref-1">[1]</a></p>
+        </div>
+
+        <!-- #instrument -->
+        <h2 id="instrument">Instrumento</h2>
+
+        <p class="manual-lead">
+
+            <strong>Escoge el instrumento que juegas.</strong> Guitar (6 cuerdas) para guitarristas; Bass (4 cuerdas) o Bass (5 cuerdas) para que coincida con su bajo. El diapasón en sí mismo cambia para coincidir.
+
+
+        </p>
+
+        <p>
+
+            Este ajuste decide si las preguntas usan un diapasón de guitarra o un diapasón de bajo. El recuento de cadenas y el mapa de nombres de notas en cada interruptor de cadena al instrumento elegido, y esto se aplica en cada modo. Las cuerdas y el Tuning se pueden elegir sólo mientras que la Guitar es seleccionada. Si el sonido de la prontitud se configuraba en la guitarra o bass timbre, sigue automáticamente el interruptor del instrumento (Piano y Sine Tone se guardan como son).
+
+
+        </p>
+
+        <div class="manual-options">
+            <div class="manual-option">
+                <div class="manual-option__name">Guitarra (6 cuerdas)</div>
+                <div class="manual-option__desc">Usa el diapasón estándar de guitarra de seis cuerdas. Solo se pueden conseguir estrechar las cadenas de destino y los afinamientos alternativos mientras se selecciona este instrumento.</div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name">Bass (4-estring)</div>
+                <div class="manual-option__desc">Usa un diapasón de cuatro hilos (EADG). El ajuste está fijo a la norma, y las preguntas siempre se extraen de las cuatro cuerdas.</div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name">Bass (5-estring)</div>
+                <div class="manual-option__desc">Usa un diapasón de cinco cuerdas (BEADG), incluyendo el bajo B. El ajuste está fijo a la norma, y las preguntas siempre se extraen de las cinco cuerdas.</div>
+            </div>
+        </div>
+
+        <!-- #target-notes -->
+        <h2 id="target-notes">Notas (notas de la carpeta)</h2>
+
+        <p class="manual-lead">
+
+            <strong>Comienza con Naturals Only.</strong> Ancho a Incluir Sharps (o Todas las Notas) una vez que se puede nombrar los siete naturales en cualquier lugar del cuello a un 80%+. Elija Incluir planos sólo si necesita ortografías planas.
+
+
+        </p>
+
+        <p>
+
+            Este ajuste establece los nombres de las notas. Usted elige si utilizar sólo los naturales (las siete notas sin afilar o plana - C D E F G A B) o para incluir afilados y planos. Cuanto más estrecha sea la gama, menos notas para aprender; más amplia será, más cubre las 12 notas cromáticas.
+
+
+        </p>
+
+        <div class="manual-options">
+            <div class="manual-option">
+                <div class="manual-option__name">Naturales Sólo</div>
+                <div class="manual-option__desc">Pregunta sólo las siete notas C, D, E, F, G, A, B. El primer paso en la memoria diapasón. Ser capaz de nombrar estos siete en cualquier lugar del cuello es la ruta más rápida hacia adelante.</div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name">Incluir Sharps</div>
+                <div class="manual-option__desc">Cubre las 12 notas, escritas con afilados (C#, D#, ...). Una vez que los naturales son sólidos, agregue las semitonas entre sí para cubrir completamente el cuello.</div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name">Incluir pisos</div>
+                <div class="manual-option__desc">Cubre las 12 notas, escritas con planos (Db, Eb, ...). Para acostumbrarse a la enharmonía — el mismo altura deletreó dos maneras, como C# y Db. Útil si juegas en claves planas.</div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name">Todas las notas</div>
+                <div class="manual-option__desc">Pregunta a las 12 notas, reconociendo tanto ortografías agudas como planas, el escenario más amplio. El escenario donde pulimos el cuello entero al nivel de rendimiento.</div>
+            </div>
+        </div>
+
+        <div class="manual-rationale">
+            <span class="manual-rationale__label">La evidencia detrás de ella</span>
+            <p>
+
+                Los nombres de notas menos que aprendes a la vez, menos debes procesar, y cuanto más fiablemente arreglas las ubicaciones de cada nota. Asegurar un rango estrecho antes de ampliar se pega más rápido que tomar los 12 a la vez. Los niveles siguen la teoría de la carga cognitiva: mantener las demandas de procesamiento baja temprano en un nuevo aprendizaje de ayudas de habilidad.
+
+
+            </p>
+            <p class="manual-rationale__ref">Ref.: Sweller (1988) <a class="manual-ref-num" href="#ref-2">[2]</a></p>
+        </div>
+
+        <!-- #fret-range -->
+        <h2 id="fret-range">Rango de Fret</h2>
+
+        <p class="manual-lead">
+
+            <strong>Construir la fundación en 0-5, luego ensanchar a 0-12 (Standard).</strong> El diseño sobre el 12o fret sólo repite, por lo que apuntar para 0-12 primero es el objetivo eficiente.
+
+
+        </p>
+
+        <p>
+
+            Este ajuste establece de qué sección del cuello se dibujan las preguntas — de hecho la esfera de dificultad. Aprieta y hay menos lugares para memorizar; ensancha y maneja todo el cuello. Tenga en cuenta que en el modo String Movement se fija a 0-12, y en Melody Echo el ajuste de área de práctica tiene precedencia — el rango de frecuencia se aplica sólo cuando el área de práctica es de rango completo. Área de práctica (profundidad/abierto (0-4) / Medio (5-9) / Alto (9-13)) es el propio escenario de preguntas de Melody Echo.
+
+
+        </p>
+
+        <div class="manual-options">
+            <div class="manual-option">
+                <div class="manual-option__name">0-5 (Principiante)</div>
+                <div class="manual-option__desc">Posición baja solamente (fretos 0–5). Cerca de las cuerdas abiertas, este es el área que los principiantes tocan primero cuando aprenden acordes. Su estrecha lazo lo hace ideal para su primera memorización.</div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name">5-12 (Avanzado)</div>
+                <div class="manual-option__desc">Posición media a alta (fretos 5–12). Para los jugadores que han clavado la posición baja y ahora quieren llenar en el medio del cuello, que tiende a ser un punto débil.</div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name">0-12 (Standard)</div>
+                <div class="manual-option__desc">Fretas 0–12. La octava repite en el 12o Fret, así que una vez que lo sepas, el resto es una repetición. El rango de destino estándar para la memoria diapasón.</div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name">0-20 (rango previsto)</div>
+                <div class="manual-option__desc">Fretas 0-20. Una gama de grapas coincide con el recuento de la mayoría de los bajos — efectivamente el cuello completo si usted practica en el bajo. También es útil para guitarristas que han clavado 0-12 y quieren añadir las posiciones altas antes de ir hasta 0-24.</div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name">0-24 (Full diapasón)</div>
+                <div class="manual-option__desc">El cuello entero (fretas 0–24). Para los jugadores que usan los alta frecuencia en solitarios y líneas de plomo. La etapa de acabado de primer nivel.</div>
+            </div>
+        </div>
+
+        <div class="manual-rationale">
+            <span class="manual-rationale__label">La evidencia detrás de ella</span>
+            <p>
+
+                Reducir el rango reduce el número de posiciones que aprendes a la vez, así que arreglas esa sección de forma fiable. Asegurar una pequeña región antes de ampliar palos más rápido que golpear todo el cuello desde el principio. Los niveles siguen la teoría de la carga cognitiva: mantener las demandas de procesamiento baja temprano en un nuevo aprendizaje de ayudas de habilidad.
+
+
+            </p>
+            <p class="manual-rationale__ref">Ref.: Sweller (1988) <a class="manual-ref-num" href="#ref-2">[2]</a></p>
+        </div>
+
+        <!-- #strings -->
+        <h2 id="strings">Pendientes</h2>
+
+        <p class="manual-lead">
+
+            <strong>Déjalo en todas las cuerdas.</strong> Cuando note que una cuerda se agacha en precisión, temporalmente estrecha a esa cuerda, enfocarse, luego volver a los seis.
+
+
+        </p>
+
+        <p>
+
+            Este ajuste estrecha cuál de las seis preguntas de cadenas se dibujan (en la sección Ajustes Básicos, compartida por todos los modos). Se aplica sólo mientras que la guitarra es seleccionada —en un bajo, las preguntas siempre se extraen de todas sus cuerdas (4–5). Además de "Todas las cuerdas", se puede limitar a las tres cuerdas de tracción o tres bajo, o una sola cadena. El enfoque de notas de Weak sólo, encontrado en la Nota → Ajustes de Focus del modo de posición, auto-serve sólo las notas por debajo de la precisión del 70% (activa una vez que los datos se acumulan).
+
+
+        </p>
+
+        <div class="manual-options">
+            <div class="manual-option">
+                <div class="manual-option__name">Todas las cuerdas</div>
+                <div class="manual-option__desc">Se deriva de las seis cuerdas: práctica integral y realista. Déjalo aquí a menos que tengas una razón para reducirte.</div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name">Altas Aretes (1-3) / Bajas Aretes (4-6)</div>
+                <div class="manual-option__desc">Camisetas a un grupo de tres. Las cuerdas bajo (E A D) se vinculan directamente a la búsqueda de raíces de acordes; las cuerdas tragables (G B E) para colocar melodías y solos. Sólite una mitad a la vez por sus necesidades es útil.</div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name">1a a 6a.a.a.a.a.a.</div>
+                <div class="manual-option__desc">Limita a una sola cuerda. El escenario más estrecho, para aplastar un punto débil claro una cuerda a la vez —dijo, "Siempre estoy afeitado con los nombres de las notas de la 6a cadena".</div>
+            </div>
+        </div>
+
+        <div class="manual-rationale">
+            <span class="manual-rationale__label">La evidencia detrás de ella</span>
+            <p>
+
+                Reducir las cuerdas te permite cortar cuánto manejas a la vez y rellenar fiablemente un punto débil. Una única cuerda depilada se pierde en la multitud cuando se practican los seis; aislarla baja la carga para que pueda enfocarse y hacerlo pegar. Esto sigue la teoría de la carga cognitiva: mantener las demandas bajas — temprano en o cuando se ahorca una debilidad — ayuda a aprender.
+
+
+            </p>
+            <p class="manual-rationale__ref">Ref.: Sweller (1988) <a class="manual-ref-num" href="#ref-2">[2]</a></p>
+        </div>
+
+        <!-- #answer-mode -->
+        <h2 id="answer-mode">Modo de respuesta</h2>
+
+        <p class="manual-lead">
+
+            <strong>Comience con la Posición Única.</strong> Una vez que las ubicaciones de cada nota están aproximadamente en su cabeza, cambie a todas las posiciones para completar la imagen completa de cómo se diseminan a través del cuello.
+
+
+        </p>
+
+        <p>
+
+            Este ajuste decide, cuando usted contesta una nota en el cuello (Nota → Modo de posición), cuánto debe tocar para ser correcto. Un nombre de nota existe en varios puntos, así que si usted debe encontrar todos o sólo uno cambia la dificultad.
+
+
+        </p>
+
+        <div class="manual-options">
+            <div class="manual-option">
+                <div class="manual-option__name">Posición única</div>
+                <div class="manual-option__desc">Encuentra un lugar correcto y tienes razón. - A la velocidad. Como uno es suficiente para avanzar, se adapta a perforar muchas preguntas a un tempo de riesgo para construir velocidad de reacción.</div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name">Todas las posiciones</div>
+                <div class="manual-option__desc">Encuentra y pulsa cada punto correcto dentro del rango. Un entorno orientado a la integridad que mapa exactamente donde un nombre de nota está disperso en el cuello. Más duro.</div>
+            </div>
+        </div>
+
+        <div class="manual-rationale">
+            <span class="manual-rationale__label">La evidencia detrás de ella</span>
+            <p>
+
+                Los dos escenarios establecen el conocimiento del instrumentalista de donde vive un nombre de nota a través de todo el cuello. Primero construyes una respuesta instantánea de un solo punto; luego, una vez cómodo, encontrando cada mapa de puntos el conjunto completo de posiciones. El diseño sigue la pedagogía instrumental y aural-skills para dominar el diapasón.
+
+
+            </p>
+            <p class="manual-rationale__ref">Ref.: Karpinski (2000) <a class="manual-ref-num" href="#ref-1">[1]</a></p>
+        </div>
+
+        <!-- #hint-level -->
+        <h2 id="hint-level">Hintes</h2>
+
+        <p class="manual-lead">
+
+            <strong>Los principiantes absolutos usan Mostrar octavillas para captar el diseño, y luego cambiar a No Hints.</strong> El objetivo final es responder de forma fiable con No Hints.
+
+
+        </p>
+
+        <p>
+
+            Este ajuste decide cuánto asistencia se muestra mientras usted responde. Más ayuda facilita la respuesta, pero también reduce el esfuerzo de recordar por sí mismo, por lo que la regla básica es marcarlo a medida que te sientas cómodo.
+
+
+        </p>
+
+        <div class="manual-options">
+            <div class="manual-option">
+                <div class="manual-option__name">No hay Hints</div>
+                <div class="manual-option__desc">No hay asistencia en absoluto — respondes completamente por tu cuenta. Esto maximiza el esfuerzo de sacar la respuesta de la memoria, que conduce la retención más fuerte. Este es el objetivo final.</div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name">Mostrar octavos</div>
+                <div class="manual-option__desc">Destaca las posiciones de octava del mismo nombre de nota. Encontrar uno hace que los otros sean más fáciles de inferir — buen apoyo temprano en cuando las relaciones espaciales aún no están claras.</div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name">Mostrar Permanecer</div>
+                <div class="manual-option__desc">Muestra cuántos puntos correctos quedan. Junto con todas las posiciones, le dice "aún quedan algunas", evitando los puntos perdidos.</div>
+            </div>
+        </div>
+
+        <div class="manual-rationale">
+            <span class="manual-rationale__label">La evidencia detrás de ella</span>
+            <p>
+
+                Las hormigas son un andamio que baja la carga de procesamiento mientras un principiante no ha memorizado el cuello. Ayudas como Mostrar octavillas suministran una señal, sujetan la carga hacia abajo, y hacen que el diseño sea más fácil de comprender. Una vez que tenga espacio para ahorrar, la eliminación de los ayudas restaura la carga completa de recordar sin ayuda. Esto sigue la teoría de la carga cognitiva: andamios que reducen el soporte de carga para el aprendizaje temprano.
+
+
+            </p>
+            <p class="manual-rationale__ref">Ref.: Sweller (1988) <a class="manual-ref-num" href="#ref-2">[2]</a></p>
+        </div>
+
+        <!-- #tuning -->
+        <h2 id="tuning">Tuning</h2>
+
+        <p class="manual-lead">
+
+            <strong>Déjalo en Standard (EADGBE).</strong> Toma en los afinamientos alternativos sólo cuando realmente necesitas jugar en uno.
+
+
+        </p>
+
+        <p>
+
+            Este ajuste establece el altura de apertura de cada cadena. Cambia y la misma posición de fret produce un nombre de nota diferente, por lo que el mapa completo de nombres de notas en los turnos del cuello. Además de Standard (EADGBE), soporta la caída D (DADGBE, la sexta cadena por un paso), y Open G, Open D, y DADGAD, donde las cuerdas abiertas sonen solo un acorde. Si tocas canciones en un afinado inusual, usa esto para relear el cuello para ello. El ajuste se puede elegir sólo mientras que la guitarra es seleccionada, un bajo se fija a su nivel de ajuste (EADG en 4 cuerdas, BEADG en 5 cuerdas).
+
+
+        </p>
+
+        <!-- #handedness -->
+        <h2 id="handedness">Manejo</h2>
+
+        <p class="manual-lead">
+
+            <strong>Escoge lo que sea que concuerda con la guitarra que tocas.</strong> Mano derecha para una guitarra derecha, zurda para una izquierda - elija una vez y déjelo.
+
+
+        </p>
+
+        <p>
+
+            Este ajuste establece la orientación del diapasón mostrado en pantalla. No cambia la dificultad ni el contenido, simplemente coincide con la pantalla de su instrumento. Si tu guitarra y el diseño en pantalla no están de acuerdo, desperdicias el esfuerzo mental girando a la izquierda y a la derecha al responder posiciones.
+
+
+        </p>
+
+        <div class="manual-options">
+            <div class="manual-option">
+                <div class="manual-option__name">Mano derecha</div>
+                <div class="manual-option__desc">La pantalla estándar, que coincide con cómo se ve una guitarra derecha (fretada con la mano izquierda). Esto está bien para la mayoría de los jugadores.</div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name">Mano izquierda</div>
+                <div class="manual-option__desc">Espejos el diapasón izquierda a derecha. Permite a los jugadores de una guitarra zurda (fretado con la mano derecha) practicar con la misma vista que su instrumento.</div>
+            </div>
+        </div>
+
+        <!-- #sound-source -->
+        <h2 id="sound-source">Sonido de pronticio</h2>
+
+        <p class="manual-lead">
+
+            <strong>Cuando se tiene dudas, se combina con el timbre de su propio instrumento (Guitar/Bass).</strong> Especialmente en los modos de oído, luego practica con el timbre que deseas elegir. Elija Sine Tono cuando quieres concentrarte en el altura solo.
+
+
+        </p>
+
+        <p>
+
+            Este ajuste establece el timbre del sonido de la señal y del grifo. Sólo el tono cambia — cambiar el diapasón en sí mismo (guitar/bass) se hace con el ajuste de Instrumento arriba. Las opciones rastrean el instrumento: la fuente de bajo no se muestra en el diapasón de guitarra y la fuente de guitarra no en un bajo, mientras que Piano y Sine Tone se puede elegir en ambos.
+
+
+        </p>
+
+        <div class="manual-options">
+            <div class="manual-option">
+                <div class="manual-option__name">Piano</div>
+                <div class="manual-option__desc">Un timbre neutro y estándar disponible en cualquier diapasón. Perfectamente bien si no tienes preferencia en particular.</div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name">Guitarra</div>
+                <div class="manual-option__desc">De una guitarra real. Seleccionable sólo mientras se elige el diapasón de guitarra — le permite ejecutar los modos de oído con el timbre de guitarra que realmente escucha.</div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name">Bass</div>
+                <div class="manual-option__desc">De un bajo real. Sólo se selecciona un bass diapasón (que permite practicar el audir el bajo registro con un verdadero bass timbre).</div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name">Sine Tone</div>
+                <div class="manual-option__desc">Un tono puro sin tonos. Para despojar las cuestas de timbral y enfocarse en el altura solo.</div>
+            </div>
+        </div>
+
+        <!-- References -->
+        <section class="manual-refs">
+            <div class="manual-refs__title">Referencias</div>
+            <ol>
+                <li id="ref-1">Karpinski, G. S. (2000). <em>Aural Skills Acquisition: The Development of Listening, Reading, and Performing Skills in College-Level Musicians.</em> Oxford University Press.</li>
+                <li id="ref-2">Sweller, J. (1988). Cognitive load during problem solving: Effects on learning. <em>Cognitive Science, 12</em>(2), 257–285.</li>
+            </ol>
+        </section>
+
+    </main>
+
+    <!-- Final CTA -->
+    <section class="article-cta">
+        <h2 class="article-cta__title">¿Configuración? Pruébalo.</h2>
+        <p class="article-cta__text">
+
+            Una vez que entiendas cada ajuste, el resto es práctica práctica práctica.<br>Cuando no esté seguro, siga las líneas "cuando en duda" en esta página.<br>Encontrar los ajustes que le caben la función de Solfege PRO: entrenamiento de diapasón.
+
+
+        </p>
+        <a href="https://apps.apple.com/es/app/id6756626617?pt=6749158383&amp;ct=web_manual&amp;mt=8" class="app-store-link" aria-label="Descargar en el App Store">
+
+            <img class="app-store-link__img" width="120" height="40" src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/es-es" alt="Descargar en el App Store">
+
+
+        </a>
+    </section>
+
+    <!-- Related Content -->
+    <div class="article-related">
+        <div class="article-related__title">Contenido relacionado</div>
+        <a href="/guides/fretboard-training/" class="article-related__link" style="margin-bottom: var(--space-md);">
+            <div class="article-related__link-title">¿Qué es el entrenamiento de diapasón? — Memorizando las notas sobre el cuello de guitarra</div>
+            <div class="article-related__link-desc">Para aquellos que quieren entender qué entrenamiento de diapasón es antes de ajustar la configuración — una guía para por qué memorizar los nombres de notas en el cuello acelera el progreso, con práctica paso a paso.</div>
+        </a>
+        <a href="/" class="article-related__link">
+            <div class="article-related__link-title">Solfege PRO Guía de prácticas</div>
+            <div class="article-related__link-desc">Menús de práctica basados en desafíos para guitarra, bajo, tambores, piano y voces</div>
+        </a>
+    </div>
+
+    <!-- Article Note -->
+    <aside class="article-endnote">
+        <p class="article-endnote__text">
+
+            Esta página es una referencia que explica la configuración de la aplicación de la aplicación. Las progresiones recomendadas aquí son directrices generales basadas en la metodología de práctica ampliamente utilizada; los ajustes óptimos varían con la experiencia y los objetivos individuales. Los estudios citados reportan hallazgos de aprendizaje general y no garantizan resultados dentro de esta aplicación.
+
+
+        </p>
+    </aside>
+
+    <!-- Footer -->
+    <footer class="article-footer">
+        <p class="article-footer__text">
+            &copy; 2026 Solfege PRO
+        </p>
+    </footer>
+    <script src="/bootstrap.js?v=10" defer></script>
+    <nav aria-label="Language" style="display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:0.5rem;padding:var(--space-lg) var(--space-md);border-top:1px solid var(--surface-light);font-size:13px">
+        <a href="/manual/fretboard/" hreflang="ja" style="color:var(--text-secondary);text-decoration:none">日本語</a>
+        <span aria-hidden="true" style="color:var(--surface-light)">·</span>
+        <a href="/en/manual/fretboard/" hreflang="en" style="color:var(--text-secondary);text-decoration:none">English</a>
+        <span aria-hidden="true" style="color:var(--surface-light)">·</span>
+        <a href="/fr/manual/fretboard/" hreflang="fr" style="color:var(--text-secondary);text-decoration:none">Français</a>
+        <span aria-hidden="true" style="color:var(--surface-light)">·</span>
+        <a href="/de/manual/fretboard/" hreflang="de" style="color:var(--text-secondary);text-decoration:none">Deutsch</a>
+        <span aria-hidden="true" style="color:var(--surface-light)">·</span>
+        <span style="color:var(--primary);font-weight:600" aria-current="true">Español</span>
+        <span aria-hidden="true" style="color:var(--surface-light)">·</span>
+        <a href="/it/manual/fretboard/" hreflang="it" style="color:var(--text-secondary);text-decoration:none">Italiano</a>
+        <span aria-hidden="true" style="color:var(--surface-light)">·</span>
+        <a href="/ko/manual/fretboard/" hreflang="ko" style="color:var(--text-secondary);text-decoration:none">한국어</a>
+        <span aria-hidden="true" style="color:var(--surface-light)">·</span>
+        <a href="/pt-br/manual/fretboard/" hreflang="pt-BR" style="color:var(--text-secondary);text-decoration:none">Português (Brasil)</a>
+    </nav>
+</body>
+</html>

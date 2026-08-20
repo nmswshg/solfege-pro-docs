@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html lang="it"
+      data-title-ja="譜読み 設定マニュアル — 各設定の選び方 | ソルフェージュPRO"
+      data-title-en="Sight Reading Settings Manual — How to Choose Each Option | Solfege PRO"
+      data-title-fr="Manuel des réglages de Lecture à vue — Comment choisir chaque option | Solfege PRO"
+      data-title-de="Einstellungshandbuch Blattlesen — So wählen Sie jede Option | Solfege PRO">
+<head>
+    <meta charset="UTF-8">
+    <meta name="robots" content="index, follow">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#1A1A1E">
+    <title>Manuale delle impostazioni della lettura a prima vista | Solfege PRO</title>
+    <meta name="description" content="Manuale di riferimento per la lettura a prima vista: difficoltà, modalità, chiave, armatura e linee supplementari.">
+
+    <!-- Canonical -->
+    <link rel="canonical" href="https://solfegepro.com/it/manual/sight-reading/">
+    <link rel="alternate" hreflang="ja" href="https://solfegepro.com/manual/sight-reading/">
+    <link rel="alternate" hreflang="en" href="https://solfegepro.com/en/manual/sight-reading/">
+    <link rel="alternate" hreflang="fr" href="https://solfegepro.com/fr/manual/sight-reading/">
+    <link rel="alternate" hreflang="de" href="https://solfegepro.com/de/manual/sight-reading/">
+    <link rel="alternate" hreflang="es" href="https://solfegepro.com/es/manual/sight-reading/">
+    <link rel="alternate" hreflang="it" href="https://solfegepro.com/it/manual/sight-reading/">
+    <link rel="alternate" hreflang="ko" href="https://solfegepro.com/ko/manual/sight-reading/">
+    <link rel="alternate" hreflang="pt-BR" href="https://solfegepro.com/pt-br/manual/sight-reading/">
+    <link rel="alternate" hreflang="x-default" href="https://solfegepro.com/manual/sight-reading/">
+<!-- OGP -->
+    <meta property="og:title" content="Manuale delle impostazioni della lettura a prima vista">
+    <meta property="og:description" content="Manuale di riferimento per la lettura a prima vista: difficoltà, modalità, chiave, armatura e linee supplementari.">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://solfegepro.com/it/manual/sight-reading/">
+    <meta property="og:site_name" content="Solfege PRO">
+    <meta property="og:image" content="https://solfegepro.com/og-image.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Solfege PRO">
+    <meta property="og:locale" content="it_IT">
+    <meta property="og:locale:alternate" content="ja_JP">
+    <meta property="og:locale:alternate" content="en_US">
+    <meta property="og:locale:alternate" content="fr_FR">
+    <meta property="og:locale:alternate" content="de_DE">
+    <meta property="og:locale:alternate" content="es_ES">
+    <meta property="og:locale:alternate" content="ko_KR">
+    <meta property="og:locale:alternate" content="pt_BR">
+    <meta property="article:published_time" content="2026-06-05">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Manuale delle impostazioni della lettura a prima vista">
+    <meta name="twitter:description" content="Manuale di riferimento per la lettura a prima vista: difficoltà, modalità, chiave, armatura e linee supplementari.">
+    <meta name="twitter:image" content="https://solfegepro.com/og-image.png">
+
+    <!-- Favicon -->
+    <link rel="icon" href="/favicon.ico" sizes="any">
+    <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap"></noscript>
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="/style.css?v=23">
+    <link rel="stylesheet" href="/guides/article.css?v=14">
+
+    <style>
+        /* Manual option reference — responsive, no fixed px widths */
+        .manual-options {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr);
+            gap: var(--space-sm);
+            margin: var(--space-lg) 0;
+        }
+        .manual-option {
+            background: var(--surface);
+            border: 1px solid var(--surface-light);
+            border-radius: var(--radius-lg);
+            padding: var(--space-md);
+        }
+        .manual-option__name {
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: var(--space-xs);
+        }
+        .manual-option__desc {
+            font-size: 13px;
+            color: var(--text-secondary);
+        }
+        /* Bottom-line callout (conclusion first) */
+        .manual-lead {
+            font-size: 14px;
+            line-height: 1.75;
+            color: var(--text-primary);
+            border-left: 3px solid var(--primary);
+            background: rgba(212, 175, 55, 0.06);
+            padding: var(--space-sm) var(--space-md);
+            border-radius: 0 var(--radius-md) var(--radius-md) 0;
+            margin: var(--space-md) 0;
+        }
+        /* Per-setting evidence note — deliberately styled as an editorial
+           aside, NOT as a settings card (no surface fill, no gold label),
+           so it is never mistaken for an in-app option. */
+        .manual-rationale {
+            margin: var(--space-md) 0 var(--space-2xl);
+            padding: var(--space-sm) 0 var(--space-sm) var(--space-md);
+            border-left: 2px solid var(--surface-light);
+        }
+        .manual-rationale__label {
+            display: block;
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            color: var(--text-secondary);
+            margin-bottom: 4px;
+            opacity: 0.75;
+        }
+        .manual-rationale p {
+            font-size: 13px;
+            line-height: 1.75;
+            color: var(--text-secondary);
+            margin: 0;
+        }
+        .manual-rationale__ref {
+            font-size: 12px;
+            font-style: italic;
+            margin-top: var(--space-xs) !important;
+            opacity: 0.7;
+        }
+        /* Citation number linking to the reference list */
+        .manual-ref-num {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-style: normal;
+        }
+        .manual-ref-num:hover { color: var(--primary); }
+        /* Full reference list at page end */
+        .manual-refs {
+            margin: var(--space-2xl) 0 0;
+            padding-top: var(--space-lg);
+            border-top: 1px solid var(--surface-light);
+        }
+        .manual-refs__title {
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: var(--space-sm);
+        }
+        .manual-refs ol {
+            margin: 0;
+            padding-left: 1.25em;
+        }
+        .manual-refs li {
+            font-size: 12px;
+            line-height: 1.7;
+            color: var(--text-secondary);
+            margin-bottom: var(--space-xs);
+            scroll-margin-top: 84px;
+        }
+        .manual-refs li:target {
+            color: var(--text-primary);
+        }
+    </style>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Manuale delle impostazioni della lettura a prima vista","description":"Manuale di riferimento per la lettura a prima vista: difficoltà, modalità, chiave, armatura e linee supplementari.","author":{"@type":"Organization","name":"Solfege PRO"},"publisher":{"@type":"Organization","name":"Solfege PRO","logo":{"@type":"ImageObject","url":"https://solfegepro.com/AppIcon.png"}},"datePublished":"2026-06-05","mainEntityOfPage":{"@type":"WebPage","@id":"https://solfegepro.com/it/manual/sight-reading/"}}</script>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://solfegepro.com/it/"},{"@type":"ListItem","position":2,"name":"Manuale","item":"https://solfegepro.com/it/manual/"},{"@type":"ListItem","position":3,"name":"譜読み 設定マニュアル — 各設定の選び方","item":"https://solfegepro.com/it/manual/sight-reading/"}]}</script>
+</head>
+<body>
+    <!-- Navigation -->
+        <nav class="nav" aria-label="Menu principale">
+        <div class="nav__container">
+            <a href="/it/" class="nav__logo" aria-label="Solfege PRO">
+                <img src="/AppIcon.png" alt="" class="nav__logo-icon" width="32" height="32">
+                <span class="nav__logo-text">Solfege PRO</span>
+            </a>
+            <ul class="nav__list">
+                <li><a href="/it/" class="nav__link">Informazioni su Solfege PRO</a></li>
+                <li><a href="/it/features/" class="nav__link">Allenamenti</a></li>
+                <li><a href="/it/guides/" class="nav__link">Guide pratiche</a></li>
+                <li><a href="/it/manual/" class="nav__link active" aria-current="page">Manuale</a></li>
+            </ul>
+            <div class="nav__settings">
+                <button class="settings-btn" id="lang-toggle" title="Seleziona lingua"><span id="lang-text">IT</span></button>
+                <button class="hamburger-btn" id="hamburger-btn" aria-label="Apri menu" aria-expanded="false" aria-controls="drawer">
+                    <span class="hamburger-btn__line"></span><span class="hamburger-btn__line"></span><span class="hamburger-btn__line"></span>
+                </button>
+            </div>
+        </div>
+    </nav>
+        <!-- Mobile drawer (hidden on desktop) -->
+            <div class="drawer-overlay" id="drawer-overlay"></div>
+    <aside class="drawer" id="drawer" aria-label="Menu" aria-hidden="true" inert>
+        <div class="drawer__header">
+            <span class="drawer__title">Menu</span>
+            <button class="drawer__close" id="drawer-close" aria-label="Chiudi menu">×</button>
+        </div>
+        <ul class="drawer__list">
+            <li><a href="/it/" class="drawer__link">Informazioni su Solfege PRO</a></li>
+            <li><a href="/it/features/" class="drawer__link">Allenamenti</a></li>
+            <li><a href="/it/guides/" class="drawer__link">Guide pratiche</a></li>
+            <li><a href="/it/manual/" class="drawer__link active" aria-current="page">Manuale</a></li>
+        </ul>
+    </aside>
+
+
+    <!-- Article Header -->
+    <header class="page-header">
+        <div class="page-header__meta">
+            <span class="page-header__tag">Manuale</span>
+            <span>Lettura a vista</span>
+        </div>
+        <h1 class="page-header__title">
+
+            Manuale delle impostazioni di lettura<br>Che cosa ogni opzione significa e come scegliere
+
+
+        </h1>
+        <p class="page-header__subtitle">
+
+            Quale opzione scegliere, quando e perché. Questa pagina cammina attraverso ogni impostazione in vista lettura allenamento, uno alla volta. Se sei arrivato da un "?" nella schermata delle impostazioni, scorrere l'opzione che ti serve.
+
+
+        </p>
+    </header>
+
+    <!-- Top-of-article CTA -->
+    <aside class="article-top-cta" aria-label="App promotion">
+        <div class="article-top-cta__body">
+            <p class="article-top-cta__title">
+
+                Prova questo Solfege PRO
+
+
+            </p>
+            <p class="article-top-cta__sub">
+
+                Consulta il prezzo sull’App Store
+
+
+            </p>
+        </div>
+        <a href="https://apps.apple.com/it/app/id6756626617?pt=6749158383&amp;ct=web_manual&amp;mt=8" class="article-top-cta__button app-store-link" data-cta-position="article_top" aria-label="Scarica sull’App Store"><img src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/it-it" class="app-store-link__img" alt="Scarica sull’App Store" loading="lazy"></a>
+    </aside>
+
+    <!-- Article Body -->
+    <main class="article-body">
+
+        <!-- Intro -->
+        <p>
+
+            L'allenamento di lettura a vista crea la tua capacità di guardare una nota sul personale e leggere il suo nome (Do, Re, Mi...) rapidamente e con precisione. Leggere il personale è la base per trasformare un punteggio in musica, e il punto di partenza per suonare qualsiasi strumento.
+
+
+        </p>
+        <p>
+
+            Questa pagina è un manuale per la scelta delle impostazioni. Ogni impostazione è progettata intorno a metodi consolidati dall'istruzione musicale. Per ogni impostazione che richiede una decisione, diamo <strong>la scelta raccomandata, per cosa è, e per cosa si allena — con le prove dietro di esso</strong>. Se sei arrivato da un "?" nella schermata delle impostazioni, scorrere l'opzione che ti serve.
+
+
+        </p>
+
+        <!-- Shared note: practice-plan item settings sheets show only the settings
+     persisted per item (v1.3.1 hides non-persisted controls in plan context).
+     Included by the 7 module manuals: interval / chord / scale / progression /
+     sight-reading / rhythm / fretboard. Rhythm Sight Reading is deliberately
+     excluded — its plan items do not embed module settings at all. -->
+<p>
+
+    Questa pagina descrive la schermata delle impostazioni della allenamento standalone aperta dalla casa pratica. Quando si aprono le impostazioni da un elemento di piano di pratica, vengono mostrate solo le impostazioni che vengono salvate con quell'elemento.
+
+
+</p>
+
+
+        <!-- #difficulty -->
+        <h2 id="difficulty">Difficoltà</h2>
+
+        <p class="manual-lead">
+
+            <strong>Quando non sei sicuro, inizia da Beginner.</strong> Salire un livello una volta che si tiene in modo affidabile 80% + a quello attuale.
+
+
+        </p>
+
+        <p>
+
+            Bundles insieme la gamma di note che ti verrà chiesto di leggere — il registro, le firme chiave, e se le linee di registro appaiono. Un registro più stretto con meno simboli è più facile; uno più ampio con più simboli è più difficile.
+
+
+        </p>
+
+        <div class="manual-options">
+            <div class="manual-option">
+                <div class="manual-option__name">Principiante</div>
+                <div class="manual-option__desc">Registro centrale, note naturali (le piazzole bianche inalterate), vicino al centro del personale di fondo nella chiave di C — il primo passo di ancoraggio che nota siede su ogni linea e spazio.</div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name">Intermedio</div>
+                <div class="manual-option__desc">Una gamma più ampia con gli accidentali; la chiave di basso si unisce e le firme chiave di fino a tre taglienti o appartamenti appaiono, quindi la gamma di lettura si allarga notevolmente.</div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name">Avanzato</div>
+                <div class="manual-option__desc">Gamma completa comprendente linee di registro — tutte le firme chiave più note che raggiungono oltre il personale; il livello superiore, più vicino ai punteggi del mondo reale.</div>
+            </div>
+        </div>
+
+        <div class="manual-rationale">
+            <span class="manual-rationale__label">Le prove che ci sono dietro</span>
+            <p>
+
+                Più stretta la gamma che gestisci subito, meno i tuoi occhi devono elaborare, e più in modo affidabile si fissa quale nota si siede su ogni linea e spazio. Cerniere di lettura a lettura a prima vista su richiamo immediato, in modo da fissare una gamma stretta prima di ampliamento vi arriva più velocemente. I livelli seguono la teoria del carico cognitivo: mantenere le richieste di elaborazione in anticipo in una nuova abilità aiuta l'apprendimento.
+
+
+            </p>
+            <p class="manual-rationale__ref">Rif.: Sweller (1988) <a class="manual-ref-num" href="#ref-1">[1]</a></p>
+        </div>
+
+        <!-- #training-mode -->
+        <h2 id="training-mode">Modalità di allenamento</h2>
+
+        <p class="manual-lead">
+
+            <strong>Lo standard è sufficiente per iniziare.</strong> Utilizzare Key Focus solo per mirare una specifica firma chiave, e raggiungere per "Weak Point Focus" una volta che i risultati si accumulano.
+
+
+        </p>
+
+        <p>
+
+            Questa impostazione decide la politica con cui le note vengono scelte per voi. Ci sono tre modalità.
+
+
+        </p>
+
+        <div class="manual-options">
+            <div class="manual-option">
+                <div class="manual-option__name">Standard</div>
+                <div class="manual-option__desc">Traccia da tutte le note che corrispondono alla tua difficoltà scelta. Senza un'intenzione speciale, questa è quella.</div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name">Focus chiave</div>
+                <div class="manual-option__desc">Limita le domande a una singola chiave, per perforare una firma chiave si trova difficile (selezionandolo rivela il picker "Key to Practice" qui sotto).</div>
+            </div>
+        </div>
+
+        <p>
+
+            La modalità rimanente — "Weak Point Focus" — si esaurisce una volta che i dati di prestazione si accumulano. Funziona allo stesso modo attraverso ogni allenamento, quindi appare in linea di seguito.
+
+
+        </p>
+
+        <!-- TODO i18n: fr/de spans are interim English; translate after ja voice approval -->
+<!-- Reusable mode partial. Training-agnostic: do NOT mention chord/scale/etc. -->
+<section class="article-mode" id="mode-weak-point">
+    <h3 class="article-mode__title">Modalità di messa a fuoco a punto debole</h3>
+
+    <p>
+
+        La messa a fuoco di Weak-point guarda la cronologia delle risposte, identifica gli elementi con la più bassa precisione, e li serve più spesso. Invece di passare del tempo su quello che già risponde in modo affidabile, si concentra la pratica su esattamente i luoghi che mantengono mancanti. L'app sceglie automaticamente gli obiettivi dai risultati.
+
+
+    </p>
+
+    <p>
+
+        Questa modalità si adatta al palcoscenico in cui la precisione complessiva è l'arrampicata, ma alcuni elementi specifici ancora incidono ogni volta. Perché continua a tornare ai tuoi punti deboli, si sente più difficile — e che lo sforzo extra controllato è proprio dove l'apprendimento avviene (il principio di difficoltà desiderabili). Ha bisogno di abbastanza storia di risposta prima che i candidati appaiono, quindi giocare la modalità normale per un po 'prima.
+
+
+    </p>
+
+    <p>
+
+        Quando in dubbio, passare per alcune sessioni concentrate ogni volta che si plateau a un dato livello e sentire "tenere perdere la stessa manciata di oggetti prima che si stabilizzasse." Una volta che i punti deboli chiariscono, torna alla modalità normale per mantenere il vostro equilibrio generale. <em>Deliberatamente facendosi recuperare gli elementi che si tende a perdere — l'effetto di prova» — è stato mostrato da Roediger &amp; Karpicke (2006) a beneficiare fortemente la ritenzione successiva.</em>
+
+
+    </p>
+</section>
+
+
+        <div class="manual-rationale">
+            <span class="manual-rationale__label">Le prove che ci sono dietro</span>
+            <p>
+
+                Esistono tre modalità per concentrare la pratica sulle note di cui hai bisogno. Il formato quiz stesso — ricordando la risposta piuttosto che semplicemente guardando — rafforza la memoria più che la visualizzazione passiva (l'effetto test). "Weak Point Focus" automatizza questo utilizzando i dati delle prestazioni.
+
+
+            </p>
+            <p class="manual-rationale__ref">Rif.: Roediger &amp; Karpicke (2006) <a class="manual-ref-num" href="#ref-2">[2]</a></p>
+        </div>
+
+        <!-- #clef -->
+        <h2 id="clef">Clef (Treble / Bass)</h2>
+
+        <p class="manual-lead">
+
+            <strong>Inizia con la chiave che il tuo strumento utilizza.</strong> Treble per chitarra e voce, Bass per basso; pianisti stabilizzare ogni chiave prima di trasferirsi a Entrambi.
+
+
+        </p>
+
+        <p>
+
+            La chiave è il simbolo sul bordo sinistro del personale che fissa quale linea è quale passo. Lo stesso spot nomina una nota completamente diversa a seconda che la chiave sia trebile o basso.
+
+
+        </p>
+
+        <div class="manual-options">
+            <div class="manual-option">
+                <div class="manual-option__name">Treble Clef</div>
+                <div class="manual-option__desc">La chiave ad alto livello (𝄞); la sua seconda linea è G. La chiave più fondamentale — per chitarra, voce, la mano destra del pianoforte, e la maggior parte degli strumenti melodia.</div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name">Basso Clef</div>
+                <div class="manual-option__desc">La chiave a basso registro (𝄢); la sua quarta linea è F. Essential per il basso, la mano sinistra del pianoforte, il violoncello e altri registri bassi; la sua mappatura differisce dalla chiave a treble, quindi imparala come un sistema separato.</div>
+            </div>
+            <div class="manual-option">
+                <div class="manual-option__name">Entrambi</div>
+                <div class="manual-option__desc">Miscela treble e domande bassi; poiché non si può prevedere quale appare, si costruisce l'abitudine di controllare la chiave di sinistra prima di lettura — ideale per pianoforte e altri strumenti che leggono entrambi.</div>
+            </div>
+        </div>
+
+        <div class="manual-rationale">
+            <span class="manual-rationale__label">Le prove che ci sono dietro</span>
+            <p>
+
+                Poiché ogni chiave mappa piazzole in modo diverso, treble e basso devono essere acquisiti come sistemi separati. La sequenza stabilita nella lettura dei dati è la sequenza di un clef prima di aggiungere l'altro. La gestione di entrambi costruisce l'abitudine essenziale di eseguire il controllo della chiave principale prima di leggere.
+
+
+            </p>
+            <p class="manual-rationale__ref">Rif.: Karpinski (2000) <a class="manual-ref-num" href="#ref-3">[3]</a></p>
+        </div>
+
+        <!-- #key -->
+        <h2 id="key">Chiave per la pratica (Caratteristiche del viso)</h2>
+
+        <p class="manual-lead">
+
+            <strong>Quando una firma chiave specifica ti fa un viaggio, restrittiva a quella.</strong> Altrimenti, incontrare una varietà di chiavi in modalità Standard.
+
+
+        </p>
+
+        <p>
+
+            Perde le domande a una chiave, mostrata solo quando si sceglie Key Focus come modalità di allenamento. Una firma chiave — le affilate o gli appartamenti a sinistra del personale — definisce quali note sono alterate (ad esempio G major ha un affilato, E-flat tre grandi appartamenti). Le chiavi selezionabili seguono la tua difficoltà: solo C major a Beginner, fino a tre accidentali a Intermediate, tutte e dodici le chiavi a Advanced.
+
+
+        </p>
+
+        <div class="manual-rationale">
+            <span class="manual-rationale__label">Le prove che ci sono dietro</span>
+            <p>
+
+                L'attentato a una chiave concentra l'attenzione sul modello ricorrente di quella firma — "questa nota è sempre affilata qui" — così affonda in. La lettura tramite la firma chiave è un approccio consolidato in istruzioni per la lettura dei punti, aiutandoti a interiorizzare il layout di ogni chiave di campi.
+
+
+            </p>
+            <p class="manual-rationale__ref">Rif.: Karpinski (2000) <a class="manual-ref-num" href="#ref-3">[3]</a></p>
+        </div>
+
+        <!-- #ledger -->
+        <h2 id="ledger">Include Linee Ledger (linee Ledger)</h2>
+
+        <p class="manual-lead">
+
+            <strong>Lasciare in un primo momento per fissare le note in-staff, poi aggiungere le linee di registro una volta stabile.</strong> Si noti che la difficoltà avanzata li include automaticamente.
+
+
+        </p>
+
+        <p>
+
+            I controlli se le linee di registro — le linee di aiuto brevi aggiunte sopra o sotto il personale — appaiono. Le picche troppo alte o basse per le cinque linee sono scritte aggiungendo linee una alla volta (ad esempio Middle C, C4, si si siede su una linea di registro sotto il personale di trebbia). Contare queste posizioni richiede tempo ed è un punto di inciampamento comune, ma le note di linea di registro sono ovunque in punteggi reali, quindi sono inevitabili nel lungo periodo.
+
+
+        </p>
+
+        <div class="manual-rationale">
+            <span class="manual-rationale__label">Le prove che ci sono dietro</span>
+            <p>
+
+                Attivare le linee di registro a prima abbassa il carico di lettura limitando quanto è necessario elaborare subito. Mescolarli prima che la fondazione sia impostata pile su conteggio posizione e tende a causare confusione. Securing le note in-staff prima di aggiungere le linee di registro mantiene il carico iniziale basso e aiuta l'apprendimento - in linea con la teoria del carico cognitivo, che sostiene che le richieste di elaborazione dovrebbero rimanere basso presto in una nuova abilità.
+
+
+            </p>
+            <p class="manual-rationale__ref">Rif.: Sweller (1988) <a class="manual-ref-num" href="#ref-1">[1]</a></p>
+        </div>
+
+        <h2 id="note-value-scoring">Valori di nota di punteggio troppo</h2>
+
+        <p class="manual-lead">
+
+            <strong>Ottenere costante sui nomi delle note prima, poi accendere "I valori delle note di base troppo."</strong> Viene segnato separatamente dal nome della nota, quindi non interrompe mai la pratica del tuo nome.
+
+
+        </p>
+
+        <p>
+
+            Una nota sul personale porta due pezzi di informazioni: quale altezza è (il nome della nota) e quanto dura (il valore della nota — intero, metà, quarto...). Con questo su, si risponde al valore della nota in aggiunta al nome. I due sono <strong>segnato indipendentemente</strong>: il risultato del tuo nome di nota non è mai influenzato dal fatto che il valore fosse giusto. Scegli sia il nome che il valore da avanzare. Off (default) mantiene la modalità classica di sola nota.
+
+
+        </p>
+
+        <div class="manual-rationale">
+            <span class="manual-rationale__label">Le prove che ci sono dietro</span>
+            <p>
+
+                Rispondendo attivamente al valore — non solo vedendolo — è il punto. Tirare una risposta dalla memoria (retrival) rafforza l'apprendimento più che la visualizzazione passiva (l'effetto test). E la lettura delle abilità non solo abbraccia il passo ma anche la durata (ritmo), quindi la allenamento di entrambe le dimensioni allarga separatamente la fondazione di lettura.
+
+
+            </p>
+            <p class="manual-rationale__ref">Rif.: Roediger &amp; Karpicke (2006) <a class="manual-ref-num" href="#ref-2">[2]</a>, Karpinski (2000) <a class="manual-ref-num" href="#ref-3">[3]</a></p>
+        </div>
+
+        <!-- References -->
+        <section class="manual-refs">
+            <div class="manual-refs__title">Referenze</div>
+            <ol>
+                <li id="ref-1">Sweller, J. (1988). Cognitive load during problem solving: Effects on learning. <em>Cognitive Science, 12</em>(2), 257–285.</li>
+                <li id="ref-2">Roediger, H. L., &amp; Karpicke, J. D. (2006). Test-enhanced learning: Taking memory tests improves long-term retention. <em>Psychological Science, 17</em>(3), 249–255.</li>
+                <li id="ref-3">Karpinski, G. S. (2000). <em>Aural Skills Acquisition: The Development of Listening, Reading, and Performing Skills in College-Level Musicians.</em> Oxford University Press.</li>
+            </ol>
+        </section>
+
+    </main>
+
+    <!-- Final CTA -->
+    <section class="article-cta">
+        <h2 class="article-cta__title">Impostazioni ordinate? Dare a Prova</h2>
+        <p class="article-cta__text">
+
+            Una volta che capisci ogni impostazione, il resto è pratica pratica.<br>Quando non sei sicuro, segui le linee "quando in dubbio" su questa pagina.<br>Trova le impostazioni che ti si adattano Solfege PRO"Sight Reading".
+
+
+        </p>
+        <a href="https://apps.apple.com/it/app/id6756626617?pt=6749158383&amp;ct=web_manual&amp;mt=8" class="app-store-link" aria-label="Scarica sull’App Store">
+
+            <img class="app-store-link__img" width="120" height="40" src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/it-it" alt="Scarica sull’App Store">
+
+
+        </a>
+    </section>
+
+    <!-- Related Content -->
+    <div class="article-related">
+        <div class="article-related__title">Contenuto</div>
+        <a href="/guides/sight-reading/" class="article-related__link" style="margin-bottom: var(--space-md);">
+            <div class="article-related__link-title">Come leggere la musica più veloce — lettura fluida della vista</div>
+            <div class="article-related__link-desc">Per chi vuole sapere come praticare la lettura a prima vista prima di regolare le impostazioni — una guida alle note di riferimento e pratica passo per passo.</div>
+        </a>
+        <a href="/" class="article-related__link">
+            <div class="article-related__link-title">Solfege PRO Guida pratica</div>
+            <div class="article-related__link-desc">Menù di pratica basati su sfida per chitarra, basso, tamburi, pianoforte e voci</div>
+        </a>
+    </div>
+
+    <!-- Article Note -->
+    <aside class="article-endnote">
+        <p class="article-endnote__text">
+
+            Questa pagina è un riferimento che spiega le impostazioni dell'app in-app. Le progredizioni consigliate qui indicate sono linee guida generali basate su una metodologia di lettura di visione ampiamente utilizzata; le impostazioni ottimali variano con esperienza e obiettivi individuali. Gli studi citati riportano i risultati dell'apprendimento generale e non garantiscono i risultati all'interno di questa app.
+
+
+        </p>
+    </aside>
+
+    <!-- Footer -->
+    <footer class="article-footer">
+        <p class="article-footer__text">
+            &copy; 2026 Solfege PRO
+        </p>
+    </footer>
+    <script src="/bootstrap.js?v=10" defer></script>
+    <nav aria-label="Language" style="display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:0.5rem;padding:var(--space-lg) var(--space-md);border-top:1px solid var(--surface-light);font-size:13px">
+        <a href="/manual/sight-reading/" hreflang="ja" style="color:var(--text-secondary);text-decoration:none">日本語</a>
+        <span aria-hidden="true" style="color:var(--surface-light)">·</span>
+        <a href="/en/manual/sight-reading/" hreflang="en" style="color:var(--text-secondary);text-decoration:none">English</a>
+        <span aria-hidden="true" style="color:var(--surface-light)">·</span>
+        <a href="/fr/manual/sight-reading/" hreflang="fr" style="color:var(--text-secondary);text-decoration:none">Français</a>
+        <span aria-hidden="true" style="color:var(--surface-light)">·</span>
+        <a href="/de/manual/sight-reading/" hreflang="de" style="color:var(--text-secondary);text-decoration:none">Deutsch</a>
+        <span aria-hidden="true" style="color:var(--surface-light)">·</span>
+        <a href="/es/manual/sight-reading/" hreflang="es" style="color:var(--text-secondary);text-decoration:none">Español</a>
+        <span aria-hidden="true" style="color:var(--surface-light)">·</span>
+        <span style="color:var(--primary);font-weight:600" aria-current="true">Italiano</span>
+        <span aria-hidden="true" style="color:var(--surface-light)">·</span>
+        <a href="/ko/manual/sight-reading/" hreflang="ko" style="color:var(--text-secondary);text-decoration:none">한국어</a>
+        <span aria-hidden="true" style="color:var(--surface-light)">·</span>
+        <a href="/pt-br/manual/sight-reading/" hreflang="pt-BR" style="color:var(--text-secondary);text-decoration:none">Português (Brasil)</a>
+    </nav>
+</body>
+</html>

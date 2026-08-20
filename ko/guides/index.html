@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="ko"
+      data-title-ja="練習ガイド一覧 | ソルフェージュPRO"
+      data-title-en="Training Guides | Solfege PRO"
+      data-title-fr="Guides d'entraînement | Solfege PRO"
+      data-title-de="Übungsleitfäden | Solfege PRO">
+<head>
+    <meta charset="UTF-8">
+    <meta name="robots" content="index, follow">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#1A1A1E">
+    <title>전체 연습 가이드 | Solfege PRO</title>
+    <meta name="description" content="리듬, 초견, 상대음감, 코드 인식, 지판, 멘탈 연습 등 20개가 넘는 Solfege PRO 연습 가이드를 목표별로 찾아보세요.">
+
+    <!-- Canonical -->
+    <link rel="canonical" href="https://solfegepro.com/ko/guides/">
+    <link rel="alternate" hreflang="ja" href="https://solfegepro.com/guides/">
+    <link rel="alternate" hreflang="en" href="https://solfegepro.com/en/guides/">
+    <link rel="alternate" hreflang="fr" href="https://solfegepro.com/fr/guides/">
+    <link rel="alternate" hreflang="de" href="https://solfegepro.com/de/guides/">
+    <link rel="alternate" hreflang="es" href="https://solfegepro.com/es/guides/">
+    <link rel="alternate" hreflang="it" href="https://solfegepro.com/it/guides/">
+    <link rel="alternate" hreflang="ko" href="https://solfegepro.com/ko/guides/">
+    <link rel="alternate" hreflang="pt-BR" href="https://solfegepro.com/pt-br/guides/">
+    <link rel="alternate" hreflang="x-default" href="https://solfegepro.com/guides/">
+<!-- Favicon -->
+    <link rel="icon" href="/favicon.ico" sizes="any">
+    <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+    <!-- OGP -->
+    <meta property="og:title" content="전체 연습 가이드">
+    <meta property="og:description" content="리듬, 초견, 상대음감, 코드 인식, 지판, 멘탈 연습 등 20개가 넘는 Solfege PRO 연습 가이드를 목표별로 찾아보세요.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://solfegepro.com/ko/guides/">
+    <meta property="og:site_name" content="Solfege PRO">
+    <meta property="og:image" content="https://solfegepro.com/og-image.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Solfege PRO">
+    <meta property="og:locale" content="ko_KR">
+    <meta property="og:locale:alternate" content="ja_JP">
+    <meta property="og:locale:alternate" content="en_US">
+    <meta property="og:locale:alternate" content="fr_FR">
+    <meta property="og:locale:alternate" content="de_DE">
+    <meta property="og:locale:alternate" content="es_ES">
+    <meta property="og:locale:alternate" content="it_IT">
+    <meta property="og:locale:alternate" content="pt_BR">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="전체 연습 가이드">
+    <meta name="twitter:description" content="리듬, 초견, 상대음감, 코드 인식, 지판, 멘탈 연습 등 20개가 넘는 Solfege PRO 연습 가이드를 목표별로 찾아보세요.">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap"></noscript>
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="/style.css?v=23">
+
+    <style>
+
+
+
+        .guides-main {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: var(--space-2xl) var(--space-lg);
+        }
+
+        .guides-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            gap: var(--space-lg);
+        }
+
+        .guide-card {
+            display: flex;
+            flex-direction: column;
+            background: var(--surface);
+            border: 1px solid var(--surface-light);
+            border-radius: var(--radius-lg);
+            padding: var(--space-lg);
+            text-decoration: none;
+            /* Explicit list, not `all`: at equal specificity this rule is parsed
+               after /style.css and `transition: all` replaced the shared reveal
+               transition, silently disabling the staggered entrance on the 23
+               cards of this page. */
+            transition: border-color 0.2s var(--ease-house),
+                        transform 0.2s var(--ease-house),
+                        box-shadow 0.2s var(--ease-house);
+        }
+
+        /* Hover transform gated on a real pointer — on touch it sticks after the tap. */
+        @media (hover: hover) and (pointer: fine) {
+            .guide-card:hover {
+                border-color: var(--primary);
+                transform: translateY(-3px);
+                box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+            }
+        }
+
+        .guide-card__icon {
+            font-size: 32px;
+            margin-bottom: var(--space-md);
+        }
+
+        .guide-card__title {
+            font-size: 15px;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: var(--space-sm);
+            line-height: 1.4;
+        }
+
+        .guide-card__desc {
+            font-size: 13px;
+            color: var(--text-secondary);
+            line-height: 1.6;
+            flex: 1;
+        }
+
+        .guide-card__tag {
+            display: inline-block;
+            font-size: 12px;
+            font-weight: 500;
+            color: var(--primary);
+            background: rgba(212, 175, 55, 0.15);
+            padding: 2px 10px;
+            border-radius: var(--radius-sm);
+            margin-top: var(--space-md);
+            align-self: flex-start;
+        }
+
+        .guide-card__tag--deep-dive {
+            color: #60A5FA;
+            background: rgba(96, 165, 250, 0.15);
+            margin-left: 6px;
+        }
+
+        /* Multi-tag row */
+        .guide-card__tags {
+            display: flex;
+            gap: 6px;
+            flex-wrap: wrap;
+            margin-top: var(--space-md);
+        }
+        .guide-card__tags .guide-card__tag {
+            margin-top: 0;
+            margin-left: 0;
+        }
+
+        .guide-card__tag--science {
+            color: #A78BFA;
+            background: rgba(167, 139, 250, 0.15);
+            margin-left: 6px;
+        }
+
+        /* "Coming soon" cards: dimmed and non-clickable */
+        .guide-card--coming {
+            opacity: 0.65;
+            pointer-events: none;
+            position: relative;
+        }
+        .guide-card__status {
+            display: inline-block;
+            font-size: 11px;
+            font-weight: 600;
+            color: var(--text-secondary);
+            background: rgba(154, 154, 154, 0.18);
+            padding: 2px 8px;
+            border-radius: var(--radius-sm);
+            margin-top: var(--space-sm);
+            align-self: flex-start;
+            letter-spacing: 0.3px;
+        }
+
+        /* Subsection heading inside guides grid */
+        .guides-subhead {
+            grid-column: 1 / -1;
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin: var(--space-lg) 0 0;
+            padding-bottom: var(--space-sm);
+            border-bottom: 1px solid var(--surface-light);
+            display: flex;
+            align-items: center;
+            gap: var(--space-sm);
+        }
+        .guides-subhead:first-child { margin-top: 0; }
+        .guides-subhead__hint {
+            font-size: 12px;
+            font-weight: 400;
+            color: var(--text-secondary);
+            margin-left: auto;
+        }
+
+        .guides-footer {
+            background: var(--surface);
+            padding: var(--space-xl) var(--space-lg);
+            text-align: center;
+            border-top: 1px solid var(--surface-light);
+        }
+
+        .guides-footer__text {
+            color: var(--text-secondary);
+            font-size: 14px;
+        }
+
+        .guides-footer__link {
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        .guides-back {
+            text-align: center;
+            margin-top: var(--space-2xl);
+        }
+
+        .guides-back__link {
+            display: inline-block;
+            background: var(--primary);
+            color: var(--background);
+            padding: var(--space-md) var(--space-xl);
+            border-radius: var(--radius-lg);
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 15px;
+            transition: transform 0.2s var(--ease-house),
+                        box-shadow 0.2s var(--ease-house);
+        }
+
+        @media (hover: hover) and (pointer: fine) {
+            .guides-back__link:hover {
+                transform: scale(1.03);
+                box-shadow: 0 4px 20px rgba(212, 175, 55, 0.3);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .guides-main { padding: var(--space-lg) var(--space-md); }
+            .guides-grid { grid-template-columns: 1fr; gap: var(--space-md); }
+            .guide-card { padding: var(--space-lg); }
+        }
+
+        @media (max-width: 480px) {
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+        <nav class="nav" aria-label="기본 메뉴">
+        <div class="nav__container">
+            <a href="/ko/" class="nav__logo" aria-label="Solfege PRO">
+                <img src="/AppIcon.png" alt="" class="nav__logo-icon" width="32" height="32">
+                <span class="nav__logo-text">Solfege PRO</span>
+            </a>
+            <ul class="nav__list">
+                <li><a href="/ko/" class="nav__link">Solfege PRO 소개</a></li>
+                <li><a href="/ko/features/" class="nav__link">훈련</a></li>
+                <li><a href="/ko/guides/" class="nav__link active" aria-current="page">연습 가이드</a></li>
+                <li><a href="/ko/manual/" class="nav__link">매뉴얼</a></li>
+            </ul>
+            <div class="nav__settings">
+                <button class="settings-btn" id="lang-toggle" title="언어 선택"><span id="lang-text">KO</span></button>
+                <button class="hamburger-btn" id="hamburger-btn" aria-label="메뉴 열기" aria-expanded="false" aria-controls="drawer">
+                    <span class="hamburger-btn__line"></span><span class="hamburger-btn__line"></span><span class="hamburger-btn__line"></span>
+                </button>
+            </div>
+        </div>
+    </nav>
+        <!-- Mobile drawer (hidden on desktop) -->
+            <div class="drawer-overlay" id="drawer-overlay"></div>
+    <aside class="drawer" id="drawer" aria-label="메뉴" aria-hidden="true" inert>
+        <div class="drawer__header">
+            <span class="drawer__title">메뉴</span>
+            <button class="drawer__close" id="drawer-close" aria-label="메뉴 닫기">×</button>
+        </div>
+        <ul class="drawer__list">
+            <li><a href="/ko/" class="drawer__link">Solfege PRO 소개</a></li>
+            <li><a href="/ko/features/" class="drawer__link">훈련</a></li>
+            <li><a href="/ko/guides/" class="drawer__link active" aria-current="page">연습 가이드</a></li>
+            <li><a href="/ko/manual/" class="drawer__link">매뉴얼</a></li>
+        </ul>
+    </aside>
+
+
+    <!-- Header -->
+    <header class="page-header">
+        <h1 class="page-header__title">훈련 가이드</h1>
+        <p class="page-header__subtitle">
+
+            각 훈련의 개념과 효과적인 연습법, 앱으로 할 수 있는 것과 없는 것을 솔직하게 설명합니다.
+
+
+        </p>
+    </header>
+
+    <!-- Guide Grid -->
+    <main class="guides-main">
+
+        <!-- Recommended reading order -->
+        <section style="background:var(--surface);border:1px solid var(--surface-light);border-left:4px solid var(--primary);border-radius:var(--radius-md);padding:var(--space-lg);margin-bottom:var(--space-xl);">
+            <div style="font-size:14px;font-weight:700;color:var(--text-primary);margin-bottom:var(--space-sm);">📍 추천 읽기 순서</div>
+            <p style="font-size:13px;color:var(--text-secondary);line-height:1.8;margin:0;"><strong style="color:var(--text-primary);">리듬 과정</strong>: ① 리듬 훈련 → ⑧ 그루브(심화)<br><strong style="color:var(--text-primary);">음감 과정</strong>: ② 음정 → ③ 코드 인식 → ④ 음계 인식 → ⑤ 코드 진행 훈련<br><strong style="color:var(--text-primary);">악보·지판 과정</strong>: ⑥ 음표 읽기 / ⑦ 지판 훈련(기타)<br><br>처음이라면 허브의 <a href="/" style="color:var(--primary);">악기별 Q&amp;A</a>에서 고민을 확인한 뒤 관련 가이드를 읽어 보세요. 또는 <a href="/start-here/" style="color:var(--primary);">‘어디서 시작할까요?’</a> 진단을 이용해도 좋습니다.</p>
+        </section>
+
+        <div class="guides-grid">
+
+            <a href="/guides/rhythm-training/" class="guide-card">
+                <div class="guide-card__icon"><svg class="icon" aria-hidden="true"><use href="/assets/icons.svg#icon-drum"></use></svg></div>
+                <div class="guide-card__title">리듬 훈련 가이드</div>
+                <div class="guide-card__desc">빨라짐, 느려짐, 불규칙함, 포켓을 분석하고 타이밍 측정과 개선 주기를 설명합니다.</div>
+                <span class="guide-card__tag">Rhythm Training</span>
+            </a>
+
+            <a href="/guides/how-to-count-rhythms/" class="guide-card">
+                <div class="guide-card__icon"><svg class="icon" aria-hidden="true"><use href="/assets/icons.svg#icon-timer"></use></svg></div>
+                <div class="guide-card__title">리듬 세는 법</div>
+                <div class="guide-card__desc">음가를 소리 내어 세는 기본 기술을 익힙니다. 분할, 점음표, 붙임줄, 쉼표, 당김음과 국가별 리듬 세기 체계를 연구 근거와 함께 단계별로 설명합니다.</div>
+                <span class="guide-card__tag">Rhythm</span>
+            </a>
+
+            <a href="/guides/groove-training/" class="guide-card">
+                <div class="guide-card__icon"><svg class="icon" aria-hidden="true"><use href="/assets/icons.svg#icon-audio-lines"></use></svg></div>
+                <div class="guide-card__title">그루브의 본질 — ‘정확하지만 딱딱한’ 연주를 넘어서</div>
+                <div class="guide-card__desc">그루브는 예측과 긴장의 균형에서 생깁니다. 연구를 바탕으로 요소와 단계별 훈련법을 소개합니다.</div>
+                <span class="guide-card__tag">Rhythm</span>
+                <span class="guide-card__tag guide-card__tag--deep-dive">심화</span>
+            </a>
+
+            <a href="/guides/interval-training/" class="guide-card">
+                <div class="guide-card__icon"><svg class="icon" aria-hidden="true"><use href="/assets/icons.svg#icon-music-note"></use></svg></div>
+                <div class="guide-card__title">음정 인식 가이드</div>
+                <div class="guide-card__desc">13가지 음정을 이해하고 상대음감을 훈련합니다. 난이도별 단계와 약점 집중 연습을 소개합니다.</div>
+                <span class="guide-card__tag">Interval Training</span>
+            </a>
+
+            <a href="/guides/sight-reading/" class="guide-card">
+                <div class="guide-card__icon"><svg class="icon" aria-hidden="true"><use href="/assets/icons.svg#icon-book-open"></use></svg></div>
+                <div class="guide-card__title">초견 가이드</div>
+                <div class="guide-card__desc">악보를 빠르게 읽는 기초를 익힙니다. 기준음표 방식과 단계별 연습법을 설명합니다.</div>
+                <span class="guide-card__tag">Sight Reading</span>
+            </a>
+
+            <a href="/guides/fretboard-training/" class="guide-card">
+                <div class="guide-card__icon"><svg class="icon" aria-hidden="true"><use href="/assets/icons.svg#icon-guitar"></use></svg></div>
+                <div class="guide-card__title">지판 훈련 가이드</div>
+                <div class="guide-card__desc">기타 지판의 음 위치를 효율적으로 익힙니다. 옥타브 모양과 범위별 진행을 설명합니다.</div>
+                <span class="guide-card__tag">Fretboard Training</span>
+            </a>
+
+            <a href="/guides/ear-training-chords/" class="guide-card">
+                <div class="guide-card__icon"><svg class="icon" aria-hidden="true"><use href="/assets/icons.svg#icon-piano"></use></svg></div>
+                <div class="guide-card__title">코드 인식 가이드</div>
+                <div class="guide-card__desc">코드 성질을 듣고 구별하는 법을 익힙니다. 3화음부터 7화음과 텐션까지 단계별로 설명합니다.</div>
+                <span class="guide-card__tag">Chord Recognition</span>
+            </a>
+
+            <a href="/guides/ear-training-scales/" class="guide-card">
+                <div class="guide-card__icon"><svg class="icon" aria-hidden="true"><use href="/assets/icons.svg#icon-music-staff"></use></svg></div>
+                <div class="guide-card__title">음계 인식 가이드</div>
+                <div class="guide-card__desc">음계와 선법을 귀로 이해합니다. 교회선법의 특징과 단계별 연습법을 소개합니다.</div>
+                <span class="guide-card__tag">Scale Recognition</span>
+            </a>
+
+            <a href="/guides/ear-training-progressions/" class="guide-card">
+                <div class="guide-card__icon"><svg class="icon" aria-hidden="true"><use href="/assets/icons.svg#icon-music-notes"></use></svg></div>
+                <div class="guide-card__title">코드 진행 훈련 가이드</div>
+                <div class="guide-card__desc">화성의 흐름을 이해합니다. 기능화성(T/SD/D)의 개념과 단계별 연습법을 설명합니다.</div>
+                <span class="guide-card__tag">Progression Training</span>
+            </a>
+
+            <a href="/guides/chord-function-curriculum/" class="guide-card">
+                <div class="guide-card__icon"><svg class="icon" aria-hidden="true"><use href="/assets/icons.svg#icon-piano"></use></svg></div>
+                <div class="guide-card__title">코드 기능 훈련 과정 — 4단계로 익히는 T/SD/D</div>
+                <div class="guide-card__desc">해결감부터 4마디 코드 진행 듣기까지, 으뜸·버금딸림·딸림 기능을 익히는 4단계 훈련 과정입니다.</div>
+                <span class="guide-card__tag">Harmony</span>
+            </a>
+
+            <a href="/guides/movable-do-vs-fixed-do/" class="guide-card">
+                <div class="guide-card__icon"><svg class="icon" aria-hidden="true"><use href="/assets/icons.svg#icon-library"></use></svg></div>
+                <div class="guide-card__title">이동도법과 고정도법</div>
+                <div class="guide-card__desc">전통과 장점이 서로 다른 두 계명창 체계입니다. 어느 하나가 ‘우월하다’고 단정하는 연구는 드물며, 답은 문화적 배경에 크게 좌우됩니다. 과장 없이 실제 연구 결과를 살펴봅니다.</div>
+                <span class="guide-card__tag">Solfège</span>
+            </a>
+
+            <a href="/guides/find-key-by-ear/" class="guide-card">
+                <div class="guide-card__icon"><svg class="icon" aria-hidden="true"><use href="/assets/icons.svg#icon-compass"></use></svg></div>
+                <div class="guide-card__title">노래의 조성을 귀로 찾는 법</div>
+                <div class="guide-card__desc">채보하기 전에 먼저 으뜸음을 들어야 합니다. 장조와 관계단조를 구별하는 요령을 포함해 재현 가능한 절차를 설명합니다.</div>
+                <span class="guide-card__tag">Ear Training</span>
+            </a>
+
+            <!-- Cognitive Science series (coming soon) -->
+            <div class="guides-subhead">
+                <svg class="icon" aria-hidden="true" style="width:1em; height:1em; color:#A78BFA;"><use href="/assets/icons.svg#icon-flask"></use></svg>
+                <span>인지과학 시리즈</span>
+                <span class="guides-subhead__hint">연구에 근거한 읽을거리</span>
+            </div>
+
+            <a href="/guides/practice-spacing/" class="guide-card">
+                <div class="guide-card__icon"><svg class="icon" aria-hidden="true"><use href="/assets/icons.svg#icon-flask"></use></svg></div>
+                <div class="guide-card__title">효과적인 연습 일정</div>
+                <div class="guide-card__desc">분산 학습, 교차 학습, 인출 효과를 활용해 같은 시간으로 기억 유지율을 2~3배 높이는 일정 설계법입니다.</div>
+                <div class="guide-card__tags"><span class="guide-card__tag">Cross-cutting</span><span class="guide-card__tag guide-card__tag--science">인지과학</span></div>
+            </a>
+
+            <a href="/guides/eye-hand-span/" class="guide-card">
+                <div class="guide-card__icon"><svg class="icon" aria-hidden="true"><use href="/assets/icons.svg#icon-book-open"></use></svg></div>
+                <div class="guide-card__title">초견에서 3초 앞서 읽기</div>
+                <div class="guide-card__desc">눈과 손의 간격 연구를 바탕으로, 숙련자가 연주보다 앞서 악보를 읽는 방식과 그 훈련법을 설명합니다.</div>
+                <div class="guide-card__tags"><span class="guide-card__tag">Reading</span><span class="guide-card__tag guide-card__tag--science">인지과학</span></div>
+            </a>
+
+            <a href="/guides/bpm-60-wall/" class="guide-card">
+                <div class="guide-card__icon"><svg class="icon" aria-hidden="true"><use href="/assets/icons.svg#icon-audio-lines"></use></svg></div>
+                <div class="guide-card__title">BPM 60의 벽</div>
+                <div class="guide-card__desc">‘느릴수록 쉽다’는 생각은 틀릴 수 있습니다. 선호 템포 연구와 박 분할 전략을 활용해 긴 박을 안정적으로 유지하는 법을 설명합니다.</div>
+                <div class="guide-card__tags"><span class="guide-card__tag">Rhythm</span><span class="guide-card__tag guide-card__tag--science">인지과학</span></div>
+            </a>
+
+            <a href="/guides/mental-practice/" class="guide-card">
+                <div class="guide-card__icon"><svg class="icon" aria-hidden="true"><use href="/assets/icons.svg#icon-music-note"></use></svg></div>
+                <div class="guide-card__title">멘탈 연습</div>
+                <div class="guide-card__desc">악기가 없어도 뇌는 학습합니다. Pascual-Leone의 TMS 실험을 바탕으로 이동 중에도 할 수 있는 효과적인 심상 훈련을 소개합니다.</div>
+                <div class="guide-card__tags"><span class="guide-card__tag">Cross-cutting</span><span class="guide-card__tag guide-card__tag--science">인지과학</span></div>
+            </a>
+
+            <a href="/guides/absolute-pitch-adult/" class="guide-card">
+                <div class="guide-card__icon"><svg class="icon" aria-hidden="true"><use href="/assets/icons.svg#icon-piano"></use></svg></div>
+                <div class="guide-card__title">성인도 절대음감을 익힐 수 있을까?</div>
+                <div class="guide-card__desc">훈련할 수 있는 것과 없는 것을 연구 결과로 살펴봅니다. ‘흰건반 편향’의 함정과 최근 Van Hedger·Wong 연구를 상대음감의 투자 대비 효과와 함께 검토합니다.</div>
+                <div class="guide-card__tags"><span class="guide-card__tag">Interval / Pitch</span><span class="guide-card__tag guide-card__tag--science">인지과학</span></div>
+            </a>
+
+            <a href="/guides/relative-pitch-adult-3months/" class="guide-card">
+                <div class="guide-card__icon"><svg class="icon" aria-hidden="true"><use href="/assets/icons.svg#icon-music-note"></use></svg></div>
+                <div class="guide-card__title">성인을 위한 상대음감 훈련 — 귀로 따기까지 3개월 계획</div>
+                <div class="guide-card__desc">음악에 실제로 필요한 능력은 절대음감이 아니라 상대음감입니다. 1개월 차 음정, 2개월 차 코드, 3개월 차 코드 진행으로 이어지는 주별 계획을 통해 3개월 안에 귀로 따기에 다가갑니다.</div>
+                <div class="guide-card__tags"><span class="guide-card__tag">Interval / Pitch</span><span class="guide-card__tag guide-card__tag--deep-dive">연습 계획</span></div>
+            </a>
+
+            <a href="/guides/piano-parent-home-support/" class="guide-card">
+                <div class="guide-card__icon"><svg class="icon" aria-hidden="true"><use href="/assets/icons.svg#icon-piano"></use></svg></div>
+                <div class="guide-card__title">아이 피아노 연습 — 비전공 부모가 집에서 할 수 있는 일</div>
+                <div class="guide-card__desc">실력 향상의 대부분은 가정 연습에서 나옵니다. 음표 읽기, 리듬, 청음 훈련을 ‘악기 밖 연습’으로 구성하는 비전공 부모용 우선순위 가이드입니다.</div>
+                <div class="guide-card__tags"><span class="guide-card__tag">Piano</span><span class="guide-card__tag guide-card__tag--deep-dive">연습 계획</span></div>
+            </a>
+
+            <a href="/guides/guitar-10years-cant-ear-copy/" class="guide-card">
+                <div class="guide-card__icon"><svg class="icon" aria-hidden="true"><use href="/assets/icons.svg#icon-guitar"></use></svg></div>
+                <div class="guide-card__title">기타 10년, 아직도 귀로 못 딴다면 — 재능이 아니라 순서의 문제</div>
+                <div class="guide-card__desc">연주는 되지만 채보가 어려운 연주자에게 필요한 것은 음정 → 3화음 → 7화음 → 코드 진행 → 실제 곡으로 이어지는 순서 있는 훈련입니다. 성인도 3개월이면 실용적인 수준에 도달할 수 있습니다.</div>
+                <div class="guide-card__tags"><span class="guide-card__tag">Ear Training</span><span class="guide-card__tag guide-card__tag--deep-dive">연습 계획</span></div>
+            </a>
+
+            <a href="/guides/dtm-chord-progression-variety/" class="guide-card">
+                <div class="guide-card__icon"><svg class="icon" aria-hidden="true"><use href="/assets/icons.svg#icon-music-note"></use></svg></div>
+                <div class="guide-card__title">DTM 곡이 단조롭게 들리는 이유 — 이론이 아니라 귀의 어휘</div>
+                <div class="guide-card__desc">DAW로 만든 곡이 모두 비슷하게 들리나요? 부족한 것은 이론이 아니라 귀의 어휘입니다. 온음계·비온음계 인식과 실제 곡 추출의 세 가지 청음 루틴으로 3개월 안에 표현 범위를 넓혀 보세요.</div>
+                <div class="guide-card__tags"><span class="guide-card__tag">작곡 / DTM</span><span class="guide-card__tag guide-card__tag--deep-dive">연습 계획</span></div>
+            </a>
+
+            <a href="/guides/session-5min-checklist/" class="guide-card">
+                <div class="guide-card__icon"><svg class="icon" aria-hidden="true"><use href="/assets/icons.svg#icon-compass"></use></svg></div>
+                <div class="guide-card__title">잼 세션 5분 전 — 확인할 7가지</div>
+                <div class="guide-card__desc">무대에서 머리가 하얘지는 일을 크게 줄이는 7가지 사전 점검표입니다. 조성 확인, 로마 숫자 코드 진행, 코드톤 노래하기, 복귀 패턴 등을 점검합니다.</div>
+                <div class="guide-card__tags"><span class="guide-card__tag">세션 / 즉흥연주</span><span class="guide-card__tag guide-card__tag--deep-dive">체크리스트</span></div>
+            </a>
+
+            <a href="/guides/exam-solfege-6week-plan/" class="guide-card">
+                <div class="guide-card__icon"><svg class="icon" aria-hidden="true"><use href="/assets/icons.svg#icon-book-open"></use></svg></div>
+                <div class="guide-card__title">6주 솔페주 준비 — 음대·교원 시험 대비</div>
+                <div class="guide-card__desc">6주 동안 음대 또는 교원 시험의 솔페주를 준비합니다. 청음, 초견창, 이론을 다루는 주별 계획과 모의시험 3회, 약점 보완법을 소개합니다.</div>
+                <div class="guide-card__tags"><span class="guide-card__tag">시험 대비</span><span class="guide-card__tag guide-card__tag--deep-dive">연습 계획</span></div>
+            </a>
+
+        </div>
+
+        <div class="guides-back">
+            <a href="https://apps.apple.com/kr/app/id6756626617?pt=6749158383&amp;ct=web_guides&amp;mt=8" class="app-store-link" aria-label="App Store에서 다운로드">
+
+                <img class="app-store-link__img" width="120" height="40" src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/ko-kr" alt="App Store에서 다운로드">
+
+
+            </a>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="guides-footer">
+        <p class="guides-footer__text">
+            &copy; 2026 Solfege PRO
+        </p>
+    </footer>
+    <script src="/bootstrap.js?v=10" defer></script>
+    <nav aria-label="Language" style="display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:0.5rem;padding:var(--space-lg) var(--space-md);border-top:1px solid var(--surface-light);font-size:13px">
+        <a href="/guides/" hreflang="ja" style="color:var(--text-secondary);text-decoration:none">日本語</a>
+        <span aria-hidden="true" style="color:var(--surface-light)">·</span>
+        <a href="/en/guides/" hreflang="en" style="color:var(--text-secondary);text-decoration:none">English</a>
+        <span aria-hidden="true" style="color:var(--surface-light)">·</span>
+        <a href="/fr/guides/" hreflang="fr" style="color:var(--text-secondary);text-decoration:none">Français</a>
+        <span aria-hidden="true" style="color:var(--surface-light)">·</span>
+        <a href="/de/guides/" hreflang="de" style="color:var(--text-secondary);text-decoration:none">Deutsch</a>
+        <span aria-hidden="true" style="color:var(--surface-light)">·</span>
+        <a href="/es/guides/" hreflang="es" style="color:var(--text-secondary);text-decoration:none">Español</a>
+        <span aria-hidden="true" style="color:var(--surface-light)">·</span>
+        <a href="/it/guides/" hreflang="it" style="color:var(--text-secondary);text-decoration:none">Italiano</a>
+        <span aria-hidden="true" style="color:var(--surface-light)">·</span>
+        <span style="color:var(--primary);font-weight:600" aria-current="true">한국어</span>
+        <span aria-hidden="true" style="color:var(--surface-light)">·</span>
+        <a href="/pt-br/guides/" hreflang="pt-BR" style="color:var(--text-secondary);text-decoration:none">Português (Brasil)</a>
+    </nav>
+</body>
+</html>

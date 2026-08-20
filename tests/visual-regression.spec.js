@@ -27,6 +27,7 @@ const PAGES = [
     '/start-here/',
     '/support/',
     '/privacy/',
+    '/terms/',
     '/pricing/',
     '/features/',
     '/free-vs-pro/',

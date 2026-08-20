@@ -46,6 +46,7 @@ const PAGES = [
     // operational pages (ASC support/privacy URLs — added 2026-08-03)
     '/support/',
     '/privacy/',
+    '/terms/',
     // operational pages batch 2 (M132-109 P2 — added 2026-08-03)
     '/pricing/',
     '/faq/',
@@ -68,10 +69,10 @@ const WIDTHS = [375, 480, 600, 720, 740, 760, 765, 768, 770, 800, 1024, 1440];
 
 test.describe.configure({ mode: 'parallel' });
 
-// Test every language variant (ja root + /en /fr /de). German's longer
-// compound words can overflow where Japanese fits — this is what caught
-// de /guides/chord-function-curriculum/ @375px. Do NOT trim to ja-only.
-const LANG_PREFIXES = ['', '/en', '/fr', '/de'];
+// Test every language variant. German/Portuguese/Italian text length and Korean
+// line breaking can expose different overflow failures, so all eight are part
+// of the layout contract.
+const LANG_PREFIXES = ['', '/en', '/fr', '/de', '/es', '/it', '/ko', '/pt-br'];
 
 for (const prefix of LANG_PREFIXES) {
 for (const path of PAGES) {

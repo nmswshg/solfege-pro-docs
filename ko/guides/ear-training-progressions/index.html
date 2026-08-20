@@ -1,0 +1,691 @@
+<!DOCTYPE html>
+<html lang="ko"
+      data-title-ja="コード進行を聴き取る — T/SD/D 機能で判別 | ソルフェージュPRO"
+      data-title-en="What Is Progression Training? — Understanding Harmonic Movement | Solfege PRO"
+      data-title-fr="Qu'est-ce que l'écoute des progressions d'accords ? — Comprendre le mouvement harmonique | Solfege PRO"
+      data-title-de="Was ist Akkordfolgen-Hörtraining? — Harmonische Bewegung verstehen | Solfege PRO">
+<head>
+    <meta charset="UTF-8">
+    <meta name="robots" content="index, follow">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#1A1A1E">
+    <title>코드 진행 듣기: T/SD/D 기능 청음 | Solfege PRO</title>
+    <meta name="description" content="기능(T/SD/D), 로마숫자, 코드 기호의 3단계로 코드 진행을 듣는 힘을 기릅니다. 다이어토닉 중심 계획과 이동도법의 관계도 설명합니다.">
+
+    <!-- Canonical -->
+    <link rel="canonical" href="https://solfegepro.com/ko/guides/ear-training-progressions/">
+    <link rel="alternate" hreflang="ja" href="https://solfegepro.com/guides/ear-training-progressions/">
+    <link rel="alternate" hreflang="en" href="https://solfegepro.com/en/guides/ear-training-progressions/">
+    <link rel="alternate" hreflang="fr" href="https://solfegepro.com/fr/guides/ear-training-progressions/">
+    <link rel="alternate" hreflang="de" href="https://solfegepro.com/de/guides/ear-training-progressions/">
+    <link rel="alternate" hreflang="es" href="https://solfegepro.com/es/guides/ear-training-progressions/">
+    <link rel="alternate" hreflang="it" href="https://solfegepro.com/it/guides/ear-training-progressions/">
+    <link rel="alternate" hreflang="ko" href="https://solfegepro.com/ko/guides/ear-training-progressions/">
+    <link rel="alternate" hreflang="pt-BR" href="https://solfegepro.com/pt-br/guides/ear-training-progressions/">
+    <link rel="alternate" hreflang="x-default" href="https://solfegepro.com/guides/ear-training-progressions/">
+<!-- OGP -->
+    <meta property="og:title" content="코드 진행 듣기: T/SD/D 기능 청음">
+    <meta property="og:description" content="기능(T/SD/D), 로마숫자, 코드 기호의 3단계로 코드 진행을 듣는 힘을 기릅니다. 다이어토닉 중심 계획과 이동도법의 관계도 설명합니다.">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://solfegepro.com/ko/guides/ear-training-progressions/">
+    <meta property="og:site_name" content="Solfege PRO">
+    <meta property="og:image" content="https://solfegepro.com/og-image.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Solfege PRO">
+    <meta property="og:locale" content="ko_KR">
+    <meta property="og:locale:alternate" content="ja_JP">
+    <meta property="og:locale:alternate" content="en_US">
+    <meta property="og:locale:alternate" content="fr_FR">
+    <meta property="og:locale:alternate" content="de_DE">
+    <meta property="og:locale:alternate" content="es_ES">
+    <meta property="og:locale:alternate" content="it_IT">
+    <meta property="og:locale:alternate" content="pt_BR">
+    <meta property="article:published_time" content="2026-03-31">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="코드 진행 듣기: T/SD/D 기능 청음">
+    <meta name="twitter:description" content="기능(T/SD/D), 로마숫자, 코드 기호의 3단계로 코드 진행을 듣는 힘을 기릅니다. 다이어토닉 중심 계획과 이동도법의 관계도 설명합니다.">
+    <meta name="twitter:image" content="https://solfegepro.com/og-image.png">
+
+    <!-- Favicon -->
+    <link rel="icon" href="/favicon.ico" sizes="any">
+    <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap"></noscript>
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="/style.css?v=23">
+    <link rel="stylesheet" href="/guides/article.css?v=14">
+
+    <style>
+        /* Harmonic Function Cycle */
+        .function-cycle {
+            background: var(--surface);
+            border-radius: var(--radius-xl);
+            padding: var(--space-xl);
+            margin: var(--space-xl) 0;
+            border: 1px solid var(--surface-light);
+        }
+        /* Wide: 4 nodes in one row with → arrows. Below 600 px the row
+           would wrap awkwardly (3 + 1 with an orphan arrow trailing on
+           row 1 and leading row 2), so we flip to a vertical column and
+           swap the arrow content to ↓ inside the same media query —
+           same Hard rule #5 pattern as the global .cycle-diagram. */
+        .function-cycle__diagram {
+            display: flex;
+            flex-wrap: nowrap;
+            justify-content: center;
+            align-items: center;
+            gap: var(--space-sm);
+            margin-bottom: var(--space-xl);
+        }
+        .function-cycle__node {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid;
+            text-align: center;
+            flex-shrink: 0;
+        }
+        @media (max-width: 600px) {
+            .function-cycle__diagram {
+                flex-direction: column;
+                gap: var(--space-xs);
+            }
+            .function-cycle__node {
+                width: 84px;
+                height: 84px;
+            }
+            .function-cycle__arrow {
+                transform: rotate(90deg);
+            }
+        }
+        .function-cycle__node--t {
+            border-color: #4ADE80;
+            background: rgba(74, 222, 128, 0.1);
+        }
+        .function-cycle__node--sd {
+            border-color: #FBBF24;
+            background: rgba(251, 191, 36, 0.1);
+        }
+        .function-cycle__node--d {
+            border-color: #F87171;
+            background: rgba(248, 113, 113, 0.1);
+        }
+        .function-cycle__node-label {
+            font-size: 18px;
+            font-weight: 700;
+        }
+        .function-cycle__node--t .function-cycle__node-label { color: #4ADE80; }
+        .function-cycle__node--sd .function-cycle__node-label { color: #FBBF24; }
+        .function-cycle__node--d .function-cycle__node-label { color: #F87171; }
+        .function-cycle__node-desc {
+            font-size: 11px;
+            color: var(--text-secondary);
+            margin-top: 2px;
+        }
+        .function-cycle__arrow {
+            font-size: 24px;
+            color: var(--text-secondary);
+        }
+        .function-cycle__arrow--return {
+            font-size: 18px;
+            color: var(--text-secondary);
+            text-align: center;
+            margin-top: var(--space-sm);
+        }
+
+        /* Function Table */
+        .function-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: var(--space-lg);
+        }
+        .function-table th,
+        .function-table td {
+            padding: var(--space-sm) var(--space-md);
+            text-align: left;
+            font-size: 14px;
+            border-bottom: 1px solid var(--surface-light);
+        }
+        .function-table th {
+            color: var(--text-secondary);
+            font-weight: 700;
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .function-table td {
+            color: var(--text-primary);
+        }
+        .function-table__tag {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: var(--radius-sm);
+            font-size: 12px;
+            font-weight: 600;
+        }
+        .function-table__tag--t { background: rgba(74, 222, 128, 0.15); color: #4ADE80; }
+        .function-table__tag--sd { background: rgba(251, 191, 36, 0.15); color: #FBBF24; }
+        .function-table__tag--d { background: rgba(248, 113, 113, 0.15); color: #F87171; }
+
+        @media (max-width: 768px) {
+            .function-cycle { padding: var(--space-md); }
+            .function-cycle__node { width: 80px; height: 80px; }
+            .function-cycle__node-label { font-size: 16px; }
+            .function-cycle__node-desc { font-size: 10px; }
+            .function-table th, .function-table td { padding: var(--space-xs) var(--space-sm); font-size: 13px; }
+        }
+    </style>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"코드 진행 듣기: T/SD/D 기능 청음","description":"기능(T/SD/D), 로마숫자, 코드 기호의 3단계로 코드 진행을 듣는 힘을 기릅니다. 다이어토닉 중심 계획과 이동도법의 관계도 설명합니다.","author":{"@type":"Organization","name":"Solfege PRO"},"publisher":{"@type":"Organization","name":"Solfege PRO","logo":{"@type":"ImageObject","url":"https://solfegepro.com/AppIcon.png"}},"datePublished":"2026-03-31","mainEntityOfPage":{"@type":"WebPage","@id":"https://solfegepro.com/ko/guides/ear-training-progressions/"}}</script>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"홈","item":"https://solfegepro.com/ko/"},{"@type":"ListItem","position":2,"name":"연습 가이드","item":"https://solfegepro.com/ko/guides/"},{"@type":"ListItem","position":3,"name":"コード進行を聴き取る — T/SD/D 機能で判別","item":"https://solfegepro.com/ko/guides/ear-training-progressions/"}]}</script>
+</head>
+<body>
+    <!-- Navigation -->
+        <nav class="nav" aria-label="기본 메뉴">
+        <div class="nav__container">
+            <a href="/ko/" class="nav__logo" aria-label="Solfege PRO">
+                <img src="/AppIcon.png" alt="" class="nav__logo-icon" width="32" height="32">
+                <span class="nav__logo-text">Solfege PRO</span>
+            </a>
+            <ul class="nav__list">
+                <li><a href="/ko/" class="nav__link">Solfege PRO 소개</a></li>
+                <li><a href="/ko/features/" class="nav__link">훈련</a></li>
+                <li><a href="/ko/guides/" class="nav__link active" aria-current="page">연습 가이드</a></li>
+                <li><a href="/ko/manual/" class="nav__link">매뉴얼</a></li>
+            </ul>
+            <div class="nav__settings">
+                <button class="settings-btn" id="lang-toggle" title="언어 선택"><span id="lang-text">KO</span></button>
+                <button class="hamburger-btn" id="hamburger-btn" aria-label="메뉴 열기" aria-expanded="false" aria-controls="drawer">
+                    <span class="hamburger-btn__line"></span><span class="hamburger-btn__line"></span><span class="hamburger-btn__line"></span>
+                </button>
+            </div>
+        </div>
+    </nav>
+        <!-- Mobile drawer (hidden on desktop) -->
+            <div class="drawer-overlay" id="drawer-overlay"></div>
+    <aside class="drawer" id="drawer" aria-label="메뉴" aria-hidden="true" inert>
+        <div class="drawer__header">
+            <span class="drawer__title">메뉴</span>
+            <button class="drawer__close" id="drawer-close" aria-label="메뉴 닫기">×</button>
+        </div>
+        <ul class="drawer__list">
+            <li><a href="/ko/" class="drawer__link">Solfege PRO 소개</a></li>
+            <li><a href="/ko/features/" class="drawer__link">훈련</a></li>
+            <li><a href="/ko/guides/" class="drawer__link active" aria-current="page">연습 가이드</a></li>
+            <li><a href="/ko/manual/" class="drawer__link">매뉴얼</a></li>
+        </ul>
+    </aside>
+
+
+    <!-- Article Header -->
+    <header class="page-header">
+        <div class="page-header__meta">
+            <span class="page-header__tag">진행 교육</span>
+            <span>8 분 읽음</span>
+        </div>
+        <h1 class="page-header__title">
+
+            진행 훈련은 무엇입니까?<br>화성 운동 이해
+
+
+        </h1>
+        <p class="page-header__subtitle">
+
+            개별 코드를 식별하고 진행 중 "flow"를 듣는 것은 다른 기술입니다. 기능적인 조화 프레임 워크에서 시작된 조화 운동을 따르는 귀를 훈련하는 방법을 알아보세요.
+
+
+        </p>
+    </header>
+
+    <!-- Top-of-article CTA -->
+    <aside class="article-top-cta" aria-label="App promotion">
+        <div class="article-top-cta__body">
+            <p class="article-top-cta__title">
+
+                더 알아보기 Solfege PRO
+
+
+            </p>
+            <p class="article-top-cta__sub">
+
+                $9.99/월(미국 App Store 기준)(미국 App Store 기준)
+
+
+            </p>
+        </div>
+        <a href="https://apps.apple.com/kr/app/id6756626617?pt=6749158383&amp;ct=web_guides&amp;mt=8" class="article-top-cta__button app-store-link" data-cta-position="article_top" aria-label="App Store에서 다운로드"><img src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/ko-kr" class="app-store-link__img" alt="App Store에서 다운로드" loading="lazy"></a>
+    </aside>
+
+    <!-- Article Body -->
+    <main class="article-body">
+
+        <!-- Section 1 -->
+        <h2 id="what-is-progression-training">진행 훈련은 무엇입니까?</h2>
+
+        <p>
+
+            진행 인식은 귀에 의해 코드의 순서를 따라 수행하고 역할 (기능) 각 코드는 열쇠 안에 작동합니다.
+
+
+        </p>
+
+        <p>
+
+            개별 코드에 초점을 맞춘 코드 인식과 달리 " 코드 사이의 관계." 왜 다른 느낌이 "해결"처럼 어떤 코드? 왜 "어딘가에가는 것"처럼 느껴지는가? 대답은 조화 기능에 속합니다.
+
+
+        </p>
+
+        <p>
+
+            이것은 거의 모든 음악에 적용하는 기술입니다 : songwriting, 배열, transcription, jazz 세션 및 밴드 배열.
+
+
+        </p>
+
+        <!-- Section 2 -->
+        <h2 id="harmonic-basics">화성 Basics에 대한 이해</h2>
+
+        <p>
+
+            서양의 조화는 3개의 기능으로 넓게 분류됩니다. 이 프레임 워크는 다양한 음악 교육에서 가르치는 Functional Harmony를 기반으로하며 코드 진도에 대한 기본적인지도 역할을합니다.
+
+
+        </p>
+
+        <!-- Harmonic Function Cycle Visual -->
+        <div class="function-cycle">
+            <div class="diagram-title">화성 기능 주기</div>
+
+            <div class="function-cycle__diagram">
+                <div class="function-cycle__node function-cycle__node--t">
+                    <div class="function-cycle__node-label">T</div>
+                    <div class="function-cycle__node-desc">Tonic</div>
+                </div>
+                <div class="function-cycle__arrow">&rarr;</div>
+                <div class="function-cycle__node function-cycle__node--sd">
+                    <div class="function-cycle__node-label">SD</div>
+                    <div class="function-cycle__node-desc">Subdominant</div>
+                </div>
+                <div class="function-cycle__arrow">&rarr;</div>
+                <div class="function-cycle__node function-cycle__node--d">
+                    <div class="function-cycle__node-label">D</div>
+                    <div class="function-cycle__node-desc">Dominant</div>
+                </div>
+                <div class="function-cycle__arrow">&rarr;</div>
+                <div class="function-cycle__node function-cycle__node--t">
+                    <div class="function-cycle__node-label">T</div>
+                    <div class="function-cycle__node-desc">Tonic</div>
+                </div>
+            </div>
+
+            <table class="function-table">
+                <thead>
+                    <tr>
+                        <th>제품정보</th>
+                        <th>- 연혁</th>
+                        <th>팟캐스트</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><span class="function-table__tag function-table__tag--t">T (Tonic)</span></td>
+                        <td>안정성, 해상도, "홈"</td>
+                        <td>I, vi, iii</td>
+                    </tr>
+                    <tr>
+                        <td><span class="function-table__tag function-table__tag--sd">SD (Subdominant)</span></td>
+                        <td>출국, 개발</td>
+                        <td>IV, ii</td>
+                    </tr>
+                    <tr>
+                        <td><span class="function-table__tag function-table__tag--d">D (Dominant)</span></td>
+                        <td>긴장, 결심</td>
+                        <td>V, vii&deg;</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <p>
+
+            T, SD, D, T 사이클은 가장 기본적인 흐름의 코드 진행. 팝의 I-IV-V-I와 재즈의 ii-V-I 모두는이 기능적인 교류를 따릅니다. " 코드가 속한 기능을"는 진행 인식의 첫 단계입니다.
+
+
+        </p>
+
+        <div class="article-note">
+            <div class="article-note__title">키 포인트</div>
+            <p>진도 듣기에서 특정 코드 유형 (장 또는 단)을 식별하기 전에 함수 (정제, 긴장 또는 출발)를 감지하는 것이 더 중요합니다. 함수를 알고 있다면, 특정 코드를 자연스럽게 식별합니다.</p>
+        </div>
+
+        <!-- Section 3 -->
+        <h2 id="common-walls">일반 벽</h2>
+
+        <h3 id="iv-vs-v">IV vs V 융합</h3>
+        <p>
+
+            IV (보통) 및 V (도민)는 모두 "I에서 멀리"하지만 그 방향 품질은 다릅니다. IV는 "개폐"또는 "개발"의 의미를 가지고 V는 "풀"과 "대출"을 가지고 있습니다. 이 차이를 느끼기 위해 반복적으로 I-IV-I와 I-V-I를 비교합니다.
+
+
+        </p>
+
+        <h3 id="minor-function">단 코드는 기능적으로 배치하기 위하여 열심히 입니다</h3>
+        <p>
+
+            vi에는 으뜸음 기능이, ii에는 지배적인 기능이 있습니다, iii에는 으뜸음 기능이 있습니다. 그러나 "dark"미성 코드의 인상은 먼저, 기능 인식을 더 열심히합니다. diatonic 코드 함수를 이해하는 것이 중요합니다. 이론적으로 그리고 그 후에 반복적으로 듣는 연습.
+
+
+        </p>
+
+        <h3 id="longer-progressions">Longer Progressions는 키 센터를 잃습니다.</h3>
+        <p>
+
+            2초 진행을 따를 수 있지만, 4개의 콜드의 핵심 센터 블러를 선택합니다. 특히 vi 또는 iii와 같은 대용 대체가 될 때, 당신은 "당신은 어디로"의 트랙을 잃을 수 있습니다. 으뜸음 미리보기를 사용하여 (첫 번째로) 명확한 참조 지점을 설정합니다.
+
+
+        </p>
+
+        <h3 id="function-vs-chord">특정 코드를 위한 기능 식별</h3>
+        <p>
+
+            "이것은 지배적 인 기능"은 V 또는 vii&deg인지 식별 한 것; 또 다른 도전입니다. 기능 수준 인식을 첫째로 안정화하고, 그 후에 특정한 코드 ID로 이동하십시오. 그것은 효과적인 순서입니다.
+
+
+        </p>
+
+        <!-- Section 4 -->
+        <h2 id="effective-practice">효과적인 연습 방법</h2>
+
+        <h3 id="start-two-chords">2초 간 진행</h3>
+        <p>
+
+            I-V와 I-IV와 같은 최소 진행 상황을 시작하십시오. 두 개의 코드에 집중하면 기능적 차이를 쉽게 느낄 수 있습니다. 4초의 진행 위험 정보의 과부하를 뛰어넘기.
+
+
+        </p>
+
+        <h3 id="tonic-preview">으뜸음 Preview 사용</h3>
+        <p>
+
+            질문의 앞에 I (으뜸음)를 깎기 것은 당신의 귀에 있는 중요한 참고 점을 설치합니다. "home"의 명확한 감각과 진행에 대한 듣기는 각 코드의 기능을 쉽게 인식 할 수 있습니다. 향상으로, 으뜸음 미리보기를 끄고 연습을 통해 열쇠를 직접 발견하십시오.
+
+
+        </p>
+
+        <h3 id="function-first">먼저 기능 학습, Roman Numerals</h3>
+        <p>
+
+            함수 수준에 응답하여 시작: "T-SD-D-T" 안정성, 개발, 긴장, 해상도의 흐름을 느낄 수 있다면 로마 숫자로 특정 코드를 식별하기 위해 미리 "I-IV-V-I"를 참조하십시오. 이 순서는 이론과 귀 둘 다를 정렬합니다.
+
+
+        </p>
+
+        <h3 id="common-patterns">일반적인 패턴 알아보기</h3>
+        <p>
+
+            많은 곡은 몇 가지 표준 패턴에 내장되어 있습니다. I-V-vi-IV (팝 표준), ii-V-I (jazz 표준), I-IV-I-V (folk/rock 표준). 이 패턴을 기억 "소리로" 즉시 "그는 ii-V-I"를 인식 할 수 있습니다.
+
+
+        </p>
+
+        <!-- Section 5 -->
+        <h2 id="what-app-can-do">이름 * Solfege PRO 할 수 있습니다</h2>
+
+        <p>
+
+            Solfege PRO's 진행'의 의미 교육은 단계별로 코드 진행 단계들을 듣고 능력이 구축하는 도구입니다.
+
+
+        </p>
+
+        <h3>15+ 진행 본</h3>
+        <p>
+
+            15+ 진행 패턴은 팝과 재즈 표준에 중심. 실제 곡에서 자주 나타나는 연습 패턴 : I-V-vi-IV, ii-V-I, I-IV-V-I, 그리고 더.
+
+
+        </p>
+
+        <h3>3개의 대답 체재</h3>
+        <p>
+
+            세 가지 응답 형식 선택 : 기능 (T / SD / D), 로마 간질 (I / IV / V / 비 등), 및 초드 기호 (C / F / G / Am 등). 기능적인 이해와 특정 코드 표기까지 단계로 시작하십시오.
+
+
+        </p>
+
+        <h3>2~4개의 조 길이</h3>
+        <p>
+
+            2에서 4개의 코드에 진전 길이를 선택하십시오. 짧은 진행과 점차적으로 도전하는 기초 구축.
+
+
+        </p>
+
+        <h3>으뜸음 미리보기</h3>
+        <p>
+
+            키 참조를 설정하는 질문 전에 으뜸음 (I)를 재생합니다. 의 열쇠를 명확하게 만듭니다; 당신이 열쇠를 직접 찾아내는 도전.
+
+
+        </p>
+
+        <h3>팝 / 재즈 카테고리</h3>
+        <p>
+
+            연습하고 싶은 장르의 패턴에 초점을 맞추고 있습니다. 팝 표준 (I-V-vi-IV 등) 및 재즈 ii-V-I 패턴 - 카테고리별 필터 질문.
+
+
+        </p>
+
+        <h3>패턴별 통계</h3>
+        <p>
+
+            각 패턴에 대한 정확도를 기록합니다. 어떤 진행 상황을 살펴보면, 작업이 필요하고 있습니다.
+
+
+        </p>
+
+        <div class="cycle-diagram">
+            <div class="cycle-step">
+                <div class="cycle-step__label">키 설정</div>
+                <div class="cycle-step__desc">으뜸음 미리보기</div>
+            </div>
+            <div class="cycle-arrow">&rarr;</div>
+            <div class="cycle-step">
+                <div class="cycle-step__label">팟캐스트</div>
+                <div class="cycle-step__desc">혜진</div>
+            </div>
+            <div class="cycle-arrow">&rarr;</div>
+            <div class="cycle-step">
+                <div class="cycle-step__label">이름 *</div>
+                <div class="cycle-step__desc">기능/중간/기억</div>
+            </div>
+            <div class="cycle-arrow">&rarr;</div>
+            <div class="cycle-step">
+                <div class="cycle-step__label">확인</div>
+                <div class="cycle-step__desc">답변과 비교</div>
+            </div>
+        </div>
+
+        <!-- Section 6 -->
+        <h2 id="limitations">이름 * Solfege PRO 직접 커버하지 않는</h2>
+
+        <p>
+
+            정직하다.
+
+
+        </p>
+
+        <div class="article-honest">
+            <div class="article-honest__title">App's Scope를 넘어 지역</div>
+            <p>
+                <strong>두 번째 지배자</strong> — V/V와 V/ii와 같은 이차 지배자는 현재 훈련 범위 밖에 있습니다. 초점은 diatonic 코드 기능 승인에 입니다.
+            </p>
+            <p>
+                <strong>계수 검출</strong> — 키 변경 중반을 감지하는 교육은 지원되지 않습니다. 각 진행은 단일 키 안에 표시됩니다.
+            </p>
+            <p>
+                <strong>광경(출발)</strong> — 주요 핵심 진행은 초점입니다. 단 키 진행은 부분적으로 덮여 있지만 포괄적이지 않습니다.
+            </p>
+            <p>
+                <strong>사용자 정의 진행 생성</strong> — 사전 설정 패턴만 사용할 수 있습니다. 사용자를위한 기능은 사용자 정의 진행을 만들 수 없습니다.
+            </p>
+            <p>
+                <strong>변화에 대한 개선</strong> — 진행과 개선을 통해 다른 기술입니다. 앱은 성능이 아닌 인식을 훈련합니다.
+            </p>
+            <p>
+                <strong>베이스 라인 구동 듣기 &amp; 이동식도 음계도 노래</strong> — Karpinski에서 (<em>청음 훈련 및 초견 노래ing에 대한 매뉴얼</em>) / 에드런 (<em>모루스 노우스</em>) 전통, 진전은 (1)에 의해 가늠자 도로 저음 선을 노래하고 (2) 내부적으로 로마 숫자 (I, ii, IV, V)와 각 코드를 레테르를 붙입니다. Solfege PRO's 코드 진행 훈련은 여러 선택으로 코드 함수 (T / SD / D)를 제시하고 이동식으로 sing 또는 고립 된베이스 라인 드릴을 포함하지 않습니다. sung 음계-degree 운동과 앱의 듣기 연습을 쌍 (지식과 피아노 또는 목소리를 사용) 기능적인 보청기를 더 빨리 통합합니다.
+            </p>
+        </div>
+
+        <p>
+
+            이름 * Solfege PRO 직접 지원은 diatonic 진도 기능 승인 및 본 승인 건물입니다. 이차 지배자 및 변조를 포함한 고급 조화 분석은 이론 연구 및 실제 음악 분석과 결합 될 때 더 효과적입니다.
+
+
+        </p>
+
+        <!-- Mid-article CTA -->
+        <div class="article-cta-subtle">
+            <p class="article-cta-subtle__text">$9.99/월(미국 App Store 기준)(미국 App Store 기준) — 진행 인식 확인</p>
+            <a href="https://apps.apple.com/kr/app/id6756626617?pt=6749158383&amp;ct=web_guides&amp;mt=8" class="article-cta-subtle__button app-store-link" aria-label="App Store에서 다운로드"><img src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/ko-kr" class="app-store-link__img" alt="App Store에서 다운로드" loading="lazy"></a>
+        </div>
+
+        <!-- Section 7 -->
+        <h2 id="how-to-use">관련 상품</h2>
+
+        <p>
+
+            Solfege PRO's 코드 진행 훈련은 다음 진행 상황을 위해 설계되었습니다.
+
+
+        </p>
+
+        <ol>
+            <li><strong>기능 모드로 시작, 2 코드</strong> — ON 턴 토닉 미리보기, T/SD/D 기능 수준에서 연습 응답. I-V(T-D)와 I-IV(T-SD)의 차이를 감안하는 것은 첫 번째 목표입니다.</li>
+            <li><strong>Roman Numeral 모드로 이동</strong> — 일단 기능 승인은 안정되어 있고, 특정한 코드 (I/IV/V/vi/ii)를 식별하기 위하여 전진합니다</li>
+            <li><strong>3-4 초로 확장</strong> — 2개의 코드로 안정되어 있는 한 번, 점차적으로 증가합니다. I-V-vi-IV와 같은 표준 4초 진행</li>
+            <li><strong>으뜸음 미리보기</strong> — 키 찾기. 이 직접 실제 노래를 transcribing에 연결</li>
+            <li><strong>실제 음악을 검증</strong> — 좋아하는 곡을 듣고 진행 상황을 파악하려고 합니다. 그 궁극적 인 목표</li>
+        </ol>
+
+        <div class="comparison-visual">
+            <div class="comparison-card comparison-card--bad">
+                <div class="comparison-card__header">더 적은 효과적인</div>
+                <div class="comparison-card__body">
+                    <p>4초의 진행 상황을 가진 로마 간체 모드로 뛰어오르는. 으뜸음 미리보기 없음. 서로 다른 패턴으로 압도적 인 얻기.</p>
+                </div>
+            </div>
+            <div class="comparison-card comparison-card--good">
+                <div class="comparison-card__header">더 효과적인</div>
+                <div class="comparison-card__body">
+                    <p>기능 모드, 2개의 코드, 음색 시사로 시작하십시오. 기능 차이를 먼저 느끼고, 점차적으로 코드 카운트를 증가시키고, 형식을 응답합니다.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="article-note">
+            <div class="article-note__title">사용법 팁</div>
+            <p>코드 인식 (individual 코드 식별)과 함께 진행 진행하는 것은 효과적입니다. 각 코드 유형이 진행중인 각 코드의 역할을 쉽게 파악할 수 있는 귀.</p>
+        </div>
+
+    </main>
+
+    <!-- Final CTA -->
+    <section class="article-cta">
+        <h2 class="article-cta__title">진행 인식 확인을 통한 시작</h2>
+        <p class="article-cta__text">
+
+            진행 인식은 조화의 "흐름"을 느낄 수있는 능력입니다.<br>개별 코드에 대해 듣지 만 그들의 관계에. 귀에 의해 음악 구조를 이해하는 첫걸음입니다.<br>2초의 진행을 시작하세요 Solfege PRO's 코드 진행 훈련'의 강점
+
+
+        </p>
+        <a href="https://apps.apple.com/kr/app/id6756626617?pt=6749158383&amp;ct=web_guides&amp;mt=8" class="app-store-link" aria-label="App Store에서 다운로드">
+
+            <img class="app-store-link__img" width="120" height="40" src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/ko-kr" alt="App Store에서 다운로드">
+
+
+        </a>
+    </section>
+
+    <!-- Related Content -->
+    <div class="article-related">
+        <div class="article-related__title">관련 내용</div>
+        <a href="/guides/dtm-chord-progression-variety/" class="article-related__link" style="margin-bottom: var(--space-md);">
+            <div class="article-related__link-title">왜 당신의 DTM 사운드 모노톤 — 아니 이론, 귀 어휘</div>
+            <div class="article-related__link-desc">1년 또는 2년 DTM 여행, 도구는 감각을 만들지만 모든 트랙은 동일합니다. 이론 책과 여전히 기본적으로 I–V–vi–IV를 읽습니다. 실제 원인은 지식이 누락되지 않습니다 - 귀에 소리를 저장하지 않은 것입니다. Diatonic 인식 → 실제 곡에서 비 다이토닉 → 추출 : 3 개의 청음 훈련, 3 개월 및 생산 변경 모양.</div>
+        </a>
+        <a href="/guides/session-5min-checklist/" class="article-related__link" style="margin-bottom: var(--space-md);">
+            <div class="article-related__link-title">Jam Session 5분 전 - 7일 체크인</div>
+            <div class="article-related__link-desc">잼으로 표시, 차트는 당신에게 회전, 그리고 당신의 머리는 공백 간다 — 원인은 재능이 아니라 구조화 된 전 게임의 부족. 실제로 5 ~ 10 분 동안 할 수있는 것은 다운 베트보다 더 제한되고 더 구체적인 것이 가장 많은 선수가 가정합니다. 이 문서는 7 포인트 체크리스트입니다: 키 확인, 진행을 romanise, sing 코드 tones, 당신의 오프닝 노트를 결정, 세 개의 복구 이동을 준비, 다른 플레이어를 관찰, 그리고 "돈을하지"실제 옵션으로.</div>
+        </a>
+        <a href="/guides/find-key-by-ear/" class="article-related__link" style="margin-bottom: var(--space-md);">
+            <div class="article-related__link-title">귀에 의해 곡의 조성를 찾는 방법</div>
+            <div class="article-related__link-desc">청력 발전 전에, 먼저 음과 열쇠를 못을 박았다 — reproducible 방법.</div>
+        </a>
+        <a href="/guides/chord-function-curriculum/" class="article-related__link" style="margin-bottom: var(--space-md);">
+            <div class="article-related__link-title">코드 Function Curriculum — 4단계 T/SD/D</div>
+            <div class="article-related__link-desc">진행중의 청력 아래 함수(T/SD/D) 프레임워크 - 단계별 학습, 해상도의 느낌.</div>
+        </a>
+        <a href="/manual/progression/" class="article-related__link" style="margin-bottom: var(--space-md);">
+            <div class="article-related__link-title">코드 진행 설정 설명서</div>
+            <div class="article-related__link-desc">각 인앱 설정과 열차를 선택할 수있는 방법, 한 번에.</div>
+        </a>
+        <a href="/" class="article-related__link">
+            <div class="article-related__link-title">Solfege PRO 연습장</div>
+            <div class="article-related__link-desc">기타,베이스, 드럼, 피아노, 보컬을 위한 도전 기반 연습 메뉴</div>
+        </a>
+    </div>
+
+    <!-- Article Note -->
+    <aside class="article-endnote">
+        <p class="article-endnote__text">
+
+            이 문서는 음악 교육 및 일반 조화 지식에 가르친 Functional Harmony 이론을 기반으로합니다. 화성 분류 및 기능 인식은 장르와 뮤지컬 컨텍스트에 따라 다르며, 프레임 워크는 각 케이스에 적용되지 않을 수 있습니다. 인앱 교육은 diatonic 코드 진행 인식 향상을 지원하며 유해 분석의 전체 범위를 커버하지 않습니다.
+
+
+        </p>
+    </aside>
+
+    <!-- Footer -->
+    <footer class="article-footer">
+        <p class="article-footer__text">
+            &copy; 2026 Solfege PRO
+        </p>
+    </footer>
+    <script src="/bootstrap.js?v=10" defer></script>
+    <nav aria-label="Language" style="display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:0.5rem;padding:var(--space-lg) var(--space-md);border-top:1px solid var(--surface-light);font-size:13px">
+        <a href="/guides/ear-training-progressions/" hreflang="ja" style="color:var(--text-secondary);text-decoration:none">日本語</a>
+        <span aria-hidden="true" style="color:var(--surface-light)">·</span>
+        <a href="/en/guides/ear-training-progressions/" hreflang="en" style="color:var(--text-secondary);text-decoration:none">English</a>
+        <span aria-hidden="true" style="color:var(--surface-light)">·</span>
+        <a href="/fr/guides/ear-training-progressions/" hreflang="fr" style="color:var(--text-secondary);text-decoration:none">Français</a>
+        <span aria-hidden="true" style="color:var(--surface-light)">·</span>
+        <a href="/de/guides/ear-training-progressions/" hreflang="de" style="color:var(--text-secondary);text-decoration:none">Deutsch</a>
+        <span aria-hidden="true" style="color:var(--surface-light)">·</span>
+        <a href="/es/guides/ear-training-progressions/" hreflang="es" style="color:var(--text-secondary);text-decoration:none">Español</a>
+        <span aria-hidden="true" style="color:var(--surface-light)">·</span>
+        <a href="/it/guides/ear-training-progressions/" hreflang="it" style="color:var(--text-secondary);text-decoration:none">Italiano</a>
+        <span aria-hidden="true" style="color:var(--surface-light)">·</span>
+        <span style="color:var(--primary);font-weight:600" aria-current="true">한국어</span>
+        <span aria-hidden="true" style="color:var(--surface-light)">·</span>
+        <a href="/pt-br/guides/ear-training-progressions/" hreflang="pt-BR" style="color:var(--text-secondary);text-decoration:none">Português (Brasil)</a>
+    </nav>
+</body>
+</html>

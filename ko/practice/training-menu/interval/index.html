@@ -1,0 +1,979 @@
+<!DOCTYPE html>
+<html lang="ko" data-title-ja="インターバルトレーニングの設定・使い方ガイド | ソルフェージュPRO" data-title-en="Interval Training Detailed Reference | Solfege PRO" data-title-fr="Entraînement aux intervalles — Guide détaillé | Solfege PRO" data-title-de="Intervalltraining — Ausführlicher Leitfaden | Solfege PRO">
+<head>
+    <meta charset="UTF-8">
+    <meta name="robots" content="index, follow">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#1A1A1E">
+    <title>음정 인식 설정 가이드 | Solfege PRO</title>
+    <meta name="description" content="음역, 상행·하행·화성 음정, 재생 방식, 난이도 등 음정 인식 설정을 초급부터 고급까지 연습 목표에 맞게 최적화하세요.">
+
+    <link rel="canonical" href="https://solfegepro.com/ko/practice/training-menu/interval/">
+    <link rel="alternate" hreflang="ja" href="https://solfegepro.com/practice/training-menu/interval/">
+    <link rel="alternate" hreflang="en" href="https://solfegepro.com/en/practice/training-menu/interval/">
+    <link rel="alternate" hreflang="fr" href="https://solfegepro.com/fr/practice/training-menu/interval/">
+    <link rel="alternate" hreflang="de" href="https://solfegepro.com/de/practice/training-menu/interval/">
+    <link rel="alternate" hreflang="es" href="https://solfegepro.com/es/practice/training-menu/interval/">
+    <link rel="alternate" hreflang="it" href="https://solfegepro.com/it/practice/training-menu/interval/">
+    <link rel="alternate" hreflang="ko" href="https://solfegepro.com/ko/practice/training-menu/interval/">
+    <link rel="alternate" hreflang="pt-BR" href="https://solfegepro.com/pt-br/practice/training-menu/interval/">
+    <link rel="alternate" hreflang="x-default" href="https://solfegepro.com/practice/training-menu/interval/">
+<link rel="icon" href="/favicon.ico" sizes="any">
+    <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+    <meta property="og:title" content="음정 인식 설정 가이드">
+    <meta property="og:description" content="음역, 상행·하행·화성 음정, 재생 방식, 난이도 등 음정 인식 설정을 초급부터 고급까지 연습 목표에 맞게 최적화하세요.">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://solfegepro.com/ko/practice/training-menu/interval/">
+    <meta property="og:site_name" content="Solfege PRO">
+    <meta property="og:image" content="https://solfegepro.com/og-image.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Solfege PRO">
+    <meta property="og:locale" content="ko_KR">
+    <meta property="og:locale:alternate" content="ja_JP">
+    <meta property="og:locale:alternate" content="en_US">
+    <meta property="og:locale:alternate" content="fr_FR">
+    <meta property="og:locale:alternate" content="de_DE">
+    <meta property="og:locale:alternate" content="es_ES">
+    <meta property="og:locale:alternate" content="it_IT">
+    <meta property="og:locale:alternate" content="pt_BR">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="음정 인식 설정 가이드">
+    <meta name="twitter:description" content="음역, 상행·하행·화성 음정, 재생 방식, 난이도 등 음정 인식 설정을 초급부터 고급까지 연습 목표에 맞게 최적화하세요.">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap"></noscript>
+
+    <link rel="stylesheet" href="/style.css?v=23">
+    <style>
+        .menu-detail {
+            max-width: 880px;
+            margin: 0 auto;
+            padding: 0 var(--space-lg) var(--space-2xl);
+        }
+        @media (max-width: 768px) {
+            .menu-detail { padding: 0 var(--space-md) var(--space-xl); }
+        }
+
+        /* Breadcrumb back */
+        .crumb {
+            display: inline-flex; align-items: center; gap: 4px;
+            font-size: 13px;
+            color: var(--text-secondary);
+            text-decoration: none;
+            margin-top: var(--space-md);
+            padding: 4px 8px;
+            border-radius: var(--radius-sm);
+        }
+        .crumb:hover { color: var(--primary); background: var(--surface-light); }
+
+        /* Section header (numbered, sticky-ish feel) */
+        .sect {
+            margin-top: var(--space-2xl);
+        }
+        .sect__h {
+            display: flex; align-items: center; gap: var(--space-sm);
+            font-size: 20px; font-weight: 700;
+            color: var(--text-primary);
+            padding-bottom: var(--space-sm);
+            border-bottom: 2px solid var(--primary);
+            margin-bottom: var(--space-md);
+        }
+        .sect__num {
+            display: inline-flex; align-items: center; justify-content: center;
+            width: 32px; height: 32px;
+            background: var(--primary);
+            color: var(--background);
+            border-radius: 50%;
+            font-size: 15px; font-weight: 700;
+            flex-shrink: 0;
+        }
+        .sect__lead {
+            font-size: 15px;
+            color: var(--text-secondary);
+            line-height: 1.8;
+            margin-bottom: var(--space-md);
+        }
+
+        /* Connection bullets */
+        .conn-list {
+            list-style: none;
+            padding: 0;
+            margin: var(--space-md) 0;
+            display: grid;
+            gap: 6px;
+        }
+        .conn-list li {
+            position: relative;
+            padding: 4px 0 4px 1.6em;
+            font-size: 14px;
+            color: var(--text-primary);
+            line-height: 1.7;
+        }
+        .conn-list li::before {
+            content: "▸";
+            position: absolute;
+            left: 0; top: 4px;
+            color: var(--primary);
+            font-weight: 700;
+        }
+
+        /* Self-check */
+        .self-check {
+            background: var(--surface);
+            border: 1px solid var(--primary);
+            border-radius: var(--radius-lg);
+            padding: var(--space-lg);
+            margin: var(--space-md) 0;
+        }
+        .self-check__q {
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: var(--space-md);
+        }
+        .self-check__opts {
+            display: flex; flex-direction: column; gap: 6px;
+        }
+        .self-check__opt {
+            display: flex; align-items: flex-start; gap: var(--space-sm);
+            padding: var(--space-sm) var(--space-md);
+            background: var(--background);
+            border: 1px solid var(--surface-light);
+            border-radius: var(--radius-md);
+            font-size: 13px;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+        .self-check__verdict {
+            margin-top: 4px;
+            font-size: 12px;
+            color: var(--primary);
+            font-weight: 600;
+        }
+        .self-check__verdict::before { content: "→ "; }
+
+        /* Preset card (Week 1) */
+        .preset-card {
+            background: linear-gradient(135deg, rgba(212,175,55,0.08) 0%, var(--surface) 100%);
+            border: 1px solid var(--primary);
+            border-radius: var(--radius-lg);
+            padding: var(--space-lg);
+            margin: var(--space-md) 0;
+        }
+        .preset-card__title {
+            font-size: 12px;
+            font-weight: 700;
+            color: var(--primary);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 6px;
+        }
+        .preset-card__lead {
+            font-size: 14px;
+            color: var(--text-primary);
+            margin-bottom: var(--space-md);
+        }
+        .preset-rows {
+            display: grid;
+            grid-template-columns: max-content 1fr;
+            gap: 6px var(--space-md);
+            font-size: 13px;
+        }
+        .preset-rows dt {
+            color: var(--text-secondary);
+            font-weight: 600;
+        }
+        .preset-rows dd {
+            margin: 0;
+            color: var(--text-primary);
+        }
+        .preset-rows dd .chip {
+            display: inline-block;
+            background: rgba(212,175,55,0.18);
+            color: var(--primary);
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: 600;
+            margin-right: 4px;
+        }
+
+        /* Practice protocol calendar */
+        .protocol-grid {
+            display: grid;
+            grid-template-columns: repeat(7, minmax(0, 1fr));
+            gap: 4px;
+            margin: var(--space-md) 0 var(--space-sm);
+        }
+        .day-cell {
+            background: var(--surface);
+            border: 1px solid var(--surface-light);
+            border-radius: var(--radius-sm);
+            display: flex; flex-direction: column;
+            align-items: center; justify-content: center;
+            gap: 2px;
+            min-height: 56px;
+            min-width: 0;
+            padding: 4px;
+        }
+        @media (min-width: 480px) {
+            .day-cell { aspect-ratio: 1; }
+        }
+        .day-cell__name {
+            font-size: 10px;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .day-cell__load {
+            font-size: 11px;
+            font-weight: 700;
+            color: var(--text-primary);
+            line-height: 1.1;
+            text-align: center;
+        }
+        .day-cell--main { background: rgba(212,175,55,0.18); border-color: var(--primary); }
+        .day-cell--main .day-cell__load { color: var(--primary); }
+        .day-cell--light { background: rgba(96,165,250,0.10); border-color: rgba(96,165,250,0.3); }
+        .day-cell--rest { opacity: 0.5; }
+        .day-cell--rest .day-cell__load { color: var(--text-secondary); font-weight: 400; }
+
+        .protocol-meta {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+            gap: var(--space-sm);
+            margin: var(--space-md) 0;
+        }
+        .protocol-meta__item {
+            background: var(--surface);
+            border: 1px solid var(--surface-light);
+            border-radius: var(--radius-md);
+            padding: var(--space-sm) var(--space-md);
+        }
+        .protocol-meta__label {
+            font-size: 11px;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 2px;
+        }
+        .protocol-meta__value {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--primary);
+            line-height: 1.2;
+        }
+        .protocol-meta__sub {
+            font-size: 11px;
+            color: var(--text-secondary);
+            margin-top: 2px;
+        }
+
+        /* Mastery / milestones table */
+        .milestone-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: var(--space-md) 0;
+            font-size: 13px;
+        }
+        .milestone-table th, .milestone-table td {
+            padding: var(--space-sm);
+            text-align: left;
+            border-bottom: 1px solid var(--surface-light);
+            vertical-align: top;
+        }
+        .milestone-table thead th {
+            background: var(--surface);
+            color: var(--primary);
+            font-weight: 700;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .milestone-table tbody td:first-child { font-weight: 600; color: var(--text-primary); }
+        .milestone-table .ms-target {
+            font-family: 'SF Mono', 'Menlo', monospace;
+            font-size: 12px;
+            color: var(--primary);
+        }
+        @media (max-width: 600px) {
+            .milestone-table, .milestone-table thead, .milestone-table tbody, .milestone-table tr, .milestone-table th, .milestone-table td {
+                display: block;
+            }
+            .milestone-table thead { display: none; }
+            .milestone-table tr {
+                background: var(--surface);
+                border: 1px solid var(--surface-light);
+                border-radius: var(--radius-md);
+                padding: var(--space-sm);
+                margin-bottom: var(--space-sm);
+            }
+            .milestone-table td {
+                border: none;
+                padding: 4px 0;
+            }
+            .milestone-table td::before {
+                content: attr(data-label) " — ";
+                color: var(--text-secondary);
+                font-size: 11px;
+                text-transform: uppercase;
+                font-weight: 600;
+                margin-right: 4px;
+            }
+        }
+
+        /* TIPS items */
+        .tip-item {
+            background: var(--surface);
+            border-left: 3px solid var(--primary);
+            border-radius: 0 var(--radius-md) var(--radius-md) 0;
+            padding: var(--space-md);
+            margin: var(--space-sm) 0;
+        }
+        .tip-item__head {
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 4px;
+        }
+        .tip-item__body {
+            font-size: 13px;
+            color: var(--text-secondary);
+            line-height: 1.7;
+        }
+        .tip-item__body strong { color: var(--text-primary); }
+
+        /* Settings reference (collapsible) */
+        details.settings-ref {
+            margin-top: var(--space-md);
+            background: var(--surface);
+            border: 1px solid var(--surface-light);
+            border-radius: var(--radius-md);
+            padding: 0;
+        }
+        details.settings-ref > summary {
+            padding: var(--space-md);
+            cursor: pointer;
+            font-weight: 700;
+            font-size: 14px;
+            color: var(--text-primary);
+            list-style: none;
+            display: flex; align-items: center; gap: var(--space-sm);
+        }
+        details.settings-ref > summary::-webkit-details-marker { display: none; }
+        details.settings-ref > summary::after {
+            content: "▼";
+            margin-left: auto;
+            font-size: 11px;
+            color: var(--text-secondary);
+            transition: transform 0.2s ease;
+        }
+        details.settings-ref[open] > summary::after { transform: rotate(180deg); }
+        details.settings-ref > .settings-ref__content {
+            padding: 0 var(--space-md) var(--space-md);
+        }
+
+        /* Reuse the visual blocks from earlier design */
+        .diff-cascade {
+            display: grid; grid-template-columns: repeat(3, 1fr);
+            gap: var(--space-sm); margin: var(--space-md) 0;
+        }
+        .diff-tier {
+            background: var(--background);
+            border: 1px solid var(--surface-light);
+            border-radius: var(--radius-md);
+            padding: var(--space-sm) var(--space-md);
+            position: relative;
+        }
+        .diff-tier::after {
+            content: "→"; position: absolute;
+            right: -12px; top: 50%; transform: translateY(-50%);
+            color: var(--primary); font-size: 16px; z-index: 2;
+        }
+        .diff-tier:last-child::after { content: none; }
+        .diff-tier__head { display: flex; align-items: center; gap: 6px; margin-bottom: 4px; }
+        .diff-tier__num {
+            display: inline-flex; align-items: center; justify-content: center;
+            width: 18px; height: 18px; border-radius: 50%;
+            background: var(--primary); color: var(--background);
+            font-size: 10px; font-weight: 700;
+        }
+        .diff-tier__name { font-size: 13px; font-weight: 700; color: var(--text-primary); }
+        .diff-tier__count { font-size: 11px; color: var(--primary); font-weight: 600; margin-bottom: 4px; }
+        .diff-tier__items { font-size: 11px; color: var(--text-secondary); line-height: 1.6; font-family: 'SF Mono', 'Menlo', monospace; letter-spacing: 0.3px; }
+
+        .mode-grid {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(135px, 1fr));
+            gap: var(--space-sm); margin: var(--space-md) 0;
+        }
+        .mode-card {
+            background: var(--background);
+            border: 1px solid var(--surface-light);
+            border-radius: var(--radius-md);
+            padding: var(--space-md) var(--space-sm);
+            text-align: center;
+        }
+        .mode-card__visual { font-size: 24px; color: var(--primary); margin-bottom: 4px; height: 32px; display:flex; justify-content:center; align-items:center; line-height: 1; }
+        .mode-card__name { font-size: 13px; font-weight: 700; color: var(--text-primary); margin-bottom: 2px; }
+        .mode-card__desc { font-size: 11px; color: var(--text-secondary); line-height: 1.4; }
+
+        .compare-pair {
+            display: grid; grid-template-columns: 1fr 1fr;
+            gap: var(--space-sm); margin: var(--space-md) 0;
+        }
+        .compare-side {
+            background: var(--background);
+            border: 1px solid var(--surface-light);
+            border-radius: var(--radius-md);
+            padding: var(--space-md);
+        }
+        .compare-side--bad  { border-color: rgba(248,113,113,0.35); }
+        .compare-side--good { border-color: rgba(74,222,128,0.4); }
+        .compare-side__verdict { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 4px; }
+        .compare-side--bad  .compare-side__verdict { color: #F87171; }
+        .compare-side--good .compare-side__verdict { color: #4ADE80; }
+        .compare-side__title { font-size: 14px; font-weight: 700; color: var(--text-primary); margin-bottom: 6px; }
+        .compare-side__body { font-size: 12px; color: var(--text-secondary); line-height: 1.6; }
+
+        .menu-note {
+            font-size: 12px; color: var(--text-secondary); line-height: 1.6;
+            margin-top: var(--space-sm);
+            padding: var(--space-sm) var(--space-md);
+            background: rgba(212, 175, 55, 0.05);
+            border-left: 2px solid var(--primary);
+            border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+        }
+
+        @media (max-width: 600px) {
+            .diff-cascade { grid-template-columns: 1fr; }
+            .diff-tier::after { content: "↓"; right: 50%; top: auto; bottom: -16px; transform: translateX(50%); }
+            .compare-pair { grid-template-columns: 1fr; }
+            .mode-grid { grid-template-columns: repeat(2, 1fr); }
+            .preset-rows { grid-template-columns: 1fr; gap: 2px; }
+            .preset-rows dt { margin-top: var(--space-sm); }
+        }
+    </style>
+</head>
+<body>
+        <nav class="nav" aria-label="기본 메뉴">
+        <div class="nav__container">
+            <a href="/ko/" class="nav__logo" aria-label="Solfege PRO">
+                <img src="/AppIcon.png" alt="" class="nav__logo-icon" width="32" height="32">
+                <span class="nav__logo-text">Solfege PRO</span>
+            </a>
+            <ul class="nav__list">
+                <li><a href="/ko/" class="nav__link">Solfege PRO 소개</a></li>
+                <li><a href="/ko/features/" class="nav__link">훈련</a></li>
+                <li><a href="/ko/guides/" class="nav__link active" aria-current="page">연습 가이드</a></li>
+                <li><a href="/ko/manual/" class="nav__link">매뉴얼</a></li>
+            </ul>
+            <div class="nav__settings">
+                <button class="settings-btn" id="lang-toggle" title="언어 선택"><span id="lang-text">KO</span></button>
+                <button class="hamburger-btn" id="hamburger-btn" aria-label="메뉴 열기" aria-expanded="false" aria-controls="drawer">
+                    <span class="hamburger-btn__line"></span><span class="hamburger-btn__line"></span><span class="hamburger-btn__line"></span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+        <div class="drawer-overlay" id="drawer-overlay"></div>
+    <aside class="drawer" id="drawer" aria-label="메뉴" aria-hidden="true" inert>
+        <div class="drawer__header">
+            <span class="drawer__title">메뉴</span>
+            <button class="drawer__close" id="drawer-close" aria-label="메뉴 닫기">×</button>
+        </div>
+        <ul class="drawer__list">
+            <li><a href="/ko/" class="drawer__link">Solfege PRO 소개</a></li>
+            <li><a href="/ko/features/" class="drawer__link">훈련</a></li>
+            <li><a href="/ko/guides/" class="drawer__link active" aria-current="page">연습 가이드</a></li>
+            <li><a href="/ko/manual/" class="drawer__link">매뉴얼</a></li>
+        </ul>
+    </aside>
+
+    <header class="page-header">
+        <div class="page-header__icon"><svg class="icon" aria-hidden="true"><use href="/assets/icons.svg#icon-music-note"></use></svg></div>
+        <h1 class="page-header__title">음정 인식 참조</h1>
+        <p class="page-header__subtitle">
+
+            읽기 주문 = 연습 순서. 7 단계에 따라 항상 다음을 수행하는 것을 알 수 있습니다.
+
+
+        </p>
+    </header>
+
+    <main class="menu-detail">
+
+        <a href="/practice/training-menu/" class="crumb">← 연습 메뉴 허브로 돌아가기</a>
+
+        <!-- ========== 1. 目的 ========== -->
+        <section class="sect" id="purpose">
+            <h2 class="sect__h"><span class="sect__num">1</span>의논하기</h2>
+            <p class="sect__lead">
+
+                <strong>두 노트 사이의 거리를 좁히고 이름을 지정할 수 있습니다.</strong> 이것은 절대음감와 아무것도 없다 — 그것은 빌드 <strong>상대음감</strong>, 참고와 관련하여 메모를 식별하는 영구 기술.
+
+
+            </p>
+            <p style="font-size:14px; color:var(--text-primary); font-weight:700; margin-top:var(--space-md); margin-bottom:6px;">
+                실제 연주에 연결
+            </p>
+            <ul class="conn-list">
+                <li><strong>연락처</strong>: "up a 3rd, down 5th"로 멜로디 모션을 듣는다.</li>
+                <li><strong>관련 제품</strong>: 대상 노트에 거리를 계산하고 손가락으로 변환</li>
+                <li><strong>보컬 조화</strong>: 즉시 3 위 또는 6 위 / 아래를 음높이</li>
+                <li><strong>연락처</strong>: 관계는 키로 변경하지 않습니다. - 상대음감는 즉시 적응 할 수 있습니다.</li>
+            </ul>
+        </section>
+
+        <!-- ========== 2. 開始前チェック ========== -->
+        <section class="sect" id="self-check">
+            <h2 class="sect__h"><span class="sect__num">2</span>사전 시작 체크</h2>
+            <p class="sect__lead">
+
+                시작점 확인 없이 중급으로 다이빙을 하세요. <strong>60초 진단을 실행</strong> 아래에서 오른쪽 항목 층을 선택합니다.
+
+
+            </p>
+
+            <div class="self-check">
+                <div class="self-check__q">Q1. Q1. 완벽한 4 (예: C-G)에서 완벽한 5 (예: C-G)를 혼자서 나눠서 나아갈 수 있습니까?</div>
+                <div class="self-check__opts">
+                    <div class="self-check__opt">
+                        <strong style="color:var(--text-primary); flex-shrink:0;">A.</strong>
+                        <div>
+                            예, 매번
+                            <div class="self-check__verdict">Q2로 이동</div>
+                        </div>
+                    </div>
+                    <div class="self-check__opt">
+                        <strong style="color:var(--text-primary); flex-shrink:0;">B.</strong>
+                        <div>
+                            때때로 섞는다 / unsure
+                            <div class="self-check__verdict"><strong>Beginner</strong> 시작하기</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="self-check">
+                <div class="self-check__q">Q2. Q2. m3/M3/m6/M6로 섞은, 당신은 80%+를 점수할 수 있습니까?</div>
+                <div class="self-check__opts">
+                    <div class="self-check__opt">
+                        <strong style="color:var(--text-primary); flex-shrink:0;">A.</strong>
+                        <div>
+                            이름 *
+                            <div class="self-check__verdict">Q3로 이동</div>
+                        </div>
+                    </div>
+                    <div class="self-check__opt">
+                        <strong style="color:var(--text-primary); flex-shrink:0;">B.</strong>
+                        <div>
+                            Shaky / 주요 혼합 및 단조
+                            <div class="self-check__verdict"><strong>Intermediate</strong> 시작하기</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="self-check">
+                <div class="self-check__q">Q3. Q3. 당신은 즉시 m2/M7/A4 (tritone)를 구별할 수 있습니까?</div>
+                <div class="self-check__opts">
+                    <div class="self-check__opt">
+                        <strong style="color:var(--text-primary); flex-shrink:0;">A.</strong>
+                        <div>
+                            이름 *
+                            <div class="self-check__verdict"><strong>Advanced</strong> 시작하기</div>
+                        </div>
+                    </div>
+                    <div class="self-check__opt">
+                        <strong style="color:var(--text-primary); flex-shrink:0;">B.</strong>
+                        <div>
+                            하나 이상의 샤키
+                            <div class="self-check__verdict"><strong>Intermediate</strong> 시작 (갭을 잡아)</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========== 3. Week 1 推奨設定 ========== -->
+        <section class="sect" id="week1">
+            <h2 class="sect__h"><span class="sect__num">3</span>주 1 스타터 프리셋</h2>
+            <p class="sect__lead">
+
+                첫 주 동안, 이러한 것들을 사용 <strong>사전 설정 as-is</strong> — 아무런 수정이 필요 없습니다. 자기 검사 결과에 의해 선택.
+
+
+            </p>
+
+            <div class="preset-card">
+                <div class="preset-card__title">미리 설정 A — 초급 Entry</div>
+                <div class="preset-card__lead">B에서 Q1로 답하면 됩니다. 완전5도s 및 옥타브에서 시작된 당신의 귀를 가속하십시오.</div>
+                <dl class="preset-rows">
+                    <dt>뚱 베어</dt>             <dd><span class="chip">뚱 베어</span></dd>
+                    <dt>Playback 형태</dt>          <dd><span class="chip">의붓기</span></dd>
+                    <dt>뿌리 주 형태</dt>         <dd><span class="chip">고정</span></dd>
+                    <dt>뿌리 주 음높이</dt>        <dd><span class="chip">C4의</span></dd>
+                    <dt>교육 모드</dt>          <dd><span class="chip">표준</span></dd>
+                    <dt>Playback 속도</dt>         <dd><span class="chip">뚱 베어</span></dd>
+                    <dt>응답 흐름</dt>            <dd><span class="chip">매뉴얼</span></dd>
+                </dl>
+            </div>
+
+            <div class="preset-card">
+                <div class="preset-card__title">Preset B — 중간 입장</div>
+                <div class="preset-card__lead">B에서 Q2로 답변을 받으려면. m3 / m6 / M6을 추가하고 실용적인 재량에 대한 임의 키로 전환하십시오.</div>
+                <dl class="preset-rows">
+                    <dt>뚱 베어</dt>             <dd><span class="chip">의논하기</span></dd>
+                    <dt>Playback 형태</dt>          <dd><span class="chip">의붓기</span></dd>
+                    <dt>뿌리 주 형태</dt>         <dd><span class="chip">이동</span></dd>
+                    <dt>뿌리 주 음높이</dt>        <dd><span class="chip">C4의</span></dd>
+                    <dt>교육 모드</dt>          <dd><span class="chip">표준</span></dd>
+                    <dt>Playback 속도</dt>         <dd><span class="chip">표준</span></dd>
+                    <dt>응답 흐름</dt>            <dd><span class="chip">자동</span></dd>
+                </dl>
+            </div>
+
+            <div class="preset-card">
+                <div class="preset-card__title">Preset C - 고급 항목</div>
+                <div class="preset-card__lead">Q3에 대답하면 됩니다. 모든 13 무작위 키와 간격.</div>
+                <dl class="preset-rows">
+                    <dt>뚱 베어</dt>             <dd><span class="chip">의 특징</span></dd>
+                    <dt>Playback 형태</dt>          <dd><span class="chip">의붓기</span></dd>
+                    <dt>뿌리 주 형태</dt>         <dd><span class="chip">이동</span></dd>
+                    <dt>뿌리 주 음높이</dt>        <dd><span class="chip">C4의</span></dd>
+                    <dt>교육 모드</dt>          <dd><span class="chip">표준</span></dd>
+                    <dt>Playback 속도</dt>         <dd><span class="chip">표준</span></dd>
+                    <dt>응답 흐름</dt>            <dd><span class="chip">자동</span></dd>
+                </dl>
+            </div>
+
+            <div class="menu-note">
+
+                <strong>관련 기사</strong>: 주 1회, 수정 중 <strong>한 번에 하나의 매개 변수만</strong>. 한 번에 여러 변경은 도움이 될 수 또는 상처를 알 수 없습니다.
+
+
+            </div>
+        </section>
+
+        <!-- ========== 4. 練習プロトコル ========== -->
+        <section class="sect" id="protocol">
+            <h2 class="sect__h"><span class="sect__num">4</span>연습 프로토콜</h2>
+            <p class="sect__lead">
+
+                청음 훈련 보상 <strong>내구시간에 주파수</strong>. 짧은, 집중, 자주 — 의도적 나머지 일. 그것은 보존하는 가장 짧은 경로입니다.
+
+
+            </p>
+
+            <div class="protocol-meta">
+                <div class="protocol-meta__item">
+                    <div class="protocol-meta__label">1회당</div>
+                    <div class="protocol-meta__value">15-25 <span style="font-size:13px;">min</span></div>
+                    <div class="protocol-meta__sub">30분마다 5분</div>
+                </div>
+                <div class="protocol-meta__item">
+                    <div class="protocol-meta__label">빈도</div>
+                    <div class="protocol-meta__value">4-6 <span style="font-size:13px;">days/wk</span></div>
+                    <div class="protocol-meta__sub">매일</div>
+                </div>
+                <div class="protocol-meta__item">
+                    <div class="protocol-meta__label">쉼표</div>
+                    <div class="protocol-meta__value">1 <span style="font-size:13px;">day off / wk</span></div>
+                    <div class="protocol-meta__sub">+ 3 연속 후 가벼운 날</div>
+                </div>
+            </div>
+
+            <p style="font-size:14px; color:var(--text-primary); font-weight:700; margin-top:var(--space-lg); margin-bottom:6px;">
+                주간 사이클
+            </p>
+            <div class="protocol-grid">
+                <div class="day-cell day-cell--main"><div class="day-cell__name">의 의</div><div class="day-cell__load">20m</div></div>
+                <div class="day-cell day-cell--main"><div class="day-cell__name">화</div><div class="day-cell__load">20m</div></div>
+                <div class="day-cell day-cell--light"><div class="day-cell__name">뚱 베어</div><div class="day-cell__load">10m<br><span style="font-weight:400;font-size:9px;">약하게</span></div></div>
+                <div class="day-cell day-cell--main"><div class="day-cell__name">₢ 킹</div><div class="day-cell__load">20m</div></div>
+                <div class="day-cell day-cell--main"><div class="day-cell__name">₢ 킹</div><div class="day-cell__load">25m<br><span style="font-weight:400;font-size:9px;">약초</span></div></div>
+                <div class="day-cell day-cell--rest"><div class="day-cell__name">ᄋᄋᄋ</div><div class="day-cell__load">을 읽으십시오</div></div>
+                <div class="day-cell day-cell--light"><div class="day-cell__name">의 의</div><div class="day-cell__load">15m<br><span style="font-weight:400;font-size:9px;">복습</span></div></div>
+            </div>
+
+            <ul class="conn-list" style="margin-top:var(--space-md);">
+                <li><strong>3개의 단단한 일 후에 행에</strong>, 빛 일 (또는 나머지) 힘을. 뇌는 시간의 혼동을 필요로한다 — 특히 수면 중.</li>
+                <li><strong>금요일 = 약점 세션</strong>: Weak Point Focus + 수동 + 느린. 주말에 그것을 통합 한 후.</li>
+                <li><strong>5 분 빛 리뷰 30 분 전에 수면</strong> 하룻밤 통합을 강화 (하지만 침대 타임 백파이에서 하드 25 분 세션).</li>
+            </ul>
+        </section>
+
+        <!-- ========== 5. 到達基準 + 期待効果 ========== -->
+        <section class="sect" id="milestones">
+            <h2 class="sect__h"><span class="sect__num">5</span>Mastery Criteria & 예상 효과</h2>
+            <p class="sect__lead">
+
+                <strong>기분이 좋아지는 것을 잊지 마세요.</strong> 아래 세 가지 메트릭스만 모두 충족할 때만 이동하십시오. 명시된 기준과 "단일한 불쾌"에서 "이동하지 않는 한"를 알 수 있습니다.
+
+
+            </p>
+
+            <table class="milestone-table">
+                <thead>
+                    <tr>
+                        <th>의 %</th>
+                        <th>제품 정보</th>
+                        <th>응답 시간</th>
+                        <th>안정성</th>
+                        <th>시간 프레임</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td data-label="Level">퀵메뉴</td>
+                        <td data-label="Accuracy" class="ms-target">≥ 90%</td>
+                        <td data-label="Response time" class="ms-target">≤ 5s</td>
+                        <td data-label="Stability">3 세션 연속</td>
+                        <td data-label="Timeframe">2 ~ 3 wk의</td>
+                    </tr>
+                    <tr>
+                        <td data-label="Level">중간 명확한</td>
+                        <td data-label="Accuracy" class="ms-target">≥ 90%</td>
+                        <td data-label="Response time" class="ms-target">≤ 4s</td>
+                        <td data-label="Stability">3 행 + 여러 루트</td>
+                        <td data-label="Timeframe">3개 wk</td>
+                    </tr>
+                    <tr>
+                        <td data-label="Level">고급 Clear</td>
+                        <td data-label="Accuracy" class="ms-target">≥ 85%</td>
+                        <td data-label="Response time" class="ms-target">≤ 3s</td>
+                        <td data-label="Stability">5 행 + asc & desc</td>
+                        <td data-label="Timeframe">2-3의 mo</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <p style="font-size:14px; color:var(--text-primary); font-weight:700; margin-top:var(--space-lg); margin-bottom:6px;">
+                전송 기준 — "실제 노래에서 적용하는 데 도움이 필요"
+            </p>
+            <ul class="conn-list">
+                <li><strong>귀 복사 전송</strong>: 고급 + 랜덤 + 80 % + 이동 → 간단한 보컬 멜로디를 transcribing 시작</li>
+                <li><strong>보컬 조화 이동</strong>: 사용자 정의 (3rds + 6ths) 85% +에서 조화 → 익숙한 노래의 합창화</li>
+                <li><strong>Improv 전송</strong>: 고급 + 화성 + 75 % +로 이동 → 간단한 백업 트랙을 통해 개선하십시오.</li>
+            </ul>
+        </section>
+
+        <!-- ========== 6. TIPS ========== -->
+        <section class="sect" id="tips">
+            <h2 class="sect__h"><span class="sect__num">6</span>TIPS — Stuck이 언제 읽을 때</h2>
+
+            <div class="tip-item">
+                <div class="tip-item__head">다른 것을 하기 전에 1 단계 삭제</div>
+                <div class="tip-item__body">
+
+                    1개의 층에 의하여 하락 어려움, 또는 느린 속도 변화. <strong>낮은 층에서 90 %를 다시 인용하면 동일하게 연삭보다 빠릅니다.</strong> 갇혀있을 때 첫 번째 이동.
+
+
+                </div>
+            </div>
+
+            <div class="tip-item">
+                <div class="tip-item__head">에 초점 <em>의 거리</em>,주의 이름</div>
+                <div class="tip-item__body">
+
+                    "C와 G"를 외우지 마세요. <strong>완전5도의 긴장감</strong>, <strong>장6도의 넓은 느낌</strong>처럼 <strong>음정 거리의 성질</strong>을 기억하세요. 이동 모드에서도 남는 기억은 바로 이것입니다.
+
+
+                </div>
+            </div>
+
+            <div class="tip-item">
+                <div class="tip-item__head">반복적으로 동일한 항목을 드릴하지 마십시오 (interleave)</div>
+                <div class="tip-item__body">
+
+                    "50 m3s in row"는 "m3 / m6 / M2 × 15를 각으로 교체하는 것보다 약합니다." <strong>장기 유지를 위해 차단을 해제.</strong> Spaced Repetition 및 무작위 모드는이 원칙에 내장되어 있습니다.
+
+
+                </div>
+            </div>
+
+            <div class="tip-item">
+                <div class="tip-item__head">각 간격을 닻 <strong>1개의 참고 노래</strong></div>
+                <div class="tip-item__body">
+
+                    혼동 쌍 (m6 ↔ M6, A4 ↔ d5, M2 ↔ m7 전위), 바인드 <strong>1 고정 참조 노래</strong> 간격 (예를들면, P4 = "그들은 신부가 온다", 트리톤 = "심슨" 테마). 여러 참조를 사용하지 마십시오. - 그 목적의 패배.
+
+
+                </div>
+            </div>
+
+            <div class="tip-item">
+                <div class="tip-item__head">치료 후손과 조화를 분리하는 훈련</div>
+                <div class="tip-item__body">
+
+                    종종 ~60 % 후손에 떨어뜨리고 정상입니다. <strong>전송하지 않습니다; 전용 시간을 할당합니다.</strong> 고조파 모드와 동일: 선율 완벽은 위에 나르지 않습니다.
+
+
+                </div>
+            </div>
+        </section>
+
+        <!-- ========== 7. 設定詳細リファレンス ========== -->
+        <section class="sect" id="settings">
+            <h2 class="sect__h"><span class="sect__num">7</span>전체 설정 참조</h2>
+            <p class="sect__lead">
+
+                Week 1 미리 설정은 시작에 충분합니다. 아래 섹션을 사용하십시오. <strong>특정 설정이 무엇인지 알고 싶을 때 참조</strong>. 확장을 클릭.
+
+
+            </p>
+
+            <details class="settings-ref">
+                <summary>Difficulty <span style="color:var(--text-secondary); font-weight:400; font-size:12px;">— 난이도 (퀘스트 풀)</span></summary>
+                <div class="settings-ref__content">
+                    <div class="diff-cascade">
+                        <div class="diff-tier">
+                            <div class="diff-tier__head"><span class="diff-tier__num">1</span><span class="diff-tier__name">Beginner</span></div>
+                            <div class="diff-tier__count">5개의 간격</div>
+                            <div class="diff-tier__items">M2  M3  P4  P5  P8</div>
+                        </div>
+                        <div class="diff-tier">
+                            <div class="diff-tier__head"><span class="diff-tier__num">2</span><span class="diff-tier__name">Intermediate</span></div>
+                            <div class="diff-tier__count">+3 → 8개의 간격</div>
+                            <div class="diff-tier__items">+ m3  m6  M6</div>
+                        </div>
+                        <div class="diff-tier">
+                            <div class="diff-tier__head"><span class="diff-tier__num">3</span><span class="diff-tier__name">Advanced</span></div>
+                            <div class="diff-tier__count">+5 → 모든 13</div>
+                            <div class="diff-tier__items">+ m2  A4/d5  m7  M7</div>
+                        </div>
+                    </div>
+                    <div class="menu-note">
+
+                        tier 당 90%를 안정시키십시오 → 다음을 자물쇠로 엽니다. 토토사이트
+
+
+                    </div>
+                </div>
+            </details>
+
+            <details class="settings-ref">
+                <summary>Playback Mode <span style="color:var(--text-secondary); font-weight:400; font-size:12px;">- 재생</span></summary>
+                <div class="settings-ref__content">
+                    <div class="mode-grid">
+                        <div class="mode-card"><div class="mode-card__visual">↗</div><div class="mode-card__name">Ascending</div><div class="mode-card__desc">낮은 → 높은</div></div>
+                        <div class="mode-card"><div class="mode-card__visual">↘</div><div class="mode-card__name">Descending</div><div class="mode-card__desc">높은 → 낮은</div></div>
+                        <div class="mode-card"><div class="mode-card__visual">⇊</div><div class="mode-card__name">Harmonic</div><div class="mode-card__desc">한 번에 두</div></div>
+                        <div class="mode-card"><div class="mode-card__visual">⚄</div><div class="mode-card__name">Random</div><div class="mode-card__desc">무작위 각 q.</div></div>
+                    </div>
+                    <div class="menu-note">
+
+                        순서: <strong>Asc → Desc → 하모닉 → 랜덤</strong>. 랜덤에서 시작하지 마십시오.
+
+
+                    </div>
+                </div>
+            </details>
+
+            <details class="settings-ref">
+                <summary>Root Note Mode <span style="color:var(--text-secondary); font-weight:400; font-size:12px;">— 루트 이동</span></summary>
+                <div class="settings-ref__content">
+                    <div class="compare-pair">
+                        <div class="compare-side compare-side--bad">
+                            <div class="compare-side__verdict">Fixed</div>
+                            <div class="compare-side__title">고정 (일 1 만)</div>
+                            <div class="compare-side__body">기차 음높이 메모리, 상대음감. 전송하지 않습니다.</div>
+                        </div>
+                        <div class="compare-side compare-side--good">
+                            <div class="compare-side__verdict">Moving</div>
+                            <div class="compare-side__title">이동 (일)</div>
+                            <div class="compare-side__body">진정한 상대음감를 구축하는 유일한 방법.</div>
+                        </div>
+                    </div>
+                </div>
+            </details>
+
+            <details class="settings-ref">
+                <summary>Root Note Pitch <span style="color:var(--text-secondary); font-weight:400; font-size:12px;">— 참조 음높이</span></summary>
+                <div class="settings-ref__content">
+                    <p style="font-size:13px; color:var(--text-secondary); line-height:1.7;">
+
+                        C4 / E4 / A4를 선택하십시오. 당신의 가까이에 무엇을 선택 <strong>음성 또는 계기 범위</strong> 그래서 당신은 sing 체크 할 수 있습니다. <strong>과태: C4</strong>. 낮은 목소리 /베이스 : C4. 높은 목소리 / 보컬 : A4을 시도.
+
+
+                    </p>
+                </div>
+            </details>
+
+            <details class="settings-ref">
+                <summary>Training Mode <span style="color:var(--text-secondary); font-weight:400; font-size:12px;">— 교육 모드</span></summary>
+                <div class="settings-ref__content">
+                    <p style="font-size:13px; color:var(--text-secondary); line-height:1.7;">
+
+                        <strong>의 의</strong> 무작위 / <strong>공간 반복</strong> reintroduces는 간격/에 놓인 품목을 놓았습니다 <strong>Weak Point 포커스</strong> 70% 이하 품목/ <strong>제품 정보</strong> 손픽.<br>매일: 정상. 일주일에 한 번 또는 두 번: 별도의 위크 포인트 포커스 세션.
+
+
+                    </p>
+                </div>
+            </details>
+
+            <details class="settings-ref">
+                <summary>Playback Speed / Answer Flow <span style="color:var(--text-secondary); font-weight:400; font-size:12px;">— 속도 & 자동 승인</span></summary>
+                <div class="settings-ref__content">
+                    <p style="font-size:13px; color:var(--text-secondary); line-height:1.7;">
+
+                        <strong>속도</strong>: 느리게(새로운 내용) → 보통(정착) → 빠르게(실전 시뮬레이션).<br><strong>답변 흐름</strong>: 기본은 자동(유창성 훈련). 수동은 약점 집중 모드와 함께 사용할 때만 선택합니다.
+
+
+                    </p>
+                </div>
+            </details>
+        </section>
+
+        <a href="/practice/training-menu/" class="crumb" style="margin-top:var(--space-2xl);">← 연습 메뉴 허브로 돌아가기</a>
+
+        <div class="cta" style="margin-top: var(--space-2xl);">
+            <h2 class="cta__title">음정 인식 시작하기</h2>
+            <p class="cta__text">
+
+                주간 1 미리 설정하고 오늘 첫 세션을 실행하십시오.
+
+
+            </p>
+            <a href="https://apps.apple.com/kr/app/id6756626617?pt=6749158383&amp;ct=web_practice&amp;mt=8" class="app-store-link" aria-label="App Store에서 다운로드">
+
+                <img class="app-store-link__img" width="120" height="40" src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/ko-kr" alt="App Store에서 다운로드">
+
+
+            </a>
+        </div>
+    </main>
+
+    <footer style="background: var(--surface); padding: var(--space-xl) var(--space-lg); text-align: center; border-top: 1px solid var(--surface-light);">
+        <p style="color: var(--text-secondary); font-size: 14px;">
+            &copy; 2026 Solfege PRO
+        </p>
+    </footer>
+    <script src="/bootstrap.js?v=10" defer></script>
+    <nav aria-label="Language" style="display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:0.5rem;padding:var(--space-lg) var(--space-md);border-top:1px solid var(--surface-light);font-size:13px">
+        <a href="/practice/training-menu/interval/" hreflang="ja" style="color:var(--text-secondary);text-decoration:none">日本語</a>
+        <span aria-hidden="true" style="color:var(--surface-light)">·</span>
+        <a href="/en/practice/training-menu/interval/" hreflang="en" style="color:var(--text-secondary);text-decoration:none">English</a>
+        <span aria-hidden="true" style="color:var(--surface-light)">·</span>
+        <a href="/fr/practice/training-menu/interval/" hreflang="fr" style="color:var(--text-secondary);text-decoration:none">Français</a>
+        <span aria-hidden="true" style="color:var(--surface-light)">·</span>
+        <a href="/de/practice/training-menu/interval/" hreflang="de" style="color:var(--text-secondary);text-decoration:none">Deutsch</a>
+        <span aria-hidden="true" style="color:var(--surface-light)">·</span>
+        <a href="/es/practice/training-menu/interval/" hreflang="es" style="color:var(--text-secondary);text-decoration:none">Español</a>
+        <span aria-hidden="true" style="color:var(--surface-light)">·</span>
+        <a href="/it/practice/training-menu/interval/" hreflang="it" style="color:var(--text-secondary);text-decoration:none">Italiano</a>
+        <span aria-hidden="true" style="color:var(--surface-light)">·</span>
+        <span style="color:var(--primary);font-weight:600" aria-current="true">한국어</span>
+        <span aria-hidden="true" style="color:var(--surface-light)">·</span>
+        <a href="/pt-br/practice/training-menu/interval/" hreflang="pt-BR" style="color:var(--text-secondary);text-decoration:none">Português (Brasil)</a>
+    </nav>
+</body>
+</html>

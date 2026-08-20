@@ -1,0 +1,963 @@
+<!DOCTYPE html>
+<html lang="es"
+      data-title-ja="音程の聴き分け — インターバル認識を鍛える | ソルフェージュPRO"
+      data-title-en="What Is Interval Recognition? — Understanding Intervals to Train Your Ear | Solfege PRO"
+      data-title-fr="Qu'est-ce que la reconnaissance d'intervalles ? — Comprendre les intervalles pour former l'oreille | Solfege PRO"
+      data-title-de="Was ist Intervallerkennung? — Intervalle verstehen und das Gehör schulen | Solfege PRO">
+<head>
+    <meta charset="UTF-8">
+    <meta name="robots" content="index, follow">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#1A1A1E">
+    <title>Reconocimiento de intervalos: entrena el oído | Solfege PRO</title>
+    <meta name="description" content="Reconoce intervalos para entrenar el oído relativo, con 13 intervalos agrupados por sonido y un plan progresivo.">
+
+    <!-- Canonical -->
+    <link rel="canonical" href="https://solfegepro.com/es/guides/interval-training/">
+    <link rel="alternate" hreflang="ja" href="https://solfegepro.com/guides/interval-training/">
+    <link rel="alternate" hreflang="en" href="https://solfegepro.com/en/guides/interval-training/">
+    <link rel="alternate" hreflang="fr" href="https://solfegepro.com/fr/guides/interval-training/">
+    <link rel="alternate" hreflang="de" href="https://solfegepro.com/de/guides/interval-training/">
+    <link rel="alternate" hreflang="es" href="https://solfegepro.com/es/guides/interval-training/">
+    <link rel="alternate" hreflang="it" href="https://solfegepro.com/it/guides/interval-training/">
+    <link rel="alternate" hreflang="ko" href="https://solfegepro.com/ko/guides/interval-training/">
+    <link rel="alternate" hreflang="pt-BR" href="https://solfegepro.com/pt-br/guides/interval-training/">
+    <link rel="alternate" hreflang="x-default" href="https://solfegepro.com/guides/interval-training/">
+<!-- OGP -->
+    <meta property="og:title" content="Reconocimiento de intervalos: entrena el oído">
+    <meta property="og:description" content="Reconoce intervalos para entrenar el oído relativo, con 13 intervalos agrupados por sonido y un plan progresivo.">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://solfegepro.com/es/guides/interval-training/">
+    <meta property="og:site_name" content="Solfege PRO">
+    <meta property="og:image" content="https://solfegepro.com/og-image.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Solfege PRO">
+    <meta property="og:locale" content="es_ES">
+    <meta property="og:locale:alternate" content="ja_JP">
+    <meta property="og:locale:alternate" content="en_US">
+    <meta property="og:locale:alternate" content="fr_FR">
+    <meta property="og:locale:alternate" content="de_DE">
+    <meta property="og:locale:alternate" content="it_IT">
+    <meta property="og:locale:alternate" content="ko_KR">
+    <meta property="og:locale:alternate" content="pt_BR">
+    <meta property="article:published_time" content="2026-03-31">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Reconocimiento de intervalos: entrena el oído">
+    <meta name="twitter:description" content="Reconoce intervalos para entrenar el oído relativo, con 13 intervalos agrupados por sonido y un plan progresivo.">
+    <meta name="twitter:image" content="https://solfegepro.com/og-image.png">
+
+    <!-- Favicon -->
+    <link rel="icon" href="/favicon.ico" sizes="any">
+    <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap"></noscript>
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="/style.css?v=23">
+    <link rel="stylesheet" href="/guides/article.css?v=14">
+
+    <!-- Page-specific styles for interval diagrams -->
+    <style>
+        /* Semitone Chart (responsive — 12 cells via grid) */
+        .semitone-chart {
+            background: var(--surface);
+            border-radius: var(--radius-xl);
+            padding: var(--space-lg);
+            margin: var(--space-xl) 0;
+            border: 1px solid var(--surface-light);
+        }
+
+        .semitone-track {
+            display: grid;
+            grid-template-columns: repeat(12, minmax(0, 1fr));
+            gap: 3px;
+            margin-top: var(--space-md);
+        }
+
+        .semitone-block {
+            min-width: 0;
+            background: var(--surface-light);
+            border-radius: var(--radius-sm);
+            padding: var(--space-sm) 2px;
+            text-align: center;
+            transition: transform 0.2s ease;
+            position: relative;
+        }
+
+        .semitone-block:hover {
+            transform: translateY(-2px);
+        }
+
+        .semitone-block__name {
+            font-size: 12px;
+            font-weight: 700;
+            color: var(--primary);
+            display: block;
+        }
+
+        .semitone-block__count {
+            font-size: 10px;
+            color: var(--text-secondary);
+            display: block;
+            margin-top: 2px;
+        }
+
+        .semitone-block--perfect {
+            background: rgba(74, 222, 128, 0.15);
+            border: 1px solid rgba(74, 222, 128, 0.3);
+        }
+
+        .semitone-block--major {
+            background: rgba(96, 165, 250, 0.15);
+            border: 1px solid rgba(96, 165, 250, 0.3);
+        }
+
+        .semitone-block--minor {
+            background: rgba(251, 191, 36, 0.15);
+            border: 1px solid rgba(251, 191, 36, 0.3);
+        }
+
+        .semitone-block--tritone {
+            background: rgba(248, 113, 113, 0.15);
+            border: 1px solid rgba(248, 113, 113, 0.3);
+        }
+
+        .semitone-legend {
+            display: flex;
+            gap: var(--space-lg);
+            margin-top: var(--space-md);
+            font-size: 12px;
+            color: var(--text-secondary);
+            flex-wrap: wrap;
+        }
+
+        .semitone-legend__item {
+            display: flex;
+            align-items: center;
+            gap: var(--space-xs);
+        }
+
+        .semitone-legend__dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 3px;
+            flex-shrink: 0;
+        }
+
+        /* Difficulty Grid (responsive — never horizontally scrolls) */
+        .difficulty-grid {
+            background: var(--surface);
+            border-radius: var(--radius-xl);
+            padding: var(--space-lg);
+            margin: var(--space-xl) 0;
+            border: 1px solid var(--surface-light);
+        }
+
+        .difficulty-row {
+            display: grid;
+            grid-template-columns: 72px 1fr 56px;
+            align-items: center;
+            margin-bottom: var(--space-md);
+            gap: var(--space-sm);
+        }
+
+        .difficulty-row:last-child {
+            margin-bottom: 0;
+        }
+
+        .difficulty-row__label {
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .difficulty-row__cells {
+            display: grid;
+            grid-template-columns: repeat(13, minmax(0, 1fr));
+            gap: 2px;
+            min-width: 0;
+        }
+
+        .interval-cell {
+            min-width: 0;
+            height: 30px;
+            border-radius: var(--radius-sm);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 10px;
+            font-weight: 700;
+        }
+
+        .interval-cell--on {
+            background: var(--primary);
+            color: var(--background);
+        }
+
+        .interval-cell--off {
+            background: var(--surface-light);
+            color: var(--text-secondary);
+            opacity: 0.4;
+        }
+
+        .difficulty-row__count {
+            font-size: 12px;
+            color: var(--text-secondary);
+            text-align: right;
+        }
+
+        /* Playback Mode Visual */
+        .playback-modes {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--space-md);
+            margin: var(--space-xl) 0;
+        }
+
+        .playback-mode-card {
+            background: var(--surface);
+            border: 1px solid var(--surface-light);
+            border-radius: var(--radius-lg);
+            padding: var(--space-lg);
+            text-align: center;
+        }
+
+        .playback-mode-card__icon {
+            font-size: 24px;
+            margin-bottom: var(--space-sm);
+            display: block;
+        }
+
+        .playback-mode-card__name {
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: var(--space-xs);
+        }
+
+        .playback-mode-card__desc {
+            font-size: 12px;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        /* Wall items (common struggles) */
+        .wall-list {
+            margin-bottom: var(--space-lg);
+        }
+
+        .wall-item {
+            display: flex;
+            gap: var(--space-md);
+            padding: var(--space-md);
+            background: var(--surface);
+            border-radius: var(--radius-md);
+            margin-bottom: var(--space-sm);
+            border: 1px solid var(--surface-light);
+        }
+
+        .wall-item__label {
+            font-weight: 700;
+            color: var(--primary);
+            min-width: 160px;
+            font-size: 14px;
+            flex-shrink: 0;
+        }
+
+        .wall-item__desc {
+            font-size: 14px;
+            color: var(--text-secondary);
+            line-height: 1.7;
+        }
+
+        @media (max-width: 768px) {
+            /* Narrow viewports: 12 semitones in 2 rows of 6 (avoids the
+               tiny single-row cells that would result at 375px). */
+            .semitone-track {
+                grid-template-columns: repeat(6, minmax(0, 1fr));
+            }
+            .semitone-block {
+                padding: 6px 2px;
+            }
+
+            .difficulty-row {
+                /* Stack: label on its own row, then full-width 13-cell row,
+                   then count on its own row. Keeps cells fitting any width. */
+                grid-template-columns: 1fr;
+                gap: 6px;
+            }
+
+            .difficulty-row__count {
+                text-align: left;
+            }
+
+            .interval-cell {
+                font-size: 9px;
+                height: 26px;
+            }
+
+            .playback-modes {
+                grid-template-columns: 1fr;
+            }
+
+            .wall-item {
+                flex-direction: column;
+                gap: var(--space-xs);
+            }
+
+            .wall-item__label {
+                min-width: auto;
+            }
+        }
+    </style>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Reconocimiento de intervalos: entrena el oído","description":"Reconoce intervalos para entrenar el oído relativo, con 13 intervalos agrupados por sonido y un plan progresivo.","author":{"@type":"Organization","name":"Solfege PRO"},"publisher":{"@type":"Organization","name":"Solfege PRO","logo":{"@type":"ImageObject","url":"https://solfegepro.com/AppIcon.png"}},"datePublished":"2026-03-31","mainEntityOfPage":{"@type":"WebPage","@id":"https://solfegepro.com/es/guides/interval-training/"}}</script>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Inicio","item":"https://solfegepro.com/es/"},{"@type":"ListItem","position":2,"name":"Guías de práctica","item":"https://solfegepro.com/es/guides/"},{"@type":"ListItem","position":3,"name":"音程の聴き分け — インターバル認識を鍛える","item":"https://solfegepro.com/es/guides/interval-training/"}]}</script>
+</head>
+<body>
+    <!-- Navigation -->
+        <nav class="nav" aria-label="Menú principal">
+        <div class="nav__container">
+            <a href="/es/" class="nav__logo" aria-label="Solfege PRO">
+                <img src="/AppIcon.png" alt="" class="nav__logo-icon" width="32" height="32">
+                <span class="nav__logo-text">Solfege PRO</span>
+            </a>
+            <ul class="nav__list">
+                <li><a href="/es/" class="nav__link">Acerca de Solfege PRO</a></li>
+                <li><a href="/es/features/" class="nav__link">Entrenamientos</a></li>
+                <li><a href="/es/guides/" class="nav__link active" aria-current="page">Guías de práctica</a></li>
+                <li><a href="/es/manual/" class="nav__link">Manual</a></li>
+            </ul>
+            <div class="nav__settings">
+                <button class="settings-btn" id="lang-toggle" title="Seleccionar idioma"><span id="lang-text">ES</span></button>
+                <button class="hamburger-btn" id="hamburger-btn" aria-label="Abrir menú" aria-expanded="false" aria-controls="drawer">
+                    <span class="hamburger-btn__line"></span><span class="hamburger-btn__line"></span><span class="hamburger-btn__line"></span>
+                </button>
+            </div>
+        </div>
+    </nav>
+        <!-- Mobile drawer (hidden on desktop) -->
+            <div class="drawer-overlay" id="drawer-overlay"></div>
+    <aside class="drawer" id="drawer" aria-label="Menú" aria-hidden="true" inert>
+        <div class="drawer__header">
+            <span class="drawer__title">Menú</span>
+            <button class="drawer__close" id="drawer-close" aria-label="Cerrar menú">×</button>
+        </div>
+        <ul class="drawer__list">
+            <li><a href="/es/" class="drawer__link">Acerca de Solfege PRO</a></li>
+            <li><a href="/es/features/" class="drawer__link">Entrenamientos</a></li>
+            <li><a href="/es/guides/" class="drawer__link active" aria-current="page">Guías de práctica</a></li>
+            <li><a href="/es/manual/" class="drawer__link">Manual</a></li>
+        </ul>
+    </aside>
+
+
+    <!-- Article Header -->
+    <header class="page-header">
+        <div class="page-header__meta">
+            <span class="page-header__tag">Reconocimiento de intervaloso</span>
+            <span>10 min.</span>
+        </div>
+        <h1 class="page-header__title">
+
+            ¿Qué es el Reconocimiento de intervalosoral?<br>Comprender las intervalaciones<br>para entrenar a tu oído
+
+
+        </h1>
+        <p class="page-header__subtitle">
+
+            El Reconocimiento de intervalos no es sobre el oído absoluto. Se trata de entrenar tu oído relativo... escuchar la distancia entre dos notas. Usted puede desarrollar esta habilidad paso a paso — incluso como adulto.
+
+
+        </p>
+    </header>
+
+    <!-- Top-of-article CTA -->
+    <aside class="article-top-cta" aria-label="App promotion">
+        <div class="article-top-cta__body">
+            <p class="article-top-cta__title">
+
+                Prueba esto. Solfege PRO
+
+
+            </p>
+            <p class="article-top-cta__sub">
+
+                Consulta el precio en el App Store
+
+
+            </p>
+        </div>
+        <a href="https://apps.apple.com/es/app/id6756626617?pt=6749158383&amp;ct=web_guides&amp;mt=8" class="article-top-cta__button app-store-link" data-cta-position="article_top" aria-label="Descargar en el App Store"><img src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/es-es" class="app-store-link__img" alt="Descargar en el App Store" loading="lazy"></a>
+    </aside>
+
+    <!-- Article Body -->
+    <main class="article-body">
+
+        <!-- Section 1 -->
+        <h2 id="what-is-interval-recognition">Lo que significa "Reconocimiento de intervalos"</h2>
+
+        <p>
+
+            El Reconocimiento de intervalosor es <strong>la capacidad de escuchar lo lejos dos notas son</strong>. Cuando escuchas C y G, reconociendo que la distancia es un "quinto justo" - eso es reconocimiento de intervalos.
+
+
+        </p>
+
+        <p>
+
+            Cuando practicas un instrumento, te encuentras con términos como "jugar por oído" y "entrenamiento del cielo". "Tienen un buen oído" o "gran sentido del altura" - pero ¿qué significa eso en realidad?
+
+
+        </p>
+
+        <p>
+
+            Es importante distinguir esta habilidad del <strong>oído absoluto</strong>. El oído absoluto identifica una nota por su nombre, por ejemplo: «eso es un La». El reconocimiento de intervalos, en cambio, evalúa la distancia entre dos notas: «estas dos notas están separadas por ____». Este es el ámbito del <strong>oído relativo</strong>.
+
+
+        </p>
+
+        <p>
+
+            El oído relativo puede ser entrenado a través de la práctica. A diferencia del oído absoluto, que es difícil de desarrollar después de la primera infancia, el oído relativo puede mejorarse a cualquier edad. Y es útil en todas partes en la música... jugando por el oído, ensemble jugando, componiendo, e improvisando.
+
+
+        </p>
+
+        <div class="article-note">
+            <div class="article-note__title">Punto clave</div>
+            <p>El entrenamiento de Reconocimiento de intervalosor desarrolla su oído relativo, no un oído absoluto. El objetivo no es nombrar notas individuales, sino escuchar la distancia entre dos notas.</p>
+        </div>
+
+        <!-- Section 2 -->
+        <h2 id="interval-classification">Intervalos clasificatorios - De P1 a P8</h2>
+
+        <p>
+
+            Dentro de una octava, hay <strong>13 intervalos</strong>, contado por semitonas. Cada uno tiene un nombre, y se encuentran en tres grupos: "perfecto", "major/minor", y "tritone".
+
+
+        </p>
+
+        <!-- Semitone Chart -->
+        <div class="semitone-chart">
+            <div class="diagram-title">13 Intervalos por Semitone Count</div>
+            <div class="semitone-track">
+                <div class="semitone-block semitone-block--perfect">
+                    <span class="semitone-block__name">P1</span>
+                    <span class="semitone-block__count">0</span>
+                </div>
+                <div class="semitone-block semitone-block--minor">
+                    <span class="semitone-block__name">m2</span>
+                    <span class="semitone-block__count">1</span>
+                </div>
+                <div class="semitone-block semitone-block--major">
+                    <span class="semitone-block__name">M2</span>
+                    <span class="semitone-block__count">2</span>
+                </div>
+                <div class="semitone-block semitone-block--minor">
+                    <span class="semitone-block__name">m3</span>
+                    <span class="semitone-block__count">3</span>
+                </div>
+                <div class="semitone-block semitone-block--major">
+                    <span class="semitone-block__name">M3</span>
+                    <span class="semitone-block__count">4</span>
+                </div>
+                <div class="semitone-block semitone-block--perfect">
+                    <span class="semitone-block__name">P4</span>
+                    <span class="semitone-block__count">5</span>
+                </div>
+                <div class="semitone-block semitone-block--tritone">
+                    <span class="semitone-block__name">TT</span>
+                    <span class="semitone-block__count">6</span>
+                </div>
+                <div class="semitone-block semitone-block--perfect">
+                    <span class="semitone-block__name">P5</span>
+                    <span class="semitone-block__count">7</span>
+                </div>
+                <div class="semitone-block semitone-block--minor">
+                    <span class="semitone-block__name">m6</span>
+                    <span class="semitone-block__count">8</span>
+                </div>
+                <div class="semitone-block semitone-block--major">
+                    <span class="semitone-block__name">M6</span>
+                    <span class="semitone-block__count">9</span>
+                </div>
+                <div class="semitone-block semitone-block--minor">
+                    <span class="semitone-block__name">m7</span>
+                    <span class="semitone-block__count">10</span>
+                </div>
+                <div class="semitone-block semitone-block--major">
+                    <span class="semitone-block__name">M7</span>
+                    <span class="semitone-block__count">11</span>
+                </div>
+                <div class="semitone-block semitone-block--perfect">
+                    <span class="semitone-block__name">P8</span>
+                    <span class="semitone-block__count">12</span>
+                </div>
+            </div>
+            <div class="semitone-legend">
+                <div class="semitone-legend__item">
+                    <div class="semitone-legend__dot" style="background:rgba(74,222,128,0.4);border:1px solid rgba(74,222,128,0.6);"></div>
+                    <span>Perfecto.</span>
+                </div>
+                <div class="semitone-legend__item">
+                    <div class="semitone-legend__dot" style="background:rgba(96,165,250,0.4);border:1px solid rgba(96,165,250,0.6);"></div>
+                    <span>Mayor</span>
+                </div>
+                <div class="semitone-legend__item">
+                    <div class="semitone-legend__dot" style="background:rgba(251,191,36,0.4);border:1px solid rgba(251,191,36,0.6);"></div>
+                    <span>Menores</span>
+                </div>
+                <div class="semitone-legend__item">
+                    <div class="semitone-legend__dot" style="background:rgba(248,113,113,0.4);border:1px solid rgba(248,113,113,0.6);"></div>
+                    <span>Tritone</span>
+                </div>
+            </div>
+        </div>
+
+        <p>
+
+            Las intervalaciones más cercanas en el conteo de semitone son más difíciles de distinguir. Por ejemplo, P1 (envenenamiento) y P8 (octave) son distintivas y fáciles de recordar, pero m3 (3 semitonas) y M3 (4 semitonas) difieren sólo por un semitón y son una fuente clásica de confusión.
+
+
+        </p>
+
+        <p>
+
+            Cada intervalo ha utilizado comúnmente "cánticos de referencia" para ayudar a la memorización. Por ejemplo, P5 es la apertura de "Guerras de estrellas", P4 es "Simple Lang", y M3 es "Cuando los santos van desfilando". Recortar el comienzo de estas canciones en la cabeza ayuda a anclar la distancia de cada intervalo.
+
+
+        </p>
+
+        <!-- Section 3 -->
+        <h2 id="difficulty-steps">Niveles de dificultad - Añadiendo las intervalaciones paso a paso</h2>
+
+        <p>
+
+            Intentar aprender los 13 intervalos a la vez sólo causará confusión. El enfoque eficaz es comenzar con un pequeño conjunto y añadir más a medida que su confianza crece.
+
+
+        </p>
+
+        <!-- Difficulty Grid -->
+        <div class="difficulty-grid">
+            <div class="diagram-title">Intervalos por nivel de dificultad</div>
+            <div class="difficulty-row">
+                <div class="difficulty-row__label">Principiante</div>
+                <div class="difficulty-row__cells">
+                    <div class="interval-cell interval-cell--off">P1</div>
+                    <div class="interval-cell interval-cell--off">m2</div>
+                    <div class="interval-cell interval-cell--on">M2</div>
+                    <div class="interval-cell interval-cell--off">m3</div>
+                    <div class="interval-cell interval-cell--on">M3</div>
+                    <div class="interval-cell interval-cell--on">P4</div>
+                    <div class="interval-cell interval-cell--off">TT</div>
+                    <div class="interval-cell interval-cell--on">P5</div>
+                    <div class="interval-cell interval-cell--off">m6</div>
+                    <div class="interval-cell interval-cell--off">M6</div>
+                    <div class="interval-cell interval-cell--off">m7</div>
+                    <div class="interval-cell interval-cell--off">M7</div>
+                    <div class="interval-cell interval-cell--on">P8</div>
+                </div>
+                <div class="difficulty-row__count">5 tipos</div>
+            </div>
+            <div class="difficulty-row">
+                <div class="difficulty-row__label">Intermediato</div>
+                <div class="difficulty-row__cells">
+                    <div class="interval-cell interval-cell--off">P1</div>
+                    <div class="interval-cell interval-cell--off">m2</div>
+                    <div class="interval-cell interval-cell--on">M2</div>
+                    <div class="interval-cell interval-cell--on">m3</div>
+                    <div class="interval-cell interval-cell--on">M3</div>
+                    <div class="interval-cell interval-cell--on">P4</div>
+                    <div class="interval-cell interval-cell--off">TT</div>
+                    <div class="interval-cell interval-cell--on">P5</div>
+                    <div class="interval-cell interval-cell--on">m6</div>
+                    <div class="interval-cell interval-cell--on">M6</div>
+                    <div class="interval-cell interval-cell--off">m7</div>
+                    <div class="interval-cell interval-cell--off">M7</div>
+                    <div class="interval-cell interval-cell--on">P8</div>
+                </div>
+                <div class="difficulty-row__count">8 tipos</div>
+            </div>
+            <div class="difficulty-row">
+                <div class="difficulty-row__label">Avances</div>
+                <div class="difficulty-row__cells">
+                    <div class="interval-cell interval-cell--on">P1</div>
+                    <div class="interval-cell interval-cell--on">m2</div>
+                    <div class="interval-cell interval-cell--on">M2</div>
+                    <div class="interval-cell interval-cell--on">m3</div>
+                    <div class="interval-cell interval-cell--on">M3</div>
+                    <div class="interval-cell interval-cell--on">P4</div>
+                    <div class="interval-cell interval-cell--on">TT</div>
+                    <div class="interval-cell interval-cell--on">P5</div>
+                    <div class="interval-cell interval-cell--on">m6</div>
+                    <div class="interval-cell interval-cell--on">M6</div>
+                    <div class="interval-cell interval-cell--on">m7</div>
+                    <div class="interval-cell interval-cell--on">M7</div>
+                    <div class="interval-cell interval-cell--on">P8</div>
+                </div>
+                <div class="difficulty-row__count">13 tipos</div>
+            </div>
+        </div>
+
+        <p>
+
+            Los principiantes comienzan con intervalos muy espaciados y distintivos (M2, M3, P4, P5, P8). A nivel intermedio, se añaden m3, m6, y M6. El nivel avanzado incluye los 13 intervalos, incluyendo pares de semitone-apart y el tritón.
+
+
+        </p>
+
+        <div class="article-note">
+            <div class="article-note__title">Punto clave</div>
+            <p>Objetivo para una precisión estable del 90%+ en cada nivel antes de moverse hacia arriba. El arrastre por delante puede causar confusión cuando se mezclan intervalos de sonido similar.</p>
+        </div>
+
+        <!-- Section 4 -->
+        <h2 id="common-struggles">Luchas comunes - Donde la mayoría de la gente se atasca</h2>
+
+        <p>
+
+            En el entrenamiento de reconocimiento de intervalos, hay "walls" que casi todos golpean. Saber que no estás solo en luchar es importante para estar motivado.
+
+
+        </p>
+
+        <div class="wall-list">
+            <div class="wall-item">
+                <span class="wall-item__label">Confusando m3 y M3</span>
+                <span class="wall-item__desc">Menor 3o y 3o mayor difieren sólo por un semitone. Necesitas practicar la detección del sonido "ork" (m3) contra el sonido "derecho" (M3). Las canciones de referencia ayudan a aclarar la distinción.</span>
+            </div>
+            <div class="wall-item">
+                <span class="wall-item__label">P4/P5 Ambigüedad</span>
+                <span class="wall-item__desc">Tanto P4 como P5 tienen una calidad "estable", lo que les facilita la confusa. P4 siente que es "avanzado hacia arriba", mientras que P5 tiene una sensación "aperturada, abierta". La escucha repetida para construir un sentido intuitivo es clave.</span>
+            </div>
+            <div class="wall-item">
+                <span class="wall-item__label">Reconocimiento tritone</span>
+                <span class="wall-item__desc">El tritón (augmentado 4 / disminuido 5) tiene un sonido único inestable, pero porque rara vez lo escuchas en la música cotidiana, es difícil comprometerse a la memoria. Es necesaria una exposición deliberada y repetida.</span>
+            </div>
+            <div class="wall-item">
+                <span class="wall-item__label">Intervalos descendentes</span>
+                <span class="wall-item__desc">Muchas personas pueden identificar intervalos ascendentes (bajo a alto) pero lucha con descendientes (alto a bajo). Las canciones de referencia aprendidas para ascender no se aplican directamente, por lo que necesita desarrollar una sensación separada para los intervalos descendentes.</span>
+            </div>
+            <div class="wall-item">
+                <span class="wall-item__label">Modo armónico Dificultad</span>
+                <span class="wall-item__desc">Puedes contar intervalos cuando las notas se tocan una tras otra, pero no cuando suenan simultáneamente. La escucha melódica y armónica son diferentes habilidades. Es natural dominar el reconocimiento melódico antes de hacer frente al modo armónico.</span>
+            </div>
+        </div>
+
+        <!-- Section 5 -->
+        <h2 id="effective-practice">Métodos de práctica eficaces</h2>
+
+        <h3 id="start-wide">Comience con Intervalaciones Amplias</h3>
+        <p>
+
+            Los intervalos anchos como P8 (octave) y P5 (justo quinto) tienen caracteres distintivos que son más fáciles de memorizar. Comience por construir una capacidad para ordenar aproximadamente "ancho" de intervalos "narrow", luego trabajar en distinciones más finas.
+
+
+        </p>
+
+        <h3 id="reference-songs">Use Canciones de Referencia</h3>
+        <p>
+
+            Este método vincula cada intervalo a la apertura de una canción conocida. Por ejemplo, escuchar al P5 y recordar "éstas son las dos primeras notas del tema principal de Star Wars" acelera su juicio. Sin embargo, la sobreconfianza en esto puede frenarte. Úsalo como una erupción inicial, y pretende finalmente reconocer intervalos por su sonido solo.
+
+
+        </p>
+
+        <h3 id="ascending-then-descending">Ascendente Primero, Luego Descendiendo</h3>
+        <p>
+
+            Practicar intervalos ascendentes y descendientes simultáneamente puede causar confusión. Comience con el modo ascendente para aprender el carácter de cada intervalo, cambiar a descender una vez que su precisión se estabilice, y luego pasar a modo aleatorio (mezclando ascendente, descendente y armónico) como su próximo desafío.
+
+
+        </p>
+
+        <h3 id="focus-on-weakpoints">Enfóquese en sus puntos débiles</h3>
+        <p>
+
+            En lugar de practicar todos los intervalos por igual, pasar más tiempo en sus intervalos débiles es más eficiente. Identificar qué intervalos tienen tasas de precisión bajas, y escuchar repetidamente a aquellos para agudizar su discriminación.
+
+
+        </p>
+
+        <h3 id="dont-rush-levels">No te desgastes al siguiente nivel</h3>
+        <p>
+
+            Alcanza un 90% estable en el nivel inicial antes de pasar a intermediario. Cuando se agregan nuevos intervalos, incluso los que anteriormente se conocen pueden llegar a ser confusos. "La base sólida antes de avanzar" es en última instancia el camino más rápido para mejorar.
+
+
+        </p>
+
+        <!-- Section 6 -->
+        <h2 id="what-app-can-do">¿Qué? Solfege PRO ¿Puede hacer</h2>
+
+        <p>
+
+            Solfege PRO's Reconocimiento de intervalos es compatible con la práctica de reconocimiento de intervalos descrita anteriormente a través de un <strong>"preguntas, respuestas, visualización de debilidades, práctica enfocada" ciclo</strong>.
+
+
+        </p>
+
+        <h3>Cuatro modos de reproducción</h3>
+        <p>
+
+            Cambiar cómo escuchas intervalos cambia la calidad de tu práctica.
+
+
+        </p>
+
+        <div class="playback-modes">
+            <div class="playback-mode-card">
+                <span class="playback-mode-card__icon">&#8593;</span>
+                <div class="playback-mode-card__name">Ascendencia</div>
+                <div class="playback-mode-card__desc">Nota baja y luego nota alta. El modo más fundamental.</div>
+            </div>
+            <div class="playback-mode-card">
+                <span class="playback-mode-card__icon">&#8595;</span>
+                <div class="playback-mode-card__name">Descendiente</div>
+                <div class="playback-mode-card__desc">Nota alta y luego nota baja. Requiere un sentido diferente que ascender.</div>
+            </div>
+            <div class="playback-mode-card">
+                <span class="playback-mode-card__icon">&#9835;</span>
+                <div class="playback-mode-card__name">Armonic</div>
+                <div class="playback-mode-card__desc">Ambas notas jugaban simultáneamente. Un modo avanzado para escuchar armónico.</div>
+            </div>
+            <div class="playback-mode-card">
+                <span class="playback-mode-card__icon">&#8645;</span>
+                <div class="playback-mode-card__name">Aleatorio</div>
+                <div class="playback-mode-card__desc">Aleatoriamente cambia entre ascendente, descendiente y armónico. Construye un oído práctico.</div>
+            </div>
+        </div>
+
+        <h3>Opciones de tono de referencia</h3>
+        <p>
+
+            Puede elegir un tono de referencia fijo (C4 / E4 / A4) o un cambio aleatorio. El modo fijo es bueno para el aprendizaje inicial ya que escuchas la misma nota base repetidamente. Movimiento cambia aleatoriamente la referencia entre G3 y F4, entrenando el verdadero reconocimiento de intervalos que no confía en una frecuencia específica.
+
+
+        </p>
+
+        <h3>Detección de puntos débiles y práctica ponderada</h3>
+        <p>
+
+            La aplicación registra su precisión para cada intervalo. Intervalos con <strong>precisión por debajo del 70% y al menos 3 intentos</strong> son marcados como "puntos débiles". En el modo punto débil, estos intervalos aparecen con más frecuencia (hasta 3x ponderación). Centrarse en las debilidades es más rápido para mejorar que practicar todo por igual.
+
+
+        </p>
+
+        <h3>Tiempo de reacción de seguimiento</h3>
+        <p>
+
+            Más allá de la precisión, también se registra el tiempo que se necesita para responder. Hay una gran diferencia práctica entre "puede hacerlo bien con el tiempo" y "puede juzgar al instante". Disminuir los tiempos de reacción son evidencia de que el reconocimiento de intervalos se está volviendo intuitivo.
+
+
+        </p>
+
+        <h3>Panorama general de las competencias</h3>
+        <p>
+
+            Precisión, intento de contar y nivel de competencia (fuerte / buena / necesidad práctica / débil) para cada intervalo son visibles en la pantalla de estadísticas. Esto no muestra simplemente "sobre todo X% correcto" sino "que intervalos son débiles", lo que deja claro qué practicar después.
+
+
+        </p>
+
+        <div class="cycle-diagram">
+            <div class="cycle-step">
+                <div class="cycle-step__label">Pregunta</div>
+                <div class="cycle-step__desc">Escucha el intervalo</div>
+            </div>
+            <div class="cycle-arrow">&rarr;</div>
+            <div class="cycle-step">
+                <div class="cycle-step__label">Respuesta</div>
+                <div class="cycle-step__desc">Seleccione intervalo</div>
+            </div>
+            <div class="cycle-arrow">&rarr;</div>
+            <div class="cycle-step">
+                <div class="cycle-step__label">Analyze</div>
+                <div class="cycle-step__desc">Visualizar las debilidades</div>
+            </div>
+            <div class="cycle-arrow">&rarr;</div>
+            <div class="cycle-step">
+                <div class="cycle-step__label">Focus</div>
+                <div class="cycle-step__desc">Meta puntos débiles</div>
+            </div>
+        </div>
+
+        <!-- Mid-article CTA -->
+        <div class="article-cta-subtle">
+            <p class="article-cta-subtle__text">¿Quieres saber cuáles son tus puntos débiles?</p>
+            <a href="https://apps.apple.com/es/app/id6756626617?pt=6749158383&amp;ct=web_guides&amp;mt=8" class="article-cta-subtle__button app-store-link" aria-label="Descargar en el App Store"><img src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/es-es" class="app-store-link__img" alt="Descargar en el App Store" loading="lazy"></a>
+        </div>
+
+        <!-- Section 7 -->
+        <h2 id="limitations">¿Qué? Solfege PRO No cubre directamente</h2>
+
+        <p>
+
+            Seamos honestos.
+
+
+        </p>
+
+        <div class="article-honest">
+            <div class="article-honest__title">Áreas Más allá del alcance de la aplicación</div>
+            <p>
+                <strong>Formación de oído absoluto</strong> — Esta aplicación entrena el oído relativo (reconociendo la distancia entre dos notas). No es entrenamiento para el oído absoluto, que identifica nombres de notas individuales.
+            </p>
+            <p>
+                <strong>Intervalos extendidos más allá de una octava</strong> - Los intervalos compuestos como los 9ths, 10ths y 11ths están fuera del alcance de entrenamiento actual. La aplicación se centra en los 13 intervalos dentro de una octava.
+            </p>
+            <p>
+                <strong>Timbres de instrumentos reales</strong> - La fuente de sonido es sólo piano. No soporta el entrenamiento con guitarra, violín, instrumentos de viento u otros timbres. Piano proporciona un tono limpio ideal para la discriminación de altura, pero el desarrollo de la familiaridad con las resonancias específicas de instrumentos requiere práctica separada.
+            </p>
+            <p>
+                <strong>Contexto armónico (cords y progresiones)</strong> — Cómo funcionan los intervalos dentro de las progresiones de acordes o un contexto tonal está fuera del alcance de este entrenamiento. Solfege PRO ofrece reconocimiento acorde y entrenamiento de progresión separados, pero no están integrados con el reconocimiento de intervalos.
+            </p>
+            <p>
+                <strong>Dictamen musical</strong> — Escuchar una melodía y transcribirla a la notación no está incluida. Esta formación se centra estrictamente en identificar la distancia entre dos notas.
+            </p>
+            <p>
+                <strong>De acuerdo con la escala centrada en clave (do móvil)</strong> — La escucha de grado de escala centrado en clave (Karpinski) <em>Manual para entrenamiento auditivo y Pesado de Pesadilla</em>, Edlund's <em>Modus Novus</em>) — escuchar cada nota como un grado dentro de un contexto tonal — está fuera del alcance de esta característica. Solfege PRO's El Reconocimiento de intervalosor es libre de contexto (sólo distancia de dos notas). do móvil / de grado-establecimiento práctica es fuerte para entender la función melódica y vale la pena practicar como una <strong>enfoque complementario</strong> junto con el entrenamiento de intervalos.
+            </p>
+        </div>
+
+        <p>
+
+            ¿Qué? Solfege PRO's Interval Recognition soporta directamente es la práctica de reconocimiento de intervalos de dos notas dentro de una octava, utilizando tonos de piano. Esta fundación es útil para aplicaciones prácticas como jugar por el oído y el conjunto de juegos, pero solo no completa su capacidad de escucha musical.
+
+
+        </p>
+
+        <!-- Section 8 -->
+        <h2 id="how-to-use">Uso recomendado</h2>
+
+        <ol>
+            <li><strong>Comienzo a nivel principiante</strong> — Incluso si eres nuevo para el reconocimiento de intervalos, 5 intervalos es un punto de partida manejable. Construya su sentido básico aquí.</li>
+            <li><strong>Práctica en modo ascendente</strong> — Comience con ascender solamente (bajo a alto) y concéntrese en aprender el sonido de cada intervalo.</li>
+            <li><strong>Estabilizarse en un 90%+ antes de avanzar</strong> — El roce a intermediario añade intervalos de sonido similar que causan confusión. Construye primero una base sólida.</li>
+            <li><strong>Usar el modo punto débil</strong> — Revise la pantalla de estadísticas para intervalos débiles y practique con modo concentrado. Esto es más eficiente que repetirlo todo por igual.</li>
+            <li><strong>Cambios graduales de modos de reproducción</strong> — Desafío en este orden: ascendente, descendiente, aleatorio, armónico. Esto construye un sentido más tridimensional del reconocimiento de intervalos.</li>
+            <li><strong>Cambiar a referencia móvil para habilidades aplicadas</strong> — Una vez cómodo con una referencia fija, cambie al modo de movimiento. Los tonos de referencia aleatorios construyen un verdadero oído relativo que no depende de notas específicas.</li>
+        </ol>
+
+        <div class="comparison-visual">
+            <div class="comparison-card comparison-card--bad">
+                <div class="comparison-card__header">Menos Eficaz</div>
+                <div class="comparison-card__body">
+                    <p>Saltando directo a avanzado. Practicar todos los modos simultáneamente. Repita sin comprobar los resultados. Evitar intervalos débiles y sólo practicar fáciles.</p>
+                </div>
+            </div>
+            <div class="comparison-card comparison-card--good">
+                <div class="comparison-card__header">Más eficaz</div>
+                <div class="comparison-card__body">
+                    <p>Estabilizar el 90% en principiante antes de pasar a intermediario. Aprende a ascender primero, luego descender. Compruebe las estadísticas para intervalos débiles y se centre en ellas. Rastrea tus tiempos de reacción decrecientes.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="article-note">
+            <div class="article-note__title">Tip de uso</div>
+            <p>Se recomiendan sesiones de 10 a 20 preguntas. Las sesiones cortas y enfocadas son más eficaces que las largas y no enfocadas. Practicar un poco cada día es la clave para convertir el reconocimiento de intervalos en una intuición.</p>
+        </div>
+
+    </main>
+
+    <!-- Final CTA -->
+    <section class="article-cta">
+        <h2 class="article-cta__title">Comience por comprobar sus habilidades de Reconocimiento de intervalosoral</h2>
+        <p class="article-cta__text">
+
+            El reconocimiento de intervalos es entrenamiento perceptivo, no solo conocimiento.<br>Leer no basta: escucha, responde y descubre tus puntos débiles.<br>Prueba el Reconocimiento de intervalos de Solfege PRO y comprueba cómo está tu oído.
+
+
+        </p>
+                <p style="font-size: 14px; color: var(--text-secondary); margin-bottom: var(--space-md); text-align: center;">
+
+            Consulta el precio en el App Store
+
+
+        </p>
+        <a href="https://apps.apple.com/es/app/id6756626617?pt=6749158383&amp;ct=web_guides&amp;mt=8" class="app-store-link" aria-label="Descargar en el App Store">
+
+            <img class="app-store-link__img" width="120" height="40" src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/es-es" alt="Descargar en el App Store">
+
+
+        </a>
+    </section>
+
+    <!-- Related Content -->
+    <div class="article-related">
+        <div class="article-related__title">Contenido relacionado</div>
+        <a href="/practice/vocal/" class="article-related__link" style="margin-bottom: var(--space-md);">
+            <div class="article-related__link-title">Guía de la práctica profesional</div>
+            <div class="article-related__link-desc">Estabilidad de la altura, cambios clave, armonías — menús de práctica para los vocalistas</div>
+        </a>
+        <a href="/guides/exam-solfege-6week-plan/" class="article-related__link" style="margin-bottom: var(--space-md);">
+            <div class="article-related__link-title">6-Week Solfege Prep — Para el Colegio de Música y los exámenes de profesor</div>
+            <div class="article-related__link-desc">La soledad como lo prueban los exámenes de entrada de música y las certificaciones de maestros — dictado del oído, el canto y la teoría— es difícil de cubrir a fondo a través de la autoestudia. Esta guía es un plan semanal que comienza seis semanas antes del examen: Semana 1 fundaciones, Semana 2 dictado melódico, Semana 3 armonía, Semana 4 ritmo, Semana 5 exámenes de mock, Semana 6 pulido — unos 30–45 minutos de práctica diaria de la casa para llegar a rangos de paso.</div>
+        </a>
+        <a href="/guides/guitar-10years-cant-ear-copy/" class="article-related__link" style="margin-bottom: var(--space-md);">
+            <div class="article-related__link-title">Diez años de guitarra, aún no puede escuchar a los oídos — Es la orden, no talento</div>
+            <div class="article-related__link-desc">"Diez años en la guitarra y todavía no puedo copiar mis canciones favoritas" — esta queja es más común de lo que piensas. La causa no es talento ni edad; es el orden de la práctica. Intervals → triads → séptimo acordes → progresiones → canciones reales — caminar las cinco etapas en orden y copiado de oído se convierte en realidad en tres a seis meses. Esta guía es el plano.</div>
+        </a>
+        <a href="/guides/rhythm-training/" class="article-related__link" style="margin-bottom: var(--space-md); display: block;">
+            <div class="article-related__link-title">¿Qué es el sentimiento rítmico? - Derribando, arrastrando, inconsistencia, y bolsillo</div>
+            <div class="article-related__link-desc">Rompe la sensación rítmica en 5 elementos y aprenda prácticas para mejorar la precisión del tiempo</div>
+        </a>
+        <a href="/manual/interval/" class="article-related__link" style="margin-bottom: var(--space-md);">
+            <div class="article-related__link-title">Manual de configuración de Reconocimiento de intervaloso</div>
+            <div class="article-related__link-desc">Cómo elegir cada configuración de aplicación y lo que entrena, uno a la vez.</div>
+        </a>
+        <a href="/" class="article-related__link">
+            <div class="article-related__link-title">Solfege PRO Guía de prácticas</div>
+            <div class="article-related__link-desc">Menús de práctica basados en desafíos para guitarra, bajo, tambores, piano y voces</div>
+        </a>
+    </div>
+
+    <!-- Article Note -->
+    <aside class="article-endnote">
+        <p class="article-endnote__text">
+
+            Este artículo se organiza sobre la base de conceptos de reconocimiento de intervalos ampliamente utilizados en la educación musical y el diseño de características Solfege PRO. Los ejemplos de canciones de referencia usan canciones bien conocidas, pero el mejor método de memorización varía según el individuo. La detección de puntos débiles de la aplicación se basa en la agregación basada en reglas y no representa todos los aspectos del contexto o experiencia musical de un individuo.
+
+
+        </p>
+    </aside>
+
+    <!-- Footer -->
+    <footer class="article-footer">
+        <p class="article-footer__text">
+            &copy; 2026 Solfege PRO
+        </p>
+    </footer>
+    <script src="/bootstrap.js?v=10" defer></script>
+    <nav aria-label="Language" style="display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:0.5rem;padding:var(--space-lg) var(--space-md);border-top:1px solid var(--surface-light);font-size:13px">
+        <a href="/guides/interval-training/" hreflang="ja" style="color:var(--text-secondary);text-decoration:none">日本語</a>
+        <span aria-hidden="true" style="color:var(--surface-light)">·</span>
+        <a href="/en/guides/interval-training/" hreflang="en" style="color:var(--text-secondary);text-decoration:none">English</a>
+        <span aria-hidden="true" style="color:var(--surface-light)">·</span>
+        <a href="/fr/guides/interval-training/" hreflang="fr" style="color:var(--text-secondary);text-decoration:none">Français</a>
+        <span aria-hidden="true" style="color:var(--surface-light)">·</span>
+        <a href="/de/guides/interval-training/" hreflang="de" style="color:var(--text-secondary);text-decoration:none">Deutsch</a>
+        <span aria-hidden="true" style="color:var(--surface-light)">·</span>
+        <span style="color:var(--primary);font-weight:600" aria-current="true">Español</span>
+        <span aria-hidden="true" style="color:var(--surface-light)">·</span>
+        <a href="/it/guides/interval-training/" hreflang="it" style="color:var(--text-secondary);text-decoration:none">Italiano</a>
+        <span aria-hidden="true" style="color:var(--surface-light)">·</span>
+        <a href="/ko/guides/interval-training/" hreflang="ko" style="color:var(--text-secondary);text-decoration:none">한국어</a>
+        <span aria-hidden="true" style="color:var(--surface-light)">·</span>
+        <a href="/pt-br/guides/interval-training/" hreflang="pt-BR" style="color:var(--text-secondary);text-decoration:none">Português (Brasil)</a>
+    </nav>
+</body>
+</html>

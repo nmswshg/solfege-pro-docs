@@ -3,7 +3,11 @@
       data-title-ja="ページが見つかりません (404) | ソルフェージュPRO"
       data-title-en="Page Not Found (404) | Solfege PRO"
       data-title-fr="Page introuvable (404) | Solfege PRO"
-      data-title-de="Seite nicht gefunden (404) | Solfege PRO">
+      data-title-de="Seite nicht gefunden (404) | Solfege PRO"
+      data-title-es="Página no encontrada (404) | Solfege PRO"
+      data-title-it="Pagina non trovata (404) | Solfege PRO"
+      data-title-ko="페이지를 찾을 수 없습니다 (404) | Solfege PRO"
+      data-title-pt-br="Página não encontrada (404) | Solfege PRO">
 <head>
     <meta charset="UTF-8">
     <meta name="robots" content="noindex, follow">
@@ -24,7 +28,18 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
 
-    <link rel="stylesheet" href="/style.css?v=15">
+    <link rel="stylesheet" href="/style.css?v=23">
+
+    <script>
+        (function () {
+            var match = location.pathname.match(/^\/(en|fr|de|es|it|ko|pt-br)(?:\/|$)/);
+            var lang = match ? (match[1] === 'pt-br' ? 'pt-BR' : match[1]) : 'ja';
+            document.documentElement.lang = lang;
+            document.documentElement.setAttribute('data-lang', lang);
+            var key = 'title' + (lang === 'pt-BR' ? 'PtBr' : lang.charAt(0).toUpperCase() + lang.slice(1));
+            if (document.documentElement.dataset[key]) document.title = document.documentElement.dataset[key];
+        })();
+    </script>
 
     <style>
         .err-main {
@@ -89,12 +104,20 @@
             <span lang="en">Page Not Found</span>
             <span lang="fr">Page introuvable</span>
             <span lang="de">Seite nicht gefunden</span>
+            <span lang="es">Página no encontrada</span>
+            <span lang="it">Pagina non trovata</span>
+            <span lang="ko">페이지를 찾을 수 없습니다</span>
+            <span lang="pt-BR">Página não encontrada</span>
         </h1>
         <p class="err-desc">
             <span lang="ja">URL が変更された、または削除された可能性があります。以下から目的のページをお探しください。</span>
             <span lang="en">The URL may have changed or been removed. Try one of the destinations below.</span>
             <span lang="fr">L'URL a peut-être changé ou été supprimée. Essayez l'une des destinations ci-dessous.</span>
             <span lang="de">Die URL wurde möglicherweise geändert oder entfernt. Versuche eines der folgenden Ziele.</span>
+            <span lang="es">Es posible que la URL haya cambiado o se haya eliminado. Prueba uno de los destinos siguientes.</span>
+            <span lang="it">L'URL potrebbe essere cambiato o essere stato rimosso. Prova una delle destinazioni qui sotto.</span>
+            <span lang="ko">URL이 변경되었거나 삭제되었을 수 있습니다. 아래 링크에서 원하는 페이지를 찾아보세요.</span>
+            <span lang="pt-BR">O URL pode ter sido alterado ou removido. Tente um dos destinos abaixo.</span>
         </p>
         <nav class="err-actions">
             <a href="/" class="err-action err-action--primary">
@@ -102,22 +125,45 @@
                 <span lang="en">Back to Home</span>
                 <span lang="fr">Retour à l'accueil</span>
                 <span lang="de">Zurück zur Startseite</span>
+                <span lang="es">Volver al inicio</span>
+                <span lang="it">Torna alla home</span>
+                <span lang="ko">홈으로 돌아가기</span>
+                <span lang="pt-BR">Voltar ao início</span>
             </a>
-            <a href="/start-here.html" class="err-action">
+            <a href="/start-here/" class="err-action">
                 <span lang="ja">どこから始める？ 30 秒診断</span>
                 <span lang="en">Where to Start? — 30-sec Diagnostic</span>
                 <span lang="fr">Par où commencer ? — Diagnostic 30 sec</span>
                 <span lang="de">Wo anfangen? — 30-Sek-Diagnose</span>
+                <span lang="es">¿Por dónde empezar? — Diagnóstico de 30 s</span>
+                <span lang="it">Da dove iniziare? — Test di 30 secondi</span>
+                <span lang="ko">어디서 시작할까요? — 30초 진단</span>
+                <span lang="pt-BR">Por onde começar? — Diagnóstico de 30 segundos</span>
             </a>
             <a href="/guides/" class="err-action">
                 <span lang="ja">ガイド一覧を見る</span>
                 <span lang="en">Browse All Guides</span>
                 <span lang="fr">Tous les guides</span>
                 <span lang="de">Alle Leitfäden</span>
+                <span lang="es">Ver todas las guías</span>
+                <span lang="it">Sfoglia tutte le guide</span>
+                <span lang="ko">모든 가이드 보기</span>
+                <span lang="pt-BR">Ver todos os guias</span>
             </a>
         </nav>
     </main>
 
-    <script src="/bootstrap.js?v=1" defer></script>
+    <script>
+        (function () {
+            var lang = document.documentElement.lang;
+            if (lang === 'ja') return;
+            var prefix = lang === 'pt-BR' ? 'pt-br' : lang;
+            var targets = ['/', '/start-here/', '/guides/'];
+            document.querySelectorAll('.err-action').forEach(function (link, index) {
+                link.href = '/' + prefix + targets[index];
+            });
+        })();
+    </script>
+    <script src="/bootstrap.js?v=10" defer></script>
 </body>
 </html>

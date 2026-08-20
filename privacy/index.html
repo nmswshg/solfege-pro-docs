@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- DRAFT 2026-08-03: owner review required before publish (replaces Notion privacy/support) -->
+<!-- Privacy source of truth: owner-provided ASC/Notion draft, reconciled with shipped iOS/Android data handling on 2026-08-20. -->
 <html lang="ja"
       data-title-ja="プライバシーポリシー | ソルフェージュPRO"
       data-title-en="Privacy Policy | Solfege PRO"
@@ -11,20 +11,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="theme-color" content="#1A1A1E">
     <title>プライバシーポリシー | ソルフェージュPRO</title>
-    <meta name="description" content="ソルフェージュPROのプライバシーポリシー。アカウント登録は不要で、氏名やメールアドレスは収集しません。利用状況データ・クラッシュ情報・マイク・購入情報の扱いを説明します。">
+    <meta name="description" content="ソルフェージュPROのプライバシーポリシー。アプリ内の情報、外部フォーム、利用状況・クラッシュ情報の取り扱いを説明します。">
 
     <link rel="canonical" href="https://solfegepro.com/privacy/">
     <link rel="alternate" hreflang="ja" href="https://solfegepro.com/privacy/">
     <link rel="alternate" hreflang="en" href="https://solfegepro.com/en/privacy/">
     <link rel="alternate" hreflang="fr" href="https://solfegepro.com/fr/privacy/">
     <link rel="alternate" hreflang="de" href="https://solfegepro.com/de/privacy/">
+    <link rel="alternate" hreflang="es" href="https://solfegepro.com/es/privacy/">
+    <link rel="alternate" hreflang="it" href="https://solfegepro.com/it/privacy/">
+    <link rel="alternate" hreflang="ko" href="https://solfegepro.com/ko/privacy/">
+    <link rel="alternate" hreflang="pt-BR" href="https://solfegepro.com/pt-br/privacy/">
     <link rel="alternate" hreflang="x-default" href="https://solfegepro.com/privacy/">
 <link rel="icon" href="/favicon.ico" sizes="any">
     <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
     <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 
     <meta property="og:title" content="プライバシーポリシー">
-    <meta property="og:description" content="ソルフェージュPROのプライバシーポリシー。アカウント登録は不要で、氏名やメールアドレスは収集しません。利用状況データ・クラッシュ情報・マイク・購入情報の扱いを説明します。">
+    <meta property="og:description" content="ソルフェージュPROのプライバシーポリシー。アプリ内の情報、外部フォーム、利用状況・クラッシュ情報の取り扱いを説明します。">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://solfegepro.com/privacy/">
     <meta property="og:site_name" content="ソルフェージュPRO">
@@ -36,10 +40,14 @@
     <meta property="og:locale:alternate" content="en_US">
     <meta property="og:locale:alternate" content="fr_FR">
     <meta property="og:locale:alternate" content="de_DE">
+    <meta property="og:locale:alternate" content="es_ES">
+    <meta property="og:locale:alternate" content="it_IT">
+    <meta property="og:locale:alternate" content="ko_KR">
+    <meta property="og:locale:alternate" content="pt_BR">
 
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="プライバシーポリシー">
-    <meta name="twitter:description" content="ソルフェージュPROのプライバシーポリシー。アカウント登録は不要で、氏名やメールアドレスは収集しません。利用状況データ・クラッシュ情報・マイク・購入情報の扱いを説明します。">
+    <meta name="twitter:description" content="ソルフェージュPROのプライバシーポリシー。アプリ内の情報、外部フォーム、利用状況・クラッシュ情報の取り扱いを説明します。">
     <meta name="twitter:image" content="https://solfegepro.com/og-image.png">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -48,7 +56,7 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" media="print" onload="this.media='all'">
     <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap"></noscript>
 
-    <link rel="stylesheet" href="/style.css?v=21">
+    <link rel="stylesheet" href="/style.css?v=23">
     <link rel="stylesheet" href="/guides/article.css?v=14">
     <style>
         /* Operational pages use plain in-body anchors (guides only use
@@ -60,6 +68,8 @@
             text-underline-offset: 3px;
         }
         .article-body a:not([class]):hover { opacity: 0.85; }
+        /* Legal documents must remain visually stable while reading or printing. */
+        .article-body h2::after { animation: none; transform: scaleX(1); }
     </style>
 </head>
 <body>
@@ -101,26 +111,27 @@
     <!-- Page Header -->
     <header class="page-header">
         <h1 class="page-header__title">プライバシーポリシー</h1>
-        <p class="page-header__subtitle">ソルフェージュPROが扱う情報と、その利用目的について説明します。</p>
     </header>
 
     <main class="article-body">
 
-        <h2 id="principles">基本方針</h2>
+        <p><strong>最終更新日: 2026年8月20日</strong></p>
+
+        <h2 id="introduction">1. はじめに</h2>
 
         <p>
-            ソルフェージュPROにアカウント登録はありません。氏名・メールアドレスなどの個人情報をアプリ内で収集することはありません。
+            本プライバシーポリシーは、「ソルフェージュPRO」（以下「本アプリ」）のiOS版およびAndroid版におけるユーザー情報の取り扱いについて定めるものです。本アプリにアカウント登録はなく、氏名・メールアドレスをアプリ内で入力させることはありません。
 
 
 
         </p>
 
-        <h2 id="collected">収集する情報</h2>
+        <h2 id="collected">2. 取り扱う情報</h2>
 
         <h3 id="usage">利用状況データ</h3>
 
         <p>
-            アプリの改善のため、Google Firebase Analytics による匿名の利用イベントを収集します。内容は、画面やトレーニングの利用状況、正答率などの練習統計、デバイスモデル・OSバージョン・アプリバージョン・言語設定です。これらのデータからユーザー個人を特定することはありません。
+            本アプリは、アプリ内でユーザーの氏名・メールアドレス等を収集しません。サービス改善および不具合調査のため、Google Firebase AnalyticsおよびFirebase Crashlyticsにより、アプリの利用状況、端末・OS・アプリの情報、クラッシュ情報を収集する場合があります。これらは広告目的のトラッキングには使用しません。利用状況の収集はアプリ内の設定で無効にできます。
 
 
 
@@ -129,7 +140,7 @@
         <h3 id="crash">クラッシュ情報</h3>
 
         <p>
-            不具合の修正のため、Firebase Crashlytics によるクラッシュレポートを収集します。
+            不具合の調査・修正のため、Firebase Crashlyticsを利用して、クラッシュ時のスタックトレース、端末・OS・アプリの情報、およびインストール識別子を含むクラッシュレポートを収集します。
 
 
 
@@ -144,67 +155,75 @@
 
         </p>
 
-        <h3 id="purchases">購入情報</h3>
-
-        <p>
-            課金はAppleが処理します。当方がクレジットカード情報などの決済情報にアクセスすることは一切ありません。
-
-
-
-        </p>
-
         <h3 id="contact-form">お問い合わせフォーム</h3>
 
         <p>
-            お問い合わせフォームに送信された内容（および任意で記入された連絡先）は、サポート対応の目的にのみ使用します。
+            お問い合わせ・バグ報告のために外部サービス（Googleフォーム）へ遷移する場合があります。Googleフォーム上でユーザーが入力した情報は、当該外部サービス上で送信・管理されます。
 
 
 
         </p>
 
-        <h2 id="deletion">データの削除・ご質問</h2>
+        <h2 id="purpose">3. 利用目的</h2>
 
         <p>
-            データ削除のご依頼やご質問は、以下のお問い合わせフォームからご連絡ください。アプリを削除すると、端末上のデータは消去されます。Firebase の識別子は、アプリを再インストールするとリセットされます。
+            外部フォーム上でユーザーが任意に入力した情報（例: お問い合わせ内容、発生状況、端末・OS情報等）および上記の利用状況・クラッシュ情報は、以下の目的で利用します。
 
 
 
         </p>
-
-        <p>
-            <a href="https://docs.google.com/forms/d/e/1FAIpQLSfg3malJfxLyBQuKrsQ5pVD0wRlSkEyv3cwjTwL39x13T-_eg/viewform">→ お問い合わせフォームを開く（Google フォーム）</a>
-
-
-
-        </p>
-
-        <h2 id="third-party">第三者サービス</h2>
 
         <ul>
-            <li>Google Firebase — 詳細は <a href="https://firebase.google.com/support/privacy">Firebase のプライバシーとセキュリティ</a> を参照</li>
-            <li>Apple（App Store での配信・決済処理）</li>
+            <li>お問い合わせへの対応</li>
+            <li>不具合の調査・修正</li>
+            <li>サービス改善の参考</li>
         </ul>
 
-        <h2 id="changes">改定について</h2>
-
         <p>
-            本ポリシーを変更した場合は、本ページで告知します。制定日: 2026年8月3日。
+            原則として連絡先の提供は不要です（返信が必要な場合のみ、ユーザーの判断で入力してください）。
 
 
 
         </p>
 
-        <h2 id="operator">運営者</h2>
+        <h2 id="third-party">4. 第三者提供</h2>
 
         <p>
-            ソルフェージュPRO 運営。ご連絡は上記のお問い合わせフォームからお願いします。
+            本アプリは、収集した情報を第三者広告のために提供しません。ただし、利用状況分析・クラッシュ解析にはGoogle Firebaseを、お問い合わせ・バグ報告にはGoogleフォームを利用し、必要な範囲で各サービスが情報を処理します。詳細は<a href="https://firebase.google.com/support/privacy">Firebaseのプライバシーとセキュリティ</a>をご確認ください。
+
+
+
+        </p>
+
+        <h2 id="external-links">5. 外部リンク</h2>
+
+        <p>
+            本アプリおよび本サイトは、外部サイト・サービスへのリンクを含む場合があります。リンク先での情報の取り扱いは、リンク先のプライバシーポリシーをご確認ください。
+
+
+
+        </p>
+
+        <h2 id="changes">6. 改定</h2>
+
+        <p>
+            本ポリシーは必要に応じて改定されることがあります。改定後の内容は本ページにて公表します。
+
+
+
+        </p>
+
+        <h2 id="contact">7. お問い合わせ</h2>
+
+        <p>
+            お問い合わせ・バグ報告は、サポートページに掲載しているフォームよりご連絡ください。
 
 
 
         </p>
 
         <p>
-            関連: <a href="/support/">サポート</a>
+            関連: <a href="/terms/">利用規約</a> ・ <a href="/support/">サポート</a>
 
 
 
@@ -214,12 +233,9 @@
 
     <!-- Footer -->
     <footer class="article-footer">
-        <p class="article-footer__text">
-            &copy; 2026 ソルフェージュPRO &mdash;
-            <a href="https://apps.apple.com/jp/app/id6756626617?pt=6749158383&amp;ct=web_support&amp;mt=8" class="article-footer__link">App Store</a>
-        </p>
+        <p class="article-footer__text">&copy; 2026 Solfege PRO</p>
     </footer>
-    <script src="/bootstrap.js?v=7" defer></script>
+    <script src="/bootstrap.js?v=10" defer></script>
     <nav aria-label="Language" style="display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:0.5rem;padding:var(--space-lg) var(--space-md);border-top:1px solid var(--surface-light);font-size:13px">
         <span style="color:var(--primary);font-weight:600" aria-current="true">日本語</span>
         <span aria-hidden="true" style="color:var(--surface-light)">·</span>
@@ -228,6 +244,14 @@
         <a href="/fr/privacy/" hreflang="fr" style="color:var(--text-secondary);text-decoration:none">Français</a>
         <span aria-hidden="true" style="color:var(--surface-light)">·</span>
         <a href="/de/privacy/" hreflang="de" style="color:var(--text-secondary);text-decoration:none">Deutsch</a>
+        <span aria-hidden="true" style="color:var(--surface-light)">·</span>
+        <a href="/es/privacy/" hreflang="es" style="color:var(--text-secondary);text-decoration:none">Español</a>
+        <span aria-hidden="true" style="color:var(--surface-light)">·</span>
+        <a href="/it/privacy/" hreflang="it" style="color:var(--text-secondary);text-decoration:none">Italiano</a>
+        <span aria-hidden="true" style="color:var(--surface-light)">·</span>
+        <a href="/ko/privacy/" hreflang="ko" style="color:var(--text-secondary);text-decoration:none">한국어</a>
+        <span aria-hidden="true" style="color:var(--surface-light)">·</span>
+        <a href="/pt-br/privacy/" hreflang="pt-BR" style="color:var(--text-secondary);text-decoration:none">Português (Brasil)</a>
     </nav>
 </body>
 </html>

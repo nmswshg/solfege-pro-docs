@@ -68,14 +68,94 @@
     --dur-enter-fade: 900ms;
 }
 
+/* Store availability --------------------------------------------------
+   Apple requires the supplied badge artwork to remain unmodified and
+   unanimated. These rules also neutralize legacy button treatments on
+   App Store anchors that the build now converts to official badges. */
+a.app-store-link {
+    display: inline-block !important;
+    width: auto !important;
+    min-width: 0 !important;
+    height: auto !important;
+    padding: 0 !important;
+    border: 0 !important;
+    border-radius: 0 !important;
+    background: transparent !important;
+    color: inherit !important;
+    line-height: 0 !important;
+    box-shadow: none !important;
+    filter: none !important;
+    transform: none !important;
+    transition: none !important;
+    animation: none !important;
+}
+a.app-store-link:hover,
+a.app-store-link:active {
+    box-shadow: none !important;
+    filter: none !important;
+    transform: none !important;
+}
+a.app-store-link .app-store-link__img {
+    display: block;
+    width: auto;
+    height: 50px;
+    max-width: 100%;
+}
+.sticky-cta a.app-store-link .app-store-link__img { height: 38px; }
+
+.store-availability {
+    display: inline-flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+.android-coming-soon {
+    display: inline-flex;
+    min-height: 50px;
+    align-items: center;
+    gap: 9px;
+    padding: 0 16px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.04);
+    color: var(--text-secondary);
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.01em;
+    white-space: nowrap;
+}
+.android-coming-soon::before {
+    content: '';
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--primary);
+    box-shadow: 0 0 0 4px rgba(212, 175, 55, 0.12);
+}
+.lp-languages {
+    margin-top: 18px;
+    color: var(--text-secondary);
+    font-size: 13px;
+    line-height: 1.7;
+}
+@media (max-width: 600px) {
+    a.app-store-link .app-store-link__img { height: 44px; }
+    .android-coming-soon { min-height: 44px; padding-inline: 13px; font-size: 12px; }
+}
+
 /* =============================================
-   2. Language Toggle System (ja / en / fr / de)
+   2. Language Toggle System (all eight supported languages)
    ============================================= */
 /* Default: Japanese visible, all others hidden */
 /* Use :not(html) to prevent matching <html lang="X"> which would hide the entire page */
 :not(html)[lang="en"],
 :not(html)[lang="fr"],
-:not(html)[lang="de"] { display: none; }
+:not(html)[lang="de"],
+:not(html)[lang="es"],
+:not(html)[lang="it"],
+:not(html)[lang="ko"],
+:not(html)[lang="pt-BR"] { display: none; }
 :not(html)[lang="ja"] { display: contents; }
 
 /* When English is selected */
@@ -95,6 +175,17 @@
 [data-lang="de"] :not(html)[lang="ja"],
 [data-lang="de"] :not(html)[lang="en"],
 [data-lang="de"] :not(html)[lang="fr"] { display: none; }
+
+/* Additional app languages */
+[data-lang="es"] :not(html)[lang="es"],
+[data-lang="it"] :not(html)[lang="it"],
+[data-lang="ko"] :not(html)[lang="ko"],
+[data-lang="pt-BR"] :not(html)[lang="pt-BR"] { display: contents; }
+
+[data-lang="es"] :not(html)[lang]:not([lang="es"]),
+[data-lang="it"] :not(html)[lang]:not([lang="it"]),
+[data-lang="ko"] :not(html)[lang]:not([lang="ko"]),
+[data-lang="pt-BR"] :not(html)[lang]:not([lang="pt-BR"]) { display: none; }
 
 /* =============================================
    3. Base Styles
@@ -228,6 +319,9 @@ body {
     margin: 0;
     padding: 4px;
     min-width: 144px;
+    max-height: min(70vh, 360px);
+    overflow-y: auto;
+    overscroll-behavior: contain;
     background: var(--surface);
     border: 1px solid var(--surface-light);
     border-radius: var(--radius-md);
@@ -1622,7 +1716,11 @@ body {
    per-language spans, so html[lang] is the only language signal in output. */
 html[lang="en"] .page-header__title,
 html[lang="fr"] .page-header__title,
-html[lang="de"] .page-header__title {
+html[lang="de"] .page-header__title,
+html[lang="es"] .page-header__title,
+html[lang="it"] .page-header__title,
+html[lang="ko"] .page-header__title,
+html[lang="pt-BR"] .page-header__title {
     text-wrap: balance;
 }
 .page-header__subtitle {

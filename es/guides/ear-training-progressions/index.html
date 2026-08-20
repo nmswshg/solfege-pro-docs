@@ -1,0 +1,691 @@
+<!DOCTYPE html>
+<html lang="es"
+      data-title-ja="コード進行を聴き取る — T/SD/D 機能で判別 | ソルフェージュPRO"
+      data-title-en="What Is Progression Training? — Understanding Harmonic Movement | Solfege PRO"
+      data-title-fr="Qu'est-ce que l'écoute des progressions d'accords ? — Comprendre le mouvement harmonique | Solfege PRO"
+      data-title-de="Was ist Akkordfolgen-Hörtraining? — Harmonische Bewegung verstehen | Solfege PRO">
+<head>
+    <meta charset="UTF-8">
+    <meta name="robots" content="index, follow">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#1A1A1E">
+    <title>Escucha progresiones de acordes | Solfege PRO</title>
+    <meta name="description" content="Entrena la escucha de progresiones en tres pasos: función (T/SD/D), números romanos y símbolos de acordes, con do móvil.">
+
+    <!-- Canonical -->
+    <link rel="canonical" href="https://solfegepro.com/es/guides/ear-training-progressions/">
+    <link rel="alternate" hreflang="ja" href="https://solfegepro.com/guides/ear-training-progressions/">
+    <link rel="alternate" hreflang="en" href="https://solfegepro.com/en/guides/ear-training-progressions/">
+    <link rel="alternate" hreflang="fr" href="https://solfegepro.com/fr/guides/ear-training-progressions/">
+    <link rel="alternate" hreflang="de" href="https://solfegepro.com/de/guides/ear-training-progressions/">
+    <link rel="alternate" hreflang="es" href="https://solfegepro.com/es/guides/ear-training-progressions/">
+    <link rel="alternate" hreflang="it" href="https://solfegepro.com/it/guides/ear-training-progressions/">
+    <link rel="alternate" hreflang="ko" href="https://solfegepro.com/ko/guides/ear-training-progressions/">
+    <link rel="alternate" hreflang="pt-BR" href="https://solfegepro.com/pt-br/guides/ear-training-progressions/">
+    <link rel="alternate" hreflang="x-default" href="https://solfegepro.com/guides/ear-training-progressions/">
+<!-- OGP -->
+    <meta property="og:title" content="Escucha progresiones de acordes">
+    <meta property="og:description" content="Entrena la escucha de progresiones en tres pasos: función (T/SD/D), números romanos y símbolos de acordes, con do móvil.">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://solfegepro.com/es/guides/ear-training-progressions/">
+    <meta property="og:site_name" content="Solfege PRO">
+    <meta property="og:image" content="https://solfegepro.com/og-image.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Solfege PRO">
+    <meta property="og:locale" content="es_ES">
+    <meta property="og:locale:alternate" content="ja_JP">
+    <meta property="og:locale:alternate" content="en_US">
+    <meta property="og:locale:alternate" content="fr_FR">
+    <meta property="og:locale:alternate" content="de_DE">
+    <meta property="og:locale:alternate" content="it_IT">
+    <meta property="og:locale:alternate" content="ko_KR">
+    <meta property="og:locale:alternate" content="pt_BR">
+    <meta property="article:published_time" content="2026-03-31">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Escucha progresiones de acordes">
+    <meta name="twitter:description" content="Entrena la escucha de progresiones en tres pasos: función (T/SD/D), números romanos y símbolos de acordes, con do móvil.">
+    <meta name="twitter:image" content="https://solfegepro.com/og-image.png">
+
+    <!-- Favicon -->
+    <link rel="icon" href="/favicon.ico" sizes="any">
+    <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap"></noscript>
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="/style.css?v=23">
+    <link rel="stylesheet" href="/guides/article.css?v=14">
+
+    <style>
+        /* Harmonic Function Cycle */
+        .function-cycle {
+            background: var(--surface);
+            border-radius: var(--radius-xl);
+            padding: var(--space-xl);
+            margin: var(--space-xl) 0;
+            border: 1px solid var(--surface-light);
+        }
+        /* Wide: 4 nodes in one row with → arrows. Below 600 px the row
+           would wrap awkwardly (3 + 1 with an orphan arrow trailing on
+           row 1 and leading row 2), so we flip to a vertical column and
+           swap the arrow content to ↓ inside the same media query —
+           same Hard rule #5 pattern as the global .cycle-diagram. */
+        .function-cycle__diagram {
+            display: flex;
+            flex-wrap: nowrap;
+            justify-content: center;
+            align-items: center;
+            gap: var(--space-sm);
+            margin-bottom: var(--space-xl);
+        }
+        .function-cycle__node {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid;
+            text-align: center;
+            flex-shrink: 0;
+        }
+        @media (max-width: 600px) {
+            .function-cycle__diagram {
+                flex-direction: column;
+                gap: var(--space-xs);
+            }
+            .function-cycle__node {
+                width: 84px;
+                height: 84px;
+            }
+            .function-cycle__arrow {
+                transform: rotate(90deg);
+            }
+        }
+        .function-cycle__node--t {
+            border-color: #4ADE80;
+            background: rgba(74, 222, 128, 0.1);
+        }
+        .function-cycle__node--sd {
+            border-color: #FBBF24;
+            background: rgba(251, 191, 36, 0.1);
+        }
+        .function-cycle__node--d {
+            border-color: #F87171;
+            background: rgba(248, 113, 113, 0.1);
+        }
+        .function-cycle__node-label {
+            font-size: 18px;
+            font-weight: 700;
+        }
+        .function-cycle__node--t .function-cycle__node-label { color: #4ADE80; }
+        .function-cycle__node--sd .function-cycle__node-label { color: #FBBF24; }
+        .function-cycle__node--d .function-cycle__node-label { color: #F87171; }
+        .function-cycle__node-desc {
+            font-size: 11px;
+            color: var(--text-secondary);
+            margin-top: 2px;
+        }
+        .function-cycle__arrow {
+            font-size: 24px;
+            color: var(--text-secondary);
+        }
+        .function-cycle__arrow--return {
+            font-size: 18px;
+            color: var(--text-secondary);
+            text-align: center;
+            margin-top: var(--space-sm);
+        }
+
+        /* Function Table */
+        .function-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: var(--space-lg);
+        }
+        .function-table th,
+        .function-table td {
+            padding: var(--space-sm) var(--space-md);
+            text-align: left;
+            font-size: 14px;
+            border-bottom: 1px solid var(--surface-light);
+        }
+        .function-table th {
+            color: var(--text-secondary);
+            font-weight: 700;
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .function-table td {
+            color: var(--text-primary);
+        }
+        .function-table__tag {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: var(--radius-sm);
+            font-size: 12px;
+            font-weight: 600;
+        }
+        .function-table__tag--t { background: rgba(74, 222, 128, 0.15); color: #4ADE80; }
+        .function-table__tag--sd { background: rgba(251, 191, 36, 0.15); color: #FBBF24; }
+        .function-table__tag--d { background: rgba(248, 113, 113, 0.15); color: #F87171; }
+
+        @media (max-width: 768px) {
+            .function-cycle { padding: var(--space-md); }
+            .function-cycle__node { width: 80px; height: 80px; }
+            .function-cycle__node-label { font-size: 16px; }
+            .function-cycle__node-desc { font-size: 10px; }
+            .function-table th, .function-table td { padding: var(--space-xs) var(--space-sm); font-size: 13px; }
+        }
+    </style>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Escucha progresiones de acordes","description":"Entrena la escucha de progresiones en tres pasos: función (T/SD/D), números romanos y símbolos de acordes, con do móvil.","author":{"@type":"Organization","name":"Solfege PRO"},"publisher":{"@type":"Organization","name":"Solfege PRO","logo":{"@type":"ImageObject","url":"https://solfegepro.com/AppIcon.png"}},"datePublished":"2026-03-31","mainEntityOfPage":{"@type":"WebPage","@id":"https://solfegepro.com/es/guides/ear-training-progressions/"}}</script>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Inicio","item":"https://solfegepro.com/es/"},{"@type":"ListItem","position":2,"name":"Guías de práctica","item":"https://solfegepro.com/es/guides/"},{"@type":"ListItem","position":3,"name":"コード進行を聴き取る — T/SD/D 機能で判別","item":"https://solfegepro.com/es/guides/ear-training-progressions/"}]}</script>
+</head>
+<body>
+    <!-- Navigation -->
+        <nav class="nav" aria-label="Menú principal">
+        <div class="nav__container">
+            <a href="/es/" class="nav__logo" aria-label="Solfege PRO">
+                <img src="/AppIcon.png" alt="" class="nav__logo-icon" width="32" height="32">
+                <span class="nav__logo-text">Solfege PRO</span>
+            </a>
+            <ul class="nav__list">
+                <li><a href="/es/" class="nav__link">Acerca de Solfege PRO</a></li>
+                <li><a href="/es/features/" class="nav__link">Entrenamientos</a></li>
+                <li><a href="/es/guides/" class="nav__link active" aria-current="page">Guías de práctica</a></li>
+                <li><a href="/es/manual/" class="nav__link">Manual</a></li>
+            </ul>
+            <div class="nav__settings">
+                <button class="settings-btn" id="lang-toggle" title="Seleccionar idioma"><span id="lang-text">ES</span></button>
+                <button class="hamburger-btn" id="hamburger-btn" aria-label="Abrir menú" aria-expanded="false" aria-controls="drawer">
+                    <span class="hamburger-btn__line"></span><span class="hamburger-btn__line"></span><span class="hamburger-btn__line"></span>
+                </button>
+            </div>
+        </div>
+    </nav>
+        <!-- Mobile drawer (hidden on desktop) -->
+            <div class="drawer-overlay" id="drawer-overlay"></div>
+    <aside class="drawer" id="drawer" aria-label="Menú" aria-hidden="true" inert>
+        <div class="drawer__header">
+            <span class="drawer__title">Menú</span>
+            <button class="drawer__close" id="drawer-close" aria-label="Cerrar menú">×</button>
+        </div>
+        <ul class="drawer__list">
+            <li><a href="/es/" class="drawer__link">Acerca de Solfege PRO</a></li>
+            <li><a href="/es/features/" class="drawer__link">Entrenamientos</a></li>
+            <li><a href="/es/guides/" class="drawer__link active" aria-current="page">Guías de práctica</a></li>
+            <li><a href="/es/manual/" class="drawer__link">Manual</a></li>
+        </ul>
+    </aside>
+
+
+    <!-- Article Header -->
+    <header class="page-header">
+        <div class="page-header__meta">
+            <span class="page-header__tag">Capacitación para la progresión</span>
+            <span>8 min.</span>
+        </div>
+        <h1 class="page-header__title">
+
+            ¿Qué es la formación de la progresión?<br>Comprensión del movimiento armónico
+
+
+        </h1>
+        <p class="page-header__subtitle">
+
+            Identificar acordes individuales y escuchar el "flujo" de una progresión son habilidades diferentes. Aprende a entrenar tu oído para seguir el movimiento armónico, empezando por el marco de armonía funcional.
+
+
+        </p>
+    </header>
+
+    <!-- Top-of-article CTA -->
+    <aside class="article-top-cta" aria-label="App promotion">
+        <div class="article-top-cta__body">
+            <p class="article-top-cta__title">
+
+                Prueba esto. Solfege PRO
+
+
+            </p>
+            <p class="article-top-cta__sub">
+
+                Consulta el precio en el App Store
+
+
+            </p>
+        </div>
+        <a href="https://apps.apple.com/es/app/id6756626617?pt=6749158383&amp;ct=web_guides&amp;mt=8" class="article-top-cta__button app-store-link" data-cta-position="article_top" aria-label="Descargar en el App Store"><img src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/es-es" class="app-store-link__img" alt="Descargar en el App Store" loading="lazy"></a>
+    </aside>
+
+    <!-- Article Body -->
+    <main class="article-body">
+
+        <!-- Section 1 -->
+        <h2 id="what-is-progression-training">¿Qué es la formación de la progresión?</h2>
+
+        <p>
+
+            El reconocimiento de la progresión es la capacidad de seguir una secuencia de acordes por oído y entender el papel (función) que cada acorde juega dentro de una tonalidad.
+
+
+        </p>
+
+        <p>
+
+            A diferencia del reconocimiento de acordes que se centra en acordes individuales, centros de entrenamiento de progresión en las "relaciones entre acordes". ¿Por qué un cierto acorde después de otro se siente como "resolución"? ¿Por qué se siente como si "varios a ir a algún lado"? La respuesta está en función armónica.
+
+
+        </p>
+
+        <p>
+
+            Esta es una habilidad que se aplica a prácticamente todas las áreas de la música: composición, arreglo, transcripción, sesiones de jazz y arreglos de banda.
+
+
+        </p>
+
+        <!-- Section 2 -->
+        <h2 id="harmonic-basics">Comprender los fundamentos armónicos</h2>
+
+        <p>
+
+            La armonía occidental está ampliamente clasificada en tres funciones. Este marco, basado en la Armonía Funcional como ampliamente enseñado en la educación musical, sirve como un mapa fundamental para comprender las progresiones de acordes.
+
+
+        </p>
+
+        <!-- Harmonic Function Cycle Visual -->
+        <div class="function-cycle">
+            <div class="diagram-title">Ciclo de función armónica</div>
+
+            <div class="function-cycle__diagram">
+                <div class="function-cycle__node function-cycle__node--t">
+                    <div class="function-cycle__node-label">T</div>
+                    <div class="function-cycle__node-desc">Tonic</div>
+                </div>
+                <div class="function-cycle__arrow">&rarr;</div>
+                <div class="function-cycle__node function-cycle__node--sd">
+                    <div class="function-cycle__node-label">SD</div>
+                    <div class="function-cycle__node-desc">Subdominant</div>
+                </div>
+                <div class="function-cycle__arrow">&rarr;</div>
+                <div class="function-cycle__node function-cycle__node--d">
+                    <div class="function-cycle__node-label">D</div>
+                    <div class="function-cycle__node-desc">Dominant</div>
+                </div>
+                <div class="function-cycle__arrow">&rarr;</div>
+                <div class="function-cycle__node function-cycle__node--t">
+                    <div class="function-cycle__node-label">T</div>
+                    <div class="function-cycle__node-desc">Tonic</div>
+                </div>
+            </div>
+
+            <table class="function-table">
+                <thead>
+                    <tr>
+                        <th>Función</th>
+                        <th>Función</th>
+                        <th>Corchos</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><span class="function-table__tag function-table__tag--t">T (Tonic)</span></td>
+                        <td>Estabilidad, resolución, "casa"</td>
+                        <td>I, vi, iii</td>
+                    </tr>
+                    <tr>
+                        <td><span class="function-table__tag function-table__tag--sd">SD (Subdominant)</span></td>
+                        <td>Salida, desarrollo</td>
+                        <td>IV, ii</td>
+                    </tr>
+                    <tr>
+                        <td><span class="function-table__tag function-table__tag--d">D (Dominant)</span></td>
+                        <td>Tensión, deseo de resolver</td>
+                        <td>V, vii&deg;</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <p>
+
+            El ciclo T, SD, D, T es el flujo más fundamental de progresiones de acordes. Pop I-IV-V-I y el ii-V-I de jazz siguen este flujo funcional. Escuchar "a qué función pertenece un acorde" es el primer paso en el reconocimiento de la progresión.
+
+
+        </p>
+
+        <div class="article-note">
+            <div class="article-note__title">Punto clave</div>
+            <p>En la escucha de progresión, es más importante percibir la función (estable, tensa o partida) antes de identificar el tipo de acorde específico (Major o Menor). Una vez que usted conoce la función, identificar el acorde específico sigue naturalmente.</p>
+        </div>
+
+        <!-- Section 3 -->
+        <h2 id="common-walls">Muros comunes</h2>
+
+        <h3 id="iv-vs-v">IV vs V Confusión</h3>
+        <p>
+
+            IV (Subdominante) y V (Dominant) están "aparte de I", pero su calidad direccional difiere. IV tiene un sentido de "apertura" o "desarrollo", mientras V tiene "pull" y un "deseo de resolver". Para sentir esta diferencia, compare repetidamente I-IV-I e I-V-I.
+
+
+        </p>
+
+        <h3 id="minor-function">Los Corderos Menores son difíciles de colocar Funcionalmente</h3>
+        <p>
+
+            vi tiene función tónica, ii tiene función subdominante, iii tiene función tónica. Pero la impresión "ork" de acordes menores viene primero, haciendo el reconocimiento funcional más difícil. Es importante entender las funciones de acorde diatónico teóricamente y luego practicar la escucha repetidamente.
+
+
+        </p>
+
+        <h3 id="longer-progressions">Las progresiones más largas pierden el centro clave</h3>
+        <p>
+
+            Puedes seguir progresiones de 2 cuartos, pero en 4 acordes el centro de claves se desdibuja. Especialmente cuando aparecen sustitutos tónicos como vi o iii, puedes perder la pista de "donde estás". Utilizando la vista previa tónica (audir I primero) establece un punto de referencia claro.
+
+
+        </p>
+
+        <h3 id="function-vs-chord">Función de identificación vs Cordón específico</h3>
+        <p>
+
+            "Esta es la función dominante" es una cosa: identificar si es V o vii cosechadog; es otro desafío. Estabilizar el reconocimiento de nivel de función primero, luego pasar a una identificación específica de acordes. Ese es el orden efectivo.
+
+
+        </p>
+
+        <!-- Section 4 -->
+        <h2 id="effective-practice">Métodos de práctica eficaces</h2>
+
+        <h3 id="start-two-chords">Comienza con progresiones de 2 caballos</h3>
+        <p>
+
+            Comience con progresiones mínimas como I-V y I-IV. Centrarse en solo dos acordes hace más fácil sentir diferencias funcionales. Saltar a progresiones de 4 puntos arriesga la sobrecarga de información.
+
+
+        </p>
+
+        <h3 id="tonic-preview">Use Tonic Preview</h3>
+        <p>
+
+            Escuchar I (tónico) antes de que la pregunta establezca el punto de referencia clave en su oído. Escuchar la progresión con un claro sentido de "casa" hace que la función de cada acorde sea más fácil de percibir. A medida que mejore, gire la vista previa tónica OFF y practique encontrar la clave usted mismo.
+
+
+        </p>
+
+        <h3 id="function-first">Primero, después, los números romanos</h3>
+        <p>
+
+            Comience por responder a nivel de función: "T-SD-D-T". Una vez que se pueda sentir el flujo de estabilidad, desarrollo, tensión y resolución, avance a identificar acordes específicos con números romanos: "I-IV-V-I". Este orden alinea tanto la teoría como el oído.
+
+
+        </p>
+
+        <h3 id="common-patterns">Aprender patrones comunes</h3>
+        <p>
+
+            Muchas canciones se construyen en unos pocos patrones estándar. I-V-vi-IV (estándar pop), ii-V-I (estándar de mar), I-IV-I-V (estándar de folk/rock). Memorizar estos patrones "por sonido" te permite reconocer instantáneamente "eso es un ii-V-I" incluso en canciones que nunca has oído.
+
+
+        </p>
+
+        <!-- Section 5 -->
+        <h2 id="what-app-can-do">¿Qué? Solfege PRO ¿Puede hacer</h2>
+
+        <p>
+
+            Solfege PRO's Progresión El entrenamiento es una herramienta para construir su capacidad para escuchar progresiones acordes paso a paso.
+
+
+        </p>
+
+        <h3>15+ Patrones de progresión</h3>
+        <p>
+
+            Cubre los patrones de progresión 15+ centrados en los estándares pop y jazz. Patrones de práctica que aparecen con frecuencia en canciones reales: I-V-vi-IV, ii-V-I, I-IV-V-I, y más.
+
+
+        </p>
+
+        <h3>3 Formatos de respuesta</h3>
+        <p>
+
+            Elija entre tres formatos de respuesta: Función (T/SD/D), Numeral Romano (I/IV/V/vi, etc.), y Símbolo de Coro (C/F/G/Am, etc.). Comience con comprensión funcional y avance hasta notación de acordes específicas.
+
+
+        </p>
+
+        <h3>2 a 4 Cordo de longitudes</h3>
+        <p>
+
+            Elija longitudes de progresión de 2 a 4 acordes. Construir bases con progresiones cortas y desafiar gradualmente las más largas.
+
+
+        </p>
+
+        <h3>Previsto tónico</h3>
+        <p>
+
+            Juega el tónico (I) antes de la pregunta para establecer la referencia clave. ON deja la llave clara; OFF te desafía a encontrar la llave tú mismo.
+
+
+        </p>
+
+        <h3>Pop / Jazz Categorías</h3>
+        <p>
+
+            Enfócate en patrones del género que quieres practicar. Patrones Pop (I-V-vi-IV, etc.) y patrones de jazz ii-V-I – filtrar preguntas por categoría.
+
+
+        </p>
+
+        <h3>Estadísticas específicas de los patrones</h3>
+        <p>
+
+            Fiabilidad de los registros para cada patrón. Mira a un vistazo a qué progresiones eres fuerte y qué necesita trabajo.
+
+
+        </p>
+
+        <div class="cycle-diagram">
+            <div class="cycle-step">
+                <div class="cycle-step__label">Establecer clave</div>
+                <div class="cycle-step__desc">Previsto tónico</div>
+            </div>
+            <div class="cycle-arrow">&rarr;</div>
+            <div class="cycle-step">
+                <div class="cycle-step__label">Escucha.</div>
+                <div class="cycle-step__desc">Oír progresión</div>
+            </div>
+            <div class="cycle-arrow">&rarr;</div>
+            <div class="cycle-step">
+                <div class="cycle-step__label">Respuesta</div>
+                <div class="cycle-step__desc">Función / Numeral / Símbolo</div>
+            </div>
+            <div class="cycle-arrow">&rarr;</div>
+            <div class="cycle-step">
+                <div class="cycle-step__label">Confirmación</div>
+                <div class="cycle-step__desc">Comparar con la respuesta</div>
+            </div>
+        </div>
+
+        <!-- Section 6 -->
+        <h2 id="limitations">¿Qué? Solfege PRO No cubre directamente</h2>
+
+        <p>
+
+            Seamos honestos.
+
+
+        </p>
+
+        <div class="article-honest">
+            <div class="article-honest__title">Áreas Más allá del alcance de la aplicación</div>
+            <p>
+                <strong>Dominadores secundarios</strong> - Los dominantes secundarios como V/V y V/ii están fuera del actual ámbito de entrenamiento. El enfoque es en el reconocimiento de funciones de acorde diatónico.
+            </p>
+            <p>
+                <strong>Detección de modulación</strong> - No se admite la capacitación para detectar cambios claves a mitad del período. Cada progresión se presenta dentro de una sola clave.
+            </p>
+            <p>
+                <strong>Progresiones mínimas (parciales)</strong> - Las principales progresiones tonalidad son el enfoque. Las progresiones tonalidad menores están parcialmente cubiertas pero no exhaustivas.
+            </p>
+            <p>
+                <strong>Creación de progresión personalizada</strong> - Sólo se pueden establecer patrones predeterminados. No hay ninguna característica para que los usuarios creen progresiones personalizadas.
+            </p>
+            <p>
+                <strong>Improvisación sobre cambios</strong> - Escuchar una progresión e improvisar sobre ella son habilidades diferentes. La aplicación entrena el reconocimiento, no el rendimiento.
+            </p>
+            <p>
+                <strong>Canto de nivel bajo y con guía de línea y de grado máxím.</strong> - En el Karpinski (en el<em>Manual para entrenamiento auditivo y Pesado de Pesadilla</em>Edlund ( )<em>Modus Novus</em>) tradición, progresiones son escuchadas por (1) cantar el bajo-line como grados de escala y (2) etiqueta internamente cada acorde con números romanos (I, ii, IV, V). Solfege PRO's Progression Training presenta la función de acorde (T / SD / D) como opción múltiple y no incluye simulacros de canto de uso do móvil o bajos aislados. Combina la práctica de escucha de la aplicación con ejercicios de grado de cantado (utilizando papel y piano o voz) para internalizar la audición funcional más rápido.
+            </p>
+        </div>
+
+        <p>
+
+            ¿Qué? Solfege PRO es compatible directamente con el reconocimiento de funciones de progresión diatónica y el edificio de reconocimiento de patrones. El análisis armónico avanzado, incluyendo los dominantes secundarios y la modulación, es más eficaz cuando se combina con el estudio teórico y el análisis de música real.
+
+
+        </p>
+
+        <!-- Mid-article CTA -->
+        <div class="article-cta-subtle">
+            <p class="article-cta-subtle__text">Consulta el precio en el App Store - comprobar su reconocimiento de progresión</p>
+            <a href="https://apps.apple.com/es/app/id6756626617?pt=6749158383&amp;ct=web_guides&amp;mt=8" class="article-cta-subtle__button app-store-link" aria-label="Descargar en el App Store"><img src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/es-es" class="app-store-link__img" alt="Descargar en el App Store" loading="lazy"></a>
+        </div>
+
+        <!-- Section 7 -->
+        <h2 id="how-to-use">Uso recomendado</h2>
+
+        <p>
+
+            Solfege PRO's Progression Training está diseñado para ser utilizado en la siguiente progresión.
+
+
+        </p>
+
+        <ol>
+            <li><strong>Comience con el modo Función, 2 acordes</strong> — Gire la vista previa tónica ON, practique respondiendo al nivel de función T/SD/D. Sentir la diferencia entre I-V (T-D) y I-IV (T-SD) es el primer objetivo</li>
+            <li><strong>Muévete al modo Numeral romano</strong> — Una vez que el reconocimiento de la función sea estable, avance para identificar acordes específicos (I/IV/V/vi/ii)</li>
+            <li><strong>Ampliar a 3-4 acordes</strong> — Una vez estable con 2 acordes, aumenta gradualmente. Desafío de las progresiones estándar de 4 cuartos como I-V-vi-IV</li>
+            <li><strong>Gire la vista tónica OFF</strong> - Practicar encontrando la llave tú mismo. Esto se conecta directamente a la transcripción de canciones reales</li>
+            <li><strong>Verificar con música real</strong> — Escucha tus canciones favoritas e intenta identificar progresiones. Ese es el objetivo final.</li>
+        </ol>
+
+        <div class="comparison-visual">
+            <div class="comparison-card comparison-card--bad">
+                <div class="comparison-card__header">Menos Eficaz</div>
+                <div class="comparison-card__body">
+                    <p>Saltando en modo Numeral Romano con progresiones de 4-chord. No hay vista previa. Cada vez que se abruman por diferentes patrones.</p>
+                </div>
+            </div>
+            <div class="comparison-card comparison-card--good">
+                <div class="comparison-card__header">Más eficaz</div>
+                <div class="comparison-card__body">
+                    <p>Comience con el modo Función, 2 acordes, vista previa tónica ON. Siente las diferencias funcionales primero, luego aumenta gradualmente el formato de cuenta y respuesta acordes.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="article-note">
+            <div class="article-note__title">Tip de uso</div>
+            <p>Practicar progresiones junto con el reconocimiento de acordes (identificación individual del acorde) es eficaz. Un oído que puede identificar tipos de acordes individuales encuentra más fácil comprender el papel de cada acorde dentro de una progresión.</p>
+        </div>
+
+    </main>
+
+    <!-- Final CTA -->
+    <section class="article-cta">
+        <h2 class="article-cta__title">Comienza por comprobar su reconocimiento de progresión</h2>
+        <p class="article-cta__text">
+
+            El reconocimiento de la progresión es la capacidad de sentir el "flujo" de la armonía.<br>Escucha no a acordes individuales, sino a sus relaciones. Ese es el primer paso para entender la estructura musical por oído.<br>Comience con progresiones de 2-chord en Solfege PRO's Formación de Progreso.
+
+
+        </p>
+        <a href="https://apps.apple.com/es/app/id6756626617?pt=6749158383&amp;ct=web_guides&amp;mt=8" class="app-store-link" aria-label="Descargar en el App Store">
+
+            <img class="app-store-link__img" width="120" height="40" src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/es-es" alt="Descargar en el App Store">
+
+
+        </a>
+    </section>
+
+    <!-- Related Content -->
+    <div class="article-related">
+        <div class="article-related__title">Contenido relacionado</div>
+        <a href="/guides/dtm-chord-progression-variety/" class="article-related__link" style="margin-bottom: var(--space-md);">
+            <div class="article-related__link-title">Por qué tu DTM Temas Sonido Monotonous — No Teoría, Vocabulario de Oí</div>
+            <div class="article-related__link-desc">Un año o dos en tu DTM el viaje, las herramientas tienen sentido pero cada pista suena igual. Lees libros de teoría y sigues predeterminado a I–V–vi–IV. La verdadera causa no falta conocimiento — es que nunca has almacenado el sonido en tu oído. Reconocimiento diatónico → Extracción no diatónica → de canciones reales: tres ejercicios de entrenamiento de oído, tres meses, y sus producciones cambian de forma.</div>
+        </a>
+        <a href="/guides/session-5min-checklist/" class="article-related__link" style="margin-bottom: var(--space-md);">
+            <div class="article-related__link-title">Cinco minutos antes de una sesión de Jam — 7 cosas que comprobar</div>
+            <div class="article-related__link-desc">Usted aparece a un mermelada, el gráfico se vuelve a usted, y su cabeza se en blanco — la causa no es talento, sino la falta de un pre-juego estructurado. Lo que puedes hacer en los cinco a diez minutos antes de que el ritmo de bajada sea más limitado, y más concreto, de lo que la mayoría de los jugadores asumen. Este artículo es una lista de 7 puntos: confirmar la clave, romanizar la progresión, cantar tonos acordes, decidir su nota de apertura, preparar tres movimientos de recuperación, observar a los otros jugadores, y mantener "no tomar un solo" como una opción real.</div>
+        </a>
+        <a href="/guides/find-key-by-ear/" class="article-related__link" style="margin-bottom: var(--space-md);">
+            <div class="article-related__link-title">Cómo encontrar una clave de la canción por el oído</div>
+            <div class="article-related__link-desc">Antes de escuchar progresiones, primero clave el tónico y la clave — un método reproducible.</div>
+        </a>
+        <a href="/guides/chord-function-curriculum/" class="article-related__link" style="margin-bottom: var(--space-md);">
+            <div class="article-related__link-title">Curriculum de la función del corcho — T/SD/D en 4 etapas</div>
+            <div class="article-related__link-desc">El marco de función (T/SD/D) bajo la audiencia de progresión —aprendida paso a paso, desde la sensación de resolución.</div>
+        </a>
+        <a href="/manual/progression/" class="article-related__link" style="margin-bottom: var(--space-md);">
+            <div class="article-related__link-title">Manual de configuración de progresión del cordo</div>
+            <div class="article-related__link-desc">Cómo elegir cada configuración de aplicación y lo que entrena, uno a la vez.</div>
+        </a>
+        <a href="/" class="article-related__link">
+            <div class="article-related__link-title">Solfege PRO Guía de prácticas</div>
+            <div class="article-related__link-desc">Menús de práctica basados en desafíos para guitarra, bajo, tambores, piano y voces</div>
+        </a>
+    </div>
+
+    <!-- Article Note -->
+    <aside class="article-endnote">
+        <p class="article-endnote__text">
+
+            Este artículo se organiza basado en la teoría de la Armonía Funcional como enseñada en la educación musical y el conocimiento armónico general. La clasificación armónica y la percepción funcional varían según el género y el contexto musical, y el marco presentado aquí puede no aplicarse a cada caso. El entrenamiento en aplicación soporta la mejora del reconocimiento de progresión de acordes diatónico y no cubre el alcance completo del análisis armónico.
+
+
+        </p>
+    </aside>
+
+    <!-- Footer -->
+    <footer class="article-footer">
+        <p class="article-footer__text">
+            &copy; 2026 Solfege PRO
+        </p>
+    </footer>
+    <script src="/bootstrap.js?v=10" defer></script>
+    <nav aria-label="Language" style="display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:0.5rem;padding:var(--space-lg) var(--space-md);border-top:1px solid var(--surface-light);font-size:13px">
+        <a href="/guides/ear-training-progressions/" hreflang="ja" style="color:var(--text-secondary);text-decoration:none">日本語</a>
+        <span aria-hidden="true" style="color:var(--surface-light)">·</span>
+        <a href="/en/guides/ear-training-progressions/" hreflang="en" style="color:var(--text-secondary);text-decoration:none">English</a>
+        <span aria-hidden="true" style="color:var(--surface-light)">·</span>
+        <a href="/fr/guides/ear-training-progressions/" hreflang="fr" style="color:var(--text-secondary);text-decoration:none">Français</a>
+        <span aria-hidden="true" style="color:var(--surface-light)">·</span>
+        <a href="/de/guides/ear-training-progressions/" hreflang="de" style="color:var(--text-secondary);text-decoration:none">Deutsch</a>
+        <span aria-hidden="true" style="color:var(--surface-light)">·</span>
+        <span style="color:var(--primary);font-weight:600" aria-current="true">Español</span>
+        <span aria-hidden="true" style="color:var(--surface-light)">·</span>
+        <a href="/it/guides/ear-training-progressions/" hreflang="it" style="color:var(--text-secondary);text-decoration:none">Italiano</a>
+        <span aria-hidden="true" style="color:var(--surface-light)">·</span>
+        <a href="/ko/guides/ear-training-progressions/" hreflang="ko" style="color:var(--text-secondary);text-decoration:none">한국어</a>
+        <span aria-hidden="true" style="color:var(--surface-light)">·</span>
+        <a href="/pt-br/guides/ear-training-progressions/" hreflang="pt-BR" style="color:var(--text-secondary);text-decoration:none">Português (Brasil)</a>
+    </nav>
+</body>
+</html>

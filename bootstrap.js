@@ -1,8 +1,9 @@
 /* =============================================
    Solfege PRO Docs - Shared script bootstrap
    ---------------------------------------------
-   Loads the four site-wide scripts (analytics, lang-toggle, drawer,
-   animations) regardless of which directory the host HTML lives in.
+   Loads the site-wide scripts (analytics, language selector, drawer,
+   animations, and the reading CTA) regardless of which directory the host
+   HTML lives in.
    Each page just needs a single tag:
 
        <script src="bootstrap.js" defer></script>
@@ -15,7 +16,7 @@
    every HTML file by hand.
 
    bootstrap.js itself is intended to be loaded with `defer` so it
-   runs after the document is parsed. The four injected scripts are
+   runs after the document is parsed. The injected scripts are
    plain (non-defer) <script> tags appended to <head>; the browser
    downloads them in parallel and each is independently idempotent,
    so execution order doesn't matter.
@@ -23,10 +24,10 @@
 (function() {
     var SCRIPTS = [
         'analytics.js?v=1',
-        'lang-toggle.js?v=2',
+        'lang-toggle.js?v=5',
         'drawer.js?v=1',
         'animations.js?v=5',
-        'reading-cta-modal.js?v=3'
+        'reading-cta-modal.js?v=4'
     ];
 
     // Resolve each shared script RELATIVE TO bootstrap.js itself, not to
