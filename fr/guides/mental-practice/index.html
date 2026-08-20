@@ -108,7 +108,21 @@
                 <li><a href="/fr/manual/" class="nav__link">Manuel</a></li>
             </ul>
             <div class="nav__settings">
-                <button class="settings-btn" id="lang-toggle" title="Choisir la langue"><span id="lang-text">FR</span></button>
+                <button class="settings-btn" id="lang-toggle" title="Choisir la langue" aria-label="Choisir la langue: Français" aria-haspopup="menu" aria-expanded="false" aria-controls="lang-menu" disabled>
+                    <svg class="settings-btn__globe" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="M3 12h18M12 3a15 15 0 0 1 0 18M12 3a15 15 0 0 0 0 18"></path></svg>
+                    <span id="lang-text">FR</span>
+                    <span class="settings-btn__chevron" aria-hidden="true">▾</span>
+                </button>
+                <ul class="lang-menu" id="lang-menu" role="menu" aria-label="Choisir la langue">
+                    <li role="none"><a class="lang-menu__item" href="/guides/mental-practice/" hreflang="ja" lang="ja" data-lang="ja" role="menuitemradio" aria-checked="false"><span>日本語</span><span class="lang-menu__check" aria-hidden="true">✓</span></a></li>
+                    <li role="none"><a class="lang-menu__item" href="/en/guides/mental-practice/" hreflang="en" lang="en" data-lang="en" role="menuitemradio" aria-checked="false"><span>English</span><span class="lang-menu__check" aria-hidden="true">✓</span></a></li>
+                    <li role="none"><a class="lang-menu__item is-active" href="/fr/guides/mental-practice/" hreflang="fr" lang="fr" data-lang="fr" role="menuitemradio" aria-current="page" aria-checked="true"><span>Français</span><span class="lang-menu__check" aria-hidden="true">✓</span></a></li>
+                    <li role="none"><a class="lang-menu__item" href="/de/guides/mental-practice/" hreflang="de" lang="de" data-lang="de" role="menuitemradio" aria-checked="false"><span>Deutsch</span><span class="lang-menu__check" aria-hidden="true">✓</span></a></li>
+                    <li role="none"><a class="lang-menu__item" href="/es/guides/mental-practice/" hreflang="es" lang="es" data-lang="es" role="menuitemradio" aria-checked="false"><span>Español</span><span class="lang-menu__check" aria-hidden="true">✓</span></a></li>
+                    <li role="none"><a class="lang-menu__item" href="/it/guides/mental-practice/" hreflang="it" lang="it" data-lang="it" role="menuitemradio" aria-checked="false"><span>Italiano</span><span class="lang-menu__check" aria-hidden="true">✓</span></a></li>
+                    <li role="none"><a class="lang-menu__item" href="/ko/guides/mental-practice/" hreflang="ko" lang="ko" data-lang="ko" role="menuitemradio" aria-checked="false"><span>한국어</span><span class="lang-menu__check" aria-hidden="true">✓</span></a></li>
+                    <li role="none"><a class="lang-menu__item" href="/pt-br/guides/mental-practice/" hreflang="pt-BR" lang="pt-BR" data-lang="pt-BR" role="menuitemradio" aria-checked="false"><span>Português (Brasil)</span><span class="lang-menu__check" aria-hidden="true">✓</span></a></li>
+                </ul>
                 <button class="hamburger-btn" id="hamburger-btn" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="drawer">
                     <span class="hamburger-btn__line"></span><span class="hamburger-btn__line"></span><span class="hamburger-btn__line"></span>
                 </button>
@@ -605,22 +619,5 @@ flowchart TD
         </p>
     </footer>
     <script src="/bootstrap.js?v=10" defer></script>
-    <nav aria-label="Language" style="display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:0.5rem;padding:var(--space-lg) var(--space-md);border-top:1px solid var(--surface-light);font-size:13px">
-        <a href="/guides/mental-practice/" hreflang="ja" style="color:var(--text-secondary);text-decoration:none">日本語</a>
-        <span aria-hidden="true" style="color:var(--surface-light)">·</span>
-        <a href="/en/guides/mental-practice/" hreflang="en" style="color:var(--text-secondary);text-decoration:none">English</a>
-        <span aria-hidden="true" style="color:var(--surface-light)">·</span>
-        <span style="color:var(--primary);font-weight:600" aria-current="true">Français</span>
-        <span aria-hidden="true" style="color:var(--surface-light)">·</span>
-        <a href="/de/guides/mental-practice/" hreflang="de" style="color:var(--text-secondary);text-decoration:none">Deutsch</a>
-        <span aria-hidden="true" style="color:var(--surface-light)">·</span>
-        <a href="/es/guides/mental-practice/" hreflang="es" style="color:var(--text-secondary);text-decoration:none">Español</a>
-        <span aria-hidden="true" style="color:var(--surface-light)">·</span>
-        <a href="/it/guides/mental-practice/" hreflang="it" style="color:var(--text-secondary);text-decoration:none">Italiano</a>
-        <span aria-hidden="true" style="color:var(--surface-light)">·</span>
-        <a href="/ko/guides/mental-practice/" hreflang="ko" style="color:var(--text-secondary);text-decoration:none">한국어</a>
-        <span aria-hidden="true" style="color:var(--surface-light)">·</span>
-        <a href="/pt-br/guides/mental-practice/" hreflang="pt-BR" style="color:var(--text-secondary);text-decoration:none">Português (Brasil)</a>
-    </nav>
 </body>
 </html>

@@ -291,6 +291,11 @@ body {
     color: var(--primary);
 }
 
+.settings-btn:disabled {
+    cursor: wait;
+    opacity: 0.72;
+}
+
 .settings-btn.active {
     background: var(--primary);
     color: var(--background);
@@ -303,6 +308,17 @@ body {
     margin-left: 2px;
     opacity: 0.7;
     transition: transform 0.15s ease;
+}
+
+.settings-btn__globe {
+    width: 16px;
+    height: 16px;
+    flex: 0 0 auto;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.8;
+    stroke-linecap: round;
+    stroke-linejoin: round;
 }
 
 .settings-btn[aria-expanded="true"] .settings-btn__chevron {
@@ -341,6 +357,22 @@ body {
     font: inherit;
     font-size: 14px;
     font-family: inherit;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    text-decoration: none;
+}
+
+/* Language names in the selector stay visible regardless of page language. */
+html[data-lang] .lang-menu .lang-menu__item[lang] {
+    display: flex;
+}
+
+.lang-menu__check {
+    visibility: hidden;
+    color: var(--primary);
+    font-weight: 700;
 }
 .lang-menu__item:hover,
 .lang-menu__item:focus {
@@ -351,6 +383,10 @@ body {
 .lang-menu__item.is-active {
     color: var(--primary);
     font-weight: 700;
+}
+
+.lang-menu__item.is-active .lang-menu__check {
+    visibility: visible;
 }
 
 .nav__list {

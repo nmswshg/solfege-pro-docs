@@ -218,7 +218,21 @@
                 <li><a href="/es/manual/" class="nav__link">Manual</a></li>
             </ul>
             <div class="nav__settings">
-                <button class="settings-btn" id="lang-toggle" title="Seleccionar idioma"><span id="lang-text">ES</span></button>
+                <button class="settings-btn" id="lang-toggle" title="Seleccionar idioma" aria-label="Seleccionar idioma: Español" aria-haspopup="menu" aria-expanded="false" aria-controls="lang-menu" disabled>
+                    <svg class="settings-btn__globe" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="M3 12h18M12 3a15 15 0 0 1 0 18M12 3a15 15 0 0 0 0 18"></path></svg>
+                    <span id="lang-text">ES</span>
+                    <span class="settings-btn__chevron" aria-hidden="true">▾</span>
+                </button>
+                <ul class="lang-menu" id="lang-menu" role="menu" aria-label="Seleccionar idioma">
+                    <li role="none"><a class="lang-menu__item" href="/start-here/" hreflang="ja" lang="ja" data-lang="ja" role="menuitemradio" aria-checked="false"><span>日本語</span><span class="lang-menu__check" aria-hidden="true">✓</span></a></li>
+                    <li role="none"><a class="lang-menu__item" href="/en/start-here/" hreflang="en" lang="en" data-lang="en" role="menuitemradio" aria-checked="false"><span>English</span><span class="lang-menu__check" aria-hidden="true">✓</span></a></li>
+                    <li role="none"><a class="lang-menu__item" href="/fr/start-here/" hreflang="fr" lang="fr" data-lang="fr" role="menuitemradio" aria-checked="false"><span>Français</span><span class="lang-menu__check" aria-hidden="true">✓</span></a></li>
+                    <li role="none"><a class="lang-menu__item" href="/de/start-here/" hreflang="de" lang="de" data-lang="de" role="menuitemradio" aria-checked="false"><span>Deutsch</span><span class="lang-menu__check" aria-hidden="true">✓</span></a></li>
+                    <li role="none"><a class="lang-menu__item is-active" href="/es/start-here/" hreflang="es" lang="es" data-lang="es" role="menuitemradio" aria-current="page" aria-checked="true"><span>Español</span><span class="lang-menu__check" aria-hidden="true">✓</span></a></li>
+                    <li role="none"><a class="lang-menu__item" href="/it/start-here/" hreflang="it" lang="it" data-lang="it" role="menuitemradio" aria-checked="false"><span>Italiano</span><span class="lang-menu__check" aria-hidden="true">✓</span></a></li>
+                    <li role="none"><a class="lang-menu__item" href="/ko/start-here/" hreflang="ko" lang="ko" data-lang="ko" role="menuitemradio" aria-checked="false"><span>한국어</span><span class="lang-menu__check" aria-hidden="true">✓</span></a></li>
+                    <li role="none"><a class="lang-menu__item" href="/pt-br/start-here/" hreflang="pt-BR" lang="pt-BR" data-lang="pt-BR" role="menuitemradio" aria-checked="false"><span>Português (Brasil)</span><span class="lang-menu__check" aria-hidden="true">✓</span></a></li>
+                </ul>
                 <button class="hamburger-btn" id="hamburger-btn" aria-label="Abrir menú" aria-expanded="false" aria-controls="drawer">
                     <span class="hamburger-btn__line"></span><span class="hamburger-btn__line"></span><span class="hamburger-btn__line"></span>
                 </button>
@@ -1569,22 +1583,5 @@
     })();
     </script>
     <script src="/bootstrap.js?v=10" defer></script>
-    <nav aria-label="Language" style="display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:0.5rem;padding:var(--space-lg) var(--space-md);border-top:1px solid var(--surface-light);font-size:13px">
-        <a href="/start-here/" hreflang="ja" style="color:var(--text-secondary);text-decoration:none">日本語</a>
-        <span aria-hidden="true" style="color:var(--surface-light)">·</span>
-        <a href="/en/start-here/" hreflang="en" style="color:var(--text-secondary);text-decoration:none">English</a>
-        <span aria-hidden="true" style="color:var(--surface-light)">·</span>
-        <a href="/fr/start-here/" hreflang="fr" style="color:var(--text-secondary);text-decoration:none">Français</a>
-        <span aria-hidden="true" style="color:var(--surface-light)">·</span>
-        <a href="/de/start-here/" hreflang="de" style="color:var(--text-secondary);text-decoration:none">Deutsch</a>
-        <span aria-hidden="true" style="color:var(--surface-light)">·</span>
-        <span style="color:var(--primary);font-weight:600" aria-current="true">Español</span>
-        <span aria-hidden="true" style="color:var(--surface-light)">·</span>
-        <a href="/it/start-here/" hreflang="it" style="color:var(--text-secondary);text-decoration:none">Italiano</a>
-        <span aria-hidden="true" style="color:var(--surface-light)">·</span>
-        <a href="/ko/start-here/" hreflang="ko" style="color:var(--text-secondary);text-decoration:none">한국어</a>
-        <span aria-hidden="true" style="color:var(--surface-light)">·</span>
-        <a href="/pt-br/start-here/" hreflang="pt-BR" style="color:var(--text-secondary);text-decoration:none">Português (Brasil)</a>
-    </nav>
 </body>
 </html>

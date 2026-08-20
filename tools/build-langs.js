@@ -508,6 +508,7 @@ function injectBreadcrumbJsonLd(html, srcPath, lang) {
 
 // Native language names for the on-page language switcher.
 const LANG_NATIVE = { ja: '日本語', en: 'English', fr: 'Français', de: 'Deutsch', es: 'Español', it: 'Italiano', ko: '한국어', 'pt-BR': 'Português (Brasil)' };
+const LANG_SHORT = { ja: 'JA', en: 'EN', fr: 'FR', de: 'DE', es: 'ES', it: 'IT', ko: 'KO', 'pt-BR': 'PT-BR' };
 
 // Shared primary navigation. Source pages historically copied this markup,
 // which let old and new menus drift apart. The build now replaces every page's
@@ -554,6 +555,12 @@ function buildSharedNavigation(srcPath, lang) {
     const drawerItems = items.map((item) => `            <li>${link(item, 'drawer__link')}</li>`).join('\n');
     const homeUrl = localizedNavUrl('/', lang);
     const brand = lang === 'ja' ? 'ソルフェージュPRO' : 'Solfege PRO';
+    const languageItems = langsForSource(srcPath).map((itemLang) => {
+        const isCurrent = itemLang === lang;
+        const currentClass = isCurrent ? ' is-active' : '';
+        const currentAttrs = isCurrent ? ' aria-current="page" aria-checked="true"' : ' aria-checked="false"';
+        return `                    <li role="none"><a class="lang-menu__item${currentClass}" href="${srcPathToUrlPath(srcPath, itemLang)}" hreflang="${itemLang}" lang="${itemLang}" data-lang="${itemLang}" role="menuitemradio"${currentAttrs}><span>${LANG_NATIVE[itemLang]}</span><span class="lang-menu__check" aria-hidden="true">✓</span></a></li>`;
+    }).join('\n');
     const nav = `    <nav class="nav" aria-label="${copy.primary}">
         <div class="nav__container">
             <a href="${homeUrl}" class="nav__logo" aria-label="${brand}">
@@ -564,7 +571,14 @@ function buildSharedNavigation(srcPath, lang) {
 ${desktopItems}
             </ul>
             <div class="nav__settings">
-                <button class="settings-btn" id="lang-toggle" title="${copy.language}"><span id="lang-text">${lang.toUpperCase()}</span></button>
+                <button class="settings-btn" id="lang-toggle" title="${copy.language}" aria-label="${copy.language}: ${LANG_NATIVE[lang]}" aria-haspopup="menu" aria-expanded="false" aria-controls="lang-menu" disabled>
+                    <svg class="settings-btn__globe" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="M3 12h18M12 3a15 15 0 0 1 0 18M12 3a15 15 0 0 0 0 18"></path></svg>
+                    <span id="lang-text">${LANG_SHORT[lang]}</span>
+                    <span class="settings-btn__chevron" aria-hidden="true">▾</span>
+                </button>
+                <ul class="lang-menu" id="lang-menu" role="menu" aria-label="${copy.language}">
+${languageItems}
+                </ul>
                 <button class="hamburger-btn" id="hamburger-btn" aria-label="${copy.open}" aria-expanded="false" aria-controls="drawer">
                     <span class="hamburger-btn__line"></span><span class="hamburger-btn__line"></span><span class="hamburger-btn__line"></span>
                 </button>
@@ -589,27 +603,6 @@ function applySharedNavigation(html, srcPath, lang) {
     let out = html.replace(/<nav class="nav"(?:\s[^>]*)?>[\s\S]*?<\/nav>/, shared.nav);
     out = out.replace(/<div class="drawer-overlay" id="drawer-overlay"><\/div>\s*<aside class="drawer"[\s\S]*?<\/aside>/, shared.drawer);
     return out;
-}
-
-// Build a small static language switcher: real <a href> links to every
-// language version of this page. Crucial for SEO — without it localized
-// variants are reachable only via sitemap + hreflang, which a low-authority
-// domain deprioritises crawling (Search Console: "Discovered – not indexed").
-// Inline styles use existing CSS vars so it renders correctly even against a
-// cached style.css.
-function buildLangSwitch(srcPath, currentLang) {
-    const items = langsForSource(srcPath).map((l) => {
-        const name = LANG_NATIVE[l];
-        if (l === currentLang) {
-            return `<span style="color:var(--primary);font-weight:600" aria-current="true">${name}</span>`;
-        }
-        // NB: no lang="" attribute — the site's language-toggle CSS hides
-        // elements whose lang doesn't match the page, which would hide these
-        // switcher links. hreflang still declares each target page's language.
-        const url = srcPathToUrlPath(srcPath, l);
-        return `<a href="${url}" hreflang="${l}" style="color:var(--text-secondary);text-decoration:none">${name}</a>`;
-    }).join('\n        <span aria-hidden="true" style="color:var(--surface-light)">·</span>\n        ');
-    return `    <nav aria-label="Language" style="display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:0.5rem;padding:var(--space-lg) var(--space-md);border-top:1px solid var(--surface-light);font-size:13px">\n        ${items}\n    </nav>`;
 }
 
 function buildHreflangBlock(srcPath, currentLang) {
@@ -882,13 +875,6 @@ function transformToLang(html, srcPath, lang) {
 
     // 12d. Every App Store destination uses Apple's official, localized badge.
     out = applyOfficialAppStoreBadges(out, lang);
-
-    // 13. Static language switcher before </body>: crawlable internal links to
-    //     each language version, so localized variants are no longer
-    //     reachable only via sitemap/hreflang.
-    if (out.includes('</body>')) {
-        out = out.replace('</body>', `${buildLangSwitch(srcPath, lang)}\n</body>`);
-    }
 
     // Removing a non-target language can leave indentation-only lines behind.
     // Keep generated HTML free of trailing whitespace so release diffs and

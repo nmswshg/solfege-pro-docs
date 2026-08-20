@@ -36,7 +36,7 @@ function pathForLang(jaPath, lang) {
 }
 
 const ALL_LANGS = ['ja', 'en', 'fr', 'de', 'es', 'it', 'ko', 'pt-BR'];
-const LANG_LABEL = { ja: 'JA', en: 'EN', fr: 'FR', de: 'DE', es: 'ES', it: 'IT', ko: 'KO', 'pt-BR': 'PT' };
+const LANG_LABEL = { ja: 'JA', en: 'EN', fr: 'FR', de: 'DE', es: 'ES', it: 'IT', ko: 'KO', 'pt-BR': 'PT-BR' };
 
 // -----------------------------------------------------------------
 // 1. Each per-language URL serves a single-lang page in that lang.
@@ -155,6 +155,17 @@ test('active item highlighted matches current URL lang', async ({ page, viewport
     const activeItem = page.locator('#lang-menu .lang-menu__item.is-active');
     await expect(activeItem).toHaveCount(1);
     await expect(activeItem).toHaveAttribute('data-lang', 'fr');
+    await expect(activeItem).toHaveAttribute('aria-current', 'page');
+    await expect(activeItem).toHaveAttribute('aria-checked', 'true');
+});
+
+test('language menu uses crawlable links and no duplicate footer switcher', async ({ page, viewport }) => {
+    test.skip(!viewport || viewport.width <= 768, 'desktop only');
+    await page.goto('/ko/terms/');
+    const links = page.locator('#lang-menu a[data-lang]');
+    await expect(links).toHaveCount(8);
+    await expect(page.locator('#lang-toggle')).toHaveAttribute('aria-label', /한국어/);
+    await expect(page.locator('body > nav[aria-label="Language"]')).toHaveCount(0);
 });
 
 // -----------------------------------------------------------------

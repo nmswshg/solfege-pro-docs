@@ -24,7 +24,7 @@
 (function() {
     var SCRIPTS = [
         'analytics.js?v=1',
-        'lang-toggle.js?v=5',
+        'lang-toggle.js?v=6',
         'drawer.js?v=1',
         'animations.js?v=5',
         'reading-cta-modal.js?v=4'

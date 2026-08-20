@@ -27,8 +27,9 @@
    ============================================= */
 (function() {
     var ALL_LANGS = ['ja', 'en', 'fr', 'de', 'es', 'it', 'ko', 'pt-BR'];
-    var LANG_LABEL = { ja: 'JA', en: 'EN', fr: 'FR', de: 'DE', es: 'ES', it: 'IT', ko: 'KO', 'pt-BR': 'PT' };
+    var LANG_LABEL = { ja: 'JA', en: 'EN', fr: 'FR', de: 'DE', es: 'ES', it: 'IT', ko: 'KO', 'pt-BR': 'PT-BR' };
     var LANG_NAMES = { ja: '日本語', en: 'English', fr: 'Français', de: 'Deutsch', es: 'Español', it: 'Italiano', ko: '한국어', 'pt-BR': 'Português (Brasil)' };
+    var LANG_SELECT = { ja: '言語を選択', en: 'Select language', fr: 'Choisir la langue', de: 'Sprache wählen', es: 'Seleccionar idioma', it: 'Seleziona lingua', ko: '언어 선택', 'pt-BR': 'Selecionar idioma' };
     var APP_STORE_LOCALE = { ja: 'jp', en: 'us', fr: 'fr', de: 'de', es: 'es', it: 'it', ko: 'kr', 'pt-BR': 'br' };
     var APP_STORE_BADGE_LOCALE = { ja: 'ja-jp', en: 'en-us', fr: 'fr-fr', de: 'de-de', es: 'es-es', it: 'it-it', ko: 'ko-kr', 'pt-BR': 'pt-br' };
     var APP_STORE_BADGE_ALT = { ja: 'App Storeからダウンロード', en: 'Download on the App Store', fr: 'Télécharger dans l’App Store', de: 'Laden im App Store', es: 'Descargar en el App Store', it: 'Scarica sull’App Store', ko: 'App Store에서 다운로드', 'pt-BR': 'Baixar na App Store' };
@@ -101,7 +102,16 @@
     var currentLang = pageInfo.lang;
     try { localStorage.setItem('lang', currentLang); } catch (e) {}
 
-    // Chevron
+    // Add the compact visual affordances when viewing an unbuilt source file.
+    if (!langToggle.querySelector('.settings-btn__globe')) {
+        var globe = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+        globe.setAttribute('class', 'settings-btn__globe');
+        globe.setAttribute('viewBox', '0 0 24 24');
+        globe.setAttribute('aria-hidden', 'true');
+        globe.innerHTML = '<circle cx="12" cy="12" r="9"></circle><path d="M3 12h18M12 3a15 15 0 0 1 0 18M12 3a15 15 0 0 0 0 18"></path>';
+        langToggle.insertBefore(globe, langText);
+    }
+
     if (!langToggle.querySelector('.settings-btn__chevron')) {
         var chev = document.createElement('span');
         chev.className = 'settings-btn__chevron';
@@ -110,28 +120,37 @@
         langToggle.appendChild(chev);
     }
 
-    langToggle.setAttribute('aria-haspopup', 'listbox');
+    langToggle.setAttribute('aria-haspopup', 'menu');
     langToggle.setAttribute('aria-expanded', 'false');
     langToggle.setAttribute('aria-controls', 'lang-menu');
-    langToggle.setAttribute('title', 'Select language');
 
-    var menu = document.createElement('ul');
-    menu.id = 'lang-menu';
-    menu.className = 'lang-menu';
-    menu.setAttribute('role', 'listbox');
-    menu.setAttribute('aria-label', 'Select language');
-    LANGS.forEach(function(l) {
-        var li = document.createElement('li');
-        var btn = document.createElement('button');
-        btn.type = 'button';
-        btn.className = 'lang-menu__item';
-        btn.setAttribute('data-lang', l);
-        btn.setAttribute('role', 'option');
-        btn.textContent = LANG_NAMES[l];
-        li.appendChild(btn);
-        menu.appendChild(li);
-    });
-    langToggle.parentNode.insertBefore(menu, langToggle.nextSibling);
+    var menu = document.getElementById('lang-menu');
+    if (!menu) {
+        menu = document.createElement('ul');
+        menu.id = 'lang-menu';
+        menu.className = 'lang-menu';
+        menu.setAttribute('role', 'menu');
+        LANGS.forEach(function(l) {
+            var li = document.createElement('li');
+            var link = document.createElement('a');
+            var check = document.createElement('span');
+            li.setAttribute('role', 'none');
+            link.className = 'lang-menu__item';
+            link.href = pathForLang(pageInfo.basePath, l);
+            link.hreflang = l;
+            link.lang = l;
+            link.setAttribute('data-lang', l);
+            link.setAttribute('role', 'menuitemradio');
+            link.appendChild(document.createTextNode(LANG_NAMES[l]));
+            check.className = 'lang-menu__check';
+            check.setAttribute('aria-hidden', 'true');
+            check.textContent = '✓';
+            link.appendChild(check);
+            li.appendChild(link);
+            menu.appendChild(li);
+        });
+        langToggle.parentNode.insertBefore(menu, langToggle.nextSibling);
+    }
 
     function applyMermaidLang(lang) {
         document.querySelectorAll('.mermaid-lang').forEach(function(el) {
@@ -144,7 +163,9 @@
         menu.querySelectorAll('.lang-menu__item').forEach(function(item) {
             var isActive = item.getAttribute('data-lang') === lang;
             item.classList.toggle('is-active', isActive);
-            item.setAttribute('aria-selected', isActive ? 'true' : 'false');
+            item.setAttribute('aria-checked', isActive ? 'true' : 'false');
+            if (isActive) item.setAttribute('aria-current', 'page');
+            else item.removeAttribute('aria-current');
         });
     }
 
@@ -152,6 +173,10 @@
         document.documentElement.setAttribute('data-lang', lang);
         document.documentElement.lang = lang;
         langText.textContent = LANG_LABEL[lang];
+        var selectLabel = LANG_SELECT[lang] || LANG_SELECT.en;
+        langToggle.setAttribute('title', selectLabel);
+        langToggle.setAttribute('aria-label', selectLabel + ': ' + LANG_NAMES[lang]);
+        menu.setAttribute('aria-label', selectLabel);
         try { localStorage.setItem('lang', lang); } catch (e) {}
         currentLang = lang;
 
@@ -195,6 +220,7 @@
         if (lang === 'ja') return;
         var links = document.querySelectorAll('a[href]');
         links.forEach(function(a) {
+            if (a.hasAttribute('data-lang')) return;
             var href = a.getAttribute('href');
             if (!href) return;
             // Skip external / mailto / tel / anchor / javascript
@@ -221,6 +247,17 @@
         langToggle.setAttribute('aria-expanded', 'true');
     }
 
+    function focusMenuItem(direction) {
+        var items = Array.prototype.slice.call(menu.querySelectorAll('.lang-menu__item'));
+        if (!items.length) return;
+        var index = items.indexOf(document.activeElement);
+        if (direction === 'first') index = 0;
+        else if (direction === 'last') index = items.length - 1;
+        else if (direction === 'next') index = index < 0 ? 0 : (index + 1) % items.length;
+        else if (direction === 'previous') index = index < 0 ? items.length - 1 : (index - 1 + items.length) % items.length;
+        items[index].focus();
+    }
+
     applyLanguage(currentLang);
     rewriteInternalLinks(currentLang);
 
@@ -238,7 +275,9 @@
         var current = parsePath(window.location.pathname);
         var target = pathForLang(current.basePath, lang);
         if (target === window.location.pathname) {
+            e.preventDefault();
             closeMenu();
+            langToggle.focus();
             return;
         }
         var u = new URL(window.location.href);
@@ -256,4 +295,26 @@
             langToggle.focus();
         }
     });
+    langToggle.addEventListener('keydown', function(e) {
+        if (e.key !== 'ArrowDown' && e.key !== 'ArrowUp') return;
+        e.preventDefault();
+        openMenu();
+        focusMenuItem(e.key === 'ArrowDown' ? 'first' : 'last');
+    });
+    menu.addEventListener('keydown', function(e) {
+        if (e.key === 'ArrowDown') {
+            e.preventDefault();
+            focusMenuItem('next');
+        } else if (e.key === 'ArrowUp') {
+            e.preventDefault();
+            focusMenuItem('previous');
+        } else if (e.key === 'Home') {
+            e.preventDefault();
+            focusMenuItem('first');
+        } else if (e.key === 'End') {
+            e.preventDefault();
+            focusMenuItem('last');
+        }
+    });
+    langToggle.removeAttribute('disabled');
 })();
