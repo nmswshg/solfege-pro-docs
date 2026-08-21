@@ -1294,6 +1294,19 @@ function generateSitemap(allSources) {
     return lines.join('\n') + '\n';
 }
 
+function generateAndroidBetaStandalonePreview() {
+    const inputPath = path.join('android-beta', 'index.html');
+    if (!fs.existsSync(inputPath)) return;
+
+    // Production pages intentionally use root-relative assets. A root-level
+    // standalone copy makes the handoff preview work when opened directly
+    // from Finder via file:// as well as through the local HTTP server.
+    const preview = fs.readFileSync(inputPath, 'utf8')
+        .replace(/\b(href|src)="\/(?!\/)/g, '$1="./');
+    fs.writeFileSync('android-beta-preview.html', preview, 'utf8');
+    console.log('[preview] wrote android-beta-preview.html (file:// compatible).');
+}
+
 // --------------------------------------------------------------------
 // Main
 // --------------------------------------------------------------------
@@ -1343,6 +1356,7 @@ function main() {
         // 3. Wallpaper old URL paths with redirect stubs (idempotent).
         generateRedirectStubs(allSources);
         generateAppToRootRedirects();
+        generateAndroidBetaStandalonePreview();
     }
 
     // 4. Sitemap.

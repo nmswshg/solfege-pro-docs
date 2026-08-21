@@ -44,6 +44,7 @@ const PAGES = [
     '/features/',
     '/free-vs-pro/',
     // operational pages (ASC support/privacy URLs — added 2026-08-03)
+    '/android-beta/',
     '/support/',
     '/privacy/',
     '/terms/',

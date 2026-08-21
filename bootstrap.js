@@ -27,7 +27,8 @@
         'lang-toggle.js?v=6',
         'drawer.js?v=1',
         'animations.js?v=5',
-        'reading-cta-modal.js?v=4'
+        'reading-cta-modal.js?v=4',
+        'android-beta-campaign.js?v=2'
     ];
 
     // Resolve each shared script RELATIVE TO bootstrap.js itself, not to
