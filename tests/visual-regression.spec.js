@@ -36,6 +36,7 @@ const PAGES = [
     '/guides/interval-training/',
     '/guides/chord-function-curriculum/',
     '/guides/ear-training-progressions/',
+    '/guides/music-theory-cards/',
     '/practice/piano/',
     '/practice/training-menu/interval/',
     '/manual/',

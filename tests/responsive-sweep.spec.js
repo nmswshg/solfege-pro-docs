@@ -28,6 +28,7 @@ const PAGES = [
     '/guides/groove-training/',
     '/guides/sight-reading/',
     '/guides/chord-function-curriculum/',
+    '/guides/music-theory-cards/',
     '/guides/',
     // practice/ — menu hubs
     '/practice/drums/',
