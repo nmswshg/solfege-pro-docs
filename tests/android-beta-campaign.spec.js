@@ -59,6 +59,24 @@ test('preview page matches the current Android build and does not block applican
 });
 
 [
+    ['/privacy/', 'Android版先行体験の応募'],
+    ['/en/privacy/', 'Android Preview Applications'],
+    ['/fr/privacy/', 'Candidatures à l’avant-première Android'],
+    ['/de/privacy/', 'Anmeldung zur Android-Vorabversion'],
+    ['/es/privacy/', 'Solicitudes para la prueba anticipada de Android'],
+    ['/it/privacy/', 'Candidature all’anteprima Android'],
+    ['/ko/privacy/', 'Android 사전 체험 신청'],
+    ['/pt-br/privacy/', 'Inscrições para a prévia do Android']
+].forEach(([path, heading]) => {
+    test(`privacy policy discloses Android preview processing at ${path}`, async ({ page }) => {
+        await page.goto(path);
+        await expect(page.getByRole('heading', { name: heading })).toBeVisible();
+        await expect(page.locator('#android-preview').locator('xpath=following-sibling::p[1]')).toContainText(/Google Play/);
+        await expect(page.locator('#android-preview').locator('xpath=following-sibling::p[2]')).toContainText(/Google Play/);
+    });
+});
+
+[
     ['/', '/faq/', '/android-beta/'],
     ['/en/', '/en/faq/', '/en/android-beta/'],
     ['/fr/', '/fr/faq/', '/fr/android-beta/'],
