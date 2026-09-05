@@ -14,7 +14,8 @@
 
     ready(function() {
         initReveal();
-        initStoryStage();
+        initBadgeFallbacks();
+        initDownloadBar();
     });
 
     function initReveal() {
@@ -49,33 +50,47 @@
         });
     }
 
-    function initStoryStage() {
-        var steps = [].slice.call(document.querySelectorAll('[data-story-step]'));
-        var screens = [].slice.call(document.querySelectorAll('[data-story-screen]'));
-        if (steps.length === 0 || screens.length === 0) return;
-
-        function activate(index) {
-            steps.forEach(function(step) {
-                step.classList.toggle('is-active', Number(step.getAttribute('data-story-step')) === index);
-            });
-            screens.forEach(function(screen) {
-                screen.classList.toggle('is-active', Number(screen.getAttribute('data-story-screen')) === index);
-            });
-        }
-
-        activate(0);
-        if (!('IntersectionObserver' in window)) return;
-
-        var observer = new IntersectionObserver(function(entries) {
-            var visible = entries.filter(function(entry) { return entry.isIntersecting; });
-            if (visible.length === 0) return;
-            visible.sort(function(a, b) { return b.intersectionRatio - a.intersectionRatio; });
-            activate(Number(visible[0].target.getAttribute('data-story-step')));
-        }, {
-            threshold: [0.2, 0.4, 0.6, 0.8],
-            rootMargin: '-28% 0px -38% 0px'
+    function initBadgeFallbacks() {
+        document.querySelectorAll('a.app-store-link').forEach(function(link) {
+            var img = link.querySelector('img');
+            if (!img) return;
+            var fallback = document.createElement('span');
+            fallback.className = 'lp-badge-fallback';
+            fallback.textContent = link.getAttribute('aria-label') || img.alt;
+            fallback.setAttribute('aria-hidden', 'true');
+            link.appendChild(fallback);
+            function update() {
+                var loaded = img.complete && img.naturalWidth > 0;
+                link.classList.toggle('is-badge-pending', !loaded);
+                fallback.hidden = loaded;
+            }
+            img.addEventListener('load', update);
+            img.addEventListener('error', update);
+            // Hidden lazy images never start loading, so these three important
+            // store badges must be requested independently of intersection.
+            img.loading = 'eager';
+            update();
         });
+    }
 
-        steps.forEach(function(step) { observer.observe(step); });
+    function initDownloadBar() {
+        var bar = document.querySelector('.lp-download-bar');
+        var hero = document.querySelector('.lp-hero__actions');
+        var final = document.querySelector('.lp-final');
+        if (!bar || !hero || !final || !('IntersectionObserver' in window)) return;
+        var heroPassed = false;
+        var finalVisible = false;
+        var observer = new IntersectionObserver(function(entries) {
+            entries.forEach(function(entry) {
+                if (entry.target === hero) {
+                    heroPassed = !entry.isIntersecting && entry.boundingClientRect.bottom < 0;
+                } else {
+                    finalVisible = entry.isIntersecting;
+                }
+            });
+            bar.hidden = !heroPassed || finalVisible;
+        }, { threshold: 0 });
+        observer.observe(hero);
+        observer.observe(final);
     }
 })();
