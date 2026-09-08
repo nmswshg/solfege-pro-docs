@@ -20,8 +20,10 @@ test.beforeEach(({}, testInfo) => {
         await expect(page.getByRole('heading', {name: heading})).toBeVisible();
         const disclosure = page.locator('#in-app-messages').locator('xpath=following-sibling::p[1]');
         const retention = page.locator('#in-app-messages').locator('xpath=following-sibling::p[2]');
-        await expect(disclosure).toContainText('Firebase Cloud Messaging');
-        await expect(retention).toContainText('400');
+        await expect(disclosure).toContainText('1.4.8');
+        await expect(disclosure).not.toContainText('Firebase Cloud Messaging');
+        await expect(retention).not.toContainText('400');
         await expect(retention).toContainText(/Analytics/);
+        await expect(page.locator('#android-preview')).toBeVisible();
     });
 });
