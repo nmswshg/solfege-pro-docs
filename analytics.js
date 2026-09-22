@@ -152,10 +152,17 @@
         ['practice-footer',          'practice_footer']
     ];
     function detectCtaPosition(el) {
+        var explicit = el.closest('[data-cta-position]');
+        if (explicit) return explicit.getAttribute('data-cta-position') || 'unknown';
         for (var i = 0; i < CTA_RULES.length; i++) {
             if (el.closest('.' + CTA_RULES[i][0])) return CTA_RULES[i][1];
         }
         return 'unknown';
+    }
+
+    function getAppStoreCampaign(link) {
+        try { return new URL(link.href).searchParams.get('ct') || 'unknown'; }
+        catch (e) { return 'unknown'; }
     }
 
     // ---- App Store click tracking ----
@@ -168,6 +175,7 @@
                 track('app_store_click', {
                     cta_position: detectCtaPosition(link),
                     source_page: location.pathname,
+                    app_store_campaign: getAppStoreCampaign(link),
                     app_store_locale: (function() {
                         var m = link.href.match(/apps\.apple\.com\/([a-z]{2})\//);
                         return m ? m[1] : 'unknown';
@@ -285,7 +293,8 @@
                 if (entry.isIntersecting) {
                     track('app_store_view', {
                         cta_position: detectCtaPosition(entry.target),
-                        source_page: location.pathname
+                        source_page: location.pathname,
+                        app_store_campaign: getAppStoreCampaign(entry.target)
                     });
                     observer.unobserve(entry.target);
                 }

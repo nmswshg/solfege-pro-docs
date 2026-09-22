@@ -17,6 +17,14 @@ async function getDataLayer(page) {
     });
 }
 
+async function preventAppStoreNavigation(page) {
+    await page.evaluate(() => {
+        document.querySelectorAll('a[href*="apps.apple.com"]').forEach(a => {
+            a.addEventListener('click', event => event.preventDefault());
+        });
+    });
+}
+
 test('analytics.js loads and configures GA4', async ({ page, viewport }) => {
     test.skip(!viewport || viewport.width <= 768, 'desktop only');
     await page.goto('/');
@@ -41,15 +49,9 @@ test('app_store_click fires on App Store link click', async ({ page, viewport })
     await page.goto('/');
     await page.waitForFunction(() => window.SolfegeAnalytics != null);
 
-    // Defuse navigation: replace the href on all App Store links so click() doesn't navigate away
-    await page.evaluate(() => {
-        document.querySelectorAll('a[href*="apps.apple.com"]').forEach(a => {
-            a.dataset.realHref = a.href;
-            a.setAttribute('href', 'javascript:void(0)');
-        });
-    });
+    await preventAppStoreNavigation(page);
 
-    await page.locator('a[data-real-href]').first().click();
+    await page.locator('a[href*="apps.apple.com"]').first().click();
 
     const dl = await getDataLayer(page);
     const clickEvent = dl.find(args =>
@@ -57,9 +59,11 @@ test('app_store_click fires on App Store link click', async ({ page, viewport })
     );
     expect(clickEvent).toBeDefined();
     const params = clickEvent[2];
-    expect(params).toHaveProperty('cta_position');
+    expect(params).toHaveProperty('cta_position', 'hero');
     expect(params).toHaveProperty('source_page', '/');
     expect(params).toHaveProperty('site_language');
+    expect(params).toHaveProperty('app_store_locale', 'jp');
+    expect(params).toHaveProperty('app_store_campaign', 'web_home');
 });
 
 test('app_store_click detects cta_position from ancestor class', async ({ page, viewport }) => {
@@ -67,27 +71,89 @@ test('app_store_click detects cta_position from ancestor class', async ({ page, 
     await page.goto('/guides/practice-spacing/');
     await page.waitForFunction(() => window.SolfegeAnalytics != null);
 
-    // Defuse navigation
-    await page.evaluate(() => {
-        document.querySelectorAll('a[href*="apps.apple.com"]').forEach(a => {
-            a.dataset.realHref = a.href;
-            a.setAttribute('href', 'javascript:void(0)');
-        });
-    });
+    await preventAppStoreNavigation(page);
 
-    // Click mid_article (article-cta-subtle)
-    const midCta = page.locator('.article-cta-subtle a[data-real-href]').first();
-    await midCta.click();
+    // Explicit data attribute takes precedence over class fallbacks.
+    const topCta = page.locator('[data-cta-position="article_top"]');
+    await topCta.click();
     let dl = await getDataLayer(page);
     let ev = dl.filter(a => a[0] === 'event' && a[1] === 'app_store_click').pop();
+    expect(ev[2].cta_position).toBe('article_top');
+
+    // Click mid_article (article-cta-subtle)
+    const midCta = page.locator('.article-cta-subtle a[href*="apps.apple.com"]').first();
+    await midCta.click();
+    dl = await getDataLayer(page);
+    ev = dl.filter(a => a[0] === 'event' && a[1] === 'app_store_click').pop();
     expect(ev[2].cta_position).toBe('mid_article');
 
     // Click final CTA (article-cta)
-    const finalCta = page.locator('.article-cta a[data-real-href]').first();
+    const finalCta = page.locator('.article-cta a[href*="apps.apple.com"]').first();
     await finalCta.click();
     dl = await getDataLayer(page);
     ev = dl.filter(a => a[0] === 'event' && a[1] === 'app_store_click').pop();
     expect(ev[2].cta_position).toBe('final_cta');
+});
+
+test('landing App Store CTAs report hero, sticky and final positions', async ({ page, viewport }) => {
+    test.skip(!viewport || viewport.width <= 768, 'desktop only');
+    await page.goto('/');
+    await page.waitForFunction(() => window.SolfegeAnalytics != null);
+    await preventAppStoreNavigation(page);
+
+    const cases = [
+        ['hero', '.lp-hero__actions a[href*="apps.apple.com"]'],
+        ['sticky', '.lp-download-bar a[href*="apps.apple.com"]'],
+        ['final', '.lp-final a[href*="apps.apple.com"]'],
+    ];
+
+    for (const [expected, selector] of cases) {
+        await page.locator(selector).evaluate(link => link.click());
+        const dl = await getDataLayer(page);
+        const ev = dl.filter(a => a[0] === 'event' && a[1] === 'app_store_click').pop();
+        expect(ev[2].cta_position).toBe(expected);
+        expect(ev[2].app_store_campaign).toBe('web_home');
+    }
+});
+
+test('landing App Store views use the same CTA positions', async ({ page, viewport }) => {
+    test.skip(!viewport || viewport.width <= 768, 'desktop only');
+    await page.addInitScript(() => {
+        window.__testObservers = [];
+        window.IntersectionObserver = class {
+            constructor(callback) {
+                this.callback = callback;
+                this.targets = [];
+                window.__testObservers.push(this);
+            }
+            observe(target) { this.targets.push(target); }
+            unobserve(target) { this.targets = this.targets.filter(item => item !== target); }
+            disconnect() { this.targets = []; }
+        };
+        window.__intersectTarget = target => {
+            window.__testObservers.forEach(observer => {
+                if (observer.targets.includes(target)) {
+                    observer.callback([{ target, isIntersecting: true }], observer);
+                }
+            });
+        };
+    });
+    await page.goto('/');
+    await page.waitForFunction(() => window.SolfegeAnalytics != null);
+
+    const cases = [
+        ['hero', '.lp-hero__actions a[href*="apps.apple.com"]'],
+        ['sticky', '.lp-download-bar a[href*="apps.apple.com"]'],
+        ['final', '.lp-final a[href*="apps.apple.com"]'],
+    ];
+
+    for (const [expected, selector] of cases) {
+        await page.locator(selector).evaluate(target => window.__intersectTarget(target));
+        const dl = await getDataLayer(page);
+        const ev = dl.filter(a => a[0] === 'event' && a[1] === 'app_store_view').pop();
+        expect(ev[2].cta_position).toBe(expected);
+        expect(ev[2].app_store_campaign).toBe('web_home');
+    }
 });
 
 test('lang_change fires when user switches languages', async ({ page, viewport }) => {
@@ -121,13 +187,8 @@ test('external_link_click does NOT fire for App Store badges (handled separately
     await page.goto('/');
     await page.waitForFunction(() => window.SolfegeAnalytics != null);
 
-    await page.evaluate(() => {
-        document.querySelectorAll('a[href*="apps.apple.com"]').forEach(a => {
-            a.dataset.realHref = a.href;
-            a.setAttribute('href', 'javascript:void(0)');
-        });
-    });
-    await page.locator('a[data-real-href]').first().click();
+    await preventAppStoreNavigation(page);
+    await page.locator('a[href*="apps.apple.com"]').first().click();
 
     const dl = await getDataLayer(page);
     const external = dl.filter(a => a[0] === 'event' && a[1] === 'external_link_click');
