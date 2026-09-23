@@ -1,14 +1,14 @@
 /* =============================================
    Solfege PRO Docs - GA4 Analytics
    Vendor: Google Analytics 4 (Web stream)
-   Measurement ID: G-R009HVF9CD
+   Measurement ID: G-0364FGYZ1J
    GDPR posture: Google Signals OFF, Ad Personalization OFF
    Note: events ALWAYS queue to window.dataLayer for inspection,
          but the external gtag.js loader only runs on the public origin
          (skipped on localhost / file:// so dev & tests don't pollute GA).
    ============================================= */
 (function() {
-    var GA_ID = 'G-R009HVF9CD';
+    var GA_ID = 'G-0364FGYZ1J';
     var IS_LOCAL =
         location.hostname === 'localhost' ||
         location.hostname === '127.0.0.1' ||

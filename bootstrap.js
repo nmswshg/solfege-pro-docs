@@ -23,7 +23,7 @@
    ============================================= */
 (function() {
     var SCRIPTS = [
-        'analytics.js?v=2',
+        'analytics.js?v=3',
         'lang-toggle.js?v=6',
         'drawer.js?v=1',
         'animations.js?v=5',

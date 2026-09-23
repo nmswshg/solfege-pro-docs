@@ -35,12 +35,12 @@ test('analytics.js loads and configures GA4', async ({ page, viewport }) => {
         gaId: window.SolfegeAnalytics.gaId,
         isLocal: window.SolfegeAnalytics.isLocal,
     }));
-    expect(cfg.gaId).toBe('G-R009HVF9CD');
+    expect(cfg.gaId).toBe('G-0364FGYZ1J');
     expect(cfg.isLocal).toBe(true);
 
     const dl = await getDataLayer(page);
     // Must include a config call
-    const hasConfig = dl.some(args => args[0] === 'config' && args[1] === 'G-R009HVF9CD');
+    const hasConfig = dl.some(args => args[0] === 'config' && args[1] === 'G-0364FGYZ1J');
     expect(hasConfig).toBe(true);
 });
 
