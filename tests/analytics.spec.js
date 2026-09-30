@@ -1,6 +1,9 @@
 // @ts-check
 const { test, expect } = require('@playwright/test');
 
+const WEB_GA_ID = 'G-R009HVF9CD';
+const APP_GA_ID = 'G-0364FGYZ1J';
+
 /**
  * GA4 analytics behavior tests.
  *
@@ -25,7 +28,7 @@ async function preventAppStoreNavigation(page) {
     });
 }
 
-test('analytics.js loads and configures GA4', async ({ page, viewport }) => {
+test('analytics.js sends only to the dedicated Web property', async ({ page, viewport }) => {
     test.skip(!viewport || viewport.width <= 768, 'desktop only');
     await page.goto('/');
     // Wait for analytics init
@@ -35,13 +38,16 @@ test('analytics.js loads and configures GA4', async ({ page, viewport }) => {
         gaId: window.SolfegeAnalytics.gaId,
         isLocal: window.SolfegeAnalytics.isLocal,
     }));
-    expect(cfg.gaId).toBe('G-0364FGYZ1J');
+    expect(cfg.gaId).toBe(WEB_GA_ID);
+    expect(cfg.gaId).not.toBe(APP_GA_ID);
     expect(cfg.isLocal).toBe(true);
 
     const dl = await getDataLayer(page);
     // Must include a config call
-    const hasConfig = dl.some(args => args[0] === 'config' && args[1] === 'G-0364FGYZ1J');
-    expect(hasConfig).toBe(true);
+    const webConfigs = dl.filter(args => args[0] === 'config' && args[1] === WEB_GA_ID);
+    const appConfigs = dl.filter(args => args[0] === 'config' && args[1] === APP_GA_ID);
+    expect(webConfigs).toHaveLength(1);
+    expect(appConfigs).toHaveLength(0);
 });
 
 test('app_store_click fires on App Store link click', async ({ page, viewport }) => {

@@ -12,13 +12,14 @@
     "build:sitemap": "node tools/build-langs.js --sitemap-only",
     "translations:extract": "node tools/extract-translation-source.js",
     "translations:check": "node tools/validate-page-translations.js",
+    "check-analytics": "bash tools/check-analytics-property.sh",
     "check-css": "bash tools/check-responsive-css.sh",
     "check-layout": "playwright test tests/responsive-sweep.spec.js --project=desktop",
     "check-lang": "python3 tools/lang-purity-check.py",
     "verify:android-beta": "npm run build && npm run check-css && playwright test tests/responsive-sweep.spec.js tests/android-beta-campaign.spec.js --project=desktop --grep \"android-beta|standalone handoff preview|application links|first visit|campaign|recruitment page\"",
     "test:visual": "playwright test tests/visual-regression.spec.js --project=desktop",
     "test:visual:update": "playwright test tests/visual-regression.spec.js --project=desktop --update-snapshots",
-    "check-all": "npm run translations:check && npm run check-css && npm run check-lang && npm run check-layout && npm run test:visual"
+    "check-all": "npm run translations:check && npm run check-analytics && npm run check-css && npm run check-lang && npm run check-layout && npm run test:visual"
   },
   "repository": {
     "type": "git",
