@@ -19,6 +19,32 @@
  * Required reading: CLAUDE.md "CRITICAL: Responsive layout discipline".
  */
 const { test, expect } = require('@playwright/test');
+const fs = require('fs');
+const path = require('path');
+const pinnedFont = fs.readFileSync(path.join(__dirname, 'fixtures/fonts/NotoSansJP-variable.woff2'));
+
+// Google Fonts can return different subsets or response headers between
+// runs. Use the same licensed font for each screenshot; production CSS stays
+// unchanged and the zero-pixel comparison still detects content/layout drift.
+test.beforeEach(async ({ page }) => {
+    await page.route('https://fonts.googleapis.com/**', route => route.fulfill({
+        contentType: 'text/css',
+        body: '@font-face{font-family:"Noto Sans JP";font-style:normal;font-weight:100 900;font-display:swap;src:url(https://fonts.gstatic.com/pinned/NotoSansJP-variable.woff2) format("woff2");}',
+    }));
+    await page.route('https://fonts.gstatic.com/**', route => route.fulfill({
+        contentType: 'font/woff2', body: pinnedFont,
+        headers: { 'access-control-allow-origin': '*' },
+    }));
+});
+
+async function waitForPinnedFont(page) {
+    const loaded = await page.evaluate(async () => {
+        await Promise.all([400, 500, 700].map(weight => document.fonts.load(`${weight} 16px "Noto Sans JP"`)));
+        await document.fonts.ready;
+        return [...document.fonts].some(font => font.family.includes('Noto Sans JP') && font.status === 'loaded');
+    });
+    expect(loaded, 'The pinned screenshot font must load successfully').toBe(true);
+}
 
 // Diverse layouts: home, hub, guide-with-table, guide-with-cycle-diagram,
 // practice hub, and a preset/menu page (chips + tables).
@@ -78,7 +104,7 @@ for (const lang of LANGS) {
                 await page.setViewportSize({ width: vp.width, height: 900 });
                 await page.goto(lang.prefix + path, { waitUntil: 'networkidle' });
                 // Wait for web fonts so text metrics (and wrapping) are stable.
-                await page.evaluate(() => (document.fonts ? document.fonts.ready.then(() => true) : true));
+                await waitForPinnedFont(page);
                 await page.waitForTimeout(250);
 
                 const slug = path === '/' ? 'home' : path.replace(/^\/|\/$/g, '').replace(/\//g, '-');
@@ -125,7 +151,7 @@ for (const lang of LANGS) {
             await page.emulateMedia({ reducedMotion: 'reduce' });
             await page.setViewportSize({ width: vp.width, height: 900 });
             await page.goto(lang.prefix + '/guides/rhythm-training/', { waitUntil: 'networkidle' });
-            await page.evaluate(() => (document.fonts ? document.fonts.ready.then(() => true) : true));
+            await waitForPinnedFont(page);
             await page.waitForTimeout(250);
 
             const widget = page.locator('.tap-test');
