@@ -1,7 +1,7 @@
 /* =============================================
    Solfege PRO Android early-access campaign
    ---------------------------------------------
-   Site-wide floating CTA + first-visit modal.
+   Site-wide floating CTA + invitation opened by the visitor.
    Change FORM_URL in this file after the Google Form is ready.
    ============================================= */
 (function () {
@@ -13,9 +13,6 @@
     var FORM_URL = 'https://docs.google.com/forms/d/e/1FAIpQLSd-S0jh2KN_wTvrKdxByKjPgXOB0smX6k7BGZzqfGGGrdya5Q/viewform';
     var FORM_LANGUAGE_ENTRY = 'entry.1788578993';
     var DETAILS_PATH = '/android-beta/';
-    var DISMISS_KEY = 'solfege_android_beta_modal_dismissed_at';
-    var DISMISS_TTL_MS = 7 * 24 * 60 * 60 * 1000;
-    var AUTO_OPEN_DELAY_MS = 900;
     var localPreview = new URLSearchParams(location.search).get('android-beta-preview') === '1';
     var isLocal = /^(localhost|127\.0\.0\.1)$/.test(location.hostname) || location.protocol === 'file:';
 
@@ -136,19 +133,6 @@
         }
     }
 
-    function isDismissedRecently() {
-        try {
-            var stored = Number(localStorage.getItem(DISMISS_KEY));
-            return stored > 0 && Date.now() - stored < DISMISS_TTL_MS;
-        } catch (e) {
-            return false;
-        }
-    }
-
-    function rememberDismissal() {
-        try { localStorage.setItem(DISMISS_KEY, String(Date.now())); } catch (e) {}
-    }
-
     function hydrateApplyLinks(lang, copy) {
         document.querySelectorAll('[data-android-beta-apply]').forEach(function (link) {
             if (FORM_URL) {
@@ -171,12 +155,14 @@
     function init() {
         var lang = getLang();
         var copy = COPY[lang];
-        var currentPath = location.pathname.toLowerCase();
-        var isExcludedFromAutoOpen = /(?:^|\/)(?:android-beta|privacy|terms)(?:\.[a-z-]+)?(?:\.html)?\/?$/.test(currentPath);
         var lastFocused = null;
 
         hydrateApplyLinks(lang, copy);
         hydrateDetailsLinks(lang);
+
+        // The LP already has Android links beside its download actions.
+        // Keep those links without adding an overlay or floating promotion.
+        if (document.body.classList.contains('lp-page')) return;
 
         var floating = document.createElement('button');
         floating.type = 'button';
@@ -236,7 +222,6 @@
             modal.classList.remove('is-open');
             modal.setAttribute('aria-hidden', 'true');
             document.body.classList.remove('android-beta-modal-open');
-            rememberDismissal();
             if (lastFocused && typeof lastFocused.focus === 'function') lastFocused.focus();
             track('android_beta_modal_dismissed', { reason: reason });
         }
@@ -247,11 +232,9 @@
             if (event.target === modal) close('backdrop');
         });
         primary.addEventListener('click', function () {
-            rememberDismissal();
             track('android_beta_cta_click', { source: 'modal', destination: FORM_URL ? 'google_form' : 'details' });
         });
         secondary.addEventListener('click', function () {
-            rememberDismissal();
             track('android_beta_cta_click', { source: 'modal', destination: 'details' });
         });
 
@@ -276,9 +259,6 @@
             }
         });
 
-        if (!isExcludedFromAutoOpen && !isDismissedRecently()) {
-            window.setTimeout(function () { open('auto'); }, AUTO_OPEN_DELAY_MS);
-        }
     }
 
     if (document.readyState === 'loading') {

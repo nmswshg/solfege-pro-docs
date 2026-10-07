@@ -280,7 +280,7 @@ body.lp-page {
 .lp-signal i:nth-of-type(2n) { animation-delay: -0.4s; }.lp-signal i:nth-of-type(3n) { animation-delay: -1.1s; }.lp-signal i:nth-of-type(4n) { animation-delay: -1.7s; }
 
 .lp-section { position: relative; padding: clamp(72px, 8vw, 104px) 0; scroll-margin-top: 72px; }
-.lp-section--story { background: #efede5; color: #202023; }
+.lp-section--story { background: #151519; color: var(--lp-copy); }
 .lp-section--training { background: #0f0f12; overflow: clip; }
 .lp-section--cycle { background: #17171b; }
 .lp-section--access { background: #101013; }
@@ -513,6 +513,8 @@ body.lp-page {
     .lp-training-stream li:hover { border-color: var(--lp-gold-line); background: #202026; }
 }
 
+.lp-section--cycle { overflow: clip; }
+
 .lp-cycle {
     display: grid;
     grid-template-columns: minmax(0, 0.9fr) minmax(360px, 1.1fr);
@@ -657,24 +659,24 @@ html[lang="ja"] .lp-hero h1 { font-size: clamp(32px, 3.6vw, 50px); }
 .lp-float-card__label { color: #c2beb2; }
 .lp-float-card__dot { background: var(--primary); box-shadow: none; }
 
-.lp-section--story .lp-overline { color: #80621c; }
-.lp-section--story h2 { color: #202023; font-size: clamp(29px, 3.5vw, 44px); }
+.lp-section--story .lp-overline { color: var(--primary); }
+.lp-section--story h2 { color: var(--lp-copy); font-size: clamp(29px, 3.5vw, 44px); }
 .lp-section--story .lp-section-head { max-width: 900px; margin-bottom: 44px; }
 .lp-story { display: block; }
 .lp-story__stage { display: none; }
 .lp-story__steps { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 28px; }
-.lp-story-step { display: flex; flex-direction: column; align-items: flex-start; gap: 0; min-height: 0; padding: 24px 0 0; border-top: 1px solid #c7c1b2; opacity: 1; }
+.lp-story-step { display: flex; flex-direction: column; align-items: flex-start; gap: 0; min-height: 0; padding: 24px 0 0; border-top: 1px solid #39383b; opacity: 1; }
 .lp-story-step::before { display: none; }
-.lp-story-step__number, .lp-story-step.is-active .lp-story-step__number { width: auto; aspect-ratio: auto; margin-bottom: 20px; border: 0; background: none; color: #80621c; font-size: 13px; }
-.lp-story-step h3 { min-height: 2.6em; margin: 0 0 12px; color: #202023; font-size: 21px; }
-.lp-story-step p { color: #55534f; font-size: 14px; line-height: 1.8; }
+.lp-story-step__number, .lp-story-step.is-active .lp-story-step__number { width: auto; aspect-ratio: auto; margin-bottom: 20px; border: 0; background: none; color: var(--primary); font-size: 13px; }
+.lp-story-step h3 { min-height: 2.6em; margin: 0 0 12px; color: var(--lp-copy); font-size: 21px; }
+.lp-story-step p { color: #b5b1a9; font-size: 14px; line-height: 1.8; }
 .lp-story-step > div:not(.lp-story-step__mobile) { flex: 1; }
 .lp-story-step__mobile { display: block; width: min(100%, 206px); margin: 24px auto 0; padding: 0; border: 0; background: transparent; border-radius: 22px; overflow: clip; }
 .lp-story-step__mobile img { display: block; width: 100%; height: auto; border-radius: 22px; }
 .lp-training-flow { grid-template-columns: minmax(0, 1.14fr) 44px minmax(0, .76fr) 44px minmax(0, .94fr); }
 .lp-page a:focus-visible { outline: 3px solid var(--primary); outline-offset: 6px; }
 .lp-content-card { min-width: 0; overflow-wrap: anywhere; }
-.lp-section--story a:focus-visible { outline-color: #80621c; }
+.lp-section--story a:focus-visible { outline-color: var(--primary); }
 
 /* The official badge stays unmodified. A text link keeps the destination
    visible while the external artwork is loading or unavailable. */
@@ -689,7 +691,6 @@ html[lang="ja"] .lp-hero h1 { font-size: clamp(32px, 3.6vw, 50px); }
 .lp-download-bar__name img { border-radius: 8px; }
 .lp-download-bar a.app-store-link { flex: 0 1 auto; }
 .lp-page .lp-footer { padding-bottom: 112px; }
-.lp-page .android-beta-fab { bottom: 98px; }
 
 @media (max-width: 1024px) {
     .lp-hero-phone { height: 500px; }
@@ -773,8 +774,8 @@ html[lang="ja"] .lp-hero h1 { font-size: clamp(32px, 3.6vw, 50px); }
     .lp-hero-phone img { border-radius: 22px; padding: 3px; }
     .lp-hero-phone__front { top: 52px; }
     .lp-story__steps { grid-template-columns: minmax(0, 1fr); }
-    .lp-story-step { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, .8fr); gap: 12px 20px; align-items: start; }
-    .lp-story-step__number { grid-column: 1; margin: 0; }
+    .lp-story-step { display: grid; grid-template-columns: minmax(0, 1fr) 104px; grid-template-rows: auto 1fr; gap: 12px 20px; align-items: start; }
+    .lp-story-step__number, .lp-story-step.is-active .lp-story-step__number { grid-column: 1; justify-self: start; margin: 0; }
     .lp-story-step > div:not(.lp-story-step__mobile) { grid-column: 1; }
     .lp-story-step__mobile { grid-column: 2; grid-row: 1 / 3; margin: 0; }
     .lp-download-bar__name { font-size: 11px; gap: 7px; }
