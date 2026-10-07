@@ -4,6 +4,57 @@ const { test, expect } = require('@playwright/test');
 const WEB_GA_ID = 'G-R009HVF9CD';
 const APP_GA_ID = 'G-0364FGYZ1J';
 
+test('deployment guard rejects app property tags in HTML and other scripts', async () => {
+    const fs = require('fs');
+    const os = require('os');
+    const path = require('path');
+    const { execFileSync, spawnSync } = require('child_process');
+    const fixture = fs.mkdtempSync(path.join(os.tmpdir(), 'solfege-analytics-guard-'));
+    const repoRoot = path.join(__dirname, '..');
+
+    try {
+        fs.mkdirSync(path.join(fixture, 'tools'));
+        for (const file of ['analytics.js', 'bootstrap.js', 'index.html', 'tools/check-analytics-property.sh']) {
+            fs.copyFileSync(path.join(repoRoot, file), path.join(fixture, file));
+        }
+        execFileSync('git', ['init', '-q', fixture]);
+        execFileSync('git', ['add', '.'], { cwd: fixture });
+
+        function check() {
+            return spawnSync('bash', ['tools/check-analytics-property.sh'], {
+                cwd: fixture,
+                encoding: 'utf8',
+            });
+        }
+
+        expect(check().status).toBe(0);
+
+        for (const [file, body] of [
+            ['index.html', `<script>gtag('config', '${APP_GA_ID}');</script>`],
+            ['other-tag.js', `gtag('config', '${APP_GA_ID}');`],
+            ['src/new-page.html', `<script src="https://www.googletagmanager.com/gtag/js?id=${APP_GA_ID}"></script>`],
+        ]) {
+            const target = path.join(fixture, file);
+            const original = fs.existsSync(target) ? fs.readFileSync(target, 'utf8') : '';
+            fs.mkdirSync(path.dirname(target), { recursive: true });
+            fs.writeFileSync(target, original + '\n' + body);
+            execFileSync('git', ['add', file], { cwd: fixture });
+            const result = check();
+            expect(result.status, result.stderr).toBe(1);
+            expect(result.stderr).toContain(file + ':');
+            fs.writeFileSync(target, original);
+            expect(check().status).toBe(0);
+        }
+
+        fs.mkdirSync(path.join(fixture, 'tests'));
+        fs.writeFileSync(path.join(fixture, 'tests', 'forbidden-id.js'), `const forbidden = '${APP_GA_ID}';`);
+        execFileSync('git', ['add', 'tests/forbidden-id.js'], { cwd: fixture });
+        expect(check().status).toBe(0);
+    } finally {
+        fs.rmSync(fixture, { recursive: true, force: true });
+    }
+});
+
 /**
  * GA4 analytics behavior tests.
  *
@@ -48,6 +99,105 @@ test('analytics.js sends only to the dedicated Web property', async ({ page, vie
     const appConfigs = dl.filter(args => args[0] === 'config' && args[1] === APP_GA_ID);
     expect(webConfigs).toHaveLength(1);
     expect(appConfigs).toHaveLength(0);
+    for (const event of dl.filter(args => args[0] === 'event')) {
+        expect(event[2].send_to).toBe(WEB_GA_ID);
+    }
+});
+
+test('LP section reach records each heading once, including tall mobile sections', async ({ page }) => {
+    await page.setViewportSize({ width: 375, height: 800 });
+    await page.emulateMedia({ reducedMotion: 'reduce' });
+    await page.goto('/en/');
+    await page.waitForFunction(() => window.SolfegeAnalytics != null);
+
+    async function sectionEvents() {
+        return (await getDataLayer(page)).filter(a => a[0] === 'event' && a[1] === 'lp_section_view').map(a => a[2]);
+    }
+    await expect.poll(async () => (await sectionEvents()).map(e => e.section_id)).toContain('hero');
+    const ids = ['hero', 'how', 'training', 'cycle', 'access', 'resources', 'download'];
+    for (const id of ids) {
+        await page.locator(`[data-lp-section="${id}"]`).locator('h1, h2').first().scrollIntoViewIfNeeded();
+        await expect.poll(async () => (await sectionEvents()).map(e => e.section_id)).toContain(id);
+    }
+    await page.locator('[data-lp-section="how"] h2').scrollIntoViewIfNeeded();
+    const events = await sectionEvents();
+    expect(events.filter(e => e.section_id === 'how')).toHaveLength(1);
+    for (const id of ids) {
+        expect(events.filter(e => e.section_id === id)).toHaveLength(1);
+    }
+    for (const event of events) {
+        expect(event.send_to).toBe(WEB_GA_ID);
+        expect(event.site_language).toBe('en');
+        expect(event.landing_version).toBe('dark-2026-10');
+        expect(event.section_index).toBe(ids.indexOf(event.section_id));
+    }
+
+    await page.goto('/en/support/');
+    await page.waitForFunction(() => window.SolfegeAnalytics != null);
+    expect(await sectionEvents()).toHaveLength(0);
+});
+
+test.describe('LP section views during smooth navigation', () => {
+    test.use({ viewport: { width: 375, height: 800 }, isMobile: true, hasTouch: true, reducedMotion: 'no-preference' });
+
+    async function sectionIds(page) {
+        return (await getDataLayer(page)).filter(a => a[0] === 'event' && a[1] === 'lp_section_view').map(a => a[2].section_id);
+    }
+
+    test('sticky download jump does not count sections passed in motion', async ({ page }) => {
+        await page.goto('/en/');
+        await page.waitForFunction(() => window.SolfegeAnalytics != null);
+        await expect.poll(() => sectionIds(page)).toEqual(['hero']);
+        await page.evaluate(() => window.scrollTo({ top: 1000, behavior: 'instant' }));
+        const download = page.locator('.lp-download-bar__name');
+        await expect(download).toBeVisible();
+        await page.waitForTimeout(750);
+        const before = await sectionIds(page);
+        await download.click();
+        await expect.poll(() => sectionIds(page)).toContain('download');
+        expect((await sectionIds(page)).filter(id => !before.includes(id))).toEqual(['download']);
+    });
+
+    test('direct download hash does not count sections passed on initial scroll', async ({ page }) => {
+        await page.goto('/en/#download');
+        await page.waitForFunction(() => window.SolfegeAnalytics != null);
+        await expect.poll(() => sectionIds(page)).toContain('download');
+        expect(await sectionIds(page)).toEqual(['download']);
+    });
+
+    test('short landscape download entry records only its destination', async ({ page }) => {
+        await page.setViewportSize({ width: 740, height: 360 });
+        await page.goto('/en/#download');
+        await page.waitForFunction(() => window.SolfegeAnalytics != null);
+        await expect.poll(() => sectionIds(page)).toEqual(['download']);
+    });
+
+    test('continuous scrolling records reached sections without a pause', async ({ page }) => {
+        await page.goto('/en/');
+        await page.waitForFunction(() => window.SolfegeAnalytics != null);
+        await expect.poll(() => sectionIds(page)).toEqual(['hero']);
+        await page.evaluate(async () => {
+            const end = document.documentElement.scrollHeight - window.innerHeight;
+            for (let top = 0; top < end; top += 160) {
+                window.scrollTo({ top, behavior: 'instant' });
+                await new Promise(resolve => setTimeout(resolve, 80));
+            }
+            window.scrollTo({ top: end, behavior: 'instant' });
+        });
+        await expect.poll(() => sectionIds(page)).toEqual(['hero', 'how', 'training', 'cycle', 'access', 'resources', 'download']);
+    });
+
+    test('reload inside a tall section records that section without earlier sections', async ({ page }) => {
+        await page.goto('/en/');
+        await page.waitForFunction(() => window.SolfegeAnalytics != null);
+        await page.locator('[data-lp-section="training"]').evaluate(section => {
+            window.scrollTo({ top: scrollY + section.getBoundingClientRect().top + 600, behavior: 'instant' });
+        });
+        await expect.poll(() => page.locator('[data-lp-section="training"] h2').evaluate(heading => heading.getBoundingClientRect().bottom)).toBeLessThan(72);
+        await page.reload();
+        await page.waitForFunction(() => window.SolfegeAnalytics != null);
+        await expect.poll(() => sectionIds(page)).toEqual(['training']);
+    });
 });
 
 test('app_store_click fires on App Store link click', async ({ page, viewport }) => {

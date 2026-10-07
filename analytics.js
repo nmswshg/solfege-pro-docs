@@ -115,6 +115,10 @@
     // ---- Helper API ----
     function track(eventName, params) {
         params = params || {};
+        params.send_to = GA_ID;
+        if (document.body && document.body.classList.contains('lp-page') && params.landing_version == null) {
+            params.landing_version = 'dark-2026-10';
+        }
         if (params.site_language == null) params.site_language = getLang();
         if (params.page_path == null) params.page_path = location.pathname;
         if (params.first_touch_source == null) {
@@ -182,6 +186,21 @@
                         var m = link.href.match(/apps\.apple\.com\/([a-z]{2})\//);
                         return m ? m[1] : 'unknown';
                     })()
+                });
+            });
+        });
+    }
+
+    // Keep Android interest measurable when the LP's floating invitation is removed.
+    function bindLandingAndroidClicks() {
+        if (!document.body.classList.contains('lp-page')) return;
+        document.querySelectorAll('a[data-android-beta-details]').forEach(function(link) {
+            link.addEventListener('click', function() {
+                track('android_beta_cta_click', {
+                    source: 'lp_inline',
+                    destination: 'details',
+                    cta_position: detectCtaPosition(link),
+                    destination_path: link.pathname,
                 });
             });
         });
@@ -282,6 +301,109 @@
         }, { passive: true });
     }
 
+    // Record section reach once per page view. Suppress headings passed only
+    // by anchor navigation or restored scroll positions, without requiring
+    // visitors scrolling normally to pause at every heading.
+    function setupLandingSectionTracking() {
+        if (!document.body.classList.contains('lp-page') || !('IntersectionObserver' in window)) return;
+        var headings = [];
+        var visible = [];
+        var counted = [];
+        var suppressed = false;
+        var idleTimer;
+        var limitTimer;
+        var navigationSection;
+        var sections = document.querySelectorAll('[data-lp-section]');
+
+        function record(heading, index) {
+            if (counted[index] || document.hidden) return;
+            track('lp_section_view', {
+                section_id: heading.closest('[data-lp-section]').getAttribute('data-lp-section'),
+                section_index: index,
+            });
+            counted[index] = true;
+            observer.unobserve(heading);
+        }
+
+        function recordVisible() {
+            headings.forEach(function(heading, index) {
+                if (visible[index]) record(heading, index);
+                // At the bottom of a short landscape viewport, the heading
+                // can pass above the observer while the destination is visible.
+                if (navigationSection && navigationSection.contains(heading)) {
+                    var bounds = navigationSection.getBoundingClientRect();
+                    if (bounds.bottom > 72 && bounds.top < window.innerHeight * 0.85) record(heading, index);
+                }
+            });
+        }
+
+        function finishNavigation() {
+            suppressed = false;
+            window.clearTimeout(idleTimer);
+            window.clearTimeout(limitTimer);
+            // Restoring a position inside a tall section may leave its heading
+            // above the viewport. Count the section actually visible there.
+            if (!navigationSection) {
+                var midpoint = (72 + window.innerHeight * 0.85) / 2;
+                sections.forEach(function(section) {
+                    var bounds = section.getBoundingClientRect();
+                    if (bounds.top <= midpoint && bounds.bottom > midpoint) navigationSection = section;
+                });
+            }
+            recordVisible();
+            navigationSection = null;
+        }
+
+        function beginNavigation(target) {
+            suppressed = true;
+            navigationSection = target && target.closest('[data-lp-section]');
+            window.clearTimeout(idleTimer);
+            window.clearTimeout(limitTimer);
+            idleTimer = window.setTimeout(finishNavigation, 400);
+            limitTimer = window.setTimeout(finishNavigation, 3000);
+        }
+
+        window.addEventListener('scroll', function() {
+            if (!suppressed) return;
+            window.clearTimeout(idleTimer);
+            idleTimer = window.setTimeout(finishNavigation, 150);
+        }, { passive: true });
+        document.addEventListener('click', function(event) {
+            var link = event.target.closest && event.target.closest('a[href]');
+            if (!link) return;
+            try {
+                var url = new URL(link.href);
+                if (url.origin !== location.origin || url.pathname !== location.pathname || !url.hash) return;
+                var target = document.getElementById(decodeURIComponent(url.hash.slice(1)));
+                if (target) beginNavigation(target);
+            } catch (_) { /* Invalid fragments do not cause navigation tracking. */ }
+        }, true);
+        var navigation = window.performance && performance.getEntriesByType && performance.getEntriesByType('navigation')[0];
+        if (location.hash || (navigation && /^(reload|back_forward)$/.test(navigation.type))) {
+            var target = null;
+            try { target = document.getElementById(decodeURIComponent(location.hash.slice(1))); } catch (_) {}
+            beginNavigation(target);
+        }
+
+        var observer = new IntersectionObserver(function(entries) {
+            entries.forEach(function(entry) {
+                var index = Number(entry.target.getAttribute('data-section-index'));
+                visible[index] = entry.isIntersecting;
+                if (entry.isIntersecting && !suppressed) record(entry.target, index);
+            });
+        }, { rootMargin: '-72px 0px -15% 0px', threshold: 0 });
+        sections.forEach(function(section, index) {
+            var heading = section.querySelector('h1, h2');
+            if (!heading) return;
+            headings[index] = heading;
+            heading.setAttribute('data-section-index', String(index));
+            observer.observe(heading);
+        });
+        document.addEventListener('visibilitychange', function() {
+            if (!document.hidden && !suppressed) recordVisible();
+        });
+    }
+
     // ---- App Store badge impression tracking ----
     // Pairs with app_store_click so we can compute CTR (% of visitors who
     // saw the badge and clicked through). Fires once per badge per session
@@ -340,9 +462,11 @@
 
     function init() {
         bindAppStoreClicks();
+        bindLandingAndroidClicks();
         bindExternalLinks();
         setupLangChangeTracking();
         setupScrollDepth();
+        setupLandingSectionTracking();
         setupAppStoreViewTracking();
         setupPricingViewTracking();
     }

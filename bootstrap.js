@@ -23,12 +23,12 @@
    ============================================= */
 (function() {
     var SCRIPTS = [
-        'analytics.js?v=4',
+        'analytics.js?v=5',
         'lang-toggle.js?v=6',
         'drawer.js?v=1',
         'animations.js?v=5',
         'reading-cta-modal.js?v=4',
-        'android-beta-campaign.js?v=2'
+        'android-beta-campaign.js?v=3'
     ];
 
     // Resolve each shared script RELATIVE TO bootstrap.js itself, not to

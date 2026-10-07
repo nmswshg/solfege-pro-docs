@@ -6,14 +6,18 @@ test.beforeEach(({}, testInfo) => {
     test.skip(testInfo.project.name !== 'desktop', 'campaign behavior runs once on desktop');
 });
 
-test('first visit opens modal, dismissal is remembered, and FAB reopens it', async ({ page }) => {
+test('first visit stays unobstructed and FAB opens the invitation on demand', async ({ page }) => {
     await page.goto('/support/?android-beta-preview=1');
     await page.evaluate(() => localStorage.removeItem('solfege_android_beta_modal_dismissed_at'));
     await page.reload();
 
     const modal = page.locator('.android-beta-modal');
     const fab = page.locator('.android-beta-fab');
-    await expect(modal).toHaveClass(/is-open/, { timeout: 3000 });
+    await expect(fab).toBeVisible();
+    await page.waitForTimeout(1200);
+    await expect(modal).not.toHaveClass(/is-open/);
+    await fab.click();
+    await expect(modal).toHaveClass(/is-open/);
     await expect(fab).toBeVisible();
 
     await modal.locator('.android-beta-modal__close').click();
@@ -30,6 +34,21 @@ test('first visit opens modal, dismissal is remembered, and FAB reopens it', asy
     await expect(fab).toBeFocused();
 });
 
+test('mobile LP keeps App Store access clear while retaining Android links', async ({ page }) => {
+    await page.setViewportSize({ width: 375, height: 800 });
+    await page.goto('/en/?android-beta-preview=1');
+    await expect(page.locator('[data-android-beta-details]').first()).toHaveAttribute('href', '/en/android-beta/');
+    await page.waitForTimeout(1200);
+    await expect(page.locator('.android-beta-modal, .android-beta-fab')).toHaveCount(0);
+    const link = page.locator('.lp-hero__actions a.app-store-link');
+    await page.evaluate(() => {
+        document.querySelector('.lp-hero__actions a.app-store-link').addEventListener('click', e => e.preventDefault());
+    });
+    await link.click();
+    const clicks = await page.evaluate(() => (window.dataLayer || []).filter(a => a[0] === 'event' && a[1] === 'app_store_click').length);
+    expect(clicks).toBe(1);
+});
+
 test('campaign does not auto-open on privacy and recruitment details pages', async ({ page }) => {
     await page.goto('/privacy/?android-beta-preview=1');
     await page.evaluate(() => localStorage.removeItem('solfege_android_beta_modal_dismissed_at'));
@@ -41,6 +60,29 @@ test('campaign does not auto-open on privacy and recruitment details pages', asy
     await page.waitForTimeout(1200);
     await expect(page.locator('.android-beta-modal')).not.toHaveClass(/is-open/);
     await expect(page.locator('.android-beta-fab')).toBeVisible();
+});
+
+test('LP Android links record one click each with position and Web destination', async ({ page }) => {
+    await page.goto('/en/?android-beta-preview=1');
+    await page.waitForFunction(() => window.SolfegeAnalytics != null);
+    await expect(page.locator('.android-beta-modal, .android-beta-fab')).toHaveCount(0);
+    await page.locator('[data-android-beta-details]').evaluateAll(links => {
+        links.forEach(link => link.addEventListener('click', event => event.preventDefault()));
+    });
+    for (const position of ['hero', 'final']) {
+        await page.locator(`[data-android-beta-details][data-cta-position="${position}"]`).click();
+    }
+    const events = await page.evaluate(() => (window.dataLayer || []).filter(a => a[0] === 'event' && a[1] === 'android_beta_cta_click').map(a => a[2]));
+    expect(events).toHaveLength(2);
+    expect(events.map(event => event.cta_position)).toEqual(['hero', 'final']);
+    for (const event of events) {
+        expect(event.send_to).toBe('G-R009HVF9CD');
+        expect(event.source).toBe('lp_inline');
+        expect(event.destination).toBe('details');
+        expect(event.destination_path).toBe('/en/android-beta/');
+        expect(event.site_language).toBe('en');
+        expect(event.landing_version).toBe('dark-2026-10');
+    }
 });
 
 test('preview page matches the current Android build and does not block applicants', async ({ page }) => {

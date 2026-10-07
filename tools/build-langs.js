@@ -44,6 +44,8 @@
 
 const fs = require('fs');
 const path = require('path');
+const { execFileSync } = require('node:child_process');
+const { sourceLastmod: contentLastmod } = require('./content-lastmod');
 
 // --------------------------------------------------------------------
 // Constants
@@ -1227,10 +1229,12 @@ function processSource(srcRelPath) {
 // Sitemap generation (new URL format)
 // --------------------------------------------------------------------
 
-function loadExistingSitemapMeta() {
+function loadExistingSitemapMeta(xml) {
     const meta = {};
-    if (!fs.existsSync('sitemap.xml')) return meta;
-    const xml = fs.readFileSync('sitemap.xml', 'utf8');
+    if (xml == null) {
+        if (!fs.existsSync('sitemap.xml')) return meta;
+        xml = fs.readFileSync('sitemap.xml', 'utf8');
+    }
     const urlRe = /<url>([\s\S]*?)<\/url>/g;
     let m;
     while ((m = urlRe.exec(xml)) !== null) {
@@ -1244,28 +1248,20 @@ function loadExistingSitemapMeta() {
     return meta;
 }
 
-// Per-page sitemap <lastmod>: derive from the source file's last git commit
-// date — deterministic and checkout-stable. mtime is NOT usable: a fresh clone
-// / CI checkout resets every file's mtime to the checkout instant, collapsing
-// all <lastmod> to the build day (and re-stamping every URL on every CI build,
-// which Google reads as low-signal noise). A source with uncommitted changes
-// (being published in this build) gets today's date; a clean source gets its
-// last commit date. All eight language variants share one source date by design.
+// All language variants share their source's last meaningful content date.
+// A loader cache bump alone must not make every sitemap URL appear updated.
 function sourceLastmod(src) {
-    const today = new Date().toISOString().slice(0, 10);
-    const rel = path.join(SRC_DIR, src);
-    try {
-        const dirty = execSync(`git status --porcelain -- "${rel}"`, { encoding: 'utf8' }).trim();
-        if (dirty) return today;
-        const committed = execSync(`git log -1 --format=%cs -- "${rel}"`, { encoding: 'utf8' }).trim();
-        return /^\d{4}-\d{2}-\d{2}$/.test(committed) ? committed : today;
-    } catch (e) {
-        return today;
-    }
+    return contentLastmod(path.join(SRC_DIR, src));
 }
 
 function generateSitemap(allSources) {
     const meta = loadExistingSitemapMeta();
+    let published = {};
+    try {
+        published = loadExistingSitemapMeta(execFileSync('git', ['show', 'HEAD:sitemap.xml'], {
+            encoding: 'utf8', stdio: ['ignore', 'pipe', 'pipe'],
+        }));
+    } catch (_) { /* A new site has no committed sitemap yet. */ }
     const lines = [
         '<?xml version="1.0" encoding="UTF-8"?>',
         '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"',
@@ -1274,7 +1270,12 @@ function generateSitemap(allSources) {
     for (const src of allSources) {
         const jaUrl = SITE_ORIGIN + srcPathToUrlPath(src, 'ja');
         const existing = meta[jaUrl] || {};
-        const lastmod = sourceLastmod(src);
+        const contentDate = sourceLastmod(src);
+        const publishedDate = (published[jaUrl] || {}).lastmod;
+        // Preserve published dates for metadata/translation changes that
+        // live outside src/, without allowing cache bumps to advance them.
+        const lastmod = /^\d{4}-\d{2}-\d{2}$/.test(publishedDate) && publishedDate > contentDate
+            ? publishedDate : contentDate;
         const priority = existing.priority || '0.7';
         for (const lang of langsForSource(src)) {
             const url = SITE_ORIGIN + srcPathToUrlPath(src, lang);
