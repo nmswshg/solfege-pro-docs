@@ -22,7 +22,8 @@ GitHub リポジトリを Private にするのは、Cloudflare への切替と�
 4. 本番で表示・リンク・HTTPSを確認してから、GitHub Pages の自動公開を停止し、リポジトリを Private にする。
 5. Private 変更後も、GitHub から Pages の自動ビルド・公開が成功することを確認する。
 
-`_redirects` に `/* https://solfegepro.com/:splat 301` を設定すると、本番ドメインも自身に転送される。
+ルートの `_redirects` は移行前の Pages 設定用に残し、`dist/` にはコピーしない。
+この一括転送を `dist/` に入れると、本番ドメインも自身に転送される。
 `pages.dev` や `www` からの転送が必要な場合は、Cloudflare のホスト名条件付きルールで設定する。
 
 移行中の切り戻し用に GitHub Pages のワークフローは残している。

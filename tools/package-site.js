@@ -21,7 +21,7 @@ const rootScripts = new Set([
     'tap-tempo.js',
 ]);
 const rootFiles = new Set([
-    '_redirects', 'robots.txt', 'sitemap.xml',
+    'robots.txt', 'sitemap.xml',
     'eb43a1325afb8eaa79a4ee9dff5a6d14.txt',
 ]);
 const assetExtensions = new Set([

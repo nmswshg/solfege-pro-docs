@@ -1,3 +1,11 @@
-# Cloudflare Pages serves solfegepro.com directly after migration.
-# Do not redirect /* to solfegepro.com here: that would loop on the custom domain.
-# Configure host-specific redirects for pages.dev / www in Cloudflare instead.
+# Cloudflare Pages redirect rules — https://developers.cloudflare.com/pages/configuration/redirects/
+#
+# This CF Pages project serves ONLY https://solfege-pro.pages.dev/ (the
+# canonical https://solfegepro.com/ is GitHub Pages + Fastly, a separate
+# origin), so a blanket path rule below cannot loop: it fires only for
+# traffic that lands on the stale pages.dev host and 301s it to the
+# canonical domain, preserving the path.
+#
+# NOTE: CF Pages does NOT support hostnames in the source field (that is
+# Netlify syntax) — source must be a path starting with "/".
+/*  https://solfegepro.com/:splat  301
